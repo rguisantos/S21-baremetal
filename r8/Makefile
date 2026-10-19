@@ -1,17 +1,13 @@
 # Makefile — kit R8: MMU / exception levels / exceções + GICv3 + timer
 # Ambiente userspace (sem root): cross-gcc e QEMU extraídos em tools/root
 
-TOOLS   := /home/z/my-project/tools/root
-CROSS   := $(TOOLS)/usr/bin/aarch64-linux-gnu-
+CROSS   := aarch64-linux-gnu-
 CC      := $(CROSS)gcc
 OBJDUMP := $(CROSS)objdump
 
-QEMU    := $(TOOLS)/usr/bin/qemu-system-aarch64
-QDATA   := $(TOOLS)/usr/share/qemu
-QLIB    := $(TOOLS)/usr/lib/x86_64-linux-gnu
-QENV    := LD_LIBRARY_PATH=$(QLIB)
-
-export LD_LIBRARY_PATH := $(QLIB)
+QEMU    := qemu-system-aarch64
+QDATA   := /usr/share/qemu
+QENV    :=
 
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
 	   -fno-pie -mgeneral-regs-only -march=armv8-a -O2 -std=gnu11 \
