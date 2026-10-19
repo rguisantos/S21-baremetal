@@ -3,3 +3,8 @@ node_modules/
 *.log
 *.exc
 *.dtb
+build/
+*.o
+*.elf
+*.dis
+.env
