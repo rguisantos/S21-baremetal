@@ -151,6 +151,19 @@ CONFIG_USI_V2=m
 CONFIG_ARM_PSCI_FW=y
 ```
 
+### BL Firmware (Bootloader) — `BL_G998BXXSJHZC2_...tar.md5` (10.4 MB)
+
+| Componente | Arquivo | Descoberta chave |
+|------------|---------|------------------|
+| **TF-A / BL2** | `sboot.bin` | v1.5 (Athens/Exynos2100), PSCI **HVC**, GICv3, EL3 monitor, libfdt completo |
+| **TEEGRIS** | `tzar.img` + `tzsw.img` | v4/v3.7, Secure OS (OP-TEE based) |
+| **Harx** | `harx.bin` | Hypervisor, BL31 setup, S2MPU |
+| **AVB** | `vbmeta.img` | Partitions: recovery, dtbo, boot1, vendor_boot, system, vendor, ... |
+
+> **Sem U-Boot** — Samsung usa cadeia proprietária BL2 → Kernel. Ponto de chainload: após BL2, antes do kernel (EL2/EL1).
+> **Base DTB** — NÃO está no BL; deve vir de `vendor_boot.img` ou partição `dtb` do AP.
+> **PSCI** — Via `hvc #0` (não SMC).
+
 ### Árvores de kernel públicas para referência
 
 - **Universal Exynos 2100**: https://github.com/exynos2100/android_kernel_samsung_universal2100

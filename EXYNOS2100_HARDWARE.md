@@ -174,83 +174,83 @@ oscclk: oscillator {
 
 ---
 
-## Firmware Extraction Results (G998BXXSJHZC2)
+## BL Firmware Extraction Results (G998BXXSJHZC2)
 
-**Source**: `AP_G998BXXSJHZC2_G998BXXSJHZC2_MQB107295400_REV01_user_low_ship_MULTI_CERT_meta_OS15.tar.md5`
+**Source**: `BL_G998BXXSJHZC2_...tar.md5` (10.4 MB)
 
 ### Extracted Components
 
-| File | Size | Type | Notes |
-|------|------|------|-------|
-| `boot.img` | 64 MB | Android boot image | Contains ramdisk + overlay DTB (no kernel binary) |
-| `dtbo.img` | 8 MB | DTBO overlay image | Multiple DTB fragments for board peripherals |
-| `ramdisk.cpio` | 1.5 MB | initramfs | init, fstab.exynos2100, SELinux policy |
-| `kernel_decompressed` | 203 KB | Kernel config | Linux 5.4.242, clang 11.0.1 |
+| File | Size | Identity |
+|------|------|----------|
+| `sboot.bin` | 4 MB | **BL2 + TF-A v1.5** (Athens platform) |
+| `tzsw.img` | 1.5 MB | TrustZone Secure World / TEEGRIS v3.7 |
+| `tzar.img` | 7 MB | TEEGRIS v4 (Trusted OS) |
+| `ldfw.img` | 8 MB | Loadable Firmware (exynos991) |
+| `harx.bin` | 3 MB | Hypervisor/Arx (BL31 setup, S2MPU) |
+| `vbmeta.img` | 10 KB | AVB metadata (partition table) |
+| Others | — | dpm, keystorage, ssp, uh, up_param, vddcal_fw |
 
-### Kernel Configuration (from `kernel_decompressed`)
+### TF-A / BL2 Analysis (from `sboot.bin`)
 
-```bash
-CONFIG_SOC_EXYNOS2100=y
-CONFIG_ARM_GIC=y
-CONFIG_ARM_GIC_V3=y
-CONFIG_ARM_GIC_V3_ITS=y
-CONFIG_ARM_GIC_V2M=y
-CONFIG_ARM_PSCI_CPUIDLE=y
-CONFIG_ARM_PSCI_FW=y
-CONFIG_CLKSRC_EXYNOS_MCT=m          # MCT timer (module)
-CONFIG_USI_V2=m                      # USI v2 UART (module)
-CONFIG_SERIAL_AMBA_PL011=y           # PL011 also enabled
-CONFIG_SERIAL_AMBA_PL011_CONSOLE=y
-CONFIG_SERIAL_EARLYCON=y
+```text
+TF-A Version:    v1.5(release)
+Platform:        Athens (Exynos 2100 / s5e9840)
+Build ID:        RP1A-1A19R1-1-gbfac7c7
+Build Time:      Sep 3 2024 16:38:03
+Git Commits:     bfac7c7 249a7b4 9c96c10 a41bdbc edca2c0 ...
+Builder UID:     swp
 ```
 
-> **Key insight**: GICv3 + ITS, MCT timer, USI v2 UART are all enabled. The base SoC DTS defines the hardware addresses; this config confirms driver selection.
+**Key capabilities confirmed in BL2/TF-A:**
+- **PSCI conduit**: `HVC` (not SMC)
+- **GIC**: GICv3 (source: `dev/interrupt/arm_gic-v3/arm_gic-v3.c`)
+- **EL3 Monitor**: Present with version check
+- **DTB handling**: Full libfdt support (`fdt_check_header`, `fdt_path_offset`, `fdt_getprop`, `fdt_setprop`, `configure_dtb`)
+- **PSCI in DTB**: Explicit DTB parsing for PSCI method (`fdt_path_offset of PSCI fail`)
 
-### Partition Layout (from `fstab.exynos2100`)
+### TEEGRIS (Trusted OS)
+- `tzar.img`: TEEGRIS v4, build 2022-03-23 / 20260309195836
+- `tzsw.img`: TEEGRIS v3.7, build 2023-08-08 10:38:18
+- Platform: `exynos2100root0` / `exynos2100dlroot0`
 
+### AVB Partition Table (from `vbmeta.img`)
+
+Partitions with AVB verification:
 ```
-# Key partitions for bring-up:
-/boot          (kernel + ramdisk + overlay DTB)
-/vendor        (vendor modules, firmware)
-/dtb           (likely separate partition for base DTB)
-/dtbo          (overlay DTB - we have this)
+recovery, dtbo, prism, optics, boot1, bootloader,
+harx, keystorage, ldfwH, tzsw, vendor_boot, product, system, vendor
 ```
 
-### Boot Parameters
+**Device**: `SM-G998B_EUR_XX_EKEY0` (Galaxy S21 Ultra, Europe)
+**Build**: `G998BXXSJHZC2` / `20260309203616`
+**Security patch**: `2026-01-01`
 
-- **Boot header cmdline**: `permissive loop.max_part=7`
-- **Full cmdline**: Provided by U-Boot at runtime (not in boot.img header)
+### Critical Findings for Bare-Metal
 
-### DTB Structure
+| Aspect | Finding | Implication |
+|--------|---------|-------------|
+| **Boot chain** | BL2 (sboot.bin) → Kernel | No U-Boot in BL; Samsung proprietary chain |
+| **Chainload point** | After BL2, before kernel | Need to inject payload at EL2/EL1 via custom bootloader |
+| **PSCI** | HVC conduit | Use `hvc #0` for PSCI calls (CPU_ON, SYSTEM_RESET) |
+| **GIC** | GICv3 initialized by TF-A | GICD/GICR already configured; we inherit at EL1/EL2 |
+| **DTB** | Dynamic in BL2 (`configure_dtb`) | Base DTB not in BL; must come from `vendor_boot` or `dtb` partition |
+| **Secure memory** | Managed by BL2/TEEGRIS | `get secure memory base addr` — avoid reserved regions |
 
-Both `boot.img` (extracted `dtb.img`) and `dtbo.img` contain **overlay fragments** (`fragment@...` with `__overlay__`), not the base SoC device tree. The base hardware definitions (GIC, MCT, UART, CPU clusters, memory, PSCI) reside in the kernel source DTSI files:
+### Missing for Bring-Up (need from AP or Samsung source)
 
-- `arch/arm64/boot/dts/samsung/exynos2100.dtsi` — SoC base
-- `arch/arm64/boot/dts/samsung/exynos2100-p3s.dts` — S21 Ultra board
+1. **Base DTB** (`exynos2100-p3s.dtb`) — in `vendor_boot.img` or separate `dtb` partition
+2. **Kernel binary** (`Image` / `zImage`) — in `boot.img` partition (not in this BL)
+3. **U-Boot** — Not present; Samsung uses direct BL2→kernel
 
-These are **not** in the firmware images; they must be sourced from the Samsung kernel source drop for `G998BXXSJHZC2`.
+### Next Steps
 
-### Validation: Public DTSI vs Firmware
-
-| Component | Public `exynos2100.dtsi` | Firmware Evidence |
-|-----------|--------------------------|-------------------|
-| GIC-600 Base | 0x1020_0000 | ✅ Kernel config: `CONFIG_ARM_GIC_V3=y` |
-| MCT Timer | 0x1004_0000 | ✅ Kernel config: `CONFIG_CLKSRC_EXYNOS_MCT=m` |
-| UART (USI v2) | 0x1084_0000 (uart1) | ✅ Kernel config: `CONFIG_USI_V2=m` |
-| PSCI | Standard ARM | ✅ Kernel config: `CONFIG_ARM_PSCI_FW=y` |
-| CPU Topology | 1×X1 + 3×A78 + 4×A55 | ✅ fstab: Exynos 2100 platform |
-
-### Next Steps for Bare-Metal Port
-
-1. **Obtain Samsung kernel source** for `G998BXXSJHZC2` from opensource.samsung.com
-2. **Extract base DTB** from `vendor_boot.img` or `dtb` partition (not in this AP)
-3. **Cross-reference addresses** with public DTSI — they should match
-4. **Build minimal payload** using confirmed addresses:
-   - GICD: 0x1020_0000
-   - GICR: 0x1024_0000
-   - MCT: 0x1004_0000
-   - UART1: 0x1084_0000 (SPI 533)
-   - PSCI: SMC calls via TF-A
+1. Extract `vendor_boot.img` from AP tar.md5 → should contain base DTB + kernel
+2. Or obtain Samsung kernel source for `G998BXXSJHZC2` → has `exynos2100-p3s.dts`
+3. Build minimal payload that:
+   - Runs at EL2 (after BL2 hands off) or EL1
+   - Uses PSCI HVC for CPU bring-up
+   - Inherits GICv3 config from TF-A
+   - Maps known Exynos 2100 addresses (GICD 0x1020_0000, MCT 0x1004_0000, UART 0x1084_0000)
 
 ---
 
