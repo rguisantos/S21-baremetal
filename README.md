@@ -113,25 +113,43 @@ talvez SMP via PSCI — ou a portabilidade para bancada real
 (RK3568/DAYU200: BSP, U-Boot chainloading, serial física).
 ## Exynos 2100 (Galaxy S21 Ultra SM-G998B) — Verdades físicas do firmware real
 
-O kernel público do Exynos 2100 (`exynos2100.dts`) expõe o mapa de hardware
+O kernel público do Exynos 2100 (`exynos2100.dtsi`) expõe o mapa de hardware
 real — **diferente do QEMU `virt`**:
 
 | Componente | QEMU `virt` | Exynos 2100 Real | Fonte |
 |------------|-------------|------------------|-------|
-| GICD (Distributor) | 0x08000000 | **0x10200000** | `exynos2100.dts` `gic` node |
-| GICR (Redistributor) | 0x080A0000 | **0x10240000** | `exynos2100.dts` `gic` node |
-| MCT (Local Timer) | — | **0x10040000** | `exynos2100.dts` `mct` node |
-| Chip ID | — | **0x10000000** | `exynos2100.dts` `chipid` node |
-| Oscilador de ref. | — | **26 MHz** | `exynos2100.dts` `clocks` |
+| GICD (Distributor) | 0x08000000 | **0x10200000** | `exynos2100.dtsi` `gic` node |
+| GICR (Redistributor) | 0x080A0000 | **0x10240000** | `exynos2100.dtsi` `gic` node |
+| MCT (Local Timer) | — | **0x10040000** | `exynos2100.dtsi` `mct` node |
+| Chip ID | — | **0x10000000** | `exynos2100.dtsi` `chipid` node |
+| Oscilador de ref. | — | **26 MHz** | `exynos2100.dtsi` `clocks` |
 | initrd (kernel) | — | **0x84000000** | boot header padrão |
-| UART Console | PL011 @ 0x09000000 | **uart@10840000** | `exynos2100.dts` `uart1` |
-| UART compat | `arm,pl011` | **`samsung,exynos-uart`** (USI v2) | `exynos2100.dts` |
-| UART IRQ (SPI) | INTID 33 (PL011) | **INTID 0x215 = 533** | `exynos2100.dts` `interrupts` |
+| UART Console | PL011 @ 0x09000000 | **uart@10840000** | `exynos2100.dtsi` `uart1` |
+| UART compat | `arm,pl011` | **`samsung,exynos-uart`** (USI v2) | `exynos2100.dtsi` |
+| UART IRQ (SPI) | INTID 33 (PL011) | **INTID 0x215 = 533** | `exynos2100.dtsi` `interrupts` |
 
 > **IMPORTANTE**: Não copiar endereços do QEMU para o hardware real. O
 > GIC-600 no Exynos vive em 0x1020_0000 (base física), não em 0x0800_0000.
 > O timer local é MCT (Memory Controller Timer), não o architected timer
 > PPI do QEMU. A UART é Samsung USI v2, não PL011.
+
+### Firmware Extraído (G998BXXSJHZC2)
+
+| Artefato | Tamanho | Conteúdo |
+|----------|---------|----------|
+| `boot.img` | 64 MB | Ramdisk + overlay DTB (sem kernel binary) |
+| `dtbo.img` | 8 MB | Overlays de placa (bateria, câmeras, sensores, PMIC) |
+| `ramdisk` | 1.5 MB | init, fstab.exynos2100, SELinux policy |
+| `kernel.config` | 203 KB | Linux 5.4.242, clang 11.0.1 |
+
+**Kernel config confirmado**:
+```
+CONFIG_SOC_EXYNOS2100=y
+CONFIG_ARM_GIC_V3=y / CONFIG_ARM_GIC_V3_ITS=y
+CONFIG_CLKSRC_EXYNOS_MCT=m
+CONFIG_USI_V2=m
+CONFIG_ARM_PSCI_FW=y
+```
 
 ### Árvores de kernel públicas para referência
 

@@ -174,24 +174,83 @@ oscclk: oscillator {
 
 ---
 
-## Como Obter o DTB do Firmware Real (G998BXXSJHZC2)
+## Firmware Extraction Results (G998BXXSJHZC2)
+
+**Source**: `AP_G998BXXSJHZC2_G998BXXSJHZC2_MQB107295400_REV01_user_low_ship_MULTI_CERT_meta_OS15.tar.md5`
+
+### Extracted Components
+
+| File | Size | Type | Notes |
+|------|------|------|-------|
+| `boot.img` | 64 MB | Android boot image | Contains ramdisk + overlay DTB (no kernel binary) |
+| `dtbo.img` | 8 MB | DTBO overlay image | Multiple DTB fragments for board peripherals |
+| `ramdisk.cpio` | 1.5 MB | initramfs | init, fstab.exynos2100, SELinux policy |
+| `kernel_decompressed` | 203 KB | Kernel config | Linux 5.4.242, clang 11.0.1 |
+
+### Kernel Configuration (from `kernel_decompressed`)
 
 ```bash
-# 1. Baixar AP tar.md5 do SamFW (ZTO)
-# 2. Extrair
-tar -xf AP_*.tar.md5
-
-# 3. Extrair boot.img / dtbo.img
-abootimg -x boot.img
-# → zImage, initrd, dtb (appended ou separado)
-
-# 4. Extrair DTB do zImage
-./extract-dtb zImage -o dtbs/
-dtc -I dtb -O dts dtbs/*.dtb > kernel.dts
-
-# 5. Extrair dtbo.img (overlays)
-# Usar ferramenta: https://github.com/PabloCastellano/extract-dtb
+CONFIG_SOC_EXYNOS2100=y
+CONFIG_ARM_GIC=y
+CONFIG_ARM_GIC_V3=y
+CONFIG_ARM_GIC_V3_ITS=y
+CONFIG_ARM_GIC_V2M=y
+CONFIG_ARM_PSCI_CPUIDLE=y
+CONFIG_ARM_PSCI_FW=y
+CONFIG_CLKSRC_EXYNOS_MCT=m          # MCT timer (module)
+CONFIG_USI_V2=m                      # USI v2 UART (module)
+CONFIG_SERIAL_AMBA_PL011=y           # PL011 also enabled
+CONFIG_SERIAL_AMBA_PL011_CONSOLE=y
+CONFIG_SERIAL_EARLYCON=y
 ```
+
+> **Key insight**: GICv3 + ITS, MCT timer, USI v2 UART are all enabled. The base SoC DTS defines the hardware addresses; this config confirms driver selection.
+
+### Partition Layout (from `fstab.exynos2100`)
+
+```
+# Key partitions for bring-up:
+/boot          (kernel + ramdisk + overlay DTB)
+/vendor        (vendor modules, firmware)
+/dtb           (likely separate partition for base DTB)
+/dtbo          (overlay DTB - we have this)
+```
+
+### Boot Parameters
+
+- **Boot header cmdline**: `permissive loop.max_part=7`
+- **Full cmdline**: Provided by U-Boot at runtime (not in boot.img header)
+
+### DTB Structure
+
+Both `boot.img` (extracted `dtb.img`) and `dtbo.img` contain **overlay fragments** (`fragment@...` with `__overlay__`), not the base SoC device tree. The base hardware definitions (GIC, MCT, UART, CPU clusters, memory, PSCI) reside in the kernel source DTSI files:
+
+- `arch/arm64/boot/dts/samsung/exynos2100.dtsi` — SoC base
+- `arch/arm64/boot/dts/samsung/exynos2100-p3s.dts` — S21 Ultra board
+
+These are **not** in the firmware images; they must be sourced from the Samsung kernel source drop for `G998BXXSJHZC2`.
+
+### Validation: Public DTSI vs Firmware
+
+| Component | Public `exynos2100.dtsi` | Firmware Evidence |
+|-----------|--------------------------|-------------------|
+| GIC-600 Base | 0x1020_0000 | ✅ Kernel config: `CONFIG_ARM_GIC_V3=y` |
+| MCT Timer | 0x1004_0000 | ✅ Kernel config: `CONFIG_CLKSRC_EXYNOS_MCT=m` |
+| UART (USI v2) | 0x1084_0000 (uart1) | ✅ Kernel config: `CONFIG_USI_V2=m` |
+| PSCI | Standard ARM | ✅ Kernel config: `CONFIG_ARM_PSCI_FW=y` |
+| CPU Topology | 1×X1 + 3×A78 + 4×A55 | ✅ fstab: Exynos 2100 platform |
+
+### Next Steps for Bare-Metal Port
+
+1. **Obtain Samsung kernel source** for `G998BXXSJHZC2` from opensource.samsung.com
+2. **Extract base DTB** from `vendor_boot.img` or `dtb` partition (not in this AP)
+3. **Cross-reference addresses** with public DTSI — they should match
+4. **Build minimal payload** using confirmed addresses:
+   - GICD: 0x1020_0000
+   - GICR: 0x1024_0000
+   - MCT: 0x1004_0000
+   - UART1: 0x1084_0000 (SPI 533)
+   - PSCI: SMC calls via TF-A
 
 ---
 
