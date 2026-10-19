@@ -231,26 +231,162 @@ harx, keystorage, ldfwH, tzsw, vendor_boot, product, system, vendor
 |--------|---------|-------------|
 | **Boot chain** | BL2 (sboot.bin) → Kernel | No U-Boot in BL; Samsung proprietary chain |
 | **Chainload point** | After BL2, before kernel | Need to inject payload at EL2/EL1 via custom bootloader |
-| **PSCI** | HVC conduit | Use `hvc #0` for PSCI calls (CPU_ON, SYSTEM_RESET) |
+| **PSCI** | BL: HVC, DTB: SMC | Test `hvc #0` first, fallback to `smc #0` |
 | **GIC** | GICv3 initialized by TF-A | GICD/GICR already configured; we inherit at EL1/EL2 |
-| **DTB** | Dynamic in BL2 (`configure_dtb`) | Base DTB not in BL; must come from `vendor_boot` or `dtb` partition |
+| **DTB** | Dynamic in BL2 (`configure_dtb`) | Base DTB now extracted from `vendor_boot.img` ✅ |
 | **Secure memory** | Managed by BL2/TEEGRIS | `get secure memory base addr` — avoid reserved regions |
 
-### Missing for Bring-Up (need from AP or Samsung source)
+---
 
-1. **Base DTB** (`exynos2100-p3s.dtb`) — in `vendor_boot.img` or separate `dtb` partition
-2. **Kernel binary** (`Image` / `zImage`) — in `boot.img` partition (not in this BL)
-3. **U-Boot** — Not present; Samsung uses direct BL2→kernel
+## Firmware DTB Extraction Results (G998BXXSJHZC2)
 
-### Next Steps
+**Source**: `vendor_boot.img` from AP tar.md5 → embedded DTB at offset 0xb77040
 
-1. Extract `vendor_boot.img` from AP tar.md5 → should contain base DTB + kernel
-2. Or obtain Samsung kernel source for `G998BXXSJHZC2` → has `exynos2100-p3s.dts`
-3. Build minimal payload that:
-   - Runs at EL2 (after BL2 hands off) or EL1
-   - Uses PSCI HVC for CPU bring-up
-   - Inherits GICv3 config from TF-A
-   - Maps known Exynos 2100 addresses (GICD 0x1020_0000, MCT 0x1004_0000, UART 0x1084_0000)
+### Base SoC DTB Confirmed (from `extracted.dtb`)
+
+This is the **actual base device tree** used by the firmware — not overlays. All key hardware addresses confirmed:
+
+| Component | Address | Details | Verified |
+|-----------|---------|---------|----------|
+| **GIC-600 Distributor** | `0x1020_0000` | `reg = <0x00 0x10200000 0x10000>` | ✅ |
+| **GIC-600 Redistributor** | `0x1024_0000` | `reg = <0x00 0x10240000 0x200000>` | ✅ |
+| **GIC ITS** | (in redistributor range) | `interrupt-controller` with 3 cells | ✅ |
+| **MCT (Local Timer)** | `0x1004_0000` | `samsung,exynos4210-mct`, size 0x800 | ✅ |
+| **Chip ID** | `0x1000_0000` | `samsung,exynos2100-chipid`, size 0x100 | ✅ |
+| **UART Console (uart1)** | `0x1084_0000` | `samsung,exynos-uart` (USI v2), SPI 533 (0x215) | ✅ |
+| **PSCI** | — | `arm,psci-1.0`, `method = "smc"` | ✅ |
+| **Architected Timer** | PPI 13-16 | `arm,armv8-timer`, 26 MHz crystal | ✅ |
+| **CPU Topology** | — | 3 clusters: 4×A55 (cluster0), 3×A78 (cluster1), 1×X1 (cluster2) | ✅ |
+
+> **Critical**: UART1 is `status = "disabled"` in DTB — firmware enables it at runtime. Our bare-metal must enable it explicitly.
+
+### GIC-600 Node (exact DTS)
+
+```dts
+interrupt-controller@10200000 {
+    compatible = "arm,gic-v3";
+    #interrupt-cells = <0x03>;
+    reg = <0x00 0x10200000 0x10000>,     // GICD
+          <0x00 0x10240000 0x200000>;    // GICR (4 redistributors × 0x20000)
+    interrupts = <0x01 0x09 0x04>;       // PPI 9 (maintenance)
+    interrupt-parent = <0x01>;
+    class0-cpus = "0-3";                  // A55 cluster
+    class1-cpus = "4-7";                  // A78 + X1 clusters
+    phandle = <0x01>;
+};
+```
+
+### UART Console Node (exact DTS)
+
+```dts
+uart@10840000 {
+    compatible = "samsung,exynos-uart";   // USI v2
+    reg = <0x00 0x10840000 0x100>;
+    interrupts = <0x00 0x215 0x04>;       // GIC SPI 533 (0x215)
+    clocks = <0x74 0x75>;                 // gate_uart_clk1, ipclk_uart1
+    clock-names = "gate_uart_clk1", "ipclk_uart1";
+    status = "disabled";                  // firmware enables at runtime
+    samsung,usi-phandle = <0x70>;         // USI block reference
+    samsung,usi-offset = <0x00>;
+    phandle = <0x29b>;
+};
+
+aliases {
+    uart1 = "/uart@10840000";
+    serial_1 = "/uart@10840000";
+};
+```
+
+### MCT Timer Node (exact DTS)
+
+```dts
+mct@10040000 {
+    compatible = "samsung,exynos4210-mct";
+    reg = <0x00 0x10040000 0x800>;
+    #interrupt-cells = <0x02>;
+    interrupt-controller;
+    clocks = <0x174 0x175>;               // fin_pll, mct
+    clock-names = "fin_pll", "mct";
+    
+    mct-map {
+        compatible = "samsung,exynos-mct-map";
+        #interrupt-cells = <0x02>;
+        interrupt-parent = <0x01>;
+        // 12 MCT channels mapped to GIC SPIs
+    };
+    phandle = <0x1a5>;
+};
+```
+
+### PSCI Node
+
+```dts
+psci {
+    compatible = "arm,psci-1.0";
+    method = "smc";                       // SMC conduit (not HVC!)
+};
+```
+
+> **Note**: DTB says PSCI method = `smc`, but BL firmware strings said HVC. The kernel uses SMC; TF-A may route HVC→SMC. Test both.
+
+### CPU Topology (from DTB)
+
+| Cluster | CPUs | Type | DTB compatible | CPU IDs |
+|---------|------|------|----------------|---------|
+| **cluster0 (little)** | 4 | Cortex-A55 | `arm,ananke` | 0x0000, 0x0100, 0x0200, 0x0300 |
+| **cluster1 (mid)** | 3 | Cortex-A78 | `arm,hercules` | 0x0400, 0x0500, 0x0600 |
+| **cluster2 (big)** | 1 | Cortex-X1 | `arm,hera` | 0x0700 |
+
+All CPUs: `enable-method = "psci"`
+
+### Memory Layout (reserved regions — no standard `memory@` node)
+
+| Region | Address | Size | Purpose |
+|--------|---------|------|---------|
+| `linux,initrd-start` | runtime | — | Provided by bootloader |
+| `linux,initrd-end` | runtime | — | Provided by bootloader |
+| Reserved | `0x8f00_0000` | — | TZ / secure |
+| Reserved | `0x9000_0000` | — | TZ / secure |
+| Reserved | `0xb000_0000` | — | Shared / carveout |
+| Reserved | `0xbff8_0000` | — | Boot params |
+| Reserved | `0xf000_0000+` | — | PCIe / peripherals |
+
+> DRAM starts at `0x8000_0000` (implied by kernel load addr). No `memory@80000000` node — bootloader passes mem size via FDT `/chosen`.
+
+### Boot Parameters (from `/chosen`)
+
+```dts
+chosen {
+    bootargs = "...";              // Full cmdline from U-Boot/BL2
+    linux,initrd-start = <...>;    // Runtime
+    linux,initrd-end = <...>;      // Runtime
+    stdout-path = "serial0:115200n8"; // Console
+};
+```
+
+### Validation: Public DTSI vs Firmware DTB vs BL Firmware
+
+| Component | Public DTSI | Firmware DTB | BL Firmware |
+|-----------|-------------|--------------|-------------|
+| GICD | 0x1020_0000 | ✅ 0x1020_0000 | GICv3 init confirmed |
+| GICR | 0x1024_0000 | ✅ 0x1024_0000 | — |
+| MCT | 0x1004_0000 | ✅ 0x1004_0000 | — |
+| ChipID | 0x1000_0000 | ✅ 0x1000_0000 | `s5e9840` (Exynos 9840) |
+| UART1 | 0x1084_0000 | ✅ 0x1084_0000 | — |
+| UART IRQ | SPI 533 | ✅ SPI 533 (0x215) | — |
+| PSCI | SMC | ✅ SMC | TF-A strings: HVC |
+| Timer | Arch (PPI 30) | ✅ PPI 13-16 + MCT | — |
+| CPU Topology | 1+3+4 | ✅ 1+3+4 | — |
+
+### Next Steps for R10 Payload
+
+1. **Use confirmed addresses** from this DTB (not public DTSI)
+2. **Enable UART1** explicitly (DTB has `status = "disabled"`)
+3. **Initialize GIC-600** at 0x1020_0000 / 0x1024_0000
+4. **Use MCT** at 0x1004_0000 for local timer (or architected timer PPI 13-16)
+5. **PSCI via SMC** (per DTB) — test `hvc #0` as fallback per BL strings
+6. **Chainload**: Replace kernel in `boot.img` or `vendor_boot.img` with payload ELF
+7. **Entry point**: BL2 hands off at EL2 (recommended) — payload must handle EL2→EL1 drop
 
 ---
 
@@ -267,5 +403,5 @@ harx, keystorage, ldfwH, tzsw, vendor_boot, product, system, vendor
 
 ---
 
-*Documento gerado a partir de `exynos2100.dts` público (kernel 5.4/6.x Samsung).  
-Para o build exato `G998BXXSJHZC2`, extrair DTB do `boot.img` do AP tar.md5.*
+*Documento gerado a partir de firmware real `G998BXXSJHZC2` (vendor_boot.img DTB + BL sboot.bin).  
+Base DTB agora confirmado — não mais dependente de DTSI público.*

@@ -161,8 +161,20 @@ CONFIG_ARM_PSCI_FW=y
 | **AVB** | `vbmeta.img` | Partitions: recovery, dtbo, boot1, vendor_boot, system, vendor, ... |
 
 > **Sem U-Boot** — Samsung usa cadeia proprietária BL2 → Kernel. Ponto de chainload: após BL2, antes do kernel (EL2/EL1).
-> **Base DTB** — NÃO está no BL; deve vir de `vendor_boot.img` ou partição `dtb` do AP.
-> **PSCI** — Via `hvc #0` (não SMC).
+> **Base DTB** — Extraído do `vendor_boot.img` do AP (offset 0xb77040, 390 KB). Confirma todos os endereços.
+> **PSCI** — DTB diz SMC, BL strings dizem HVC. Testar ambos.
+
+### DTB Base Confirmado (vendor_boot.img)
+
+| Componente | Endereço | Detalhes |
+|------------|----------|----------|
+| **GICD** | 0x1020_0000 | `arm,gic-v3`, redist 0x1024_0000 |
+| **MCT** | 0x1004_0000 | `samsung,exynos4210-mct` |
+| **ChipID** | 0x1000_0000 | `samsung,exynos2100-chipid` |
+| **UART1 (console)** | 0x1084_0000 | `samsung,exynos-uart` (USI v2), **SPI 533**, `status=disabled` |
+| **PSCI** | — | `arm,psci-1.0`, method=smc |
+| **Timer arch** | PPI 13-16 | `arm,armv8-timer`, 26 MHz |
+| **CPU Topology** | 3 clusters | 4×A55 (0-3), 3×A78 (4-6), 1×X1 (7) |
 
 ### Árvores de kernel públicas para referência
 
