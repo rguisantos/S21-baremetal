@@ -1,0 +1,3 @@
+gcc-14-aarch64-linux-gnu binary: hardening-no-pie
+gcc-14-aarch64-linux-gnu binary: binary-without-manpage
+gcc-14-aarch64-linux-gnu binary: binary-from-other-architecture

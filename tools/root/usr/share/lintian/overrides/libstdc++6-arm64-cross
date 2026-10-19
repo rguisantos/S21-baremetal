@@ -1,0 +1,3 @@
+libstdc++6-arm64-cross binary: arch-independent-package-contains-binary-or-object
+libstdc++6-arm64-cross binary: non-standard-dir-in-usr
+libstdc++6-arm64-cross binary: shlibs-declares-dependency-on-other-package

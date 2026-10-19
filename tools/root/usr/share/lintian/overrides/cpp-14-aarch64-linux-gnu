@@ -1,0 +1,3 @@
+cpp-14-aarch64-linux-gnu binary: hardening-no-pie
+cpp-14-aarch64-linux-gnu binary: binary-without-manpage
+cpp-14-aarch64-linux-gnu binary: binary-from-other-architecture

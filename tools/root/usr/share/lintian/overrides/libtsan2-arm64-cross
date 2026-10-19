@@ -1,0 +1,4 @@
+libtsan2-arm64-cross: unstripped-binary-or-object
+libtsan2-arm64-cross binary: arch-independent-package-contains-binary-or-object
+libtsan2-arm64-cross binary: non-standard-dir-in-usr
+libtsan2-arm64-cross binary: shlibs-declares-dependency-on-other-package
