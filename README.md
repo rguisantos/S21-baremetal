@@ -111,4 +111,41 @@ Fronteira atual: o próximo passo natural é isolamento por MMU (page tables
 por tarefa, janela virando lei física), EL0 com páginas de usuário e
 talvez SMP via PSCI — ou a portabilidade para bancada real
 (RK3568/DAYU200: BSP, U-Boot chainloading, serial física).
+## Exynos 2100 (Galaxy S21 Ultra SM-G998B) — Verdades físicas do firmware real
+
+O kernel público do Exynos 2100 (`exynos2100.dts`) expõe o mapa de hardware
+real — **diferente do QEMU `virt`**:
+
+| Componente | QEMU `virt` | Exynos 2100 Real | Fonte |
+|------------|-------------|------------------|-------|
+| GICD (Distributor) | 0x08000000 | **0x10200000** | `exynos2100.dts` `gic` node |
+| GICR (Redistributor) | 0x080A0000 | **0x10240000** | `exynos2100.dts` `gic` node |
+| MCT (Local Timer) | — | **0x10040000** | `exynos2100.dts` `mct` node |
+| Chip ID | — | **0x10000000** | `exynos2100.dts` `chipid` node |
+| Oscilador de ref. | — | **26 MHz** | `exynos2100.dts` `clocks` |
+| initrd (kernel) | — | **0x84000000** | boot header padrão |
+| UART Console | PL011 @ 0x09000000 | **uart@10840000** | `exynos2100.dts` `uart1` |
+| UART compat | `arm,pl011` | **`samsung,exynos-uart`** (USI v2) | `exynos2100.dts` |
+| UART IRQ (SPI) | INTID 33 (PL011) | **INTID 0x215 = 533** | `exynos2100.dts` `interrupts` |
+
+> **IMPORTANTE**: Não copiar endereços do QEMU para o hardware real. O
+> GIC-600 no Exynos vive em 0x1020_0000 (base física), não em 0x0800_0000.
+> O timer local é MCT (Memory Controller Timer), não o architected timer
+> PPI do QEMU. A UART é Samsung USI v2, não PL011.
+
+### Árvores de kernel públicas para referência
+
+- **Universal Exynos 2100**: https://github.com/exynos2100/android_kernel_samsung_universal2100
+- **Comunidade Exynos Republic**: https://github.com/exynos-republic/android_kernel_samsung_universal2100
+- **Samsung Open Source**: https://opensource.samsung.com/ (buscar por `G998BXXSJHZC2`)
+
+### Build da referência
+
+- **AP/Build**: `G998BXXSJHZC2`
+- **Kernel**: `5.4.242-30958140-abG998BXXSJHZC2`
+- **Android**: 15 (AP3A.240905.015.A2)
+- **Baseband**: `G998BXXSJHZA7`
+- **CSC**: `ZTO` (Brasil)
+- **Codename plataforma**: `p3s`
+
 # S21-baremetal
