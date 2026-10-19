@@ -23,10 +23,11 @@ ELF_A   := $(BUILD)/r8a_mmu.elf
 ELF_B   := $(BUILD)/r8b_el.elf
 ELF_C   := $(BUILD)/r8c_gic.elf
 ELF_D   := $(BUILD)/r9_micro.elf
+ELF_E   := $(BUILD)/r10_payload.elf
 
-all: $(ELF_A) $(ELF_B) $(ELF_C) $(ELF_D) dis
+all: $(ELF_A) $(ELF_B) $(ELF_C) $(ELF_D) $(ELF_E) dis
 
-dis: $(ELF_A).dis $(ELF_B).dis $(ELF_C).dis $(ELF_D).dis
+dis: $(ELF_A).dis $(ELF_B).dis $(ELF_C).dis $(ELF_D).dis $(ELF_E).dis
 
 $(BUILD):
 	mkdir -p $(BUILD)
@@ -102,6 +103,30 @@ $(ELF_D): $(BUILD)/start.o $(R9_OBJS) $(BUILD)/uart.o $(BUILD)/printf.o \
           $(BUILD)/util.o $(BUILD)/sys.o common/linker.ld
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(BUILD)/start.o $(R9_OBJS) \
 	    $(BUILD)/uart.o $(BUILD)/printf.o $(BUILD)/util.o $(BUILD)/sys.o
+
+# ---- r10: Exynos 2100 real hardware payload ----
+R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
+            $(BUILD)/r10_uart.o $(BUILD)/r10_mct.o $(BUILD)/r10_timer.o \
+            $(BUILD)/r10_psci.o $(BUILD)/printf.o $(BUILD)/exc.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
+
+$(BUILD)/r10_start.o: r10_payload/start_r10.S | $(BUILD)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h common/r8lib.h | $(BUILD)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# R10 needs different linker script (load at 0x80080000, no EL0)
+$(ELF_E): $(BUILD)/r10_start.o $(R10_OBJS) common/linker_r10.ld
+	$(CC) $(CFLAGS) -nostdlib -static -T common/linker_r10.ld -Wl,--build-id=none \
+	    -o $@ $(BUILD)/r10_start.o $(R10_OBJS)
+
+# ---- execução ----
+run_r10: $(ELF_E)
+	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=on -cpu max -nographic -dtb ../extracted.dtb -kernel $<
+
+run_r10_hw: $(ELF_E)
+	@echo "Chainload on real hardware: replace kernel in boot.img with $<"
+	@echo "Use: fastboot boot $<  (if unlocked) or Odin (if locked)"
 
 # ---- regressão: os 4 módulos + assinaturas PASS ----
 regress: $(ELF_A) $(ELF_B) $(ELF_C) $(ELF_D)
