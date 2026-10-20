@@ -1,102 +1,147 @@
-/* uart.c — R10: USI v2 UART driver for Exynos 2100 */
+/* uart.c — R10 Samsung Exynos UART register-layout implementation.
+ *
+ * Register offsets and status bits follow the Samsung serial_s3c driver
+ * (include/linux/serial_s3c.h, drivers/tty/serial/samsung_tty.c). This replaces
+ * the previous PL011-like register map, which did not match that driver.
+ *
+ * Still unverified for the exact boot handoff: UART1 clock rate/gating,
+ * pinmux state, whether this firmware leaves the port enabled, and the exact
+ * USI v2 integration. Do not treat this source change as hardware validation.
+ */
 
 #include "r10.h"
 
-static int uart_initialized = 0;
+#define S3C_ULCON       (UART1_BASE + 0x00)
+#define S3C_UCON        (UART1_BASE + 0x04)
+#define S3C_UFCON       (UART1_BASE + 0x08)
+#define S3C_UMCON       (UART1_BASE + 0x0C)
+#define S3C_UTRSTAT     (UART1_BASE + 0x10)
+#define S3C_UERSTAT     (UART1_BASE + 0x14)
+#define S3C_UFSTAT      (UART1_BASE + 0x18)
+#define S3C_UMSTAT      (UART1_BASE + 0x1C)
+#define S3C_UTXH        (UART1_BASE + 0x20)
+#define S3C_URXH        (UART1_BASE + 0x24)
+#define S3C_UBRDIV      (UART1_BASE + 0x28)
+#define S3C_UFRACVAL    (UART1_BASE + 0x2C)
+
+#define UTRSTAT_RXDR    (1u << 0)
+#define UFSTAT_TXFULL   (1u << 9)
+#define UCON_RX_POLL    (1u << 0)
+#define UCON_TX_POLL    (1u << 2)
+#define UFCON_ENABLE    (1u << 0)
+#define UFCON_RESET_RX  (1u << 1)
+#define UFCON_RESET_TX  (1u << 2)
+
+#define UART_POLL_LIMIT 1000000u
+
+static int uart_initialized;
+
+static inline void uart_write_byte(unsigned long addr, unsigned char value)
+{
+    *(volatile unsigned char *)addr = value;
+}
+
+static inline unsigned char uart_read_byte(unsigned long addr)
+{
+    return *(volatile unsigned char *)addr;
+}
+
+static int uart_wait_tx_space(void)
+{
+    for (u32 n = 0; n < UART_POLL_LIMIT; ++n) {
+        if ((mmio_read32(S3C_UFSTAT) & UFSTAT_TXFULL) == 0)
+            return 1;
+    }
+    return 0;
+}
 
 void uart_init(void)
 {
-    if (uart_initialized) return;
-    
-    /* Disable UART first */
-    mmio_write32(USI_UART_CTRL, 0);
-    
-    /* Configure baud rate: 115200 @ 26 MHz
-     * USI UART uses fractional baud rate generator
-     * BRD = UART_CLK / (16 * baud)
-     * For 26 MHz: 26000000 / (16 * 115200) = 14.1
-     * Integer part: 14, Fractional: 0.1 * 64 = 6.4 ≈ 6
+    if (uart_initialized)
+        return;
+
+    /*
+     * Samsung UART baud formula:
+     * baud = uart_clk / (16 * (UBRDIV + 1 + UFRACVAL / 16)).
+     * For a 26 MHz baud clock, UBRDIV=13 and UFRACVAL=2 gives divisor 14.125
+     * (about 114.8 kbaud). The clock source/rate must be confirmed from live DT
+     * and clock tree before relying on this setting.
      */
-    u32 ibrd = 14;
-    u32 fbrd = 6;
-    mmio_write32(USI_UART_BAUD, (ibrd << 16) | (fbrd & 0x3F));
-    
-    /* Line control: 8N1, no parity, FIFOs enabled */
-    u32 lcr = USI_LINE_CTRL_WLEN_8 | USI_LINE_CTRL_STOP_1 | USI_LINE_CTRL_PAR_NONE;
-    mmio_write32(USI_UART_LINE_CTRL, lcr);
-    
-    /* FIFO control: enable, clear RX/TX */
-    mmio_write32(USI_UART_FIFO_CTRL, 0x07);  // Enable FIFOs, clear RX, clear TX
-    
-    /* Enable UART, TX, RX */
-    mmio_write32(USI_UART_CTRL, USI_CTRL_UART_EN | USI_CTRL_TX_EN | USI_CTRL_RX_EN);
-    
-    /* Enable clock gating if needed (handled by firmware ideally) */
-    /* Note: DTB has clocks = <gate_uart_clk1, ipclk_uart1>
-     * We assume firmware has enabled them, or we'd need CLK driver */
-    
+    mmio_write32(S3C_UCON, 0);
+    mmio_write32(S3C_ULCON, 0x3); /* 8 data bits, no parity, 1 stop bit */
+    mmio_write32(S3C_UFCON, UFCON_ENABLE | UFCON_RESET_RX | UFCON_RESET_TX);
+    mmio_write32(S3C_UBRDIV, 13);
+    mmio_write32(S3C_UFRACVAL, 2);
+    mmio_write32(S3C_UMCON, 0);
+    mmio_write32(S3C_UCON, UCON_RX_POLL | UCON_TX_POLL);
+
+    /* Ensure configuration writes have reached the peripheral before polling. */
+    asm volatile("dsb sy" ::: "memory");
     uart_initialized = 1;
 }
 
 void uart_putc(char c)
 {
-    if (!uart_initialized) uart_init();
-    
-    /* Wait for TX FIFO not full */
-    while (mmio_read32(USI_UART_STATUS) & USI_STATUS_TX_FULL)
-        ;
-    
-    mmio_write32(USI_UART_TX_FIFO, c);
-    
-    /* If CR, also send LF */
+    if (!uart_initialized)
+        uart_init();
+
     if (c == '\n') {
-        while (mmio_read32(USI_UART_STATUS) & USI_STATUS_TX_FULL)
-            ;
-        mmio_write32(USI_UART_TX_FIFO, '\r');
+        if (uart_wait_tx_space())
+            uart_write_byte(S3C_UTXH, '\r');
     }
+
+    if (uart_wait_tx_space())
+        uart_write_byte(S3C_UTXH, (unsigned char)c);
 }
 
 char uart_getc(void)
 {
-    if (!uart_initialized) uart_init();
-    
-    /* Check RX FIFO not empty */
-    if (mmio_read32(USI_UART_STATUS) & USI_STATUS_RX_EMPTY)
+    if (!uart_initialized)
+        uart_init();
+
+    if ((mmio_read32(S3C_UTRSTAT) & UTRSTAT_RXDR) == 0)
         return 0;
-    
-    return (char)mmio_read32(USI_UART_RX_FIFO);
+
+    return (char)uart_read_byte(S3C_URXH);
 }
 
 void uart_puts(const char *s)
 {
-    while (*s) uart_putc(*s++);
+    while (*s)
+        uart_putc(*s++);
 }
 
-void uart_puthex(u64 v)
+void uart_puthex(u64 value)
 {
-    const char *hex = "0123456789abcdef";
+    static const char hex[] = "0123456789abcdef";
     char buf[19];
-    buf[0] = '0'; buf[1] = 'x';
-    for (int i = 15; i >= 0; i--) {
-        buf[17-i] = hex[(v >> (i*4)) & 0xF];
-    }
+    buf[0] = '0';
+    buf[1] = 'x';
+    for (int i = 0; i < 16; ++i)
+        buf[2 + i] = hex[(value >> ((15 - i) * 4)) & 0xF];
     buf[18] = '\0';
     uart_puts(buf);
 }
 
 int uart_readline(char *buf, int max)
 {
+    if (!buf || max <= 0)
+        return 0;
+
     int i = 0;
     while (i < max - 1) {
         char c = uart_getc();
-        if (!c) continue;
+        if (!c)
+            continue;
+
         if (c == '\r' || c == '\n') {
             uart_putc('\n');
             break;
         }
-        if (c == 0x7F || c == '\b') {  // backspace
+
+        if (c == 0x7F || c == '\b') {
             if (i > 0) {
-                i--;
+                --i;
                 uart_puts("\b \b");
             }
         } else {
