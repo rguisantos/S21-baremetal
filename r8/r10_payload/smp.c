@@ -61,10 +61,6 @@ void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top)
     pcpu->preempt_need_resched = 0;
     pcpu->lock_depth = 0;
     
-    /* Initialize IPI handlers */
-    for (int i = 0; i < IPI_MAX; i++) {
-        ipi_handlers[i] = NULL;
-    }
 }
 
 void percpu_init_late(void)
@@ -195,7 +191,12 @@ void ipi_send(u32 target_cpu, u32 ipi_type)
     if (target_cpu >= NR_CPUS || ipi_type >= IPI_MAX) return;
     
     u64 mpidr = percpu_data_array[target_cpu].mpidr;
-    gic_send_sgi(ipi_type, 1 << 0, 0, 0, (mpidr >> 8) & 0xFF);  // Aff1, Aff0
+    u32 aff0 = (u32)(mpidr & 0xff);
+    u32 aff1 = (u32)((mpidr >> 8) & 0xff);
+    u32 aff2 = (u32)((mpidr >> 16) & 0xff);
+    u32 aff3 = (u32)((mpidr >> 32) & 0xff);
+    if (aff0 >= 16) return; /* TargetList only addresses Aff0 0..15, RS=0. */
+    gic_send_sgi(ipi_type, 1U << aff0, aff1, aff2, aff3);
 }
 
 void ipi_send_mask(u32 cpu_mask, u32 ipi_type)
