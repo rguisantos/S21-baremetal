@@ -54,3 +54,7 @@ Esse repositório fornece uma referência de código para a futura investigaçã
 Para o estágio inicial continuam prioritários o contrato do carregador, mapa final de RAM/reservas, console e timer em uma CPU. O DTS Proton não preenche a ausência de RAM do DTB estático stock, nem demonstra o EL/estado de caches do handoff. Nenhum driver, tabela DVFS ou binário Proton foi incorporado ao R10. Não houve compilação, execução ou flash nesta análise; a entrega altera somente documentação.
 
 Referências do firmware usado como base: [stock-firmware-hzc2.md](stock-firmware-hzc2.md), [samsung-reference.md](samsung-reference.md). Política atual do payload: [fdt-resources.md](fdt-resources.md).
+
+## Complemento: build e instalação
+
+O caminho Image → boot/vendor_boot e os scripts AnyKernel foram analisados separadamente. Veja [loader-contract.md](loader-contract.md) para as revisões fixadas, digest publicado do ZIP, diferenças entre headers e PC real, matriz EL/RAM/caches e limitações da análise do firmware de boot. A revisão do AnyKernel observada hoje não é automaticamente a embutida no ZIP de janeiro.

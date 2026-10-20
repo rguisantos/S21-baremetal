@@ -91,3 +91,12 @@ Decisão do usuário: sem flash no aparelho principal; rotas = esgotar QEMU + Fa
 - O parser inspecionou base HZC2, oito árvores com overlays e DTB TWRP: recursos extraídos, nenhum nó memory, boot recusado por ausência de RAM. Reservas dinâmicas/aninhadas também impedem certificar RAM livre.
 - Referência indicada `xfwdrev/android_device_samsung_exynos2100`, branch android-12.1, commit 0d8b294: configuração TWRP e DTB compilado. O DTB p3s tem tabela Android de 64 bytes e confirma GIC/MPIDRs/timer, mas não resolve RAM. Header v2/offsets daquele recovery não são contrato de boot do HZC2 v3. Detalhes e hash em `docs/twrp-reference.md`.
 - README reescrito; mapa de hardware atual substitui afirmações contraditórias. Notas antigas preservadas com aviso em `docs/archive/`. Documentadas evidências, testes reproduzíveis, hipóteses e pendências; nenhuma operação de flash/execução no telefone.
+
+
+## 2026-10-20 — Instalador Proton e contrato Samsung
+
+- Seguido do_build.sh → build/ckbuild.sh na tag v6.1.0 (a0d7323): Image, DTB conforme variante, tabela Android, boot v3 e vendor_boot v3 com ramdisk/módulos. ZIP copia Image + vendor_boot para AnyKernel3 r9s; TAR usa boot/vendor_boot LZ4.
+- Fixado o AnyKernel consultado em 59517ec. anykernel.sh aceita p3s, recompõe boot e grava vendor_boot. Branch flutuante/pasta local no build impedem atribuir automaticamente esse SHA ao ZIP publicado. Digest de release registrado, ainda sem comparação com upload.
+- Conferidos mkbootimg, documentação ARM64 e head.S: offsets de contêiner/header não comprovam PC; Linux aceita EL1 ou EL2, enquanto R10 exige EL2. A imagem ELF R10 atual não é um substituto validado para uma Image ARM64 Samsung.
+- Não há binário sboot/Harx/ABL na árvore pública para reanálise; notas/strings históricas não fecham handoff, RAM ou estado de caches. Ambiente de execução permaneceu indisponível; análise via fontes textuais GitHub, sem extração de ZIP nem execução de scripts.
+- Corrigido ABL_EXTRACTION.md: modelo G998B, separação BL/AP e retirada de pressupostos ABL/U-Boot/flash. Matriz de evidências e critérios da próxima Image de diagnóstico em docs/loader-contract.md. README e referência Proton atualizados; payload e partições não alterados.

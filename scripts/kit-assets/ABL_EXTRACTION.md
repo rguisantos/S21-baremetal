@@ -1,85 +1,35 @@
-# ABL_EXTRACTION.md — como obter e triar o ABL do firmware stock (sem hardware)
+# Bootloader Samsung: obtenção e triagem estática
 
-O objetivo: extrair do firmware oficial, por análise estática, os três dados
-que o payload da Fase 2 precisa para o primeiro flash na cobaia:
+Revisado em 2026-10-20. Alvo desta investigação: **SM-G998B / p3s / Exynos 2100**, firmware HZC2. Este guia substitui instruções antigas que confundiam modelos, contêineres e requisitos de carregamento. Não é procedimento de flash.
 
-1. **UART_BASE** — endereço do console (nó serial@/uart do DTB embutido no ABL)
-2. **RAM base + tamanho** — nó memory@ (valida o ladder 0x80000000/0x40000000)
-3. **formato das linhas de log do ABL** — para reconhecer na serial o momento
-   exato do handoff (o banner "Fase 2" tem que aparecer DEPOIS delas)
+## Fontes disponíveis e separação correta
 
-Tudo offline, sem executar nada do firmware.
+- Imagens stock boot.img, vendor_boot.img e dtbo.img já foram recebidas e examinadas; evidências em [stock-firmware-hzc2.md](../../docs/stock-firmware-hzc2.md).
+- O pacote Samsung BL é o ponto de partida para inventariar os componentes de firmware de boot; AP fornece imagens como boot/vendor_boot/dtbo. Não assumir que AP contém todos os bootloaders.
+- No Exynos, procurar os membros efetivos do pacote, como sboot/Harx quando presentes. Não presumir abl.img, U-Boot, um ELF ou uma cadeia Qualcomm.
+- SM-G981 pertence à geração S20; SM-G998B é o S21 Ultra deste projeto. Não usar firmware de outro modelo.
 
-## 1. Baixar o firmware stock
+A árvore pública deste projeto não contém sboot.bin, harx.bin ou abl.img. Menções históricas a strings de firmware não substituem os bytes e a análise de referências cruzadas.
 
-Ferramentas que baixam diretamente dos servidores da Samsung (fuso de
-marshaling KDZ/tar): **Frija** (Windows/Linux, GUI) ou **samfirm.js** /
-**Bifrost** (CLI). Modelo do S21 (Exynos 2100): G981B/G981N; S21 Ultra: G998B.
+## Procedimento offline
 
-- CSC/país: o de origem do aparelho (ou KOO/XEZ para não trigar Knox-telas)
-- saída: `AP_G981BXXXX_....tar.md5` + BL/CP/CSC
+1. Inventariar os membros dos pacotes existentes, sem executar firmware nem scripts de instalação. Registrar nome completo, modelo/build e SHA-256 dos contêineres e membros.
+2. Separar compressão externa, cabeçalhos Samsung/Android e conteúdo. Manter hashes antes/depois e limites verificáveis; não importar um contêiner inteiro no Ghidra como se fosse código AArch64.
+3. Identificar arquitetura, segmentos, endereço de mapeamento e pontos de entrada. ELF fornece metadados; binários brutos exigem reconstrução sustentada por referências e fluxo de controle. Strings e endereços aparentes não bastam para definir base.
+4. Localizar as rotinas de leitura de boot/vendor_boot, reconhecimento da Image ARM64, escolha/aplicação de DTB/overlays e alteração de memória/reservas.
+5. Seguir as referências até a transferência final de controle. Registrar separadamente PC de destino, x0..x3, EL, permissões timer/ICC, MMU/caches e coerência da imagem. Marcar desconhecido quando a instrução ou o fluxo não demonstrar o valor.
+6. Cruzar com o protocolo ARM64 e com as imagens stock, preservando diferenças entre requisito Linux, implementação do firmware e observação no aparelho.
 
-⚠️ Não confundir com "home CSC" flash de atualização — aqui queremos só o
-arquivo AP, que contém TODAS as imagens de bootloader.
+## Ferramentas e limites
 
-## 2. Localizar o ABL dentro do AP
+O script histórico ../abl_triage.py serve como material de investigação, mas seus leitores de versões/campos ainda precisam de revisão antes de sustentar conclusões. Não tratar sua saída como validação completa de boot headers ou mapa de memória. FDTs brutos podem ser conferidos com ../../scripts/test_fdt.py --inspect em um ambiente executável; tabelas Android precisam ser separadas antes.
 
-```bash
-tar tvf AP_G981BXXXX_....tar.md5 | grep -E 'abl|boot'
-#   abl.img         <- o Android Bootloader (alvo da triagem)
-#   boot.img        <- o kernel stock (para o repack_day2.sh)
-```
+O Ghidra pode ajudar a seguir referências ao magic ARM64 e às rotinas de DTB. Ausência/presença de uma string não prova execução nem identidade de uma fase do carregador.
 
-## 3. Triagem automática (abl_triage.py)
+A UART Exynos deve ser conferida contra o driver Samsung e os recursos reais de USI/clock/pinmux. Não escolher PL011, DW8250 ou outra interface por analogia. A coleta Shizuku já encontrou barreiras de permissão e não deve ser repetida esperando acesso root.
 
-```bash
-python3 abl_triage.py AP_G981BXXXX_....tar.md5 --dump-dtb
-# ou direto na imagem extraída:
-python3 abl_triage.py abl.img --dump-dtb
-```
+## Critério para avançar
 
-O script (Python puro, offline) faz:
+Não basta o payload ser relocável ou um repack completar. É necessário comprovar formato aceito, reserva da extensão inteira, estado de entrada e canal de diagnóstico. O resultado da análise Proton e a matriz dessas lacunas estão em [loader-contract.md](../../docs/loader-contract.md).
 
-- parse do header de boot image (v0-v4) e extração do binário ABL
-- varredura por DTBs embutidos (magic d00dfeed em qualquer offset) com dump
-  dos nós de interesse em qualquer profundidade:
-  - `serial@/uart@/pl011/ns16550` → **reg = UART_BASE** (anotar também
-    `reg-shift`, tipicamente 2 no DW 8250 Samsung)
-  - `memory@` → **reg = base+tamanho da RAM**
-  - `watchdog/reboot/gic/timer/pmu/chipid` → registros uteis para debug
-- strings de interesse (mensagens de log do ABL: "ABLoad", console, ecc,
-  exynos...) e endereços hex citados (pistas de base de carga)
-- saída legível em stdout (+ `--json` para máquina; `--dump-dtb` grava os
-  DTBs em arquivos `.dtb` para inspeção com `dtc -I dtb -O dts`)
-
-**Passo crítico que só a triagem não faz:** confirmar o `compatible` do UART.
-Se for `samsung,exynos4210-uart` (IP legacy Samsung): offsets UTRSTAT/UTXH
-(status +0x10 bit 1, TX +0x20 — polaridade e offsets DIFERENTES do DW 8250).
-Se for `ns16550a`/`dw8250`: THR/LSR (o esqueleto `#else` do main.c/start.S
-da Fase 2 já implementa DW 8250; falta preencher UART_BASE).
-
-## 4. Engenharia reversa assistida (Ghidra) — opcional, mas acelera
-
-1. Extrair o binário ABL (o "kernel" da abl.img):
-   `python3 abl_triage.py abl.img` já mostra o offset/tamanho.
-2. Ghidra → importar como **raw AArch64 little-endian** (ou ELF, se o ABL
-   for `\x7fELF` — comum: o Samsung ABL é um ELF carregado pelo BL1).
-   ELF: o Ghidra resolve base e símbolos sozinho. Raw: usar como base um
-   dos endereços citados nas strings (o triage lista).
-3. Procurar xrefs para o UART_BASE achado no passo 3 → as funções de
-   console do ABL (printf/boot_log) → copiar o formato de linha.
-4. Procurar a constante do magic "ARM\x64" (bytes 41 52 4d 64) → o código
-   que VALIDA o kernel Image — confirma que o header do payload é aceito e
-   revela o endereço de carga do kernel (o número que o delta do payload
-   vai confirmar no metal).
-
-## 5. Fechando o circuito com o payload Fase 2 (PIC)
-
-Nada disso bloqueia o flash: o payload Fase 2 roda em qualquer base e
-reporta na serial o delta e o FDT inteiro (memory@/compatible). A triagem
-prévia do ABL serve para:
-
-- preencher UART_BASE no `ALVO_QEMU=0` (senão o payload Fase 2 imprime os
-  canários 'S'/'K' em endereço errado e fica mudo)
-- saber o que esperar ANTES do silêncio (linhas do ABL) → distinguir
-  "ABL rodou e me entregou" de "ABL nem chegou lá"
+O Proton recompõe boot e instala vendor_boot; isso não demonstra EL2, posição de carga ou memória livre. Nada neste guia autoriza instalar o R10 no telefone.
