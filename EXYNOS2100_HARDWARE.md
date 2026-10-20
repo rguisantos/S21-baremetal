@@ -10,7 +10,7 @@ bare-metal e validação cruzada com QEMU `virt`.
 | Device | Base | Size | Descrição |
 |--------|------|------|-----------|
 | **GIC-600 Distributor** | `0x1020_0000` | 0x10000 | GICD_CTLR, GICD_TYPER, etc. |
-| **GIC-600 Redistributor** | `0x1024_0000` | 0x40000 | GICR_BASE + frames por CPU |
+| **GIC-600 Redistributor** | `0x1024_0000` | 0x200000 (DTB) | GICR_BASE + frames por CPU |
 | **GIC-600 ITS** | `0x1028_0000` | 0x20000 | Interrupt Translation Service |
 | **MCT (Local Timer)** | `0x1004_0000` | 0x10000 | Memory Controller Timer |
 | **Chip ID** | `0x1000_0000` | 0x1000 | ID do SoC, rev, etc. |
@@ -39,7 +39,7 @@ gic: interrupt-controller@10200000 {
     #interrupt-cells = <3>;
     interrupt-controller;
     reg = <0x0 0x10200000 0x0 0x10000>,   // GICD
-          <0x0 0x10240000 0x0 0x40000>,   // GICR
+          <0x0 0x10240000 0x0 0x200000>,  // GICR
           <0x0 0x10280000 0x0 0x20000>;   // ITS
     interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
     interrupt-parent = <&gic>;
@@ -48,7 +48,7 @@ gic: interrupt-controller@10200000 {
 ```
 
 - **GICD**: 0x1020_0000 (vs QEMU 0x0800_0000)
-- **GICR**: 0x1024_0000 (vs QEMU 0x080A_0000) — 4 redistributors (4 CPUs Cortex-X1 + 3 Cortex-A78 + 4 Cortex-A55 = 8 CPUs? Verificar)
+- **GICR**: 0x1024_0000 (vs QEMU 0x080A_0000) — DTB range 0x200000; CPU topology is 4×A55 + 3×A78 + 1×X1 (8 CPUs)
 - **ITS**: 0x1028_0000 (para MSI/MSI-X)
 - **PPIs**: 16 por CPU (0-15), **SPIs**: 0x200+ (512+)
 - **Redistributor stride**: 0x20000 por CPU (padrão GICv3)
@@ -267,7 +267,7 @@ interrupt-controller@10200000 {
     compatible = "arm,gic-v3";
     #interrupt-cells = <0x03>;
     reg = <0x00 0x10200000 0x10000>,     // GICD
-          <0x00 0x10240000 0x200000>;    // GICR (4 redistributors × 0x20000)
+          <0x00 0x10240000 0x200000>;    // GICR range (0x200000)
     interrupts = <0x01 0x09 0x04>;       // PPI 9 (maintenance)
     interrupt-parent = <0x01>;
     class0-cpus = "0-3";                  // A55 cluster
