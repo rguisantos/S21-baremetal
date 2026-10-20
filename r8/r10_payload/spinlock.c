@@ -83,7 +83,7 @@ static inline bool atomic_test_and_set(u32 *ptr)
     asm volatile(
         "   mov %w2, #1\n"
         "1: mov %w1, #1\n"
-        "   ldxr %w0, [%3]\n"
+        "   ldaxr %w0, [%3]\n"
         "   cbnz %w0, 2f\n"
         "   stxr %w1, %w2, [%3]\n"
         "   cbnz %w1, 1b\n"
@@ -171,7 +171,8 @@ int ticket_trylock(ticket_lock_t *lock)
 
 void ticket_unlock(ticket_lock_t *lock)
 {
-    atomic_store_release(&lock->head, lock->head + 1);
+    u32 next = atomic_load_relaxed(&lock->head) + 1;
+    atomic_store_release(&lock->head, next);
     asm volatile("sev" ::: "memory");
 }
 
