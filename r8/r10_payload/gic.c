@@ -281,11 +281,15 @@ void gic_eoi(u32 irq)
 /* Send SGI to target CPUs */
 void gic_send_sgi(u32 sgi_id, u32 target_mask, u32 aff1, u32 aff2, u32 aff3)
 {
-    u64 sgi1r = 0;
-    sgi1r |= (u64)sgi_id << ICC_SGI1R_EL1_RS_SHIFT;
-    sgi1r |= (u64)aff3 << ICC_SGI1R_EL1_AFF3_SHIFT;
-    sgi1r |= (u64)aff2 << ICC_SGI1R_EL1_AFF2_SHIFT;
-    sgi1r |= (u64)aff1 << ICC_SGI1R_EL1_AFF1_SHIFT;
-    sgi1r |= (u64)target_mask << 0;  // TargetList
+    /* ICC_SGI1R_EL1: TargetList[15:0], Aff1[23:16], INTID[27:24],
+     * Aff2[39:32], IRM[40], RS[47:44], Aff3[55:48]. */
+    if (sgi_id > 15 || (target_mask & ~0xffffU)) return;
+    u64 sgi1r = ((u64)(aff3 & 0xff) << 48)
+              | ((u64)(aff2 & 0xff) << 32)
+              | ((u64)(sgi_id & 0xf) << 24)
+              | ((u64)(aff1 & 0xff) << 16)
+              | (u64)(target_mask & 0xffffU);
+    asm volatile("dsb ishst" ::: "memory");
     msr_icc_sgi1r_el1(sgi1r);
+    ISB();
 }
