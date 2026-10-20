@@ -297,6 +297,77 @@ aliases {
 };
 ```
 
+### USI v2 UART Driver Implementation (from Samsung kernel source)
+
+**Source files:**
+- `drivers/tty/serial/exynos_tty.c` — `exynos_usi_init()`, `exynos_serial_set_termios()`
+- `include/linux/serial_s3c.h` — register offsets
+- `drivers/clk/samsung/clk-exynos2100.c` — clock tree
+
+**USI Init Sequence (exynos_usi_init):**
+```c
+wr_regl(port, USI_CON, USI_SET_RESET);  // 0xC4, bit 0 = 1
+udelay(1);
+wr_regl(port, USI_CON, USI_RESET);      // 0xC4, bit 0 = 0
+udelay(1);
+wr_regl(port, USI_OPTION, USI_HWACG_CLKREQ_ON);  // 0xC8, bit 1 = 1
+```
+
+**USI Stop (exynos_usi_stop):**
+```c
+wr_regl(port, USI_OPTION, USI_HWACG_CLKSTOP_ON);  // 0xC8, bit 2 = 1
+```
+
+**UART Mode Selection:**
+```c
+u32 val = rd_regl(port, USI_CON);
+val &= ~USI_SW_CONF_MASK;  // 0x7
+val |= USI_UART_SW_CONF;   // 0x1
+wr_regl(port, USI_CON, val);
+```
+
+**Register Offsets (S3C2410 compatible, from serial_s3c.h):**
+| Register | Offset | Purpose |
+|----------|--------|---------|
+| ULCON | 0x00 | Line control (8N1) |
+| UCON | 0x04 | Control (PCLK, IRQ/DMA mode) |
+| UFCON | 0x08 | FIFO control (enable, reset) |
+| UMCON | 0x0C | Modem control |
+| UTRSTAT | 0x10 | TX/RX status |
+| UERSTAT | 0x14 | Error status |
+| UFSTAT | 0x18 | FIFO status |
+| UBRDIV | 0x28 | Baud rate divisor |
+| UTXH | 0x20 | TX hold (write) |
+| URXH | 0x24 | RX hold (read) |
+
+**USI v2 Registers (from serial_s3c.h + exynos_tty.c):**
+| Register | Offset | Value |
+|----------|--------|-------|
+| USI_CON | 0xC4 | |
+| USI_OPTION | 0xC8 | |
+| USI_SW_CONF_MASK | — | 0x7 |
+| USI_UART_SW_CONF | — | 0x1 |
+| USI_RESET | — | bit 0 = 0 |
+| USI_SET_RESET | — | bit 0 = 1 |
+| USI_HWACG_CLKREQ_ON | — | bit 1 = 1 |
+| USI_HWACG_CLKSTOP_ON | — | bit 2 = 1 |
+
+**Baud Rate Calculation (from exynos_serial_getclk):**
+```
+quot = (clk * 10) / (baud * 16)
+ubrdiv = quot / 16
+ufrac = quot % 16
+udivslot_table[16] = {0x0000, 0x0080, 0x0808, 0x0888, 0x2222, 0x4924, 0x4A52, 0x54AA,
+                       0x5555, 0xD555, 0xD5D5, 0xDDD5, 0xDDDD, 0xDFDD, 0xDFDF, 0xFFDF}
+```
+For 115200 @ 26 MHz: ubrdiv ≈ 14, ufrac ≈ 6
+
+**Clock Tree (from clk-exynos2100.c):**
+- OSCCLK: 26 MHz (fin_pll)
+- UART gate clocks: GATE_DBGCORE_UART_QCH (alive), GATE_PERIC0_TOP0_QCH_UART_DBG (peric0)
+- Divider clocks: DOUT_DIV_CLK_ALIVE_DBGCORE_UART, DOUT_DIV_CLK_PERIC1_UART_BT
+- DTB phandles for uart1: clocks = <0x74 0x75> (gate_uart_clk1, ipclk_uart1)
+
 ### MCT Timer Node (exact DTS)
 
 ```dts
