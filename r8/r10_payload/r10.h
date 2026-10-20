@@ -15,6 +15,8 @@ typedef long s64;
 #define NULL ((void *)0)
 #endif
 
+#include <stdbool.h>
+
 #define ISB() asm volatile("isb" ::: "memory")
 
 /* ================================================================
@@ -212,6 +214,20 @@ typedef long s64;
 #define SCTLR_SA0             (1 << 4)   // Stack alignment EL0
 #define SCTLR_SA              (1 << 3)   // Stack alignment EL1
 
+/* Spinlock types */
+typedef struct { u32 head, tail; } ticket_lock_t;
+typedef struct { u32 lock; } raw_spinlock_t;
+typedef struct {
+    u32 readers;
+    u32 writer;
+    u32 waiting_writers;
+    raw_spinlock_t lock;
+} rw_spinlock_t;
+typedef struct {
+    u32 sequence;
+    raw_spinlock_t lock;
+} seqlock_t;
+
 /* Function prototypes */
 void r10_entry(void);
 void el2_to_el1_drop(void);
@@ -228,9 +244,101 @@ void uart_init(void);
 void mct_init(void);
 void timer_init(void);
 s64 psci_call(u64 fn, u64 arg0, u64 arg1, u64 arg2);
+s64 psci_cpu_on(u64 target_mpidr, u64 entry_point, u64 context);
+s64 psci_cpu_off(void);
+s64 psci_cpu_suspend(u64 power_state, u64 entry_point, u64 context);
+s64 psci_system_reset(void);
+s64 psci_system_off(void);
+s64 psci_version(void);
+s64 psci_migrate_info_type(void);
+void psci_print_error(s64 ret);
+u64 psci_get_mpidr(void);
 void uart_putc(char c);
 void uart_puts(const char *s);
 void uart_puthex(u64 v);
 char uart_getc(void);
+
+/* Timer functions */
+u64 timer_read_cnt(void);
+u64 timer_read_freq(void);
+void timer_handle_irq(void);
+
+/* MCT functions */
+void mct_handle_irq(u32 irq);
+
+/* Spinlocks */
+void ticket_lock_init(ticket_lock_t *lock);
+void ticket_lock(ticket_lock_t *lock);
+int ticket_trylock(ticket_lock_t *lock);
+void ticket_unlock(ticket_lock_t *lock);
+void raw_spinlock_init(raw_spinlock_t *lock);
+void raw_spinlock(raw_spinlock_t *lock);
+int raw_spin_trylock(raw_spinlock_t *lock);
+void raw_spinunlock(raw_spinlock_t *lock);
+void rw_spinlock_init(rw_spinlock_t *lock);
+void read_lock(rw_spinlock_t *lock);
+int read_trylock(rw_spinlock_t *lock);
+void read_unlock(rw_spinlock_t *lock);
+void write_lock(rw_spinlock_t *lock);
+int write_trylock(rw_spinlock_t *lock);
+void write_unlock(rw_spinlock_t *lock);
+void seqlock_init(seqlock_t *lock);
+unsigned read_seqbegin(const seqlock_t *lock);
+int read_seqretry(const seqlock_t *lock, unsigned seq);
+void write_seqlock(seqlock_t *lock);
+void write_sequnlock(seqlock_t *lock);
+
+/* PSCI */
+s64 psci_cpu_on(u64 target_mpidr, u64 entry_point, u64 context);
+s64 psci_cpu_off(void);
+s64 psci_cpu_suspend(u64 power_state, u64 entry_point, u64 context);
+s64 psci_system_reset(void);
+s64 psci_system_off(void);
+s64 psci_version(void);
+s64 psci_migrate_info_type(void);
+void psci_print_error(s64 ret);
+u64 psci_get_mpidr(void);
+
+/* IPI */
+#define IPI_RESCHEDULE    0
+#define IPI_CALL_FUNC     1
+#define IPI_CPU_STOP      2
+#define IPI_TIMER         3
+#define IPI_MAX           4
+void ipi_init(void);
+void ipi_register_handler(u32 ipi_type, void (*handler)(void));
+void ipi_send(u32 target_cpu, u32 ipi_type);
+void ipi_send_mask(u32 cpu_mask, u32 ipi_type);
+void ipi_send_all_but_self(u32 ipi_type);
+void ipi_handle(u32 ipi_type);
+
+/* SMP */
+void percpu_init_early(void);
+void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top);
+void percpu_init_late(void);
+int smp_init(void);
+int smp_bringup_cpus(void);
+void secondary_cpu_entry(void);
+void ipi_init(void);
+void ipi_register_handler(u32 ipi_type, void (*handler)(void));
+void ipi_send(u32 target_cpu, u32 ipi_type);
+void ipi_send_mask(u32 cpu_mask, u32 ipi_type);
+void ipi_send_all_but_self(u32 ipi_type);
+void ipi_handle(u32 ipi_type);
+void smp_call_function_single(int cpu, void (*func)(void *), void *arg, int wait);
+void smp_call_function_all(void (*func)(void *), void *arg, int wait);
+
+/* Per-CPU */
+#define NR_CPUS          8
+
+/* IPI handler called from exc_irq */
+void ipi_handler(u32 sgi_id);
+
+/* External symbols from linker script */
+extern char __el1_stack_top[];
+extern char __exc_stack_top[];
+extern char __bss_start[];
+extern char __bss_end[];
+extern char _start_r10[];
 
 #endif /* R10_H */

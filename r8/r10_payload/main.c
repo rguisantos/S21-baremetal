@@ -1,9 +1,11 @@
 /* main.c — R10: EL1 main entry, hardware initialization */
 
 #include "r10.h"
+#include "percpu.h"
 
 extern char _start[], _end[];
 extern char __bss_start[], __bss_end[];
+extern char __el1_stack_top[], __exc_stack_top[];
 
 /* Global: FDT pointer passed from EL2 */
 void *g_fdt = NULL;
@@ -26,6 +28,9 @@ void r10_el1_entry(void)
     uart_puthex(get_current_el());
     uart_putc('\n');
     
+    /* Initialize per-CPU early */
+    percpu_init_early();
+    
     /* Initialize MMU with identity mapping */
     uart_puts("Initializing MMU...\n");
     mmu_init();
@@ -35,6 +40,14 @@ void r10_el1_entry(void)
     uart_puts("Initializing GIC-600...\n");
     gic_init();
     uart_puts("GIC-600 initialized.\n");
+    
+    /* Initialize per-CPU late (primary CPU) */
+    percpu_init_cpu(get_current_cpu(), get_current_mpidr(), 
+                    (u64)__el1_stack_top, (u64)__exc_stack_top);
+    percpu_init_late();
+    
+    /* Initialize IPI handlers */
+    ipi_init();
     
     /* Initialize MCT timer */
     uart_puts("Initializing MCT timer...\n");
@@ -52,6 +65,11 @@ void r10_el1_entry(void)
     uart_puts("PSCI_VERSION: ");
     uart_puthex(ret);
     uart_putc('\n');
+    
+    /* SMP bringup */
+    uart_puts("Initializing SMP...\n");
+    int online = smp_init();
+    uart_puts("SMP: "); uart_puthex(online); uart_puts(" CPUs online\n");
     
     /* Print system info */
     uart_puts("\n--- System Info ---\n");
@@ -110,6 +128,9 @@ void exc_irq(u64 *frame, u64 kind)
         case 226:
         case 227:       // MCT SPI 224-227
             mct_handle_irq(intid);
+            break;
+        case 0 ... 15:  // SGI 0-15
+            ipi_handler(intid);
             break;
         case 533:       // UART1 SPI (not enabled yet)
             // uart_handle_irq();

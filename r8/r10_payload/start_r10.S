@@ -1,17 +1,20 @@
-/* start_r10.S — experimental EL2 entry; not a validated Samsung boot image. */
+/* start_r10.S — R10: EL2 entry, EL2→EL1 drop, secondary CPU boot */
+
 .section .text.boot, "ax"
 .global _start_r10
 .type _start_r10, %function
 _start_r10:
-    /* Entry contract if supported by loader: x0 = FDT pointer.
-     * Install our own stack before any stack access.
+    /* Entry contract: x0 = FDT pointer (primary), x0 = MPIDR (secondary)
+     * x19 = saved FDT/MPIDR
      */
     mov x19, x0
+    
+    /* Install our own stack before any stack access */
     msr spsel, #1
     ldr x1, =__el2_stack_top
     mov sp, x1
-
-    /* Clear BSS while running on our private EL2 stack. */
+    
+    /* Clear BSS while running on our private EL2 stack */
     ldr x1, =__bss_start
     ldr x2, =__bss_end
 0:  cmp x1, x2
@@ -19,25 +22,47 @@ _start_r10:
     str xzr, [x1], #8
     b 0b
 1:
+    
+    /* Check if secondary CPU: x0 (saved in x19) != FDT pointer
+     * Primary: x0 = FDT pointer (non-zero, not a valid MPIDR)
+     * Secondary: x0 = MPIDR (low bits = CPU ID)
+     */
+    mov x0, x19
+    cmp x0, #0
+    b.eq secondary_entry
+    
+    /* Primary CPU: continue with full init */
+    b primary_entry
+
+secondary_entry:
+    /* Secondary CPU: x19 = MPIDR
+     * Jump directly to secondary_cpu_entry in C
+     */
+    ldr x0, =secondary_cpu_entry
+    br x0
+
+primary_entry:
+    /* Clear BSS already done */
+    
     /* Never enable stage-2 translation without VTTBR/VTTCR tables.
      * Do not trap all EL1 exceptions to EL2.
      */
     mrs x1, hcr_el2
-    bic x1, x1, #(1 << 0)
-    bic x1, x1, #(1 << 29)
-    orr x1, x1, #(1 << 31)
+    bic x1, x1, #(1 << 0)      /* VM = 0 */
+    bic x1, x1, #(1 << 29)     /* TGE = 0 */
+    orr x1, x1, #(1 << 31)     /* RW = 1 */
     msr hcr_el2, x1
     isb
-
-    mov x1, #3
+    
+    mov x1, #3                 /* EL1PCTEN | EL1PCEN */
     msr cnthctl_el2, x1
     msr cntvoff_el2, xzr
     isb
-
+    
     ldr x1, =vbar_el2
     msr vbar_el2, x1
     isb
-
+    
     /* The old code passed an arbitrary x0 to ELR_EL2. Load entry explicitly. */
     ldr x0, =r10_el1_entry
     ldr x1, =__el1_stack_top

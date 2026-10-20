@@ -1,4 +1,4 @@
-/* psci.c — R10: PSCI client (SMC + HVC fallback) */
+/* psci.c — R10: PSCI client (SMC + HVC fallback) with SMP support */
 
 #include "r10.h"
 
@@ -39,30 +39,51 @@ s64 psci_call(u64 fn, u64 arg0, u64 arg1, u64 arg2)
     return ret;
 }
 
-s64 psci_cpu_on(u64 cpu_id, u64 entry_point, u64 context)
+/* PSCI CPU_ON: bring up secondary CPU
+ * fn: PSCI_CPU_ON (0x84000003)
+ * arg0: target CPU MPIDR (Aff1<<8 | Aff0)
+ * arg1: entry point address
+ * arg2: context ID (passed to entry in x0)
+ */
+s64 psci_cpu_on(u64 target_mpidr, u64 entry_point, u64 context)
 {
-    /* CPU_ON: fn=0x84000003, arg0=target_cpu, arg1=entry, arg2=context */
-    return psci_call(PSCI_CPU_ON, cpu_id, entry_point, context);
+    return psci_call(PSCI_CPU_ON, target_mpidr, entry_point, context);
 }
 
+/* PSCI CPU_OFF: power off calling CPU */
 s64 psci_cpu_off(void)
 {
     return psci_call(PSCI_CPU_OFF, 0, 0, 0);
 }
 
+/* PSCI CPU_SUSPEND: suspend to power state */
+s64 psci_cpu_suspend(u64 power_state, u64 entry_point, u64 context)
+{
+    return psci_call(PSCI_CPU_SUSPEND, power_state, entry_point, context);
+}
+
+/* PSCI SYSTEM_RESET */
 s64 psci_system_reset(void)
 {
     return psci_call(PSCI_SYSTEM_RESET, 0, 0, 0);
 }
 
+/* PSCI SYSTEM_OFF */
 s64 psci_system_off(void)
 {
     return psci_call(PSCI_SYSTEM_OFF, 0, 0, 0);
 }
 
+/* PSCI VERSION */
 s64 psci_version(void)
 {
     return psci_call(PSCI_VERSION, 0, 0, 0);
+}
+
+/* PSCI MIGRATE_INFO_TYPE */
+s64 psci_migrate_info_type(void)
+{
+    return psci_call(PSCI_MIG_INFO_TYPE, 0, 0, 0);
 }
 
 /* Print PSCI error string */
@@ -81,4 +102,10 @@ void psci_print_error(s64 ret)
         case PSCI_INVALID_ADDRESS: uart_puts("INVALID_ADDRESS"); break;
         default: uart_puts("UNKNOWN"); break;
     }
+}
+
+/* Get current CPU MPIDR (Aff1<<8 | Aff0) */
+u64 psci_get_mpidr(void)
+{
+    return mrs_mpidr_el1() & 0xFF;  // Aff0 only for our topology
 }
