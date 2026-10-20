@@ -11,6 +11,14 @@ _start_r10:
     ldr x1, =__el2_stack_top
     mov sp, x1
 
+    /* Clear BSS while running on our private EL2 stack. */
+    ldr x1, =__bss_start
+    ldr x2, =__bss_end
+0:  cmp x1, x2
+    b.hs 1f
+    str xzr, [x1], #8
+    b 0b
+1:
     /* Never enable stage-2 translation without VTTBR/VTTCR tables.
      * Do not trap all EL1 exceptions to EL2.
      */
