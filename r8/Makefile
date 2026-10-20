@@ -14,16 +14,17 @@ OBJDUMP := $(CROSS)objdump
 
 ifeq ($(wildcard $(LOCAL_QEMU)),)
 QEMU ?= qemu-system-aarch64
+QENV :=
 else
 QEMU ?= $(LOCAL_QEMU)
+QENV := LD_LIBRARY_PATH=$(TOOLS)/usr/lib/x86_64-linux-gnu:$(TOOLS)/usr/lib
 endif
 ifeq ($(wildcard $(TOOLS)/usr/share/qemu),)
 QDATA ?= /usr/share/qemu
 else
 QDATA ?= $(TOOLS)/usr/share/qemu
 endif
-QENV := LD_LIBRARY_PATH=$(TOOLS)/usr/lib/x86_64-linux-gnu:$(TOOLS)/usr/lib
-QENV    :=
+
 
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
 	   -fno-pie -mgeneral-regs-only -march=armv8-a -O2 -std=gnu11 \
