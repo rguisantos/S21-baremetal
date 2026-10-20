@@ -560,15 +560,37 @@ chosen {
 | Timer | Arch (PPI 30) | ✅ PPI 13-16 + MCT | — |
 | CPU Topology | 1+3+4 | ✅ 1+3+4 | — |
 
-### Next Steps for R10 Payload
+### ProtonPlus Kernel (v6.1.0-KSU) Analysis
 
-1. **Use confirmed addresses** from this DTB (not public DTSI)
-2. **Enable UART1** explicitly (DTB has `status = "disabled"`)
-3. **Initialize GIC-600** at 0x1020_0000 / 0x1024_0000
-4. **Use MCT** at 0x1004_0000 for local timer (or architected timer PPI 13-16)
-5. **PSCI via SMC** (per DTB) — test `hvc #0` as fallback per BL strings
-6. **Chainload**: Replace kernel in `boot.img` or `vendor_boot.img` with payload ELF
-7. **Entry point**: BL2 hands off at EL2 (recommended) — payload must handle EL2→EL1 drop
+From the extracted `vendor_boot.img` DTB of ProtonPlus v6.1.0-KSU kernel (2026-01-25):
+
+**Key Hardware Confirmations:**
+
+| Component | Address | Details |
+|-----------|---------|---------|
+| **GIC-600** | `0x1020_0000` (DIST), `0x1024_0000` (REDIST) | `arm,gic-v3`, 3 cells, PPI 9 maintenance |
+| **UART1 (Console)** | `0x1084_0000` | `samsung,exynos-uart` (USI v2), SPI 533 (0x215), `status = "disabled"` |
+| **MCT Timer** | `0x1004_0000` | `samsung,exynos4210-mct`, 12 channels, `fin_pll` + `mct` clocks |
+| **CPU Topology** | 3 clusters | 4×A55 (cluster0), 3×A78 (cluster1), 1×X1 (cluster2) |
+| **Clock Controller** | `0x1A33_0000` | Samsung clock controller |
+| **Initrd** | `0x8400_0000` - `0x841F_FFFF` | 2MB at 0x84000000 |
+
+**Boot Args (from `/chosen`):**
+```
+clocksource=arch_sys_counter firmware_class.path=/vendor/firmware
+nr_cpus=8 androidboot.hardware=exynos2100 log_buf_len=256K
+irqaffinity=0 loop.max_part=7 rcupdate.rcu_expedited=1
+s3c2410_wdt.tmr_atboot=1 s3c2410_wdt.tmr_margin=80
+printk.devkmsg=on cgroup.memory=nokmem swiotlb=noforce
+```
+
+**Key Parameters for Our Payload:**
+- `clocksource=arch_sys_counter` → Use architected timer (CNTP, PPI 30)
+- `nr_cpus=8` → 8 cores (4+3+1)
+- `androidboot.hardware=exynos2100` → Hardware ID
+- Initrd at `0x84000000` (2MB)
+
+**Note:** The ProtonPlus `Image` file is a Windows PE executable (not Linux kernel), but the `vendor_boot.img` contains a valid Exynos 2100 DTB with all hardware addresses confirmed.
 
 ---
 

@@ -182,14 +182,22 @@ CONFIG_ARM_PSCI_FW=y
 - **Comunidade Exynos Republic**: https://github.com/exynos-republic/android_kernel_samsung_universal2100
 - **Samsung Open Source**: https://opensource.samsung.com/ (buscar por `G998BXXSJHZC2`)
 
-### Build da referência
+### ProtonPlus Kernel (v6.1.0-KSU)
 
-- **AP/Build**: `G998BXXSJHZC2`
-- **Kernel**: `5.4.242-30958140-abG998BXXSJHZC2`
-- **Android**: 15 (AP3A.240905.015.A2)
-- **Baseband**: `G998BXXSJHZA7`
-- **CSC**: `ZTO` (Brasil)
-- **Codename plataforma**: `p3s`
+From extracted `vendor_boot.img` DTB (2026-01-25):
+
+| Component | Address | Details |
+|-----------|---------|---------|
+| **GIC-600** | `0x1020_0000` / `0x1024_0000` | `arm,gic-v3`, 3 cells |
+| **UART1** | `0x1084_0000` | `samsung,exynos-uart`, SPI 533, disabled |
+| **MCT Timer** | `0x1004_0000` | `samsung,exynos4210-mct`, 12 channels |
+| **CPU Topology** | 3 clusters | 4×A55, 3×A78, 1×X1 |
+| **Clock Ctrl** | `0x1A33_0000` | Samsung clock controller |
+| **Initrd** | `0x8400_0000` | 2MB |
+
+**Boot Args:** `clocksource=arch_sys_counter nr_cpus=8 androidboot.hardware=exynos2100`
+
+> **Note**: ProtonPlus `Image` is Windows PE (UEFI), not Linux kernel. `vendor_boot.img` contains valid Exynos 2100 DTB.
 
 ### Boot Shim (R11)
 
