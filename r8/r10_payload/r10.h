@@ -180,7 +180,7 @@ typedef long s64;
 #define TCR_EL1_IRGN1_WB      (1 << 24)
 #define TCR_EL1_ORGN1_WB      (1 << 26)
 #define TCR_EL1_SH1_INNER     (3 << 28)
-#define TCR_EL1_TG1_4K        (0 << 30)
+#define TCR_EL1_TG1_4K        (2 << 30) /* TG1=10b: 4 KiB */
 
 /* SCTLR_EL1 */
 #define SCTLR_M               (1 << 0)   // MMU enable
