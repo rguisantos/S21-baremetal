@@ -1,114 +1,65 @@
-/* start_r10.S — R10: EL2 entry point, drop to EL1 */
-
-.section .text.boot
+/* start_r10.S — experimental EL2 entry; not a validated Samsung boot image. */
+.section .text.boot, "ax"
 .global _start_r10
+.type _start_r10, %function
 _start_r10:
-    /* Entry at EL2 from BL2. x0=FDT pointer, x1=reserved, x2=reserved, x3=reserved */
-    
-    /* Save FDT pointer for later */
-    str x0, [sp, #-16]!
-    
-    /* Set up EL2 stack */
-    msr spsel, #1              // Use SP_EL2
-    ldr x0, =__el2_stack_top
-    mov sp, x0
-    
-    /* Configure HCR_EL2 for EL1 hosting */
+    /* Entry contract if supported by loader: x0 = FDT pointer.
+     * Install our own stack before any stack access.
+     */
+    mov x19, x0
+    msr spsel, #1
+    ldr x1, =__el2_stack_top
+    mov sp, x1
+
+    /* Never enable stage-2 translation without VTTBR/VTTCR tables.
+     * Do not trap all EL1 exceptions to EL2.
+     */
     mrs x1, hcr_el2
-    orr x1, x1, #(1 << 31)    // RW: EL1 is AArch64
-    orr x1, x1, #(1 << 0)     // VM: enable stage 2 translation (not used yet)
-    orr x1, x1, #(1 << 7)     // AMO: allow AArch32/64 mixing
-    orr x1, x1, #(1 << 29)    // TGE: trap general exceptions
+    bic x1, x1, #(1 << 0)
+    bic x1, x1, #(1 << 29)
+    orr x1, x1, #(1 << 31)
     msr hcr_el2, x1
     isb
-    
-    /* Configure CNTHCTL_EL2 for EL1 timer access */
-    mov x1, #(1 << 0) | (1 << 1)  // EL1PCEN | EL1PCTEN
+
+    mov x1, #3
     msr cnthctl_el2, x1
+    msr cntvoff_el2, xzr
     isb
-    
-    /* Set up VBAR_EL2 for exception handling */
-    adr x1, vbar_el2
+
+    ldr x1, =vbar_el2
     msr vbar_el2, x1
     isb
-    
-    /* Drop to EL1 */
-    bl el2_to_el1_drop
-    
-    /* Never returns */
-    b .
 
-/* EL2 vector table (minimal - just for unexpected exceptions) */
+    /* The old code passed an arbitrary x0 to ELR_EL2. Load entry explicitly. */
+    ldr x0, =r10_el1_entry
+    ldr x1, =__el1_stack_top
+    msr sp_el1, x1
+    bl el2_to_el1_drop
+1:  wfe
+    b 1b
+
 .section .vectors.el2, "ax"
 .balign 0x800
 .global vbar_el2
 vbar_el2:
-    /* Synchronous */
-    .balign 0x80
-    b el2_sync
-    /* IRQ */
-    .balign 0x80
-    b el2_irq
-    /* FIQ */
-    .balign 0x80
-    b el2_fiq
-    /* SError */
-    .balign 0x80
-    b el2_serror
-    /* Repeat for other 12 slots */
-    .rept 12
-    .balign 0x80
+    .rept 16
     b el2_unexpected
+    .balign 0x80
     .endr
 
-/* EL2 exception handlers */
-el2_sync:
-el2_irq:
-el2_fiq:
-el2_serror:
+.section .text, "ax"
 el2_unexpected:
-    /* Just park - we shouldn't get exceptions at EL2 */
-    msr spsel, #1
-    ldr x0, =__el2_stack_top
-    mov sp, x0
+    msr daifset, #0xf
 1:  wfe
     b 1b
 
-.section .text
-
-/* Drop from EL2 to EL1 */
 .global el2_to_el1_drop
+.type el2_to_el1_drop, %function
 el2_to_el1_drop:
-    /* x0 = EL1 entry point (r10_el1_entry) */
-    
-    /* Set up SPSR_EL2 for EL1h entry */
-    /* D=1, A=1, I=1, F=1 (mask all), M=5 (EL1h) */
-    mov x1, #0x3C5
+    /* EL1h, mask debug/SError/IRQ/FIQ. */
+    mov x1, #0x3c5
     msr spsr_el2, x1
-    
-    /* Set ELR_EL2 to EL1 entry */
     msr elr_el2, x0
-    
-    /* Set SP_EL1 */
-    ldr x1, =__el1_stack_top
-    msr sp_el1, x1
-    
-    /* Set TTBR0_EL1 (will be set up by mmu_init in EL1) */
-    /* For now, identity map - we'll enable MMU in EL1 */
-    
-    /* ERET to EL1 */
     eret
 
-/* EL1 stack */
-.section .bss
-.balign 16
-.global __el2_stack_top
-__el2_stack_bottom:
-    .space 4096
-__el2_stack_top:
-
-.balign 16
-.global __el1_stack_top
-__el1_stack_bottom:
-    .space 8192
-__el1_stack_top:
+/* Stack storage is reserved only by linker_r10.ld. */
