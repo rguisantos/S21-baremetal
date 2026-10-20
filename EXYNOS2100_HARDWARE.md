@@ -260,21 +260,74 @@ This is the **actual base device tree** used by the firmware — not overlays. A
 
 > **Critical**: UART1 is `status = "disabled"` in DTB — firmware enables it at runtime. Our bare-metal must enable it explicitly.
 
-### GIC-600 Node (exact DTS)
+### GIC-600 Driver Implementation (ARM GICv3 via ICC_* System Registers)
 
-```dts
-interrupt-controller@10200000 {
-    compatible = "arm,gic-v3";
-    #interrupt-cells = <0x03>;
-    reg = <0x00 0x10200000 0x10000>,     // GICD
-          <0x00 0x10240000 0x200000>;    // GICR range (0x200000)
-    interrupts = <0x01 0x09 0x04>;       // PPI 9 (maintenance)
-    interrupt-parent = <0x01>;
-    class0-cpus = "0-3";                  // A55 cluster
-    class1-cpus = "4-7";                  // A78 + X1 clusters
-    phandle = <0x01>;
-};
+**Addresses from DTB (vendor_boot.img):**
+- GICD: `0x1020_0000`
+- GICR: `0x1024_0000` (stride `0x20000` per CPU)
+- ITS: `0x1028_0000` (in redistributor range)
+
+**CPU Topology (from DTB):**
+| Cluster | CPUs | Type | MPIDR Aff0 |
+|---------|------|------|------------|
+| cluster0 (little) | 4 | Cortex-A55 | 0x00, 0x01, 0x02, 0x03 |
+| cluster1 (mid) | 3 | Cortex-A78 | 0x04, 0x05, 0x06 |
+| cluster2 (big) | 1 | Cortex-X1 | 0x07 |
+
+**GIC-600 Distributor Init:**
+```c
+/* Disable distributor */
+gicd_write(GICD_CTLR, 0);
+
+/* Enable ARE_NS (Affinity Routing), DS (Disable Security), Group 0 + Group 1 NS */
+gicd_write(GICD_CTLR, GICD_CTLR_ARE_NS | GICD_CTLR_DS | GICD_CTLR_EN_GRP0 | GICD_CTLR_EN_GRP1NS);
+
+/* All SPIs -> Group 1 NS, level-triggered */
+for (i = 32; i < spi_count; i += 32) {
+    gicd_write(GICD_IGROUPR + i/32*4, 0xFFFFFFFF);  // Group 1
+    gicd_write(GICD_ICFGR + i/16*4, 0x55555555);    // Level-triggered
+    gicd_write(GICD_IGRPMODR + i/32*4, 0x00000000); // Group 1 NS
+}
+
+/* Enable distributor */
+gicd_write(GICD_CTLR, GICD_CTLR_ARE_NS | GICD_CTLR_DS | GICD_CTLR_EN_GRP0 | GICD_CTLR_EN_GRP1NS);
 ```
+
+**Redistributor Init (per CPU):**
+```c
+u64 rbase = GICR_BASE + cpu_id * 0x20000;
+/* Wake up */
+gicr_write(rbase, GICR_WAKER, gicr_read(rbase, GICR_WAKER) & ~GICR_WAKER_PROCESSOR_SLEEP);
+while (gicr_read(rbase, GICR_WAKER) & GICR_WAKER_CHILDREN_ASLEEP) ;
+gicr_write(rbase, GICR_CTLR, 0x3);  // Enable Group 0 + Group 1 NS
+```
+
+**CPU Interface via ICC_* System Registers (not MMIO):**
+```c
+/* Enable system register access */
+msr_icc_sre_el1(ICC_SRE_EL1_SRE);
+isb();
+
+/* CPU interface control: EOI mode + Common Binary Point */
+msr_icc_ctlr_el1(ICC_CTLR_EL1_EOImode | ICC_CTLR_EL1_CBPR);
+
+/* Priority mask: allow all (0xFF = lowest) */
+msr_icc_pmr_el1(0xFF);
+
+/* Binary point: 8 priority bits, no preemption */
+msr_icc_bpr1_el1(0x3);
+
+/* Enable Group 1 NS + Group 0 */
+msr_icc_igrpen1_el1(ICC_IGRPEN1_EL1_GRP1NS);
+msr_icc_igrpen0_el1(1);
+```
+
+**IRQ Handling:**
+- **Enable/disable SPI**: GICD_ISENABLER / GICD_ICENABLER
+- **Enable/disable PPI/SGI**: GICR_SGI_ISENABLER / GICR_SGI_ICENABLER (per CPU)
+- **ACK**: `u32 intid = mrs_icc_iar1_el1() & 0xFFFFFF;`
+- **EOI**: `msr_icc_eoir1_el1(intid);`
+- **SGI generation**: `msr_icc_sgi1r_el1(...);`
 
 ### UART Console Node (exact DTS)
 
