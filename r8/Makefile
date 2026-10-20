@@ -1,12 +1,28 @@
 # Makefile — kit R8: MMU / exception levels / exceções + GICv3 + timer
 # Ambiente userspace (sem root): cross-gcc e QEMU extraídos em tools/root
 
-CROSS   := aarch64-linux-gnu-
+TOOLS ?= ../tools/root
+LOCAL_CROSS := $(TOOLS)/usr/bin/aarch64-linux-gnu-
+LOCAL_QEMU := $(TOOLS)/usr/bin/qemu-system-aarch64
+ifeq ($(wildcard $(LOCAL_CROSS)gcc),)
+CROSS ?= aarch64-linux-gnu-
+else
+CROSS ?= $(LOCAL_CROSS)
+endif
 CC      := $(CROSS)gcc
 OBJDUMP := $(CROSS)objdump
 
-QEMU    := qemu-system-aarch64
-QDATA   := /usr/share/qemu
+ifeq ($(wildcard $(LOCAL_QEMU)),)
+QEMU ?= qemu-system-aarch64
+else
+QEMU ?= $(LOCAL_QEMU)
+endif
+ifeq ($(wildcard $(TOOLS)/usr/share/qemu),)
+QDATA ?= /usr/share/qemu
+else
+QDATA ?= $(TOOLS)/usr/share/qemu
+endif
+QENV := LD_LIBRARY_PATH=$(TOOLS)/usr/lib/x86_64-linux-gnu:$(TOOLS)/usr/lib
 QENV    :=
 
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
@@ -122,11 +138,11 @@ $(ELF_E): $(BUILD)/r10_start.o $(R10_OBJS) common/linker_r10.ld
 
 # ---- execução ----
 run_r10: $(ELF_E)
-	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=on -cpu max -nographic -dtb ../extracted.dtb -kernel $<
+	@echo "R10 ELF built at $<. QEMU virt does not emulate Exynos MMIO; this is not hardware validation."
 
 run_r10_hw: $(ELF_E)
-	@echo "Chainload on real hardware: replace kernel in boot.img with $<"
-	@echo "Use: fastboot boot $<  (if unlocked) or Odin (if locked)"
+	@echo "UNVALIDATED: do not flash/chainload this experimental ELF on the phone."
+	@echo "A verified Samsung-compatible boot path and physical debug console are prerequisites."
 
 # ---- regressão: os 4 módulos + assinaturas PASS ----
 regress: $(ELF_A) $(ELF_B) $(ELF_C) $(ELF_D)
