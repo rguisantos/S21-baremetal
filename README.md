@@ -111,4 +111,84 @@ Fronteira atual: o próximo passo natural é isolamento por MMU (page tables
 por tarefa, janela virando lei física), EL0 com páginas de usuário e
 talvez SMP via PSCI — ou a portabilidade para bancada real
 (RK3568/DAYU200: BSP, U-Boot chainloading, serial física).
+## Exynos 2100 (Galaxy S21 Ultra SM-G998B) — Verdades físicas do firmware real
+
+O kernel público do Exynos 2100 (`exynos2100.dtsi`) expõe o mapa de hardware
+real — **diferente do QEMU `virt`**:
+
+| Componente | QEMU `virt` | Exynos 2100 Real | Fonte |
+|------------|-------------|------------------|-------|
+| GICD (Distributor) | 0x08000000 | **0x10200000** | `exynos2100.dtsi` `gic` node |
+| GICR (Redistributor) | 0x080A0000 | **0x10240000** | `exynos2100.dtsi` `gic` node |
+| MCT (Local Timer) | — | **0x10040000** | `exynos2100.dtsi` `mct` node |
+| Chip ID | — | **0x10000000** | `exynos2100.dtsi` `chipid` node |
+| Oscilador de ref. | — | **26 MHz** | `exynos2100.dtsi` `clocks` |
+| initrd (kernel) | — | **0x84000000** | boot header padrão |
+| UART Console | PL011 @ 0x09000000 | **uart@10840000** | `exynos2100.dtsi` `uart1` |
+| UART compat | `arm,pl011` | **`samsung,exynos-uart`** (USI v2) | `exynos2100.dtsi` |
+| UART IRQ (SPI) | INTID 33 (PL011) | **INTID 0x215 = 533** | `exynos2100.dtsi` `interrupts` |
+
+> **IMPORTANTE**: Não copiar endereços do QEMU para o hardware real. O
+> GIC-600 no Exynos vive em 0x1020_0000 (base física), não em 0x0800_0000.
+> O timer local é MCT (Memory Controller Timer), não o architected timer
+> PPI do QEMU. A UART é Samsung USI v2, não PL011.
+
+### Firmware Extraído (G998BXXSJHZC2)
+
+| Artefato | Tamanho | Conteúdo |
+|----------|---------|----------|
+| `boot.img` | 64 MB | Ramdisk + overlay DTB (sem kernel binary) |
+| `dtbo.img` | 8 MB | Overlays de placa (bateria, câmeras, sensores, PMIC) |
+| `ramdisk` | 1.5 MB | init, fstab.exynos2100, SELinux policy |
+| `kernel.config` | 203 KB | Linux 5.4.242, clang 11.0.1 |
+
+**Kernel config confirmado**:
+```
+CONFIG_SOC_EXYNOS2100=y
+CONFIG_ARM_GIC_V3=y / CONFIG_ARM_GIC_V3_ITS=y
+CONFIG_CLKSRC_EXYNOS_MCT=m
+CONFIG_USI_V2=m
+CONFIG_ARM_PSCI_FW=y
+```
+
+### BL Firmware (Bootloader) — `BL_G998BXXSJHZC2_...tar.md5` (10.4 MB)
+
+| Componente | Arquivo | Descoberta chave |
+|------------|---------|------------------|
+| **TF-A / BL2** | `sboot.bin` | v1.5 (Athens/Exynos2100), PSCI **HVC**, GICv3, EL3 monitor, libfdt completo |
+| **TEEGRIS** | `tzar.img` + `tzsw.img` | v4/v3.7, Secure OS (OP-TEE based) |
+| **Harx** | `harx.bin` | Hypervisor, BL31 setup, S2MPU |
+| **AVB** | `vbmeta.img` | Partitions: recovery, dtbo, boot1, vendor_boot, system, vendor, ... |
+
+> **Sem U-Boot** — Samsung usa cadeia proprietária BL2 → Kernel. Ponto de chainload: após BL2, antes do kernel (EL2/EL1).
+> **Base DTB** — Extraído do `vendor_boot.img` do AP (offset 0xb77040, 390 KB). Confirma todos os endereços.
+> **PSCI** — DTB diz SMC, BL strings dizem HVC. Testar ambos.
+
+### DTB Base Confirmado (vendor_boot.img)
+
+| Componente | Endereço | Detalhes |
+|------------|----------|----------|
+| **GICD** | 0x1020_0000 | `arm,gic-v3`, redist 0x1024_0000 |
+| **MCT** | 0x1004_0000 | `samsung,exynos4210-mct` |
+| **ChipID** | 0x1000_0000 | `samsung,exynos2100-chipid` |
+| **UART1 (console)** | 0x1084_0000 | `samsung,exynos-uart` (USI v2), **SPI 533**, `status=disabled` |
+| **PSCI** | — | `arm,psci-1.0`, method=smc |
+| **Timer arch** | PPI 13-16 | `arm,armv8-timer`, 26 MHz |
+| **CPU Topology** | 3 clusters | 4×A55 (0-3), 3×A78 (4-6), 1×X1 (7) |
+
+### Árvores de kernel públicas para referência
+
+- **Universal Exynos 2100**: https://github.com/exynos2100/android_kernel_samsung_universal2100
+- **Comunidade Exynos Republic**: https://github.com/exynos-republic/android_kernel_samsung_universal2100
+- **Samsung Open Source**: https://opensource.samsung.com/ (buscar por `G998BXXSJHZC2`)
+
+### Build da referência
+
+- **AP/Build**: `G998BXXSJHZC2`
+- **Kernel**: `5.4.242-30958140-abG998BXXSJHZC2`
+- **Android**: 15 (AP3A.240905.015.A2)
+- **Baseband**: `G998BXXSJHZA7`
+- **CSC**: `ZTO` (Brasil)
+- **Codename plataforma**: `p3s`
+
 # S21-baremetal

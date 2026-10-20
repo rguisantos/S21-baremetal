@@ -29,6 +29,7 @@ int  puts(const char *s);
 
 /* ---- util.c ---- */
 unsigned get_current_el(void);
+unsigned get_current_cpu(void);
 void vbar_install(void);           /* instala a tabela de vetores em VBAR_EL1 */
 void park(void) __attribute__((noreturn));
 void shutdown(void) __attribute__((noreturn));  /* PSCI SYSTEM_OFF */
@@ -64,12 +65,34 @@ void exc_unexpected_c(unsigned from_vector);
 void __attribute__((weak)) irq_hook(struct exc_frame *f);
 
 /* ---- mmio ---- */
-static inline void mmio_w(u64 addr, u32 v) { *(volatile u32 *)addr = v; }
-static inline u32 mmio_r(u64 addr)          { return *(volatile u32 *)addr; }
+static inline void mmio_write32(u64 addr, u32 v) { *(volatile u32 *)addr = v; }
+static inline u32 mmio_read32(u64 addr)          { return *(volatile u32 *)addr; }
+
+#define mmio_w(addr, val)  mmio_write32(addr, val)
+#define mmio_r(addr)       mmio_read32(addr)
 
 /* ---- acessos a system registers (inline asm) ---- */
 #define MRS(reg) ({ u64 __v; asm volatile("mrs %0, " #reg : "=r"(__v)); __v; })
 #define MSR(reg, val) asm volatile("msr " #reg ", %0" :: "r"((u64)(val)) : "memory")
+
+/* SCTLR_EL1 */
+static inline u64 mrs_sctlr_el1(void) { return MRS(sctlr_el1); }
+static inline void msr_sctlr_el1(u64 v) { MSR(sctlr_el1, v); }
+
+/* CNTFRQ_EL0 */
+static inline u64 mrs_cntfrq_el0(void) { return MRS(cntfrq_el0); }
+
+/* CNTPCT_EL0 */
+static inline u64 mrs_cntpct_el0(void) { return MRS(cntpct_el0); }
+
+/* CNTP_CVAL_EL0 */
+static inline void msr_cntp_cval_el0(u64 v) { MSR(cntp_cval_el0, v); }
+
+/* CNTP_CTL_EL0 */
+static inline void msr_cntp_ctl_el0(u64 v) { MSR(cntp_ctl_el0, v); }
+
+/* MPIDR_EL1 */
+static inline u64 mrs_mpidr_el1(void) { return MRS(mpidr_el1); }
 
 /* ---- pontos de entrada de cada módulo ---- */
 void module_main(unsigned entry_el);

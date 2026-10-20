@@ -9,6 +9,13 @@ unsigned get_current_el(void)
     return (unsigned)((v >> 2) & 3);
 }
 
+unsigned get_current_cpu(void)
+{
+    u64 mpidr;
+    asm volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
+    return (unsigned)(mpidr & 0xFF);  // Aff0
+}
+
 void vbar_install(void)
 {
     asm volatile("msr vbar_el1, %0" :: "r"((u64)vectors) : "memory");
