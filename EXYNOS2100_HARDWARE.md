@@ -260,74 +260,132 @@ This is the **actual base device tree** used by the firmware — not overlays. A
 
 > **Critical**: UART1 is `status = "disabled"` in DTB — firmware enables it at runtime. Our bare-metal must enable it explicitly.
 
-### GIC-600 Driver Implementation (ARM GICv3 via ICC_* System Registers)
+---
 
-**Addresses from DTB (vendor_boot.img):**
-- GICD: `0x1020_0000`
-- GICR: `0x1024_0000` (stride `0x20000` per CPU)
-- ITS: `0x1028_0000` (in redistributor range)
+## Boot Contract & Entry Point (R10 Payload)
 
-**CPU Topology (from DTB):**
-| Cluster | CPUs | Type | MPIDR Aff0 |
-|---------|------|------|------------|
-| cluster0 (little) | 4 | Cortex-A55 | 0x00, 0x01, 0x02, 0x03 |
-| cluster1 (mid) | 3 | Cortex-A78 | 0x04, 0x05, 0x06 |
-| cluster2 (big) | 1 | Cortex-X1 | 0x07 |
+### EL2 Entry (start_r10.S)
 
-**GIC-600 Distributor Init:**
+**Expected loader contract (not yet validated on hardware):**
+- **Entry EL**: EL2 (after BL2 handoff)
+- **x0**: FDT pointer (device tree blob)
+- **x1-x3**: Reserved
+- **Load address**: `0x8008_0000` (typical kernel load address from DTB `/chosen`)
+- **Stack**: EL2 private stack (4 KB), EL1 stack (8 KB) set via `SP_EL1`
+
+**EL2 → EL1 Drop:**
+```assembly
+/* HCR_EL2: RW=1 (EL1 AArch64), VM=0 (no stage-2), TGE=0 */
+HCR_EL2 = (1<<31) | (0<<0) | (0<<29)
+
+/* CNTHCTL_EL2: EL1PCTEN | EL1PCEN = 0x3 */
+CNTHCTL_EL2 = 0x3
+CNTVOFF_EL2 = 0
+
+/* VBAR_EL2: minimal vector table */
+VBAR_EL2 = vbar_el2
+
+/* Drop to EL1h via ERET */
+SPSR_EL2 = 0x3C5  // EL1h, DAIF=1111
+ELR_EL2 = r10_el1_entry
+SP_EL1 = __el1_stack_top
+ERET
+```
+
+### EL1 Entry (r10_el1_entry)
+
+**Initialization sequence:**
+1. `vbar_install()` — install EL1 vector table
+2. `uart_init()` — USI v2 UART1 @ 0x1084_0000
+3. `mmu_init()` — identity map 4GB, 2MB blocks
+4. `gic_init()` — GIC-600 Distributor + Redistributor + ICC_* CPU interface
+5. `mct_init()` — MCT global + 4 channels, SPI 224-227
+6. `timer_init()` — CNTP @ 1ms, PPI 30
+7. `psci_call(PSCI_VERSION)` — test SMC/HVC
+
+### IRQ Handling (via ICC_*)
+
 ```c
-/* Disable distributor */
-gicd_write(GICD_CTLR, 0);
+void exc_irq(u64 *frame, u64 kind) {
+    u32 intid = gic_ack_irq();  // ICC_IAR1_EL1
+    switch (intid) {
+        case 30:   timer_handle_irq(); break;   // CNTP PPI
+        case 224..227: mct_handle_irq(intid); break; // MCT SPI
+        case 533:  /* UART1 */ break;           // UART1 SPI (disabled)
+    }
+    gic_eoi(intid);  // ICC_EOIR1_EL1
+}
+```
 
-/* Enable ARE_NS (Affinity Routing), DS (Disable Security), Group 0 + Group 1 NS */
-gicd_write(GICD_CTLR, GICD_CTLR_ARE_NS | GICD_CTLR_DS | GICD_CTLR_EN_GRP0 | GICD_CTLR_EN_GRP1NS);
+**IRQ Map (from DTB):**
+| INTID | Source | Type | Status |
+|-------|--------|------|--------|
+| 13-16 | Architected timer | PPI | Used by Linux |
+| 30 | CNTP (EL1 phys timer) | PPI | **Active** |
+| 224-227 | MCT channels 0-3 | SPI | **Active** |
+| 533 | UART1 | SPI | Disabled in DTB |
 
-/* All SPIs -> Group 1 NS, level-triggered */
-for (i = 32; i < spi_count; i += 32) {
-    gicd_write(GICD_IGROUPR + i/32*4, 0xFFFFFFFF);  // Group 1
-    gicd_write(GICD_ICFGR + i/16*4, 0x55555555);    // Level-triggered
-    gicd_write(GICD_IGRPMODR + i/32*4, 0x00000000); // Group 1 NS
+---
+
+## Timer Integration (Architected Timer + MCT)
+
+### Architected Timer (CNTP) — PPI 30
+- **Frequency**: 26 MHz (from CNTFRQ_EL0 or DTB)
+- **Tick**: 1ms (configurable)
+- **IRQ**: PPI 30 (per-CPU, private)
+- **Handler**: `timer_handle_irq()` → update CNTP_CVAL + `gic_eoi(30)`
+
+```c
+void timer_init(void) {
+    cntfrq = mrs_cntfrq_el0() ?: 26000000;
+    msr_cntp_cval_el0(mrs_cntpct_el0() + cntfrq / 1000);
+    msr_cntp_ctl_el0(1);  // ENABLE=1, IMASK=0
+    gic_enable_irq(30); gic_set_priority(30, 0x80);
 }
 
-/* Enable distributor */
-gicd_write(GICD_CTLR, GICD_CTLR_ARE_NS | GICD_CTLR_DS | GICD_CTLR_EN_GRP0 | GICD_CTLR_EN_GRP1NS);
+void timer_handle_irq(void) {
+    msr_cntp_cval_el0(mrs_cntpct_el0() + cntfrq / 1000);
+    gic_eoi(30);
+}
 ```
 
-**Redistributor Init (per CPU):**
+### MCT (Multi-Core Timer) — SPI 224-227
+- **Base**: 0x1004_0000
+- **Clock**: 26 MHz (fin_pll)
+- **Channels**: 4 (0-3), each with independent compare/auto-reload
+- **IRQs**: SPI 224 (ch0) ... 227 (ch3)
+- **Handler**: `mct_handle_irq(irq)` → read MCT_INT_CSTAT, clear bits
+
 ```c
-u64 rbase = GICR_BASE + cpu_id * 0x20000;
-/* Wake up */
-gicr_write(rbase, GICR_WAKER, gicr_read(rbase, GICR_WAKER) & ~GICR_WAKER_PROCESSOR_SLEEP);
-while (gicr_read(rbase, GICR_WAKER) & GICR_WAKER_CHILDREN_ASLEEP) ;
-gicr_write(rbase, GICR_CTLR, 0x3);  // Enable Group 0 + Group 1 NS
+void mct_init(void) {
+    mmio_write32(MCT_GLOBAL_CON, MCT_GLOBAL_CON_EN);
+    for (i=0; i<4; i++) {
+        mmio_write32(MCT_LOCAL_CMP(i), 26000);  // 1ms @ 26MHz
+        mmio_write32(MCT_LOCAL_CON(i), MCT_LOCAL_CON_EN|MCT_LOCAL_CON_INTEN|MCT_LOCAL_CON_AUTO);
+        mmio_write32(MCT_INT_ENB, mmio_read32(MCT_INT_ENB) | (1<<i));
+    }
+    gic_enable_irq(224..227);
+}
+
+void mct_handle_irq(u32 irq) {
+    u32 cstat = mmio_read32(MCT_INT_CSTAT);
+    for (i=0; i<4; i++) if (cstat & (1<<i)) {
+        mmio_write32(MCT_INT_CSTAT, 1<<i);
+        // channel i tick
+    }
+}
 ```
 
-**CPU Interface via ICC_* System Registers (not MMIO):**
+### Timer Tick Demo (main.c)
 ```c
-/* Enable system register access */
-msr_icc_sre_el1(ICC_SRE_EL1_SRE);
-isb();
-
-/* CPU interface control: EOI mode + Common Binary Point */
-msr_icc_ctlr_el1(ICC_CTLR_EL1_EOImode | ICC_CTLR_EL1_CBPR);
-
-/* Priority mask: allow all (0xFF = lowest) */
-msr_icc_pmr_el1(0xFF);
-
-/* Binary point: 8 priority bits, no preemption */
-msr_icc_bpr1_el1(0x3);
-
-/* Enable Group 1 NS + Group 0 */
-msr_icc_igrpen1_el1(ICC_IGRPEN1_EL1_GRP1NS);
-msr_icc_igrpen0_el1(1);
+while (1) {
+    u32 now = timer_read_cnt() / (cntfrq / 1000);  // ms
+    if (now != last_tick) {
+        last_tick = now;
+        if ((last_tick % 100) == 0) uart_puts("[Tick: ...ms]");
+    }
+}
 ```
-
-**IRQ Handling:**
-- **Enable/disable SPI**: GICD_ISENABLER / GICD_ICENABLER
-- **Enable/disable PPI/SGI**: GICR_SGI_ISENABLER / GICR_SGI_ICENABLER (per CPU)
-- **ACK**: `u32 intid = mrs_icc_iar1_el1() & 0xFFFFFF;`
-- **EOI**: `msr_icc_eoir1_el1(intid);`
-- **SGI generation**: `msr_icc_sgi1r_el1(...);`
 
 ### UART Console Node (exact DTS)
 
