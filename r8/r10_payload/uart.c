@@ -62,7 +62,9 @@ void uart_init(void)
 
     /* No guessed clock, baud divisor, pinmux or USI reset. Opt in only
      * when a loader has configured and verified this exact UART instance.
-     * Default builds perform no UART MMIO (the firmware DTB disables it).
+     * Default builds perform no UART MMIO. The base DTB disables this port,
+     * while the supplied board overlays enable it; neither proves a loader
+     * has configured its clock, pinmux and USI before this entry.
      */
 #ifdef R10_UART_FIRMWARE_CONFIGURED
     uart_initialized = 1;

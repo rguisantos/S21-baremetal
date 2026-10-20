@@ -1,3 +1,10 @@
+> **Correções confirmadas nas imagens stock HZC2 recebidas em 2026-10-20:**
+> `boot.img` contém o kernel real; CPUs usam MPIDR 0x000..0x700 em passos de
+> 0x100; overlays habilitam UART1; SPI 533 corresponde ao INTID 565.
+> Consulte [a conferência com hashes](docs/stock-firmware-hzc2.md).
+> Afirmações abaixo sobre EL2, memória e cadeia de boot são hipóteses até
+> comprovação em execução, salvo indicação explícita de evidência.
+
 # Exynos 2100 Hardware Reference — Galaxy S21 Ultra (SM-G998B)
 
 Extraído de `exynos2100.dts` (kernel público Samsung) — base para portabilidade

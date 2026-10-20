@@ -1,3 +1,6 @@
+> **Firmware HZC2 conferido:** kernel identificado, DTB e oito overlays
+> extraídos. Veja [evidências das imagens stock](docs/stock-firmware-hzc2.md).
+
 > **R10 atualizado:** entrada/FDT, exceções e GIC corrigidos para um primeiro
 > estágio em uma CPU. Veja [validação e limites](docs/r10-single-cpu.md).
 > O teste integrado em QEMU não valida a execução no S21.
