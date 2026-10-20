@@ -5,7 +5,7 @@
 # Tudo extraído com dpkg -x em tools/root; nada é instalado no sistema.
 set -e
 
-TOOLS=/home/z/my-project/tools
+TOOLS=${TOOLS:-$(CDPATH= cd -- "$(dirname -- "$0")/../tools" && pwd)}
 DL=$TOOLS/debs
 ROOT=$TOOLS/root
 mkdir -p "$DL" "$ROOT"
