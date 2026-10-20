@@ -57,6 +57,7 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 - [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
+- [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
 - [Resultados reproduzidos nesta revisão](docs/validation-2026-10-20.md)
