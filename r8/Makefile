@@ -130,7 +130,7 @@ $(ELF_D): $(BUILD)/start.o $(R9_OBJS) $(BUILD)/uart.o $(BUILD)/printf.o \
 	    $(BUILD)/uart.o $(BUILD)/printf.o $(BUILD)/util.o $(BUILD)/sys.o
 
 # ---- r10: Exynos 2100 real hardware payload ----
-R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
+R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_fdt.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
             $(BUILD)/r10_uart.o $(BUILD)/r10_mct.o $(BUILD)/r10_timer.o \
             $(BUILD)/r10_psci.o $(BUILD)/r10_spinlock.o $(BUILD)/r10_smp.o \
             $(BUILD)/printf.o $(BUILD)/r10_exceptions.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
@@ -138,7 +138,11 @@ R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
 $(BUILD)/r10_start.o: r10_payload/start_r10.S | $(BUILD)
 	$(CC) $(ASFLAGS) -c $< -o $@
 
-$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h r10_payload/gic_regs.h r10_payload/percpu.h common/r8lib.h | $(BUILD)
+# FDT property data is only 4-byte aligned. With MMU off, never emit
+# unaligned multi-byte loads (including compiler byte-load fusion).
+$(BUILD)/r10_fdt.o: CFLAGS += -mstrict-align
+
+$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h r10_payload/fdt.h r10_payload/gic_regs.h r10_payload/percpu.h common/r8lib.h | $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # R10 needs different linker script (load at 0x80080000, no EL0)
@@ -167,12 +171,14 @@ run_atomic: $(BUILD)/atomic_smoke.elf
 .PHONY: run_atomic
 
 # QEMU integration of production R10 entry/GIC/timer/exceptions, synthetic loader.
-$(BUILD)/r10_test_boot.o: tests/r10_boot.S | $(BUILD)
-	$(CC) $(ASFLAGS) -c $< -o $@
-$(BUILD)/r10_test_stage.o: tests/r10_stage.c r10_payload/r10.h r10_payload/gic_regs.h | $(BUILD)
+$(BUILD)/r10-test.dtb: ../scripts/test_fdt.py | $(BUILD)
+	python3 $< --write-qemu $@
+$(BUILD)/r10_test_boot.o: tests/r10_boot.S $(BUILD)/r10-test.dtb | $(BUILD)
+	$(CC) $(ASFLAGS) -DR10_TEST_DTB='"$(abspath $(BUILD)/r10-test.dtb)"' -c $< -o $@
+$(BUILD)/r10_test_stage.o: tests/r10_stage.c r10_payload/r10.h r10_payload/fdt.h r10_payload/gic_regs.h | $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 R10_TEST_OBJS = $(BUILD)/r10_test_boot.o $(BUILD)/r10_start.o $(BUILD)/r10_test_stage.o \
-    $(BUILD)/r10_gic.o $(BUILD)/r10_timer.o $(BUILD)/r10_exceptions.o \
+    $(BUILD)/r10_gic.o $(BUILD)/r10_timer.o $(BUILD)/r10_exceptions.o $(BUILD)/r10_fdt.o \
     $(BUILD)/uart.o $(BUILD)/printf.o $(BUILD)/util.o $(BUILD)/sys.o $(BUILD)/vectors.o
 $(BUILD)/r10_stage_test.elf: $(R10_TEST_OBJS) common/linker_r10.ld
 	$(CC) $(CFLAGS) -nostdlib -static -Wl,--defsym,R10_LOAD_ADDR=0x40080000 \

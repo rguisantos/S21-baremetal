@@ -15,6 +15,7 @@ timeout 8 make -C r8 BUILD="$build/arm" run_r10_stage_test > "$build/stage.log" 
 cat "$build/stage.log"
 [ "$status" -eq 124 ]
 grep -q '^R10 BOOT PASS:' "$build/stage.log"
+grep -q '^R10 FDT PASS:' "$build/stage.log"
 grep -q '^R10 TIMER PASS:' "$build/stage.log"
 grep -q '^R10 FATAL kind=0x0 ' "$build/stage.log"
 ! grep -q 'FAIL' "$build/stage.log"

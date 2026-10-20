@@ -4,7 +4,7 @@
 
 - Dispatcher R10 separado de `common/exc.c`. SYNC/FIQ/SError e IRQs inesperadas registram ELR/ESR/FAR e param. Nenhuma instrução é pulada. A UART pode estar indisponível; `r10_last_fault` também pode ser inspecionado por debugger.
 - Entrada primária independente de Aff0. Exige EL2 com MMU/D-cache de EL2 e EL1 desligados antes de escrever BSS/pilha. O ponteiro FDT é preservado em x19, restaurado em x0 no ERET e armazenado em `g_fdt` pelo C.
-- O C faz somente sanidade inicial do cabeçalho FDT. Ainda não extrai RAM, regiões reservadas, GIC ou topologia dele.
+- O C interpreta RAM, reservas, initrd, GIC, timer e topologia do FDT e confere o intervalo completo da imagem/pilhas antes do acesso GIC. Consulte [fdt-resources.md](fdt-resources.md) para bindings, limites e responsabilidade do carregador.
 - Entrada de secundárias distinta da entrada que zera BSS. O caminho SMP permanece dormente e não validado.
 - GIC usa endereços absolutos, reconhece PIDR2 e procura o redistributor por afinidade completa em GICR_TYPER, com Last, limites e VLPIS ou stride explícito.
 - O Distributor é somente lido. Não há escrita em GICD_CTLR, configuração em massa de SPIs, inferência de CPUs pelo TYPER nem alteração de segurança. O driver exige Group 1/roteamento herdados e que a PPI já pertença ao grupo não seguro.
@@ -18,10 +18,11 @@
 make -C r8 BUILD=build-r10-fix all
 make -C r8 BUILD=build-r10-fix regress
 bash scripts/test_pr_fixes.sh
+python3 scripts/test_fdt.py
 bash scripts/test_r10_stage.sh
 ```
 
-O último script executa o código real do GIC em um modelo MMIO com ASan/UBSan (sem LeakSanitizer), o dispatcher real em testes de política e uma integração AArch64 no QEMU. O carregador sintético do teste usa um marcador como argumento x0, fornece a configuração GIC do QEMU e substitui a função C principal. São usados a entrada assembly, os vetores, GIC, timer e dispatcher de produção. Isso verifica a transferência do argumento FDT, não o parsing de um DTB real nem a main de hardware.
+O último script executa o código real do GIC em um modelo MMIO com ASan/UBSan (sem LeakSanitizer), o dispatcher real em testes de política e uma integração AArch64 no QEMU. O carregador sintético copia um DTB gerado para RAM fora do payload, fornece a configuração GIC do QEMU e substitui a função C principal. São usados a entrada assembly, parser/política FDT, vetores, GIC, timer e dispatcher de produção. A main de hardware e o firmware Samsung não são exercitados.
 
 Assinaturas esperadas:
 
@@ -29,6 +30,7 @@ Assinaturas esperadas:
 GIC MODEL PASS
 EXCEPTION MODEL PASS
 R10 BOOT PASS: FDT, BSS, EL1
+R10 FDT PASS: resources and complete payload extent
 R10 TIMER PASS: five IRQs through production dispatcher
 R10 FATAL kind=0x0 ...
 ```
@@ -49,6 +51,6 @@ Referência recebida: [samsung-reference.md](samsung-reference.md).
 - Regressão R8A/R8B/R8C/R9: **4/4 PASS**.
 - UART: **2/2 PASS**; primitivas AArch64: **ATOMIC PASS**.
 - GIC e exceções no host: **GIC MODEL PASS**, **EXCEPTION MODEL PASS**.
-- Integração QEMU: **R10 BOOT PASS**, **R10 TIMER PASS**, seguido do fault fatal esperado (EC=0). Nenhum retorno após a instrução inválida.
+- Integração QEMU: **R10 BOOT PASS**, **R10 FDT PASS**, **R10 TIMER PASS**, seguido do fault fatal esperado (EC=0). Nenhum retorno após a instrução inválida.
 
 O contrato ainda depende de firmware que permita acesso ICC em EL1 via ICC_SRE_EL2/EL3; não é presumido suporte a trap/hypervisor proprietário. HCR_EL2 deixa IRQ/FIQ/SError direcionados a EL1 neste estágio.

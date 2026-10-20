@@ -1,7 +1,9 @@
 /* Runs the actual EL2 entry, GIC driver, timer and R10 dispatcher on QEMU.
  * A synthetic loader owns distributor/Group assignment for this test only. */
 #include "../r10_payload/r10.h"
-extern char r10_test_fdt[];
+#include "../r10_payload/fdt.h"
+extern char __payload_start[], __payload_end[];
+static struct r10_platform platform;
 u64 r10_test_bss;
 void secondary_cpu_entry(void) { park(); }
 void uart_puts(const char *s) { while (*s) uart_putc(*s++); }
@@ -10,16 +12,23 @@ void uart_puthex(u64 value) { printf("%p", value); }
 void r10_el1_entry(void *fdt)
 {
     uart_init();
-    if (fdt != (void *)r10_test_fdt || r10_test_bss || get_current_el() != 1) {
+    if (fdt != (void *)0x47000000 || r10_test_bss || get_current_el() != 1) {
         puts("R10 BOOT FAIL"); park();
     }
     puts("R10 BOOT PASS: FDT, BSS, EL1");
     vbar_install();
+    int rc=r10_fdt_parse(fdt,R10_FDT_MAX_SIZE,&platform);
+    if (rc || r10_fdt_check_boot(&platform,(u64)fdt,(u64)__payload_start,
+                                 (u64)__payload_end,MRS(mpidr_el1))) {
+        puts("R10 FDT FAIL"); park();
+    }
+    puts("R10 FDT PASS: resources and complete payload extent");
     /* Emulate a firmware-owned GICv3 distributor at QEMU addresses. */
     mmio_write32(0x08000000, 0x12);
     asm volatile("dsb sy\n\tisb" ::: "memory");
     mmio_write32(0x080a0000 + 0x10000 + 0x80, 1U << 30);
-    if (gic_init_region(0x08000000, 0x080a0000, 0x20000, 0) || timer_init()) {
+    if (gic_init_region(platform.gic_dist.base, platform.gic_redist.base,
+                        platform.gic_redist.size, platform.redist_stride) || timer_init()) {
         puts("R10 GIC/TIMER FAIL"); park();
     }
     asm volatile("msr daifclr, #2\n\tisb" ::: "memory");

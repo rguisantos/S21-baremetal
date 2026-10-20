@@ -1,220 +1,71 @@
-> **Firmware HZC2 conferido:** kernel identificado, DTB e oito overlays
-> extraídos. Veja [evidências das imagens stock](docs/stock-firmware-hzc2.md).
+# S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-> **R10 atualizado:** entrada/FDT, exceções e GIC corrigidos para um primeiro
-> estágio em uma CPU. Veja [validação e limites](docs/r10-single-cpu.md).
-> O teste integrado em QEMU não valida a execução no S21.
+Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-> **Estado da integração (2026-10-20):** PRs #2/#3 consolidadas; consulte
-> [PR_INTEGRATION.md](PR_INTEGRATION.md) para reprodução e limites dos testes.
-> R10 e o shim permanecem experimentais; a UART R10 fica desativada por padrão.
+**Estado em 2026-10-20:** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
-# Kit R8+R9 v8 — Bring-up bare-metal + microkernel no QEMU (completo)
+## Módulos e validação
 
-Kit autossuficiente dos módulos R8 (bring-up AArch64 no QEMU `virt`) e R9
-(microkernel: EL0, SVC, troca de contexto, preempção), com regressão
-automatizada: **R8A / R8B / R8C / R9 — 4/4 PASS** no mesmo build
-(`make regress`).
+| Módulo | Conteúdo | Evidência atual |
+|---|---|---|
+| R8A | MMU, alias virtual e faults deliberados | QEMU PASS |
+| R8B | EL3 → EL2 → EL1 e acesso privilegiado negado | QEMU PASS |
+| R8C | GICv3 e timer físico, INTID 30 | QEMU PASS |
+| R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
+| R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
+| Shim | Experimento separado de carregador | Compilação; contrato Samsung e execução não demonstrados |
 
-Ambiente 100% userspace: nada é instalado como root. O cross-toolchain e o
-QEMU vêm extraídos de .debs Debian dentro de `tools/root`, com os .debs
-originais em `tools/debs` (para re-bootstrap offline).
+O teste R10 usa entrada, parser, política de memória, vetores, GIC, timer e dispatcher de produção, com uma função C de teste e firmware sintético para o QEMU. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
-## Estrutura do pacote
+## Compilar e reproduzir
 
-    README.md            este arquivo
-    r8/
-      Makefile           build + run (r8a/r8b/r8c/r9) + regress
-      common/            start.S, sys.S, vectors.S, uart.c, printf.c,
-                         exc.c, util.c, r8lib.h, linker.ld
-      r8a_mmu/mmu.c       Stage-1: MAIR, tabelas L0–L3, SCTLR_EL1.M, faults
-      r8b_el/el.c         escada EL3→EL2→EL1 (SCR_EL3 + ERET) e muro EC=0x00
-      r8c_gic/            VBAR 16 slots, ESR, GICv3, timer CNTP (INTID 30)
-      r9_micro/           MICROKERNEL: EL0 + SVC + troca de contexto +
-                          preempção por timer (r9.h, vectors.S, main.c,
-                          sched.c, syscall.c, tasks.c, gic.c, timer.c)
-      build/              ELF prontos + disassembly
-      logs/               evidência de cada validação e da regressão
-    scripts/
-      bootstrap_tools.sh  reconstroi tools/ a partir dos .debs (sem root)
-      parse_fdt.py         parser de DTB (forense de endereços)
-      regress.sh           suíte: roda os 4 módulos e confere assinaturas PASS
-    tools/
-      debs/               .debs originais (QEMU 10.0.13, gcc-aarch64 14.2.0)
-      root/               sysroot extraído (binários, libs e dados do QEMU)
+Ambiente usado: Linux x86_64, Bash, make, Python 3 e compilador C nativo (`cc`) para os testes host. Toolchain AArch64 GCC 14.2 e QEMU 10.0.13 estão extraídos de pacotes Debian em `tools/root`; os pacotes em `tools/debs` permitem reconstrução com `scripts/bootstrap_tools.sh` e `dpkg-deb`, sem root. O repositório é grande por incluir essas ferramentas.
 
-## Requisitos
-
-- Linux x86_64 com `make`, `dpkg`/`dpkg-deb` (o bootstrap usa `dpkg -x`).
-- Nenhum pacote instalado como root; nada fora deste diretório.
-
-## Como rodar
-
-1. Extraia. Em `/home/z/my-project` nada mais a fazer (o Makefile usa
-   `TOOLS := /home/z/my-project/tools/root`). Para outro caminho:
-
-       make TOOLS=/caminho/do/kit/tools/root all
-       make TOOLS=/caminho/do/kit/tools/root run_r9
-
-2. Build completo + disassembly:
-
-       cd r8 && make all
-
-3. Rodar módulos (timeout externo recomendado; os módulos entram em park
-   de propósito — exit 124 é esperado no harness):
-
-       timeout 20 make run_r8a   # -M virt,virtualization=on
-       timeout 20 make run_r8b   # -M virt,secure=on,virtualization=on
-       timeout 35 make run_r8c   # -M virt,gic-version=3,virtualization=on
-       timeout 35 make run_r9    # -M virt,gic-version=3,virtualization=on
-
-4. Regressão completa (4 módulos, logs em r8/logs/regress_*.log):
-
-       make regress
-
-## Assinaturas de PASS
-
-- **R8A PASS — traducao, alias e faults sob controle**
-  L0 translation fault + Data Abort de permissão no L3 (WnR=1, DFSC=0x0f).
-- **R8B PASS — a escada desce, mas nao sobe sem permissao**
-  EL3 → SCR_EL3 → [EL2] → [EL1] via ERET; `msr scr_el3` no EL1 → muro EC=0x00.
-- **R8C PASS — 5 ticks: preempcao real**
-  GICD_TYPER real, GICD_CTLR readback 0x53, 5 IRQs do CNTP (INTID 30).
-- **R9 PASS — EL0 + SVC + troca de contexto + preempcao**
-  Tarefa A (3 YIELDs voluntários) e B (3 preempções SEM cooperar) no EL0,
-  com pilhas próprias (SPs diferentes provados no console); SVC #1 com
-  validação de ponteiro (NULL → -14, MMIO da UART → -14); o tick do timer
-  troca de tarefa de verdade (não só imprime).
-
-## Verdades físicas registradas nos fontes (com fontes citadas)
-
-- `SCR_EL3`: NS=bit0, RW=bit10, EEL2=bit18, RES1=bits 4,5 (QEMU cpu.h,
-  TF-A arch.h, DDI0487). Reset do QEMU virt lê 0x30 (só os RES1).
-- `virtualization=on` é obrigatório no `-M virt`: sem ele o `-cpu max`
-  nasce sem EL2 e qualquer ERET para EL2 é ilegal.
-- GICv3 no virt: **GICD=0x08000000** (v2 E v3), ITS=0x08080000 (armadilha
-  documentada), GICR=0x080A0000. Sem EL3, DS=1: só bits 0,1 gravam no CTLR.
-- INTID 30 = PPI do CNTP; `cnthctl_el2` precisa de EL1PCEN|EL1PCTEN.
-- **[v8]** ERET **não** restaura SP_EL0 — o retorno de EL0 exige gravar
-  `msr sp_el0` à mão a partir do frame (DDI0487 B1.9.1).
-- **[v8]** Exceção vinda de EL menor força SPSel=1: o handler roda no
-  SP_EL1 — por isso cada tarefa tem uma PILHA DE KERNEL própria e o frame
-  de exceção mora nela ("o contexto é a pilha").
-- **[v8]** O frame do R8 tinha bug latente: x29/x30 eram restaurados de
-  slots nunca gravados (232/240) — sobrevivia por sorte estrutural. Corrigido
-  no common/vectors.S; revalidado com regressão 4/4.
-- **[v8]** Sem MMU, a "janela do usuário" [0x40080000, __bss_end) é
-  CONVENÇÃO do kernel (validação de ponteiro no SVC). Com page tables por
-  tarefa (próximo passo) a mesma validação passa a ser física.
-
-## Reproduzir o ambiente do zero
-
-    ./scripts/bootstrap_tools.sh   # baixa/extraí QEMU + gcc em tools/ (userspace)
-
-## Ordem didática recomendada
-
-1. `r8a` — o mapa: MAIR, tabelas, MMU on, ler faults.
-2. `r8b` — o privilégio: escada EL3→EL2→EL1 e por que ela não sobe.
-3. `r8c` — o tempo: vetores, GICv3 e interrupção de verdade.
-4. `r9`   — o sistema: EL0 + SVC + troca de contexto + preempção.
-
-Fronteira atual: o próximo passo natural é isolamento por MMU (page tables
-por tarefa, janela virando lei física), EL0 com páginas de usuário e
-talvez SMP via PSCI — ou a portabilidade para bancada real
-(RK3568/DAYU200: BSP, U-Boot chainloading, serial física).
-## Exynos 2100 (Galaxy S21 Ultra SM-G998B) — Verdades físicas do firmware real
-
-O kernel público do Exynos 2100 (`exynos2100.dtsi`) expõe o mapa de hardware
-real — **diferente do QEMU `virt`**:
-
-| Componente | QEMU `virt` | Exynos 2100 Real | Fonte |
-|------------|-------------|------------------|-------|
-| GICD (Distributor) | 0x08000000 | **0x10200000** | `exynos2100.dtsi` `gic` node |
-| GICR (Redistributor) | 0x080A0000 | **0x10240000** | `exynos2100.dtsi` `gic` node |
-| MCT (Local Timer) | — | **0x10040000** | `exynos2100.dtsi` `mct` node |
-| Chip ID | — | **0x10000000** | `exynos2100.dtsi` `chipid` node |
-| Oscilador de ref. | — | **26 MHz** | `exynos2100.dtsi` `clocks` |
-| initrd (kernel) | — | **0x84000000** | boot header padrão |
-| UART Console | PL011 @ 0x09000000 | **uart@10840000** | `exynos2100.dtsi` `uart1` |
-| UART compat | `arm,pl011` | **`samsung,exynos-uart`** (USI v2) | `exynos2100.dtsi` |
-| UART IRQ (SPI) | INTID 33 (PL011) | **INTID 0x215 = 533** | `exynos2100.dtsi` `interrupts` |
-
-> **IMPORTANTE**: Não copiar endereços do QEMU para o hardware real. O
-> GIC-600 no Exynos vive em 0x1020_0000 (base física), não em 0x0800_0000.
-> O timer local é MCT (Memory Controller Timer), não o architected timer
-> PPI do QEMU. A UART é Samsung USI v2, não PL011.
-
-### Firmware Extraído (G998BXXSJHZC2)
-
-| Artefato | Tamanho | Conteúdo |
-|----------|---------|----------|
-| `boot.img` | 64 MB | Ramdisk + overlay DTB (sem kernel binary) |
-| `dtbo.img` | 8 MB | Overlays de placa (bateria, câmeras, sensores, PMIC) |
-| `ramdisk` | 1.5 MB | init, fstab.exynos2100, SELinux policy |
-| `kernel.config` | 203 KB | Linux 5.4.242, clang 11.0.1 |
-
-**Kernel config confirmado**:
-```
-CONFIG_SOC_EXYNOS2100=y
-CONFIG_ARM_GIC_V3=y / CONFIG_ARM_GIC_V3_ITS=y
-CONFIG_CLKSRC_EXYNOS_MCT=m
-CONFIG_USI_V2=m
-CONFIG_ARM_PSCI_FW=y
+```bash
+make -C r8 -j4 all
+make -C r8 regress
+python3 scripts/test_fdt.py
+bash scripts/test_pr_fixes.sh
+bash scripts/test_r10_stage.sh
 ```
 
-### BL Firmware (Bootloader) — `BL_G998BXXSJHZC2_...tar.md5` (10.4 MB)
+Os caminhos são relativos ao repositório: não há dependência de `/home/z`. É possível sobrescrever `TOOLS=/caminho/tools/root`; na ausência das ferramentas locais, o Makefile procura o cross-toolchain e QEMU no PATH. O wrapper `scripts/cross-run.sh` isola as bibliotecas do toolchain local; QEMU usa seu loader e dados locais.
 
-| Componente | Arquivo | Descoberta chave |
-|------------|---------|------------------|
-| **TF-A / BL2** | `sboot.bin` | v1.5 (Athens/Exynos2100), PSCI **HVC**, GICv3, EL3 monitor, libfdt completo |
-| **TEEGRIS** | `tzar.img` + `tzsw.img` | v4/v3.7, Secure OS (OP-TEE based) |
-| **Harx** | `harx.bin` | Hypervisor, BL31 setup, S2MPU |
-| **AVB** | `vbmeta.img` | Partitions: recovery, dtbo, boot1, vendor_boot, system, vendor, ... |
+`r8/build/` e `r8/logs/` são resultados gerados, não evidências binárias distribuídas. A regressão leva aproximadamente dois minutos porque os módulos estacionam intencionalmente. O harness confere assinaturas PASS; timeout 124 é esperado. Para execução individual:
 
-> **Sem U-Boot** — Samsung usa cadeia proprietária BL2 → Kernel. Ponto de chainload: após BL2, antes do kernel (EL2/EL1).
-> **Base DTB** — Extraído do `vendor_boot.img` do AP (offset 0xb77040, 390 KB). Confirma todos os endereços.
-> **PSCI** — DTB diz SMC, BL strings dizem HVC. Testar ambos.
+```bash
+timeout 25 make -C r8 run_r8a
+timeout 25 make -C r8 run_r8b
+timeout 40 make -C r8 run_r8c
+timeout 35 make -C r8 run_r9
+```
 
-### DTB Base Confirmado (vendor_boot.img)
+`make -C r8 run_r10` e `run_r10_hw` apenas informam o estado do ELF experimental. Não fazem flash nem demonstram um método de carregamento Samsung. O endereço padrão `0x80080000` continua sendo hipótese de linkedição, não RAM livre comprovada.
 
-| Componente | Endereço | Detalhes |
-|------------|----------|----------|
-| **GICD** | 0x1020_0000 | `arm,gic-v3`, redist 0x1024_0000 |
-| **MCT** | 0x1004_0000 | `samsung,exynos4210-mct` |
-| **ChipID** | 0x1000_0000 | `samsung,exynos2100-chipid` |
-| **UART1 (console)** | 0x1084_0000 | `samsung,exynos-uart` (USI v2), **SPI 533**, `status=disabled` |
-| **PSCI** | — | `arm,psci-1.0`, method=smc |
-| **Timer arch** | PPI 13-16 | `arm,armv8-timer`, 26 MHz |
-| **CPU Topology** | 3 clusters | 4×A55 (0-3), 3×A78 (4-6), 1×X1 (7) |
+## R10 atual
 
-### Árvores de kernel públicas para referência
+A entrada primária exige EL2 com MMU/D-cache de EL2 e EL1 desligados e preserva o FDT recebido em x0. A main permanece em uma CPU, sem ativar MMU, MCT, SMP ou PSCI. O parser verifica RAM, reservas, initrd, afinidade completa da CPU, GIC e timer antes de acessar o GIC. Descrições incompletas provocam parada, sem preencher lacunas com endereços presumidos. Pilhas agora integram o `p_memsz` do segmento ELF.
 
-- **Universal Exynos 2100**: https://github.com/exynos2100/android_kernel_samsung_universal2100
-- **Comunidade Exynos Republic**: https://github.com/exynos-republic/android_kernel_samsung_universal2100
-- **Samsung Open Source**: https://opensource.samsung.com/ (buscar por `G998BXXSJHZC2`)
+O Distributor pertence ao firmware e é somente lido. A interface de CPU usa registradores ICC; o redistributor é descoberto por afinidade em GICR_TYPER. Somente interrupções privadas são suportadas. Exceções inesperadas registram o contexto e estacionam; o R10 não usa a recuperação didática `ELR += 4` de R8.
 
-### Build da referência
+A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite usar uma instância cuja configuração herdada tenha sido verificada; não inicializa clock, pinmux ou USI. MCT e SMP permanecem experimentais e fora da sequência inicial.
 
-- **AP/Build**: `G998BXXSJHZC2`
-- **Kernel**: `5.4.242-30958140-abG998BXXSJHZC2`
-- **Android**: 15 (AP3A.240905.015.A2)
-- **Baseband**: `G998BXXSJHZA7`
-- **CSC**: `ZTO` (Brasil)
-- **Codename plataforma**: `p3s`
+## Fontes e documentação
 
-### Boot Shim (R11)
+- [Mapa de hardware confirmado e pendências](EXYNOS2100_HARDWARE.md)
+- [Imagens stock HZC2: cabeçalhos, DTB, overlays e hashes](docs/stock-firmware-hzc2.md)
+- [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)
+- [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
+- [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
+- [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
+- [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
+- [Resultados reproduzidos nesta revisão](docs/validation-2026-10-20.md)
+- [Integração dos PRs](PR_INTEGRATION.md) e [histórico de investigação](worklog.md)
 
-| Componente | Arquivo | Descrição |
-|------------|---------|-----------|
-| **Entry** | `shim/start.S` | Linux Image header, primary/secondary entry |
-| **Main** | `shim/shim.c` | PSCI, GICv3, timer, UART, MMU, SMP, payload load |
-| **MMU** | `shim/mmu.c` | 4K granule, identity map 4GB |
-| **Loader** | `shim/loader.c` | S21R10 payload loader |
-| **UART** | `shim/uart.c` | USI v2 driver @ 0x10840000 |
-| **Linker** | `shim/shim.ld` | Load at 0x80080000 |
+`scripts/test_fdt.py --inspect arquivo.dtb` compila e executa o parser C real com ASan/UBSan, além das fixtures. Forneça um FDT bruto, separando antes eventuais tabelas Android. Ferramentas forenses antigas em `scripts/`, incluindo `parse_fdt.py` e `abl_triage.py`, não substituem essa validação: seus leitores de formatos ainda precisam de revisão antes de serem usados como evidência.
 
-**Build**: `cd shim && ./build.sh` → `build/shim.elf` (85KB)
+## Próximos passos para o telefone
 
-**Chainload**: `fastboot boot shim/build/shim.elf` (ou Odin)
+Faltam um contrato de carregamento verificável, mapa de RAM e reservas após os ajustes do bootloader, estado de entrada/caches e acesso ICC/timer confirmado. Os DTBs stock e TWRP não resolvem essas lacunas. A coleta via Shizuku já foi tentada e documentada; ela não concede acesso root. Depois disso, fechar USI/clock/pinmux e só então ampliar para SPI, MCT e SMP com a topologia real.
 
-# S21-baremetal
+As [notas antigas de hardware](docs/archive/exynos2100-notes-legacy.md) foram preservadas como histórico e contêm hipóteses superadas. A documentação atual distingue resultados observados de trabalho ainda não validado.
