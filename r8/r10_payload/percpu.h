@@ -39,7 +39,7 @@ struct percpu_data {
     
     /* Cache */
     char cache_line_pad[64];       // Avoid false sharing
-};
+} __attribute__((aligned(64)));
 
 /* Per-CPU array */
 extern struct percpu_data percpu_data_array[NR_CPUS];
