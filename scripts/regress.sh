@@ -14,8 +14,6 @@ R8DIR="$KIT/r8"
 LOGDIR="$R8DIR/logs"
 mkdir -p "$LOGDIR"
 
-pkill -f qemu-system-aarch64 2>/dev/null
-sleep 1
 
 declare -A SIG=( [r8a]="R8A PASS" [r8b]="R8B PASS" [r8c]="R8C PASS" [r9]="R9 PASS" )
 declare -A LIM=( [r8a]=25 [r8b]=25 [r8c]=40 [r9]=35 )
@@ -32,7 +30,6 @@ for m in "${mods[@]}"; do
         printf "  %-4s FAIL  (sem assinatura — ver logs/regress_%s.log)\n" "$m" "$m"
         rc=1
     fi
-    pkill -f qemu-system-aarch64 2>/dev/null
 done
 
 if [ "$rc" -eq 0 ]; then
