@@ -62,6 +62,7 @@ void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top)
     pcpu->preempt_need_resched = 0;
     pcpu->lock_depth = 0;
     
+<<<<<<< HEAD
     /* IPI handlers are initialized ONCE globally, not per-CPU */
     /* Do NOT clear ipi_handlers here - they are global */
 }
@@ -195,12 +196,12 @@ void ipi_send(u32 target_cpu, u32 ipi_type)
     if (target_cpu >= NR_CPUS || ipi_type >= IPI_MAX) return;
     
     u64 mpidr = percpu_data_array[target_cpu].mpidr;
-    /* ICC_SGI1R_EL1: Aff3[24:16] Aff2[15:8] Aff1[7:0] RS[23:16] IRQ[3:0] */
-    u64 aff1 = (mpidr >> 8) & 0xFF;
-    u64 aff2 = (mpidr >> 16) & 0xFF;
-    u64 aff3 = (mpidr >> 24) & 0xFF;
-    u64 sgi1r = ((aff3 & 0xFF) << 24) | ((aff2 & 0xFF) << 16) | ((aff1 & 0xFF) << 8) | (ipi_type & 0xF);
-    msr_icc_sgi1r_el1(sgi1r);
+    u32 aff0 = (u32)(mpidr & 0xff);
+    u32 aff1 = (u32)((mpidr >> 8) & 0xff);
+    u32 aff2 = (u32)((mpidr >> 16) & 0xff);
+    u32 aff3 = (u32)((mpidr >> 32) & 0xff);
+    if (aff0 >= 16) return; /* TargetList only addresses Aff0 0..15, RS=0. */
+    gic_send_sgi(ipi_type, 1U << aff0, aff1, aff2, aff3);
 }
 
 void ipi_send_mask(u32 cpu_mask, u32 ipi_type)
