@@ -191,4 +191,19 @@ CONFIG_ARM_PSCI_FW=y
 - **CSC**: `ZTO` (Brasil)
 - **Codename plataforma**: `p3s`
 
+### Boot Shim (R11)
+
+| Componente | Arquivo | Descrição |
+|------------|---------|-----------|
+| **Entry** | `shim/start.S` | Linux Image header, primary/secondary entry |
+| **Main** | `shim/shim.c` | PSCI, GICv3, timer, UART, MMU, SMP, payload load |
+| **MMU** | `shim/mmu.c` | 4K granule, identity map 4GB |
+| **Loader** | `shim/loader.c` | S21R10 payload loader |
+| **UART** | `shim/uart.c` | USI v2 driver @ 0x10840000 |
+| **Linker** | `shim/shim.ld` | Load at 0x80080000 |
+
+**Build**: `cd shim && ./build.sh` → `build/shim.elf` (85KB)
+
+**Chainload**: `fastboot boot shim/build/shim.elf` (ou Odin)
+
 # S21-baremetal

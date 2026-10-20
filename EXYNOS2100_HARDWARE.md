@@ -587,3 +587,122 @@ chosen {
 
 *Documento gerado a partir de firmware real `G998BXXSJHZC2` (vendor_boot.img DTB + BL sboot.bin).  
 Base DTB agora confirmado — não mais dependente de DTSI público.*
+
+---
+
+## Boot Shim (R11) — Chainload via fastboot/Odin
+
+Based on the **ios-sweet shim pattern** (XNU on Redmi Note 10 Pro), we implement a bare-metal shim that:
+
+1. **Entry**: BL2 (TF-A) hands off at EL2 with `x0 = FDT pointer`
+2. **EL2 → EL1**: Configure HCR_EL2, CNTHCTL_EL2, drop via ERET
+3. **MMU**: 4K granule, identity map 4GB (48-bit VA, 2MB blocks)
+4. **Hardware init**: UART (USI v2), GIC-600 (ICC_*), Timer (CNTP + MCT)
+5. **SMP**: PSCI CPU_ON for 7 secondaries via `smc`/`hvc`
+6. **Payload loader**: Finds `S21R10` payload in `/chosen` initrd, copies segments, places DTB + boot_args, jumps to entry
+
+### Shim Files
+
+| File | Purpose |
+|------|---------|
+| `shim/start.S` | Linux Image header, primary/secondary entry, exception vectors |
+| `shim/shim.c` | Main entry, PSCI, GICv3, timer, UART, MMU, SMP, payload load |
+| `shim/mmu.c` | 4K granule identity map (48-bit VA, 2MB blocks) |
+| `shim/loader.c` | Payload loader (S21R10 magic), copies segments, places DTB/boot_args |
+| `shim/console.c/h` | Framebuffer/UART console |
+| `shim/uart.c/h` | USI v2 UART driver (UART1 @ 0x10840000) |
+| `shim/fdt.c/h` | Minimal FDT parsing for `/chosen` initrd |
+| `shim/loader.h, mmu.h, psci.h, gic.h, timer.h, uart.h, fdt.h` | Headers |
+| `shim/shim.ld` | Linker script (load at 0x80080000) |
+| `shim/build.sh` | Build script |
+
+### Build
+
+```bash
+cd shim && ./build.sh
+# Output: build/shim.elf (85KB), build/shim.bin (16KB)
+```
+
+### Chainload
+
+```bash
+# Via fastboot (if bootloader unlocked)
+fastboot boot shim/build/shim.elf
+
+# Or via Odin: repack shim.bin into boot.img, flash AP
+```
+
+### Payload Format (S21R10)
+
+The shim expects a payload in the initrd with magic `S21R10  `:
+
+```c
+struct payload {
+    char magic[8];        // "S21R10  "
+    uint32_t version;     // 1
+    uint32_t nsegs;
+    uint64_t virt_base;   // 0x80080000
+    uint64_t entry_va;    // _start_r10
+    uint64_t dtb_off, dtb_size;
+    uint64_t kernel_end;
+    uint64_t phys_base;   // 0x80080000
+    uint64_t mem_size;    // 0x80000000 (2GB)
+    char cmdline[608];    // boot args
+    struct payload_seg segs[];
+};
+```
+
+### Chainload Flow
+
+```
+BL2 (TF-A) @ EL2
+    → x0 = FDT pointer
+    → shim/_start @ EL2
+    → EL2→EL1 drop via ERET
+    → shim_main @ EL1
+    → MMU enable
+    → UART/GIC/Timer init
+    → PSCI CPU_ON for 7 secondaries
+    → loader_boot(FDT) → finds S21R10 payload in initrd
+    → copies segments to phys_base
+    → places DTB + boot_args behind kernel
+    → jumps to R10 entry (x0 = boot_args_pa)
+    → R10 payload runs @ EL1
+```
+
+---
+
+## Documentation Index
+
+| Document | Purpose |
+|----------|---------|
+| `README.md` | Project overview, hardware table, build status |
+| `EXYNOS2100_HARDWARE.md` | Complete hardware reference, firmware analysis, shim docs |
+| `worklog.md` | Development log |
+
+---
+
+## Next Steps
+
+| Phase | Target | Description |
+|-------|--------|-------------|
+| **R11** | SMP + Chainload | Shim + PSCI SMP + fastboot chainload |
+| **R12** | Display + Drivers | DECON init, PMIC, UFS, Touch |
+| **R13** | Userspace | EL0, syscalls, init, shell |
+
+---
+
+## References
+
+| Resource | URL |
+|----------|-----|
+| uniLoader (Samsung Exynos bootloader) | https://github.com/ivoszbg/uniLoader |
+| xnu-j1xlte (XNU on Exynos 3475) | https://github.com/kOtusin/xnu-j1xlte |
+| ios-sweet (iOS 16 on Snapdragon 732G) | https://github.com/dipa-studio/ios-sweet |
+| Samsung Open Source | https://opensource.samsung.com/ |
+| ARM GICv3 Architecture | https://developer.arm.com/architectures/system-architectures/gic |
+
+---
+
+*Documento gerado a partir de firmware real `G998BXXSJHZC2` (vendor_boot.img DTB + BL sboot.bin).  
+Base DTB agora confirmado — não mais dependente de DTSI público.*
