@@ -1,6 +1,6 @@
 /* uart.c — R10 Samsung Exynos UART register-layout implementation.
  *
- * Register offsets and status bits follow the Samsung serial_s3c driver
+ * Register offsets follow the Samsung serial driver; UFSTAT.TXFULL uses the Exynos/S5PV210-style mask
  * (include/linux/serial_s3c.h, drivers/tty/serial/samsung_tty.c). This replaces
  * the previous PL011-like register map, which did not match that driver.
  *
@@ -25,7 +25,7 @@
 #define S3C_UFRACVAL    (UART1_BASE + 0x2C)
 
 #define UTRSTAT_RXDR    (1u << 0)
-#define UFSTAT_TXFULL   (1u << 9)
+#define UFSTAT_TXFULL   (1u << 24) /* Exynos/S5PV210-style UFSTAT */
 #define UCON_RX_POLL    (1u << 0)
 #define UCON_TX_POLL    (1u << 2)
 #define UFCON_ENABLE    (1u << 0)
@@ -64,8 +64,8 @@ void uart_init(void)
      * Samsung UART baud formula:
      * baud = uart_clk / (16 * (UBRDIV + 1 + UFRACVAL / 16)).
      * For a 26 MHz baud clock, UBRDIV=13 and UFRACVAL=2 gives divisor 14.125
-     * (about 114.8 kbaud). The clock source/rate must be confirmed from live DT
-     * and clock tree before relying on this setting.
+     * (about 114.8 kbaud). The clock source/rate and UFRACVAL encoding must be confirmed from the exact
+     * firmware/kernel before relying on this setting.
      */
     mmio_write32(S3C_UCON, 0);
     mmio_write32(S3C_ULCON, 0x3); /* 8 data bits, no parity, 1 stop bit */
