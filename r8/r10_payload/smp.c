@@ -60,9 +60,8 @@ void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top)
     pcpu->exc_stack_top = exc_stack_top;
     pcpu->preempt_count = 0;
     pcpu->preempt_need_resched = 0;
-    pcpu->lock_depth = 0;
+pcpu->lock_depth = 0;
     
-<<<<<<< HEAD
     /* IPI handlers are initialized ONCE globally, not per-CPU */
     /* Do NOT clear ipi_handlers here - they are global */
 }

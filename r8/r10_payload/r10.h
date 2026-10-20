@@ -312,6 +312,11 @@ void ipi_send_mask(u32 cpu_mask, u32 ipi_type);
 void ipi_send_all_but_self(u32 ipi_type);
 void ipi_handle(u32 ipi_type);
 
+/* ICC system register access (GICv3 CPU interface) */
+static inline void msr_icc_sgi1r_el1(u64 v) { MSR(icc_sgi1r_el1, v); }
+static inline u64 mrs_icc_igrpen1_el1(void) { return MRS(icc_igrpen1_el1); }
+static inline void msr_icc_igrpen1_el1(u64 v) { MSR(icc_igrpen1_el1, v); }
+
 /* SMP */
 void percpu_init_early(void);
 void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top);

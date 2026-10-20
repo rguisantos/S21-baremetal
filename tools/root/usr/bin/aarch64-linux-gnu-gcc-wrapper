@@ -1,0 +1,3 @@
+#!/bin/bash
+export PATH="/workspace/app/tools/root/usr/bin:$PATH"
+exec /workspace/app/tools/root/usr/bin/aarch64-linux-gnu-gcc "$@"

@@ -122,9 +122,6 @@ static inline u64 mrs_icc_bpr1_el1(void) { return MRS(icc_bpr1_el1); }
 static inline void msr_icc_bpr1_el1(u64 v) { MSR(icc_bpr1_el1, v); }
 static inline u64 mrs_icc_iar1_el1(void) { return MRS(icc_iar1_el1); }
 static inline void msr_icc_eoir1_el1(u64 v) { MSR(icc_eoir1_el1, v); }
-static inline u64 mrs_icc_igrpen1_el1(void) { return MRS(icc_igrpen1_el1); }
-static inline void msr_icc_igrpen1_el1(u64 v) { MSR(icc_igrpen1_el1, v); }
-static inline void msr_icc_sgi1r_el1(u64 v) { MSR(icc_sgi1r_el1, v); }
 static inline u64 mrs_icc_igrpen0_el1(void) { return MRS(icc_igrpen0_el1); }
 static inline void msr_icc_igrpen0_el1(u64 v) { MSR(icc_igrpen0_el1, v); }
 
