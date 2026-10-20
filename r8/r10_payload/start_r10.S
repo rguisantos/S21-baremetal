@@ -101,38 +101,27 @@ secondary_entry:
     
     /* Drop to EL1 at secondary_cpu_entry */
     ldr x0, =secondary_cpu_entry
-    /* SP_EL1 and exception stack will be set by percpu_init_cpu 
-     * before PSCI CPU_ON, via msr sp_el1 in primary.
-     * For secondary, we need to set them here before ERET.
-     * The primary has already written them to percpu_data_array[cpu].
-     * We read them back using our MPIDR.
+    
+    /* Read our percpu_data to get SP_EL1 and exception stack top.
+     * percpu_data layout (from percpu.h):
+     *   offset 0:  cpu_id (u32)
+     *   offset 4:  (padding)
+     *   offset 8:  mpidr (u64)
+     *   offset 16: sp_el1 (u64)        <-- SP_EL1 for this CPU
+     *   offset 24: sp_el0 (u64)
+     *   offset 32: exc_stack_top (u64)  <-- Exception stack top
      */
     adrp x1, percpu_data_array
     add x1, x1, :lo12:percpu_data_array
-    ldr x2, [x1, #8]           /* mpidr of this CPU (saved by primary) */
-    /* Find our index in the array by matching MPIDR */
-    /* Simpler: primary wrote sp_el1 to percpu_data_array[cpu].sp_el1
-     * where cpu = Aff0. We can compute offset.
-     */
-    mov x2, #0
-    mov x3, #8
-    mul x2, x0, x3             /* x2 = Aff0 * 8 (offset to mpidr field) */
-    add x2, x1, x2
-    ldr x2, [x2]               /* x2 = our mpidr (for verification) */
     
-    /* Calculate offset to our percpu_data: sizeof(percpu_data) * Aff0 */
-    /* percpu_data is 64-byte aligned, so each entry is multiple of 64 */
-    mov x3, #64
-    mul x2, x0, x3             /* x2 = Aff0 * 64 */
-    add x1, x1, x2             /* x1 = &percpu_data_array[Aff0] */
+    /* Calculate offset: cpu_id * sizeof(percpu_data) = cpu_id * 128 (64-byte aligned) */
+    mov x2, #128
+    mul x2, x0, x2             /* x2 = cpu_id * 128 */
+    add x1, x1, x2             /* x1 = &percpu_data_array[cpu_id] */
     
-    /* Read sp_el1 (offset 40 in percpu_data) */
-    ldr x1, [x1, #40]
+    /* Read sp_el1 (offset 16) */
+    ldr x1, [x1, #16]
     msr sp_el1, x1
-    
-    /* Read exc_stack_top (offset 48) */
-    ldr x1, [x1, #48]
-    /* We don't use exc_stack_top directly here; it's for exception entry */
     
     /* Drop to EL1 at secondary_cpu_entry */
     ldr x0, =secondary_cpu_entry

@@ -6,13 +6,14 @@
 /* Per-CPU data array */
 struct percpu_data percpu_data_array[NR_CPUS] __attribute__((aligned(64)));
 
-/* Secondary CPU boot synchronization */
-volatile int secondary_holding_pen = 0;
+/* Secondary CPU boot synchronization - one per CPU */
+volatile int secondary_holding_pen[NR_CPUS] = {0};
 volatile u64 secondary_entry_point = 0;
 volatile u64 secondary_context = 0;
 
-/* IPI handlers */
+/* IPI handlers - initialized once, never cleared */
 static void (*ipi_handlers[IPI_MAX])(void) = {0};
+static bool ipi_handlers_initialized = false;
 
 /* SMP call function data */
 static struct smp_call_data smp_call_data[NR_CPUS];
@@ -61,10 +62,8 @@ void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top)
     pcpu->preempt_need_resched = 0;
     pcpu->lock_depth = 0;
     
-    /* Initialize IPI handlers */
-    for (int i = 0; i < IPI_MAX; i++) {
-        ipi_handlers[i] = NULL;
-    }
+    /* IPI handlers are initialized ONCE globally, not per-CPU */
+    /* Do NOT clear ipi_handlers here - they are global */
 }
 
 void percpu_init_late(void)
@@ -93,8 +92,8 @@ void secondary_cpu_entry(void)
     /* Mark CPU online */
     uart_puts("CPU "); uart_puthex(cpu); uart_puts(" online\n");
     
-    /* Signal ready */
-    __atomic_store_n(&secondary_holding_pen, 0, __ATOMIC_RELEASE);
+    /* Signal ready - per-CPU flag */
+    __atomic_store_n(&secondary_holding_pen[cpu], 0, __ATOMIC_RELEASE);
     asm volatile("sev" ::: "memory");
     
     /* Wait for work (idle loop) */
@@ -136,7 +135,7 @@ int smp_bringup_cpus(void)
         /* Set up secondary entry point and context */
         secondary_entry_point = (u64)secondary_cpu_entry;
         secondary_context = mpidr_table[i];
-        secondary_holding_pen = 1;
+        secondary_holding_pen[i] = 1;
         
         /* Allocate dedicated stacks for secondary CPU from linker-defined areas */
         u64 sp_el1 = SEC_CPU_STACK(i);
@@ -154,9 +153,9 @@ int smp_bringup_cpus(void)
             continue;
         }
         
-        /* Wait for secondary to signal ready */
+        /* Wait for secondary to signal ready - per-CPU flag */
         int timeout = 1000000;
-        while (secondary_holding_pen && timeout--) {
+        while (secondary_holding_pen[i] && timeout--) {
             asm volatile("wfe" ::: "memory");
         }
         
@@ -187,6 +186,7 @@ void ipi_register_handler(u32 ipi_type, void (*handler)(void))
 {
     if (ipi_type < IPI_MAX) {
         ipi_handlers[ipi_type] = handler;
+        ipi_handlers_initialized = true;
     }
 }
 
@@ -195,7 +195,12 @@ void ipi_send(u32 target_cpu, u32 ipi_type)
     if (target_cpu >= NR_CPUS || ipi_type >= IPI_MAX) return;
     
     u64 mpidr = percpu_data_array[target_cpu].mpidr;
-    gic_send_sgi(ipi_type, 1 << 0, 0, 0, (mpidr >> 8) & 0xFF);  // Aff1, Aff0
+    /* ICC_SGI1R_EL1: Aff3[24:16] Aff2[15:8] Aff1[7:0] RS[23:16] IRQ[3:0] */
+    u64 aff1 = (mpidr >> 8) & 0xFF;
+    u64 aff2 = (mpidr >> 16) & 0xFF;
+    u64 aff3 = (mpidr >> 24) & 0xFF;
+    u64 sgi1r = ((aff3 & 0xFF) << 24) | ((aff2 & 0xFF) << 16) | ((aff1 & 0xFF) << 8) | (ipi_type & 0xF);
+    msr_icc_sgi1r_el1(sgi1r);
 }
 
 void ipi_send_mask(u32 cpu_mask, u32 ipi_type)

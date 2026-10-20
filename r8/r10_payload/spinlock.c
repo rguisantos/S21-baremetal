@@ -8,13 +8,13 @@
 
 static inline u32 atomic_fetch_add(u32 *ptr, u32 val)
 {
-    u32 old, new;
+    u32 old, new, status;
     asm volatile(
-        "1: ldxr %w0, [%2]\n"
-        "   add %w1, %w0, %w3\n"
-        "   stxr %w1, %w1, [%2]\n"
-        "   cbnz %w1, 1b\n"
-        : "=&r" (old), "=&r" (new)
+        "1: ldxr %w0, [%3]\n"
+        "   add %w1, %w0, %w4\n"
+        "   stxr %w2, %w1, [%3]\n"
+        "   cbnz %w2, 1b\n"
+        : "=&r" (old), "=&r" (new), "=&r" (status)
         : "r" (ptr), "r" (val)
         : "memory", "cc"
     );
@@ -62,8 +62,8 @@ static inline bool atomic_cas(u32 *ptr, u32 *expected, u32 desired)
         "1: ldxr %w0, [%1]\n"
         "   cmp %w0, %w2\n"
         "   b.ne 2f\n"
-        "   stxr %w1, %w3, [%1]\n"
-        "   cbnz %w1, 1b\n"
+        "   stxr %w0, %w3, [%1]\n"
+        "   cbnz %w0, 1b\n"
         "2:\n"
         : "=&r" (old), "=&r" (status)
         : "r" (ptr), "r" (*expected), "r" (desired)
@@ -78,11 +78,13 @@ static inline bool atomic_test_and_set(u32 *ptr)
     u32 old, status;
     asm volatile(
         "1: ldxr %w0, [%1]\n"
-        "   mov %w0, #1\n"
-        "   stxr %w0, %w0, [%1]\n"
+        "   cmp %w0, #0\n"
+        "   b.ne 2f\n"
+        "   stxr %w0, %w2, [%1]\n"
         "   cbnz %w0, 1b\n"
+        "2:\n"
         : "=&r" (old), "=&r" (status)
-        : "r" (ptr)
+        : "r" (ptr), "r" (1)
         : "memory", "cc"
     );
     return old != 0;
