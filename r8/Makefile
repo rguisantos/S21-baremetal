@@ -133,12 +133,12 @@ $(ELF_D): $(BUILD)/start.o $(R9_OBJS) $(BUILD)/uart.o $(BUILD)/printf.o \
 R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
             $(BUILD)/r10_uart.o $(BUILD)/r10_mct.o $(BUILD)/r10_timer.o \
             $(BUILD)/r10_psci.o $(BUILD)/r10_spinlock.o $(BUILD)/r10_smp.o \
-            $(BUILD)/printf.o $(BUILD)/exc.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
+            $(BUILD)/printf.o $(BUILD)/r10_exceptions.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
 
 $(BUILD)/r10_start.o: r10_payload/start_r10.S | $(BUILD)
 	$(CC) $(ASFLAGS) -c $< -o $@
 
-$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h r10_payload/percpu.h common/r8lib.h | $(BUILD)
+$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h r10_payload/gic_regs.h r10_payload/percpu.h common/r8lib.h | $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # R10 needs different linker script (load at 0x80080000, no EL0)
@@ -165,3 +165,18 @@ $(BUILD)/atomic_smoke.elf: $(BUILD)/start.o $(BUILD)/atomic_smoke.o $(COMMON) co
 run_atomic: $(BUILD)/atomic_smoke.elf
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,virtualization=on -cpu max -nographic -kernel $<
 .PHONY: run_atomic
+
+# QEMU integration of production R10 entry/GIC/timer/exceptions, synthetic loader.
+$(BUILD)/r10_test_boot.o: tests/r10_boot.S | $(BUILD)
+	$(CC) $(ASFLAGS) -c $< -o $@
+$(BUILD)/r10_test_stage.o: tests/r10_stage.c r10_payload/r10.h r10_payload/gic_regs.h | $(BUILD)
+	$(CC) $(CFLAGS) -c $< -o $@
+R10_TEST_OBJS = $(BUILD)/r10_test_boot.o $(BUILD)/r10_start.o $(BUILD)/r10_test_stage.o \
+    $(BUILD)/r10_gic.o $(BUILD)/r10_timer.o $(BUILD)/r10_exceptions.o \
+    $(BUILD)/uart.o $(BUILD)/printf.o $(BUILD)/util.o $(BUILD)/sys.o $(BUILD)/vectors.o
+$(BUILD)/r10_stage_test.elf: $(R10_TEST_OBJS) common/linker_r10.ld
+	$(CC) $(CFLAGS) -nostdlib -static -Wl,--defsym,R10_LOAD_ADDR=0x40080000 \
+	    -T common/linker_r10.ld -Wl,-e,r10_test_boot -Wl,--build-id=none -o $@ $(R10_TEST_OBJS)
+run_r10_stage_test: $(BUILD)/r10_stage_test.elf
+	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=on -cpu max -nographic -kernel $<
+.PHONY: run_r10_stage_test

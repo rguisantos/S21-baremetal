@@ -145,7 +145,7 @@ int smp_bringup_cpus(void)
         percpu_init_cpu(i, mpidr_table[i], sp_el1, exc_stack);
         
         /* Call PSCI CPU_ON with MPIDR as context (passed in x0 to _start_r10) */
-        s64 ret = psci_cpu_on(mpidr_table[i], (u64)_start_r10, mpidr_table[i]);
+        s64 ret = psci_cpu_on(mpidr_table[i], (u64)_secondary_start_r10, mpidr_table[i]);
         
         if (ret != PSCI_SUCCESS) {
             uart_puts("SMP: CPU_ON failed for CPU "); uart_puthex(i); uart_puts(": ");

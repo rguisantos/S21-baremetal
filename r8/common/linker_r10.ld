@@ -8,7 +8,7 @@ PHDRS {
     data PT_LOAD FLAGS(6);
 }
 SECTIONS {
-    . = 0x80080000;
+    . = DEFINED(R10_LOAD_ADDR) ? R10_LOAD_ADDR : 0x80080000;
     .text : {
         *(.text.boot)
         *(.vectors.el2)

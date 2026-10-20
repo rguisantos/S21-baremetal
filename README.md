@@ -1,3 +1,7 @@
+> **R10 atualizado:** entrada/FDT, exceções e GIC corrigidos para um primeiro
+> estágio em uma CPU. Veja [validação e limites](docs/r10-single-cpu.md).
+> O teste integrado em QEMU não valida a execução no S21.
+
 > **Estado da integração (2026-10-20):** PRs #2/#3 consolidadas; consulte
 > [PR_INTEGRATION.md](PR_INTEGRATION.md) para reprodução e limites dos testes.
 > R10 e o shim permanecem experimentais; a UART R10 fica desativada por padrão.

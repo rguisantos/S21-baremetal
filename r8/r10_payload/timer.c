@@ -2,13 +2,14 @@
 
 #include "r10.h"
 
-static u64 cntfrq = 26000000;  // 26 MHz from DTB
+volatile u64 r10_timer_ticks;
+static u64 cntfrq; /* CNTFRQ_EL0 is authoritative. */
 
-void timer_init(void)
+int timer_init(void)
 {
     /* Read CNTFRQ_EL0 (set by firmware) */
     cntfrq = mrs_cntfrq_el0();
-    if (cntfrq == 0) cntfrq = 26000000;  // Fallback
+    if (cntfrq < 1000) return -1; /* No guessed oscillator rate. */
     
     uart_puts("Timer freq: "); uart_puthex(cntfrq); uart_puts(" Hz\n");
     
@@ -19,14 +20,14 @@ void timer_init(void)
     u64 cval = mrs_cntpct_el0() + (cntfrq / 1000);
     msr_cntp_cval_el0(cval);
     
-    /* Enable timer: ENABLE=1, IMASK=0, ISTATUS=0 */
-    msr_cntp_ctl_el0(1);
-    
     /* Enable PPI 30 (CNTP) in GIC */
-    gic_enable_irq(30);
     gic_set_priority(30, 0x80);
+    if (gic_enable_irq(30)) return -1;
+    msr_cntp_ctl_el0(1);
+    ISB();
     
     uart_puts("Architected timer (CNTP) enabled @ 1ms\n");
+    return 0;
 }
 
 u64 timer_read_cnt(void)
@@ -54,12 +55,13 @@ void timer_disable(void)
 /* Timer interrupt handler (called from exc_irq for IRQ 30) */
 void timer_handle_irq(void)
 {
+    ++r10_timer_ticks;
     /* Acknowledge by setting next compare */
     u64 cval = mrs_cntpct_el0() + (cntfrq / 1000);
     msr_cntp_cval_el0(cval);
     
-    /* Signal EOI to GIC */
-    gic_eoi(30);
+    /* Dispatcher owns EOI, once, after this rearm is visible. */
+    ISB();
     
     /* Call scheduler tick if needed */
     // sched_tick();

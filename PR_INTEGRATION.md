@@ -1,3 +1,7 @@
+> Registro da integração anterior. As pendências de entrada/FDT, dispatcher
+> e acessos GIC receberam correções posteriores; o estado atual está em
+> [docs/r10-single-cpu.md](docs/r10-single-cpu.md).
+
 # Integração das PRs #2 e #3 — 2026-10-20
 
 A main recebe o histórico da branch kilo/slim-fjord-u2q (incluindo a PR #3)
