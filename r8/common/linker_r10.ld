@@ -48,6 +48,11 @@ SECTIONS {
         __exc_stack_top = .;
     } :data
 
+    /* Private EL2 entry stacks: 8 CPUs * 4 KiB. */
+    . = ALIGN(4096);
+    __sec_el2_stacks = .;
+    . += 8 * 4096;
+
     /* Secondary CPU stacks (CPUs 1-7) */
     . = ALIGN(4096);
     __sec_cpu_stacks = .;
