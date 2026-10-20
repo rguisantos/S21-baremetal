@@ -75,7 +75,7 @@ void uart_puts(const char *s)
 void uart_puthex(u64 v)
 {
     const char *hex = "0123456789abcdef";
-    char buf[18];
+    char buf[19];
     buf[0] = '0'; buf[1] = 'x';
     for (int i = 15; i >= 0; i--) {
         buf[17-i] = hex[(v >> (i*4)) & 0xF];
