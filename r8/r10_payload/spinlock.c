@@ -62,10 +62,10 @@ static inline bool atomic_cas(u32 *ptr, u32 *expected, u32 desired)
         "1: ldxr %w0, [%1]\n"
         "   cmp %w0, %w2\n"
         "   b.ne 2f\n"
-        "   stxr %w0, %w3, [%1]\n"
-        "   cbnz %w0, 1b\n"
+        "   stxr %w1, %w3, [%1]\n"
+        "   cbnz %w1, 1b\n"
         "2:\n"
-        : "=&r" (old), "+r" (status)
+        : "=&r" (old), "=&r" (status)
         : "r" (ptr), "r" (*expected), "r" (desired)
         : "memory", "cc"
     );

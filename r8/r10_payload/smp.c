@@ -17,6 +17,20 @@ static void (*ipi_handlers[IPI_MAX])(void) = {0};
 /* SMP call function data */
 static struct smp_call_data smp_call_data[NR_CPUS];
 
+/* Per-CPU stack storage (defined in linker_r10.ld) */
+extern char __sec_cpu_stacks[];
+extern char __sec_exc_stacks[];
+
+/* Stack sizes for secondary CPUs */
+#define SEC_CPU_STACK_SIZE    (16 * 1024)   /* 16KB per CPU for EL1 stack */
+#define SEC_EXC_STACK_SIZE    (4 * 1024)    /* 4KB per CPU for exception stack */
+
+extern char __sec_cpu_stacks[];
+extern char __sec_exc_stacks[];
+
+#define SEC_CPU_STACK(i)     ((u64)__sec_cpu_stacks + (i) * SEC_CPU_STACK_SIZE + SEC_CPU_STACK_SIZE)
+#define SEC_EXC_STACK(i)     ((u64)__sec_exc_stacks + (i) * SEC_EXC_STACK_SIZE + SEC_EXC_STACK_SIZE)
+
 /* ================================================================
  * Per-CPU Early Init (called from primary CPU before SMP bringup)
  * ================================================================ */
@@ -67,7 +81,7 @@ void secondary_cpu_entry(void)
     u32 cpu = get_current_cpu();
     struct percpu_data *pcpu = &percpu_data_array[cpu];
     
-    /* Set up EL1 stack */
+    /* Set up EL1 stack (already set via MSR SP_EL1 in start_r10.S) */
     MSR(spsel, 1);
     
     /* Install vector table */
@@ -124,14 +138,14 @@ int smp_bringup_cpus(void)
         secondary_context = mpidr_table[i];
         secondary_holding_pen = 1;
         
-        /* Allocate stack for secondary CPU */
-        u64 sp_el1 = (u64)(&percpu_data_array[i]) + 0x2000;  // Reserve space
-        u64 exc_stack = sp_el1 + 0x1000;
+        /* Allocate dedicated stacks for secondary CPU from linker-defined areas */
+        u64 sp_el1 = SEC_CPU_STACK(i);
+        u64 exc_stack = SEC_EXC_STACK(i);
         
         /* Initialize per-CPU data for secondary */
         percpu_init_cpu(i, mpidr_table[i], sp_el1, exc_stack);
         
-        /* Call PSCI CPU_ON */
+        /* Call PSCI CPU_ON with MPIDR as context (passed in x0 to _start_r10) */
         s64 ret = psci_cpu_on(mpidr_table[i], (u64)_start_r10, mpidr_table[i]);
         
         if (ret != PSCI_SUCCESS) {
