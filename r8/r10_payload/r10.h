@@ -105,24 +105,26 @@ typedef long s64;
 #define MCT_LOCAL_CON_AUTO     (1 << 2)
 
 /* USI v2 UART (Samsung Exynos UART) registers */
-#define USI_UART_RX_FIFO      (UART1_BASE + 0x00)
-#define USI_UART_TX_FIFO      (UART1_BASE + 0x04)
-#define USI_UART_CTRL         (UART1_BASE + 0x08)
-#define USI_UART_STATUS       (UART1_BASE + 0x0C)
-#define USI_UART_BAUD         (UART1_BASE + 0x10)
-#define USI_UART_LINE_CTRL    (UART1_BASE + 0x14)
-#define USI_UART_MODEM_CTRL   (UART1_BASE + 0x18)
-#define USI_UART_FIFO_CTRL    (UART1_BASE + 0x1C)
-#define USI_UART_INT_EN       (UART1_BASE + 0x20)
-#define USI_UART_INT_STATUS   (UART1_BASE + 0x24)
+#define USI_UART_RX_FIFO      (UART1_BASE + 0x24)   // URXH
+#define USI_UART_TX_FIFO      (UART1_BASE + 0x20)   // UTXH
+#define USI_UART_CTRL         (UART1_BASE + 0x04)   // UCON
+#define USI_UART_STATUS       (UART1_BASE + 0x10)   // UTRSTAT
+#define USI_UART_BAUD         (UART1_BASE + 0x28)   // UBRDIV
+#define USI_UART_LINE_CTRL    (UART1_BASE + 0x00)   // ULCON
+#define USI_UART_FIFO_CTRL    (UART1_BASE + 0x08)   // UFCON
+#define USI_UART_MODEM_CTRL   (UART1_BASE + 0x0C)   // UMCON
+#define USI_UART_ERR_STATUS   (UART1_BASE + 0x14)   // UERSTAT
+#define USI_UART_FIFO_STATUS  (UART1_BASE + 0x18)   // UFSTAT
+
+/* USI v2 control registers (offset from UART base) */
+#define USI_CON         0xC4
+#define USI_OPTION      0xC8
 
 #define USI_CTRL_TX_EN        (1 << 0)
 #define USI_CTRL_RX_EN        (1 << 1)
 #define USI_CTRL_UART_EN      (1 << 2)
-#define USI_STATUS_TX_EMPTY   (1 << 0)
-#define USI_STATUS_RX_FULL    (1 << 1)
-#define USI_STATUS_TX_FULL    (1 << 2)
-#define USI_STATUS_RX_EMPTY   (1 << 3)
+#define USI_STATUS_TX_EMPTY   (1 << 1)
+#define USI_STATUS_RX_FULL    (1 << 0)
 #define USI_LINE_CTRL_WLEN_8  (3 << 0)
 #define USI_LINE_CTRL_STOP_1  (0 << 2)
 #define USI_LINE_CTRL_PAR_NONE (0 << 3)
