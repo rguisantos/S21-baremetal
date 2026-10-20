@@ -260,20 +260,131 @@ This is the **actual base device tree** used by the firmware — not overlays. A
 
 > **Critical**: UART1 is `status = "disabled"` in DTB — firmware enables it at runtime. Our bare-metal must enable it explicitly.
 
-### GIC-600 Node (exact DTS)
+---
 
-```dts
-interrupt-controller@10200000 {
-    compatible = "arm,gic-v3";
-    #interrupt-cells = <0x03>;
-    reg = <0x00 0x10200000 0x10000>,     // GICD
-          <0x00 0x10240000 0x200000>;    // GICR range (0x200000)
-    interrupts = <0x01 0x09 0x04>;       // PPI 9 (maintenance)
-    interrupt-parent = <0x01>;
-    class0-cpus = "0-3";                  // A55 cluster
-    class1-cpus = "4-7";                  // A78 + X1 clusters
-    phandle = <0x01>;
-};
+## Boot Contract & Entry Point (R10 Payload)
+
+### EL2 Entry (start_r10.S)
+
+**Expected loader contract (not yet validated on hardware):**
+- **Entry EL**: EL2 (after BL2 handoff)
+- **x0**: FDT pointer (device tree blob)
+- **x1-x3**: Reserved
+- **Load address**: `0x8008_0000` (typical kernel load address from DTB `/chosen`)
+- **Stack**: EL2 private stack (4 KB), EL1 stack (8 KB) set via `SP_EL1`
+
+**EL2 → EL1 Drop:**
+```assembly
+/* HCR_EL2: RW=1 (EL1 AArch64), VM=0 (no stage-2), TGE=0 */
+HCR_EL2 = (1<<31) | (0<<0) | (0<<29)
+
+/* CNTHCTL_EL2: EL1PCTEN | EL1PCEN = 0x3 */
+CNTHCTL_EL2 = 0x3
+CNTVOFF_EL2 = 0
+
+/* VBAR_EL2: minimal vector table */
+VBAR_EL2 = vbar_el2
+
+/* Drop to EL1h via ERET */
+SPSR_EL2 = 0x3C5  // EL1h, DAIF=1111
+ELR_EL2 = r10_el1_entry
+SP_EL1 = __el1_stack_top
+ERET
+```
+
+### EL1 Entry (r10_el1_entry)
+
+**Initialization sequence:**
+1. `vbar_install()` — install EL1 vector table
+2. `uart_init()` — USI v2 UART1 @ 0x1084_0000
+3. `mmu_init()` — identity map 4GB, 2MB blocks
+4. `gic_init()` — GIC-600 Distributor + Redistributor + ICC_* CPU interface
+5. `mct_init()` — MCT global + 4 channels, SPI 224-227
+6. `timer_init()` — CNTP @ 1ms, PPI 30
+7. `psci_call(PSCI_VERSION)` — test SMC/HVC
+
+### IRQ Handling (via ICC_*)
+
+```c
+void exc_irq(u64 *frame, u64 kind) {
+    u32 intid = gic_ack_irq();  // ICC_IAR1_EL1
+    switch (intid) {
+        case 30:   timer_handle_irq(); break;   // CNTP PPI
+        case 224..227: mct_handle_irq(intid); break; // MCT SPI
+        case 533:  /* UART1 */ break;           // UART1 SPI (disabled)
+    }
+    gic_eoi(intid);  // ICC_EOIR1_EL1
+}
+```
+
+**IRQ Map (from DTB):**
+| INTID | Source | Type | Status |
+|-------|--------|------|--------|
+| 13-16 | Architected timer | PPI | Used by Linux |
+| 30 | CNTP (EL1 phys timer) | PPI | **Active** |
+| 224-227 | MCT channels 0-3 | SPI | **Active** |
+| 533 | UART1 | SPI | Disabled in DTB |
+
+---
+
+## Timer Integration (Architected Timer + MCT)
+
+### Architected Timer (CNTP) — PPI 30
+- **Frequency**: 26 MHz (from CNTFRQ_EL0 or DTB)
+- **Tick**: 1ms (configurable)
+- **IRQ**: PPI 30 (per-CPU, private)
+- **Handler**: `timer_handle_irq()` → update CNTP_CVAL + `gic_eoi(30)`
+
+```c
+void timer_init(void) {
+    cntfrq = mrs_cntfrq_el0() ?: 26000000;
+    msr_cntp_cval_el0(mrs_cntpct_el0() + cntfrq / 1000);
+    msr_cntp_ctl_el0(1);  // ENABLE=1, IMASK=0
+    gic_enable_irq(30); gic_set_priority(30, 0x80);
+}
+
+void timer_handle_irq(void) {
+    msr_cntp_cval_el0(mrs_cntpct_el0() + cntfrq / 1000);
+    gic_eoi(30);
+}
+```
+
+### MCT (Multi-Core Timer) — SPI 224-227
+- **Base**: 0x1004_0000
+- **Clock**: 26 MHz (fin_pll)
+- **Channels**: 4 (0-3), each with independent compare/auto-reload
+- **IRQs**: SPI 224 (ch0) ... 227 (ch3)
+- **Handler**: `mct_handle_irq(irq)` → read MCT_INT_CSTAT, clear bits
+
+```c
+void mct_init(void) {
+    mmio_write32(MCT_GLOBAL_CON, MCT_GLOBAL_CON_EN);
+    for (i=0; i<4; i++) {
+        mmio_write32(MCT_LOCAL_CMP(i), 26000);  // 1ms @ 26MHz
+        mmio_write32(MCT_LOCAL_CON(i), MCT_LOCAL_CON_EN|MCT_LOCAL_CON_INTEN|MCT_LOCAL_CON_AUTO);
+        mmio_write32(MCT_INT_ENB, mmio_read32(MCT_INT_ENB) | (1<<i));
+    }
+    gic_enable_irq(224..227);
+}
+
+void mct_handle_irq(u32 irq) {
+    u32 cstat = mmio_read32(MCT_INT_CSTAT);
+    for (i=0; i<4; i++) if (cstat & (1<<i)) {
+        mmio_write32(MCT_INT_CSTAT, 1<<i);
+        // channel i tick
+    }
+}
+```
+
+### Timer Tick Demo (main.c)
+```c
+while (1) {
+    u32 now = timer_read_cnt() / (cntfrq / 1000);  // ms
+    if (now != last_tick) {
+        last_tick = now;
+        if ((last_tick % 100) == 0) uart_puts("[Tick: ...ms]");
+    }
+}
 ```
 
 ### UART Console Node (exact DTS)
@@ -296,6 +407,77 @@ aliases {
     serial_1 = "/uart@10840000";
 };
 ```
+
+### USI v2 UART Driver Implementation (from Samsung kernel source)
+
+**Source files:**
+- `drivers/tty/serial/exynos_tty.c` — `exynos_usi_init()`, `exynos_serial_set_termios()`
+- `include/linux/serial_s3c.h` — register offsets
+- `drivers/clk/samsung/clk-exynos2100.c` — clock tree
+
+**USI Init Sequence (exynos_usi_init):**
+```c
+wr_regl(port, USI_CON, USI_SET_RESET);  // 0xC4, bit 0 = 1
+udelay(1);
+wr_regl(port, USI_CON, USI_RESET);      // 0xC4, bit 0 = 0
+udelay(1);
+wr_regl(port, USI_OPTION, USI_HWACG_CLKREQ_ON);  // 0xC8, bit 1 = 1
+```
+
+**USI Stop (exynos_usi_stop):**
+```c
+wr_regl(port, USI_OPTION, USI_HWACG_CLKSTOP_ON);  // 0xC8, bit 2 = 1
+```
+
+**UART Mode Selection:**
+```c
+u32 val = rd_regl(port, USI_CON);
+val &= ~USI_SW_CONF_MASK;  // 0x7
+val |= USI_UART_SW_CONF;   // 0x1
+wr_regl(port, USI_CON, val);
+```
+
+**Register Offsets (S3C2410 compatible, from serial_s3c.h):**
+| Register | Offset | Purpose |
+|----------|--------|---------|
+| ULCON | 0x00 | Line control (8N1) |
+| UCON | 0x04 | Control (PCLK, IRQ/DMA mode) |
+| UFCON | 0x08 | FIFO control (enable, reset) |
+| UMCON | 0x0C | Modem control |
+| UTRSTAT | 0x10 | TX/RX status |
+| UERSTAT | 0x14 | Error status |
+| UFSTAT | 0x18 | FIFO status |
+| UBRDIV | 0x28 | Baud rate divisor |
+| UTXH | 0x20 | TX hold (write) |
+| URXH | 0x24 | RX hold (read) |
+
+**USI v2 Registers (from serial_s3c.h + exynos_tty.c):**
+| Register | Offset | Value |
+|----------|--------|-------|
+| USI_CON | 0xC4 | |
+| USI_OPTION | 0xC8 | |
+| USI_SW_CONF_MASK | — | 0x7 |
+| USI_UART_SW_CONF | — | 0x1 |
+| USI_RESET | — | bit 0 = 0 |
+| USI_SET_RESET | — | bit 0 = 1 |
+| USI_HWACG_CLKREQ_ON | — | bit 1 = 1 |
+| USI_HWACG_CLKSTOP_ON | — | bit 2 = 1 |
+
+**Baud Rate Calculation (from exynos_serial_getclk):**
+```
+quot = (clk * 10) / (baud * 16)
+ubrdiv = quot / 16
+ufrac = quot % 16
+udivslot_table[16] = {0x0000, 0x0080, 0x0808, 0x0888, 0x2222, 0x4924, 0x4A52, 0x54AA,
+                       0x5555, 0xD555, 0xD5D5, 0xDDD5, 0xDDDD, 0xDFDD, 0xDFDF, 0xFFDF}
+```
+For 115200 @ 26 MHz: ubrdiv ≈ 14, ufrac ≈ 6
+
+**Clock Tree (from clk-exynos2100.c):**
+- OSCCLK: 26 MHz (fin_pll)
+- UART gate clocks: GATE_DBGCORE_UART_QCH (alive), GATE_PERIC0_TOP0_QCH_UART_DBG (peric0)
+- Divider clocks: DOUT_DIV_CLK_ALIVE_DBGCORE_UART, DOUT_DIV_CLK_PERIC1_UART_BT
+- DTB phandles for uart1: clocks = <0x74 0x75> (gate_uart_clk1, ipclk_uart1)
 
 ### MCT Timer Node (exact DTS)
 
@@ -400,6 +582,125 @@ chosen {
 | R9 (Microkernel) | PASS | Requer UART + GIC + Timer drivers |
 
 > **Meta R10**: Rodar R9 no hardware real via chainload U-Boot → payload EL2/EL1.
+
+---
+
+*Documento gerado a partir de firmware real `G998BXXSJHZC2` (vendor_boot.img DTB + BL sboot.bin).  
+Base DTB agora confirmado — não mais dependente de DTSI público.*
+
+---
+
+## Boot Shim (R11) — Chainload via fastboot/Odin
+
+Based on the **ios-sweet shim pattern** (XNU on Redmi Note 10 Pro), we implement a bare-metal shim that:
+
+1. **Entry**: BL2 (TF-A) hands off at EL2 with `x0 = FDT pointer`
+2. **EL2 → EL1**: Configure HCR_EL2, CNTHCTL_EL2, drop via ERET
+3. **MMU**: 4K granule, identity map 4GB (48-bit VA, 2MB blocks)
+4. **Hardware init**: UART (USI v2), GIC-600 (ICC_*), Timer (CNTP + MCT)
+5. **SMP**: PSCI CPU_ON for 7 secondaries via `smc`/`hvc`
+6. **Payload loader**: Finds `S21R10` payload in `/chosen` initrd, copies segments, places DTB + boot_args, jumps to entry
+
+### Shim Files
+
+| File | Purpose |
+|------|---------|
+| `shim/start.S` | Linux Image header, primary/secondary entry, exception vectors |
+| `shim/shim.c` | Main entry, PSCI, GICv3, timer, UART, MMU, SMP, payload load |
+| `shim/mmu.c` | 4K granule identity map (48-bit VA, 2MB blocks) |
+| `shim/loader.c` | Payload loader (S21R10 magic), copies segments, places DTB/boot_args |
+| `shim/console.c/h` | Framebuffer/UART console |
+| `shim/uart.c/h` | USI v2 UART driver (UART1 @ 0x10840000) |
+| `shim/fdt.c/h` | Minimal FDT parsing for `/chosen` initrd |
+| `shim/loader.h, mmu.h, psci.h, gic.h, timer.h, uart.h, fdt.h` | Headers |
+| `shim/shim.ld` | Linker script (load at 0x80080000) |
+| `shim/build.sh` | Build script |
+
+### Build
+
+```bash
+cd shim && ./build.sh
+# Output: build/shim.elf (85KB), build/shim.bin (16KB)
+```
+
+### Chainload
+
+```bash
+# Via fastboot (if bootloader unlocked)
+fastboot boot shim/build/shim.elf
+
+# Or via Odin: repack shim.bin into boot.img, flash AP
+```
+
+### Payload Format (S21R10)
+
+The shim expects a payload in the initrd with magic `S21R10  `:
+
+```c
+struct payload {
+    char magic[8];        // "S21R10  "
+    uint32_t version;     // 1
+    uint32_t nsegs;
+    uint64_t virt_base;   // 0x80080000
+    uint64_t entry_va;    // _start_r10
+    uint64_t dtb_off, dtb_size;
+    uint64_t kernel_end;
+    uint64_t phys_base;   // 0x80080000
+    uint64_t mem_size;    // 0x80000000 (2GB)
+    char cmdline[608];    // boot args
+    struct payload_seg segs[];
+};
+```
+
+### Chainload Flow
+
+```
+BL2 (TF-A) @ EL2
+    → x0 = FDT pointer
+    → shim/_start @ EL2
+    → EL2→EL1 drop via ERET
+    → shim_main @ EL1
+    → MMU enable
+    → UART/GIC/Timer init
+    → PSCI CPU_ON for 7 secondaries
+    → loader_boot(FDT) → finds S21R10 payload in initrd
+    → copies segments to phys_base
+    → places DTB + boot_args behind kernel
+    → jumps to R10 entry (x0 = boot_args_pa)
+    → R10 payload runs @ EL1
+```
+
+---
+
+## Documentation Index
+
+| Document | Purpose |
+|----------|---------|
+| `README.md` | Project overview, hardware table, build status |
+| `EXYNOS2100_HARDWARE.md` | Complete hardware reference, firmware analysis, shim docs |
+| `worklog.md` | Development log |
+
+---
+
+## Next Steps
+
+| Phase | Target | Description |
+|-------|--------|-------------|
+| **R11** | SMP + Chainload | Shim + PSCI SMP + fastboot chainload |
+| **R12** | Display + Drivers | DECON init, PMIC, UFS, Touch |
+| **R13** | Userspace | EL0, syscalls, init, shell |
+
+---
+
+## References
+
+| Resource | URL |
+|----------|-----|
+| uniLoader (Samsung Exynos bootloader) | https://github.com/ivoszbg/uniLoader |
+| xnu-j1xlte (XNU on Exynos 3475) | https://github.com/kOtusin/xnu-j1xlte |
+| ios-sweet (iOS 16 on Snapdragon 732G) | https://github.com/dipa-studio/ios-sweet |
+| Samsung Open Source | https://opensource.samsung.com/ |
+| ARM GICv3 Architecture | https://developer.arm.com/architectures/system-architectures/gic |
 
 ---
 

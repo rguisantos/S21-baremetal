@@ -15,6 +15,8 @@ typedef long s64;
 #define NULL ((void *)0)
 #endif
 
+#include <stdbool.h>
+
 #define ISB() asm volatile("isb" ::: "memory")
 
 /* ================================================================
@@ -23,19 +25,19 @@ typedef long s64;
 
 #define GICD_BASE         0x10200000UL  // GIC Distributor
 #define GICR_BASE         0x10240000UL  // GIC Redistributor
+#define GICR_STRIDE       0x20000       // Per-CPU redistributor stride
+#define GICR_SGI_BASE     0x10000       // SGI/PPI offset within redistributor
 #define MCT_BASE          0x10040000UL  // Multi-Core Timer
 #define CHIPID_BASE       0x10000000UL  // Chip ID
 #define UART1_BASE        0x10840000UL  // USI v2 UART (console)
 
-/* GIC-600 registers (GICv3) */
+/* GICD Registers */
 #define GICD_CTLR         (GICD_BASE + 0x0000)
 #define GICD_TYPER        (GICD_BASE + 0x0004)
 #define GICD_IIDR         (GICD_BASE + 0x0008)
 #define GICD_STATUSR      (GICD_BASE + 0x0010)
 #define GICD_SETSPI_NSR   (GICD_BASE + 0x0040)
 #define GICD_CLRSPI_NSR   (GICD_BASE + 0x0048)
-#define GICD_SETSPI_SR    (GICD_BASE + 0x0050)
-#define GICD_CLRSPI_SR    (GICD_BASE + 0x0058)
 #define GICD_IGROUPR      (GICD_BASE + 0x0080)
 #define GICD_ISENABLER    (GICD_BASE + 0x0100)
 #define GICD_ICENABLER    (GICD_BASE + 0x0180)
@@ -44,49 +46,70 @@ typedef long s64;
 #define GICD_ISACTIVER    (GICD_BASE + 0x0300)
 #define GICD_ICACTIVER    (GICD_BASE + 0x0380)
 #define GICD_IPRIORITYR   (GICD_BASE + 0x0400)
-#define GICD_ITARGETSR    (GICD_BASE + 0x0800)
 #define GICD_ICFGR        (GICD_BASE + 0x0C00)
 #define GICD_IGRPMODR     (GICD_BASE + 0x0D00)
 #define GICD_SGIR         (GICD_BASE + 0x0F00)
 
-#define GICR_CTLR         (GICR_BASE + 0x0000)
-#define GICR_IIDR         (GICR_BASE + 0x0004)
-#define GICR_TYPER        (GICR_BASE + 0x0008)
-#define GICR_STATUSR      (GICR_BASE + 0x0010)
-#define GICR_WAKER        (GICR_BASE + 0x0014)
-#define GICR_SETLPIR      (GICR_BASE + 0x0040)
-#define GICR_CLRLPIR      (GICR_BASE + 0x0048)
-#define GICR_PROPBASER    (GICR_BASE + 0x0070)
-#define GICR_PENDBASER    (GICR_BASE + 0x0078)
+/* GICR (Redistributor) Registers per CPU */
+#define GICR_CTLR(base)       ((base) + 0x0000)
+#define GICR_IIDR(base)       ((base) + 0x0004)
+#define GICR_TYPER(base)      ((base) + 0x0008)
+#define GICR_STATUSR(base)    ((base) + 0x0010)
+#define GICR_WAKER(base)      ((base) + 0x0014)
+#define GICR_MPIDR(base)      ((base) + 0x0020)
+#define GICR_PROPBASER(base)  ((base) + 0x0070)
+#define GICR_PENDBASER(base)  ((base) + 0x0078)
 
-#define GICR_SGI_BASE     (GICR_BASE + 0x010000)  // SGI/PPI per redistributor
-#define GICR_SGI_CTLR     (GICR_SGI_BASE + 0x0000)
-#define GICR_SGI_IIDR     (GICR_SGI_BASE + 0x0004)
-#define GICR_SGI_TYPER    (GICR_SGI_BASE + 0x0008)
-#define GICR_SGI_STATUSR  (GICR_SGI_BASE + 0x0010)
-#define GICR_SGI_IGROUPR  (GICR_SGI_BASE + 0x0080)
-#define GICR_SGI_ISENABLER (GICR_SGI_BASE + 0x0100)
-#define GICR_SGI_ICENABLER (GICR_SGI_BASE + 0x0180)
-#define GICR_SGI_ISPENDR  (GICR_SGI_BASE + 0x0200)
-#define GICR_SGI_ICPENDR  (GICR_SGI_BASE + 0x0280)
-#define GICR_SGI_ISACTIVER (GICR_SGI_BASE + 0x0300)
-#define GICR_SGI_ICACTIVER (GICR_SGI_BASE + 0x0380)
-#define GICR_SGI_IPRIORITYR (GICR_SGI_BASE + 0x0400)
-#define GICR_SGI_ICFGR    (GICR_SGI_BASE + 0x0C00)
-#define GICR_SGI_IGRPMODR (GICR_SGI_BASE + 0x0D00)
+/* GICR SGI/PPI (per-CPU) */
+#define GICR_SGI_BASE         0x10000
+#define GICR_SGI_CTLR(base)      ((base) + GICR_SGI_BASE + 0x0000)
+#define GICR_SGI_IIDR(base)      ((base) + GICR_SGI_BASE + 0x0004)
+#define GICR_SGI_STATUSR(base)   ((base) + GICR_SGI_BASE + 0x0010)
+#define GICR_SGI_IGROUPR(base)   ((base) + GICR_SGI_BASE + 0x0080)
+#define GICR_SGI_ISENABLER(base) ((base) + GICR_SGI_BASE + 0x0100)
+#define GICR_SGI_ICENABLER(base) ((base) + GICR_SGI_BASE + 0x0180)
+#define GICR_SGI_ISPENDR(base)   ((base) + GICR_SGI_BASE + 0x0200)
+#define GICR_SGI_ICPENDR(base)   ((base) + GICR_SGI_BASE + 0x0280)
+#define GICR_SGI_ISACTIVER(base) ((base) + GICR_SGI_BASE + 0x0300)
+#define GICR_SGI_ICACTIVER(base) ((base) + GICR_SGI_BASE + 0x0380)
+#define GICR_SGI_IPRIORITYR(base) ((base) + GICR_SGI_BASE + 0x0400)
+#define GICR_SGI_ICFGR(base)     ((base) + GICR_SGI_BASE + 0x0C00)
+#define GICR_SGI_IGRPMODR(base)  ((base) + GICR_SGI_BASE + 0x0D00)
 
 /* GICD_CTLR bits */
 #define GICD_CTLR_EN_GRP0     (1 << 0)
 #define GICD_CTLR_EN_GRP1NS   (1 << 1)
 #define GICD_CTLR_EN_GRP1S    (1 << 2)
-#define GICD_CTLR_ARE_NS      (1 << 4)
-#define GICD_CTLR_ARE_S       (1 << 5)
-#define GICD_CTLR_DS          (1 << 6)
+#define GICD_CTLR_ARE_NS      (1 << 4)   // Affinity Routing Enable (NS)
+#define GICD_CTLR_ARE_S       (1 << 5)   // Affinity Routing Enable (S)
+#define GICD_CTLR_DS          (1 << 6)   // Disable Security
 #define GICD_CTLR_E1NWF       (1 << 7)
 
 /* GICR_WAKER bits */
 #define GICR_WAKER_PROCESSOR_SLEEP (1 << 1)
 #define GICR_WAKER_CHILDREN_ASLEEP (1 << 2)
+
+/* ICC_* System Register bits (GICv3 CPU interface) */
+#define ICC_SRE_EL1_SRE     (1 << 0)
+#define ICC_SRE_EL1_DIB     (1 << 1)
+#define ICC_SRE_EL1_DFB     (1 << 2)
+
+#define ICC_CTLR_EL1_EOImode   (1 << 0)
+#define ICC_CTLR_EL1_CBPR      (1 << 1)
+#define ICC_CTLR_EL1_PMHE      (1 << 6)
+
+#define ICC_BPR1_EL1_MASK   0x7
+#define ICC_PMR_EL1_MASK    0xFF
+#define ICC_IAR1_EL1_INTID_MASK  0x00FFFFFF
+
+#define ICC_IGRPEN1_EL1_GRP1NS  (1 << 0)
+#define ICC_IGRPEN1_EL1_GRP1S   (1 << 1)
+
+/* ICC_SGI1R_EL1 fields */
+#define ICC_SGI1R_EL1_AFF3_SHIFT  24
+#define ICC_SGI1R_EL1_AFF2_SHIFT  16
+#define ICC_SGI1R_EL1_AFF1_SHIFT  8
+#define ICC_SGI1R_EL1_RS_SHIFT    0
 
 /* MCT (Multi-Core Timer) registers */
 #define MCT_GLOBAL_CON    (MCT_BASE + 0x00)
@@ -105,24 +128,26 @@ typedef long s64;
 #define MCT_LOCAL_CON_AUTO     (1 << 2)
 
 /* USI v2 UART (Samsung Exynos UART) registers */
-#define USI_UART_RX_FIFO      (UART1_BASE + 0x00)
-#define USI_UART_TX_FIFO      (UART1_BASE + 0x04)
-#define USI_UART_CTRL         (UART1_BASE + 0x08)
-#define USI_UART_STATUS       (UART1_BASE + 0x0C)
-#define USI_UART_BAUD         (UART1_BASE + 0x10)
-#define USI_UART_LINE_CTRL    (UART1_BASE + 0x14)
-#define USI_UART_MODEM_CTRL   (UART1_BASE + 0x18)
-#define USI_UART_FIFO_CTRL    (UART1_BASE + 0x1C)
-#define USI_UART_INT_EN       (UART1_BASE + 0x20)
-#define USI_UART_INT_STATUS   (UART1_BASE + 0x24)
+#define USI_UART_RX_FIFO      (UART1_BASE + 0x24)   // URXH
+#define USI_UART_TX_FIFO      (UART1_BASE + 0x20)   // UTXH
+#define USI_UART_CTRL         (UART1_BASE + 0x04)   // UCON
+#define USI_UART_STATUS       (UART1_BASE + 0x10)   // UTRSTAT
+#define USI_UART_BAUD         (UART1_BASE + 0x28)   // UBRDIV
+#define USI_UART_LINE_CTRL    (UART1_BASE + 0x00)   // ULCON
+#define USI_UART_FIFO_CTRL    (UART1_BASE + 0x08)   // UFCON
+#define USI_UART_MODEM_CTRL   (UART1_BASE + 0x0C)   // UMCON
+#define USI_UART_ERR_STATUS   (UART1_BASE + 0x14)   // UERSTAT
+#define USI_UART_FIFO_STATUS  (UART1_BASE + 0x18)   // UFSTAT
+
+/* USI v2 control registers (offset from UART base) */
+#define USI_CON         0xC4
+#define USI_OPTION      0xC8
 
 #define USI_CTRL_TX_EN        (1 << 0)
 #define USI_CTRL_RX_EN        (1 << 1)
 #define USI_CTRL_UART_EN      (1 << 2)
-#define USI_STATUS_TX_EMPTY   (1 << 0)
-#define USI_STATUS_RX_FULL    (1 << 1)
-#define USI_STATUS_TX_FULL    (1 << 2)
-#define USI_STATUS_RX_EMPTY   (1 << 3)
+#define USI_STATUS_TX_EMPTY   (1 << 1)
+#define USI_STATUS_RX_FULL    (1 << 0)
 #define USI_LINE_CTRL_WLEN_8  (3 << 0)
 #define USI_LINE_CTRL_STOP_1  (0 << 2)
 #define USI_LINE_CTRL_PAR_NONE (0 << 3)
@@ -189,22 +214,136 @@ typedef long s64;
 #define SCTLR_SA0             (1 << 4)   // Stack alignment EL0
 #define SCTLR_SA              (1 << 3)   // Stack alignment EL1
 
+/* Spinlock types */
+typedef struct { u32 head, tail; } ticket_lock_t;
+typedef struct { u32 lock; } raw_spinlock_t;
+typedef struct {
+    u32 readers;
+    u32 writer;
+    u32 waiting_writers;
+    raw_spinlock_t lock;
+} rw_spinlock_t;
+typedef struct {
+    u32 sequence;
+    raw_spinlock_t lock;
+} seqlock_t;
+
 /* Function prototypes */
 void r10_entry(void);
 void el2_to_el1_drop(void);
 void mmu_init(void);
 void gic_init(void);
+void gic_cpu_interface_init(void);
 void gic_enable_irq(u32 irq);
 void gic_disable_irq(u32 irq);
 void gic_set_priority(u32 irq, u8 priority);
+u32 gic_ack_irq(void);
 void gic_eoi(u32 irq);
+void gic_send_sgi(u32 sgi_id, u32 target_mask, u32 aff1, u32 aff2, u32 aff3);
 void uart_init(void);
 void mct_init(void);
 void timer_init(void);
 s64 psci_call(u64 fn, u64 arg0, u64 arg1, u64 arg2);
+s64 psci_cpu_on(u64 target_mpidr, u64 entry_point, u64 context);
+s64 psci_cpu_off(void);
+s64 psci_cpu_suspend(u64 power_state, u64 entry_point, u64 context);
+s64 psci_system_reset(void);
+s64 psci_system_off(void);
+s64 psci_version(void);
+s64 psci_migrate_info_type(void);
+void psci_print_error(s64 ret);
+u64 psci_get_mpidr(void);
 void uart_putc(char c);
 void uart_puts(const char *s);
 void uart_puthex(u64 v);
 char uart_getc(void);
+
+/* Timer functions */
+u64 timer_read_cnt(void);
+u64 timer_read_freq(void);
+void timer_handle_irq(void);
+
+/* MCT functions */
+void mct_handle_irq(u32 irq);
+
+/* Spinlocks */
+void ticket_lock_init(ticket_lock_t *lock);
+void ticket_lock(ticket_lock_t *lock);
+int ticket_trylock(ticket_lock_t *lock);
+void ticket_unlock(ticket_lock_t *lock);
+void raw_spinlock_init(raw_spinlock_t *lock);
+void raw_spinlock(raw_spinlock_t *lock);
+int raw_spin_trylock(raw_spinlock_t *lock);
+void raw_spinunlock(raw_spinlock_t *lock);
+void rw_spinlock_init(rw_spinlock_t *lock);
+void read_lock(rw_spinlock_t *lock);
+int read_trylock(rw_spinlock_t *lock);
+void read_unlock(rw_spinlock_t *lock);
+void write_lock(rw_spinlock_t *lock);
+int write_trylock(rw_spinlock_t *lock);
+void write_unlock(rw_spinlock_t *lock);
+void seqlock_init(seqlock_t *lock);
+unsigned read_seqbegin(const seqlock_t *lock);
+int read_seqretry(const seqlock_t *lock, unsigned seq);
+void write_seqlock(seqlock_t *lock);
+void write_sequnlock(seqlock_t *lock);
+
+/* PSCI */
+s64 psci_cpu_on(u64 target_mpidr, u64 entry_point, u64 context);
+s64 psci_cpu_off(void);
+s64 psci_cpu_suspend(u64 power_state, u64 entry_point, u64 context);
+s64 psci_system_reset(void);
+s64 psci_system_off(void);
+s64 psci_version(void);
+s64 psci_migrate_info_type(void);
+void psci_print_error(s64 ret);
+u64 psci_get_mpidr(void);
+
+/* IPI */
+#define IPI_RESCHEDULE    0
+#define IPI_CALL_FUNC     1
+#define IPI_CPU_STOP      2
+#define IPI_TIMER         3
+#define IPI_MAX           4
+void ipi_init(void);
+void ipi_register_handler(u32 ipi_type, void (*handler)(void));
+void ipi_send(u32 target_cpu, u32 ipi_type);
+void ipi_send_mask(u32 cpu_mask, u32 ipi_type);
+void ipi_send_all_but_self(u32 ipi_type);
+void ipi_handle(u32 ipi_type);
+
+/* ICC system register access (GICv3 CPU interface) */
+static inline void msr_icc_sgi1r_el1(u64 v) { MSR(icc_sgi1r_el1, v); }
+static inline u64 mrs_icc_igrpen1_el1(void) { return MRS(icc_igrpen1_el1); }
+static inline void msr_icc_igrpen1_el1(u64 v) { MSR(icc_igrpen1_el1, v); }
+
+/* SMP */
+void percpu_init_early(void);
+void percpu_init_cpu(u32 cpu_id, u64 mpidr, u64 sp_el1, u64 exc_stack_top);
+void percpu_init_late(void);
+int smp_init(void);
+int smp_bringup_cpus(void);
+void secondary_cpu_entry(void);
+void ipi_init(void);
+void ipi_register_handler(u32 ipi_type, void (*handler)(void));
+void ipi_send(u32 target_cpu, u32 ipi_type);
+void ipi_send_mask(u32 cpu_mask, u32 ipi_type);
+void ipi_send_all_but_self(u32 ipi_type);
+void ipi_handle(u32 ipi_type);
+void smp_call_function_single(int cpu, void (*func)(void *), void *arg, int wait);
+void smp_call_function_all(void (*func)(void *), void *arg, int wait);
+
+/* Per-CPU */
+#define NR_CPUS          8
+
+/* IPI handler called from exc_irq */
+void ipi_handler(u32 sgi_id);
+
+/* External symbols from linker script */
+extern char __el1_stack_top[];
+extern char __exc_stack_top[];
+extern char __bss_start[];
+extern char __bss_end[];
+extern char _start_r10[];
 
 #endif /* R10_H */

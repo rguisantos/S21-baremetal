@@ -2,8 +2,10 @@
 # Ambiente userspace (sem root): cross-gcc e QEMU extraídos em tools/root
 
 TOOLS ?= ../tools/root
+TOOLS := $(abspath $(TOOLS))
 LOCAL_CROSS := $(TOOLS)/usr/bin/aarch64-linux-gnu-
 LOCAL_QEMU := $(TOOLS)/usr/bin/qemu-system-aarch64
+export PATH := $(TOOLS)/usr/bin:$(PATH)
 ifeq ($(wildcard $(LOCAL_CROSS)gcc),)
 CROSS ?= aarch64-linux-gnu-
 else
@@ -11,13 +13,17 @@ CROSS ?= $(LOCAL_CROSS)
 endif
 CC      := $(CROSS)gcc
 OBJDUMP := $(CROSS)objdump
+ifneq ($(wildcard $(LOCAL_CROSS)gcc),)
+CC := bash ../scripts/cross-run.sh $(TOOLS) $(CC)
+OBJDUMP := bash ../scripts/cross-run.sh $(TOOLS) $(OBJDUMP)
+endif
 
 ifeq ($(wildcard $(LOCAL_QEMU)),)
 QEMU ?= qemu-system-aarch64
 QENV :=
 else
 QEMU ?= $(LOCAL_QEMU)
-QENV := LD_LIBRARY_PATH=$(TOOLS)/usr/lib/x86_64-linux-gnu:$(TOOLS)/usr/lib
+QENV := $(TOOLS)/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 --library-path $(TOOLS)/usr/lib/x86_64-linux-gnu:$(TOOLS)/usr/lib
 endif
 ifeq ($(wildcard $(TOOLS)/usr/share/qemu),)
 QDATA ?= /usr/share/qemu
@@ -29,6 +35,8 @@ endif
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
 	   -fno-pie -mgeneral-regs-only -march=armv8-a -O2 -std=gnu11 \
 	   -Wall -Wextra -Icommon
+
+ASFLAGS := -ffreestanding -nostdlib -march=armv8-a -O2 -Icommon
 
 LDFLAGS := -nostdlib -static -T common/linker.ld -Wl,--build-id=none
 
@@ -54,7 +62,7 @@ $(BUILD)/%.o: common/%.c | $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: common/%.S | $(BUILD)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(ASFLAGS) -c $< -o $@
 
 # ---- módulos ----
 $(BUILD)/r8a_mmu.o: r8a_mmu/mmu.c common/r8lib.h | $(BUILD)
@@ -124,12 +132,13 @@ $(ELF_D): $(BUILD)/start.o $(R9_OBJS) $(BUILD)/uart.o $(BUILD)/printf.o \
 # ---- r10: Exynos 2100 real hardware payload ----
 R10_OBJS := $(BUILD)/r10_main.o $(BUILD)/r10_mmu.o $(BUILD)/r10_gic.o \
             $(BUILD)/r10_uart.o $(BUILD)/r10_mct.o $(BUILD)/r10_timer.o \
-            $(BUILD)/r10_psci.o $(BUILD)/printf.o $(BUILD)/exc.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
+            $(BUILD)/r10_psci.o $(BUILD)/r10_spinlock.o $(BUILD)/r10_smp.o \
+            $(BUILD)/printf.o $(BUILD)/exc.o $(BUILD)/sys.o $(BUILD)/vectors.o $(BUILD)/util.o
 
 $(BUILD)/r10_start.o: r10_payload/start_r10.S | $(BUILD)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(ASFLAGS) -c $< -o $@
 
-$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h common/r8lib.h | $(BUILD)
+$(BUILD)/r10_%.o: r10_payload/%.c r10_payload/r10.h r10_payload/percpu.h common/r8lib.h | $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # R10 needs different linker script (load at 0x80080000, no EL0)
@@ -147,4 +156,12 @@ run_r10_hw: $(ELF_E)
 
 # ---- regressão: os 4 módulos + assinaturas PASS ----
 regress: $(ELF_A) $(ELF_B) $(ELF_C) $(ELF_D)
-	@../scripts/regress.sh
+	@bash ../scripts/regress.sh
+# PR #3: execute the real atomic implementation on QEMU AArch64.
+$(BUILD)/atomic_smoke.o: tests/atomic_smoke.c r10_payload/spinlock.c r10_payload/r10.h | $(BUILD)
+	$(CC) $(CFLAGS) -c $< -o $@
+$(BUILD)/atomic_smoke.elf: $(BUILD)/start.o $(BUILD)/atomic_smoke.o $(COMMON) common/linker.ld
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(BUILD)/start.o $(BUILD)/atomic_smoke.o $(COMMON)
+run_atomic: $(BUILD)/atomic_smoke.elf
+	$(QENV) $(QEMU) -L $(QDATA) -M virt,virtualization=on -cpu max -nographic -kernel $<
+.PHONY: run_atomic

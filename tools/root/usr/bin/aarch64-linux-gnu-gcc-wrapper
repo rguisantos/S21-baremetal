@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu
+bin=$(cd "$(dirname "$0")" && pwd)
+export PATH="$bin:$PATH"
+exec "$bin/aarch64-linux-gnu-gcc" "$@"

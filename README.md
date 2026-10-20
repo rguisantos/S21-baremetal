@@ -1,3 +1,7 @@
+> **Estado da integração (2026-10-20):** PRs #2/#3 consolidadas; consulte
+> [PR_INTEGRATION.md](PR_INTEGRATION.md) para reprodução e limites dos testes.
+> R10 e o shim permanecem experimentais; a UART R10 fica desativada por padrão.
+
 # Kit R8+R9 v8 — Bring-up bare-metal + microkernel no QEMU (completo)
 
 Kit autossuficiente dos módulos R8 (bring-up AArch64 no QEMU `virt`) e R9
@@ -190,5 +194,20 @@ CONFIG_ARM_PSCI_FW=y
 - **Baseband**: `G998BXXSJHZA7`
 - **CSC**: `ZTO` (Brasil)
 - **Codename plataforma**: `p3s`
+
+### Boot Shim (R11)
+
+| Componente | Arquivo | Descrição |
+|------------|---------|-----------|
+| **Entry** | `shim/start.S` | Linux Image header, primary/secondary entry |
+| **Main** | `shim/shim.c` | PSCI, GICv3, timer, UART, MMU, SMP, payload load |
+| **MMU** | `shim/mmu.c` | 4K granule, identity map 4GB |
+| **Loader** | `shim/loader.c` | S21R10 payload loader |
+| **UART** | `shim/uart.c` | USI v2 driver @ 0x10840000 |
+| **Linker** | `shim/shim.ld` | Load at 0x80080000 |
+
+**Build**: `cd shim && ./build.sh` → `build/shim.elf` (85KB)
+
+**Chainload**: `fastboot boot shim/build/shim.elf` (ou Odin)
 
 # S21-baremetal
