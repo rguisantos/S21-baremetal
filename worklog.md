@@ -230,3 +230,12 @@ Macro e núcleo pinctrl confirmam offsets diretos. Fonte 2100: GPG0_CON
 é gpp4/4 pinos no mapa2100, mas gpg0/8 no mapa9820 da árvore: hipótese de
 legado, não prova. Word 0x10430120 existe em sboot+0x30565c, consumidor
 ainda não identificado. Inspetor ampliado; nenhum acesso MMIO adicionado.
+
+## 2026-10-21 — pinmux UART0 compatível encontrado antes do LK
+
+Busca MOVZ/MOVK no sboot inteiro encontrou 0x1d46c configurando
+0x10430120, máscara ffff00ff, valor3300. BLs em17e4c/1d5ac; rotina1d59c
+passa nominais26MHz/115200 à configuração UART0. É sequência independente
+do word30565c, cujo consumidor permanece desconhecido. Novo achado permite
+hipótese de pinmux herdado no LK, sem confirmar execução/persistência.
+Inspector e documentação atualizados; nenhum MMIO ou driver habilitado.

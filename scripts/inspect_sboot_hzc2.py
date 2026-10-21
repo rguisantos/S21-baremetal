@@ -150,6 +150,18 @@ def inspect(path):
             preserve_mask='0x00ffffff', inserted_value='0x33000000',
             literal_gpg0_matches=offsets(data, struct.pack('<I', 0x10430120)),
             limit='Literal matches are raw bytes; no executed reference or pin routing proof'),
+        'early_uart': dict(
+            region='candidate BL2; runtime execution unobserved',
+            pinmux_offset='0x1d46c',
+            pinmux_instruction_words={hex(off): f'{u32(off):08x}' for off in
+                                     range(0x1d46c, 0x1d488, 4)},
+            direct_calls={hex(off): hex(bl_target(u32(off), off))
+                          for off in (0x17e4c, 0x1d5ac, 0x1d5c0)},
+            argument_words={hex(off): f'{u32(off):08x}' for off in
+                            (0x1d5b0, 0x1d5b4, 0x1d5b8, 0x1d5bc)},
+            scale_constant_offset='0x1d428',
+            scale_constant=struct.unpack_from('<d', data, 0x1d428)[0],
+            limit='Compatible source pinmux, not proof of final clock, UART access or use of the separate data word'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],

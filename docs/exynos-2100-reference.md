@@ -191,3 +191,11 @@ Para uma inicialização própria, serão necessários mapa/revisão e roteament
 confirmados, além dos clocks. O backend herdado só deve ser habilitado quando
 o estado UART correspondente for verificável. Prosseguir no contrato de
 carregamento continua útil sem repetir as coletas Shizuku bloqueadas.
+
+### Atualização: inicialização anterior encontrada
+
+A [busca ampliada ao intervalo BL2](bl2-uart-hzc2.md) localizou em 0x1d46c
+a escrita 0x10430120/0x3300, com chamadas diretas. Logo o sboot contém
+também o pinmux compatível com a fonte 2100. O efeito da escrita distinta
+no LK e a conservação do estado continuam sem medição. Não se usa a
+semelhança com 9820 para classificar todo o bootloader como legado.

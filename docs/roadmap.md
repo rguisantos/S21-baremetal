@@ -43,3 +43,5 @@ Auditoria posterior: os offsets pinctrl são diretos e a divergência LK/DTS
 persiste. A semelhança com um layout Exynos 9820 é hipótese de código legado,
 sem validação física. Não habilitar um novo caminho UART pela simples troca
 de endereço; retomar também as verificações do contrato Samsung.
+
+A busca ampliada encontrou [pinmux UART0 compatível no intervalo BL2](bl2-uart-hzc2.md), anterior à escrita divergente do LK. O marco de análise avançou; falta acompanhar clocks/estado entre estágios e observar o handoff real.
