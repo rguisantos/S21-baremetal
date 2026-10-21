@@ -45,3 +45,5 @@ sem validação física. Não habilitar um novo caminho UART pela simples troca
 de endereço; retomar também as verificações do contrato Samsung.
 
 A busca ampliada encontrou [pinmux UART0 compatível no intervalo BL2](bl2-uart-hzc2.md), anterior à escrita divergente do LK. O marco de análise avançou; falta acompanhar clocks/estado entre estágios e observar o handoff real.
+
+O [rastreio de clocks UART0](uart-clock-stages.md) ligou tabelas PERIC0 à inicialização e encontrou nominal133,25 MHz no wrapper principal. A observação da frequência e das dependências no handoff continua pendente.

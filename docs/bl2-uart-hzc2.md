@@ -108,3 +108,11 @@ Próxima prioridade: rastrear a configuração de clock entre estágios e o
 handoff, preservando a distinção entre nominal de código e estado medido.
 Não habilitar UART automaticamente a partir de uma suposta herança.
 Não é necessário outro pacote nem repetir as coletas bloqueadas pelo Shizuku.
+
+## Refinamento posterior do caminho nominal
+
+O [rastreio de clocks](uart-clock-stages.md) encontrou um wrapper chamado
+diretamente na entrada BL2 que usa 133,25 MHz/115200. A rotina de 26 MHz
+descrita nesta página é um caminho separado; não deve ser tratada como a
+configuração única ou comprovadamente usada no boot normal. O nominal
+133,25 MHz produz divisor71, igual ao programado no LK.

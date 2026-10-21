@@ -60,3 +60,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.
 
 - [UART0 no intervalo BL2 HZC2](bl2-uart-hzc2.md): pinmux compatível, chamadas diretas e configuração nominal.
+
+- [Clocks UART0 entre BL2 e LK](uart-clock-stages.md): tabelas PERIC0, wrapper principal e divisor.

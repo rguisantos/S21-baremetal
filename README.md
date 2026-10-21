@@ -111,3 +111,5 @@ O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda 
 A [referência Exynos-2100/universal2100](docs/exynos-2100-reference.md) foi comparada ao pacote Samsung: 18 arquivos, 13 idênticos. O cruzamento detalhou clocks/pinctrl UART0 e registrou uma divergência de pinmux com o LK.
 
 Uma [rotina anterior no intervalo BL2](docs/bl2-uart-hzc2.md) configura GPG0_CON `0x10430120` com os campos UART0 previstos pelo DTS. Isso contextualiza a divergência do LK; a configuração efetiva no handoff ainda não foi medida.
+
+O [rastreio dos clocks entre BL2 e LK](docs/uart-clock-stages.md) encontrou um wrapper ligado à entrada BL2 com nominal 133,25 MHz/115200; seu divisor 71 coincide com o LK. Isso refina o caminho separado de 26 MHz, sem medir a frequência final.

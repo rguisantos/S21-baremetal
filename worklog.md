@@ -239,3 +239,11 @@ passa nominais26MHz/115200 à configuração UART0. É sequência independente
 do word30565c, cujo consumidor permanece desconhecido. Novo achado permite
 hipótese de pinmux herdado no LK, sem confirmar execução/persistência.
 Inspector e documentação atualizados; nenhum MMIO ou driver habilitado.
+
+## 2026-10-21 — clocks UART0 e nominal do wrapper BL2
+
+Encontradas tabelas mux/div PERIC0 em30670/30680 e duplicadas369c8/369d8.
+UART_DBG seleciona IP0_USER e encoded divisor2; bit4 IP0_USER é ligado.
+Entrada160c0 chama wrapper1d4b4 com 133250000/115200, gerando divisor71
+compatível com LK0x47. Caminho26MHz anterior é separado, sem claim de
+transição temporal. Inspector e docs ampliados; frequência real não medida.

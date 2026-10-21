@@ -162,6 +162,23 @@ def inspect(path):
             scale_constant_offset='0x1d428',
             scale_constant=struct.unpack_from('<d', data, 0x1d428)[0],
             limit='Compatible source pinmux, not proof of final clock, UART access or use of the separate data word'),
+        'uart_clock_stages': dict(
+            primary_mux_table_offset='0x30670',
+            primary_mux_bytes=list(data[0x30670:0x30670+11]),
+            primary_div_table_offset='0x30680',
+            primary_div_u16=list(struct.unpack_from('<11H', data, 0x30680)),
+            second_mux_table_offset='0x369c8',
+            second_mux_bytes=list(data[0x369c8:0x369c8+11]),
+            second_div_table_offset='0x369d8',
+            second_div_u16=list(struct.unpack_from('<11H', data, 0x369d8)),
+            calls={hex(off): hex(bl_target(u32(off), off)) for off in
+                   (0x160bc, 0x160c0, 0x18020, 0x178f8, 0x17674, 0x17684,
+                    0x36944, 0x36738, 0x36748)},
+            wrapper_argument_words={hex(off): f'{u32(off):08x}' for off in
+                                    (0x1d4b4, 0x1d4b8, 0x1d4bc, 0x1d4c0)},
+            wrapper_tail_branch_word=f'{u32(0x1d4c4):08x}',
+            lk_divisor_word=f'{u32(0xef474):08x}',
+            limit='Static nominal configuration; not a measured frequency or final handoff state'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],
