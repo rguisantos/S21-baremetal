@@ -38,3 +38,8 @@ A passagem ao teste físico depende do caminho de carregamento e da capacidade
 de recuperar uma evidência. Nenhum comando de flash é derivado dos testes atuais.
 
 A [comparação Exynos-2100](exynos-2100-reference.md) detalha mux/divisor/QCH da UART0. Prioridade de observação: resolver o pinmux do DTS versus a escrita LK antes de adaptar a inicialização UART.
+
+Auditoria posterior: os offsets pinctrl são diretos e a divergência LK/DTS
+persiste. A semelhança com um layout Exynos 9820 é hipótese de código legado,
+sem validação física. Não habilitar um novo caminho UART pela simples troca
+de endereço; retomar também as verificações do contrato Samsung.

@@ -222,3 +222,11 @@ registra o marco e a prioridade do contrato de carregamento/observação.
 ## 2026-10-21 — kernel Exynos-2100 indicado pelo usuário
 
 Consultado lineage-22.2 no SHA 37c14d86996a49edbea8953f2523b202546b8958, Linux5.4.290. Comparados 18 arquivos com o Kernel.tar.gz recebido: 13 idênticos. Clocks CAL/binding/pinctrl deram ligações UART0 concretas; escrita pinmux LK 0x10430080 diverge do GPG0_CON 0x10430120 derivado da fonte. Diff GIC só trata readback VGIC e falha de CPU PM. Manifesto e relatório integrados sem alterar drivers ou reivindicar teste físico.
+
+## 2026-10-21 — auditoria dos offsets pinmux
+
+Macro e núcleo pinctrl confirmam offsets diretos. Fonte 2100: GPG0_CON
+0x10430120, pinos 2/3; LK altera campos 6/7 em 0x10430080. Este offset
+é gpp4/4 pinos no mapa2100, mas gpg0/8 no mapa9820 da árvore: hipótese de
+legado, não prova. Word 0x10430120 existe em sboot+0x30565c, consumidor
+ainda não identificado. Inspetor ampliado; nenhum acesso MMIO adicionado.

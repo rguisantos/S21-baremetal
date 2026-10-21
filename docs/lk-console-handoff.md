@@ -176,3 +176,10 @@ Hashes dos arquivos consultados:
 O próximo bloqueio é físico e de estado: roteamento dos pads, habilitação real
 do console e recuperação do diagnóstico. O material atual permite continuar
 a análise estática sem solicitar arquivos novamente.
+
+## Auditoria posterior do pinmux
+
+O acesso do LK a 0x10430080 foi confirmado, mas diverge do GPG0_CON
+0x10430120 derivado do driver/DTS. O cálculo do núcleo pinctrl não remapeia
+os offsets. Há semelhança com o layout Exynos 9820, sem prova de origem ou
+efeito físico. [Análise e decisão](exynos-2100-reference.md#auditoria-do-pinmux--continuação-2026-10-21).

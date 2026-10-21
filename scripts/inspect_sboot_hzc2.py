@@ -142,6 +142,14 @@ def inspect(path):
                               (0x12e068, 0x12e070, 0x12e418, 0x12e41c,
                                0x12e560, 0x12e568, 0x12e880, 0x12e884, 0x12e888)},
             status='Static source/destination chain; no execution of Samsung LK'),
+        'uart_pinmux_audit': dict(
+            lk_routine_offset='0xef3e0',
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0xef3e0, 0xef3e8, 0xef3ec, 0xef410, 0xef418, 0xef41c)},
+            direct_register_address='0x10430080',
+            preserve_mask='0x00ffffff', inserted_value='0x33000000',
+            literal_gpg0_matches=offsets(data, struct.pack('<I', 0x10430120)),
+            limit='Literal matches are raw bytes; no executed reference or pin routing proof'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],

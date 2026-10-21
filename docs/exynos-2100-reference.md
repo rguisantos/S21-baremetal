@@ -145,3 +145,49 @@ Ao adaptar código, preservar os avisos de autoria e licença dos arquivos.
 O repositório não fornece, por si só, um dump live de RAM, medição do EL final,
 permissões Harx ou canal de log funcional. As coletas Shizuku continuam com os
 limites documentados; nenhum novo arquivo foi solicitado ao usuário.
+
+## Auditoria do pinmux — continuação 2026-10-21
+
+A discrepância foi conferida até o núcleo do driver recebido. O macro
+`EXYNOS9_PIN_BANK_EINTG` em `pinctrl-exynos.h` atribui diretamente o argumento
+`reg` a `pctl_offset`. `pinctrl-samsung.c` copia esse campo para o banco e
+calcula o acesso como `pctl_base + pctl_offset + reg_offset[FUNC]`.
+`pctl_base` vem do recurso MMIO do controller. Não há nessa cadeia uma
+conversão que transforme offset 0x120 em 0x80.
+
+| Caminho | Registro CON | Campos selecionados | Máscara/valor de função |
+|---|---|---|---|
+| Fonte Exynos 2100 + DTS UART0 | 0x10430120 | pinos 2 e 3, quatro bits cada | limpar 0x0000ff00, inserir 0x00003300 |
+| Rotina LK em 0xef3e0 | 0x10430080 | campos 6 e 7 de um word CON | preservar 0x00ffffff, inserir 0x33000000 |
+
+A segunda linha descreve o efeito aritmético do word, não demonstra pinos
+implementados. No mapa Exynos 2100 consultado, offset 0x80 é **gpp4, com
+quatro pinos**; campos 6/7 não correspondem aos pinos desse banco listados na
+fonte. O banco gpg0 de seis pinos, offset 0x120, fica fora dos condicionais
+EVT0 que alteram outros controladores neste arquivo. Não foi encontrada aí
+uma seleção de build que explique a troca de banco.
+
+A mesma árvore contém `exynos9820_pin_banks5`: gpg0 tem **oito pinos em
+0x80**. Isso torna plausível uma sequência de pinmux herdada de outro mapa,
+mas é apenas uma inferência por semelhança. Não se conclui que o sboot HZC2
+inteiro seja para outro SoC, que a rotina não execute ou que mudar seu endereço
+seja suficiente para inicializar o console. Ela pode depender de configuração
+anterior; o efeito real sobre os pads não foi medido.
+
+Foi localizado também o word little-endian **0x10430120 em offset 0x30565c**
+do sboot. Esse achado vem de busca de bytes, sem provar que represente um
+registrador usado. O consumidor e a semântica da estrutura não foram
+identificados. Portanto sua presença não resolve a divergência nem é tratada
+como uma segunda sequência funcional de UART.
+
+O inspetor HZC2 agora inclui `uart_pinmux_audit`, com as palavras da rotina,
+máscara/valor e ocorrências do word. A busca de candidatos MOVZ/MOVK de 0x1043
+foi limitada ao intervalo LK 0xec000–0x20c630; ela não exclui construção de
+endereços por tabelas, aliases ou chamadas indiretas em outros locais.
+
+**Decisão de implementação:** conservar o mapa fonte e a sequência LK como
+evidências distintas. Nenhuma escrita pinctrl nova foi introduzida no R10.
+Para uma inicialização própria, serão necessários mapa/revisão e roteamento
+confirmados, além dos clocks. O backend herdado só deve ser habilitado quando
+o estado UART correspondente for verificável. Prosseguir no contrato de
+carregamento continua útil sem repetir as coletas Shizuku bloqueadas.
