@@ -50,3 +50,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Roteamento UART, jig e coleta somente de leitura](uart-routing.md).
 
 - [Log em memória LK/debug-snapshot](lk-memory-log.md): cursor, preservação pelo kernel e leitor offline.
+
+- [Coleta limitada de logs pelo rish](boot-log-collection.md): interfaces de snapshot, metadados e limites.

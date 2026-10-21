@@ -99,3 +99,5 @@ A [seleção do console por jig e MUIC](docs/uart-routing.md) foi rastreada no L
 A [coleta UART/MUIC no aparelho](docs/runtime-collection.md#coleta-uartmuic-recebida--2026-10-21) confirmou SM-G998B/HZC2 e os limites do shell: `uart_en` existe, mas é ilegível; `attached_dev` retornou `No VPS`. A habilitação e a seleção AP/CP continuam desconhecidas.
 
 O callback adicional do LK foi identificado como [log em memória debug-snapshot](docs/lk-memory-log.md), em região de 2 MiB. Há um leitor offline com testes sintéticos; ainda não foi obtido dump dessa região no telefone.
+
+Para testar o acesso aos logs sem root, há um [procedimento limitado pelo rish](docs/boot-log-collection.md), com relatório de permissões e capturas de até 2 MiB por arquivo. Execução no aparelho pendente.

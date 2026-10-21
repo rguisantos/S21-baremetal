@@ -180,3 +180,7 @@ repetição desta coleta. Estado de entrada e transporte físico seguem pendente
 ## 2026-10-21 — callback de log em memória
 
 Rastreado callback 0xff6c8 até região 0xf0010000/2 MiB, cursor header+0x200 e wrap +0x208. DTS e debug-snapshot corroboram os mesmos endereços/offsets; kernel pode preservar e exportar last_kmsg sob condições. Criado leitor offline com 6 reconstruções/limites e 7 recusas PASS. Nenhum dump runtime adquirido ou escrita feita em região reservada.
+
+## 2026-10-21 — coleta limitada de logs preparada
+
+Confirmados callbacks read-only last_kmsg/first_kmsg e sec_log na fonte. Criado coletor para rish com metadados, limite 2 MiB/5 s por arquivo e recusa de pasta existente. Fixture host passou leitura exata, limite, ausência e recusa de sobrescrita; Android pendente. Documentado que proc captures não são dumps físicos para o leitor de snapshot.
