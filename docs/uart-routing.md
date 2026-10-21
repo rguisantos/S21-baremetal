@@ -109,3 +109,16 @@ continuar a análise estática; não há novo pacote-fonte a solicitar.
 | `drivers/usb/typec/maxim/max77705-muic.c` | `bfdb034d7571ca233202221cdc8cdfe68bab3e837afea9c4b5a37378ed7acbab` |
 | `include/linux/muic/common/muic.h` | `421c69aea93560473d01b412448ca50395c096346709375720fe7c839b44fd57` |
 | `arch/arm64/configs/exynos2100-p3sxxx_defconfig` | `e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd` |
+
+## Resultado recebido no aparelho
+
+A coleta foi executada em 2026-10-21 no SM-G998B/HZC2 via uid=2000.
+`uart_en` existe, modo 0660 system:radio, mas não é legível pelo shell;
+`uart_sel`, `adc` e `usb_state` apareceram ausentes ou ocultos. `attached_dev`
+retornou `No VPS`. No driver de referência, essa mensagem decorre de índice
+negativo na busca da tabela de acessórios; não é prova de desconexão física.
+
+A execução real do coletor está agora confirmada. Nenhum valor de habilitação
+UART ou seleção AP/CP foi obtido e nenhum atributo foi alterado. Consulte
+[coleta recebida e limites](runtime-collection.md#coleta-uartmuic-recebida--2026-10-21).
+Não repetir a mesma coleta esperando obter permissões diferentes.

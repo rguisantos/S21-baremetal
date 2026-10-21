@@ -25,3 +25,47 @@ O total gerenciado pelo Linux não é tamanho nem endereço de RAM livre para o 
 ## Como o trabalho continua
 
 As imagens stock e fontes oficiais já permitiram conferir CPU, GIC, timer, UART e overlays, sem root. O código agora distingue essas evidências estáticas de um FDT/contrato de memória completo. O boot continua bloqueado quando RAM/reservas são insuficientes. Shizuku não foi tratado como meio de obter acesso root, e não houve tentativa de alterar permissões do firmware ou de fazer flash.
+
+## Coleta UART/MUIC recebida — 2026-10-21
+
+Arquivo `s21-uart-state.txt`, SHA-256
+`dcb645c38e20cf9d075b7841b8edcede19594cd3c603bf06804cf25e250c1b1a`.
+Timestamp declarado no relatório: 2026-10-21 14:13:08 UTC
+(10:13:08 em America/Campo_Grande). O relógio não foi verificado externamente.
+O arquivo bruto permanece fora do Git; os achados técnicos estão abaixo.
+
+| Campo | Observado | Conclusão permitida |
+|---|---|---|
+| Identidade shell | uid=2000, contexto u:r:shell:s0 | rish/Shizuku operou como shell, sem root |
+| Modelo | SM-G998B | Consistente com o alvo p3s |
+| Build Android | AP3A.240905.015.A2.G998BXXSJHZC2 | Confirma a propriedade do build informado |
+| Bootloader | G998BXXSJHZC2 | Propriedade compatível com o BL recebido; não é comparação dos bytes instalados |
+| uart_sel | ABSENT (or hidden by permissions) | Não permite escolher entre ausência real e ocultação por permissões; AP/CP desconhecido |
+| uart_en | modo 0660, system:radio; UNREADABLE | Nó presente, valor desconhecido; não comprova UART desligada |
+| adc | ABSENT (or hidden by permissions) | Sem valor ADC disponível |
+| attached_dev | No VPS | Estado sem correspondência na tabela consultada pelo callback de referência |
+| usb_state | ABSENT (or hidden by permissions) | Sem estado USB consultável por esse caminho |
+
+No `max77705-muic.c` recebido, `max77705_muic_show_attached_dev()` chama
+`muic_lookup_vps_table()` e imprime `No VPS` se o índice for negativo.
+Isso não identifica um jig reconhecido, mas também não comprova ausência
+física de cabo/acessório. A comparação com a fonte explica a mensagem; não
+identifica por si só a versão do driver carregado.
+
+O modo de `uart_en` permite leitura ao proprietário system e grupo radio.
+O shell mostrado não pertence a esse grupo, portanto as permissões DAC já
+explicam a falta de acesso. SELinux pode impor limites adicionais, mas não
+foi isolado como causa nessa coleta. Não inferir seu valor a partir do modo.
+
+### Resultado para o projeto
+
+A primeira coleta UART foi concluída no Android e o relatório chegou completo.
+O coletor funcionou dentro dos limites do shell: registrou propriedades,
+permissões e uma leitura efetiva de MUIC. Não foi possível observar seleção
+AP/CP, habilitação UART ou ADC. Não houve mudança de configuração.
+
+Continuam pendentes o roteamento físico de UART0, o estado do console no LK,
+o contrato de carregamento e a recuperação do registro de entrada. Esse
+relatório não mede EL/cache, não fornece FDT dinâmico e não libera teste físico
+do payload. Não repetir a mesma coleta nem pedir novamente FDT/iomem/cmdline
+negados. A análise estática pode continuar com os arquivos já recebidos.

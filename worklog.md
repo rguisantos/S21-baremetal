@@ -167,3 +167,12 @@ Kernel.tar.gz recuperado com o hash anterior. DTS identifica 0x10540000 como UAR
 ## 2026-10-21 — gate do console e roteamento MUIC
 
 Identificada decisão ifconn_get_jig_status, tabela ADC MUIC e correspondência com JIG UART/USB na fonte. Consultado MAX77705 específico selecionado no defconfig p3s; documentados AP/CP e rustproof. Criado coletor read-only de atributos novos para rish, sem repetir FDT/iomem negados. Inspetor de sboot ampliado com tabela e destinos. Nenhuma observação física, alteração sysfs ou teste Android declarado.
+
+## 2026-10-21 — relatório UART/MUIC recebido
+
+Coleta v1 efetivamente executada no SM-G998B/HZC2 via shell Shizuku. uart_en
+presente 0660 system:radio, valor bloqueado; seleção AP/CP e ADC indisponíveis;
+attached_dev = No VPS. Mensagem cruzada com lookup negativo no driver, sem
+inferir ausência física de cabo ou UART desabilitada. Hash e achados registrados
+em docs/runtime-collection.md, sem publicar o arquivo bruto. Não solicitar
+repetição desta coleta. Estado de entrada e transporte físico seguem pendentes.
