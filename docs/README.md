@@ -4,7 +4,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 ## Implementação e testes atuais
 
-- [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e seis casos QEMU.
+- [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 
 - [R10 em uma CPU](r10-single-cpu.md): entrada, exceções, GIC e timer.
 - [FDT e política de memória](fdt-resources.md).
@@ -62,3 +62,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [UART0 no intervalo BL2 HZC2](bl2-uart-hzc2.md): pinmux compatível, chamadas diretas e configuração nominal.
 
 - [Clocks UART0 entre BL2 e LK](uart-clock-stages.md): tabelas PERIC0, wrapper principal e divisor.
+
+- [Gates e QCH UART0](uart-gates.md): sincronizador de reset, IPCLK/PCLK, campos CAL e limites da busca estática.

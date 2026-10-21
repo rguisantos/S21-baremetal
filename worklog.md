@@ -255,3 +255,15 @@ Fonte CAL liga PLL_SHARED2_D2 à tabela799500000/M123/P2/S1. Cadeia /2/1/3
 fecha133250000 e divisorUART71. Nova auditoria offline hash-bound valida
 as seleções e aritmética, recusando fontes/firmware diferentes. Gates/QCH
 continuam sem estado de handoff determinado; nenhum acesso físico realizado.
+
+## 2026-10-21 — gates UART0 e dependência separada do PCLK
+
+Corrigida a descrição de 0x104020b8: gate do sincronizador de reset, distinto
+de IPCLK em 0x10402030 e PCLK em 0x10402060. PCLK usa BUS_USER; os outros
+dois usam DIV_CLK_PERIC0_UART_DBG. QCH em 0x10403014 tem campos próprios.
+Auditoria ampliada para quatro fontes fixadas por hash, extraindo endereços,
+campos e pais. Passou o caso real e recusou alteração individual das quatro
+fontes (5/5 verificações), compilação Python e diff-check. Busca de literais
+não encontrou os quatro endereços no sboot; isso não exclui acessos indiretos.
+Write 0x14ce7c com offset 0x20b8 usa buffer de pilha, não CMU comprovada.
+Novo documento registra o mapa e os limites; nenhum driver ou MMIO alterado.

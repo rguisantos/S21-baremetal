@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT/'docs/references/exynos-2100-37c14d8.json'
 NODE = 'drivers/soc/samsung/cal-if/exynos2100/cmucal-node.c'
 CLOCK = 'drivers/clk/samsung/clk-exynos2100.c'
+SFR = 'drivers/soc/samsung/cal-if/exynos2100/cmucal-sfr.c'
+QCH = 'drivers/soc/samsung/cal-if/exynos2100/cmucal-qch.c'
 
 
 def checked_source(root, path, entries):
@@ -38,6 +40,37 @@ def wide(data, offset):
     return ((word >> 5) & 0xffff) << (((word >> 21) & 3)*16)
 
 
+def gate_inventory(node, sfr, qch):
+    """Extract source declarations only; no assertion of a live gate state."""
+    base = int(match(r'SFR_BLOCK\(CMU_PERIC0,\s*(0x[0-9a-fA-F]+),', sfr)[1], 16)
+
+    def register(name, fields):
+        offset = int(match(r'SFR\('+name+r',\s*(0x[0-9a-fA-F]+),\s*CMU_PERIC0\)', sfr)[1], 16)
+        result = dict(address=hex(base+offset), fields={})
+        for field in fields:
+            shift, width = map(int, match(r'SFR_ACCESS\('+name+'_'+field+r',\s*(\d+),\s*(\d+),\s*'+name+r'\)', sfr).groups())
+            if width < 1 or shift+width > 32:
+                raise ValueError('invalid source field: '+name+'_'+field)
+            result['fields'][field] = dict(shift=shift, width=width)
+        return result
+
+    gates = {}
+    for label, suffix in (
+            ('reset_sync', 'RSTNSYNC_CLK_PERIC0_UART_DBG_IPCLKPORT_CLK'),
+            ('ipclk', 'PERIC0_TOP0_IPCLKPORT_IPCLK_4'),
+            ('pclk', 'PERIC0_TOP0_IPCLKPORT_PCLK_4')):
+        name = 'GOUT_BLK_PERIC0_UID_'+suffix
+        reg = 'CLK_CON_GAT_'+name
+        parent = match(r'CLK_GATE\('+name+r',\s*(\w+),\s*'+reg+r'_CG_VAL,\s*'+reg+r'_MANUAL,\s*'+reg+r'_ENABLE_AUTOMATIC_CLKGATING\)', node)[1]
+        gates[label] = register(reg, ('CG_VAL', 'MANUAL', 'ENABLE_AUTOMATIC_CLKGATING'))
+        gates[label]['parent'] = parent
+    name = 'PERIC0_TOP0_QCH_UART_DBG'
+    reg = 'QCH_CON_'+name
+    match(r'CLK_QCH\('+name+r',\s*'+reg+r'_ENABLE,\s*'+reg+r'_CLOCK_REQ,\s*'+reg+r'_EXPIRE_VAL,\s*'+reg+r'_IGNORE_FORCE_PM_EN\)', qch)
+    gates['qch'] = register(reg, ('ENABLE', 'CLOCK_REQ', 'EXPIRE_VAL', 'IGNORE_FORCE_PM_EN'))
+    return gates
+
+
 def audit(sboot, source_root):
     evidence = inspect(sboot)  # Requires the exact HZC2 image before decoding.
     data = sboot.read_bytes()
@@ -45,6 +78,9 @@ def audit(sboot, source_root):
     entries = {e['path']: e for e in manifest['files']}
     node = checked_source(source_root, NODE, entries)
     clock = checked_source(source_root, CLOCK, entries)
+    sfr = checked_source(source_root, SFR, entries)
+    qch = checked_source(source_root, QCH, entries)
+    gates = gate_inventory(node, sfr, qch)
     oscillator = int(match(r'FRATE\(OSCCLK,\s*"fin_pll",\s*NULL,\s*0,\s*(\d+)\)', clock)[1])
     table = match(r'pll_shared2_rate_table\[\]\s*=\s*\{(.*?)\};', node)[1]
     rate, m, p, s = map(int, match(r'PLL_RATE_MPS\((\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)', table).groups())
@@ -83,6 +119,7 @@ def audit(sboot, source_root):
                 divisors=[fixed_encoded+1, 1, local_encoded+1],
                 uart_nominal_hz=int(nominal), requested_baud=baud,
                 bl2_ubrdiv=divisor, lk_ubrdiv=lk, runtime_observed=False,
+                gate_source_inventory=gates,
                 unresolved=['Actual PLL/mux/divider values at handoff',
                             'UART gate and QCH state', 'Physical routing and access'])
 

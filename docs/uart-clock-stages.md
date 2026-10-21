@@ -141,8 +141,10 @@ escritos no aparelho. A programação completa de PLL_SHARED2 permanece pendente
 
 ### Gates e o que ainda não foi demonstrado
 
-O CAL identifica QCH em **0x10403014** e o gate UART IPCLK em
-**0x104020b8**. A busca de palavras literais completas e de construções
+O CAL identifica QCH em **0x10403014** e o gate do sincronizador de reset
+UART em **0x104020b8**. Os gates IPCLK e PCLK são distintos: ver o
+[inventário de gates](uart-gates.md), que refina a descrição anterior.
+A busca de palavras literais completas e de construções
 imediatas diretas nos trechos examinados não encontrou um acesso inequívoco
 que fixe seus estados no handoff. Isso é um resultado limitado de busca,
 não prova de ausência de writes: tabelas, aliases, outro firmware e acessos
@@ -159,10 +161,11 @@ python3 scripts/check_uart_clock_evidence.py /caminho/sboot.bin /caminho/fontes-
 ```
 
 A raiz de fontes precisa fornecer `drivers/clk/samsung/clk-exynos2100.c` e
-`drivers/soc/samsung/cal-if/exynos2100/cmucal-node.c` com os hashes já
-registrados no manifesto Exynos-2100. Ambos foram comparados anteriormente
-com o pacote recebido e são byte-idênticos. A ferramenta confere o hash do
-sboot, os dois arquivos, os seletores, tabela M/P/S, divisores e consistência
+`drivers/soc/samsung/cal-if/exynos2100/{cmucal-node,cmucal-sfr,cmucal-qch}.c`
+com os hashes já registrados no manifesto Exynos-2100. Os quatro foram
+comparados anteriormente com o pacote recebido e são byte-idênticos.
+A ferramenta confere o hash do sboot, os quatro arquivos, os seletores,
+tabela M/P/S, divisores, inventário de gates/QCH e consistência
 com os argumentos BL2 e UBRDIV LK. Faz somente leituras e imprime JSON.
 
 Executada com as fontes fixadas: **133250000 Hz nominais, baud pedido 115200,

@@ -49,3 +49,5 @@ A busca ampliada encontrou [pinmux UART0 compatível no intervalo BL2](bl2-uart-
 O [rastreio de clocks UART0](uart-clock-stages.md) ligou tabelas PERIC0 à inicialização e encontrou nominal133,25 MHz no wrapper principal. A observação da frequência e das dependências no handoff continua pendente.
 
 A auditoria offline da árvore UART0 liga o mux TOP a PLL_SHARED2_D2 e fecha nominalmente 133,25 MHz. Próximas lacunas: programação/estado efetivo da PLL e QCH/gates no handoff; a conta nominal não libera a UART.
+
+O [inventário de gates](uart-gates.md) separa reset-sync/IPCLK/PCLK/QCH e mostra que PCLK usa BUS_USER. A auditoria verifica essas associações nas fontes; rastrear o caminho BUS e acessos indiretos permanece necessário antes de propor uma inicialização mínima.
