@@ -48,3 +48,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Console LK e handoff final HZC2](lk-console-handoff.md): caminho de saída e pista de base 0x10540000.
 
 - [Roteamento UART, jig e coleta somente de leitura](uart-routing.md).
+
+- [Log em memória LK/debug-snapshot](lk-memory-log.md): cursor, preservação pelo kernel e leitor offline.

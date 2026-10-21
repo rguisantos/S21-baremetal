@@ -97,3 +97,5 @@ A análise estática do [console LK HZC2](docs/lk-console-handoff.md) encontrou 
 A [seleção do console por jig e MUIC](docs/uart-routing.md) foi rastreada no LK e cruzada com o driver MAX77705. Há um coletor somente de leitura para os atributos UART/MUIC no Android.
 
 A [coleta UART/MUIC no aparelho](docs/runtime-collection.md#coleta-uartmuic-recebida--2026-10-21) confirmou SM-G998B/HZC2 e os limites do shell: `uart_en` existe, mas é ilegível; `attached_dev` retornou `No VPS`. A habilitação e a seleção AP/CP continuam desconhecidas.
+
+O callback adicional do LK foi identificado como [log em memória debug-snapshot](docs/lk-memory-log.md), em região de 2 MiB. Há um leitor offline com testes sintéticos; ainda não foi obtido dump dessa região no telefone.

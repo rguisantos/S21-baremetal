@@ -176,3 +176,7 @@ attached_dev = No VPS. Mensagem cruzada com lookup negativo no driver, sem
 inferir ausência física de cabo ou UART desabilitada. Hash e achados registrados
 em docs/runtime-collection.md, sem publicar o arquivo bruto. Não solicitar
 repetição desta coleta. Estado de entrada e transporte físico seguem pendentes.
+
+## 2026-10-21 — callback de log em memória
+
+Rastreado callback 0xff6c8 até região 0xf0010000/2 MiB, cursor header+0x200 e wrap +0x208. DTS e debug-snapshot corroboram os mesmos endereços/offsets; kernel pode preservar e exportar last_kmsg sob condições. Criado leitor offline com 6 reconstruções/limites e 7 recusas PASS. Nenhum dump runtime adquirido ou escrita feita em região reservada.

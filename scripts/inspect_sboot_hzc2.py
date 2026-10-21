@@ -121,6 +121,16 @@ def inspect(path):
                               for adc in range(24, 30)},
             suppression_call_target=hex(bl_target(u32(0xedba4), 0xedba4)),
             limit='Static dispatch and table only; no device ADC or routing observation'),
+        'memory_log_callback': dict(
+            callback_pointer=hex(u64(0x2ef148)),
+            callback_file_offset=hex(u64(0x2ef148)-0xe7f14000),
+            registration_call_target=hex(bl_target(u32(0xff948), 0xff948)),
+            copy_call_target=hex(bl_target(u32(0xff738), 0xff738)),
+            tail_zero_call_target=hex(bl_target(u32(0xff764), 0xff764)),
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0xff6c8, 0xff6d4, 0xff6e8, 0xff708,
+                                0xff728, 0xff748, 0xff778, 0xff77c)},
+            status='Matches source debug_snapshot/log_kernel; no runtime dump acquired'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],
