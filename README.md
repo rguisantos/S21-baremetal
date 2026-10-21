@@ -2,7 +2,7 @@
 
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-**Estado em 2026-10-20:** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
+**Estado em 2026-10-21:** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
 ## Módulos e validação
 
@@ -14,6 +14,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 | R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
 | R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
+| Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [6 casos QEMU PASS](docs/entry-diagnostic.md); sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
 
 Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
@@ -29,6 +30,7 @@ python3 scripts/test_fdt.py
 python3 scripts/test_payload.py
 python3 scripts/test_payload_stage.py
 python3 scripts/test_payload_loader.py
+python3 scripts/test_entry_diag.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```

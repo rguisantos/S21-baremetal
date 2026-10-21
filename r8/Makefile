@@ -13,9 +13,11 @@ CROSS ?= $(LOCAL_CROSS)
 endif
 CC      := $(CROSS)gcc
 OBJDUMP := $(CROSS)objdump
+OBJCOPY := $(CROSS)objcopy
 ifneq ($(wildcard $(LOCAL_CROSS)gcc),)
 CC := bash ../scripts/cross-run.sh $(TOOLS) $(CC)
 OBJDUMP := bash ../scripts/cross-run.sh $(TOOLS) $(OBJDUMP)
+OBJCOPY := bash ../scripts/cross-run.sh $(TOOLS) $(OBJCOPY)
 endif
 
 ifeq ($(wildcard $(LOCAL_QEMU)),)
@@ -218,3 +220,16 @@ run_r10_loader_test: $(BUILD)/r10_loader_test.elf
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(LOADER_VIRTUALIZATION) -cpu max -smp 1 \
 	    -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
 .PHONY: run_r10_loader_test
+
+# Standalone entry probe; does not start R10 or touch peripherals.
+$(BUILD)/entry_diag.o: entry_diag/start.S | $(BUILD)
+	$(CC) $(ASFLAGS) -c $< -o $@
+$(BUILD)/entry_diag.elf: $(BUILD)/entry_diag.o entry_diag/linker.ld
+	$(CC) $(ASFLAGS) -static -T entry_diag/linker.ld -Wl,--build-id=none -o $@ $<
+$(BUILD)/entry_diag.Image: $(BUILD)/entry_diag.elf
+	$(OBJCOPY) -O binary $< $@
+DIAG_VIRTUALIZATION ?= on
+run_entry_diag: $(BUILD)/entry_diag.Image
+	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(DIAG_VIRTUALIZATION) -cpu max -smp 1 \
+	    -display none -monitor none -serial none -S -gdb stdio -kernel $<
+.PHONY: run_entry_diag

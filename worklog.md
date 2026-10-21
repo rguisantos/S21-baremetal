@@ -140,3 +140,18 @@ Rastreado escritor do deslocamento do salto: serviço SMC 0xc200101c, seis bits 
 ## 2026-10-21 — splits HZC2 e contraprova à premissa EL2
 
 Detector fixado em 0c0acea reproduz BL1/EPBL/BL2/LK/monitor; limite de LK usa tamanho fixo, não footer independente. Primeiro BL de LK (sboot+0xec000) chama 0xf9b4c: retorno imediato se EL1; SPSR 0x3c5 e ERET nos caminhos superiores. Saltos/FDT anteriores pertencem a LK. Corrigidos offsets de strings e BL com extensão de sinal (0x1efcd0→0x1c4820, não chamada externa 0x1001c4820). Ferramenta standard library somente leitura inspect_sboot_hzc2.py aceita hash exato e rejeita três entradas inválidas. Relatório completo em docs/sboot-layout-hzc2.md; main mantém contrato EL2 sintético até adaptação fundamentada. Branch kilo f624360 traz apenas documentação nova, sem corrigir packer ou implementar SMP. Nenhum firmware bruto publicado.
+
+
+## 2026-10-21 — diagnóstico independente de entrada
+
+Preparado Image ARM64 pequeno que registra x0–x3, CurrentEL, DAIF, SCTLR do
+EL atual, MPIDR, SPSel, SP e endereços efetivos em área interna de 128 bytes.
+Sem pilha, periféricos, FDT dereference ou transição de EL; recusa gravação
+com M/C ligado. R10 continua exigindo EL2.
+
+`python3 scripts/test_entry_diag.py`: 6/6 PASS em QEMU, EL1/EL2 e offsets
+0/0x8000/0x1f8000. Conferidos registro, código e sentinelas. O teste carrega
+Image bruto e injeta as relocações via GDB; não executa o LK Samsung.
+[Documentação](docs/entry-diagnostic.md) detalha campos, pré-condições e
+recusas ainda não exercitadas. Nenhum novo arquivo necessário nesta etapa;
+canal físico de observação e contrato de carregamento seguem pendentes.

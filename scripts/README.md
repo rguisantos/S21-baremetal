@@ -14,3 +14,5 @@ Execute a partir da raiz do repositório. Os comandos de validação estão no [
 Os scripts históricos foram mantidos no lugar para preservar referências e caminhos. Alguns usam `/home/z/my-project` ou dependem de downloads antigos; não são comandos de reprodução atuais. Em particular, o conteúdo descrito por `snapshot_project.sh` inclui `.env`: não usar esse snapshot como pacote público sem revisar sua seleção de arquivos. A organização não executou repacks, instaladores ou scripts de flash.
 
 O empacotador atual está em `../tools/mkpayload.py`; não confundir com versões do branch kilo. O carregador de teste usa uma CPU e não verifica SMP.
+
+- `test_entry_diag.py`: seis execuções do diagnóstico Image em QEMU (EL1/EL2 e três endereços); [contrato e limites](../docs/entry-diagnostic.md).

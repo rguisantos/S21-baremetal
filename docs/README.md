@@ -4,6 +4,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 ## Implementação e testes atuais
 
+- [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e seis casos QEMU.
+
 - [R10 em uma CPU](r10-single-cpu.md): entrada, exceções, GIC e timer.
 - [FDT e política de memória](fdt-resources.md).
 - [Formato S21R10](payload-format.md): empacotador e validação.
