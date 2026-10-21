@@ -52,3 +52,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Log em memória LK/debug-snapshot](lk-memory-log.md): cursor, preservação pelo kernel e leitor offline.
 
 - [Coleta limitada de logs pelo rish](boot-log-collection.md): interfaces de snapshot, metadados e limites.
+
+- [Cópia da Image e destino de salto no LK](lk-kernel-copy.md): contexto e caminhos Android v2/v3.

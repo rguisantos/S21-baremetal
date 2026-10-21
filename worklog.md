@@ -192,3 +192,11 @@ first_kmsg e sec_log ausentes/ocultos; nenhum ramo de captura executado.
 Hash e limites registrados em docs/boot-log-collection.md. Não solicitar
 binários inexistentes nem repetir coleta. A ausência observada não demonstra
 ausência de logs na RAM. Continuam pendentes contrato de boot e observação.
+
+## 2026-10-21 — cópia do kernel ligada ao destino KASLR
+
+Rastreado setup do contexto para cópias boot header v2/v3, destino x23 =
+0x80080000 + deslocamento. Cópias usam bytes kernel e tamanho do contêiner;
+mesmo campo participa do salto final. Inspector ampliado e diagnóstico
+testado em EL1/EL2 nos 64 offsets: 128/128 PASS em QEMU, sem executar LK.
+Contrato de verificação, RAM/reservas e observação física continuam pendentes.

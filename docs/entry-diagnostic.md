@@ -92,3 +92,10 @@ fontes já recebidos bastam para seguir o caminho de preparação/salto. Um FDT
 **dinâmico** e uma captura real do estado de entrada continuam evidências
 pendentes; Shizuku sem root não superou as permissões do aparelho, portanto
 não repetir a mesma coleta como se ela pudesse fornecê-las.
+
+## Cobertura ampliada dos deslocamentos HZC2
+
+`python3 scripts/test_entry_diag.py --all-offsets` executou **128/128 PASS**,
+EL1/EL2 e todos os 64 offsets de 32 KiB. O modo padrão continua com seis casos.
+As mesmas limitações da injeção por GDB se aplicam; a evidência de ligação
+entre cópia e salto está em [lk-kernel-copy.md](lk-kernel-copy.md).

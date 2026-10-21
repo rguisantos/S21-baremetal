@@ -131,6 +131,17 @@ def inspect(path):
                                (0xff6c8, 0xff6d4, 0xff6e8, 0xff708,
                                 0xff728, 0xff748, 0xff778, 0xff77c)},
             status='Matches source debug_snapshot/log_kernel; no runtime dump acquired'),
+        'kernel_copy_chain': dict(
+            context_setup_words={hex(off): f'{u32(off):08x}' for off in
+                                 (0xfba04, 0xfba08, 0xfba10, 0xfba18)},
+            dispatch_calls={hex(off): hex(bl_target(u32(off), off))
+                            for off in (0xfbba0, 0xfbbb0)},
+            copy_calls={hex(off): hex(bl_target(u32(off), off))
+                        for off in (0x12e420, 0x12e88c)},
+            copy_setup_words={hex(off): f'{u32(off):08x}' for off in
+                              (0x12e068, 0x12e070, 0x12e418, 0x12e41c,
+                               0x12e560, 0x12e568, 0x12e880, 0x12e884, 0x12e888)},
+            status='Static source/destination chain; no execution of Samsung LK'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe the raw ARM64 Image in QEMU at EL1/EL2 and relocated addresses."""
+import argparse
 import os
 from pathlib import Path
 import signal
@@ -16,6 +17,11 @@ def register(remote, number, value=None, size=8):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--all-offsets", action="store_true",
+                        help="test all 64 offsets in the decoded HZC2 range")
+    args = parser.parse_args()
+    offsets = tuple(range(0, 0x200000, 0x8000)) if args.all_offsets else (0, 0x8000, 0x1f8000)
     with tempfile.TemporaryDirectory(prefix='entry-diag-') as directory:
         build = Path(directory)
         subprocess.run(['make', '-s', '-C', str(ROOT/'r8'), f'BUILD={build}',
@@ -27,7 +33,7 @@ def main():
         assert image[32:56] == bytes(24) and image[56:64] == b'ARM\x64\0\0\0\0'
         assert len(image) == sym['diag_end']-base
         for el, virtualization in ((1, 'off'), (2, 'on')):
-            for offset in (0, 0x8000, 0x1f8000):
+            for offset in offsets:
                 with (build/'qemu.log').open('wb') as log:
                     process = subprocess.Popen(['make', '-s', '--no-print-directory', '-C', str(ROOT/'r8'),
                         f'BUILD={build}', f'DIAG_VIRTUALIZATION={virtualization}', 'run_entry_diag'],
@@ -80,6 +86,6 @@ def main():
                         try: process.wait(timeout=5)
                         except subprocess.TimeoutExpired:
                             os.killpg(process.pid, signal.SIGKILL); process.wait()
-        print('ENTRY DIAG: 6/6 QEMU cases PASS; one CPU, no Samsung hardware claim')
+        print(f'ENTRY DIAG: {2*len(offsets)}/{2*len(offsets)} QEMU cases PASS; one CPU, no Samsung hardware claim')
 
 if __name__ == '__main__': main()
