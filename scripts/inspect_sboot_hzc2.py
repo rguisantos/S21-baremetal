@@ -95,6 +95,22 @@ def inspect(path):
         'negative_bl_example': dict(instruction_offset='0x1efcd0',
                                     target_offset=hex(bl_target(u32(0x1efcd0), 0x1efcd0))),
         'entry_literals': {hex(off): hex(u64(off)) for off in (0xec030, 0xec038, 0xec040)},
+        'late_handoff': dict(
+            cache_prepare_call=hex(bl_target(u32(0xfbddc), 0xfbddc)),
+            post_cache_calls={hex(off): hex(bl_target(u32(off), off))
+                              for off in (0xfbde4, 0xfbdf0)},
+            explicit_irq_mask_word=f'{u32(0xfbdd4):08x}',
+            final_jump_word=f'{u32(0xfbe14):08x}'),
+        'console_static_chain': dict(
+            assumed_lk_runtime_delta='0xe7f14000',
+            stdout_pointer=hex(u64(0x31fff0)),
+            object_ops_pointer=hex(u64(0x3218b8)),
+            ops_write_pointer=hex(u64(0x2906f8)),
+            byte_output_call=hex(bl_target(u32(0x20c510), 0x20c510)),
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0xef3f4, 0xef420, 0xef4cc, 0xef4d0,
+                                0xef4d8, 0xef4e0)},
+            status='Static path selects 0x10540000; execution and pin routing unobserved'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],

@@ -155,3 +155,7 @@ Image bruto e injeta as relocações via GDB; não executa o LK Samsung.
 [Documentação](docs/entry-diagnostic.md) detalha campos, pré-condições e
 recusas ainda não exercitadas. Nenhum novo arquivo necessário nesta etapa;
 canal físico de observação e contrato de carregamento seguem pendentes.
+
+## 2026-10-21 — console LK e chamadas finais
+
+Rastreada a mensagem final por objeto/tabela/callback até 0xef4c0. Encontrado escritor da base 0x10540000 em 0xef3e0, distinto de UART1 no DTB. Documentadas dependências de estado, chamadas de dump após preparação de cache e ausência de prova do EL final. Inspector hash-bound ampliado; nenhum firmware ou driver alterado. Ver [evidências](docs/lk-console-handoff.md).
