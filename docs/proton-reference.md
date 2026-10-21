@@ -4,7 +4,7 @@ Análise estática feita pelo GitHub em 2026-10-20, após indicação do usuári
 
 ## Correspondência com o arquivo enviado
 
-A [release v6.1.0](https://github.com/ProtonKernel/Proton/releases/tag/v6.1.0) lista exatamente `ProtonPlus-v6.1.0-KSU-exynos2100-20260125-1906.zip`, nome do pacote enviado pelo usuário. Essa é correspondência de nome e publicação: o ZIP local não pôde ser aberto porque o ambiente de execução estava indisponível. Não foi comparado seu hash, extraído seu conteúdo ou demonstrada correspondência binária com uma compilação dessa tag.
+A [release v6.1.0](https://github.com/ProtonKernel/Proton/releases/tag/v6.1.0) lista exatamente `ProtonPlus-v6.1.0-KSU-exynos2100-20260125-1906.zip`, nome do pacote enviado pelo usuário. O ZIP publicado já foi baixado e inspecionado; seu digest confere com a API da release, e a Image identifica Linux 5.4.302. Hashes, headers Linux/EFI e DTB extraído estão em [proton-binary.md](proton-binary.md). Não foi comparado byte a byte com o upload anterior nem reproduzida a compilação da tag.
 
 O [Makefile](https://github.com/ProtonKernel/Proton/blob/a0d73239d600d9ec89e7ac4775d2139d4d61290e/Makefile) define VERSION=5, PATCHLEVEL=4, SUBLEVEL=302: **Linux 5.4.302**. “v6.1.0” é a versão do projeto Proton+, não Linux 6.1. A imagem stock HZC2 anteriormente examinada contém Linux 5.4.242; as duas referências devem permanecer distintas. O envio de um kernel alternativo não foi tomado como confirmação de que ele está instalado no aparelho.
 
@@ -51,7 +51,7 @@ O DTS contém uma reserva `gpu_buffer` com `size=0x4000000` (64 MiB) e alinhamen
 
 Esse repositório fornece uma referência de código para a futura investigação GPU: mapa de registradores, interrupções, gerenciamento de jobs/MMU e integração de clock/energia. O driver depende das abstrações Linux e Samsung; não pode ser simplesmente ligado ao payload R10.
 
-Para o estágio inicial continuam prioritários o contrato do carregador, mapa final de RAM/reservas, console e timer em uma CPU. O DTS Proton não preenche a ausência de RAM do DTB estático stock, nem demonstra o EL/estado de caches do handoff. Nenhum driver, tabela DVFS ou binário Proton foi incorporado ao R10. Não houve compilação, execução ou flash nesta análise; a entrega altera somente documentação.
+Para o estágio inicial continuam prioritários o contrato do carregador, mapa final de RAM/reservas, console e timer em uma CPU. O DTS Proton não preenche a ausência de RAM do DTB estático stock, nem demonstra o EL/estado de caches do handoff. Nenhum driver, tabela DVFS ou binário Proton foi incorporado ao R10. A análise de fonte não compilou esse kernel nem o executou no telefone. A etapa posterior inspecionou o ZIP e implementou ferramentas de contêiner, sem incorporar os drivers ao R10.
 
 Referências do firmware usado como base: [stock-firmware-hzc2.md](stock-firmware-hzc2.md), [samsung-reference.md](samsung-reference.md). Política atual do payload: [fdt-resources.md](fdt-resources.md).
 

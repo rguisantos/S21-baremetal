@@ -1,8 +1,8 @@
 /*
  * S21 Ultra Exynos 2100 boot shim.
  *
- * Samsung BL2 (TF-A) hands off to us at EL2 with x0 = FDT pointer.
- * We set up EL1 MMU, then chainload our R10 payload.
+ * Firmware handoff is unverified. Default entry parks before stack/BSS/MMIO.
+ * Legacy bring-up is available only for explicit source-audit experiments.
  */
 	.section .text.head, "ax"
 	.globl _head
@@ -22,6 +22,10 @@ _head:
 	.globl _start
 _start:
 	msr	daifset, #0xf
+#ifndef SHIM_LEGACY_EXPERIMENT
+0:	wfe
+	b	0b
+#endif
 	mov	x19, x0			/* FDT pointer from BL2 */
 	msr	spsel, #1
 	adr	x1, _stack_top

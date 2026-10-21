@@ -10,3 +10,5 @@ build/
 .env
 download/
 scripts/toolchain/
+
+__pycache__/

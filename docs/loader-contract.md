@@ -15,7 +15,7 @@ Análise estática em 2026-10-20. Código Proton fixado no commit **a0d73239d600
 
 A referência AnyKernel é um branch, não um SHA fixado no script. Além disso, uma pasta local existente pode ser reutilizada. Portanto, consultar esse branch hoje não demonstra quais scripts foram incluídos no ZIP de janeiro. A publicação lista o arquivo enviado com tamanho **34.652.394 bytes** e digest de release **sha256:3b86a4f0ca1fcf8ac06372a2af27bb0b0b9ca413e3da3b0c055629b087e9c982**. Esse digest é metadado da API GitHub, não comparação já efetuada com o upload.
 
-A [release v6.1.0](https://github.com/ProtonKernel/Proton/releases/tag/v6.1.0) é a origem desse nome/digest. Não houve download/extração do binário nesta análise: o ambiente de execução estava indisponível e a consulta GitHub utilizada fornece texto.
+A [release v6.1.0](https://github.com/ProtonKernel/Proton/releases/tag/v6.1.0) é a origem desse nome/digest. Na etapa inicial só havia consulta textual. Agora o ZIP publicado foi baixado, seu digest conferido e Image/vendor_boot/anykernel.sh inspecionados; veja [proton-binary.md](proton-binary.md). O SHA Git do AnyKernel incluído e a equivalência com uma compilação reproduzida continuam pendentes.
 
 ## 2. O que o instalador faz
 
@@ -34,7 +34,7 @@ O [mkbootimg.py](https://github.com/ProtonKernel/Proton/blob/a0d73239d600d9ec89e
 
 Já a imagem stock HZC2 examinada anteriormente contém campos 0x80008000, 0x84000000 e 0x81f00000, com vendor pagesize 4096. O script alternativo ckbuild_actions.sh tem outros parâmetros explícitos e não é o chamado por do_build.sh. Esses caminhos não devem ser misturados como se demonstrassem a mesma imagem.
 
-Essas diferenças são um limite de rastreabilidade entre fonte, scripts e artefato publicado. Não provam que o bootloader ignore os campos, nem autorizam escolher um endereço para o R10. É necessário conferir os headers efetivos do ZIP e depois o comportamento do carregador.
+Essas diferenças são um limite de rastreabilidade entre fonte, scripts e artefato publicado. Não provam que o bootloader ignore os campos, nem autorizam escolher um endereço para o R10. Os headers efetivos do ZIP agora foram conferidos e correspondem aos defaults desse caminho; ainda falta observar o comportamento do carregador.
 
 Há três camadas distintas: offsets dentro do contêiner Android, campos de carga no header vendor e endereço onde a CPU realmente executa a Image. O text_offset do header AArch64 também não é um endereço físico absoluto.
 
@@ -66,10 +66,14 @@ O guia antigo [ABL_EXTRACTION.md](../scripts/kit-assets/ABL_EXTRACTION.md) foi c
 
 Antes de qualquer teste no telefone:
 
-1. Conferir o digest e inventário do ZIP Proton e os headers reais de seus componentes, quando houver execução disponível. Registrar também o SHA do AnyKernel incluído.
+1. Digest e headers do ZIP público já conferidos em proton-binary.md. Ainda falta atribuir o SHA Git do AnyKernel incluído e reproduzir a compilação.
 2. Retomar os binários BL disponíveis com hashes e limites de seções. Localizar xrefs para validação da Image, seleção/ajuste de DTB e salto final; documentar argumentos, endereço e mudança de EL somente quando sustentados por instruções.
 3. Preparar e testar no QEMU uma Image de diagnóstico separada, com header ARM64 e extensão total: entrada sem clear amplo de BSS, preservação de x0..x3 e identificação de EL antes de acessar registradores específicos de EL2. Testar caminhos EL1/EL2 e carga relocada.
 4. Fechar a reserva prévia da imagem/buffer/pilhas e uma forma de obter o resultado (UART validada ou outro canal demonstrado). Guardar dados em RAM sem forma de lê-los não é evidência observável.
 5. Só então decidir se a entrada R10 deve aceitar EL1 e como aplicar o FDT final/reservas. Não inventar bancos de RAM nem relaxar a política para fazer um DTB estático passar.
 
 Nenhum desses testes de Image nova ou binário BL foi executado nesta revisão. Não foram alterados payload, instalador, bootloader ou partições. Esta entrega é análise estática e correção de documentação; os resultados anteriores de regressão continuam descritos em [validation-2026-10-20.md](validation-2026-10-20.md).
+
+## Contêiner e quarentena do shim
+
+O formato S21R10 v1 agora tem produtor e validador offline, em [payload-format.md](payload-format.md). Isso não implementa ainda a próxima Image de diagnóstico descrita acima. O loader legado passava boot_args incompatível com o R10 e foi desativado; a entrada padrão do shim estaciona antes de MMIO. Nenhuma conclusão desta página autoriza fastboot/Odin com esses artefatos.

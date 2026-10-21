@@ -13,7 +13,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 | R8C | GICv3 e timer físico, INTID 30 | QEMU PASS |
 | R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
 | R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
-| Shim | Experimento separado de carregador | Compilação; contrato Samsung e execução não demonstrados |
+| Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
 
 O teste R10 usa entrada, parser, política de memória, vetores, GIC, timer e dispatcher de produção, com uma função C de teste e firmware sintético para o QEMU. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
@@ -25,6 +25,7 @@ Ambiente usado: Linux x86_64, Bash, make, Python 3 e compilador C nativo (`cc`) 
 make -C r8 -j4 all
 make -C r8 regress
 python3 scripts/test_fdt.py
+python3 scripts/test_payload.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```
@@ -58,6 +59,8 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
 - [Carregamento Samsung e instalador Proton: contrato e lacunas](docs/loader-contract.md)
+- [Contêiner S21R10 v1: empacotador, validação e limites](docs/payload-format.md)
+- [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
@@ -71,3 +74,5 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 Faltam um contrato de carregamento verificável, mapa de RAM e reservas após os ajustes do bootloader, estado de entrada/caches e acesso ICC/timer confirmado. Os DTBs stock e TWRP não resolvem essas lacunas. A coleta via Shizuku já foi tentada e documentada; ela não concede acesso root. Depois disso, fechar USI/clock/pinmux e só então ampliar para SPI, MCT e SMP com a topologia real.
 
 As [notas antigas de hardware](docs/archive/exynos2100-notes-legacy.md) foram preservadas como histórico e contêm hipóteses superadas. A documentação atual distingue resultados observados de trabalho ainda não validado.
+
+A Image do Proton publicada foi inspecionada: é Linux ARM64 com EFI stub, não um executável Windows que substitui Linux. O contêiner S21R10 agora pode ser gerado e validado offline, mas não habilita o shim ou testes de flash. Consulte as evidências binárias e o formato acima.

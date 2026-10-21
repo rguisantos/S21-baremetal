@@ -33,3 +33,7 @@ Na inspeção ELF com `readelf -lW r8/build/r10_payload.elf`, a imagem tem segme
 Continuam warnings preexistentes: parâmetro não usado no MCT, comparações signed/unsigned no SMP dormente e segmentos RWX nos módulos didáticos R8/R9. O R10 não ativa esses drivers experimentais na main. As verificações de software não demonstram o handoff Samsung, permissões de acesso reais ou configuração USI/cache do telefone.
 
 Para repetir a inspeção com suas próprias cópias das imagens, separe o FDT bruto da tabela Android, aplique cada overlay com `fdtoverlay` e use `scripts/test_fdt.py --inspect`. Identidade e offsets dos arquivos recebidos estão em [stock-firmware-hzc2.md](stock-firmware-hzc2.md); a referência TWRP está em [twrp-reference.md](twrp-reference.md). Os diagnósticos privados do aparelho não foram incluídos no repositório.
+
+## Complemento: contêiner e Proton publicado
+
+O empacotador/consumidor S21R10 passou em 59 casos, incluindo inspeção C com ASan/UBSan e extensão do ELF real até o fim das pilhas. O shim recompila com handoff desativado e entrada padrão em park. O ZIP público Proton foi baixado e seu SHA-256 conferido; detalhes em [proton-binary.md](proton-binary.md). Isso não é validação de SMP ou carregamento no telefone.

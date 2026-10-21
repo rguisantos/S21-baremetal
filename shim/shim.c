@@ -1,8 +1,8 @@
 /*
  * S21 Ultra Exynos 2100 boot shim - main entry
  *
- * Samsung BL2 (TF-A) hands off at EL2 with x0 = FDT pointer.
- * We drop to EL1, set up MMU, initialize hardware, then chainload R10 payload.
+ * Legacy hardware experiments, not a validated Samsung loader.
+ * Default assembly entry parks before this code; loader_boot is disabled.
  */
 #include <stdint.h>
 #include "console.h"

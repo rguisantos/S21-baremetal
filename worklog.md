@@ -100,3 +100,12 @@ Decisão do usuário: sem flash no aparelho principal; rotas = esgotar QEMU + Fa
 - Conferidos mkbootimg, documentação ARM64 e head.S: offsets de contêiner/header não comprovam PC; Linux aceita EL1 ou EL2, enquanto R10 exige EL2. A imagem ELF R10 atual não é um substituto validado para uma Image ARM64 Samsung.
 - Não há binário sboot/Harx/ABL na árvore pública para reanálise; notas/strings históricas não fecham handoff, RAM ou estado de caches. Ambiente de execução permaneceu indisponível; análise via fontes textuais GitHub, sem extração de ZIP nem execução de scripts.
 - Corrigido ABL_EXTRACTION.md: modelo G998B, separação BL/AP e retirada de pressupostos ABL/U-Boot/flash. Matriz de evidências e critérios da próxima Image de diagnóstico em docs/loader-contract.md. README e referência Proton atualizados; payload e partições não alterados.
+
+
+## 2026-10-20 — Contêiner S21R10 e conferência binária Proton
+
+- Workspace reconstruído por clone da main. Comparado branch kilo/slim-fjord-u2q sem mesclar o estado anterior que remove correções/testes posteriores.
+- ZIP publicado Proton baixado: SHA-256 confere com API release. Image possui magic ARM64, versão Linux 5.4.302 e PE/EFI stub; corrigida conclusão de que não seria Linux. DTB extraído passou no parser e foi recusado por NO_RAM. initrd-end estático 0x841fffff é exclusivo no binding, portanto não descreve exatamente 2 MiB. Hashes e procedimento em docs/proton-binary.md.
+- tools/mkpayload.py gera S21R10 v1 a partir de ELF AArch64 identity-linked, FDT e cmdline; inclui extensão PT_LOAD/BSS/pilhas, sem reserva fictícia de 2 GB ou relocação implícita. Consumidor C inspeciona limites antes de devolver plano; não copia nem salta.
+- Loader legado removido do caminho executável: passava boot_args XNU em x0 para um consumidor FDT e fazia cópias sem validação. loader_boot agora recusa; entrada shim padrão estaciona antes de BSS/pilha/MMIO. Código legado não validado continua explicitamente em quarentena.
+- 59 casos de empacotador/consumidor/inspeção de headers passaram, com ASan/UBSan no consumidor C. Build de cinco ELFs R8-R10 e shim; integração R10 em uma CPU preservada. Não houve SMP do shim, chainload no telefone ou flash.
