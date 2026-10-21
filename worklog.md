@@ -208,3 +208,13 @@ e salta para a Image real. As duas entradas foram recusadas antes de alterar
 registro/código/sentinelas; argumentos e SP preservados. Teste padrão passou
 6 entradas aceitas + 2 recusas. M ligada e caches sujas não são cobertos.
 Sem mudança no código/contrato do diagnóstico ou R10 de produção.
+
+## 2026-10-21 — MMU ligada e roadmap persistido
+
+Fixture renomeada/ampliada para entry_diag_state.S: tabelas L0/L1 fornecidas
+pelo harness, bloco identidade read-only na RAM QEMU, MAIR/TCR/TTBR0/TLBI
+por EL. AT/PAR confirma leitura e falha de escrita antes de entrar na Image.
+Teste padrão: seis entradas aceitas e seis recusas C/M/M|C em EL1/EL2 PASS.
+Registro, código, sentinelas, tabelas, argumentos e SP preservados. Nenhuma
+mudança no diagnóstico de produção ou execução física. Roadmap no repositório
+registra o marco e a prioridade do contrato de carregamento/observação.

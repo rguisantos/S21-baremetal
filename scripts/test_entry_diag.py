@@ -26,16 +26,16 @@ def main():
         build = Path(directory)
         subprocess.run(['make', '-s', '-C', str(ROOT/'r8'), f'BUILD={build}',
                         str(build/'entry_diag.elf'), str(build/'entry_diag.Image'),
-                        str(build/'entry_diag_cache.bin')], check=True)
+                        str(build/'entry_diag_state.bin')], check=True)
         sym = symbols(build/'entry_diag.elf')
         image = (build/'entry_diag.Image').read_bytes()
-        cache_fixture = (build/'entry_diag_cache.bin').read_bytes()
+        state_fixture = (build/'entry_diag_state.bin').read_bytes()
         base = sym['diag_image']
         assert struct.unpack_from('<QQQ', image, 8) == (0x80000, len(image), 8)
         assert image[32:56] == bytes(24) and image[56:64] == b'ARM\x64\0\0\0\0'
         assert len(image) == sym['diag_end']-base
         for el, virtualization in ((1, 'off'), (2, 'on')):
-            for offset, cache_enabled in [(off, False) for off in offsets] + [(0, True)]:
+            for offset, state_bits in [(off, 0) for off in offsets] + [(0, 4), (0, 1), (0, 5)]:
                 with (build/'qemu.log').open('wb') as log:
                     process = subprocess.Popen(['make', '-s', '--no-print-directory', '-C', str(ROOT/'r8'),
                         f'BUILD={build}', f'DIAG_VIRTUALIZATION={virtualization}', 'run_entry_diag'],
@@ -64,22 +64,36 @@ def main():
                         remote.write(address+len(image), guards)
                         record = sym['diag_record']+offset
                         remote.write(record, b'\xa5'*128)
-                        if cache_enabled:
-                            # Execute actual MRS/ORR/MSR/ISB at the current EL.
+                        if state_bits:
+                            # Execute real translation setup and SCTLR writes at the current EL.
                             fixture_address = base-0x10000
-                            remote.write(fixture_address, cache_fixture)
+                            remote.write(fixture_address, state_fixture)
+                            register(remote, 16, state_bits)
                             register(remote, 17, address)
+                            if state_bits & 1:
+                                tables = bytearray(8192)
+                                struct.pack_into("<Q", tables, 0, 0x40041003)
+                                struct.pack_into("<Q", tables, 4096+8, 0x40000781)
+                                remote.write(0x40040000, tables)
                             register(remote, 32, fixture_address)
-                        done = sym['diag_refused' if cache_enabled else 'diag_done']+offset
+                        done = sym['diag_refused' if state_bits else 'diag_done']+offset
                         assert remote.command(f'Z0,{done:x},4') == 'OK'
                         remote.command('c')
                         assert register(remote, 32) == done
                         data = remote.read(record, 128)
-                        if cache_enabled:
+                        if state_bits:
                             assert data == b'\xa5'*128, 'refusal changed record'
                             assert register(remote, 4) == el*4
                             assert register(remote, 5) == pstate & 0x3c0
-                            assert register(remote, 6) & 5 == 4, 'fixture did not set C with M off'
+                            assert register(remote, 6) & 5 == state_bits, 'fixture did not set M/C'
+                            if state_bits & 1:
+                                par = register(remote, 12)
+                                assert par & 1 == 0, 'read translation fault'
+                                assert par & 0x0000fffffffff000 == address & ~0xfff
+                                write_par = register(remote, 13)
+                                assert write_par & 1, 'write translation allowed on RO map'
+                                assert (write_par >> 1) & 0x3f == 0x0d, 'not a level-1 permission fault'
+                                assert remote.read(0x40040000, 8192) == tables
                             for i, value in enumerate(args):
                                 assert register(remote, i) == value
                         else:
@@ -95,8 +109,8 @@ def main():
                         assert remote.read(address-16, 16) == guards
                         assert remote.read(address+len(image), 16) == guards
                         assert remote.read(address, record-address) == image[:record-address]
-                        if cache_enabled:
-                            print(f'ENTRY DIAG REFUSAL PASS: EL{el}, SCTLR.C enabled, record/code/guards untouched')
+                        if state_bits:
+                            print(f'ENTRY DIAG REFUSAL PASS: EL{el}, SCTLR M/C={state_bits:#x}, record/code/guards untouched')
                         else:
                             print(f'ENTRY DIAG PASS: EL{el}, relocation +0x{offset:x}, arguments/state/guards intact')
                     finally:
@@ -105,6 +119,6 @@ def main():
                         try: process.wait(timeout=5)
                         except subprocess.TimeoutExpired:
                             os.killpg(process.pid, signal.SIGKILL); process.wait()
-        print(f'ENTRY DIAG: {2*len(offsets)} accepted entries + 2 cache refusals PASS; one CPU, no Samsung hardware claim')
+        print(f'ENTRY DIAG: {2*len(offsets)} accepted entries + 6 M/C refusals PASS; one CPU, no Samsung hardware claim')
 
 if __name__ == '__main__': main()

@@ -77,7 +77,7 @@ endereços efetivos, versão/tamanho, campos reservados, código intacto e
 sentinelas antes/depois da imagem. O ponteiro x0 inválido verifica que não há
 leitura do FDT. MPIDR é capturado, mas sua topologia não é validada neste teste.
 A matriz original não exercitava as recusas. A recusa por C ligado foi
-coberta na atualização abaixo; M ligado e EL não suportado continuam sem teste. Não há teste SMP, Samsung ou preservação após reset.
+coberta na atualização abaixo; M ligado foi coberto na atualização de MMU abaixo; EL não suportado continua sem teste. Não há teste SMP, Samsung ou preservação após reset.
 
 ## Próximo bloqueio concreto
 
@@ -102,7 +102,7 @@ entre cópia e salto está em [lk-kernel-copy.md](lk-kernel-copy.md).
 
 ## Recusa com SCTLR.C ligado — teste adicionado
 
-O harness agora compila `r8/tests/entry_diag_cache.S` como fixture independente.
+O harness agora compila `r8/tests/entry_diag_state.S` (nome atual da fixture ampliada) como fixture independente.
 Após o stub Linux do QEMU chegar à entrada, GDB coloca essa fixture numa área
 separada de RAM e aponta PC para ela. A fixture lê o SCTLR correspondente ao
 CurrentEL, liga C com MRS/ORR/MSR, executa ISB e salta para a Image via x17.
@@ -117,10 +117,54 @@ no registro; não é uma simulação de retorno injetado em x6.
 
 O bit C fica ligado com MMU desligada. Esse cenário testa a condição de
 entrada e não cria nem comprova linhas sujas de cache ou manutenção correta
-de cache herdado. MMU ligada, entrada EL3 e traps de firmware superior
-continuam fora da cobertura. Não houve execução no telefone.
+de cache herdado. Naquele teste de cache, MMU ligada, entrada EL3 e traps de firmware superior
+ficavam fora da cobertura; a atualização seguinte cobre MMU ligada. Não houve execução no telefone.
 
 Reprodução padrão: `python3 scripts/test_entry_diag.py` — seis entradas
 aceitas e duas recusas PASS. O modo `--all-offsets` mantém as 128 entradas
 aceitas e acrescenta duas recusas. Não houve alteração no contrato EL2 do R10
 nem na lógica da Image; a mudança está na fixture e na verificação.
+
+## MMU ligada — etapa 1 do roadmap
+
+A fixture `entry_diag_state.S` agora recebe os bits M/C em x16 e o destino
+em x17. Para M=1, configura MAIR, TCR e TTBR0 do EL atual, barreiras e TLBI,
+e liga a tradução com MSR/ISB. Não usa pilha ou periféricos. O harness grava
+as tabelas antes de iniciar a fixture, em RAM separada da Image:
+
+| Estrutura | Local e conteúdo relevante |
+|---|---|
+| L0 | 0x40040000; entrada 0 → tabela em 0x40041000 |
+| L1 | 0x40041000; entrada 1 → bloco 0x40000000 de 1 GiB |
+| Bloco | AF=1, Inner Shareable, Attr0 normal WB, EL atual read-only, executável |
+| TCR | VA 48 bits, granule 4 KiB, PA 40 bits; EPD1 em EL1, RES1 corretos em EL2 |
+
+Só [0x40000000,0x80000000) é mapeado, por identidade. A fixture e a Image
+ficam dentro desse bloco. O SP deliberadamente inadequado continua sem uso.
+A configuração é somente do QEMU, sem relação presumida com RAM livre Samsung.
+
+Antes do salto, AT S1E1R/S1E2R confirma a tradução de leitura do destino;
+AT S1E1W/S1E2W confirma a falha de escrita pelo AP read-only
+(FST=0x0d, permission fault no nível 1). Os dois PAR
+são preservados em x12/x13 até o breakpoint de recusa e conferidos pelo
+harness. Isso verifica a tradução real, além de observar SCTLR.M ligado.
+
+Executado `python3 scripts/test_entry_diag.py`: **12 casos PASS** — seis
+entradas aceitas, mais C, M e M|C em cada EL (seis recusas). Em todas as
+recusas: registro 0xa5 intacto, código/sentinelas/argumentos/SP preservados,
+CurrentEL e DAIF conferidos. Nos casos M, tabelas intactas, leitura traduzida
+para o PA esperado e escrita recusada. A fixture foi ampliada; a Image de
+produção não mudou.
+
+O modo `--all-offsets` passa a combinar 128 entradas aceitas com essas seis
+recusas. A execução desta atualização usou o modo padrão; as 128 entradas
+aceitas foram verificadas na etapa anterior, sem claim de nova execução completa.
+
+Limites: entrada EL3 não exercitada; EL0 não é uma entrada suportada e pode
+trapear antes de ler CurrentEL. Traps de firmware superior, stage-2, linhas
+sujas de cache herdadas e perda de energia não são simulados. Recusar antes
+de escrever não estabelece por si só um carregamento Samsung funcional.
+
+As constantes de TCR foram conferidas nos arquivos do Kernel.tar.gz recebido:
+`arch/arm64/include/asm/kvm_arm.h` (TCR_EL2_RES1, PS_40B) e
+`arch/arm64/include/asm/pgtable-hwdef.h` (EPD1, granularidade e cacheability).

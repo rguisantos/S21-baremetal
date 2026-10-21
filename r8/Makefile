@@ -234,8 +234,8 @@ run_entry_diag: $(BUILD)/entry_diag.Image
 	    -display none -monitor none -serial none -S -gdb stdio -kernel $<
 .PHONY: run_entry_diag
 
-# QEMU fixture for refusal of a handoff with SCTLR.C already enabled.
-$(BUILD)/entry_diag_cache.o: tests/entry_diag_cache.S | $(BUILD)
+# QEMU fixture for refusal with SCTLR.M/C enabled and read-only identity RAM.
+$(BUILD)/entry_diag_state.o: tests/entry_diag_state.S | $(BUILD)
 	$(CC) $(ASFLAGS) -c $< -o $@
-$(BUILD)/entry_diag_cache.bin: $(BUILD)/entry_diag_cache.o
+$(BUILD)/entry_diag_state.bin: $(BUILD)/entry_diag_state.o
 	$(OBJCOPY) -O binary -j .text $< $@

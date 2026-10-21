@@ -54,3 +54,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Coleta limitada de logs pelo rish](boot-log-collection.md): interfaces de snapshot, metadados e limites.
 
 - [Cópia da Image e destino de salto no LK](lk-kernel-copy.md): contexto e caminhos Android v2/v3.
+
+- [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
