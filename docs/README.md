@@ -36,3 +36,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 | `docs/archive/` | Documentação superada conservada para rastreabilidade |
 
 `build/`, logs e caches Python são gerados e ignorados. Não adicionar dumps privados, pacotes firmware ou novos toolchains para documentar uma análise: registrar origem, tamanho e hash. A remoção dos binários já versionados exigiria planejar a distribuição offline; não foi feita nesta organização.
+
+## BL HZC2 recebido
+
+[Inventário, integridade e primeira análise do salto para o kernel](bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. PRs abertos: nenhum na consulta de 2026-10-21 UTC.

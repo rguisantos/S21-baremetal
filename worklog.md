@@ -128,3 +128,7 @@ Decisão do usuário: sem flash no aparelho principal; rotas = esgotar QEMU + Fa
 ## 2026-10-21 UTC — revisão e organização
 
 Conferida main b7185e4 e relidos README_Kernel/README_Platform anexados, com hashes em docs/samsung-reference.md. Criados índice de documentação, catálogo de scripts e aviso de escopo do recorte samsung_kernel. Preservados caminhos e toolchain offline; scripts DAY1/DAY2 e snapshot antigo identificados como históricos. Registrada a necessidade prioritária de BL HZC2, separada das evidências de execução ainda indisponíveis; não repetida a coleta Shizuku bloqueada. Resultados da nova execução e limites em docs/repository-review-2026-10-21.md. Nenhum flash ou upload de diagnóstico privado.
+
+## 2026-10-21 UTC — BL recebido e PRs conferidos
+
+BL HZC2 recebido: 12 membros LZ4, MD5 do TAR válido e hashes brutos registrados em docs/bootloader-hzc2.md. Encontradas referências de código a configure_dtb/Starting kernel e bloco BLR com x0=0x8b080000, x1..3=0 e destino 0x80080000 mais estado lido em memória. Inspecionada preparação condicional de SCTLR por EL; estado real, relocação e FDT final permanecem não provados. Nenhum firmware bruto publicado ou executado. API GitHub sem PR aberto; #2/#3 confirmados mergeados. Pedido anterior de BL atendido.

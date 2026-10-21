@@ -83,3 +83,7 @@ Faltam um contrato de carregamento verificável, mapa de RAM e reservas após os
 As [notas antigas de hardware](docs/archive/exynos2100-notes-legacy.md) foram preservadas como histórico e contêm hipóteses superadas. A documentação atual distingue resultados observados de trabalho ainda não validado.
 
 A Image do Proton publicada foi inspecionada: é Linux ARM64 com EFI stub, não um executável Windows que substitui Linux. O contêiner S21R10 agora pode ser gerado e validado offline, mas não habilita o shim ou testes de flash. Consulte as evidências binárias e o formato acima.
+
+## BL HZC2 recebido
+
+[Inventário, integridade e primeira análise do salto para o kernel](docs/bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. PRs abertos: nenhum na consulta de 2026-10-21 UTC.

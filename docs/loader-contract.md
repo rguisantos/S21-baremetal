@@ -56,6 +56,8 @@ Renomear o ELF como Image ou apenas executar objcopy não fornece um header ARM6
 
 ## 5. Estado da evidência sboot/ABL/Harx
 
+**Atualização 2026-10-21:** BL HZC2 recebido e inspecionado fora do Git; inventário e instruções candidatas ao handoff em [bootloader-hzc2.md](bootloader-hzc2.md). O relato abaixo descreve a indisponibilidade anterior.
+
 A árvore versionada S21-baremetal foi enumerada sem truncamento e não contém sboot.bin, harx.bin ou abl.img para nova análise binária. As notas antigas mencionam strings TF-A, configure_dtb e Harx, mas não fornecem aqui xrefs/instruções suficientes para comprovar a rotina de handoff, a configuração de caches ou o EL final.
 
 Nomes e strings são pistas. “configure_dtb” não comprova sozinho quais nós de RAM são adicionados; “Harx” não demonstra o estado de HCR/SCTLR; suporte a PSCI/HVC em algum componente não autoriza sondar HVC quando o DTB declara SMC. Não se pressupõe U-Boot, ABL Qualcomm ou um comando fastboot boot disponível no Samsung.

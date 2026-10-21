@@ -12,6 +12,8 @@ Base revisada: `b7185e43d05082bdcfdd363b759d1197e2bd0939`, main sincronizada com
 
 ## Arquivos extras: o que realmente falta
 
+**Atualização posterior:** pacote BL HZC2 recebido, MD5 conferido e componentes analisados. A solicitação abaixo foi atendida; veja [bootloader-hzc2.md](bootloader-hzc2.md). Nenhum novo envio é necessário para continuar a análise estática.
+
 | Prioridade | Arquivo/evidência | Motivo e limite |
 |---|---|---|
 | Próxima análise estática | **Pacote `BL_...G998BXXSJHZC2...tar.md5` do mesmo firmware stock**; nome exato conforme o pacote | Inventariar os componentes reais e procurar validação da Image, ajustes do DTB e salto final. Não presumir que exista abl.img ou outro nome específico. O BL não exige root para ser obtido do pacote firmware e não será instalado. |
