@@ -159,3 +159,7 @@ canal físico de observação e contrato de carregamento seguem pendentes.
 ## 2026-10-21 — console LK e chamadas finais
 
 Rastreada a mensagem final por objeto/tabela/callback até 0xef4c0. Encontrado escritor da base 0x10540000 em 0xef3e0, distinto de UART1 no DTB. Documentadas dependências de estado, chamadas de dump após preparação de cache e ausência de prova do EL final. Inspector hash-bound ampliado; nenhum firmware ou driver alterado. Ver [evidências](docs/lk-console-handoff.md).
+
+## 2026-10-21 — UART0 identificada na fonte
+
+Kernel.tar.gz recuperado com o hash anterior. DTS identifica 0x10540000 como UART0, canal debug 115200/8, pinctrl gpg0-2/gpg0-3, status disabled. Driver/cabeçalho corroboram offsets USI e TX. LK tem ramo que bloqueia fallback serial e callback adicional ainda sem transporte identificado. Novo inspetor somente leitura reproduz a evidência da fonte; nenhum pacote completo ou firmware adicionado ao Git.

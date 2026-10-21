@@ -37,3 +37,7 @@ Lidos diretamente dos anexos nesta revisão. README_Kernel.txt menciona p3s, GCC
 | README_Platform.txt | `608870f35c667416e24a42749407191699ac583102552c3b632d0807162b8dd8` |
 
 A pasta [samsung_kernel](../samsung_kernel/README.md) é um recorte, não uma cópia completa desse pacote. Os arquivos necessários para a próxima investigação estão na [revisão do repositório](repository-review-2026-10-21.md).
+
+## Cruzamento UART0 com LK HZC2
+
+O pacote completo foi recuperado novamente e seu hash conferido. `exynos2100.dts` identifica UART0 em 0x10540000, canal debug 115200/8 e pads gpg0-2/gpg0-3; o nó está disabled. [Evidências, hashes e reprodução](lk-console-handoff.md#cruzamento-com-as-fontes-samsung--2026-10-21).

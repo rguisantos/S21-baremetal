@@ -96,3 +96,83 @@ snippet de [bootloader-hzc2.md](bootloader-hzc2.md) nos intervalos:
 Não há novo arquivo solicitado. O recorte `samsung_kernel/` não contém o
 driver serial completo; não confundir sua ausência nesse recorte com ausência
 no pacote de fontes recebido. Nenhuma alegação de teste físico foi adicionada.
+
+## Cruzamento com as fontes Samsung — 2026-10-21
+
+Recuperado o `Kernel.tar.gz` já enviado, 209261574 bytes, SHA-256
+`c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2`.
+A identidade do pacote é a mesma da análise anterior. Não foi compilado.
+
+`arch/arm64/boot/dts/exynos/exynos2100.dts` identifica explicitamente:
+
+| Campo | UART0 | UART1 |
+|---|---|---|
+| Alias | `/uart@10540000` | `/uart@10840000` |
+| Região | 0x10540000 / 0x100 | 0x10840000 / 0x100 |
+| Compatible | samsung,exynos-uart | samsung,exynos-uart |
+| USI serial v2 | presente | presente |
+| FIFO | 256 bytes | 256 bytes |
+| Interrupt tuple | SPI 508, level high | SPI 533, level high |
+| INTID GIC | 540 | 565 |
+| Canal debug | `samsung,dbg-uart-ch` presente | ausente no nó consultado |
+| Configuração debug | 115200 baud, 8 bits | sem essas propriedades |
+| Status da fonte | disabled | disabled |
+
+O `pinctrl-0` da UART0 resolve para `uart0-bus`, phandle 0xb3: sinais
+**gpg0-2 e gpg0-3**, função 3, `samsung,pin-pud=3`. Isso nomeia pads do SoC;
+não atribui TX/RX individualmente nem identifica test points, USB ou conector.
+O syscon USI, phandle 0x4d, é 0x10421000, offset 0. Os clocks são
+`gate_uart_clk0` e `ipclk_uart0`, IDs 0x6da/0x6f6 no provider 0x0d.
+IDs e phandles são locais desta árvore, não endereços ou frequências.
+
+Assim, a identidade da instância passa de hipótese a **UART0 na fonte**;
+sua utilização efetiva no aparelho continua dependente de estado/overlays e LK.
+O campo 115200 é configuração declarada, não medição do baud no handoff.
+
+No driver `exynos_tty.c`, `samsung,dbg-uart-ch` evita o pulso inicial de reset
+em `exynos_usi_init()`, mas ainda limpa USI_CON e solicita clock via USI_OPTION.
+O driver lê `dbg-uart-baud`/`dbg-word-len` com defaults 115200/8. O cabeçalho
+`serial_s3c.h` confirma UTXH=0x20, UTRSTAT=0x10, TXFE=bit 1,
+USI_CON=0xc4 e USI_OPTION=0xc8. Isso corrobora o polling do LK. O kernel usa
+escrita byte em UTXH, enquanto o trecho LK observado usa word; não presumir
+que copiar a largura/sequence do LK forma um driver completo.
+
+### Seleção e bloqueio da saída no LK
+
+- 0x20c608 grava w0 no flag relativo 0xd08a20.
+- Em 0xedb98 chama-se 0x18b560; se retorna zero, 0xedba0 prepara w0=1 e
+  0xedba4 chama 0x20c608. Portanto há um caminho concreto que **suprime o
+  fallback serial**, preservando a passagem pelos callbacks da lista.
+- A decisão usa estado do global 0xd05f7c e outras chamadas; não foi resolvido
+  seu valor no aparelho nem atribuída semântica de política de segurança.
+- 0x20c578 registra um elemento na lista de saída relativa 0x3218c0,
+  preservando o estado IRQ. 0xff948 chama essa rotina com objeto 0x2ef138.
+- O callback inicial desse objeto é 0xe80136c8, equivalente a offset
+  0xff6c8 usando o delta LK anterior. Ele usa MMIO e faixas associadas a
+  0xf0000000; não foi provado como transporte USB, UART ou console persistente.
+
+A busca foi por chamadas diretas BL no intervalo LK 0xec000–0x20c630;
+não exclui chamadas indiretas, aliases de endereço ou outros escritores.
+Não se conclui que ativar UART0 baste para obter o log final.
+
+### Reproduzir o cruzamento
+
+```bash
+python3 scripts/inspect_uart_reference.py /caminho/Kernel.tar.gz
+```
+
+O novo inspetor exige hash do pacote e dos três arquivos, lê o TAR sem
+extraí-lo e emite trechos com linhas e hashes. A estrutura dos nós é consultada
+por marcadores exatos dessa fonte; não é parser DTS genérico.
+
+Hashes dos arquivos consultados:
+
+| Arquivo | SHA-256 |
+|---|---|
+| exynos2100.dts | `586ca56987bbaacce0a38ddaee8a852721caaaeb9096ada6bfde8bc8c0d88ca8` |
+| exynos_tty.c | `f8e0f52ca9cd2a29e65096749f3498eeef19856fd250c3a272bcf0fb6182b267` |
+| serial_s3c.h | `e5c60b29c65ba77a469aa562a5fc4c5b6d64d0abbf48c295967885f6ebdc1aaa` |
+
+O próximo bloqueio é físico e de estado: roteamento dos pads, habilitação real
+do console e recuperação do diagnóstico. O material atual permite continuar
+a análise estática sem solicitar arquivos novamente.

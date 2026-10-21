@@ -92,4 +92,4 @@ A Image do Proton publicada foi inspecionada: é Linux ARM64 com EFI stub, não 
 
 [Inventário, integridade e primeira análise do salto para o kernel](docs/bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. Atualização: PR #4 posteriormente criado, revisado e encerrado como substituído pela main. A análise do BL agora rastreia a origem do deslocamento do kernel e a construção dinâmica de nós RAM.
 
-A análise estática do [console LK HZC2](docs/lk-console-handoff.md) encontrou um caminho que seleciona `0x10540000`; isso não confirma UART1 como console nem altera o driver R10.
+A análise estática do [console LK HZC2](docs/lk-console-handoff.md) encontrou um caminho que seleciona `0x10540000`. O cruzamento com a fonte Samsung identifica UART0, canal debug configurado para 115200/8; ativação e conexão física seguem pendentes.
