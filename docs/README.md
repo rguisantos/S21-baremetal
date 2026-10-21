@@ -55,6 +55,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Cópia da Image e destino de salto no LK](lk-kernel-copy.md): contexto e caminhos Android v2/v3.
 
+- [Modelo offline LK v3](lk-v3-layout.md): kernel, ramdisks concatenados, extensão Image e região DTB, com testes de host.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

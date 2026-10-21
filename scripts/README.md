@@ -28,3 +28,5 @@ O empacotador atual está em `../tools/mkpayload.py`; não confundir com versõe
 O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tradução identidade read-only e AT/PAR nos casos MMU. O padrão executa 12 casos; `--all-offsets` combina 128 entradas aceitas e seis recusas.
 
 - `check_uart_clock_evidence.py`: cruza sboot HZC2 com quatro fontes de clock identificadas por hash; verifica frequência nominal, seletores, UBRDIV e inventário de gates/QCH. Não lê hardware ou produz writes; [detalhes](../docs/uart-gates.md).
+
+- `check_lk_v3_layout.py` e `test_lk_v3_layout.py`: modelo offline das cópias kernel/ramdisk do LK HZC2 e testes de limites; requer imagens raw v3 e deslocamento explícito. Não empacota nem verifica bootabilidade; [escopo](../docs/lk-v3-layout.md).

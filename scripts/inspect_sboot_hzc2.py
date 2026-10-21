@@ -142,6 +142,18 @@ def inspect(path):
                               (0x12e068, 0x12e070, 0x12e418, 0x12e41c,
                                0x12e560, 0x12e568, 0x12e880, 0x12e884, 0x12e888)},
             status='Static source/destination chain; no execution of Samsung LK'),
+        'kernel_v3_tail': dict(
+            calls={hex(off): hex(bl_target(u32(off), off)) for off in
+                   (0x12e7f8, 0x12e848, 0x12e850, 0x12e860, 0x151b18)},
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0xfba0c, 0x12e56c, 0x12e710, 0x12e728,
+                                0x12e754, 0x12e770, 0x12e79c, 0x12e7a8,
+                                0x12e7ac, 0x12e7b0, 0x12e7b8, 0x12e7c0,
+                                0x12e7d8, 0x12e7f0, 0x12e820, 0x12e828,
+                                0x12e830, 0x12e83c, 0x12e840, 0x12e84c,
+                                0x149188, 0x14918c, 0x149190,
+                                0x150320, 0x150324, 0x150328, 0x15032c)},
+            limit='Copy/registration evidence only; later processing and final FDT unverified'),
         'uart_pinmux_audit': dict(
             lk_routine_offset='0xef3e0',
             instruction_words={hex(off): f'{u32(off):08x}' for off in

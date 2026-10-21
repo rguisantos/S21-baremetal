@@ -104,6 +104,8 @@ Para testar o acesso aos logs sem root, há um [procedimento limitado pelo rish]
 
 A [cadeia de cópia da Image no LK](docs/lk-kernel-copy.md) foi ligada ao destino do salto. O diagnóstico independente passou em 128 casos QEMU cobrindo EL1/EL2 e todos os 64 deslocamentos decodificados; nenhum teste físico foi realizado.
 
+O [modelo offline LK v3](docs/lk-v3-layout.md) confere as três cópias kernel/ramdisk nas imagens stock, a extensão declarada pela Image e o ponteiro DTB staging. Sete testes de host passaram, incluindo 64 cenários de deslocamento e recusas de entradas inválidas. Não é um empacotador ou validação de boot no aparelho.
+
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.

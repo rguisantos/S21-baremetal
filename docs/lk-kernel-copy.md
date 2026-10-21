@@ -77,6 +77,11 @@ que esse campo do arquivo não prova o PC final. Os caminhos seguem para
 outras rotinas, incluindo chamadas em 0x151b10; verificação/transformações e
 todos os ramos de erro não foram reconstruídos integralmente nesta etapa.
 
+Continuação: o [modelo offline v3](lk-v3-layout.md) agora verifica esse
+layout com os headers recebidos e rastreia as duas cópias de ramdisk e o
+registro do ponteiro DTB vendor. O efeito completo de 0x151b10 permanece
+aberto; não foi identificado como uma transformação da Image.
+
 ## Ligação com o salto final
 
 O mesmo deslocamento 0x4a0048 é lido em 0xfbe08. O BLR em 0xfbe14 usa

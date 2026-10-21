@@ -86,3 +86,19 @@ Fontes primárias fixadas:
 [SFR e campos](https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/drivers/soc/samsung/cal-if/exynos2100/cmucal-sfr.c),
 [nós e pais](https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/drivers/soc/samsung/cal-if/exynos2100/cmucal-node.c),
 [nó QCH](https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/drivers/soc/samsung/cal-if/exynos2100/cmucal-qch.c).
+
+## Continuação: BUS_USER permanece uma condição de entrada desconhecida
+
+A fonte identifica MUX_CLKCMU_PERIC0_BUS_USER em **0x10400600**, seleção no
+bit 4: pai 0 = OSCCLK_PERIC0; pai 1 = CLKCMU_PERIC0_BUS. O caminho TOP usa
+mux **0x1a3310cc**, divisor **0x1a3318c4** e gate **0x1a3320cc**. Os pais
+do mux TOP são PLL_SHARED0_D2 e PLL_SHARED2_D2. Isso descreve possibilidades,
+sem determinar o seletor ou a frequência efetivos.
+
+Uma busca heurística ampliada de construções diretas, entre 0x3000 e
+0x3ac000, não resolveu um acesso inequívoco a esses quatro registradores,
+ao controle automático em 0x10400604 ou ao reset-sync BUSP em 0x104020b4.
+A busca não segue todos os argumentos, aliases, ramos ou tabelas. O estado
+pode ser herdado; não foi demonstrado que seja o reset default ou que a
+seleção seja 1. O desenvolvimento do contrato de carregamento continua no
+[modelo offline das cópias LK v3](lk-v3-layout.md), sem inventar writes UART.

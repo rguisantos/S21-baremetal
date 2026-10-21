@@ -267,3 +267,19 @@ fontes (5/5 verificações), compilação Python e diff-check. Busca de literais
 não encontrou os quatro endereços no sboot; isso não exclui acessos indiretos.
 Write 0x14ce7c com offset 0x20b8 usa buffer de pilha, não CMU comprovada.
 Novo documento registra o mapa e os limites; nenhum driver ou MMIO alterado.
+
+## 2026-10-21 — modelo verificável do layout LK v3
+
+BUS_USER/PERIC0: fonte mapeia 0x10400600, TOP10cc/18c4/20cc; busca direta
+ampliada não resolveu estado efetivo. Mantida a lacuna, sem novos writes.
+Retomado o contrato de carregamento: cópias 12e7f8/12e848 concatenam vendor
+e boot ramdisks em 84080000, sem padding no destino. Helper149188 apenas
+registra ponteiro staging da região DTB; consumidor final ainda pendente.
+Boot/vendor originais recuperados, LZ4 e raw conferidos pelos hashes prévios.
+Novo check_lk_v3_layout.py lê somente, limita inputs, exige firmware HZC2 e
+offset explícito; recusa truncamento, formatos/offsets fora do modelo e
+colisões. Sete testes de host passaram, incluindo 64 cenários e negativos.
+CLI stock offset0 reproduziu kernel29469184, vendorRD12017257, bootRD701558,
+DTB em vendor+b77000. Extensão Image excede cópia em4507136 bytes, sem
+prova de zeroing. Inspector, README, índice e roadmap atualizados. Nenhum
+empacotamento, acesso ao aparelho ou teste físico foi realizado.

@@ -1,0 +1,70 @@
+{
+  "mode": "static_copy_model",
+  "runtime_observed": false,
+  "bootability_verified": false,
+  "kaslr_offset": "0x0",
+  "modeled_kernel_entry": "0x80080000",
+  "inputs": {
+    "boot": {
+      "size": 67108864,
+      "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1"
+    },
+    "vendor_boot": {
+      "size": 67108864,
+      "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+    }
+  },
+  "copies": [
+    {
+      "component": "kernel",
+      "container": "boot",
+      "file_offset": "0x1000",
+      "size": 29469184,
+      "staging_source": "0x94001000",
+      "destination": "0x80080000",
+      "destination_end": "0x81c9aa00",
+      "copy_call_file_offset": "0x12e88c"
+    },
+    {
+      "component": "vendor_ramdisk",
+      "container": "vendor_boot",
+      "file_offset": "0x1000",
+      "size": 12017257,
+      "staging_source": "0x98001000",
+      "destination": "0x84080000",
+      "destination_end": "0x84bf5e69",
+      "copy_call_file_offset": "0x12e7f8"
+    },
+    {
+      "component": "boot_ramdisk",
+      "container": "boot",
+      "file_offset": "0x1c1c000",
+      "size": 701558,
+      "staging_source": "0x95c1c000",
+      "destination": "0x84bf5e69",
+      "destination_end": "0x84ca12df",
+      "copy_call_file_offset": "0x12e848"
+    }
+  ],
+  "image": {
+    "text_offset": "0x80000",
+    "declared_memory_size": 33976320,
+    "memory_end": "0x820e7000",
+    "bytes_beyond_kernel_copy": 4507136,
+    "tail_zeroing_verified": false
+  },
+  "vendor_dtb_region": {
+    "file_offset": "0xb77000",
+    "size": 389940,
+    "staged_pointer": "0x98b77000",
+    "registration_call_file_offset": "0x12e850",
+    "is_final_fdt": false
+  },
+  "limits": [
+    "Models only the traced v3 dispatch with w0=6 and nonzero destinations",
+    "Offset is a supplied scenario, not the observed SMC result",
+    "No signature, AVB, later transformation or memory reservation validation",
+    "No final EL/cache/FDT, clock or physical execution evidence"
+  ],
+  "firmware_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+}
