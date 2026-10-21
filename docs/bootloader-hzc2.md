@@ -111,3 +111,76 @@ Este snippet reproduz a decodificação de um pacote identificado por hash; não
 ## Pull requests conferidos
 
 Na consulta de 2026-10-21 UTC, busca do conector e endpoint GitHub `/repos/rguisantos/S21-baremetal/pulls?state=open` retornaram **zero PRs abertos**. [PR #2](https://github.com/rguisantos/S21-baremetal/pull/2) e [PR #3](https://github.com/rguisantos/S21-baremetal/pull/3) foram consultados individualmente: ambos `closed`, `merged=true`. O #3 foi mergeado no branch kilo; sua integração corretiva posterior à main está em [PR_INTEGRATION.md](../PR_INTEGRATION.md). Não havia PR novo a integrar nesta consulta.
+
+## Continuação: origem do destino e construção da memória
+
+Segunda análise em 2026-10-21 UTC, no mesmo sboot identificado acima. Mantém-se a convenção de offsets e a hipótese de mapeamento comum código/dados; não são endereços físicos do sboot demonstrados. Não foi executado firmware.
+
+### Deslocamento do kernel: produtor encontrado
+
+O caminho de `load_boot_images` contém comparação com `ANDROID!` e, após ela, o seguinte trecho:
+
+```asm
+0xfb9a4  mov   x0, #0x101c
+0xfb9a8  mov   x3, #0
+0xfb9ac  mov   x2, #0
+0xfb9b0  mov   x1, #0
+0xfb9b4  movk  x0, #0xc200, lsl #16
+0xfb9b8  dsb   sy
+0xfb9bc  smc   #0
+0xfb9c0  cbnz  x0, #0xfbb70
+0xfb9c4  ubfiz w2, w2, #0xf, #6
+0xfb9c8  adrp  x1, #0x4a0000
+...
+0xfb9e0  str   w2, [x1, #0x48]
+```
+
+Serviço chamado: **0xc200101c**. Se x0 retorna zero, o campo gravado é `(w2_retornado & 0x3f) << 15`. Se x0 não é zero, `0xfbb70–0xfbb90` imprime a mensagem em `0x216770` (`[KASLR] KASLR failed to get random number...`), força w2=0 e retorna ao armazenamento em 0xfb9c8. Portanto, neste caminho, há **64 deslocamentos possíveis**, de zero a **0x1f8000**, em passos de **0x8000 (32 KiB)**. A nomenclatura KASLR agora tem apoio na mensagem referenciada pelo ramo de erro; o retorno efetivo do serviço não foi capturado.
+
+O campo é o mesmo lido no BLR de 0xfbe14. A fórmula desse caminho passa a ser:
+
+`destino = 0x80080000 + ((w2_SMC & 63) << 15)` no sucesso, e `0x80080000` no ramo de erro observado.
+
+Intervalo aritmético: **0x80080000 a 0x80278000**, somente para esses caminhos. Não é uma faixa de RAM livre. Não foi demonstrado que não existam outros escritores/alias ou caminhos. Em 0xfb9e8 grava-se ainda 0xcdefcdef em 0x80001000; em 0xfba00 o deslocamento é gravado em 0x80001004. Essas gravações são pistas do contrato, não instruções para o R10 acessar tais locais.
+
+A função em 0x12e214 também lê o campo ao calcular limites a partir de 0x80080000. Seu rastreamento completo até a cópia/relocação da imagem permanece pendente. O R10 atual é ligado em endereço fixo e não deve ser considerado compatível com esse deslocamento apenas por ter o mesmo endereço base nominal.
+
+### Ponteiro comum ao FDT e construtor de nós RAM
+
+Em `0xfbc30`, o chamador carrega **0x8b080000**; em `0xfbc40`, armazena-o no global relativo **0x4740f8** antes de chamar `load_boot_images`. Helpers de árvore usam esse mesmo global:
+
+- `0xf12c8`: valida a árvore, procura um caminho e chama uma rotina de adição de nó.
+- `0xf13b0`: trata valores textuais/células (distingue primeiro caractere `<`), valida a árvore e escreve uma propriedade.
+- `0xf1240`: lê o campo de tamanho em +4 com conversão big-endian, ajusta-o e escreve de volta.
+- `0xf1570`: formata `memory@%lx` e `/memory@%lx`, adiciona nó, monta `reg` com o formato **`<0x%x 0x%x 0x%x>`** usando endereço alto, endereço baixo e tamanho de 32 bits, e escreve `device_type = memory`.
+
+As identificações dos helpers são inferências de instruções, argumentos e strings, não símbolos recuperados de ELF. A ligação entre o ponteiro usado na edição da árvore e o x0 do salto é agora mais forte; o conteúdo final desse endereço ainda não foi lido em execução.
+
+### RAM e reservas dependem do estado de boot
+
+O chamador `0xfad60` começa obtendo um valor em `0x11b758` para x25. Também usa SMC via `0xf6088`, inclusive x0=-0x12e e x1=2, preservando um retorno em x26. Não foi atribuída semântica final a esses serviços sem seguir seus handlers.
+
+Exemplos de construção observada:
+
+| Offset da chamada | Endereço/tamanho passados ao construtor 0xf1570 |
+|---|---|
+| 0xfaf34 | endereço 0x80000000; tamanho de 32 bits calculado com w26 |
+| 0xfaf50 | endereço/tamanho dependentes de x19 e valores locais retornados por outra rotina |
+| 0xfb678 / 0xfb690 | faixas divididas usando x19, x21 e x27 |
+| 0xfb7a8 | laço a partir de **0x880000000**, com nós de **0x20000000 (512 MiB)** e quantidade dependente de x25 |
+
+Não foi selecionado o ramo efetivamente usado pelo aparelho de 12 GB. Não converter esses exemplos em um DTS com bancos presumidos ou usar MemTotal como substituto. As chamadas dão evidência de montagem dinâmica e divisão de bancos; não enumeram por si só as reservas finais.
+
+A rotina `0x148a80` procura `/reserved-memory` e chama `0x148770` com nomes como `el2_code`, `el2,uh` e `kaslr`. Em `0x148b1c` chama o wrapper `0x209a28`, que decodifica como **HVC #0; RET**, com identificador 0x83000004 e endereços de buffers locais; os valores desses buffers são usados em uma chamada posterior. Isso demonstra participação de outra interface de firmware nesse caminho. **Não demonstra que PSCI use HVC**: o DTB stock continua declarando PSCI SMC, e não foi habilitada sondagem de conduíte alternativo.
+
+### Limites e próxima etapa
+
+Avanços: produtor do deslocamento encontrado, ramo de falha com zero, ponteiro de edição ligado ao argumento do salto e construção dinâmica de nós de memória localizada. Ainda faltam mapeamento/relocação completos do sboot, handlers dos serviços, fluxo de cópia da Image, reservas efetivas e EL/cache final. As verificações de cache da primeira etapa continuam condicionais; nenhuma alteração no driver ou no contrato de entrada R10 foi feita a partir de uma hipótese.
+
+Para reproduzir a leitura, use o snippet anterior variando o intervalo: `0xfb9a4:0xfba20` (SMC e campo), `0xfbb70:0xfbb94` (erro), `0xfbc2c:0xfbc48` (ponteiro), `0xf1570:0xf164c` (nós), `0xfad60:0xfaf88` e `0xfb670:0xfb7cc` (ramos RAM), `0x148a80:0x148b74` (reservas). Nenhum arquivo extra é necessário para continuar esta análise estática.
+
+## PR #4 — consulta posterior e resolução
+
+A consulta anterior sem PR aberto foi superada: o [PR #4](https://github.com/rguisantos/S21-baremetal/pull/4) foi criado às 02:14:23 UTC de 2026-10-21. Nesta continuação ele foi revisado e **encerrado como substituído, sem merge**, mantendo o branch. Head: `9dca3969cc6e6ff571cbfd1cc440f7b27ac93143`. Não houve incorporação do empacotador defeituoso sobre a main.
+
+A revisão do diff (dois commits/quatro arquivos) confirmou as falhas já descritas em [branch-packer-review.md](branch-packer-review.md). Reproduzido novamente `heap-buffer-overflow` no `memcmp` do validador do PR com entrada de quatro bytes e ASan/UBSan. Na main, `scripts/test_payload.py`: **60 PASS**; `scripts/test_payload_loader.py`: **um handoff real com 25 IRQs e cinco recusas PASS**. Esses testes verificam o software do projeto, não executam sboot/Harx.

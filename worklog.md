@@ -132,3 +132,7 @@ Conferida main b7185e4 e relidos README_Kernel/README_Platform anexados, com has
 ## 2026-10-21 UTC — BL recebido e PRs conferidos
 
 BL HZC2 recebido: 12 membros LZ4, MD5 do TAR válido e hashes brutos registrados em docs/bootloader-hzc2.md. Encontradas referências de código a configure_dtb/Starting kernel e bloco BLR com x0=0x8b080000, x1..3=0 e destino 0x80080000 mais estado lido em memória. Inspecionada preparação condicional de SCTLR por EL; estado real, relocação e FDT final permanecem não provados. Nenhum firmware bruto publicado ou executado. API GitHub sem PR aberto; #2/#3 confirmados mergeados. Pedido anterior de BL atendido.
+
+## 2026-10-21 UTC — continuação BL e resolução PR #4
+
+Rastreado escritor do deslocamento do salto: serviço SMC 0xc200101c, seis bits do retorno w2 deslocados por 15; ramo de erro força zero. Localizado global do FDT inicializado com 0x8b080000 e construtor memory@/reg/device_type, com bancos dependentes de estado runtime. Encontrada chamada HVC para reservas, sem reinterpretar PSCI SMC como HVC. Evidência e limites detalhados em docs/bootloader-hzc2.md. PR #4 novo revisado e encerrado como substituído pela main; validador antigo reproduz overflow. Testes atuais: contêiner 60 PASS; QEMU um handoff/25 IRQs e cinco recusas PASS. Nenhum driver ou firmware modificado.

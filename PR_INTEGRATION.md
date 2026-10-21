@@ -51,3 +51,7 @@ flash/chainload e não executa nenhuma operação no telefone.
   desativado por limitação de `/proc` neste ambiente; não há alocações nos testes.
 - Teste AArch64: **ATOMIC PASS**, encerrado pelo timeout esperado após park.
 - Shim: ELF e binário compilados; execução não testada.
+
+## PR #4 — substituído, não mergeado
+
+Em 2026-10-21 UTC, revisado head 9dca3969cc6e6ff571cbfd1cc440f7b27ac93143. O packer/validador antigo e as afirmações sobre Proton já têm substitutos corrigidos na main. PR encerrado com justificativa, preservando o branch e evitando regressão. Evidências em [branch-packer-review](docs/branch-packer-review.md) e [continuação BL](docs/bootloader-hzc2.md).

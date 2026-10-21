@@ -49,3 +49,7 @@ Os PASS de R8/R9 demonstram seus próprios testes; não se transferem automatica
 `fastboot boot shim/build/shim.elf` não é um caminho demonstrado neste Samsung; desbloqueio sozinho não fornece suporte a carregar esse ELF. A afirmação sobre DECON em 0x19050000 também não foi validada por esta análise e não foi incorporada como endereço confirmado.
 
 Foram preservadas as correções da main, sem mesclar o estado anterior desse branch. Especificação e testes atuais: [payload-format.md](payload-format.md). Evidência do Proton Linux/EFI: [proton-binary.md](proton-binary.md). Nenhuma operação no telefone foi realizada.
+
+## PR #4 resolvido — 2026-10-21 UTC
+
+O PR #4 apresentou o mesmo head 9dca3969cc6e6ff571cbfd1cc440f7b27ac93143 aqui auditado. Revisado e encerrado como substituído pela implementação atual na main, sem merge; branch preservado. Confirmado novamente overflow com entrada de quatro bytes no validador antigo. A main passou em 60 casos de contêiner e na integração QEMU com um handoff e cinco recusas. Justificativa registrada no corpo do [PR](https://github.com/rguisantos/S21-baremetal/pull/4).

@@ -86,4 +86,4 @@ A Image do Proton publicada foi inspecionada: é Linux ARM64 com EFI stub, não 
 
 ## BL HZC2 recebido
 
-[Inventário, integridade e primeira análise do salto para o kernel](docs/bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. PRs abertos: nenhum na consulta de 2026-10-21 UTC.
+[Inventário, integridade e primeira análise do salto para o kernel](docs/bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. Atualização: PR #4 posteriormente criado, revisado e encerrado como substituído pela main. A análise do BL agora rastreia a origem do deslocamento do kernel e a construção dinâmica de nós RAM.
