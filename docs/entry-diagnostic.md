@@ -76,8 +76,8 @@ São conferidos argumentos completos, EL, DAIF, M/C desligados, SPSel, SP,
 endereços efetivos, versão/tamanho, campos reservados, código intacto e
 sentinelas antes/depois da imagem. O ponteiro x0 inválido verifica que não há
 leitura do FDT. MPIDR é capturado, mas sua topologia não é validada neste teste.
-As recusas por M/C ligado e EL não suportado estão no código, mas não foram
-exercitadas por esta matriz. Não há teste SMP, Samsung ou preservação após reset.
+A matriz original não exercitava as recusas. A recusa por C ligado foi
+coberta na atualização abaixo; M ligado e EL não suportado continuam sem teste. Não há teste SMP, Samsung ou preservação após reset.
 
 ## Próximo bloqueio concreto
 
@@ -99,3 +99,28 @@ não repetir a mesma coleta como se ela pudesse fornecê-las.
 EL1/EL2 e todos os 64 offsets de 32 KiB. O modo padrão continua com seis casos.
 As mesmas limitações da injeção por GDB se aplicam; a evidência de ligação
 entre cópia e salto está em [lk-kernel-copy.md](lk-kernel-copy.md).
+
+## Recusa com SCTLR.C ligado — teste adicionado
+
+O harness agora compila `r8/tests/entry_diag_cache.S` como fixture independente.
+Após o stub Linux do QEMU chegar à entrada, GDB coloca essa fixture numa área
+separada de RAM e aponta PC para ela. A fixture lê o SCTLR correspondente ao
+CurrentEL, liga C com MRS/ORR/MSR, executa ISB e salta para a Image via x17.
+Ela não usa a pilha nem grava na Image. x0–x3 continuam intactos.
+
+A mesma Image de diagnóstico de produção foi testada nos dois níveis:
+**EL1 e EL2 recusaram a entrada**, chegando a `diag_refused`. O harness
+confere x4=CurrentEL, x5=DAIF original e x6 com C=1/M=0, os argumentos,
+SP, DAIF mascarado, registro inteiro ainda preenchido com 0xa5, código e
+sentinelas. Isso verifica que a recusa ocorre antes de qualquer gravação
+no registro; não é uma simulação de retorno injetado em x6.
+
+O bit C fica ligado com MMU desligada. Esse cenário testa a condição de
+entrada e não cria nem comprova linhas sujas de cache ou manutenção correta
+de cache herdado. MMU ligada, entrada EL3 e traps de firmware superior
+continuam fora da cobertura. Não houve execução no telefone.
+
+Reprodução padrão: `python3 scripts/test_entry_diag.py` — seis entradas
+aceitas e duas recusas PASS. O modo `--all-offsets` mantém as 128 entradas
+aceitas e acrescenta duas recusas. Não houve alteração no contrato EL2 do R10
+nem na lógica da Image; a mudança está na fixture e na verificação.

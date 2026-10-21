@@ -200,3 +200,11 @@ Rastreado setup do contexto para cópias boot header v2/v3, destino x23 =
 mesmo campo participa do salto final. Inspector ampliado e diagnóstico
 testado em EL1/EL2 nos 64 offsets: 128/128 PASS em QEMU, sem executar LK.
 Contrato de verificação, RAM/reservas e observação física continuam pendentes.
+
+## 2026-10-21 — recusa de entrada com bit de cache ligado
+
+Fixture QEMU independente configura SCTLR.C por MRS/ORR/MSR/ISB em EL1/EL2
+e salta para a Image real. As duas entradas foram recusadas antes de alterar
+registro/código/sentinelas; argumentos e SP preservados. Teste padrão passou
+6 entradas aceitas + 2 recusas. M ligada e caches sujas não são cobertos.
+Sem mudança no código/contrato do diagnóstico ou R10 de produção.

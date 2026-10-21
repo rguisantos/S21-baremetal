@@ -24,3 +24,5 @@ O empacotador atual está em `../tools/mkpayload.py`; não confundir com versõe
 - `inspect_snapshot_log.py` e `test_snapshot_log.py`: leitor offline de header+log debug-snapshot e casos sintéticos; sem aquisição de memória do aparelho.
 
 - `collect_boot_logs.sh`: consulta last_kmsg/first_kmsg/sec_log; captura limitada a 2 MiB/5 s por arquivo, cria pasta nova e gera report.txt.
+
+O teste `test_entry_diag.py` inclui duas recusas com SCTLR.C ligado via fixture assembly real em EL1/EL2. `--all-offsets` acrescenta essas recusas às 128 entradas aceitas.

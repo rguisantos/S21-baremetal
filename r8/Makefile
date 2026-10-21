@@ -233,3 +233,9 @@ run_entry_diag: $(BUILD)/entry_diag.Image
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(DIAG_VIRTUALIZATION) -cpu max -smp 1 \
 	    -display none -monitor none -serial none -S -gdb stdio -kernel $<
 .PHONY: run_entry_diag
+
+# QEMU fixture for refusal of a handoff with SCTLR.C already enabled.
+$(BUILD)/entry_diag_cache.o: tests/entry_diag_cache.S | $(BUILD)
+	$(CC) $(ASFLAGS) -c $< -o $@
+$(BUILD)/entry_diag_cache.bin: $(BUILD)/entry_diag_cache.o
+	$(OBJCOPY) -O binary -j .text $< $@
