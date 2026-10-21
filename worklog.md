@@ -163,3 +163,7 @@ Rastreada a mensagem final por objeto/tabela/callback até 0xef4c0. Encontrado e
 ## 2026-10-21 — UART0 identificada na fonte
 
 Kernel.tar.gz recuperado com o hash anterior. DTS identifica 0x10540000 como UART0, canal debug 115200/8, pinctrl gpg0-2/gpg0-3, status disabled. Driver/cabeçalho corroboram offsets USI e TX. LK tem ramo que bloqueia fallback serial e callback adicional ainda sem transporte identificado. Novo inspetor somente leitura reproduz a evidência da fonte; nenhum pacote completo ou firmware adicionado ao Git.
+
+## 2026-10-21 — gate do console e roteamento MUIC
+
+Identificada decisão ifconn_get_jig_status, tabela ADC MUIC e correspondência com JIG UART/USB na fonte. Consultado MAX77705 específico selecionado no defconfig p3s; documentados AP/CP e rustproof. Criado coletor read-only de atributos novos para rish, sem repetir FDT/iomem negados. Inspetor de sboot ampliado com tabela e destinos. Nenhuma observação física, alteração sysfs ou teste Android declarado.

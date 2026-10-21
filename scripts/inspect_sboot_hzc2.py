@@ -111,6 +111,16 @@ def inspect(path):
                                (0xef3f4, 0xef420, 0xef4cc, 0xef4d0,
                                 0xef4d8, 0xef4e0)},
             status='Static path selects 0x10540000; execution and pin routing unobserved'),
+        'jig_gate': dict(
+            status_helper='0x18b560',
+            referenced_name_offsets={'ifconn_get_jig_status': '0x25eb28',
+                                     'ifconn_is_muic_jig_device': '0x25ebe8'},
+            muic_table_offset='0x25ead4',
+            muic_table_hex=data[0x25ead4:0x25eada].hex(),
+            muic_adc_targets={hex(adc): hex(0x18b6b8 + struct.unpack('b', data[0x25ead4+adc-24:0x25ead4+adc-23])[0]*4)
+                              for adc in range(24, 30)},
+            suppression_call_target=hex(bl_target(u32(0xedba4), 0xedba4)),
+            limit='Static dispatch and table only; no device ADC or routing observation'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],
