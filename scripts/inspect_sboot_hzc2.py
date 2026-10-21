@@ -179,6 +179,17 @@ def inspect(path):
             wrapper_tail_branch_word=f'{u32(0x1d4c4):08x}',
             lk_divisor_word=f'{u32(0xef474):08x}',
             limit='Static nominal configuration; not a measured frequency or final handoff state'),
+        'uart_upstream_clock': dict(
+            top_divisor_store_offset='0x1699c',
+            top_mux_store_offset='0x169a8',
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0x16988, 0x1698c, 0x16990, 0x16994,
+                                0x1699c, 0x169a4, 0x169a8,
+                                0x17688, 0x1768c, 0x17694, 0x17698)},
+            duplicate_top_words={hex(off): f'{u32(off):08x}' for off in
+                                 (0x36524, 0x36528, 0x3652c, 0x36530,
+                                  0x36538, 0x36540, 0x36544)},
+            limit='Source maps TOP mux value 2 to PLL_SHARED2_D2; QCH/gate handoff state unobserved'),
         'limits': ['No runtime EL observation at the kernel jump',
                    'No final FDT, RAM allocation, PSCI conduit or UART initialization proof',
                    'Not an image packer, flash tool or generic sboot parser'],

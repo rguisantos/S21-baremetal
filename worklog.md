@@ -247,3 +247,11 @@ UART_DBG seleciona IP0_USER e encoded divisor2; bit4 IP0_USER é ligado.
 Entrada160c0 chama wrapper1d4b4 com 133250000/115200, gerando divisor71
 compatível com LK0x47. Caminho26MHz anterior é separado, sem claim de
 transição temporal. Inspector e docs ampliados; frequência real não medida.
+
+## 2026-10-21 — origem nominal PLL_SHARED2 e auditoria offline
+
+Identificados writes TOP mux2/div0 em169a8/1699c, repetidos36544/36538.
+Fonte CAL liga PLL_SHARED2_D2 à tabela799500000/M123/P2/S1. Cadeia /2/1/3
+fecha133250000 e divisorUART71. Nova auditoria offline hash-bound valida
+as seleções e aritmética, recusando fontes/firmware diferentes. Gates/QCH
+continuam sem estado de handoff determinado; nenhum acesso físico realizado.

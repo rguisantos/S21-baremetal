@@ -113,3 +113,5 @@ A [referência Exynos-2100/universal2100](docs/exynos-2100-reference.md) foi com
 Uma [rotina anterior no intervalo BL2](docs/bl2-uart-hzc2.md) configura GPG0_CON `0x10430120` com os campos UART0 previstos pelo DTS. Isso contextualiza a divergência do LK; a configuração efetiva no handoff ainda não foi medida.
 
 O [rastreio dos clocks entre BL2 e LK](docs/uart-clock-stages.md) encontrou um wrapper ligado à entrada BL2 com nominal 133,25 MHz/115200; seu divisor 71 coincide com o LK. Isso refina o caminho separado de 26 MHz, sem medir a frequência final.
+
+A [auditoria nominal da árvore UART0](docs/uart-clock-stages.md#origem-nominal-fechada-na-fonte--continuação-2026-10-21) fechou a conta PLL_SHARED2 799,5 MHz ÷2 ÷1 ÷3 = 133,25 MHz, consistente com BL2/LK. A ferramenta offline verifica os hashes e seletores; gates e frequência real permanecem pendentes.

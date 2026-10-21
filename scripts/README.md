@@ -26,3 +26,5 @@ O empacotador atual está em `../tools/mkpayload.py`; não confundir com versõe
 - `collect_boot_logs.sh`: consulta last_kmsg/first_kmsg/sec_log; captura limitada a 2 MiB/5 s por arquivo, cria pasta nova e gera report.txt.
 
 O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tradução identidade read-only e AT/PAR nos casos MMU. O padrão executa 12 casos; `--all-offsets` combina 128 entradas aceitas e seis recusas.
+
+- `check_uart_clock_evidence.py`: cruza sboot HZC2 com fontes de clock identificadas por hash; verifica frequência nominal, seletores e UBRDIV. Não lê hardware ou produz writes.

@@ -109,3 +109,64 @@ rotinas ou medição do Exynos. Para repetir a desassemblagem, intervalos:
 A prioridade seguinte é verificar alterações e dependências até o handoff,
 e definir como observar o estado real. Não solicitar nova coleta dos nós
 que o shell já mostrou indisponíveis nem reenviar pacotes recebidos.
+
+## Origem nominal fechada na fonte — continuação 2026-10-21
+
+O passo seguinte ligou os dois registradores CMU_TOP à seleção da PLL:
+
+| Elemento | Evidência do firmware | Ligação na fonte CAL |
+|---|---|---|
+| Mux TOP PERIC0_IP0 | 0x169a8 escreve 2 em 0x1a3310d0 | índice 2 de `cmucal_mux_clkcmu_peric0_ip0_parents` = PLL_SHARED2_D2 |
+| Divisor TOP PERIC0_IP0 | 0x1699c escreve WZR em 0x1a3318c8 | encoding 0 = dividir por 1 |
+| User mux | 0x17698 liga bit 4 em 0x10400620 | seleciona CLKCMU_PERIC0_IP0 |
+| Mux UART local | tabela 0x30670, índice 0 = 1 | MUX_CLKCMU_PERIC0_IP0_USER |
+| Divisor UART local | tabela 0x30680, índice 0 = 2 | dividir por 3 |
+
+Os writes CMU_TOP também aparecem em 0x36538/0x36544, na segunda sequência
+analisada, com os mesmos valores. O significado dos encodings vem da fonte;
+as instruções mostram os valores escritos, sem observar o hardware.
+
+`cmucal-node.c` declara `pll_shared2_rate_table` com
+`PLL_RATE_MPS(799500000, 123, 2, 1)` e o fator `PLL_SHARED2_D2` como ratio
+codificado 1, isto é, divisão por 2 no modelo CAL. A conta nominal fecha:
+
+`26.000.000 × 123 / (2 × 2^1) = 799.500.000 Hz`
+
+`799.500.000 / 2 / 1 / 3 = 133.250.000 Hz`
+
+Assim, os 133,25 MHz passados ao wrapper BL2 têm suporte na árvore de clocks
+da fonte, não só na coincidência com UBRDIV do LK. **Os valores M/P/S da PLL
+são os nominais da tabela de fonte**, não valores lidos ou confirmados como
+escritos no aparelho. A programação completa de PLL_SHARED2 permanece pendente.
+
+### Gates e o que ainda não foi demonstrado
+
+O CAL identifica QCH em **0x10403014** e o gate UART IPCLK em
+**0x104020b8**. A busca de palavras literais completas e de construções
+imediatas diretas nos trechos examinados não encontrou um acesso inequívoco
+que fixe seus estados no handoff. Isso é um resultado limitado de busca,
+não prova de ausência de writes: tabelas, aliases, outro firmware e acessos
+indiretos podem configurá-los. Não declarar a UART pronta por essa conta.
+
+Cuidado com nomes semelhantes: o registro CMU_TOP **0x1a33014c** é PLL_MMC
+na fonte consultada; PLL_SHARED2 é **0x1a33020c**. Uma escrita na primeira
+não deve ser usada como evidência do estado da segunda.
+
+### Auditoria offline reproduzível
+
+```bash
+python3 scripts/check_uart_clock_evidence.py /caminho/sboot.bin /caminho/fontes-kernel
+```
+
+A raiz de fontes precisa fornecer `drivers/clk/samsung/clk-exynos2100.c` e
+`drivers/soc/samsung/cal-if/exynos2100/cmucal-node.c` com os hashes já
+registrados no manifesto Exynos-2100. Ambos foram comparados anteriormente
+com o pacote recebido e são byte-idênticos. A ferramenta confere o hash do
+sboot, os dois arquivos, os seletores, tabela M/P/S, divisores e consistência
+com os argumentos BL2 e UBRDIV LK. Faz somente leituras e imprime JSON.
+
+Executada com as fontes fixadas: **133250000 Hz nominais, baud pedido 115200,
+UBRDIV BL2=LK=71**. Entradas com fonte modificada e firmware incorreto foram
+recusadas. O resultado marca `runtime_observed=false` e mantém gates e estado
+final como pendências. É auditoria de evidência estática, sem emulação do SoC,
+leitura física, cálculo automático de um plano de writes ou teste UART.
