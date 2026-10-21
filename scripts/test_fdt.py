@@ -59,12 +59,12 @@ def fixture(qemu=False, cells=2):
     dist,rd=(0x08000000,0x080a0000) if qemu else (0x10200000,0x10240000)
     reserved=[] if qemu else [node('firmware@90000000',{'reg':reg(0x90000000,0x100000)})]
     props={'#address-cells':u32(ac),'#size-cells':u32(sc),'interrupt-parent':u32(1)}
+    cpus=[node('cpu@0',{'device_type':text('cpu'),'reg':u64(0)})]
+    if not qemu: cpus.append(node('cpu@100',{'device_type':text('cpu'),'reg':u64(0x100)}))
     children=[
         node('memory@%x'%ram,{'device_type':text('memory'),'reg':reg(ram,0x08000000 if qemu else 0x40000000)}),
         node('reserved-memory',{'#address-cells':u32(ac),'#size-cells':u32(sc),'ranges':b''},reserved),
-        node('cpus',{'#address-cells':u32(2),'#size-cells':u32(0)},[
-            node('cpu@0',{'device_type':text('cpu'),'reg':u64(0)}),
-            node('cpu@100',{'device_type':text('cpu'),'reg':u64(0x100)})]),
+        node('cpus',{'#address-cells':u32(2),'#size-cells':u32(0)},cpus),
         node('gic@%x'%dist,{'compatible':text('arm,gic-v3'),'reg':reg(dist,0x10000)+reg(rd,0x20000 if qemu else 0x200000),'phandle':u32(1),'#interrupt-cells':u32(3),'interrupt-controller':b''}),
         node('timer',{'compatible':text('arm,armv8-timer'),'interrupts':u32(1,13,4,1,14,4,1,11,4,1,10,4),'clock-frequency':u32(26000000)}),
     ]
@@ -81,7 +81,7 @@ def main():
     args=parser.parse_args()
     if args.write_qemu:
         args.write_qemu.parent.mkdir(parents=True,exist_ok=True)
-        args.write_qemu.write_bytes(encode(fixture(True)))
+        args.write_qemu.write_bytes(encode(fixture(True),[(0x47f00000,4096)]))
         return
     with tempfile.TemporaryDirectory() as td:
         td=Path(td); probe=td/'probe'

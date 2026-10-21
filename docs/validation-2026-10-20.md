@@ -37,3 +37,7 @@ Para repetir a inspeção com suas próprias cópias das imagens, separe o FDT b
 ## Complemento: contêiner e Proton publicado
 
 O empacotador/consumidor S21R10 passou em 59 casos, incluindo inspeção C com ASan/UBSan e extensão do ELF real até o fim das pilhas. O shim recompila com handoff desativado e entrada padrão em park. O ZIP público Proton foi baixado e seu SHA-256 conferido; detalhes em [proton-binary.md](proton-binary.md). Isso não é validação de SMP ou carregamento no telefone.
+
+## Carregador EL2 com main de produção
+
+`python3 scripts/test_payload_stage.py`: 17 casos ASan/UBSan, verificando cópia/zero exatos e recusa sem alterar destino. `python3 scripts/test_payload_loader.py`: um handoff EL2→EL1 com main/parser/GIC/timer/dispatcher reais, mais cinco recusas. GDB confere a janela inteira antes do salto e símbolos/IRQs depois dele; UART é o backend QEMU. Não foram usados sockets, SMP ou hardware Samsung. Detalhes em [qemu-el2-loader.md](qemu-el2-loader.md).

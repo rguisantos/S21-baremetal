@@ -65,6 +65,6 @@ Não há teste SMP do shim aprovado. Um comando QEMU com `-smp 8` sozinho não v
 
 `python3 scripts/test_payload.py`: **60 casos PASS**, incluindo fixtures ELF independentes, tamanho exato de BSS/pilhas do ELF real, casos inválidos, não sobrescrita pelo CLI, leitura C sob ASan/UBSan e fixtures Linux+EFI/vendor_boot. A inspeção read-only do ZIP publicado está em [proton-binary.md](proton-binary.md).
 
-Próximo desbloqueio: um carregador de teste EL2 sem MMU que reserve memória antes de copiar, zere exatamente os intervalos apropriados, mantenha coerência de cache e passe o FDT bruto. Depois, executar o R10 em uma CPU através desse caminho no QEMU; somente então estudar SMP. O contrato Samsung continua pendente em [loader-contract.md](loader-contract.md).
+Esse desbloqueio agora foi testado em uma CPU: [carregador EL2 QEMU](qemu-el2-loader.md), com janela protegida, cópia/zero exatos, manutenção de cache emitida e FDT bruto entregue à main real. Isso não habilita o shim legado ou demonstra o contrato Samsung, que continua pendente em [loader-contract.md](loader-contract.md).
 
 A implementação posterior do outro branch foi revisada e reproduzida separadamente: [branch-packer-review.md](branch-packer-review.md). Ela não deve substituir este produtor/consumidor.

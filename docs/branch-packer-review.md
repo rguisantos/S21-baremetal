@@ -44,7 +44,7 @@ O argumento ELF é posicional; `--kernel` pertence ao outro empacotador. O FDT p
 
 `make -C r8 run_r10 QEMU_ARGS='-smp 4'` foi conferido: o alvo apenas imprime uma mensagem sobre o ELF e não inicia QEMU. Isso também ocorre no Makefile do branch analisado. Logo, o comando não testa CPU_ON, SGIs/IPIs ou GIC por CPU.
 
-Os PASS de R8/R9 demonstram seus próprios testes; não se transferem automaticamente ao shim, empacotador ou payload no telefone. Ainda falta testar um carregador EL2 de uma CPU com reserva de memória, cópia/zero corretos, cache e FDT bruto antes de tratar SMP.
+Os PASS de R8/R9 demonstram seus próprios testes; não se transferem automaticamente ao shim, empacotador ou payload no telefone. Na revisão desse branch ainda faltava testar o carregador EL2. Esse teste foi posteriormente concluído em uma CPU, com main real e FDT bruto: [qemu-el2-loader.md](qemu-el2-loader.md). Isso não altera as falhas do branch nem prova SMP ou Samsung.
 
 `fastboot boot shim/build/shim.elf` não é um caminho demonstrado neste Samsung; desbloqueio sozinho não fornece suporte a carregar esse ELF. A afirmação sobre DECON em 0x19050000 também não foi validada por esta análise e não foi incorporada como endereço confirmado.
 

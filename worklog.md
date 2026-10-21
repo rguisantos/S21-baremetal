@@ -116,3 +116,11 @@ Decisão do usuário: sem flash no aparelho principal; rotas = esgotar QEMU + Fa
 - Conferido kilo/slim-fjord-u2q em 9dca396: produtor grava ELF bruto como segmento, usa kernel_end relativo, ignora função de leitura da entrada e presume 2 GiB. Na reprodução, os bytes que seriam executados começaram por 7f454c46, kernel_end=0x18000 e nsegs=1, omitindo a semântica dos dois PT_LOAD/BSS/pilhas do R10 atual.
 - Validador antigo com ASan/UBSan retornou ALL CHECKS PASSED para esse artefato e heap-buffer-overflow para arquivo de quatro bytes. Consumidor main recusou o mesmo payload sem erro de sanitizer.
 - Adicionado caso específico de kernel_end relativo: suíte atual 60 PASS. Conferido que run_r10 com QEMU_ARGS=-smp4 só imprime aviso e não executa QEMU; não há prova de SMP/fastboot por esse comando. Evidências completas em docs/branch-packer-review.md. Sem mesclar regressões do branch ou realizar operações no aparelho.
+
+
+## 2026-10-20 — Carregador EL2 QEMU → main R10 de produção
+
+- Criada etapa payload_stage separada: usa FDT confiável independente, reserva da janela completa e exclusões de fonte/FDT/firmware/pilha antes de zerar/copiar bytes exatos. FDT empacotado precisa coincidir com o fornecido pelo chamador. 17 casos host ASan/UBSan com buffers/canários e recusas sem escrita.
+- Novo firmware QEMU em 0x44000000, com stack PT_LOAD de 16 KiB e container produzido do ELF R10 linkado em 0x40080000. A entrada exige EL2 e MMU/D-cache desligadas; manutenção de cache por VA/DSB/IC/ISB e x0=FDT/x1..x3=0 antes do salto. Não ligado ao shim Samsung.
+- O harness compara a janela inteira contra os PT_LOAD/FDT antes do salto; depois confirma CurrentEL=EL1, g_fdt correto, boot_status=1 e pelo menos cinco IRQs do timer na main/dispatcher reais. Backend UART é o único dispositivo substituído por PL011 QEMU. Quatro recusas de contêiner/contexto preservam destino; uma quinta recusa entrada EL1 antes de BSS/pilha.
+- Sockets locais foram bloqueados pelo ambiente; observação GDB adaptada para pipes, sem servidor de rede. Teste completo passou em uma CPU. Fixture QEMU descreve essa única CPU e inclui página reservada para injeção de falha. Sem SMP ou operação no telefone.

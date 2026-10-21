@@ -186,3 +186,35 @@ $(BUILD)/r10_stage_test.elf: $(R10_TEST_OBJS) common/linker_r10.ld
 run_r10_stage_test: $(BUILD)/r10_stage_test.elf
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=on -cpu max -nographic -kernel $<
 .PHONY: run_r10_stage_test
+
+# Real production R10 main with only the UART device backend replaced for QEMU.
+$(BUILD)/r10_qemu_uart.o: tests/r10_qemu_uart.c r10_payload/r10.h | $(BUILD)
+	$(CC) $(CFLAGS) -c $< -o $@
+R10_QEMU_OBJS = $(BUILD)/r10_start.o $(BUILD)/r10_main.o $(BUILD)/r10_fdt.o \
+    $(BUILD)/r10_gic.o $(BUILD)/r10_timer.o $(BUILD)/r10_exceptions.o \
+    $(BUILD)/r10_qemu_uart.o $(BUILD)/uart.o $(BUILD)/printf.o $(BUILD)/util.o \
+    $(BUILD)/sys.o $(BUILD)/vectors.o
+$(BUILD)/r10_qemu_payload.elf: $(R10_QEMU_OBJS) common/linker_r10.ld
+	$(CC) $(CFLAGS) -nostdlib -static -Wl,--defsym,R10_LOAD_ADDR=0x40080000 \
+	    -T common/linker_r10.ld -Wl,--build-id=none -o $@ $(R10_QEMU_OBJS)
+$(BUILD)/r10_qemu.payload: $(BUILD)/r10_qemu_payload.elf $(BUILD)/r10-test.dtb ../tools/mkpayload.py
+	@set -eu; tmp=$$(mktemp -d "$(BUILD)/.r10-payload.XXXXXX"); \
+	    trap 'rm -rf "$$tmp"' EXIT; \
+	    python3 ../tools/mkpayload.py "$<" --dtb "$(BUILD)/r10-test.dtb" -o "$$tmp/payload"; \
+	    mv "$$tmp/payload" "$@"
+$(BUILD)/loader_start.o: tests/payload_loader.S $(BUILD)/r10_qemu.payload $(BUILD)/r10-test.dtb | $(BUILD)
+	$(CC) $(ASFLAGS) -DR10_LOADER_DTB='"$(abspath $(BUILD)/r10-test.dtb)"' \
+	    -DR10_LOADER_PAYLOAD='"$(abspath $(BUILD)/r10_qemu.payload)"' -c $< -o $@
+$(BUILD)/loader_main.o: tests/payload_loader.c ../shim/payload_stage.h ../shim/payload.h r10_payload/fdt.h common/r8lib.h | $(BUILD)
+	$(CC) $(CFLAGS) -mstrict-align -c $< -o $@
+$(BUILD)/loader_%.o: ../shim/%.c ../shim/payload.h ../shim/payload_stage.h r10_payload/fdt.h | $(BUILD)
+	$(CC) $(CFLAGS) -mstrict-align -c $< -o $@
+LOADER_OBJS = $(BUILD)/loader_start.o $(BUILD)/loader_main.o $(BUILD)/loader_payload.o \
+    $(BUILD)/loader_payload_stage.o $(BUILD)/loader_memory.o $(BUILD)/r10_fdt.o $(BUILD)/uart.o
+$(BUILD)/r10_loader_test.elf: $(LOADER_OBJS) tests/payload_loader.ld
+	$(CC) $(CFLAGS) -nostdlib -static -T tests/payload_loader.ld -Wl,--build-id=none -o $@ $(LOADER_OBJS)
+LOADER_VIRTUALIZATION ?= on
+run_r10_loader_test: $(BUILD)/r10_loader_test.elf
+	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(LOADER_VIRTUALIZATION) -cpu max -smp 1 \
+	    -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
+.PHONY: run_r10_loader_test

@@ -13,9 +13,10 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 | R8C | GICv3 e timer físico, INTID 30 | QEMU PASS |
 | R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
 | R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
+| Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
 
-O teste R10 usa entrada, parser, política de memória, vetores, GIC, timer e dispatcher de produção, com uma função C de teste e firmware sintético para o QEMU. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
+Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
 ## Compilar e reproduzir
 
@@ -26,6 +27,8 @@ make -C r8 -j4 all
 make -C r8 regress
 python3 scripts/test_fdt.py
 python3 scripts/test_payload.py
+python3 scripts/test_payload_stage.py
+python3 scripts/test_payload_loader.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```
@@ -60,6 +63,7 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
 - [Carregamento Samsung e instalador Proton: contrato e lacunas](docs/loader-contract.md)
 - [Revisão do empacotador do branch kilo e alegações de SMP](docs/branch-packer-review.md)
+- [Carregador EL2 QEMU: main R10 real e recusas antes da cópia](docs/qemu-el2-loader.md)
 - [Contêiner S21R10 v1: empacotador, validação e limites](docs/payload-format.md)
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)

@@ -77,3 +77,7 @@ Nenhum desses testes de Image nova ou binário BL foi executado nesta revisão. 
 ## Contêiner e quarentena do shim
 
 O formato S21R10 v1 agora tem produtor e validador offline, em [payload-format.md](payload-format.md). Isso não implementa ainda a próxima Image de diagnóstico descrita acima. O loader legado passava boot_args incompatível com o R10 e foi desativado; a entrada padrão do shim estaciona antes de MMIO. Nenhuma conclusão desta página autoriza fastboot/Odin com esses artefatos.
+
+## Marco posterior: carregador sintético em EL2
+
+O contêiner agora foi carregado no QEMU até a main R10 real em EL1, com conferência da imagem antes do salto e timer depois dele: [qemu-el2-loader.md](qemu-el2-loader.md). O firmware de teste é um ELF que o QEMU carrega diretamente; não é ainda a Image ARM64/Android de diagnóstico para o Samsung descrita na seção 6. O contrato do telefone continua pendente.
