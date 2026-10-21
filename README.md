@@ -107,3 +107,5 @@ A [cadeia de cópia da Image no LK](docs/lk-kernel-copy.md) foi ligada ao destin
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.
+
+A [referência Exynos-2100/universal2100](docs/exynos-2100-reference.md) foi comparada ao pacote Samsung: 18 arquivos, 13 idênticos. O cruzamento detalhou clocks/pinctrl UART0 e registrou uma divergência de pinmux com o LK.

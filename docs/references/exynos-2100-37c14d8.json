@@ -1,0 +1,120 @@
+{
+  "repository": "Exynos-2100/android_kernel_samsung_universal2100",
+  "url": "https://github.com/Exynos-2100/android_kernel_samsung_universal2100",
+  "branch": "lineage-22.2",
+  "commit": "37c14d86996a49edbea8953f2523b202546b8958",
+  "commit_date": "2025-05-17T14:39:26Z",
+  "kernel_version": "5.4.290",
+  "comparison_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "mode": "selected source comparison; no build or hardware execution",
+  "files": [
+    {
+      "path": "Makefile",
+      "identical": false,
+      "stock_sha256": "9021bc5a2bf11176af99ec6979e87729aa6084272c38e1c7f6215794661b2ab3",
+      "reference_sha256": "c3c87f10dd5a2596c5ceb7334ce5f40b63de66a7590009aa8d5550f275b98ae8"
+    },
+    {
+      "path": "README.md",
+      "identical": true,
+      "stock_sha256": "3f0b62d2b2a55baea16b8dad86c58da6c972e98adf39b93af5b1052fcaac32a7",
+      "reference_sha256": "3f0b62d2b2a55baea16b8dad86c58da6c972e98adf39b93af5b1052fcaac32a7"
+    },
+    {
+      "path": "drivers/tty/serial/exynos_tty.c",
+      "identical": true,
+      "stock_sha256": "f8e0f52ca9cd2a29e65096749f3498eeef19856fd250c3a272bcf0fb6182b267",
+      "reference_sha256": "f8e0f52ca9cd2a29e65096749f3498eeef19856fd250c3a272bcf0fb6182b267"
+    },
+    {
+      "path": "include/linux/serial_s3c.h",
+      "identical": true,
+      "stock_sha256": "e5c60b29c65ba77a469aa562a5fc4c5b6d64d0abbf48c295967885f6ebdc1aaa",
+      "reference_sha256": "e5c60b29c65ba77a469aa562a5fc4c5b6d64d0abbf48c295967885f6ebdc1aaa"
+    },
+    {
+      "path": "drivers/clocksource/exynos_mct.c",
+      "identical": true,
+      "stock_sha256": "672999b9f93351d31c4fa2c24738b56ee8e291c98ea31c07069d203992063c15",
+      "reference_sha256": "672999b9f93351d31c4fa2c24738b56ee8e291c98ea31c07069d203992063c15"
+    },
+    {
+      "path": "drivers/irqchip/irq-gic-v3.c",
+      "identical": false,
+      "stock_sha256": "b7c4a3305f12c4a7dbdf634075bf8cfee85c6b7456c32e33a995ca3bc150fd81",
+      "reference_sha256": "8e594d8825aa8903f96a5430ad14b54316964cf149c96a8fa31ab8861a1a5861"
+    },
+    {
+      "path": "drivers/pinctrl/samsung/pinctrl-exynos-arm64.c",
+      "identical": true,
+      "stock_sha256": "88aca95fa2fcbc10f71338cb64877a59c0c67743390489ae4c48dfa022f3ce4c",
+      "reference_sha256": "88aca95fa2fcbc10f71338cb64877a59c0c67743390489ae4c48dfa022f3ce4c"
+    },
+    {
+      "path": "drivers/clk/samsung/clk-exynos2100.c",
+      "identical": true,
+      "stock_sha256": "8d302ed9d540c108fc92ee3b70319a187acd755e2ae14ffdf8e1e99907c4b243",
+      "reference_sha256": "8d302ed9d540c108fc92ee3b70319a187acd755e2ae14ffdf8e1e99907c4b243"
+    },
+    {
+      "path": "arch/arm64/boot/dts/exynos/exynos2100.dts",
+      "identical": false,
+      "stock_sha256": "586ca56987bbaacce0a38ddaee8a852721caaaeb9096ada6bfde8bc8c0d88ca8",
+      "reference_sha256": "b7caebb0e29363467d6ea8349b36330a7c29b6ef28e792ad38ad6436d63ee634"
+    },
+    {
+      "path": "arch/arm64/configs/exynos2100-p3sxxx_defconfig",
+      "identical": false,
+      "stock_sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd",
+      "reference_sha256": "ab4429a900942798604c750b7b2bec33fb34c75bb7a461bb643ae9b74d1a7446"
+    },
+    {
+      "path": "drivers/soc/samsung/debug/debug-snapshot.c",
+      "identical": true,
+      "stock_sha256": "158602ffb2c6d09503cdaaae9e1e6158bb2d3425b0b4894d1e26a1b43bb4f24e",
+      "reference_sha256": "158602ffb2c6d09503cdaaae9e1e6158bb2d3425b0b4894d1e26a1b43bb4f24e"
+    },
+    {
+      "path": "include/dt-bindings/clock/exynos2100.h",
+      "identical": true,
+      "stock_sha256": "a622ab27f3068bb9b877a72eefdb8b5f79ab7e382306ad2ffa10d73002c0976f",
+      "reference_sha256": "a622ab27f3068bb9b877a72eefdb8b5f79ab7e382306ad2ffa10d73002c0976f"
+    },
+    {
+      "path": "drivers/soc/samsung/cal-if/exynos2100/cmucal-node.c",
+      "identical": true,
+      "stock_sha256": "4d5f3a8b4c6aa0b6431205041f094dccf54eeefa93e716a76ea508d31bf8a6dc",
+      "reference_sha256": "4d5f3a8b4c6aa0b6431205041f094dccf54eeefa93e716a76ea508d31bf8a6dc"
+    },
+    {
+      "path": "drivers/soc/samsung/cal-if/exynos2100/cmucal-qch.c",
+      "identical": true,
+      "stock_sha256": "f1d2c428b7a9cb8afec441974b4d90a8e8b3a57df0ae22a589e4020c946811a3",
+      "reference_sha256": "f1d2c428b7a9cb8afec441974b4d90a8e8b3a57df0ae22a589e4020c946811a3"
+    },
+    {
+      "path": "drivers/soc/samsung/cal-if/exynos2100/cmucal-sfr.c",
+      "identical": true,
+      "stock_sha256": "9aa6b5323260d435c565aaa92a7478fdafb628a8aa7de0372a90fa57c92e9163",
+      "reference_sha256": "9aa6b5323260d435c565aaa92a7478fdafb628a8aa7de0372a90fa57c92e9163"
+    },
+    {
+      "path": "drivers/soc/samsung/cal-if/exynos2100/cmucal-sfr.h",
+      "identical": true,
+      "stock_sha256": "64be6b95e5ea791752c5db488477218c564d74cff992bc6f8e74965c7f1a9841",
+      "reference_sha256": "64be6b95e5ea791752c5db488477218c564d74cff992bc6f8e74965c7f1a9841"
+    },
+    {
+      "path": "drivers/soc/samsung/cal-if/exynos2100/cmucal-vclk.c",
+      "identical": true,
+      "stock_sha256": "aad4c0a0efd090bcf793a9db407d272fb1cfb3b90329362dc06ae02d134d135e",
+      "reference_sha256": "aad4c0a0efd090bcf793a9db407d272fb1cfb3b90329362dc06ae02d134d135e"
+    },
+    {
+      "path": "arch/arm64/boot/dts/samsung/p3s/p3s_eur_openx_w01_r22.dts",
+      "identical": false,
+      "stock_sha256": "1a08ee1556edba81c237679cf763c08069d5a1474ba7852e89409057f13d9abd",
+      "reference_sha256": "d216e8b42b3eed54d2190b580d1ccf9b8bde536e18a6c9ce7aa7ff4cf9dc4db2"
+    }
+  ]
+}

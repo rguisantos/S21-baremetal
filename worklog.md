@@ -218,3 +218,7 @@ Teste padrão: seis entradas aceitas e seis recusas C/M/M|C em EL1/EL2 PASS.
 Registro, código, sentinelas, tabelas, argumentos e SP preservados. Nenhuma
 mudança no diagnóstico de produção ou execução física. Roadmap no repositório
 registra o marco e a prioridade do contrato de carregamento/observação.
+
+## 2026-10-21 — kernel Exynos-2100 indicado pelo usuário
+
+Consultado lineage-22.2 no SHA 37c14d86996a49edbea8953f2523b202546b8958, Linux5.4.290. Comparados 18 arquivos com o Kernel.tar.gz recebido: 13 idênticos. Clocks CAL/binding/pinctrl deram ligações UART0 concretas; escrita pinmux LK 0x10430080 diverge do GPG0_CON 0x10430120 derivado da fonte. Diff GIC só trata readback VGIC e falha de CPU PM. Manifesto e relatório integrados sem alterar drivers ou reivindicar teste físico.

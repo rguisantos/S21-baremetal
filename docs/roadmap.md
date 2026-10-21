@@ -36,3 +36,5 @@ não repetir esses procedimentos nas mesmas condições. Não se pressupõe root
 
 A passagem ao teste físico depende do caminho de carregamento e da capacidade
 de recuperar uma evidência. Nenhum comando de flash é derivado dos testes atuais.
+
+A [comparação Exynos-2100](exynos-2100-reference.md) detalha mux/divisor/QCH da UART0. Prioridade de observação: resolver o pinmux do DTS versus a escrita LK antes de adaptar a inicialização UART.
