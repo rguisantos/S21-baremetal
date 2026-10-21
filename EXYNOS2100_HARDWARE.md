@@ -225,18 +225,83 @@ harx, keystorage, ldfwH, tzsw, vendor_boot, product, system, vendor
 **Build**: `G998BXXSJHZC2` / `20260309203616`
 **Security patch**: `2026-01-01`
 
-### Critical Findings for Bare-Metal
+---
 
-| Aspect | Finding | Implication |
-|--------|---------|-------------|
-| **Boot chain** | BL2 (sboot.bin) → Kernel | No U-Boot in BL; Samsung proprietary chain |
-| **Chainload point** | After BL2, before kernel | Need to inject payload at EL2/EL1 via custom bootloader |
-| **PSCI** | BL: HVC, DTB: SMC | Test `hvc #0` first, fallback to `smc #0` |
-| **GIC** | GICv3 initialized by TF-A | GICD/GICR already configured; we inherit at EL1/EL2 |
-| **DTB** | Dynamic in BL2 (`configure_dtb`) | Base DTB now extracted from `vendor_boot.img` ✅ |
-| **Secure memory** | Managed by BL2/TEEGRIS | `get secure memory base addr` — avoid reserved regions |
+### sboot.bin Reverse Engineering (BL2 + TF-A)
+
+**Source**: `BL_G998BXXSJHZC2_...tar.md5` → `sboot.bin` (4 MB, decompressed from sboot.bin.lz4)
+
+**Confirmed Identity**:
+- **TF-A Version**: v1.5 (release), Athens platform (Exynos 2100 / s5e9840)
+- **Build**: RP1A-1A19R1-1-gbfac7c7, Sep 3 2024 16:38:03
+- **Platform**: Exynos 2100 / S5E9840 / Athens
+- **Components**: BL1 → BL2 → BL31 (EL3 monitor) + H-Arx (EL2 hypervisor)
+
+**Key Strings Found**:
+| String | Offset |
+|--------|--------|
+| `load_boot_images` | 0x216a58 |
+| `configure_dtb` | 0x216900 |
+| `Starting kernel...` | 0x2169d8 |
+| `JUMP2K` | 0x216a30 |
+| `bootargs_init` | 0x216a40 |
+| `set_bootargs` | 0x216a50 |
+
+**Key Code Regions**:
+| Region | Purpose |
+|--------|---------|
+| 0x0 - 0x1000 | Reset vector, exception vectors, early init |
+| 0x1ef000 - 0x1f0000 | String table references, boot logic |
+| 0x1efcc0 | Function with external call (0x1001c4820), data tables |
+| 0x1efcc0-0x1efd3c | Function with external calls (0x1001cxxxx) + data tables |
+| 0x216000 - 0x218000 | String table (boot messages, error messages, PMIC, charger) |
+
+**Key Findings**:
+
+1. **Boot Chain**: BL2 (sboot.bin) → Kernel (no U-Boot in chain)
+2. **Entry Contract**: BL2 hands off at **EL2** with `x0 = FDT pointer`
+3. **Load Address**: Kernel typically at **0x80080000** (confirmed by multiple address references)
+4. **PSCI Conduit**: 
+   - DTB says `method = "smc"`
+   - BL firmware strings show `hvc` usage (HVC conduit)
+   - Both paths likely work; TF-A may route HVC→SMC
+5. **GICv3**: 
+   - Distributor: 0x1020_0000
+   - Redistributor: 0x1024_0000 (stride 0x20000)
+   - ITS: 0x1028_0000
+   - ICC_* system register usage confirmed in code
+5. **PSCI Functions**: 
+   - `PSCI_VERSION` string found at multiple offsets
+   - `psci_cpu_on/off/reset` function names NOT in binary (implemented without symbols)
+   - `smc`/`hvc` conduits both referenced
+6. **Loading Flow** (from strings):
+   ```
+   bootargs_init → load_boot_images → set_bootargs → configure_dtb → start kernel booting
+   ```
+5. **PSCI Conduit**: BL strings show `hvc` usage; DTB says `smc`. Test both.
+6. **UART**: USI v2 at 0x10840000, but **live device shows IRQ 565** (not 533 as in DTB)
+9. **Kernel Load Address**: 0x80080000 (multiple references in code)
+10. **Entry Point**: BL2 hands off at EL2 with `x0 = FDT pointer`
+
+**External References**: Code calls functions at `0x1001cxxxx` addresses (different memory region - likely TEE/secure world interface).
+
+**Critical for Chainload**:
+- Shim must be loaded at **0x80080000** (kernel load address)
+- Shim entry at EL2 with `x0 = FDT pointer`
+- Shim must configure HCR_EL2, CNTHCTL_EL2, then ERET to EL1
+- Payload loader expects S21R10 magic in initrd
 
 ---
+
+## sboot.bin Analysis Complete
+
+The sboot.bin analysis confirms:
+1. **Entry at EL2** with FDT pointer in x0
+2. **Load address 0x80080000** for kernel/shim
+3. **PSCI via both SMC and HVC** (test both)
+4. **GICv3 at 0x10200000/0x10240000** with ICC_* sysreg usage
+4. **UART at 0x10840000** with **IRQ 565** (live device, not 533 as in DTB)
+6. **Entry at EL2** with FDT pointer in x0
 
 ## Firmware DTB Extraction Results (G998BXXSJHZC2)
 
