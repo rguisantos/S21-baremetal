@@ -83,3 +83,7 @@ O formato S21R10 v1 agora tem produtor e validador offline, em [payload-format.m
 ## Marco posterior: carregador sintético em EL2
 
 O contêiner agora foi carregado no QEMU até a main R10 real em EL1, com conferência da imagem antes do salto e timer depois dele: [qemu-el2-loader.md](qemu-el2-loader.md). O firmware de teste é um ELF que o QEMU carrega diretamente; não é ainda a Image ARM64/Android de diagnóstico para o Samsung descrita na seção 6. O contrato do telefone continua pendente.
+
+## Evidência posterior: entrada LK
+
+A primeira chamada de LK no sboot HZC2 configura/preserva EL1, conforme [sboot-layout-hzc2.md](sboot-layout-hzc2.md). Isso impede usar “Samsung entrega em EL2” como premissa do R10. A Image de diagnóstico descrita nesta página deve tratar EL1/EL2 antes de registradores específicos, e a compatibilidade com o salto final ainda precisa de observação.

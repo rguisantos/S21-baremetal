@@ -48,6 +48,8 @@ timeout 35 make -C r8 run_r9
 
 ## R10 atual
 
+**Evidência nova do BL HZC2:** a entrada de LK programa/preserva EL1; não há EL2 confirmado no salto para o kernel. O requisito EL2 atual do R10 foi testado no carregador sintético QEMU e ainda precisa de adaptação/validação para o Samsung. [Splits, instruções e correções do relatório externo](docs/sboot-layout-hzc2.md).
+
 A entrada primária exige EL2 com MMU/D-cache de EL2 e EL1 desligados e preserva o FDT recebido em x0. A main permanece em uma CPU, sem ativar MMU, MCT, SMP ou PSCI. O parser verifica RAM, reservas, initrd, afinidade completa da CPU, GIC e timer antes de acessar o GIC. Descrições incompletas provocam parada, sem preencher lacunas com endereços presumidos. Pilhas agora integram o `p_memsz` do segmento ELF.
 
 O Distributor pertence ao firmware e é somente lido. A interface de CPU usa registradores ICC; o redistributor é descoberto por afinidade em GICR_TYPER. Somente interrupções privadas são suportadas. Exceções inesperadas registram o contexto e estacionam; o R10 não usa a recuperação didática `ELR += 4` de R8.

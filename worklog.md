@@ -136,3 +136,7 @@ BL HZC2 recebido: 12 membros LZ4, MD5 do TAR válido e hashes brutos registrados
 ## 2026-10-21 UTC — continuação BL e resolução PR #4
 
 Rastreado escritor do deslocamento do salto: serviço SMC 0xc200101c, seis bits do retorno w2 deslocados por 15; ramo de erro força zero. Localizado global do FDT inicializado com 0x8b080000 e construtor memory@/reg/device_type, com bancos dependentes de estado runtime. Encontrada chamada HVC para reservas, sem reinterpretar PSCI SMC como HVC. Evidência e limites detalhados em docs/bootloader-hzc2.md. PR #4 novo revisado e encerrado como substituído pela main; validador antigo reproduz overflow. Testes atuais: contêiner 60 PASS; QEMU um handoff/25 IRQs e cinco recusas PASS. Nenhum driver ou firmware modificado.
+
+## 2026-10-21 — splits HZC2 e contraprova à premissa EL2
+
+Detector fixado em 0c0acea reproduz BL1/EPBL/BL2/LK/monitor; limite de LK usa tamanho fixo, não footer independente. Primeiro BL de LK (sboot+0xec000) chama 0xf9b4c: retorno imediato se EL1; SPSR 0x3c5 e ERET nos caminhos superiores. Saltos/FDT anteriores pertencem a LK. Corrigidos offsets de strings e BL com extensão de sinal (0x1efcd0→0x1c4820, não chamada externa 0x1001c4820). Ferramenta standard library somente leitura inspect_sboot_hzc2.py aceita hash exato e rejeita três entradas inválidas. Relatório completo em docs/sboot-layout-hzc2.md; main mantém contrato EL2 sintético até adaptação fundamentada. Branch kilo f624360 traz apenas documentação nova, sem corrigir packer ou implementar SMP. Nenhum firmware bruto publicado.

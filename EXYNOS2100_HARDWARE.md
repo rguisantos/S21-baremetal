@@ -1,6 +1,6 @@
 # Exynos 2100 / SM-G998B: estado confirmado
 
-Atualizado em 2026-10-20. Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
+Atualizado em 2026-10-21. Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
 
 ## Recursos extraídos do firmware
 
@@ -41,3 +41,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 Continuam pendentes: DTB final/contrato de memória, carregador Samsung/Harx, EL de entrada, manutenção de caches/coerência da imagem, acesso ICC/timer e depuração física/USI. O shim apenas compila; não há método demonstrado de `fastboot boot` para esse Samsung.
 
 As antigas notas de desmontagem e tentativas estão no [arquivo histórico](docs/archive/exynos2100-notes-legacy.md), com hipóteses superadas explicitamente identificadas. Os resultados desta página e das evidências acima prevalecem sobre esse arquivo.
+
+## Entrada LK e limites do resumo externo
+
+A análise do sboot HZC2 identifica LK em 0xec000–0x36c000 como região candidata corroborada por código. Sua primeira chamada leva a uma rotina que preserva EL1 ou prepara SPSR=0x3c5 e ERET para EL1h. Isso contraria o resumo “EL2 confirmado”; o EL no salto final não foi medido. O endereço 0x80080000 é base nominal acrescida de deslocamento, não garantia de RAM livre. Detalhes e ferramenta reproduzível em [sboot-layout-hzc2.md](docs/sboot-layout-hzc2.md).

@@ -184,3 +184,7 @@ Para reproduzir a leitura, use o snippet anterior variando o intervalo: `0xfb9a4
 A consulta anterior sem PR aberto foi superada: o [PR #4](https://github.com/rguisantos/S21-baremetal/pull/4) foi criado às 02:14:23 UTC de 2026-10-21. Nesta continuação ele foi revisado e **encerrado como substituído, sem merge**, mantendo o branch. Head: `9dca3969cc6e6ff571cbfd1cc440f7b27ac93143`. Não houve incorporação do empacotador defeituoso sobre a main.
 
 A revisão do diff (dois commits/quatro arquivos) confirmou as falhas já descritas em [branch-packer-review.md](branch-packer-review.md). Reproduzido novamente `heap-buffer-overflow` no `memcmp` do validador do PR com entrada de quatro bytes e ASan/UBSan. Na main, `scripts/test_payload.py`: **60 PASS**; `scripts/test_payload_loader.py`: **um handoff real com 25 IRQs e cinco recusas PASS**. Esses testes verificam o software do projeto, não executam sboot/Harx.
+
+## Atualização: limites dos estágios e EL da entrada LK
+
+A [revisão dos splits HZC2](sboot-layout-hzc2.md) reproduziu os limites do detector, identificou sua hipótese de tamanho fixo de LK e encontrou a primeira chamada de LK para uma rotina que programa/preserva **EL1**. O salto/FDT desta página ficam no intervalo LK. “EL2 confirmado” e “sboot inteiro = BL2” não são conclusões válidas. O EL no salto final continua sem medição; a nova evidência não autoriza usar a entrada EL2 atual do R10 no Samsung.

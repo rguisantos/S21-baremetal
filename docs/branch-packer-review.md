@@ -53,3 +53,7 @@ Foram preservadas as correções da main, sem mesclar o estado anterior desse br
 ## PR #4 resolvido — 2026-10-21 UTC
 
 O PR #4 apresentou o mesmo head 9dca3969cc6e6ff571cbfd1cc440f7b27ac93143 aqui auditado. Revisado e encerrado como substituído pela implementação atual na main, sem merge; branch preservado. Confirmado novamente overflow com entrada de quatro bytes no validador antigo. A main passou em 60 casos de contêiner e na integração QEMU com um handoff e cinco recusas. Justificativa registrada no corpo do [PR](https://github.com/rguisantos/S21-baremetal/pull/4).
+
+## Atualização do branch: f624360
+
+Conferido em 2026-10-21: os commits f6556bb/f624360 após 9dca396 alteram somente README.md e EXYNOS2100_HARDWARE.md. Packer/validador e alvo run_r10 continuam iguais. O novo relatório “sboot analysis complete” contém afirmações e offsets incorretos; a revisão com o binário HZC2 está em [sboot-layout-hzc2.md](sboot-layout-hzc2.md). Não foi reaberto o PR #4 nem incorporada essa documentação como evidência confirmada.

@@ -40,3 +40,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 ## BL HZC2 recebido
 
 [Inventário, integridade e primeira análise do salto para o kernel](bootloader-hzc2.md). O pacote BL solicitado já foi recebido e analisado; não há novo arquivo necessário para continuar a análise estática. Atualização: PR #4 posteriormente criado, revisado e encerrado como substituído pela main. A análise do BL agora rastreia a origem do deslocamento do kernel e a construção dinâmica de nós RAM.
+
+- [Splits do sboot HZC2 e entrada LK em EL1](sboot-layout-hzc2.md): validação do detector, inspeção reproduzível e revisão do relatório externo atualizado.
