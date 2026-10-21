@@ -199,19 +199,60 @@ From extracted `vendor_boot.img` DTB (2026-01-25):
 
 > **Note**: ProtonPlus `Image` is Windows PE (UEFI), not Linux kernel. `vendor_boot.img` contains valid Exynos 2100 DTB.
 
-### Boot Shim (R11)
+### Live Device Diagnostic Dump (SM-G998B, G998BXXSJHZC2)
 
-| Componente | Arquivo | Descrição |
-|------------|---------|-----------|
-| **Entry** | `shim/start.S` | Linux Image header, primary/secondary entry |
-| **Main** | `shim/shim.c` | PSCI, GICv3, timer, UART, MMU, SMP, payload load |
-| **MMU** | `shim/mmu.c` | 4K granule, identity map 4GB |
-| **Loader** | `shim/loader.c` | S21R10 payload loader |
-| **UART** | `shim/uart.c` | USI v2 driver @ 0x10840000 |
-| **Linker** | `shim/shim.ld` | Load at 0x80080000 |
+From `coleta/` directory — live device diagnostic dump:
 
-**Build**: `cd shim && ./build.sh` → `build/shim.elf` (85KB)
+| Property | Value |
+|----------|-------|
+| **Model** | SM-G998B (Galaxy S21 Ultra) |
+| **Bootloader** | G998BXXSJHZC2 |
+| **Kernel** | 5.4.242-30958140-abG998BXXSJHZC2 |
+| **Android** | 15 (AP3A.240905.015.A2) |
+| **Build Date** | Mon Mar 9 19:20:30 KST 2026 |
+| **CSC** | ZTO (Brazil) |
+| **Bootloader Locked** | Yes (ro.boot.flash.locked=1) |
+| **VBMeta** | AVB 1.1, locked, SHA256 |
 
-**Chainload**: `fastboot boot shim/build/shim.elf` (ou Odin)
+### Hardware Verified (from live device /proc/interrupts)
 
-# S21-baremetal
+| Component | Address | IRQ | Details |
+|-----------|---------|-----|---------|
+| **GIC-600** | 0x1020_0000 / 0x1024_0000 | - | arm,gic-v3, 3 cells |
+| **UART1** | 0x1084_0000 | SPI 565 | samsung,exynos-uart (USI v2) |
+| **MCT** | 0x1004_0000 | SPI 975-986 | samsung,exynos4210-mct |
+| **DECON** (Display) | 0x19f0_0000 | SPI 280-295 | exynos-decon |
+| **UFS** | - | SPI 302 | ufshcd |
+| **PCIe** | - | SPI 389 | exynos-pcie |
+| **PMIC** (s2mps23) | - | 34, 417-457 | s2mps23-irq |
+| **PMIC** (max77705) | - | 493-505 | max77705 |
+| **MFC** (Video) | - | 486-487 | exynos-mfc |
+| **Touch** | - | 461-462 | qbt_finger |
+
+### Memory (from /proc/meminfo)
+| Metric | Value |
+|--------|-------|
+| **MemTotal** | 10,829,472 kB (~10.3 GB) |
+| **CMA Total** | 249,856 kB (244 MB) |
+| **Swap Total** | 8,388,604 kB (8 GB) |
+
+### Boot Args (from `/proc/cmdline`)
+```
+clocksource=arch_sys_counter nr_cpus=8 androidboot.hardware=exynos2100
+log_buf_len=256K irqaffinity=0 loop.max_part=7
+rcupdate.rcu_expedited=1 s3c2410_wdt.tmr_atboot=1
+s3c2410_wdt.tmr_margin=80 printk.devkmsg=on
+cgroup.memory=nokmem swiotlb=noforce
+```
+
+### Partition Layout (from /dev/block/by-name)
+| Name | Block Device | Purpose |
+|------|-------------|---------|
+| **boot** | sda13 | Kernel + ramdisk + DTB |
+| **dtbo** | sda11 | DTB overlays |
+| **vendor_boot** | sda14 | Vendor boot (DTB + ramdisk) |
+| **recovery** | sda15 | Recovery kernel |
+| **vbmeta** | sda23 | AVB metadata |
+| **super** | sda28 | Dynamic partitions |
+| **userdata** | sda34 | User data (225 GB) |
+| **efs** | sda1 | Encrypted file system |
