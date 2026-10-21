@@ -36,7 +36,7 @@ Para repetir a inspeção com suas próprias cópias das imagens, separe o FDT b
 
 ## Complemento: contêiner e Proton publicado
 
-O empacotador/consumidor S21R10 passou em 59 casos, incluindo inspeção C com ASan/UBSan e extensão do ELF real até o fim das pilhas. O shim recompila com handoff desativado e entrada padrão em park. O ZIP público Proton foi baixado e seu SHA-256 conferido; detalhes em [proton-binary.md](proton-binary.md). Isso não é validação de SMP ou carregamento no telefone.
+O empacotador/consumidor S21R10 passou inicialmente em 59 casos (60 após a regressão adicional de kernel_end relativo), incluindo inspeção C com ASan/UBSan e extensão do ELF real até o fim das pilhas. O shim recompila com handoff desativado e entrada padrão em park. O ZIP público Proton foi baixado e seu SHA-256 conferido; detalhes em [proton-binary.md](proton-binary.md). Isso não é validação de SMP ou carregamento no telefone.
 
 ## Carregador EL2 com main de produção
 

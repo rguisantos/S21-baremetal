@@ -56,6 +56,8 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 
 ## Fontes e documentação
 
+Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arquivos pendentes](docs/repository-review-2026-10-21.md). O catálogo de scripts distingue ferramentas atuais de experimentos históricos.
+
 - [Mapa de hardware confirmado e pendências](EXYNOS2100_HARDWARE.md)
 - [Imagens stock HZC2: cabeçalhos, DTB, overlays e hashes](docs/stock-firmware-hzc2.md)
 - [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)

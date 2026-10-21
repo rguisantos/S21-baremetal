@@ -26,3 +26,14 @@ O `Kernel.tar.gz` completo recebido separadamente contém Linux 5.4.242 e `exyno
 | `include/linux/serial_s3c.h` | `e5c60b29c65ba77a469aa562a5fc4c5b6d64d0abbf48c295967885f6ebdc1aaa` |
 
 A conferência do pacote-fonte não substitui a identificação do DTB ativo, da revisão da placa, do estado de clock/pinmux e do contrato real do carregador.
+
+## READMEs reapresentados — revisão 2026-10-21 UTC
+
+Lidos diretamente dos anexos nesta revisão. README_Kernel.txt menciona p3s, GCC 4.9/Clang r383902 e variáveis Android 11/r; README_Platform.txt indica Android 15.0 para módulos AOSP. Essas instruções não identificam o estado de execução do aparelho nem comprovam a cadeia de boot. O kernel não foi recompilado a partir delas nesta etapa.
+
+| Anexo | SHA-256 dos bytes recebidos |
+|---|---|
+| README_Kernel.txt | `943e571a11d4ba2ff4f02736e587e2700c1265d939fcb63f49dd93174527ba08` |
+| README_Platform.txt | `608870f35c667416e24a42749407191699ac583102552c3b632d0807162b8dd8` |
+
+A pasta [samsung_kernel](../samsung_kernel/README.md) é um recorte, não uma cópia completa desse pacote. Os arquivos necessários para a próxima investigação estão na [revisão do repositório](repository-review-2026-10-21.md).
