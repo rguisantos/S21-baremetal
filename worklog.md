@@ -109,3 +109,10 @@ Decisão do usuário: sem flash no aparelho principal; rotas = esgotar QEMU + Fa
 - tools/mkpayload.py gera S21R10 v1 a partir de ELF AArch64 identity-linked, FDT e cmdline; inclui extensão PT_LOAD/BSS/pilhas, sem reserva fictícia de 2 GB ou relocação implícita. Consumidor C inspeciona limites antes de devolver plano; não copia nem salta.
 - Loader legado removido do caminho executável: passava boot_args XNU em x0 para um consumidor FDT e fazia cópias sem validação. loader_boot agora recusa; entrada shim padrão estaciona antes de BSS/pilha/MMIO. Código legado não validado continua explicitamente em quarentena.
 - 59 casos de empacotador/consumidor/inspeção de headers passaram, com ASan/UBSan no consumidor C. Build de cinco ELFs R8-R10 e shim; integração R10 em uma CPU preservada. Não houve SMP do shim, chainload no telefone ou flash.
+
+
+## 2026-10-20 — Revisão reproduzida do empacotador no branch kilo
+
+- Conferido kilo/slim-fjord-u2q em 9dca396: produtor grava ELF bruto como segmento, usa kernel_end relativo, ignora função de leitura da entrada e presume 2 GiB. Na reprodução, os bytes que seriam executados começaram por 7f454c46, kernel_end=0x18000 e nsegs=1, omitindo a semântica dos dois PT_LOAD/BSS/pilhas do R10 atual.
+- Validador antigo com ASan/UBSan retornou ALL CHECKS PASSED para esse artefato e heap-buffer-overflow para arquivo de quatro bytes. Consumidor main recusou o mesmo payload sem erro de sanitizer.
+- Adicionado caso específico de kernel_end relativo: suíte atual 60 PASS. Conferido que run_r10 com QEMU_ARGS=-smp4 só imprime aviso e não executa QEMU; não há prova de SMP/fastboot por esse comando. Evidências completas em docs/branch-packer-review.md. Sem mesclar regressões do branch ou realizar operações no aparelho.

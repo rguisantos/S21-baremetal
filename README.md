@@ -59,6 +59,7 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
 - [Carregamento Samsung e instalador Proton: contrato e lacunas](docs/loader-contract.md)
+- [Revisão do empacotador do branch kilo e alegações de SMP](docs/branch-packer-review.md)
 - [Contêiner S21R10 v1: empacotador, validação e limites](docs/payload-format.md)
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
