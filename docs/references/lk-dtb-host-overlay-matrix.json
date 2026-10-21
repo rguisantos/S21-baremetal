@@ -1,0 +1,131 @@
+{
+  "backend": "Version: DTC 1.7.2",
+  "firmware_ufdt_executed": false,
+  "is_final_fdt": false,
+  "runtime_observed": false,
+  "inputs": {
+    "vendor_boot": {
+      "size": 67108864,
+      "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+    },
+    "dtbo": {
+      "size": 8388608,
+      "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34"
+    },
+    "dpm": {
+      "size": 8192,
+      "sha256": "e4f80e53094bdcadb3e379cdf91a37bd295979c8ea251505a311a8294eec0f8d"
+    }
+  },
+  "matrix": [
+    {
+      "index": 0,
+      "revision_min": 2,
+      "revision_max": 15,
+      "candidate_size": 618608,
+      "candidate_sha256": "db78cc512ce03c986b25549d38580005d0df59078a5639d73eb0b8b0c6f409fa"
+    },
+    {
+      "index": 1,
+      "revision_min": 16,
+      "revision_max": 16,
+      "candidate_size": 626421,
+      "candidate_sha256": "1b77ebedd7444a943f76a471daaa053d2b25f9d3ae3f39184467741913847b62"
+    },
+    {
+      "index": 2,
+      "revision_min": 17,
+      "revision_max": 17,
+      "candidate_size": 632773,
+      "candidate_sha256": "5ef710772ffb9ea608dc0584949a7420ba803ceede8d916426d3e35e15db6caf"
+    },
+    {
+      "index": 3,
+      "revision_min": 18,
+      "revision_max": 18,
+      "candidate_size": 633961,
+      "candidate_sha256": "704105ff399ea59adb05775a0e806315651dc5b88bbeb27e3af3fc80a8ec1be4"
+    },
+    {
+      "index": 4,
+      "revision_min": 19,
+      "revision_max": 19,
+      "candidate_size": 635318,
+      "candidate_sha256": "0ac725edfc3ebf4fa2750389cd92a7414300585e6c5ec5ff305d522588b10d19"
+    },
+    {
+      "index": 5,
+      "revision_min": 20,
+      "revision_max": 20,
+      "candidate_size": 635318,
+      "candidate_sha256": "0ac725edfc3ebf4fa2750389cd92a7414300585e6c5ec5ff305d522588b10d19"
+    },
+    {
+      "index": 6,
+      "revision_min": 21,
+      "revision_max": 21,
+      "candidate_size": 634921,
+      "candidate_sha256": "feae702276049d4acc4e60d03332f7dde940feac379ecb5c8e7343ff9f9f8414"
+    },
+    {
+      "index": 7,
+      "revision_min": 22,
+      "revision_max": 32,
+      "candidate_size": 634921,
+      "candidate_sha256": "feae702276049d4acc4e60d03332f7dde940feac379ecb5c8e7343ff9f9f8414"
+    }
+  ],
+  "limits": [
+    "Host libfdt application only; no equivalence claim with Samsung UFDT",
+    "No dynamic RAM, reserved-memory or chosen updates from LK",
+    "Disabled debug log nodes do not prove shell access or free RAM"
+  ],
+  "all_candidates": {
+    "protected_nodes_unchanged": [
+      "/uart@10540000",
+      "/uart@10840000",
+      "/uart@10550000",
+      "/uart@10570000",
+      "/uart@10590000",
+      "/uart@105B0000",
+      "/uart@105D0000",
+      "/uart@105F0000",
+      "/uart@11EA0000",
+      "/uart@11EC0000",
+      "/uart@11EE0000",
+      "/uart@11f00000",
+      "/uart@11f20000",
+      "/uart@10940000",
+      "/uart@109C0000",
+      "/uart@10630000",
+      "/uart@10650000",
+      "/uart@10670000",
+      "/uart@10960000",
+      "/uart@10990000",
+      "/uart@109E0000",
+      "/uart@14F00000",
+      "/uart@14F20000",
+      "/uart@14F40000",
+      "/uart@14F60000",
+      "/psci",
+      "/interrupt-controller@10200000",
+      "/timer"
+    ],
+    "dpm_log_status": {
+      "/reserved-memory/debug_snapshot/log_arrdumpreset": "disabled",
+      "/reserved-memory/debug_snapshot/log_arrdumppanic": "disabled",
+      "/reserved-memory/debug_snapshot/log_fatal": "disabled"
+    },
+    "dpm_security": {
+      "sdm_enable": 0,
+      "seclog_enable": 0,
+      "pm_test_enable": 0,
+      "seh_enable": 0,
+      "dbg_mem_enable": 0,
+      "cp_mem_not_clear": 0
+    },
+    "changed_property_count": 35,
+    "uart1_status": "okay",
+    "memory_nodes": 0
+  }
+}

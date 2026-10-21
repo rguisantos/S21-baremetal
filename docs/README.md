@@ -57,6 +57,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Modelo offline LK v3](lk-v3-layout.md): kernel, ramdisks concatenados, extensão Image e região DTB, com testes de host.
 
+- [Pipeline DTB/DTBO/DPM](lk-dtb-pipeline.md): ponteiro vendor ligado ao buffer do kernel, seletor por revisão e oito candidatos de host.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

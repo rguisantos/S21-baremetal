@@ -99,5 +99,6 @@ instrução que sustentam o rastreio. Para desassemblagem independente, usar
 
 Ainda faltam a seleção/alteração final do FDT, reservas de RAM, estado de
 EL/MMU/caches e um canal de observação. O modelo não transforma o shim em
-carregador Samsung nem prepara um pacote de flash. O próximo passo é seguir
-o consumidor do ponteiro DTB registrado e os checks posteriores até o salto.
+carregador Samsung nem prepara um pacote de flash. O consumidor do ponteiro
+foi rastreado na [seleção DTB e merges DTBO/DPM](lk-dtb-pipeline.md).
+Restam os valores das edições dinâmicas e os checks posteriores até o salto.

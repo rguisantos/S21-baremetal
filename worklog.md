@@ -283,3 +283,22 @@ CLI stock offset0 reproduziu kernel29469184, vendorRD12017257, bootRD701558,
 DTB em vendor+b77000. Extensão Image excede cópia em4507136 bytes, sem
 prova de zeroing. Inspector, README, índice e roadmap atualizados. Nenhum
 empacotamento, acesso ao aparelho ou teste físico foi realizado.
+
+## 2026-10-21 — consumidor DTB, seletor e segundo merge DPM
+
+Globalcd3560 registrado por149188 é lido por149030('DTB'); tabela de
+trabalho emfb400000 e seletor148d68 ligados. Primeiro intervalo inclusivo
+custom0/custom1; conversão BE se custom1_BE<=ff, caso contrário loads LE.
+Merges14935c/1493d0 usam17a900 (UFDT inferido), copiados para8b080000.
+DPM check-header é BL1493a0, distinto do MOV em14939c; auditoria de palavras
+conferiu esse offset antes da publicação. Estado do ramo/revisão não observado.
+DTBO e DPM originais conferidos pelos hashes prévios. Seletor novo passou
+em seis testes de host com fixtures independentes, limites e dois encodings.
+Suíte conjunta layout/seleção: 13/13. Conferidos 31 cenários stock e recusas
+CLI para DPM incorreto/revisão sem correspondência; auditoria UART preservada.
+Aplicados oito overlays de placa e depois DPM com fdtoverlay/libfdt1.7.2:
+8/8 candidatos,35 propriedades DPM alteradas, UART/GIC/timer/PSCI mantidos,
+nenhum nó RAM. Três logs reserved-memory ficam disabled e security fica0;
+isso não prova causa da indisponibilidade de logs ou liberação da memória.
+Relatórios JSON sem blobs, documentação e índices atualizados. UFDT Samsung,
+edições dinâmicas, reservas e execução no aparelho permanecem sem validação.

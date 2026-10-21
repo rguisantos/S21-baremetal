@@ -154,6 +154,20 @@ def inspect(path):
                                 0x149188, 0x14918c, 0x149190,
                                 0x150320, 0x150324, 0x150328, 0x15032c)},
             limit='Copy/registration evidence only; later processing and final FDT unverified'),
+        'dtb_pipeline': dict(
+            calls={hex(off): hex(bl_target(u32(off), off)) for off in
+                   (0x149214, 0x149444, 0x149334, 0x1490c4,
+                    0x149084, 0x1490c0, 0x14935c, 0x149384,
+                    0x1493a0, 0x1493d0, 0x1493ec, 0xfb4fc)},
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0x14918c, 0x149074, 0x1490d4, 0x148d80,
+                                0x148d8c, 0x148d98, 0x148ddc, 0x148df0,
+                                0x148df8, 0x148e04, 0x148e0c, 0x148d60,
+                                0x149374, 0x14937c, 0x149380, 0x1493ac,
+                                0x1493e4)},
+            merge_result_destination='0x8b080000', dpm_buffer_candidate='0xf0005000',
+            selector='First inclusive range; REV limits when REV(custom1)<=0xff, raw LE otherwise',
+            limit='Conditional static branches; revision, UFDT output and final FDT not observed'),
         'uart_pinmux_audit': dict(
             lk_routine_offset='0xef3e0',
             instruction_words={hex(off): f'{u32(off):08x}' for off in

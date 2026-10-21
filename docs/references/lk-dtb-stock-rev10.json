@@ -1,0 +1,237 @@
+{
+  "mode": "static_selection_model",
+  "runtime_observed": false,
+  "revision_scenario": "0x10",
+  "selection_rule": "first inclusive match",
+  "inputs": {
+    "vendor_boot": {
+      "size": 67108864,
+      "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+    },
+    "dtbo": {
+      "size": 8388608,
+      "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34"
+    },
+    "dpm": {
+      "size": 8192,
+      "sha256": "e4f80e53094bdcadb3e379cdf91a37bd295979c8ea251505a311a8294eec0f8d"
+    }
+  },
+  "vendor_region_offset": "0xb77000",
+  "base_table": {
+    "total_size": 389940,
+    "page_size": 2048,
+    "entries": [
+      {
+        "index": 0,
+        "file_offset": 64,
+        "size": 389876,
+        "revision_min": 0,
+        "revision_max": 255,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d"
+      }
+    ]
+  },
+  "overlay_table": {
+    "total_size": 2356536,
+    "page_size": 2048,
+    "entries": [
+      {
+        "index": 0,
+        "file_offset": 288,
+        "size": 277296,
+        "revision_min": 2,
+        "revision_max": 15,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "afeaa18a812be45d0b17055a7fc2b57ed7a99cb5a0dbeeb06a452f76f2d69b45"
+      },
+      {
+        "index": 1,
+        "file_offset": 277584,
+        "size": 289068,
+        "revision_min": 16,
+        "revision_max": 16,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "403bd95f025a9f2275d6e5dd5edbfa92f683eace43d7d336530d331ca6a4531c"
+      },
+      {
+        "index": 2,
+        "file_offset": 566652,
+        "size": 295844,
+        "revision_min": 17,
+        "revision_max": 17,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "6046fd7ea6b39824a217ea5696185002e8667130e765a21dbaf75d61a8924f2b"
+      },
+      {
+        "index": 3,
+        "file_offset": 862496,
+        "size": 297648,
+        "revision_min": 18,
+        "revision_max": 18,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "385ea6efe831c5de1648b06220102bfd259c271d561aefc98bb9cef1290c3342"
+      },
+      {
+        "index": 4,
+        "file_offset": 1160144,
+        "size": 299372,
+        "revision_min": 19,
+        "revision_max": 19,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "3799edb9570a3f10165394c4f22d9b8e6e5a2904498aa74f66ccdda3a17d9cc3"
+      },
+      {
+        "index": 5,
+        "file_offset": 1459516,
+        "size": 299372,
+        "revision_min": 20,
+        "revision_max": 20,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "b99b7d1829ab25f6be2f171ba95b39f3cb0ae5ac26dec93caafb04b0ff3bcd9e"
+      },
+      {
+        "index": 6,
+        "file_offset": 1758888,
+        "size": 298824,
+        "revision_min": 21,
+        "revision_max": 21,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "69d2f86b58d442bd0e437256d689ef879aaa694a0788e1d79b4e176a1873ef9f"
+      },
+      {
+        "index": 7,
+        "file_offset": 2057712,
+        "size": 298824,
+        "revision_min": 22,
+        "revision_max": 32,
+        "range_encoding": "big",
+        "id": 0,
+        "rev": 0,
+        "custom2": 0,
+        "custom3": 0,
+        "sha256": "a971b69465ca0da8454713ae402728116f715d942d2831df783e4ba6b308b6a8"
+      }
+    ]
+  },
+  "selected_base": {
+    "index": 0,
+    "file_offset": 64,
+    "size": 389876,
+    "revision_min": 0,
+    "revision_max": 255,
+    "range_encoding": "big",
+    "id": 0,
+    "rev": 0,
+    "custom2": 0,
+    "custom3": 0,
+    "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d"
+  },
+  "selected_overlay": {
+    "index": 1,
+    "file_offset": 277584,
+    "size": 289068,
+    "revision_min": 16,
+    "revision_max": 16,
+    "range_encoding": "big",
+    "id": 0,
+    "rev": 0,
+    "custom2": 0,
+    "custom3": 0,
+    "sha256": "403bd95f025a9f2275d6e5dd5edbfa92f683eace43d7d336530d331ca6a4531c"
+  },
+  "dpm": {
+    "fdt_size": 2180,
+    "target_symbols": {
+      "dpm": {
+        "base_target": "/dpm",
+        "fixups": [
+          "/fragment@0:target:0"
+        ]
+      },
+      "dss": {
+        "base_target": "/dss",
+        "fixups": [
+          "/fragment@1:target:0"
+        ]
+      },
+      "log_arrdumpreset": {
+        "base_target": "/reserved-memory/debug_snapshot/log_arrdumpreset",
+        "fixups": [
+          "/fragment@2:target:0"
+        ]
+      },
+      "log_arrdumppanic": {
+        "base_target": "/reserved-memory/debug_snapshot/log_arrdumppanic",
+        "fixups": [
+          "/fragment@3:target:0"
+        ]
+      },
+      "log_fatal": {
+        "base_target": "/reserved-memory/debug_snapshot/log_fatal",
+        "fixups": [
+          "/fragment@4:target:0"
+        ]
+      },
+      "ehld_dbgc": {
+        "base_target": "/exynos-ehld/dbgc",
+        "fixups": [
+          "/fragment@5:target:0"
+        ]
+      },
+      "itmon": {
+        "base_target": "/exynos-itmon",
+        "fixups": [
+          "/fragment@6:target:0"
+        ]
+      },
+      "memlogger_policy": {
+        "base_target": "/samsung,memlog_policy",
+        "fixups": [
+          "/fragment@7:target:0"
+        ]
+      }
+    }
+  },
+  "overlay_merge_performed": false,
+  "is_final_fdt": false,
+  "limits": [
+    "Explicit revision scenario, not a device revision reading",
+    "Conservative table/FDT bounds checks differ from firmware checks",
+    "No UFDT execution, DPM signature or later dynamic edits verified"
+  ],
+  "firmware_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+}

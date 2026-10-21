@@ -106,6 +106,8 @@ A [cadeia de cópia da Image no LK](docs/lk-kernel-copy.md) foi ligada ao destin
 
 O [modelo offline LK v3](docs/lk-v3-layout.md) confere as três cópias kernel/ramdisk nas imagens stock, a extensão declarada pela Image e o ponteiro DTB staging. Sete testes de host passaram, incluindo 64 cenários de deslocamento e recusas de entradas inválidas. Não é um empacotador ou validação de boot no aparelho.
 
+A [seleção DTB e os merges DTBO/DPM](docs/lk-dtb-pipeline.md) foram ligados ao buffer 0x8b080000. O seletor offline passou em seis testes; oito candidatos de placa+DPM passaram na aplicação com libfdt, mantendo UART/GIC/timer/PSCI e sem nós RAM. Isso não reproduz a UFDT Samsung nem o FDT final do aparelho.
+
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.
