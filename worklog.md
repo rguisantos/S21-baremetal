@@ -184,3 +184,11 @@ Rastreado callback 0xff6c8 até região 0xf0010000/2 MiB, cursor header+0x200 e 
 ## 2026-10-21 — coleta limitada de logs preparada
 
 Confirmados callbacks read-only last_kmsg/first_kmsg e sec_log na fonte. Criado coletor para rish com metadados, limite 2 MiB/5 s por arquivo e recusa de pasta existente. Fixture host passou leitura exata, limite, ausência e recusa de sobrescrita; Android pendente. Documentado que proc captures não são dumps físicos para o leitor de snapshot.
+
+## 2026-10-21 — coleta de logs recebida sem interfaces acessíveis
+
+Relatório completo do coletor de boot logs recebido, uid=2000. last_kmsg,
+first_kmsg e sec_log ausentes/ocultos; nenhum ramo de captura executado.
+Hash e limites registrados em docs/boot-log-collection.md. Não solicitar
+binários inexistentes nem repetir coleta. A ausência observada não demonstra
+ausência de logs na RAM. Continuam pendentes contrato de boot e observação.

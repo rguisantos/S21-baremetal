@@ -66,3 +66,34 @@ Sintaxe conferida com `sh -n`. Fixture host verificou leitura exata, limite de
 `S21_LOG_PROC_ROOT` para apontar a uma pasta temporária; no telefone, deixar
 essa variável o valor padrão `/proc`. A fixture não emula permissões/SELinux
 Android e não demonstra disponibilidade dos logs no aparelho.
+
+## Resultado recebido — 2026-10-21
+
+Relatório `report.txt`, SHA-256
+`fed645347c8d05233bb5b6ec589094e03459d44f95d1dbd91b3f2960e95e524c`.
+Timestamp informado: 2026-10-21 19:16:17 UTC (15:16:17 em Campo Grande),
+sem verificação externa do relógio. Sessão uid=2000(shell), contexto
+`u:r:shell:s0`.
+
+| Interface | Resultado |
+|---|---|
+| /proc/last_kmsg | ABSENT (or hidden by permissions) |
+| /proc/first_kmsg | ABSENT (or hidden by permissions) |
+| /proc/sec_log | ABSENT (or hidden by permissions) |
+
+O coletor terminou e registrou o rodapé. Nenhuma interface chegou ao ramo de
+leitura; o relatório não registra captura binária, bytes de log ou timeout.
+Não há binários dessa execução a solicitar ao usuário.
+
+O teste de existência do shell não permite distinguir ausência real de
+ocultação por permissões. Também não determina se o módulo está carregado,
+se o log foi preservado ou se há conteúdo na RAM. Não atribuir a causa apenas
+a SELinux nem concluir que o debug-snapshot não existe no firmware.
+
+**Decisão:** o caminho de observação por estes três nós, nas condições atuais
+do Shizuku, não está disponível. Não repetir a coleta, pedir root ou sugerir
+mudança de permissões como continuação automática. O leitor offline permanece
+validado apenas por fixtures; não existe dump real para ele nesta sessão.
+A investigação segue pelo BL e pelas fontes já recebidos, enquanto contrato
+de carregamento e canal físico de observação continuam pendentes. Este
+resultado não autoriza teste de flash/chainload.

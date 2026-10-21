@@ -100,4 +100,4 @@ A [coleta UART/MUIC no aparelho](docs/runtime-collection.md#coleta-uartmuic-rece
 
 O callback adicional do LK foi identificado como [log em memória debug-snapshot](docs/lk-memory-log.md), em região de 2 MiB. Há um leitor offline com testes sintéticos; ainda não foi obtido dump dessa região no telefone.
 
-Para testar o acesso aos logs sem root, há um [procedimento limitado pelo rish](docs/boot-log-collection.md), com relatório de permissões e capturas de até 2 MiB por arquivo. Execução no aparelho pendente.
+Para testar o acesso aos logs sem root, há um [procedimento limitado pelo rish](docs/boot-log-collection.md), com relatório de permissões e capturas de até 2 MiB por arquivo. A execução no aparelho foi concluída: os três nós apareceram ausentes ou ocultos pelo acesso do shell, sem conteúdo capturado.

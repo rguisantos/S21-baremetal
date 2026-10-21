@@ -69,3 +69,13 @@ o contrato de carregamento e a recuperação do registro de entrada. Esse
 relatório não mede EL/cache, não fornece FDT dinâmico e não libera teste físico
 do payload. Não repetir a mesma coleta nem pedir novamente FDT/iomem/cmdline
 negados. A análise estática pode continuar com os arquivos já recebidos.
+
+## Logs de boot — coleta concluída sem conteúdo
+
+Em 2026-10-21 foi recebido o relatório da coleta limitada pelo rish.
+`/proc/last_kmsg`, `/proc/first_kmsg` e `/proc/sec_log` apareceram ausentes ou
+ocultos ao uid=2000; nenhuma leitura/captura foi realizada. Não se distingue
+permissão de ausência por esse resultado. [Hash, evidência e decisão](boot-log-collection.md#resultado-recebido--2026-10-21).
+Não solicitar binários, repetir o procedimento ou concluir que não há log
+preservado na RAM. O acesso por essas interfaces encerra-se como indisponível
+nas condições atuais.
