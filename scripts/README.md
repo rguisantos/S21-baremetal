@@ -8,6 +8,7 @@ Execute a partir da raiz do repositório. Os comandos de validação estão no [
 | FDT e contêiner | `test_fdt.py`, `test_payload.py`, `test_payload_stage.py`, `test_payload_loader.py` | Modelos sanitizados e handoff real no QEMU |
 | Ambiente | `bootstrap_tools.sh`, `cross-run.sh`, `run_qemu.sh` | Ferramentas locais e execução dos módulos |
 | Laboratório XNU | `run_xnu_lab.py`, `test_xnu_lab.py` | Init próprio no QEMU com prebuilt fixado; caso positivo, controle negativo e verificações de host; [reprodução](../docs/xnu-qemu-lab.md) |
+| Contrato XNU | `capture_xnu_contract.py`, `test_xnu_contract.py` | Layout C/28 testes de host; captura de argumentos e árvore por GDB no QEMU, seguida de retomada até PASS; [escopo e reprodução](../docs/xnu-boot-contract.md) |
 | Inspeção atual | `inspect_proton.py`, `inspect_sboot_hzc2.py` | ZIP Proton e relatório somente leitura do sboot HZC2 identificado por SHA-256 |
 | Forense legada | `parse_fdt.py`, `abl_triage.py` | Leitores ainda não auditados; não usar como única evidência |
 | Experimentos históricos | `build_kit*.sh`, `snapshot_project.sh`, `mk_append_r9.py`, `test_delta*`, `test_header_qemu.sh`, `kit-assets/`, `magiskboot/` | Kits DAY1/DAY2, repack e experiências anteriores; fora do fluxo atual validado |

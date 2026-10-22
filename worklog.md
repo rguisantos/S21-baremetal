@@ -741,3 +741,39 @@ dependências no Git. README, índices e roadmap registram X1 concluído
 com prebuilt e D0–D4 até eventual escolha de boot. P1/P2 Samsung mantidos;
 nenhum teste no S21, menu de boot ou userland iOS executado. R8/R9/R10 e
 firmware recebido não mudaram; suas suítes não foram reexecutadas.
+
+## 2026-10-22 — contrato binário XNU e captura no arm_init
+
+Avançado X2 no host: codec próprio de boot_args revisão/versão 2, árvore
+Apple canônica e política conservadora de intervalos. Conferidos 736 bytes
+de estrutura e 13 offsets com sizeof/offsetof em C LP64, usando boot.h
+Apple fixado por hash sem alterações; dois includes alheios ao layout
+foram substituídos por stubs. Quatro fontes Apple identificadas no
+manifesto. Não houve build do kernel XNU.
+
+28 testes de host passaram: codecs, truncamentos, limites/overflow,
+duplicidades, memória incompleta, buracos/reservas/sobreposições e recursos
+incompatíveis. Fixture Samsung preserva GICR de 2 MiB, oito MPIDRs e SMC,
+mas sua RAM é sintética e não autoriza memória no aparelho.
+
+Nova execução QEMU com kernel/loader/UEFI já conferidos, FAT/NVRAM próprios
+e breakpoint de execução no arm_init do prebuilt. Leitura GDB sem alterar
+registradores/buffers capturou 736 bytes de argumentos e 14800 de árvore;
+decode/encode reproduziu cada byte. x0 era virtual no estágio C; PA foi
+derivado da janela linear. Não é observação da entrada MMU-off ou Samsung.
+Breakpoint removido, execução retomada: 17 critérios PASS, QEMU saiu 0.
+
+Consistência de memória usa declaração explícita da fixture QEMU de 6 GiB
+e protege o contêiner de entrada. Não capturamos o mapa completo UEFI;
+trust_established e hardware_ready continuam false. Parser C R10 existente
+com ASan/UBSan aceitou a estrutura da base HZC2, mas recusou sua política:
+sem bancos RAM, 29 reservas e uma não resolvida. Nenhum plano de carga
+Samsung gerado.
+
+Publicados contrato, manifesto com hashes/comandos e scripts de teste/
+captura; README, índices, roadmap e estratégia agora marcam X2/D2 parcial.
+Próximo X2: tradução FDT → árvore Apple com proveniência, sem preencher
+RAM desconhecida. P1/P2 físicos mantidos; nenhum anexo adicional pedido,
+binário bruto versionado, shim habilitado ou operação no aparelho. Suítes
+antigas R8/R9/R10 e do init XNU não foram reexecutadas. APK preexistente e
+temporários do toolchain excluídos da entrega.

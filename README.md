@@ -8,6 +8,8 @@ O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os crité
 
 A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. Kernel/loader são prebuilt identificados; não houve execução do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
+O [contrato binário XNU](docs/xnu-boot-contract.md) avançou: 28 testes de host e comparação em C com o header Apple passaram; 736 bytes de argumentos e 14800 bytes de árvore capturados no QEMU foram reemitidos sem alteração, antes de retomar o kernel até PASS. X2 segue parcial: conversão FDT Samsung e plano de memória físico ainda pendentes; o DTB base HZC2 continua recusado por ausência de RAM e reservas incompletas.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |
@@ -37,6 +39,7 @@ python3 scripts/test_payload_stage.py
 python3 scripts/test_payload_loader.py
 python3 scripts/test_entry_diag.py
 python3 scripts/test_xnu_lab.py
+python3 scripts/test_xnu_contract.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```
@@ -85,6 +88,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
 - [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)
 - [XNU no QEMU com programa próprio: execução e contraprova](docs/xnu-qemu-lab.md)
+- [Contrato XNU: layout, captura de argumentos/árvore e política de memória](docs/xnu-boot-contract.md)
 - [Objetivo Android/XNU: contratos e marcos da escolha de boot](docs/dual-boot-strategy.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
 - [Resultados reproduzidos nesta revisão](docs/validation-2026-10-20.md)

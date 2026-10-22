@@ -148,9 +148,10 @@ porta de monitor/GDB nessa execução. Não implementa operações no telefone.
 
 X1 tem agora **boot de XNU prebuilt e programa próprio reproduzidos**.
 Build do kernel pelos fontes, serviços Darwin mais amplos, SMP e userland
-iOS continuam com critérios separados. Segue a especificação e teste do
-adaptador de argumentos/memória; a [estratégia Android/XNU](dual-boot-strategy.md)
-organiza as dependências.
+iOS continuam com critérios separados. A etapa seguinte já conferiu o
+[contrato binário de argumentos/árvore](xnu-boot-contract.md), inclusive
+captura por GDB em uma nova execução do laboratório. A
+[estratégia Android/XNU](dual-boot-strategy.md) organiza as dependências.
 
 A investigação HZC2 continua necessária: entrada, coerência, RAM/reservas
 e um canal de leitura no S21. RAM, janela UEFI, endereços QEMU, árvore Apple

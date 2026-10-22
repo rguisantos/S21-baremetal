@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "timezone": "America/Campo_Grande",
+  "scope": "X2 partial: host codec/profile checks and read-only QEMU arm_init capture; no Samsung loader, physical allocation or phone execution",
+  "s21_baseline_commit": "36968343c59fd454077069426136bfe37d5564d5",
+  "primary_sources": [
+    {
+      "repository": "apple-oss-distributions/xnu",
+      "revision": "c54f35ca767986246321eb901baf8f5ff7923f6a",
+      "path": "pexpert/pexpert/arm64/boot.h",
+      "git_blob": "2c2186ffbca5b4784b4614afb663a0ff0a6c79ed",
+      "bytes": 3168,
+      "sha256": "efdfec46319cb147297682a8faebe02873f845261b57f7511ab8e15c13ef3439",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/c54f35ca767986246321eb901baf8f5ff7923f6a/pexpert/pexpert/arm64/boot.h"
+    },
+    {
+      "repository": "apple-oss-distributions/xnu",
+      "revision": "c54f35ca767986246321eb901baf8f5ff7923f6a",
+      "path": "pexpert/pexpert/device_tree.h",
+      "git_blob": "f389c3407c502b3d256d094d307ec861d7f117ce",
+      "bytes": 10616,
+      "sha256": "a558ceea1bfff5b5d381550db38cba482a6fe67096e2cab89073ab3c9ecb8ccf",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/c54f35ca767986246321eb901baf8f5ff7923f6a/pexpert/pexpert/device_tree.h"
+    },
+    {
+      "repository": "apple-oss-distributions/xnu",
+      "revision": "c54f35ca767986246321eb901baf8f5ff7923f6a",
+      "path": "pexpert/gen/device_tree.c",
+      "git_blob": "d5b61dad66c91b843606bc7b410211ff438185c5",
+      "bytes": 14487,
+      "sha256": "d0bd1085f269fd5e6661836c59e7eb87fd2463deb5bb0ab400590c03ac7a0ca1",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/c54f35ca767986246321eb901baf8f5ff7923f6a/pexpert/gen/device_tree.c"
+    },
+    {
+      "repository": "apple-oss-distributions/xnu",
+      "revision": "c54f35ca767986246321eb901baf8f5ff7923f6a",
+      "path": "osfmk/arm/arm_init.c",
+      "git_blob": "e26a1d70f4709c52e6b4043e19cbf8b6bb23e0bc",
+      "bytes": 24661,
+      "sha256": "5161a3fc8b31b3317e2dd745594ec8a6877590a3976147b52bfd1255d9eec47e",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/c54f35ca767986246321eb901baf8f5ff7923f6a/osfmk/arm/arm_init.c"
+    }
+  ],
+  "host_tests": {
+    "command": [
+      "python3",
+      "scripts/test_xnu_contract.py",
+      "--apple-boot-header",
+      "@APPLE@/boot.h"
+    ],
+    "passed": 28,
+    "failed": 0,
+    "exit_code": 0,
+    "script_sha256": "ec10b1ed442f1c5f0d81d3599e21b23de5ee6e6901cd6f56258d30144695097c"
+  },
+  "independent_layout": {
+    "scope": "C LP64 host sizeof/offsetof, untouched pinned Apple header; two unrelated include stubs; not an ARM execution or XNU build",
+    "header_sha256": "efdfec46319cb147297682a8faebe02873f845261b57f7511ab8e15c13ef3439",
+    "result": {
+      "sizeof": 736,
+      "Revision": 0,
+      "Version": 2,
+      "virtBase": 8,
+      "physBase": 16,
+      "memSize": 24,
+      "topOfKernelData": 32,
+      "Video": 40,
+      "machineType": 88,
+      "deviceTreeP": 96,
+      "deviceTreeLength": 104,
+      "CommandLine": 108,
+      "bootFlags": 720,
+      "memSizeActual": 728,
+      "Boot_Video_size": 48
+    },
+    "passed": true
+  },
+  "path_placeholders": {
+    "@APPLE@": "verified Apple sources at pinned revision",
+    "@TOOLS@": "extracted local toolchain/QEMU root",
+    "@KERNEL@": "pinned HackiOS kernel clone",
+    "@EFI@": "extracted tested UEFI package usr/share/AAVMF",
+    "@RUN@": "new capture directory",
+    "@LAB_RUN@": "successful positive run_xnu_lab directory",
+    "@SAMSUNG_FDT@": "read-only HZC2 base DTB"
+  },
+  "capture_invocation": [
+    "python3",
+    "scripts/capture_xnu_contract.py",
+    "--lab-run",
+    "@LAB_RUN@",
+    "--efi-code",
+    "@EFI@/AAVMF_CODE.no-secboot.fd",
+    "--efi-vars",
+    "@EFI@/AAVMF_VARS.fd",
+    "--out",
+    "@RUN@",
+    "--samsung-fdt",
+    "@SAMSUNG_FDT@"
+  ],
+  "capture": {
+    "scope": "Read-only QEMU arm_init capture; not Samsung or initial MMU-off entry",
+    "passed": true,
+    "registers": {
+      "pc": "0xfffffff007453994",
+      "x0_virtual": "0xfffffff0086f4000",
+      "pstate": "0x600003c4"
+    },
+    "boot_args_pa_derived": "0xf86f4000",
+    "boot_args": {
+      "bytes": 736,
+      "sha256": "8b37367b100df33c9a96f1f8e84671ed34ab4152c71c61b99022229256096c03",
+      "exact_roundtrip": true,
+      "offsets": {
+        "Revision": 0,
+        "Version": 2,
+        "virtBase": 8,
+        "physBase": 16,
+        "memSize": 24,
+        "topOfKernelData": 32,
+        "Video": 40,
+        "machineType": 88,
+        "deviceTreeP": 96,
+        "deviceTreeLength": 104,
+        "CommandLine": 108,
+        "bootFlags": 720,
+        "memSizeActual": 728
+      },
+      "cmdline": "debug=0x8 serial=3 rd=md0 cpus=1 loader_return_after=30"
+    },
+    "apple_tree": {
+      "bytes": 14800,
+      "sha256": "22b639a5ba7edbd1f655eac7cea1d9509cef3dc270093d455e44391a5985851e",
+      "exact_roundtrip": true
+    },
+    "profile": {
+      "profile_consistent": true,
+      "hardware_ready": false,
+      "window": [
+        "0xf4000000",
+        "0xca000000"
+      ],
+      "placements": {
+        "boot_args": [
+          "0xf86f4000",
+          "0x2e0"
+        ],
+        "Apple DT": [
+          "0xf86e4000",
+          "0x39d0"
+        ],
+        "__TEXT": [
+          "0xf7004000",
+          "0x1a0000"
+        ],
+        "__DATA_CONST": [
+          "0xf71a4000",
+          "0xe8000"
+        ],
+        "__TEXT_EXEC": [
+          "0xf728c000",
+          "0x854000"
+        ],
+        "__KLD": [
+          "0xf7ae0000",
+          "0x4000"
+        ],
+        "__LASTDATA_CONST": [
+          "0xf7ae4000",
+          "0x4000"
+        ],
+        "__KLDDATA": [
+          "0xf7ae8000",
+          "0x4000"
+        ],
+        "__DATA": [
+          "0xf7aec000",
+          "0x450000"
+        ],
+        "__BOOTDATA": [
+          "0xf7f3c000",
+          "0x4c000"
+        ],
+        "__LINKINFO": [
+          "0xf7f88000",
+          "0x90000"
+        ],
+        "__LINKEDIT": [
+          "0xf8018000",
+          "0x2ca390"
+        ],
+        "RAMDisk": [
+          "0xf82e4000",
+          "0x400000"
+        ]
+      },
+      "gic": [
+        [
+          "0x8000000",
+          "0x10000"
+        ],
+        [
+          "0x80a0000",
+          "0x100000"
+        ]
+      ],
+      "cpus": [
+        "0x0"
+      ],
+      "psci_method": "hvc",
+      "note": "Consistency with supplied declarations; no allocation, firmware or ownership proof."
+    },
+    "memory_declaration": {
+      "scope": "lab fixture consistency only; full UEFI reservation map not captured",
+      "guest_ram": [
+        "0x40000000",
+        "0x180000000"
+      ],
+      "reserved": [],
+      "protected_payload": [
+        "0xf0000000",
+        "0x12e6418"
+      ],
+      "trust_established": false
+    },
+    "qemu_returncode": 0,
+    "resumed_lab_checks": {
+      "qemu_exit_zero": true,
+      "no_timeout": true,
+      "darwin_kernel": true,
+      "gic_virtual_timer": true,
+      "apfs_root": true,
+      "user_pid1_uid0": true,
+      "user_apfs_fixture": true,
+      "user_sleep_and_clock": true,
+      "user_all_pass": true,
+      "ordered_user_checks": true,
+      "cpu_halted": true,
+      "loader_returned_normally": true,
+      "complete_return_log": true,
+      "no_failure_marker": true,
+      "no_panic": true,
+      "no_user_trap": true,
+      "no_early_exception": true
+    },
+    "serial_sha256": "ec15fcc5d5c6fff3a0fb3451f5c872934bc5204702a56aafaa4966cb62eb0975",
+    "inputs": {
+      "prebuilt/mach.development.bcm2837": {
+        "path": "@KERNEL@/prebuilt/mach.development.bcm2837",
+        "bytes": 15623056,
+        "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+      },
+      "prebuilt/loader.efi": {
+        "path": "@KERNEL@/prebuilt/loader.efi",
+        "bytes": 68096,
+        "sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1"
+      }
+    },
+    "efi_code": {
+      "path": "@EFI@/AAVMF_CODE.no-secboot.fd",
+      "bytes": 67108864,
+      "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+    },
+    "source_sha256": {
+      "scripts/capture_xnu_contract.py": "35b3e37eeaa356b3833806f40abe6ad34b95f49d2dbeb32e4278a94c096e8b1c",
+      "lab/xnu/boot_contract.py": "1b78467af8ef2bc0c9ebb0230a867c004dde95d33ce8a6df6e5127b931231fe2"
+    },
+    "command": [
+      "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "--library-path",
+      "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+      "@TOOLS@/usr/bin/qemu-system-aarch64",
+      "-L",
+      "@TOOLS@/usr/share/qemu",
+      "-M",
+      "virt,gic-version=3",
+      "-cpu",
+      "cortex-a76",
+      "-smp",
+      "1",
+      "-m",
+      "6G",
+      "-accel",
+      "tcg,tb-size=128",
+      "-drive",
+      "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+      "-drive",
+      "if=pflash,format=raw,file=@RUN@/vars.fd",
+      "-drive",
+      "file=fat:rw:@RUN@/esp,format=raw,if=virtio",
+      "-device",
+      "loader,file=@RUN@/payload.bin,addr=0xF0000000,force-raw=on",
+      "-display",
+      "none",
+      "-serial",
+      "file:@RUN@/serial.log",
+      "-monitor",
+      "none",
+      "-no-reboot",
+      "-nic",
+      "none",
+      "-S",
+      "-gdb",
+      "stdio"
+    ],
+    "samsung_fdt": {
+      "bytes": 389876,
+      "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d",
+      "production_parser": {
+        "parse": 0,
+        "message": "ok",
+        "boot": -4,
+        "ram": [],
+        "reserved_count": 29,
+        "unresolved_reserved": 1,
+        "cpus": [
+          "0x0",
+          "0x100",
+          "0x200",
+          "0x300",
+          "0x400",
+          "0x500",
+          "0x600",
+          "0x700"
+        ],
+        "gic_dist": "0x10200000",
+        "gic_redist": "0x10240000",
+        "redist_size": "0x200000",
+        "timer_irq": 30
+      },
+      "candidate_handoff_generated": false,
+      "hardware_ready": false,
+      "blockers": [
+        "no RAM banks in supplied FDT",
+        "unresolved reservations",
+        "owned load window not established",
+        "entry EL/cache/ICC/timer permissions not observed",
+        "PSCI method and effective counter frequency need explicit evidence"
+      ],
+      "note": "Read-only inspection; default R10 policy addresses are test parameters, not allocation proposals."
+    }
+  },
+  "captured_boot_args_fields": {
+    "virtBase": "0xfffffff004000000",
+    "physBase": "0xf4000000",
+    "memSize": "0xca000000",
+    "topOfKernelData": "0xf86f8000",
+    "Video": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "machineType": 0,
+    "deviceTreeP": "0xfffffff0086e4000",
+    "deviceTreeLength": 14800,
+    "bootFlags": 0,
+    "memSizeActual": "0xca000000"
+  },
+  "efi_vars_template": {
+    "bytes": 67108864,
+    "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+  },
+  "prior_positive_payload": {
+    "bytes": 19817496,
+    "sha256": "2a1549161080bbb2d44edee56cb3f5b3b202e802ce81cd41e0b5e73eddb80e1f"
+  },
+  "production_fdt_sources_sha256": {
+    "r8/tests/fdt_probe.c": "ecee5dd0545a70cd6c5cf0f56eed21c76ffd4d3e45fe79fc81bff4a1bb7c35a1",
+    "r8/r10_payload/fdt.c": "4adb9dece2adfda83e9948d15b404f5dc6492e0e76ec7215ee72019e7a5be389"
+  },
+  "serial_display": {
+    "path": "docs/references/xnu-contract-serial-20261022.txt",
+    "bytes": 22185,
+    "sha256": "078104360ff776b590a787116af6033e7f327825d0fc2ba2adc8455d91990b10",
+    "raw_bytes": 22490,
+    "raw_sha256": "ec15fcc5d5c6fff3a0fb3451f5c872934bc5204702a56aafaa4966cb62eb0975",
+    "transform": "CRLF to LF; escape controls other than TAB and all trailing spaces/tabs as lowercase \\xNN; preserve complete transcript"
+  },
+  "limits": [
+    "No FDT to Apple DT translation implemented",
+    "No complete UEFI reservation map captured",
+    "No Samsung RAM window or ownership established",
+    "No initial MMU-off or Samsung entry state measured",
+    "No XNU source build, iOS userland, boot selector, flash or phone operation",
+    "Existing R8/R9/R10 and 13 init-lab host tests were not rerun because unchanged"
+  ],
+  "hardware_ready": false
+}

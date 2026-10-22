@@ -4,7 +4,9 @@ Direção aprovada pelo usuário em **2026-10-22**. Queremos investigar uma
 forma de escolher qual ambiente iniciar no SM-G998B/p3s: o Android já
 utilizado e, futuramente, XNU com userland iOS adaptado. **A seleção de boot
 no aparelho ainda não existe.** O primeiro avanço dessa frente é o
-[XNU no QEMU com programa próprio](xnu-qemu-lab.md).
+[XNU no QEMU com programa próprio](xnu-qemu-lab.md). O
+[contrato binário](xnu-boot-contract.md) já tem codec, layout conferido e
+captura validada no laboratório; a adaptação física continua aberta.
 
 ## Contratos dos dois caminhos
 
@@ -31,7 +33,7 @@ mas os adaptadores de entrada têm de continuar explícitos.
 |---|---|---|
 | D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel/loader prebuilt; não é iOS gráfico |
 | D1 — entrada Samsung observável | Diagnóstico mínimo no S21 e registro recuperado; região/coerência e percurso de carga demonstrados | Pendente; Marco A do roadmap principal |
-| D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Pendente; especificação pode avançar antes de D1, execução física depende dele |
+| D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial no host: codec/layout/captura QEMU conferidos; faltam tradução FDT, memória confiável e execução física, que depende de D1 |
 | D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Pendente |
 | D4 — escolha Android/XNU | Dois caminhos iniciam individualmente; seleção, retorno/recuperação e armazenamento têm testes próprios | Pendente |
 
@@ -47,10 +49,12 @@ armazenamento, energia e, posteriormente, GPU e comunicação.
 
 ## Próxima entrega
 
-Especificar o contrato do adaptador Samsung → XNU com os arquivos HZC2
-existentes e os boot_args/árvore do carregador examinado. O teste inicial
-deve conferir estrutura, tamanhos, intervalos e recusas no host, sem
-declarar como reais bancos de RAM ou reservas ainda desconhecidos.
+Traduzir recursos FDT Samsung para a árvore Apple, preservando sua origem
+e recusando lacunas na memória. O codec e a validação de intervalos já
+passaram 28 testes de host; o header Apple confirmou os 13 offsets e o
+QEMU confirmou os buffers de 736/14800 bytes. A base HZC2 permanece
+recusada por ausência de bancos RAM e reservas incompletas. Ainda não há
+plano de carga ou adaptador executável Samsung.
 
 Em paralelo, P1/P2 do [roadmap principal](roadmap.md) seguem na cadeia de
 entrada, coerência, observação e memória Samsung. Não é necessário reenviar

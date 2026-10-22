@@ -1,0 +1,371 @@
+UEFI firmware (version 2025.02-8+deb13u1 built at 18:06:17 on Nov  8 2025)
+\x1b[2J\x1b[01;01H\x1b[=3h\x1b[2J\x1b[01;01H\x1b[2J\x1b[01;01H\x1b[=3h\x1b[2J\x1b[01;01HBdsDxe: loading Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x1,0x0)
+BdsDxe: starting Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x1,0x0)
+== XNULOADER v3 ==
+CurrentEL=1 MIDR=414fd0b1 MMFR0=101122 CNTFRQ=62500000 image=a1000000
+platform qemu-virt
+payload entry 'kernel' size ee6390
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 1e
+kernel va fffffff007004000..fffffff0082e2390 entry fffffff00745e4a8
+largest free block f4000000 size ca000000
+phys window f4000000 size ca000000, claim status 0
+kernel loaded at pa f7004000..f82e4000
+ramdisk at pa f82e4000 size 400000
+return slot patched at f745f7f0, checkpoint 0
+cores for the kernel, in the order it takes them: 0
+device tree f86e4000 len 39d0, boot_args f86f4000, top f86f8000
+cmdline: debug=0x8 serial=3 rd=md0 cpus=1 loader_return_after=30
+jumping to f745e4a8
+Darwin Kernel Version 22.5.0: Thu Oct 22 09:28:22 CDT 2026; shimoku:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+pmap_startup() init/release time: 36730 microsec
+pmap_startup() delayed init/release of 0 pages
+vm_page_bootstrap: 201468 free pages, 5380 wired pages, (up to 0 of which are delayed free)
+VM boostrap: 102 maps, 204 entries and 512 holes available
+Maximum number of VM swap files: 5
+zone_meta               : 0xfffffff114000000 - 0xfffffff116164000 (33M)
+mb                      : 0xfffffff116164000 - 0xfffffff11a164000 (64M)
+bufferhdr               : 0xfffffff11a164000 - 0xfffffff11a3b0000 (2352K)
+gIOKitPageableFixed2    : 0xfffffff11a3b0000 - 0xfffffff1203b0000 (96M)
+kmem_sprayqtn_range     : 0xfffffff1203b0000 - 0xfffffff183018000 (1580M)
+compressor              : 0xfffffff183018000 - 0xfffffff275038000 (3872M)
+kmem_ptr_range_meta     : 0xfffffff275038000 - 0xfffffff2750f4000 (752K)
+ipc_kernel_copy_map     : 0xfffffff2750f4000 - 0xfffffff2758f4000 (8M)
+zones                   : 0xfffffff2758f4000 - 0xfffffff8758f4000 (24G)
+gIOKitPageableFixed3    : 0xfffffff8758f4000 - 0xfffffff87b8f4000 (96M)
+ipc_kernel_map          : 0xfffffff87b8f4000 - 0xfffffff87d8f4000 (32M)
+gIOKitPageableFixed1    : 0xfffffff87d8f4000 - 0xfffffff8838f4000 (96M)
+kmem_data_range         : 0xfffffff8838f4000 - 0xfffffffb02694000 (9G)
+gIOKitPageableFixed0    : 0xfffffffb02694000 - 0xfffffffb08694000 (96M)
+kmem_ptr_range          : 0xfffffffb08694000 - 0xfffffffbfe3b4000 (3933M)
+io_submap               : 0xfffffffbfe3b4000 - 0xfffffffbfebb4000 (8M)
+bsd_pageable            : 0xfffffffbfebb4000 - 0xfffffffbffdfc000 (18M)
+kmem_large_ranges[1]    : 0 - 0 (0B)
+kmem_large_ranges[2]    : 0 - 0 (0B)
+kmem_large_ranges[3]    : 0 - 0 (0B)
+kmem_large_ranges[4]    : 0xfffffff12c93d000 - 0xfffffff183018000 (1382M)
+kmem_large_ranges[5]    : 0xfffffff8d36a8000 - 0xfffffffb02694000 (8G)
+"vm_compressor_mode" is 2
+zone_init: pgzalloc  0xfffffff2758f4000:0xfffffff2771a8000 (24M) [790 slots]
+zone_init: map VM    0xfffffff2771a8000:0xfffffff35d458000 (3682M)
+zone_init: map RO    0xfffffff35d458000:0xfffffff3a9fe8000 (1227M)
+zone_init: map GEN0  0xfffffff3a9fe8000:0xfffffff490298000 (3682M)
+zone_init: map GEN1  0xfffffff490298000:0xfffffff576548000 (3682M)
+zone_init: map GEN2  0xfffffff576548000:0xfffffff65c7f8000 (3682M)
+zone_init: map GEN3  0xfffffff65c7f8000:0xfffffff742aac000 (3682M)
+zone_init: map DATA  0xfffffff742aac000:0xfffffff8758f4000 (4910M)
+zone_init: metadata  0xfffffff114010000:0xfffffff115810000 (24M)
+zone_init: metabits  0xfffffff115810000:0xfffffff116154000 (9M)
+zone_init: extra     0:0 (0B)
+VM bootstrap done: 90 maps, 163 entries and 500 holes left
+Long logs support configured: size: 16384
+Firehose configured: 16 chunks, 8 io pages
+Log queues configured: slot count: 8, per-slot size: 32768, total size: 262144
+OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+OSLog stream verification: 0
+standard timeslicing quantum is 10000 us
+standard background quantum is 2500 us
+mig_table_max_displ = 54 mach_kobj_count = 371
+kdp_core zlib memory 0x8000
+Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+iBoot version: iBoot-8422.100.650
+iBoot Stage 2 version:\x20
+IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+calling mpo_policy_init for vnguard
+Security policy loaded: Guarded vnode policy (vnguard)
+calling mpo_policy_init for AMFI
+Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+calling mpo_policy_init for Sandbox
+Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+No POST boot-arg set.
+GenericARMPE: platform "D22AP"
+GenericARMCPU: cpu 0 (phys id 0x0) registered
+Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+MAC Framework successfully initialized
+using 4045 buffer headers and 4045 cluster IO buffer headers
+ktriage_register_subsystem_strings: set subsystem 8 strings
+mcache: 1 CPU(s), 64 bytes CPU cache line size
+mbinit: done [64 MB total pool size, (42/21) split]
+dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+skip attaching fsw to lo0 using legacy TX modelMiniIOMobileFramebuffer: no usable boot framebuffer (0x0, depth 0)
+!BSD
+Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF0082E4000 for 0000000000400000
+BSD root: md0, major 1, minor 0
+apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+apfs: 1 threads on a request of many pieces (0 helpers)
+apfs: volume 0 "S21Lab" of container 0 (at 0 MB): 2 files, 3 directories, 10 blocks of 4096 used
+VM Swap Subsystem is ON
+No POST boot-arg set.
+load_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+load_init_program: attempting to load /sbin/launchd
+S21 XNU LAB: identity PASS pid=1 uid=0\x0d
+S21 XNU LAB: APFS fixture PASS\x0d
+S21 XNU LAB: timer PASS select=200ms elapsed=100ms..10s\x0d
+S21 XNU LAB: ALL PASS; requesting RB_HALT\x0d
+Kext loading now disabled.
+Kext unloading now disabled.
+syncing disks... Killing all processes\x20
+
+vfs_unmountall(nonsystem) start
+unmount(1) /dev skipped
+unmount(1) / skipped
+vfs_unmountall(nonsystem) end
+IOServicePH::systemHalt took 0 ms
+Killing all processes\x20
+
+continuing
+vfs_unmountall(system) start
+unmount(0) /dev
+unmount(0) /
+vfs_unmountall(system) end
+done
+CPU halted
+[System Event] [402302166] [INFO] [Subsystem: nvram] [Event: sync] triggered
+IONVRAMCHRPHandler.cpp:serializeVariables:615 - No _nvramController
+IONVRAMCHRPHandler.cpp:sync:894 - serializeVariables failed, ret=0xe00002d8kernel returned: log at f7b949c0, 14875 bytes
+returned 14875 0
+== KERNEL LOG ==
+S21 XNU LAB: identity PASS pid=1 uid=0
+S21 XNU LAB: APFS fixture PASS
+S21 XNU LAB: timer PASS select=200ms elapsed=100ms..10s
+S21 XNU LAB: ALL PASS; requesting RB_HALT
+
+--- kernel message buffer ---
+[    5.650289]:  vm_cache_geometry_colors: 4
+[    5.651285]: do_cacheid() - 131072 bytes Unknown cache (I:65536 D:65536 (separate)), 8-way assoc, 64 bytes/line
+[    5.663176]: kprintf initialized
+[    5.664977]: Serial mode specified: 00000003
+[    5.665882]: initialize_screen: b=00000000, w=00000000, h=00000000, r=00000000, d=00000000
+[    5.665996]: initialize_screen: No video - forcing serial mode
+[    5.666672]: pe_arm_init_interrupts: args: 0xfffffff007b42720
+[    5.666776]: pe_arm_map_interrupt_controller: soc_phys:  0x8000000
+[    5.666870]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[    5.666923]: pe_arm_init_debug: failed to find cpu-debug-interface
+[    5.667691]: gic: v3, distributor 0xfffffff111a84000, cpu 0's redistributor 0xfffffff111a94000, virtual timer on PPI 27
+[    5.668664]: Darwin Kernel Version 22.5.0: Thu Oct 22 09:28:22 CDT 2026; shimoku:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[    5.713484]: pmap_startup() init/release time: 36730 microsec
+[    5.713638]: pmap_startup() delayed init/release of 0 pages
+[    5.714049]: vm_page_bootstrap: 201468 free pages, 5380 wired pages, (up to 0 of which are delayed free)
+[    5.727619]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[    5.730705]: Maximum number of VM swap files: 5
+[    5.733455]: zone_meta               : 0xfffffff114000000 - 0xfffffff116164000 (33M)
+[    5.733720]: mb                      : 0xfffffff116164000 - 0xfffffff11a164000 (64M)
+[    5.733828]: bufferhdr               : 0xfffffff11a164000 - 0xfffffff11a3b0000 (2352K)
+[    5.733932]: gIOKitPageableFixed2    : 0xfffffff11a3b0000 - 0xfffffff1203b0000 (96M)
+[    5.734037]: kmem_sprayqtn_range     : 0xfffffff1203b0000 - 0xfffffff183018000 (1580M)
+[    5.734142]: compressor              : 0xfffffff183018000 - 0xfffffff275038000 (3872M)
+[    5.734244]: kmem_ptr_range_meta     : 0xfffffff275038000 - 0xfffffff2750f4000 (752K)
+[    5.734362]: ipc_kernel_copy_map     : 0xfffffff2750f4000 - 0xfffffff2758f4000 (8M)
+[    5.734463]: zones                   : 0xfffffff2758f4000 - 0xfffffff8758f4000 (24G)
+[    5.734565]: gIOKitPageableFixed3    : 0xfffffff8758f4000 - 0xfffffff87b8f4000 (96M)
+[    5.734667]: ipc_kernel_map          : 0xfffffff87b8f4000 - 0xfffffff87d8f4000 (32M)
+[    5.734769]: gIOKitPageableFixed1    : 0xfffffff87d8f4000 - 0xfffffff8838f4000 (96M)
+[    5.734868]: kmem_data_range         : 0xfffffff8838f4000 - 0xfffffffb02694000 (9G)
+[    5.734969]: gIOKitPageableFixed0    : 0xfffffffb02694000 - 0xfffffffb08694000 (96M)
+[    5.735072]: kmem_ptr_range          : 0xfffffffb08694000 - 0xfffffffbfe3b4000 (3933M)
+[    5.735174]: io_submap               : 0xfffffffbfe3b4000 - 0xfffffffbfebb4000 (8M)
+[    5.735275]: bsd_pageable            : 0xfffffffbfebb4000 - 0xfffffffbffdfc000 (18M)
+[    5.740183]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[    5.740275]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[    5.740333]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[    5.740475]: kmem_large_ranges[4]    : 0xfffffff12c93d000 - 0xfffffff183018000 (1382M)
+[    5.740578]: kmem_large_ranges[5]    : 0xfffffff8d36a8000 - 0xfffffffb02694000 (8G)
+[    5.740954]: "vm_compressor_mode" is 2
+[    5.742724]: zone_init: pgzalloc  0xfffffff2758f4000:0xfffffff2771a8000 (24M) [790 slots]
+[    5.743082]: zone_init: map VM    0xfffffff2771a8000:0xfffffff35d458000 (3682M)
+[    5.743289]: zone_init: map RO    0xfffffff35d458000:0xfffffff3a9fe8000 (1227M)
+[    5.743647]: zone_init: map GEN0  0xfffffff3a9fe8000:0xfffffff490298000 (3682M)
+[    5.743776]: zone_init: map GEN1  0xfffffff490298000:0xfffffff576548000 (3682M)
+[    5.743896]: zone_init: map GEN2  0xfffffff576548000:0xfffffff65c7f8000 (3682M)
+[    5.744015]: zone_init: map GEN3  0xfffffff65c7f8000:0xfffffff742aac000 (3682M)
+[    5.744298]: zone_init: map DATA  0xfffffff742aac000:0xfffffff8758f4000 (4910M)
+[    5.744615]: zone_init: metadata  0xfffffff114010000:0xfffffff115810000 (24M)
+[    5.744769]: zone_init: metabits  0xfffffff115810000:0xfffffff116154000 (9M)
+[    5.744839]: zone_init: extra     0:0 (0B)
+[    5.749638]: VM bootstrap done: 90 maps, 163 entries and 500 holes left
+[    5.765108]: IOKit IOMD setownership ENABLED
+[    5.765234]: ATM subsystem is initialized
+[    5.770072]: Long logs support configured: size: 16384
+[    5.770992]: Firehose configured: 16 chunks, 8 io pages
+[    5.772212]: Log queues configured: slot count: 8, per-slot size: 32768, total size: 262144
+[    5.772509]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[    5.772566]: OSLog stream verification: 0
+[    5.772925]: Telemetry: Sampling all tasks once per 1 second
+[    5.773166]: Scheduler: Default of clutch
+[    5.773207]: Setting scheduler priority decay band limit 18
+[    5.773853]: standard timeslicing quantum is 10000 us
+[    5.773933]: standard background quantum is 2500 us
+[    5.775585]: mig_table_max_displ = 54 mach_kobj_count = 371
+[    5.777073]: BANK subsystem is initialized
+[    5.801964]: panic_trace: PE_arm_debug_enable_trace enter
+[    5.802107]: panic_trace: PE_arm_debug_enable_trace exit
+[    5.802746]: kdp_core zlib memory 0x8000
+[    5.804269]: Registered coredump handler for kernel
+[    5.804487]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[    5.804504]: Initializing serial KDP
+[    5.809361]: iBoot version: iBoot-8422.100.650
+[    5.809416]: iBoot Stage 2 version:\x20
+[    5.841344]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[    5.841898]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[    5.842918]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[    5.846780]: ulock_initialize>thread_max=5120, ull_hash_buckets=2048
+[    5.850237]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[    5.858996]: calling mpo_policy_init for vnguard
+[    5.859304]: Security policy loaded: Guarded vnode policy (vnguard)
+[    5.859438]: calling mpo_policy_init for AMFI
+[    5.859546]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[    5.859615]: calling mpo_policy_init for Sandbox
+[    5.859717]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[    5.875613]: No POST boot-arg set.
+[    5.886064]: PMRD: PMTraceWorker 0x509b261d2f9f085f
+[    5.891289]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[    5.896351]: PMRD: power event 7 args 0x509b261e15d47d1f 0x0
+[    5.899030]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[    5.902097]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[    5.902613]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[    5.902655]: PMRD: Force re-evaluating aggressiveness
+[    5.902725]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[    5.902874]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[    5.903080]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[    5.903234]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[    5.903280]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 50008)
+[    5.903364]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[    5.903380]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[    5.903448]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x50008
+[    5.903462]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[    5.910323]: GenericARMPE: platform "D22AP"
+[    5.911113]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[    5.911150]: [0]ml_processor_register>cpu_id 0xfffffff65c67aa40 cluster_id 0 cpu_number 0 is type 0
+[    5.911789]: GenericARMCPU: cpu 0 (phys id 0x0) registered
+[    5.913026]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[    5.913051]: bsd_init: calling kauth_init
+[    5.913316]: bsd_init: calling process_name
+[    5.913415]: bsd_init: calling get_bsdthread_info
+[    5.913492]: MAC Framework successfully initialized
+[    5.914208]: bsd_init: calling kauth_cred_create
+[    5.914406]: bsd_init: calling chgproccnt
+[    5.914486]: bsd_init: calling kmem_suballoc
+[    5.914559]: bsd_init: calling bsd_bufferinit
+[    5.918543]: using 4045 buffer headers and 4045 cluster IO buffer headers
+[    5.918762]: bsd_init: calling IOKitInitializeTime
+[    5.919622]: clock_initialize_calendar system does not have monotonic clock
+[    5.920003]: bsd_init: calling vfsinit
+[    5.923727]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[    5.923809]: bsd_init: calling proc_uuid_policy_init()
+[    5.924895]: mcache: 1 CPU(s), 64 bytes CPU cache line size
+[    5.924930]: bsd_init: calling mbinit
+[    5.928061]: mbinit: done [64 MB total pool size, (42/21) split]
+[    5.928501]: bsd_init: calling knote_init
+[    5.928539]: bsd_init: calling eventhandler_init
+[    5.928567]: bsd_init: calling aio_init
+[    5.928925]: bsd_init: calling pshm_cache_init
+[    5.928953]: bsd_init: calling psem_cache_init
+[    5.929386]: bsd_init: calling nwk_wq_init
+[    5.929622]: bsd_init: calling dlil_init
+[    5.929742]: SK: netagent is enabled by default for this platform
+[    5.932015]: DLIL: running SUM16 self-tests ... PASSED
+[    5.936629]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[    5.936949]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[    5.937013]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[    5.937049]: PMRD: power event 7 args 0x509b261e15d48f3f 0x0
+[    5.937104]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x60064
+[    5.937237]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[    5.937299]: PMRD: sysPowerDownHandler cap 0 -> f (flags 0)
+[    5.937339]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[    5.940264]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[    5.940299]: bsd_init: calling socketinit
+[    5.940516]: bsd_init: calling domaininit
+[    5.947224]: bsd_init: calling skywalk_init
+[    5.947699]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 65536], usr_buf_seg_size 16384
+[    5.964249]: Skywalk: running self-tests
+[    5.964299]: Skywalk: sk_copy64_8 ... PASSED
+[    5.964346]: Skywalk: sk_copy32_8 ... PASSED
+[    5.964393]: Skywalk: sk_copy64_16 ... PASSED
+[    5.964440]: Skywalk: sk_copy32_16 ... PASSED
+[    5.964482]: Skywalk: sk_copy64_20 ... PASSED
+[    5.964529]: Skywalk: sk_copy64_24 ... PASSED
+[    5.964575]: Skywalk: sk_copy64_32 ... PASSED
+[    5.964623]: Skywalk: sk_copy32_32 ... PASSED
+[    5.964668]: Skywalk: sk_copy64_40 ... PASSED
+[    5.964719]: Skywalk: sk_copy64_64x ... PASSED
+[    5.964788]: Skywalk: sk_copy64_32x ... PASSED
+[    5.964855]: Skywalk: sk_copy64_8x ... PASSED
+[    5.964918]: Skywalk: sk_copy64_4x ... PASSED
+[    5.964992]: Skywalk: sk_zero_16 ... PASSED
+[    5.965022]: Skywalk: sk_zero_32 ... PASSED
+[    5.965054]: Skywalk: sk_zero_48 ... PASSED
+[    5.965088]: Skywalk: sk_zero_128 ... PASSED
+[    5.965559]: Skywalk: memcmp mask ... PASSED
+[    5.970665]: bsd_init: calling memorystatus_freeze_init
+[    5.970712]: bsd_init: calling memorystatus_init
+[    5.972402]: bsd_init: calling sysctl_mib_init
+[    5.972602]: bsd_init: calling bsd_autoconf
+[    5.972613]: bsd_autoconf: calling kminit
+[    5.986023]: bsd_init: calling loopattach
+[    5.989990]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[    5.990733]: bsd_init: calling ether_family_init
+[    5.992207]: bsd_init: calling net_init_run
+[    5.994731]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[    5.1005693]: bsd_init: calling inittodr
+[    5.1005741]: bsd_init: calling setconf
+[    5.1007584]: cpu_start() cpu: 0
+[    6.000430]: MiniIOMobileFramebuffer: no usable boot framebuffer (0x0, depth 0)
+[    6.101450]: !BSD
+[    6.102604]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF0082E4000 for 0000000000400000
+[    6.102733]: BSD root: md0, major 1, minor 0
+[    6.102957]: bsd_init: vfs_mountroot
+[    6.109995]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[    6.110161]: apfs: 1 threads on a request of many pieces (0 helpers)
+[    6.112597]: apfs: volume 0 "S21Lab" of container 0 (at 0 MB): 2 files, 3 directories, 10 blocks of 4096 used
+[    6.115078]: bsd_init: calling VFS_ROOT
+[    6.115518]: bsd_init: calling devfs_kernel_mount
+[    6.121875]: bsd_init: calling siginit
+[    6.121940]: bsd_init: calling bsd_utaskbootstrap
+[    6.125631]: bsd_init: calling mountroot_post_hook
+[    6.125658]: bsd_init: done
+[    6.125694]: Serial keyboard started
+[    6.126055]: vm_free_delayed_pages: initialized 0 free pages
+[    6.129483]: VM Swap Subsystem is ON
+[    6.134405]: No POST boot-arg set.
+[    6.134441]: bsd_init: bsd_do_post - doneload_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[    6.145969]: load_init_program: attempting to load /sbin/launchd
+[    6.428100]: Kext loading now disabled.
+[    6.428238]: Kext unloading now disabled.
+[    6.428636]: PMRD: sysPowerDownHandler message kIOMessageSystemPagingOff
+[    6.428711]: PMRD: PagingOff all drivers took 0 ms
+[    6.428770]: PMRD: PagingOff total 0 ms
+[    6.428864]: syncing disks... Killing all processes\x20
+[    6.429285]:\x20
+[    6.429703]: vfs_unmountall(nonsystem) start
+[    6.429805]: unmount(1) /dev skipped
+[    6.429877]: unmount(1) / skipped
+[    6.429978]: vfs_unmountall(nonsystem) end
+[    6.430259]: IOServicePH::systemHalt took 0 ms
+[    6.430325]: Killing all processes\x20
+[    6.430349]:\x20
+[    6.430522]: continuing
+[    6.430585]: vfs_unmountall(system) start
+[    6.430626]: unmount(0) /dev
+[    6.433260]: unmount(0) /
+[    6.437601]: vfs_unmountall(system) end
+[    6.437688]: done
+[    6.440071]: CPU halted
+[    6.440497]: [System Event] [402302166] [INFO] [Subsystem: nvram] [Event: sync] triggered
+[    6.440676]: IONVRAMCHRPHandler.cpp:serializeVariables:615 - No _nvramController
+[    6.440816]: IONVRAMCHRPHandler.cpp:sync:894 - serializeVariables failed, ret=0xe00002d8PMRD: sysPowerDownHandler message kIOMessageSystemWillPowerOff
+[    6.441330]: PMRD: notifySystemShutdown msgType = 0xe0000250
+[    6.441574]: PMRD: notifySystemShutdown done
+[    6.442163]: PMRD: PM quiesce took 0 ms
+[    6.442232]: PMRD: PowerOff all drivers took 1 ms
+[    6.442246]: PMRD: PowerOff total 14 ms
+
+== END OF LOG ==
