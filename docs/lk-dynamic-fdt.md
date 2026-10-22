@@ -117,6 +117,13 @@ Um desses intervalos agora tem retornos constantes rastreados no Harx:
 [0xc0000000–0xc1400000, omitido em ramo do construtor](lk-harx-memory-gap.md).
 A condição de execução e o restante dos bancos ainda não foram observados.
 
+Continuação em 2026-10-22 (Campo Grande): a [aritmética das chamadas ao
+construtor de bancos](lk-memory-bank-constructor.md) foi modelada com nove
+entradas fornecidas e conferida em 268 cenários com as instruções originais
+no Unicorn. Inclui os ramos baixos, os recortes Harx/SEC_PGTBL e os blocos
+altos de 512 MiB. Isso fecha esses argumentos condicionais, preservando a
+pendência dos valores reais, das edições bem-sucedidas e do mapa final.
+
 ## Reprodução e resultado
 
 ```bash

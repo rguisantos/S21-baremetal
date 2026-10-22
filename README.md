@@ -65,6 +65,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [Mapa de hardware confirmado e pendências](EXYNOS2100_HARDWARE.md)
 - [Imagens stock HZC2: cabeçalhos, DTB, overlays e hashes](docs/stock-firmware-hzc2.md)
 - [DTS recebidos: patch de três listas e reprodução exata da base HZC2](docs/dts-source-roundtrip.md)
+- [Construtor LK de bancos RAM: argumentos conferidos em 268 cenários](docs/lk-memory-bank-constructor.md)
 - [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
@@ -112,6 +113,8 @@ A [seleção DTB e os merges DTBO/DPM](docs/lk-dtb-pipeline.md) foram ligados ao
 A [recompilação dos DTS enviados](docs/dts-source-roundtrip.md) identificou três escapes octais ambíguos em listas de CPUs. O patch em uma cópia, compilado com DTC 1.7.2 e `-a 4`, reproduz os 389.876 bytes da base stock. O overlay genérico UNIVERSAL2100 habilita UART0 e mantém UART1 desabilitada; o P3S-fonte r17 habilita ambas, mas seu binário difere do overlay stock. Os candidatos continuam sem RAM e foram corretamente recusados na checagem do initrd LK v3. Os originais foram preservados.
 
 O [rastreio das escritas dinâmicas](docs/lk-dynamic-fdt.md) ligou chosen ao initrd concatenado: 0x84080000–0x84ca12df no ramo stock v3. O verificador aceita `--fdt` para comparar essas propriedades e recusa os valores antigos dos candidatos estáticos; a suíte conjunta passou em 19 testes. Reservas condicionais e o getter de tamanho de RAM foram localizados, sem reconstruir o mapa efetivo.
+
+A [sequência do construtor de bancos RAM](docs/lk-memory-bank-constructor.md) agora tem modelo com nove entradas explícitas e conferência das instruções originais em **268 cenários Unicorn**, além de **44 testes de host LK**. Foram reproduzidos os recortes Harx/SEC_PGTBL, a aritmética X/W e os blocos altos de 512 MiB a partir de 0x880000000, inclusive o último bloco inteiro. A conferência captura argumentos ao escritor; respostas reais, sucesso das edições e mapa final continuam pendentes.
 
 O [handler uH de earlymem](docs/el2-earlymem-hzc2.md) foi ligado ao HVC 0x83000004 do LK no mesmo pacote BL. Ele pode alocar e inicializar memória; não é uma consulta pura. Um novo inspetor offline exige os hashes de sboot/uH/Harx e registra a cadeia. Os três testes novos e os 19 testes LK passaram; base/tamanho efetivos e mapa final continuam desconhecidos. Nenhum arquivo adicional é necessário para continuar esta análise.
 

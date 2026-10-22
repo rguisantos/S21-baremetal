@@ -62,6 +62,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Escritas dinâmicas no FDT](lk-dynamic-fdt.md): initrd ligado às cópias, checagem parcial de chosen, reservas condicionais e origem do tamanho de RAM.
 
+- [Construtor de bancos RAM no LK](lk-memory-bank-constructor.md): nove entradas explícitas, chamadas ao escritor e blocos altos de 512 MiB; 268 cenários Unicorn e 44 testes de host, sem valores reais ou FDT final.
+
 - [uH earlymem e Harx soc_info](el2-earlymem-hzc2.md): handler do HVC ligado ao LK, efeitos de alocação e relatório offline vinculado aos três hashes HZC2.
 
 - [Intervalos LK → uH](lk-uh-range-registration.md): percurso dos nós memory do FDT, primeira tupla de reg, comando 2 e checagem offline dos argumentos.

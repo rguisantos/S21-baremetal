@@ -7,7 +7,7 @@ telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 | Etapa | Estado e resultado | Critério restante |
 |---|---|---|
 | 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M+C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
-| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; DTS corrigido reproduz a base stock; percurso memory alimenta uH; serviço Harx tem intervalo constante de 20 MiB omitido em ramo do construtor | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, mapa completo, checks posteriores e estado final de entrada |
+| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; DTS corrigido reproduz a base stock; construtor de bancos conferido em 268 cenários fornecidos; percurso memory alimenta uH | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, sucesso das edições, mapa completo, checks posteriores e estado final de entrada |
 | 3. Observação | UART0 e logs rastreados; exynos_el2_log confirmado no aparelho, mas UNREADABLE para uid=2000, sem captura | Continuar investigação estática e estabelecer outro canal verificável; não repetir as coletas bloqueadas |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
@@ -50,6 +50,14 @@ P3S; ambos os candidatos aplicados no host continuam sem bancos RAM e com
 initrd antigo. A prioridade seguinte permanece nos ajustes dinâmicos e nos
 valores efetivos do LK, sem preencher as lacunas com esses candidatos.
 
+O [construtor dos bancos](lk-memory-bank-constructor.md) passou a ter modelo
+e comparação com as instruções originais: 268 cenários fornecidos e 44
+testes de host. Aritmética de divisão e blocos altos está conferida; não se
+modelou sucesso do editor ou inferiram entradas reais. Próxima lacuna:
+origem/valores efetivos de soc_info, total de RAM e SEC_PGTBL, seguidos do
+FDT resultante e estado de entrada. Novos cenários sintéticos não substituem
+essas evidências.
+
 ## Evidências
 
 - [Diagnóstico e matriz de entrada](entry-diagnostic.md).
@@ -58,6 +66,7 @@ valores efetivos do LK, sem preencher as lacunas com esses candidatos.
 - [Seleção e merges DTB/DTBO/DPM](lk-dtb-pipeline.md).
 - [DTS recebidos e identidade binária da base stock](dts-source-roundtrip.md).
 - [Initrd, reservas e origem do tamanho de RAM](lk-dynamic-fdt.md).
+- [Argumentos do construtor de bancos RAM e conferência em Unicorn](lk-memory-bank-constructor.md).
 - [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
 - [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).
 - [Retornos constantes Harx e condição do construtor de RAM](lk-harx-memory-gap.md).

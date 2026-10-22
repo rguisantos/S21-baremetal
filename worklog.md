@@ -573,3 +573,45 @@ ou DTS completo acrescentado ao Git. R8/R9/R10 não mudaram e suas suítes
 anteriores não foram reexecutadas. Sem nova coleta bloqueada, pedido de
 reenvio, flash ou teste físico. Próxima lacuna: ajustes dinâmicos de memória
 e estado/valores efetivos do LK.
+
+## 2026-10-22 Campo Grande — aritmética do construtor de bancos RAM
+
+Seguido o construtor 0xfad60 e os blocos 0xfb670–0xfb7cc no sboot HZC2
+identificado por SHA. Pacote BL já recebido recuperado, SHA/MD5 de transporte
+e consumo integral LZ4 conferidos; sboot/uH/Harx brutos bateram as identidades
+anteriores. Capstone 5.0.7 e Unicorn 2.1.4 usados fora do Git, sem firmware,
+dependências ou novos toolchains binários acrescentados ao repositório.
+
+Modelo novo recebe nove entradas explícitas. Versão soc_info é comparada em
+W com 66001000; base X=-1 e quantidade W=-1 estacionam antes dos bancos.
+Cursor usa soma X da base com quantidade truncada para W. Recortes Harx e
+SEC_PGTBL ligados às chamadas 0xf1570, tamanhos calculados em W, sem atribuir
+validação de ordem/overlap às subtrações. Escritor formata memory@%lx e
+reg como base de 64 bits/tamanho de 32; ferramenta registra bytes se escrito,
+sem executar editor, criar árvore ou afirmar sucesso da modificação.
+
+Acima de 2 GiB, o laço começa em 0x880000000 e pede blocos inteiros de
+0x20000000, contando por teto do restante/512 MiB. Último bloco não é
+reduzido ao restante. Caso artificial de 2 GiB+1 deixa 1fffffff bytes além
+do restante fornecido; caso de 12 GiB fornecidos pede 20 blocos altos.
+Não foram inferidos total efetivo, disponibilidade ou defeito no aparelho.
+
+Harness executa três páginas RX originais e pilha RW de 128 KiB. Intercepta
+SMC, substitui getter/Harx/printf e envenena voláteis, preservando callee-saved
+esperados. Salta FAEF4→FAF28 para omitir preparação FDT, MMIO do flag e os
+ramos de bootargs; termina em FAF84 ou nas três paradas soc_info. Captura
+argumentos dos oito pontos de chamada ao escritor sem executá-lo. Limites:
+4096 visitas/1s por caso, guardas de PC/SMC; nada de MMIO físico ou Secure
+World mapeado. Limite de 128 chamadas é da representação host, não do LK.
+
+268/268 cenários coincidiram: 192 combinações, 12 de borda e 64 da seed
+fad60. São 263 fases concluídas e cinco paradas; máximo 877 visitas e 128
+chamadas. CLI com cenário explícito também conferida. 44 testes de host LK
+passaram, incluindo 17 novos para limiares, wraps, recortes, células, JSON
+limitado/duplicado/profundo, identidade e recusa de firmware incorreto.
+
+Ferramentas, relatórios metadata-only e reprodução documentados; README,
+hardware, índice, catálogo e roadmap atualizados. R8/R9/R10 não mudaram;
+suas suítes não foram reexecutadas. Nenhuma coleta bloqueada repetida,
+pedido de reenvio ou teste/flash no telefone. Respostas efetivas dos serviços,
+sucesso do editor e FDT final continuam abertos.

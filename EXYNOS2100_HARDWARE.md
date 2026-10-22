@@ -35,6 +35,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 
 - [Firmware stock e hashes](docs/stock-firmware-hzc2.md)
 - [DTS recebidos, patch e reprodução binária da base HZC2](docs/dts-source-roundtrip.md)
+- [Construtor LK de bancos RAM](docs/lk-memory-bank-constructor.md): aritmética das chamadas conferida em 268 cenários fornecidos; não são bancos observados no aparelho.
 - [Fonte Samsung e protocolo dos drivers](docs/samsung-reference.md)
 - [FDT e limites do contrato](docs/fdt-resources.md)
 - [Validação de entrada, GIC e timer](docs/r10-single-cpu.md)
