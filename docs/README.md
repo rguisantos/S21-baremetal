@@ -67,6 +67,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Intervalo Harx no construtor de RAM](lk-harx-memory-gap.md): retornos constantes do serviço OEM, condição do LK e dependências ainda abertas.
 
+- [Candidato de observação pelo log Harx](harx-log-observation.md): fonte, configuração da Image stock, DTB e coletor de uma página; leitura pode avançar cursor, acesso no telefone pendente.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

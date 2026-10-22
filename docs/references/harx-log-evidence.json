@@ -1,0 +1,62 @@
+{
+  "mode": "static_harx_log_evidence",
+  "inputs": {
+    "kernel_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+    "boot_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+    "vendor_boot_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+  },
+  "source_sha256": {
+    "drivers/soc/samsung/exynos-el2.c": "5052aa5efdbb096e3c7b32af4a5a00ab2999c1c65be1a193ccf2b12611cbe0aa",
+    "include/soc/samsung/exynos-el2.h": "a86099ef9c140a0ed75bb1ff60d1e8c9a1e4d5e6158bd35ded21621bfae40e96",
+    "include/soc/samsung/exynos-hvc.h": "79350d9a1e3c6f87572ef19a25d5fd422c4fe6aab690f8b07678d34893ee43e6",
+    "drivers/soc/samsung/Makefile": "a9799d6c17384078ec03fd6e2626259f24ddb1d44a09e8d0913c5721b64c9caa",
+    "drivers/soc/samsung/Kconfig": "c80d8f1af6b604c4615927dd37827be00e7486c014b11c53c2c5b23e8bc6d103",
+    "arch/arm64/configs/exynos2100-p3sxxx_defconfig": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+  },
+  "source_lines": {
+    "static ssize_t exynos_el2_log_print(": 180,
+    "static ssize_t exynos_el2_log_clear(": 208,
+    "static DEVICE_ATTR(exynos_el2_log, 0644,": 228,
+    "&dev_attr_exynos_el2_log);": 282
+  },
+  "stock_kernel_config": {
+    "start_marker_image_offset": "0xed2130",
+    "size": 203018,
+    "sha256": "55dde3bb7c52e99eccdb82b925a4b831c03fd32a19a2b64bdf7bda993e92a2e1",
+    "flags": {
+      "CONFIG_EXYNOS_EL2": "m",
+      "CONFIG_ARM64_4K_PAGES": "y",
+      "CONFIG_IKCONFIG": "y"
+    }
+  },
+  "base_fdt": {
+    "size": 389876,
+    "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d"
+  },
+  "driver_nodes": [
+    {
+      "dt_path": "/el2_dynamic_lv3",
+      "declared_status": null,
+      "base_tree_only": true,
+      "sysfs_path_candidate": "/sys/devices/platform/el2_dynamic_lv3/exynos_el2_log"
+    }
+  ],
+  "source_attribute_mode": "0644",
+  "read_service": "0xc6000043",
+  "read_service_arguments": [
+    "page_physical_address",
+    0,
+    0,
+    0
+  ],
+  "read_side_effect": "Harx log read cursor can advance; no reset argument",
+  "store_effect": "Separate store callback requests reader reset; collector must never write it",
+  "driver_loaded_observed": false,
+  "device_access_observed": false,
+  "memory_map_verified": false,
+  "limits": [
+    "Module configuration and base DT do not prove successful driver probe",
+    "SELinux and actual attribute permissions have not been observed",
+    "One bounded page may omit boot messages or reflect an advanced/wrapped cursor"
+  ]
+}

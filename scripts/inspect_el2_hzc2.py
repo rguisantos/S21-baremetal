@@ -101,7 +101,7 @@ def constant_return(data, start, exit_offset):
 
 def harx_memory_info(data):
     results = {}
-    for query in (0, 1, 2):
+    for query in (0, 1, 2, 3, 4):
         target = jump_table_target(data, 0xc9c0, query, 0x1b0c)
         result = constant_return(data, target, 0x2124)
         results[str(query)] = dict(target=hex(target), value=hex(result['value']),
@@ -109,11 +109,14 @@ def harx_memory_info(data):
     if instruction(data, 0x2128) != 0xf900001c:  # STR X28, [X0]
         raise ValueError('unexpected result context store')
     base, size = (int(results[str(query)]['value'], 16) for query in (1, 2))
+    log_base, log_size = (int(results[str(query)]['value'], 16) for query in (3, 4))
     return dict(
         service_id='0xc6000020', table_offset='0xc9c0', queries=results,
         result_store='0x2128: STR X28, [X0]',
         conditional_interval=dict(base=hex(base), size=hex(size),
                                   end_exclusive=hex(base + size)),
+        ram_log_interval=dict(base=hex(log_base), size=hex(log_size),
+                              end_exclusive=hex(log_base + log_size)),
         runtime_execution_verified=False,
         limit='Constant returns in this handler; LK feature flag and actual HVC outcome unobserved')
 
@@ -195,8 +198,8 @@ def inspect(sboot_path, uh_path, harx_path):
         'harx_memory_info': harx_memory_info(harx),
         'lk_harx_gap': {
             'feature_flag_image_relative': '0x487c90',
-            'flag_store_before_init_hvc': '0xf90d8',
-            'flag_does_not_prove_init_hvc_success': True,
+            'flag_store_before_crash_callback_hvc': '0xf90d8',
+            'flag_does_not_prove_callback_hvc_success': True,
             'calls': calls(sboot, (0xf90dc, 0xfaee8, 0xf9368, 0xf9394,
                                    0xf93bc, 0xfaf34, 0xfaf50)),
             'words': words(sboot, (0xf90a4, 0xf90c4, 0xf90d8, 0xf9334,
@@ -212,6 +215,16 @@ def inspect(sboot_path, uh_path, harx_path):
                                        0x1b04, 0x1b08, 0x1b0c, 0x1b14,
                                        0x2114, 0x2118, 0x2124, 0x2128)),
             'limit': 'Conditional omission from RAM-node construction, not a complete reservation map',
+        },
+        'harx_log_reader': {
+            'service_id': '0xc6000043', 'requested_page_size': '0x1000',
+            'read_cursor_image_relative': '0x10000',
+            'read_cursor_can_advance': True,
+            'words': words(harx, (0x1cf4, 0x1cfc, 0x1d18, 0x1d1c,
+                                  0x1da8, 0x1dac, 0xb98, 0xba0, 0xba4,
+                                  0xbd8, 0xc30, 0xc3c, 0xc40, 0xc44,
+                                  0xc48, 0xc50, 0xc64, 0xc6c)),
+            'limit': 'Static getter/reset paths; no service executed or device attribute read',
         },
         'harx_soc_info': {
             'service_id': '0x8200012e', 'expected_version': '0x66001000',

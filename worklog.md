@@ -379,8 +379,9 @@ base 0xc0000000 e tamanho 0x01400000. Resultado gravado no contexto por
 Ramo 0xfaf38–0xfaf58 cria RAM até a base Harx e avança x19 para o fim,
 omitindo condicionalmente 20 MiB até 0xc1400000. Sem afirmar que esse ramo
 executou ou que o restante está livre. Escritor do flag relativo 0x487c90
-localizado em 0xf90d8, antes do HVC de inicialização; flag 1 isolado não
-prova sucesso completo. Soc_info Harx tem nomes impressos distintos para
+localizado em 0xf90d8, antes do HVC 0xc6000040, posteriormente identificado
+como registro de callback/buffer de crash; flag 1 não prova sucesso desse
+registro. Soc_info Harx tem nomes impressos distintos para
 quantidade reservada (índice 1) e tamanho Secure DRAM (índice 20); mantida
 a lacuna da tradução para o identificador legado LK.
 
@@ -391,3 +392,27 @@ host. CLI conferida nas três imagens recebidas; JSON, README, índices e
 roadmap atualizados. Continuam pendentes respostas soc_info/SEC_PGTBL e
 estado efetivo de boot. Nenhum arquivo adicional solicitado, serviço
 executado, driver alterado ou acesso ao telefone realizado.
+
+## 2026-10-22 UTC — candidato sysfs de log Harx
+
+Fonte exynos-el2.c identificou atributo exynos_el2_log, modo declarado 0644,
+getter HVC 0xc6000043 e store separado que reseta cursor. Configuração
+embutida na Image stock extraída entre IKCFG_ST/ED: 203018 bytes, hash
+55dde3bb7c52e99eccdb82b925a4b831c03fd32a19a2b64bdf7bda993e92a2e1;
+EXYNOS_EL2=m e páginas de 4 KiB. DTB base tem /el2_dynamic_lv3. Isso não
+prova módulo carregado, probe bem-sucedido ou permissão do shell.
+
+Header HVC e handler Harx ligam índices 3/4 ao RAM log c1200000/200000.
+Getter bb0 atualiza cursor em c48/c6c; reset b8c é outra operação, nunca
+solicitada pelo coletor. Corrigida a classificação antiga de c6000040:
+registro de callback/buffer de crash, confirmado por 1bc8→da0 e store e10,
+sem generalizar a falha desse registro para toda a inicialização Harx.
+
+Novo auditor offline exige hashes do Kernel.tar.gz e imagens boot/vendor,
+verifica seis fontes e gera metadados sem extrair caminhos. Coletor faz
+uma captura nova de até 4096 bytes/5 s, sem loop, aliases adicionais ou
+escrita/reset do atributo; pode avançar o cursor durante leitura normal.
+Sete testes novos passaram, inclusive limite, pasta existente e timeout;
+total com LK/EL2: 40 testes de host. Evidências JSON, README, roadmap e
+índices atualizados. Resultado no aparelho pendente; nenhuma das coletas
+rish bloqueadas foi repetida. Soc_info/SEC_PGTBL continuam sem valores reais.

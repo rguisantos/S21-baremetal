@@ -6,9 +6,9 @@ telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 
 | Etapa | Estado e resultado | Critério restante |
 |---|---|---|
-| 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M|C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
+| 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M+C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
 | 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; percurso memory alimenta uH; serviço Harx tem intervalo constante de 20 MiB omitido em ramo do construtor | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, mapa completo, checks posteriores e estado final de entrada |
-| 3. Observação | UART0 debug identificada nas fontes; callbacks UART/log em memória rastreados | Acesso físico ou recuperação verificável de um registro no aparelho |
+| 3. Observação | UART0 e logs rastreados; candidato exynos_el2_log cruzado com fonte, configuração da Image stock e DTB | Verificar acesso com coletor de uma página, sem reset; ou recuperar outro registro verificável no aparelho |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
 | 6. R10 uma CPU | Componentes e main real testados em QEMU | Adaptar ao observado e comprovar FDT/memória/exceções/GIC/timer no S21 |
@@ -26,6 +26,11 @@ pedido novo de arquivo deve apontar uma lacuna específica. As coletas rish
 já concluídas não disponibilizaram FDT, seleção UART/ADC ou logs de boot;
 não repetir esses procedimentos nas mesmas condições. Não se pressupõe root.
 
+Há uma interface diferente agora sustentada por fonte/config/DT:
+[exynos_el2_log](harx-log-observation.md). A coleta limitada está preparada,
+mas ainda não foi executada no telefone. A leitura pode avançar o cursor;
+um resultado bloqueado não deve gerar tentativas automáticas repetidas.
+
 ## Evidências
 
 - [Diagnóstico e matriz de entrada](entry-diagnostic.md).
@@ -36,6 +41,7 @@ não repetir esses procedimentos nas mesmas condições. Não se pressupõe root
 - [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
 - [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).
 - [Retornos constantes Harx e condição do construtor de RAM](lk-harx-memory-gap.md).
+- [Candidato sysfs do log Harx e evidências da Image stock](harx-log-observation.md).
 - [Console e UART0](lk-console-handoff.md), [jig/MUIC](uart-routing.md).
 - [Log em memória](lk-memory-log.md).
 - [Resultados de coleta](runtime-collection.md), [logs indisponíveis](boot-log-collection.md).

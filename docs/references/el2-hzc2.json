@@ -177,6 +177,16 @@
         "target": "0x1b14",
         "value": "0x1400000",
         "branch_offset": "0x1b18"
+      },
+      "3": {
+        "target": "0x1b1c",
+        "value": "0xc1200000",
+        "branch_offset": "0x1b20"
+      },
+      "4": {
+        "target": "0x1b24",
+        "value": "0x200000",
+        "branch_offset": "0x1b28"
       }
     },
     "result_store": "0x2128: STR X28, [X0]",
@@ -185,13 +195,18 @@
       "size": "0x1400000",
       "end_exclusive": "0xc1400000"
     },
+    "ram_log_interval": {
+      "base": "0xc1200000",
+      "size": "0x200000",
+      "end_exclusive": "0xc1400000"
+    },
     "runtime_execution_verified": false,
     "limit": "Constant returns in this handler; LK feature flag and actual HVC outcome unobserved"
   },
   "lk_harx_gap": {
     "feature_flag_image_relative": "0x487c90",
-    "flag_store_before_init_hvc": "0xf90d8",
-    "flag_does_not_prove_init_hvc_success": true,
+    "flag_store_before_crash_callback_hvc": "0xf90d8",
+    "flag_does_not_prove_callback_hvc_success": true,
     "calls": {
       "0xf90dc": "0xedff0",
       "0xfaee8": "0xf9320",
@@ -249,6 +264,33 @@
       "0x2128": "f900001c"
     },
     "limit": "Conditional omission from RAM-node construction, not a complete reservation map"
+  },
+  "harx_log_reader": {
+    "service_id": "0xc6000043",
+    "requested_page_size": "0x1000",
+    "read_cursor_image_relative": "0x10000",
+    "read_cursor_can_advance": true,
+    "words": {
+      "0x1cf4": "b400013a",
+      "0x1cfc": "97fffba4",
+      "0x1d18": "aa1c03e0",
+      "0x1d1c": "d2820001",
+      "0x1da8": "aa1c03e0",
+      "0x1dac": "97fffb81",
+      "0xb98": "540000a1",
+      "0xba0": "d2b82402",
+      "0xba4": "f9000002",
+      "0xbd8": "913ffc22",
+      "0xc30": "d281fff4",
+      "0xc3c": "9400266c",
+      "0xc40": "f94002a0",
+      "0xc44": "8b140000",
+      "0xc48": "f90002a0",
+      "0xc50": "d2b82415",
+      "0xc64": "94002662",
+      "0xc6c": "f9000013"
+    },
+    "limit": "Static getter/reset paths; no service executed or device attribute read"
   },
   "harx_soc_info": {
     "service_id": "0x8200012e",

@@ -2,7 +2,8 @@
 
 Procedimento preparado em 2026-10-21 a partir do driver debug-snapshot do
 pacote Samsung recebido. Não repete FDT, iomem, cmdline ou os atributos UART
-já bloqueados. A execução deste coletor no telefone ainda está pendente.
+já bloqueados. A execução foi concluída e encontrou os três nós ausentes ou
+ocultos; o resultado está registrado no fim deste documento.
 
 ## Objetivo e limites
 
@@ -97,3 +98,8 @@ validado apenas por fixtures; não existe dump real para ele nesta sessão.
 A investigação segue pelo BL e pelas fontes já recebidos, enquanto contrato
 de carregamento e canal físico de observação continuam pendentes. Este
 resultado não autoriza teste de flash/chainload.
+
+Uma análise posterior identificou o atributo sysfs **exynos_el2_log**, ligado
+a outro driver e cruzado com a Image/DTB stock. A [nova tentativa delimitada](harx-log-observation.md)
+não repete estes nós proc e não presume acesso pelo shell. A leitura desse
+outro serviço pode avançar um cursor, diferença documentada no novo coletor.

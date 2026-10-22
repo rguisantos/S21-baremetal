@@ -73,14 +73,22 @@ de x19 e dos demais serviços precisam ser válidos para interpretar as faixas;
 uma subtração em W não é uma validação de ordem ou ausência de sobreposição.
 Não foi produzido um DTS com bancos presumidos a partir desse exemplo.
 
-## O flag não comprova inicialização bem-sucedida
+## O flag não comprova registro bem-sucedido do callback de crash
 
 O escritor localizado em 0xf90d8 grava 1 no flag 0x487c90 depois do caminho
 de carga e da chamada SMC 0x82000480 retornar zero. Porém, essa gravação
-ocorre **antes** do HVC 0xc6000040 em 0xf90dc. O ramo de erro desse HVC não
-limpa o flag no trecho inspecionado. Assim, flag=1 isoladamente não comprova
-que toda a inicialização Harx foi bem-sucedida; o caminho de consulta ainda
-precisa produzir a versão e os dois resultados esperados.
+ocorre **antes** do HVC 0xc6000040 em 0xf90dc. O header Samsung identifica
+essa chamada como registro do callback/buffer de crash, e não inicialização
+geral do Harx. O handler termina por 0x1bc8 → 0xda0, guardando esses dados.
+A descrição anterior de inicialização era ampla demais e foi corrigida após
+esse cruzamento. O ramo de erro desse HVC não limpa o flag no trecho
+inspecionado. Flag=1 isoladamente não comprova o sucesso desse registro;
+o caminho de consulta ainda precisa produzir versão/base/tamanho esperados.
+
+Os índices 3/4 da tabela também foram ligados ao header: RAM log em
+**0xc1200000**, tamanho **0x200000**, contido no intervalo Harx. O inspetor
+agora os decodifica. Há um [candidato de acesso pelo driver sysfs](harx-log-observation.md),
+com leitura que pode avançar o cursor, sem aquisição física já realizada.
 
 ## Dependências que permanecem abertas
 
@@ -96,8 +104,7 @@ O Harx dá contexto aos nomes de soc_info: índice 2 é impresso como base de
 Secure DRAM; índice 1 como quantidade reservada para segurança; índice 20
 como tamanho de Secure DRAM. As chamadas são 0x3a0/0x3c0/0x3b4 e as strings
 ficam em 0xc19e/0xc169/0xc1be, respectivamente. Não se igualaram quantidade
-reservada e tamanho
-da região segura nem se transferiram esses nomes automaticamente ao ID
+reservada e tamanho da região segura nem se transferiram esses nomes automaticamente ao ID
 legado do LK. A tradução entre interfaces continua sem prova.
 
 ## Reprodução e validação

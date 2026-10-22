@@ -36,3 +36,7 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_el2_hzc2.py` e `test_el2_hzc2.py`: relatório somente leitura de sboot/uH/Harx HZC2, com leitura limitada e identidade SHA-256 obrigatória. Liga os comandos uH aos handlers, registra soc_info e decodifica os retornos constantes do serviço de memória Harx. Não executa serviços nem fornece mapa de RAM. [Evidências](../docs/el2-earlymem-hzc2.md), [intervalo Harx e limites do decodificador](../docs/lk-harx-memory-gap.md).
 
 - `check_lk_uh_ranges.py` e `test_lk_uh_ranges.py`: reproduzem os argumentos enviados pelo percurso LK dos nós com prefixo memory, com perfil explícito de células 2/1. Preservam a ordem e ignoram as tuplas de reg após a primeira, conforme o ramo rastreado. Não chamam HVC, simulam o alocador ou verificam memória livre; [escopo e limites](../docs/lk-uh-range-registration.md).
+
+- `check_harx_log_evidence.py` e `test_harx_log.py`: cruzam seis fontes Samsung, IKCONFIG da Image stock e nó EL2 no DTB base, com hashes obrigatórios. Testam limites gzip/config e o coletor abaixo; [evidências](../docs/harx-log-observation.md).
+
+- `collect_el2_log.sh`: uma captura do atributo sysfs exynos_el2_log, até 4096 bytes/5 s. A leitura pode avançar o cursor Harx; não escreve no atributo, não reseta e não repete páginas/aliases. Gera pasta nova com report.txt; disponibilidade no aparelho ainda não confirmada.
