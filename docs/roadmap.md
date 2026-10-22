@@ -8,7 +8,7 @@ telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 |---|---|---|
 | 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M+C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
 | 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; percurso memory alimenta uH; serviço Harx tem intervalo constante de 20 MiB omitido em ramo do construtor | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, mapa completo, checks posteriores e estado final de entrada |
-| 3. Observação | UART0 e logs rastreados; candidato exynos_el2_log cruzado com fonte, configuração da Image stock e DTB | Verificar acesso com coletor de uma página, sem reset; ou recuperar outro registro verificável no aparelho |
+| 3. Observação | UART0 e logs rastreados; exynos_el2_log confirmado no aparelho, mas UNREADABLE para uid=2000, sem captura | Continuar investigação estática e estabelecer outro canal verificável; não repetir as coletas bloqueadas |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
 | 6. R10 uma CPU | Componentes e main real testados em QEMU | Adaptar ao observado e comprovar FDT/memória/exceções/GIC/timer no S21 |
@@ -26,10 +26,11 @@ pedido novo de arquivo deve apontar uma lacuna específica. As coletas rish
 já concluídas não disponibilizaram FDT, seleção UART/ADC ou logs de boot;
 não repetir esses procedimentos nas mesmas condições. Não se pressupõe root.
 
-Há uma interface diferente agora sustentada por fonte/config/DT:
-[exynos_el2_log](harx-log-observation.md). A coleta limitada está preparada,
-mas ainda não foi executada no telefone. A leitura pode avançar o cursor;
-um resultado bloqueado não deve gerar tentativas automáticas repetidas.
+O [exynos_el2_log](harx-log-observation.md), sustentado por fonte/config/DT,
+foi testado: o atributo existe, mas a sessão shell não tem permissão de
+leitura. A captura não chegou a abrir seu conteúdo. Esse caminho também
+está encerrado nas condições atuais, sem repetir leituras ou pedir um log
+que não foi capturado. O material recebido basta para a análise estática.
 
 ## Evidências
 

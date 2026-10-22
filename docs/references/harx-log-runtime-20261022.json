@@ -1,0 +1,34 @@
+{
+  "mode": "received_collector_report",
+  "report_size": 807,
+  "report_sha256": "9aacaa65650eba56609b1f5755073dee98742c2b28c6181fd4ed9a21a3f7fead",
+  "reported_time_utc": "2026-10-22T01:21:21Z",
+  "clock_independently_verified": false,
+  "device": {
+    "model": "SM-G998B",
+    "build": "AP3A.240905.015.A2.G998BXXSJHZC2",
+    "bootloader": "G998BXXSJHZC2"
+  },
+  "session": {
+    "uid": 2000,
+    "gid": 2000,
+    "selinux_context": "u:r:shell:s0"
+  },
+  "attribute": {
+    "path": "/sys/devices/platform/el2_dynamic_lv3/exynos_el2_log",
+    "presence_observed": true,
+    "displayed_mode": "-rw-r--r--",
+    "displayed_owner": "root",
+    "displayed_group": "root",
+    "displayed_size": 4096,
+    "displayed_size_is_log_length": false
+  },
+  "collector_result": "UNREADABLE",
+  "content_capture_attempted": false,
+  "capture_exit": null,
+  "log_bytes_acquired_by_this_run": 0,
+  "harx_read_callback_invoked_by_collector": false,
+  "access_control_cause_determined": false,
+  "memory_map_verified": false,
+  "decision": "Do not repeat this collection or request a nonexistent log capture under the same shell conditions"
+}

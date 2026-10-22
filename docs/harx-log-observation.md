@@ -1,9 +1,10 @@
-# Candidato de observação pelo log Harx
+# Log Harx: fonte e coleta bloqueada
 
 Evidência de 2026-10-22 UTC, usando as fontes Samsung e imagens stock HZC2
 já recebidas. Foi identificado um atributo novo, **exynos_el2_log**, distinto
-dos três nós proc que estavam ausentes/ocultos na coleta anterior. Ainda
-não foi observado no aparelho; não se pediu para repetir aquelas leituras.
+dos três nós proc que estavam ausentes/ocultos na coleta anterior. O relatório
+recebido confirmou o atributo, mas a sessão shell não teve permissão de
+leitura. Nenhuma página de log foi capturada nesta tentativa.
 
 ## O que sustenta essa tentativa
 
@@ -17,14 +18,16 @@ não foi observado no aparelho; não se pediu para repetir aquelas leituras.
 
 O getter do driver aloca uma página zerada, passa seu endereço físico ao HVC
 0xc6000043 com os demais argumentos zero e devolve uma string de no máximo
-PAGE_SIZE-1 bytes. O modo 0644 vem do fonte, não de um ls no telefone.
+PAGE_SIZE-1 bytes. O modo 0644 previsto no fonte agora também aparece no ls
+do relatório recebido, sem que isso tenha permitido a leitura pelo shell.
 
 CONFIG_EXYNOS_EL2=m também não prova que o módulo tenha sido carregado.
 A criação dos atributos depende da inicialização e do probe, que antes
-registram buffers, IRQ e dados com o Harx. SELinux, permissões efetivas e
-eventuais alterações posteriores do DTB continuam desconhecidos.
+registram buffers, IRQ e dados com o Harx. A presença do atributo corrobora
+esse caminho de criação, mas não comprova todo o estado do driver/firmware.
+O mecanismo exato do bloqueio e as alterações finais do DTB continuam abertos.
 
-O candidato de caminho é:
+O caminho confirmado no relatório é:
 
 ```text
 /sys/devices/platform/el2_dynamic_lv3/exynos_el2_log
@@ -51,7 +54,11 @@ página retornada, poderão trazer valores que a análise estática não fechou.
 O log pode estar vazio, já consumido ou com wrap; uma página não garante
 mensagens de boot, o mapa completo ou o estado atual desses valores.
 
-## Execução no rish
+## Procedimento da tentativa concluída
+
+Esta execução já foi concluída e retornou UNREADABLE. O procedimento abaixo
+fica como registro; não é uma solicitação de repetir a coleta nas mesmas
+condições.
 
 Salve [collect_el2_log.sh](../scripts/collect_el2_log.sh) em Download e,
 na sessão rish já usada, execute:
@@ -66,16 +73,51 @@ faz uma captura de até **4096 bytes com timeout de 5 segundos**, quando
 legível, e grava os resultados nessa pasta. Não muda permissões, carrega
 módulos, reinicia o aparelho ou acessa FDT, iomem e os logs já bloqueados.
 
-Comece compartilhando **s21-el2-log/report.txt**. O relatório registra
+Foi recebido **s21-el2-log/report.txt**. O relatório registra
 existência, permissões, caminho escolhido, retorno da captura e bytes.
-Se houver conteúdo, revise **el2-log.txt** antes de compartilhar: é texto
-de log do firmware, não apenas metadados. Erro/timeout pode deixar arquivo
-parcial. Conteúdo vazio não comprova ausência do Harx ou falha de boot.
+O ramo de leitura não foi executado, portanto não há **el2-log.txt** desta
+captura a solicitar. Em outras condições, esse arquivo conteria texto do
+firmware, sujeito a revisão antes de compartilhar; erro/timeout poderia
+deixar uma captura parcial. Não se confunde isso com o resultado atual.
 
 Se aparecer ABSENT/UNREADABLE ou negação na leitura, o resultado encerra essa
 tentativa nas condições atuais. Não repetir automaticamente, mudar permissões
 ou pedir root. Um acesso bem-sucedido abriria um canal de evidência; não
 autoriza boot/flash nem substitui o FDT final.
+
+## Resultado recebido — 2026-10-22 UTC
+
+Relatório de 807 bytes, SHA-256
+`9aacaa65650eba56609b1f5755073dee98742c2b28c6181fd4ed9a21a3f7fead`.
+Timestamp informado: 2026-10-22 01:21:21 UTC, equivalente a 2026-10-21
+21:21:21 em Campo Grande; relógio não verificado independentemente.
+
+| Campo | Resultado observado |
+|---|---|
+| Modelo / build / bootloader | SM-G998B / AP3A.240905.015.A2.G998BXXSJHZC2 / G998BXXSJHZC2 |
+| Sessão | uid=2000(shell), gid=2000, contexto u:r:shell:s0 |
+| Atributo | /sys/devices/platform/el2_dynamic_lv3/exynos_el2_log existe |
+| Metadados ls | -rw-r--r--, root:root, tamanho exibido 4096 |
+| Resultado do teste de acesso | UNREADABLE |
+| Captura de conteúdo | não iniciada; nenhum READ_EXIT ou bytes de log registrados |
+
+O tamanho 4096 exibido em sysfs não é uma medição do conteúdo do log. Os
+bits 0644 também não garantem acesso para esse domínio: o teste de leitura
+foi recusado. O relatório não inclui contexto do arquivo ou decisão de
+auditoria que permita atribuir a causa especificamente a SELinux ou a outro
+mecanismo. Registra-se a restrição, sem escolher uma causa por hipótese.
+
+Pelo fluxo do coletor v1, o ramo UNREADABLE não abre o atributo e não chama
+o getter Harx. Assim, esta execução não consumiu uma página pelo coletor;
+não se conclui nada sobre leituras feitas por outros processos ou o cursor
+global. A presença do nó corrobora a ligação fonte/DT, sem revelar valores
+de DRAM, SEC_PGTBL, FDT final ou estado de entrada no payload.
+
+Os [metadados conferidos](references/harx-log-runtime-20261022.json) foram
+registrados separadamente da evidência estática; o relatório original não
+foi publicado no Git. **Decisão:** esse canal está indisponível para a sessão
+observada. Não repetir a coleta, solicitar um log não capturado ou pedir
+mudanças de privilégio como próximo passo automático.
 
 ## Reprodução offline das evidências
 
@@ -119,6 +161,8 @@ caminho/alias; permissões da saída; fallback do driver; timeout sem retry.
 São **40 testes de host** com as suítes LK/EL2 anteriores. Os testes não
 emulam SELinux, o driver ou o serviço Harx e não provam acesso pelo rish.
 
-O pacote já recebido basta para a investigação estática. Para verificar
-este canal novo no telefone, falta somente o relatório dessa execução;
-a tradução soc_info e os valores SEC_PGTBL continuam abertos.
+O relatório do telefone já foi recebido e analisado. Os 40 testes de host
+citados validam as ferramentas, não o acesso no aparelho; não foram repetidos
+para esta atualização de documentação e metadados. O pacote já recebido
+basta para continuar a investigação estática, incluindo soc_info e SEC_PGTBL,
+que permanecem sem valores efetivos observados.

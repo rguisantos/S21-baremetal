@@ -416,3 +416,24 @@ Sete testes novos passaram, inclusive limite, pasta existente e timeout;
 total com LK/EL2: 40 testes de host. Evidências JSON, README, roadmap e
 índices atualizados. Resultado no aparelho pendente; nenhuma das coletas
 rish bloqueadas foi repetida. Soc_info/SEC_PGTBL continuam sem valores reais.
+
+## 2026-10-22 UTC — coleta Harx recebida: atributo presente, leitura bloqueada
+
+Recebido report.txt de 807 bytes, SHA-256
+9aacaa65650eba56609b1f5755073dee98742c2b28c6181fd4ed9a21a3f7fead.
+Horário informado 01:21:21 UTC, sem confirmação externa do relógio. Sessão
+uid=2000, contexto shell; modelo/build/bootloader confirmam SM-G998B/HZC2.
+Nó /sys/devices/platform/el2_dynamic_lv3/exynos_el2_log existe, ls mostra
+0644 root:root e tamanho 4096. Teste -r retornou falso: UNREADABLE.
+
+Coletor encerrou antes de abrir o atributo; não houve captura, READ_EXIT
+ou chamada do getter por essa execução. Não solicitar el2-log.txt nem
+repetir a coleta. 4096 é metadado sysfs, não quantidade de log disponível;
+0644 não identifica a causa da restrição. Não atribuir especificamente a
+SELinux sem evidência de política/auditoria. Presença corrobora atributo
+do driver, sem revelar RAM, SEC_PGTBL ou estado de handoff.
+
+Metadados sanitizados separados da evidência estática; original não publicado.
+README, hardware, guia de coleta, índice e roadmap atualizados. Somente
+documentação/metadados: JSON e diff conferidos, sem rerodar os 40 testes de
+host anteriores. Análise estática segue com os arquivos já recebidos.

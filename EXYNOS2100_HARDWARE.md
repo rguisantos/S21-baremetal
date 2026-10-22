@@ -37,7 +37,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 - [Validação de entrada, GIC e timer](docs/r10-single-cpu.md)
 - [Comparação com DTB TWRP](docs/twrp-reference.md)
 - [Coleta Shizuku já realizada](docs/runtime-collection.md)
-- [Novo candidato de log Harx](docs/harx-log-observation.md): fonte, configuração embutida e DTB cruzados; coleta de uma página preparada, acesso no telefone pendente. A leitura pode avançar o cursor.
+- [Log Harx e resultado no aparelho](docs/harx-log-observation.md): atributo confirmado com modo 0644; UNREADABLE para o shell, sem captura. Não repetir a coleta nas mesmas condições.
 
 Continuam pendentes: DTB final/contrato de memória, carregador Samsung/Harx, EL de entrada, manutenção de caches/coerência da imagem, acesso ICC/timer e depuração física/USI. O shim apenas compila; não há método demonstrado de `fastboot boot` para esse Samsung.
 

@@ -67,7 +67,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Intervalo Harx no construtor de RAM](lk-harx-memory-gap.md): retornos constantes do serviço OEM, condição do LK e dependências ainda abertas.
 
-- [Candidato de observação pelo log Harx](harx-log-observation.md): fonte, configuração da Image stock, DTB e coletor de uma página; leitura pode avançar cursor, acesso no telefone pendente.
+- [Log Harx e coleta bloqueada](harx-log-observation.md): fonte/configuração/DTB cruzados; atributo presente, UNREADABLE no shell e nenhuma página capturada.
 
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 

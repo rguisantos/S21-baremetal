@@ -116,7 +116,7 @@ Os [intervalos enviados ao uH](docs/lk-uh-range-registration.md) vêm do FDT cor
 
 Uma [região Harx omitida na construção de RAM](docs/lk-harx-memory-gap.md) foi ligada ao serviço 0xc6000020: o handler tem retornos constantes para 0xc0000000–0xc1400000 (20 MiB). O inspetor agora decodifica esses retornos e a suíte offline passou em 33 testes. A execução desse ramo e os demais valores soc_info/SMC continuam sem observação no telefone.
 
-Foi identificado um [novo candidato para observar o log Harx](docs/harx-log-observation.md): o driver `exynos_el2_log`, cruzado com a configuração embutida no kernel e o DTB stock. Há um coletor de uma página, até 4 KiB/5 s, cuja leitura pode avançar o cursor; não escreve ou solicita reset. Acesso no aparelho ainda pendente. A validação offline passou em 40 testes, e a chamada 0xc6000040 foi corrigida na documentação para registro de callback/buffer de crash.
+O [log Harx](docs/harx-log-observation.md) foi cruzado com fonte, configuração embutida e DTB stock. A coleta no aparelho confirmou `exynos_el2_log` com modo 0644, mas retornou **UNREADABLE** para uid=2000(shell); nenhuma página foi aberta ou capturada. Não repetir nas mesmas condições. Os 40 testes de host anteriores validam as ferramentas; a chamada 0xc6000040 foi corrigida na documentação para registro de callback/buffer de crash.
 
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
