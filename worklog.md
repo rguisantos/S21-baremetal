@@ -615,3 +615,26 @@ hardware, índice, catálogo e roadmap atualizados. R8/R9/R10 não mudaram;
 suas suítes não foram reexecutadas. Nenhuma coleta bloqueada repetida,
 pedido de reenvio ou teste/flash no telefone. Respostas efetivas dos serviços,
 sucesso do editor e FDT final continuam abertos.
+
+## 2026-10-22 Campo Grande — novo roadmap e estado consolidado
+
+Revisada a main a048682 e a evidência das entregas para substituir o roadmap
+acumulado por um estado por frente, prioridades P1–P6 e critérios de saída.
+Separados dois marcos: primeiro registro de entrada no S21 e R10 físico em
+uma CPU. A Image diagnóstica só grava em seu próprio intervalo, não lê FDT
+ou usa pilha/periféricos. Para esse marco basta comprovar a região inteira,
+coerência, entrada, carregamento e leitura; FDT/memória e reservas confiáveis
+continuam requisitos do R10, investigados em paralelo. Não inferido que esses critérios
+já estejam atendidos ou que o diagnóstico possa ser executado agora.
+
+Prioridade imediata definida como auditoria final de entrada/coerência do LK,
+com canal de observação e memória dinâmica em paralelo. DRM cifrado foi
+tratado como limite específico da análise do provedor, sem torná-lo condição
+universal para o diagnóstico mínimo. Mantidos bloqueios de coleta Shizuku,
+arquivos já recebidos e distinção entre respostas simuladas/estado real.
+
+README e índice apontam para o roadmap como entrada de planejamento. Main
+e zero PRs abertos conferidos pelo GitHub. Revisão somente documental:
+links, estrutura e consistência das contagens conferidos; suítes anteriores
+não reexecutadas. Nenhum código de payload, firmware ou arquivo recebido
+alterado; modificação local preexistente de magisk.apk ficou fora da entrega.

@@ -4,6 +4,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 ## Implementação e testes atuais
 
+- [Roadmap e estado atual](roadmap.md): evidências, prioridades e critérios separados para diagnóstico físico e R10 em uma CPU.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 
 - [R10 em uma CPU](r10-single-cpu.md): entrada, exceções, GIC e timer.
@@ -73,8 +74,6 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Log Harx e coleta bloqueada](harx-log-observation.md): fonte/configuração/DTB cruzados; atributo presente, UNREADABLE no shell e nenhuma página capturada.
 
 - [SEC_PGTBL e LDFW](sec-pgtbl-hzc2.md): seis registros, cifragem DRM, entrega -0x500 e 52 status na fonte; contratos distintos de carga/consulta/proteção. Chamador conferido em 248 cenários Unicorn, provedor ainda sem código em claro.
-
-- [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.
 

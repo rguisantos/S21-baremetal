@@ -4,6 +4,8 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 **Estado em 2026-10-22 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
+O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

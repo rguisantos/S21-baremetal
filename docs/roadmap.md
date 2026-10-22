@@ -1,95 +1,121 @@
-# Roadmap até o primeiro diagnóstico no S21
+# Roadmap e estado do S21-baremetal
 
-Estado em 2026-10-22 (Campo Grande). Alvo: SM-G998B/p3s, firmware stock HZC2 observado nas
-propriedades recebidas. O R10 e o diagnóstico ainda não foram executados no
-telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
+Atualizado em **2026-10-22 (Campo Grande)**. Base técnica revisada:
+[main em a048682](https://github.com/rguisantos/S21-baremetal/commit/a04868289c418e24768ccead81dc17be14e448fa).
+Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
-| Etapa | Estado e resultado | Critério restante |
+**Estamos entre a validação de laboratório e o primeiro diagnóstico no
+telefone.** Há código funcional e testes em QEMU, uma base DTS que reproduz
+o DTB stock e modelos conferidos das chamadas do LK. Ainda faltam o caminho
+de carregamento físico, as garantias de entrada/memória e uma forma de
+recuperar o resultado. Nenhum diagnóstico ou R10 foi executado no S21.
+
+## Estado por frente
+
+“Concluído” vale para o escopo da evidência indicada. Testes de laboratório
+não mudam o estado de validação no telefone.
+
+| Frente | Estado atual | Evidência / o que falta |
 |---|---|---|
-| 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M+C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
-| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; DTS corrigido reproduz a base stock; construtor de bancos conferido em 268 cenários fornecidos; percurso memory alimenta uH | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, sucesso das edições, mapa completo, checks posteriores e estado final de entrada |
-| 3. Observação | UART0 e logs rastreados; exynos_el2_log confirmado no aparelho, mas UNREADABLE para uid=2000, sem captura | Continuar investigação estática e estabelecer outro canal verificável; não repetir as coletas bloqueadas |
-| 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
-| 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
-| 6. R10 uma CPU | Componentes e main real testados em QEMU | Adaptar ao observado e comprovar FDT/memória/exceções/GIC/timer no S21 |
-| 7. Expansão | Pendente | PSCI/SMP e periféricos após validação da base |
+| R8/R9: fundamentos e microkernel | **Concluído no QEMU** | Regressão 4/4 PASS; MMU, ELs, GIC/timer, EL0/SVC/preempção |
+| R10 em uma CPU | **Validado no laboratório; pendente no S21** | Main real com carregador EL2 sintético, timer IRQ e cinco recusas; faltam contrato Samsung, memória e acessos reais |
+| Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
+| Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
+| Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
+| SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
+| UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
+| Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
+| R10 físico, depois SMP/periféricos | **Etapas futuras** | Uma CPU primeiro; PSCI/SMP, SPIs, MCT e display após comprovar a base |
 
-## Próxima prioridade
+As contagens acima pertencem a suítes diferentes e não devem ser somadas
+como uma porcentagem de prontidão. Os testes citados são os registros das
+entregas anteriores; esta revisão do roadmap não os reexecutou.
 
-A matriz de entrada EL1/EL2 já aceita M=C=0 e recusa as três combinações
-restantes, antes de gravar o registro. O trabalho seguinte deve priorizar
-**contrato Samsung e observação**, para que novos testes respondam a riscos
-concretos do carregamento. Ampliar QEMU não resolve sozinho o canal de leitura.
+## Dois marcos físicos com requisitos diferentes
 
-As fontes e o BL recebidos bastam para continuar a análise estática. Qualquer
-pedido novo de arquivo deve apontar uma lacuna específica. As coletas rish
-já concluídas não disponibilizaram FDT, seleção UART/ADC ou logs de boot;
-não repetir esses procedimentos nas mesmas condições. Não se pressupõe root.
+**Marco A — recuperar o primeiro registro de entrada.** A
+[Image de diagnóstico](entry-diagnostic.md) aceita EL1/EL2 com M=C=0,
+registra argumentos, EL, SCTLR, MPIDR e endereços em 128 bytes dentro da
+própria imagem. O código dispensa pilha e não lê FDT nem chama serviços ou
+acessa periféricos. Para esse marco, é necessário comprovar propriedade e coerência
+da imagem inteira e obter um canal de recuperação do registro. O diagnóstico
+não descobre RAM livre e não garante persistência após reset.
 
-O [exynos_el2_log](harx-log-observation.md), sustentado por fonte/config/DT,
-foi testado: o atributo existe, mas a sessão shell não tem permissão de
-leitura. A captura não chegou a abrir seu conteúdo. Esse caminho também
-está encerrado nas condições atuais, sem repetir leituras ou pedir um log
-que não foi capturado. O material recebido basta para a análise estática.
+**Marco B — executar o R10 no telefone em uma CPU.** Exige também FDT
+efetivo com bancos/reservas/initrd válidos, região da imagem/pilhas
+reservada, entrada compatível e acesso ICC/timer permitido. O R10 atual
+exige EL2; a normalização para EL1 observada na entrada do LK não mede
+o EL no salto final. Essa decisão depende da evidência de entrada.
 
-No [SEC_PGTBL/LDFW](sec-pgtbl-hzc2.md), o chamador LK está conferido por
-248 cenários Unicorn com respostas substituídas, incluindo 104 injeções
-hipotéticas dos 52 status declarados no header Samsung recebido. O enum
-não foi ligado ao retorno da consulta ou à carga -0x500. O contêiner tem seis
-registros; o DRM candidato está marcado como cifrado e a carga até SMC
--0x500 foi ligada ao LK. Para recuperar esse handler, a lacuna específica
-é código DRM HZC2 em claro com origem verificável ou fonte correspondente.
-Reenviar o mesmo contêiner cifrado não ajuda. Emulação/simbolismo do provedor
-dependem primeiro desse código e da reconstrução de seu estado de entrada.
-Outros chamadores e trechos em claro podem continuar sendo analisados.
+O contrato do R10 exige memória e reservas confiáveis suficientes para
+validar a região completa da imagem/pilhas e os demais buffers usados.
+Essa investigação pode avançar em paralelo ao Marco A, desde que a reserva
+da região inteira do diagnóstico seja demonstrada por outro meio verificável.
+Recuperar o código DRM em claro também não é requisito universal para o
+diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
-A [base DTS recebida](dts-source-roundtrip.md) agora reproduz o DTB HZC2
-byte a byte após um patch de três listas de CPUs. Esse marco permite usar a
-base textual com identidade conferida. O overlay genérico não substitui o
-P3S; ambos os candidatos aplicados no host continuam sem bancos RAM e com
-initrd antigo. A prioridade seguinte permanece nos ajustes dinâmicos e nos
-valores efetivos do LK, sem preencher as lacunas com esses candidatos.
+## Próximas entregas, em ordem de prioridade
 
-O [construtor dos bancos](lk-memory-bank-constructor.md) passou a ter modelo
-e comparação com as instruções originais: 268 cenários fornecidos e 44
-testes de host. Aritmética de divisão e blocos altos está conferida; não se
-modelou sucesso do editor ou inferiram entradas reais. Próxima lacuna:
-origem/valores efetivos de soc_info, total de RAM e SEC_PGTBL, seguidos do
-FDT resultante e estado de entrada. Novos cenários sintéticos não substituem
-essas evidências.
+| Prioridade | Trabalho concreto | Critério de conclusão |
+|---|---|---|
+| **P1 — entrada e coerência** | Seguir a preparação final do LK até o salto: EL, argumentos, posição/extensão da Image, manutenção de caches e instruções posteriores | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
+| **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
+| **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
+| **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
+| **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
+| **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
+| **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-## Evidências
+**Próxima entrega técnica recomendada: auditoria final de entrada/coerência
+do LK (P1)**, mantendo observação e memória como frentes paralelas.
+A aritmética dos bancos já tem conferência suficiente para o escopo atual;
+a próxima evidência deve responder a uma condição ainda desconhecida.
 
-- [Diagnóstico e matriz de entrada](entry-diagnostic.md).
-- [Cópia da Image e salto](lk-kernel-copy.md).
-- [Modelo de layout LK v3 e testes de host](lk-v3-layout.md).
-- [Seleção e merges DTB/DTBO/DPM](lk-dtb-pipeline.md).
-- [DTS recebidos e identidade binária da base stock](dts-source-roundtrip.md).
-- [Initrd, reservas e origem do tamanho de RAM](lk-dynamic-fdt.md).
-- [Argumentos do construtor de bancos RAM e conferência em Unicorn](lk-memory-bank-constructor.md).
-- [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
-- [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).
-- [Retornos constantes Harx e condição do construtor de RAM](lk-harx-memory-gap.md).
-- [Respostas SEC_PGTBL no LK e limite atual do LDFW](sec-pgtbl-hzc2.md).
-- [Candidato sysfs do log Harx e evidências da Image stock](harx-log-observation.md).
-- [Console e UART0](lk-console-handoff.md), [jig/MUIC](uart-routing.md).
-- [Log em memória](lk-memory-log.md).
-- [Resultados de coleta](runtime-collection.md), [logs indisponíveis](boot-log-collection.md).
+## Critérios para iniciar o Marco A
 
-A passagem ao teste físico depende do caminho de carregamento e da capacidade
-de recuperar uma evidência. Nenhum comando de flash é derivado dos testes atuais.
+1. **Carregamento:** percurso Samsung identificado, artefato compatível e
+   condições de recuperação definidas. Compilar ELF ou S21R10 não demonstra
+   esse percurso; o shim legado permanece em quarentena.
+2. **Região e coerência:** toda a Image, inclusive o registro, pertence ao
+   diagnóstico e não colide com dados/firmware necessários. O carregador
+   fornece código coerente e as condições de tradução/cache são conhecidas.
+3. **Entrada:** caminho avaliado para as condições aceitas ou para uma recusa
+   observável. A Image não instala vetores para traps de firmware superior.
+4. **Resultado:** meio demonstrado de ler o registro no estado em que ele
+   existe; não presumir que sobreviva a reset ou perda de energia.
 
-A [comparação Exynos-2100](exynos-2100-reference.md) detalha mux/divisor/QCH da UART0. Prioridade de observação: resolver o pinmux do DTS versus a escrita LK antes de adaptar a inicialização UART.
+Esses critérios ainda estão abertos. O teste QEMU não estabelece um comando
+de flash/chainload Samsung.
 
-Auditoria posterior: os offsets pinctrl são diretos e a divergência LK/DTS
-persiste. A semelhança com um layout Exynos 9820 é hipótese de código legado,
-sem validação física. Não habilitar um novo caminho UART pela simples troca
-de endereço; retomar também as verificações do contrato Samsung.
+## Arquivos e evidências
 
-A busca ampliada encontrou [pinmux UART0 compatível no intervalo BL2](bl2-uart-hzc2.md), anterior à escrita divergente do LK. O marco de análise avançou; falta acompanhar clocks/estado entre estágios e observar o handoff real.
+**Os arquivos já enviados bastam para continuar a investigação estática.**
+BL HZC2, boot/vendor_boot/dtbo, fontes Samsung/deltas, DTS e referência Proton
+já foram recebidos e analisados no escopo documentado. Os READMEs de build
+não fornecem o estado de entrada ou o FDT dinâmico.
 
-O [rastreio de clocks UART0](uart-clock-stages.md) ligou tabelas PERIC0 à inicialização e encontrou nominal133,25 MHz no wrapper principal. A observação da frequência e das dependências no handoff continua pendente.
+O que falta é evidência específica: estado de entrada no aparelho, resultado
+dos ajustes FDT e um canal de observação. Para continuar a análise interna do
+handler DRM cifrado, falta código HZC2 em claro com origem verificável ou
+fonte correspondente. Isso não é pedido de reenvio do LDFW cifrado.
 
-A auditoria offline da árvore UART0 liga o mux TOP a PLL_SHARED2_D2 e fecha nominalmente 133,25 MHz. Próximas lacunas: programação/estado efetivo da PLL e QCH/gates no handoff; a conta nominal não libera a UART.
+As coletas atuais usaram **uid=2000(shell)/Shizuku**. FDT, mapas e logs
+solicitados não ficaram disponíveis; `exynos_el2_log` foi confirmado como
+**UNREADABLE**, sem conteúdo capturado. Não repetir as mesmas coletas,
+pedir um log inexistente ou pressupor root. Uma nova coleta deve primeiro
+demonstrar uma mudança relevante de acesso/canal.
 
-O [inventário de gates](uart-gates.md) separa reset-sync/IPCLK/PCLK/QCH e mostra que PCLK usa BUS_USER. A auditoria verifica essas associações nas fontes; rastrear o caminho BUS e acessos indiretos permanece necessário antes de propor uma inicialização mínima.
+## Evidências que sustentam este estado
+
+| Área | Referências |
+|---|---|
+| Laboratório e implementação | [Validação anterior](validation-2026-10-20.md), [R10 em uma CPU](r10-single-cpu.md), [carregador EL2 QEMU](qemu-el2-loader.md), [diagnóstico](entry-diagnostic.md) |
+| Firmware e base textual | [Stock HZC2](stock-firmware-hzc2.md), [BL e handoff](bootloader-hzc2.md), [entrada LK](sboot-layout-hzc2.md), [recompilação DTS](dts-source-roundtrip.md) |
+| Cópias e FDT | [Cópia da Image](lk-kernel-copy.md), [layout v3](lk-v3-layout.md), [seleção/overlays](lk-dtb-pipeline.md), [ajustes dinâmicos](lk-dynamic-fdt.md) |
+| RAM e serviços | [Construtor dos bancos](lk-memory-bank-constructor.md), [uH earlymem](el2-earlymem-hzc2.md), [intervalos enviados ao uH](lk-uh-range-registration.md), [recorte Harx](lk-harx-memory-gap.md), [SEC_PGTBL/LDFW](sec-pgtbl-hzc2.md) |
+| Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
+| Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
+
+A main foi conferida na preparação deste roadmap; a consulta retornou
+**zero PRs abertos**. O [worklog](../worklog.md) conserva a sequência histórica
+das descobertas; esta página organiza prioridades e critérios atuais.
