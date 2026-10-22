@@ -22,6 +22,7 @@ não mudam o estado de validação no telefone.
 | Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
 | Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
+| Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | 352 cenários e 14 testes novos; acessos de sistema substituídos, callbacks/SMC anterior e coerência física ainda abertos |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
@@ -58,7 +59,7 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Seguir a preparação final do LK até o salto: EL, argumentos, posição/extensão da Image, manutenção de caches e instruções posteriores | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
+| **P1 — entrada e coerência** | Helper de cache e argumentos conferidos; seguir o SMC -0x3ff anterior e callbacks posteriores, junto às garantias da imagem | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
 | **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -66,10 +67,11 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica recomendada: auditoria final de entrada/coerência
-do LK (P1)**, mantendo observação e memória como frentes paralelas.
-A aritmética dos bancos já tem conferência suficiente para o escopo atual;
-a próxima evidência deve responder a uma condição ainda desconhecida.
+**Próxima entrega técnica recomendada: continuar P1 nos serviços/callbacks
+que cercam o helper**, mantendo observação e memória como frentes paralelas.
+A [auditoria do helper](lk-cache-handoff.md) fechou a seleção do EL ativo,
+o gate por M e os operandos set/way nesse escopo. Não executou caches/MMU
+reais ou os callbacks: repetir a mesma matriz não fecharia essas lacunas.
 
 ## Critérios para iniciar o Marco A
 
@@ -110,7 +112,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Área | Referências |
 |---|---|
 | Laboratório e implementação | [Validação anterior](validation-2026-10-20.md), [R10 em uma CPU](r10-single-cpu.md), [carregador EL2 QEMU](qemu-el2-loader.md), [diagnóstico](entry-diagnostic.md) |
-| Firmware e base textual | [Stock HZC2](stock-firmware-hzc2.md), [BL e handoff](bootloader-hzc2.md), [entrada LK](sboot-layout-hzc2.md), [recompilação DTS](dts-source-roundtrip.md) |
+| Firmware e base textual | [Stock HZC2](stock-firmware-hzc2.md), [BL e handoff](bootloader-hzc2.md), [entrada LK](sboot-layout-hzc2.md), [cache e argumentos finais](lk-cache-handoff.md), [recompilação DTS](dts-source-roundtrip.md) |
 | Cópias e FDT | [Cópia da Image](lk-kernel-copy.md), [layout v3](lk-v3-layout.md), [seleção/overlays](lk-dtb-pipeline.md), [ajustes dinâmicos](lk-dynamic-fdt.md) |
 | RAM e serviços | [Construtor dos bancos](lk-memory-bank-constructor.md), [uH earlymem](el2-earlymem-hzc2.md), [intervalos enviados ao uH](lk-uh-range-registration.md), [recorte Harx](lk-harx-memory-gap.md), [SEC_PGTBL/LDFW](sec-pgtbl-hzc2.md) |
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |

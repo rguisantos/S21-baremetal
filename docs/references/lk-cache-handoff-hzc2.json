@@ -1,0 +1,203 @@
+{
+  "mode": "static_read_only_lk_cache_handoff",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "blocks": {
+    "current_el": {
+      "start": "0x189404",
+      "end_exclusive": "0x189414",
+      "sha256": "d71751bff4fedba8214179b2243f39ecc96e613f8001ec6476a17e2ac5a36aa3"
+    },
+    "sctlr_getters": {
+      "start": "0x189420",
+      "end_exclusive": "0x189438",
+      "sha256": "6fafa1364181ad7c7f9816d496bb07f3b810d039095aee449bedd143465a418b"
+    },
+    "set_way": {
+      "start": "0x189848",
+      "end_exclusive": "0x18989c",
+      "sha256": "971b6932ff09fdef579688ae9adb997e31030c4cdf15c6ba49096e97e14c4913"
+    },
+    "cache_walk": {
+      "start": "0x18997c",
+      "end_exclusive": "0x1899f0",
+      "sha256": "e56e18d29ed5720c1924ebdc92cccb78f9862b37d1dd2493544d94abadd883bf"
+    },
+    "clear_mc": {
+      "start": "0x189db8",
+      "end_exclusive": "0x189e10",
+      "sha256": "3e4b2c29ef0274b4c98a9ee2096a4ef0228dcf76b993ab03ad75e6a70fc519cc"
+    },
+    "cache_gate": {
+      "start": "0x18a3a8",
+      "end_exclusive": "0x18a430",
+      "sha256": "9a59ed40e47e4f1a874b861759044a2b2105069f38efbc152739a7023c633329"
+    },
+    "final_tail": {
+      "start": "0xfbdd4",
+      "end_exclusive": "0xfbe18",
+      "sha256": "395c3e7aa313056fa77348f70ba21d8e1db964eff7bbca493116975addb5e3b5"
+    }
+  },
+  "calls": {
+    "0xfbdd0": "0xf6088",
+    "0xfbdd8": "0xee658",
+    "0xfbddc": "0x18a3a8",
+    "0xfbde4": "0xf29a0",
+    "0xfbdf0": "0x1b1658",
+    "0x18a3b8": "0x189404",
+    "0x18a3f8": "0x189420",
+    "0x18a410": "0x18997c",
+    "0x18a420": "0x189430",
+    "0x18a428": "0x189428",
+    "0x1899bc": "0x189848"
+  },
+  "instruction_words": {
+    "0xfbdc0": "d2800003",
+    "0xfbdc4": "d2800002",
+    "0xfbdc8": "d2800001",
+    "0xfbdcc": "92807fc0",
+    "0xfbdd4": "d50342df",
+    "0xfbe08": "b9404805",
+    "0xfbe0c": "52b16100",
+    "0xfbe10": "8b0400a4",
+    "0xfbe14": "d63f0080",
+    "0x18a3fc": "370000a0",
+    "0x18a41c": "17fffe67",
+    "0x189848": "d37ff801",
+    "0x189854": "d5390004",
+    "0x189858": "53000883",
+    "0x189860": "530d6c85",
+    "0x189864": "53033084",
+    "0x189868": "5ac01086",
+    "0x189884": "d5087e47",
+    "0x189990": "d539002a",
+    "0x189994": "d358fd4b",
+    "0x189998": "9240096b",
+    "0x1899d0": "d51a0000",
+    "0x1899d4": "d5033f9f",
+    "0x1899d8": "d5033fdf",
+    "0x1899e4": "d51b422d",
+    "0x189dd4": "d51e1000",
+    "0x189df0": "d51c1000",
+    "0x189e04": "d5181000",
+    "0x189e08": "d5033fdf"
+  },
+  "gate_changes_el": false,
+  "gate_explicit_ic_invalidation": false,
+  "active_el_only": true,
+  "m_zero_c_one_is_preserved": true,
+  "preceding_smc": {
+    "call": "0xfbdd0",
+    "wrapper": "0xf6088",
+    "supplied_x0_by_caller": "0xfffffffffffffc01",
+    "signed_service_id": "-0x3ff",
+    "x1_x2_x3_zero": true,
+    "semantics_verified": false
+  },
+  "callbacks_after_gate": [
+    "0xfbde4 -> 0xf29a0",
+    "0xfbdf0 -> 0x1b1658"
+  ],
+  "post_cache_calls": {
+    "0xf29dc": "0x1b1160",
+    "0xf29ec": "0x1b1658",
+    "0xf29fc": "0x1b1658",
+    "0xf2a0c": "0x1b1658",
+    "0xf2a1c": "0x1b1658",
+    "0xf2a34": "0x1b1658",
+    "0xf2a3c": "0xff5f0",
+    "0xf2a6c": "0x1b1658",
+    "0xf2a74": "0xff5f0",
+    "0x1b16fc": "0x1b04e8",
+    "0x1b1724": "0x12d280",
+    "0x1b1778": "0x1b04e8",
+    "0x1b1784": "0x12d288"
+  },
+  "unresolved_output_edges": {
+    "0x20c618": "f9400403",
+    "0x20c61c": "f9400063",
+    "0x20c624": "d61f0060",
+    "0x20c4c8": "f9400a63",
+    "0x20c4dc": "d63f0060",
+    "0x20c4e0": "f9400673"
+  },
+  "post_mode_direct_mmio": {
+    "helper_targets": [
+      "0x15868500",
+      "0x1586c500"
+    ],
+    "final_target": "0xf0000180",
+    "status": "Static stores only; no peripheral state interpreted"
+  },
+  "runtime_observed": false,
+  "final_hardware_state_verified": false,
+  "analysis_date": "2026-10-22",
+  "references": {
+    "received_kernel_boot_protocol": {
+      "archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+      "archive_member": "Documentation/arm64/booting.rst",
+      "size": 11898,
+      "sha256": "bf8bf8030e23f05f0c45949c28a729ffe9ddce87e6c16ee724dbea8abedfe24c"
+    },
+    "tfa_reference_only": {
+      "url": "https://github.com/ARM-software/arm-trusted-firmware/blob/v1.5/lib/aarch64/cache_helpers.S",
+      "sha256": "bf2fc4b3c6ccd4e3cb815146e1733410129d80d30fbbec48bfc8770fffee25ed",
+      "is_corresponding_samsung_source": false
+    }
+  },
+  "illustrative_scenario": {
+    "mode": "supplied_lk_cache_gate_and_conditional_final_tail",
+    "inputs": {
+      "current_el": "0x2",
+      "sctlr_el1": "0x1005",
+      "sctlr_el2": "0x1004",
+      "sctlr_el3": "0x1005",
+      "daif": "0x0",
+      "clidr_el1": "0x0",
+      "csselr_el1": "0x3",
+      "kernel_offset": "0x0",
+      "ccsidr_by_level": {}
+    },
+    "selected_sctlr": "sctlr_el2",
+    "data_maintenance_taken": false,
+    "sctlr_after_gate": {
+      "sctlr_el1": "0x1005",
+      "sctlr_el2": "0x1004",
+      "sctlr_el3": "0x1005"
+    },
+    "daif_after_preserved_calls": "0x80",
+    "csselr_after_gate": "0x3",
+    "current_el_unchanged": 2,
+    "legacy_cache_levels": [],
+    "dc_cisw_operands": [],
+    "system_operation_trace": [
+      {
+        "op": "daifset_irq",
+        "value": "0x80"
+      }
+    ],
+    "conditional_final_arguments": {
+      "x0": "0x8b080000",
+      "x1": "0x0",
+      "x2": "0x0",
+      "x3": "0x0",
+      "x4": "0x80080000",
+      "x5": "0x0",
+      "target": "0x80080000",
+      "link_register": "0xfbe18"
+    },
+    "runtime_observed": false,
+    "cache_contents_simulated": false,
+    "translation_simulated": false,
+    "physical_coherency_verified": false,
+    "final_hardware_state_verified": false,
+    "assumptions": [
+      "Initial state is supplied at 0xfbdd4, after the unmodeled SMC -0x3ff",
+      "SCTLR reads are supplied values; no traps, RES1/RAO/WI or CPU errata modeled",
+      "Legacy CCSIDR fields only; CCIDX and actual cache geometry unverified",
+      "Skipped IRQ-disable, mode/output and printf calls preserve modeled system state",
+      "DC/barrier events are recorded, not proof of cache completion on the phone"
+    ],
+    "is_device_observation": false
+  }
+}

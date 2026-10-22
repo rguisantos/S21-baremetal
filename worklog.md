@@ -638,3 +638,43 @@ e zero PRs abertos conferidos pelo GitHub. Revisão somente documental:
 links, estrutura e consistência das contagens conferidos; suítes anteriores
 não reexecutadas. Nenhum código de payload, firmware ou arquivo recebido
 alterado; modificação local preexistente de magisk.apk ficou fora da entrega.
+
+## 2026-10-22 Campo Grande — helper de cache e argumentos finais do LK
+
+Iniciada P1 do novo roadmap no sboot HZC2 já recebido e identificado por
+hash. Seguidos 18a3a8, seletores SCTLR, percurso 18997c/189848 e limpeza
+189db8. M=1 chama DC CISW por set/way e limpa M/C somente no EL atual;
+M=0/C=1 conserva C. I e SCTLR dos outros níveis permanecem inalterados.
+Não há mudança de EL nos caminhos suportados do helper. LoC e CCSIDR são
+interpretados com campos legados; não inferida geometria A55/A78/X1.
+
+Modelo novo recebe nove entradas explícitas e conserva sequência de
+CSSELR/DC/DSB/ISB/DAIF/SCTLR. Harness Unicorn executa as instruções originais
+desde FBDD4 até o BLR e para no alvo sintético antes do payload. MRS/MSR/DC
+e barreiras são fornecidos/registrados, sem simular tradução, cache suja,
+traps ou RES1/RAO/WI. São omitidas chamadas IRQ-disable, modo/saída e printf,
+sob preservação do estado de sistema; voláteis são envenenados. Sem alegar
+que essas substituições executem cache ou validem coerência física.
+
+352/352 cenários coincidiram: 288 matriz +64 seed18a3a8, 174 com manutenção
+e 178 sem; 64 deslocamentos de kernel cobertos. Máximos 2370 visitas e 266
+operandos DC. 14 testes novos passaram para M/C/I, EL ativo, DAIF, operandos,
+guardas JSON e identidade. CLI com cenário M=0/C=1 em EL2 também conferida;
+SCTLR_EL1 não foi alterado. Argumentos finais condicionais X0=8b080000,
+X1–X3=0, alvo=80080000+offset_u32 e LR=FBE18 foram reproduzidos.
+
+Fronteiras mantidas: SMC -3ff em FBDD0 antes do trecho, printf e callbacks
+mutáveis depois do helper (BR em 20c624 e BLR em 20c4dc). Corpo direto de
+F29A0/MMIO conhecido não fecha efeitos de seus chamados. Mascaramento
+explícito força só IRQ; não presume DAIF completo ou EL final no aparelho.
+
+Protocolo arm64 de boot foi lido no Kernel.tar.gz recebido (booting.rst,
+11898 bytes/bf8bf803…24c), e TF-A v1.5 consultado como referência primária,
+sem atribuir ao upstream identidade com Samsung. PoC/coerência de sistema
+continua pendente; I-cache ligada é admitida pelo protocolo de boot.
+
+Ferramentas, hashes de trechos, exemplo artificial e relatórios versionados;
+README, hardware, índice, catálogo e roadmap atualizados. R8/R9/R10 e a
+Image diagnóstica não mudaram; suas suítes e os 44 testes LK anteriores não
+foram reexecutados. Sem firmware/dependências novos no Git, coleta bloqueada
+repetida ou teste físico. Alteração preexistente do APK ficou fora do commit.

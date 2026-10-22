@@ -30,6 +30,12 @@ ISB. Se M já estiver desligado, essa rotina não garante C desligado.
 Há chamadas posteriores e callbacks; portanto não se declara o estado
 final de cache ou EL comprovado. O diagnóstico independente continua necessário.
 
+Continuação em 2026-10-22: o [helper de cache e os argumentos finais](lk-cache-handoff.md)
+foram conferidos em 352 cenários com as instruções originais e acessos de
+sistema substituídos. A atuação fica no EL atual, M=0/C=1 é preservado e
+não há invalidação explícita de I-cache no helper selecionado. Os callbacks
+descritos abaixo continuam como fronteira da prova do estado final.
+
 ## Caminho da mensagem final até o transmissor
 
 O caminho estático encontrado é:

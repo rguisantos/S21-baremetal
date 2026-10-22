@@ -46,3 +46,6 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 
 - `check_lk_memory_banks.py` e `test_lk_memory_banks.py`: evidência do construtor RAM HZC2 e modelo das chamadas ao escritor com nove entradas explícitas; JSON limitado, aritmética X/W e limite de 128 chamadas no host. 17 testes novos, 44 na suíte LK. Não produz FDT ou autoriza memória livre; [contrato](../docs/lk-memory-bank-constructor.md).
 - `emulate_lk_memory_banks.py`: Unicorn opcional; confere as instruções originais em 268 cenários fornecidos. Substitui SMC/getter/Harx, omite preparação FDT e captura as chamadas ao editor, com três páginas RX, pilha separada e orçamento por caso. Não executa o editor ou o provedor seguro.
+
+- `check_lk_cache_handoff.py` e `test_lk_cache_handoff.py`: evidência HZC2 e modelo do gate de cache, seleção SCTLR por EL e operandos legados set/way; nove entradas explícitas, JSON limitado e 14 testes novos. [Escopo](../docs/lk-cache-handoff.md).
+- `emulate_lk_cache_handoff.py`: Unicorn opcional; 352 cenários executam instruções originais até o BLR, parando num destino sintético. Acessos de sistema/DC/barreiras substituídos ou registrados, três chamadas externas omitidas. Não modela tradução/cache suja ou demonstra estado final no telefone.
