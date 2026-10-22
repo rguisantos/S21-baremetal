@@ -96,7 +96,7 @@ com leitura que pode avançar o cursor, sem aquisição física já realizada.
 |---|---|---|
 | Tamanho total x25 | getter 0x11b758, leitura de 0x02038848 e possível limite por configuração | conteúdo e limite efetivos |
 | Base/quantidade para x19 inicial | SMC legado -0x12e, índices 2/1, versão 0x66001000 | respostas e tradução para a interface positiva usada pelo Harx |
-| Divisão SEC_PGTBL | SMC 0x82002060, índices 1/2 | respostas e ramo efetivo; os dois componentes também consultam esse serviço |
+| Divisão SEC_PGTBL | SMC 0x82002060, índices 1/2 | [tratamento no LK modelado](sec-pgtbl-hzc2.md); respostas, ramo efetivo e dispatch do provedor ainda pendentes |
 | Intervalo Harx | HVC 0xc6000020, constantes descritas acima | execução do caminho LK/Harx e resposta efetiva |
 | Caminho adicional do construtor | leitura em 0x15860810 e comparação com 0xfd | valor efetivo; sem atribuir nome de modo de boot |
 

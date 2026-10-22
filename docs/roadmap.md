@@ -1,6 +1,6 @@
 # Roadmap até o primeiro diagnóstico no S21
 
-Estado em 2026-10-22 UTC. Alvo: SM-G998B/p3s, firmware stock HZC2 observado nas
+Estado em 2026-10-21 (Campo Grande). Alvo: SM-G998B/p3s, firmware stock HZC2 observado nas
 propriedades recebidas. O R10 e o diagnóstico ainda não foram executados no
 telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 
@@ -42,6 +42,7 @@ que não foi capturado. O material recebido basta para a análise estática.
 - [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
 - [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).
 - [Retornos constantes Harx e condição do construtor de RAM](lk-harx-memory-gap.md).
+- [Respostas SEC_PGTBL no LK e limite atual do LDFW](sec-pgtbl-hzc2.md).
 - [Candidato sysfs do log Harx e evidências da Image stock](harx-log-observation.md).
 - [Console e UART0](lk-console-handoff.md), [jig/MUIC](uart-routing.md).
 - [Log em memória](lk-memory-log.md).

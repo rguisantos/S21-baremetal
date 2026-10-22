@@ -1,6 +1,6 @@
 # Exynos 2100 / SM-G998B: estado confirmado
 
-Atualizado em 2026-10-22 UTC. Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
+Atualizado em 2026-10-21 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
 
 ## Recursos extraídos do firmware
 
@@ -38,6 +38,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 - [Comparação com DTB TWRP](docs/twrp-reference.md)
 - [Coleta Shizuku já realizada](docs/runtime-collection.md)
 - [Log Harx e resultado no aparelho](docs/harx-log-observation.md): atributo confirmado com modo 0644; UNREADABLE para o shell, sem captura. Não repetir a coleta nas mesmas condições.
+- [Tratamento SEC_PGTBL e LDFW](docs/sec-pgtbl-hzc2.md): modelo das respostas no LK e checagem que retesta a base; não recupera valores efetivos ou mapa completo.
 
 Continuam pendentes: DTB final/contrato de memória, carregador Samsung/Harx, EL de entrada, manutenção de caches/coerência da imagem, acesso ICC/timer e depuração física/USI. O shim apenas compila; não há método demonstrado de `fastboot boot` para esse Samsung.
 

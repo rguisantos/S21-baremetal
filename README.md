@@ -2,7 +2,7 @@
 
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-**Estado em 2026-10-22 UTC:** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
+**Estado em 2026-10-21 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
 ## Módulos e validação
 
@@ -117,6 +117,8 @@ Os [intervalos enviados ao uH](docs/lk-uh-range-registration.md) vêm do FDT cor
 Uma [região Harx omitida na construção de RAM](docs/lk-harx-memory-gap.md) foi ligada ao serviço 0xc6000020: o handler tem retornos constantes para 0xc0000000–0xc1400000 (20 MiB). O inspetor agora decodifica esses retornos e a suíte offline passou em 33 testes. A execução desse ramo e os demais valores soc_info/SMC continuam sem observação no telefone.
 
 O [log Harx](docs/harx-log-observation.md) foi cruzado com fonte, configuração embutida e DTB stock. A coleta no aparelho confirmou `exynos_el2_log` com modo 0644, mas retornou **UNREADABLE** para uid=2000(shell); nenhuma página foi aberta ou capturada. Não repetir nas mesmas condições. Os 40 testes de host anteriores validam as ferramentas; a chamada 0xc6000040 foi corrigida na documentação para registro de callback/buffer de crash.
+
+O [tratamento de SEC_PGTBL no LK](docs/sec-pgtbl-hzc2.md) agora tem um modelo de respostas explícitas: a checagem associada ao tamanho testa novamente a base, sem verificar o alinhamento do tamanho retornado. Sete testes novos e a CLI nas imagens originais passaram. O LDFW foi conferido por hash, mas seu handler não foi recuperado; cenários fornecidos não são medições ou mapa de RAM validado.
 
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 

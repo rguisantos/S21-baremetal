@@ -40,3 +40,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `check_harx_log_evidence.py` e `test_harx_log.py`: cruzam seis fontes Samsung, IKCONFIG da Image stock e nó EL2 no DTB base, com hashes obrigatórios. Testam limites gzip/config e o coletor abaixo; [evidências](../docs/harx-log-observation.md).
 
 - `collect_el2_log.sh`: uma captura do atributo sysfs exynos_el2_log, até 4096 bytes/5 s. A leitura pode avançar o cursor Harx; não escreve no atributo, não reseta e não repete páginas/aliases. Execução recebida: nó presente, UNREADABLE no shell, sem captura; não repetir nas mesmas condições.
+
+- `inspect_sec_pgtbl_hzc2.py` e `test_sec_pgtbl_hzc2.py`: verificam identidades sboot/LDFW e modelam opcionalmente duas respostas X0 fornecidas. Reproduzem sentinelas, largura X/W e checagem que retesta a base; a guarda adicional do host não é validação do firmware nem de RAM livre. [Escopo e reprodução](../docs/sec-pgtbl-hzc2.md).

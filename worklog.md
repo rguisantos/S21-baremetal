@@ -437,3 +437,28 @@ Metadados sanitizados separados da evidência estática; original não publicado
 README, hardware, guia de coleta, índice e roadmap atualizados. Somente
 documentação/metadados: JSON e diff conferidos, sem rerodar os 40 testes de
 host anteriores. Análise estática segue com os arquivos já recebidos.
+
+## 2026-10-21 Campo Grande / 2026-10-22 UTC — SEC_PGTBL e LDFW
+
+LDFW extraído do membro exato do BL, consumo LZ4 completo, tamanho 8388608
+e hash 9d52a013bffde6f3d734e02a359ce9323a7db75878fce60569f5989b63e057fd
+conferidos. Marcador CryptoManagerV50 em 0x30 e nome ldfw.img em 0x3fc09c;
+sem atribuir semântica de carga/decriptação aos campos e sem recuperar handler.
+Mensagens LK indicam dependência LDFW, não localização comprovada do provedor.
+
+Chamadas SMC 0x82002060 índices 1/2 em 0xfae40/0xfae90 isoladas. Base usa
+X0 com sentinelas de 64 bits e alinhamento 1 MiB; tamanho usa W0, descarta
+bits superiores e tem sentinelas de 32 bits. Em 0xfaeac, AND X1,X21,#0xfffff
+testa novamente a base normalizada, não o tamanho. Sob a preservação de
+X21/W22 esperada pelo chamador, esse teste não rejeita um tamanho desalinhado.
+O modelo conserva essa aceitação e oferece guarda aritmética adicional,
+sem confundi-la com checagem LK ou autorização de memória livre.
+
+Novo inspetor stdlib exige as duas identidades antes de emitir evidência ou
+cenário. Respostas são opcionais, explicitamente hipotéticas, sem padrões.
+Sete testes novos passaram: sentinelas X/W, truncamento, alinhamento, wrap,
+limites de input e CLI com firmware incorreto. CLI original e exemplo
+sintético conferidos; relatório sem cenário versionado, sem novos blobs.
+README, hardware, catálogo e roadmap atualizados. Nenhuma repetição das
+coletas bloqueadas ou alteração de driver/payload. Próxima lacuna continua
+sendo o provedor e os valores efetivos soc_info/SEC_PGTBL.
