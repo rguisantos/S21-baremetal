@@ -69,7 +69,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Log Harx e coleta bloqueada](harx-log-observation.md): fonte/configuração/DTB cruzados; atributo presente, UNREADABLE no shell e nenhuma página capturada.
 
-- [SEC_PGTBL no LK](sec-pgtbl-hzc2.md): classificação X/W dos retornos, checagem de alinhamento do tamanho e cenário explícito; LDFW identificado, handler ainda pendente.
+- [SEC_PGTBL e LDFW](sec-pgtbl-hzc2.md): seis registros, flag de cifragem DRM e entrega SMC -0x500; chamador conferido em 144 cenários Unicorn, provedor ainda sem código em claro.
 
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 

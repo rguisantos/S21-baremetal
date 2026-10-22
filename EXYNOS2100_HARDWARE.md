@@ -38,7 +38,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 - [Comparação com DTB TWRP](docs/twrp-reference.md)
 - [Coleta Shizuku já realizada](docs/runtime-collection.md)
 - [Log Harx e resultado no aparelho](docs/harx-log-observation.md): atributo confirmado com modo 0644; UNREADABLE para o shell, sem captura. Não repetir a coleta nas mesmas condições.
-- [Tratamento SEC_PGTBL e LDFW](docs/sec-pgtbl-hzc2.md): modelo das respostas no LK e checagem que retesta a base; não recupera valores efetivos ou mapa completo.
+- [SEC_PGTBL e contêiner LDFW](docs/sec-pgtbl-hzc2.md): seis registros, DRM marcado como cifrado e carga SMC -0x500 rastreada; 144 cenários Unicorn conferem o chamador, sem executar o provedor ou recuperar valores efetivos.
 
 Continuam pendentes: DTB final/contrato de memória, carregador Samsung/Harx, EL de entrada, manutenção de caches/coerência da imagem, acesso ICC/timer e depuração física/USI. O shim apenas compila; não há método demonstrado de `fastboot boot` para esse Samsung.
 

@@ -16,6 +16,112 @@ LDFW_SHA = '9d52a013bffde6f3d734e02a359ce9323a7db75878fce60569f5989b63e057fd'
 U64 = (1 << 64) - 1
 U32 = (1 << 32) - 1
 ALIGN = 1 << 20
+LDFW_MAGIC = 0x10adab1e
+LDFW_HEADER = 0x40
+LDFW_ALIGNMENT = 0x1000
+HEADER_SOURCE = ('https://github.com/u-boot/u-boot/blob/'
+                 '3d9115a045d2d48c28019b3d6673ab30271819f5/'
+                 'board/samsung/e850-96/fw.c')
+CRYPTO_SOURCE = ('https://github.com/halal-beef/Exynos9830-Firmware-Decryptor/'
+                 'blob/5142272e65b8525647643131c42a0f495f60898c/decrypt-ldfws.py')
+
+
+def parse_ldfw_records(data):
+    """Bounded metadata parsing, not decryption or executable validation.
+
+    Common header names follow the cited U-Boot implementation. The encryption
+    flag and interval follow a related Exynos9830 parser, not recovered HZC2
+    loader internals. Never interpret ciphertext as instructions or filenames
+    as extraction paths. Only the received SignerVer03 trailer is supported.
+    """
+    if not isinstance(data, (bytes, bytearray)) or len(data) > LDFW_SIZE:
+        raise ValueError('LDFW input must be bounded bytes')
+    records, names, offset = [], set(), 0
+    fields = ('magic', 'size', 'init_entry', 'entry_point', 'suspend_entry',
+              'resume_entry', 'start_smc_id', 'version', 'set_runtime_entry')
+    while data[offset:offset + 11] != b'SignerVer03':
+        if len(records) >= 32 or offset + LDFW_HEADER > len(data):
+            raise ValueError('missing LDFW header/trailer or too many records')
+        raw = struct.unpack_from('<12I', data, offset)
+        if raw[0] != LDFW_MAGIC:
+            raise ValueError(f'invalid LDFW magic at {offset:#x}')
+        size = raw[1]
+        if size < LDFW_ALIGNMENT or size % LDFW_ALIGNMENT:
+            raise ValueError('invalid LDFW record size/alignment')
+        end = offset + size
+        if end > len(data):
+            raise ValueError('LDFW record exceeds input')
+        name_bytes = data[offset + 0x30:offset + 0x40].split(b'\0', 1)[0]
+        if not name_bytes or any(not 32 <= value < 127 for value in name_bytes):
+            raise ValueError('invalid LDFW name')
+        name = name_bytes.decode('ascii')
+        if name in names or (records and records[-1]['name'] == 'tail_fw'):
+            raise ValueError('duplicate name or record after tail_fw')
+        names.add(name)
+        flag = raw[10]
+        if flag not in (0, 1):
+            raise ValueError('unsupported encryption flag in related format')
+        region = None
+        if flag:
+            start, finish = struct.unpack_from('<II', data, offset + 0x44)
+            if not LDFW_HEADER <= start < finish <= size or (start | finish) & 15:
+                raise ValueError('invalid encrypted interval in related format')
+            region = dict(start_relative=hex(start), end_exclusive_relative=hex(finish),
+                          start_file=hex(offset + start), end_exclusive_file=hex(offset + finish),
+                          size=finish - start,
+                          sha256=hashlib.sha256(data[offset + start:offset + finish]).hexdigest())
+        records.append(dict(
+            name=name, file_offset=hex(offset), end_exclusive=hex(end), size=size,
+            sha256=hashlib.sha256(data[offset:end]).hexdigest(),
+            header={field: hex(value) for field, value in zip(fields, raw)},
+            reserved_words_le=[hex(value) for value in raw[9:12]],
+            encryption_flag_raw=flag, encrypted_interval_by_related_format=region,
+            plaintext_validated=False, runtime_mapping_verified=False))
+        offset = end
+    if not records or records[-1]['name'] != 'tail_fw':
+        raise ValueError('expected tail_fw before SignerVer03')
+    if offset + 0xa4 > len(data):
+        raise ValueError('truncated SignerVer03 metadata')
+    return dict(records=records, record_span_bytes=offset, signer_info_offset=hex(offset),
+                signer_tag='SignerVer03', signature_verified=False)
+
+
+def ldfw_evidence(data, sboot):
+    container = parse_ldfw_records(data)
+    # A64 MOV W0,#0; RET leaves in the clear tail, not SEC_PGTBL handlers.
+    tail = int(container['records'][-1]['file_offset'], 0)
+    leaves = []
+    for relative in (0xb8, 0xc0, 0xc8, 0xd0, 0xd8):
+        off = tail + relative
+        if struct.unpack_from('<II', data, off) != (0x52800000, 0xd65f03c0):
+            raise ValueError('unexpected HZC2 tail leaf instructions')
+        leaves.append(dict(file_offset=hex(off), x0='0x0',
+                           scope='local_leaf_only', sec_pgtbl_reachability_verified=False))
+    container.update(
+        common_header_source=HEADER_SOURCE, encryption_metadata_source=CRYPTO_SOURCE,
+        related_crypto_source_soc='Exynos9830; not an Exynos2100 key validation',
+        hzc2_decryption_validated=False, runtime_load_base_verified=False,
+        candidate_drm=dict(name='drm_fw', file_offset='0x228000',
+                           start_smc_id='0x82002000', queried_service='0x82002060',
+                           service_offset='0x60',
+                           relationship='identifier proximity, not a recovered dispatcher'),
+        tail_aarch64_zero_leaves=leaves,
+        loader=dict(
+            function_file_offset='0xf65f8', normal_world_buffer='0xfa000000',
+            record_size_field=4, version_field='0x1c', name_field='0x30',
+            load_smc_signed=-0x500, wrapper_file_offset='0xf60e8', smc_file_offset='0xf60fc',
+            calls=calls(sboot, (0xf667c, 0xf66b0)),
+            instruction_words=words(sboot, (
+                0xf6630, 0xf6634, 0xf6638, 0xf663c, 0xf6640,
+                0xf6658, 0xf6668, 0xf6680, 0xf6684, 0xf6688,
+                0xf668c, 0xf6690, 0xf6694, 0xf66a8, 0xf66ac,
+                0xf60e8, 0xf60ec, 0xf60f0, 0xf60f4, 0xf60f8, 0xf60fc, 0xf6100)),
+            execution_observed=False),
+        header_fields_corroborated_by_hzc2_loader=['magic', 'size', 'version', 'fw_name'],
+        header_field_semantics_verified=False,
+        header_interpretation='common layout corroborated; encryption metadata from related format',
+        sec_pgtbl_handler_recovered=False, provider_dispatch_verified=False)
+    return container
 
 
 def response_model(base_result, size_result):
@@ -98,15 +204,9 @@ def inspect(sboot_path, ldfw_path):
                                  source_register_index=(struct.unpack_from('<I', sboot, 0xfaeac)[0] >> 5) & 31,
                                  operand='normalized_base',
                                  tests_size=False),
-        ldfw_container=dict(
-            header_words_le={hex(off): hex(struct.unpack_from('<I', ldfw, off)[0])
-                             for off in range(0, 0x30, 4)},
-            marker_offset='0x30', marker=ldfw[0x30:0x40].rstrip(b'\0').decode('ascii'),
-            name_offset='0x3fc09c', name=ldfw[0x3fc09c:0x3fc0a4].decode('ascii'),
-            header_field_semantics_verified=False,
-            sec_pgtbl_handler_recovered=False, provider_dispatch_verified=False),
+        ldfw_container=ldfw_evidence(ldfw, sboot),
         runtime_observed=False, memory_map_verified=False,
-        limits=['LDFW marker/header bytes do not establish a decryption algorithm or load address',
+        limits=['LDFW header metadata does not validate an Exynos2100 key, decryption or load address',
                 'LDFW dependency is indicated by LK error strings; service provider dispatch unresolved',
                 'No service invocation, signature check, firmware patch or free-memory claim'])
 

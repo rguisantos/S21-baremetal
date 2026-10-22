@@ -1,0 +1,1979 @@
+{
+  "mode": "unicorn_lk_caller_self_check_with_mock_smc",
+  "unicorn_version": "2.1.4",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "start_pc": "0xfae2c",
+  "stop_pc": "0xfaec8",
+  "limits": {
+    "mapped_instruction_pages": 3,
+    "max_instruction_visits": 256,
+    "timeout_microseconds": 1000000,
+    "mmio_mapped": false
+  },
+  "assumptions": [
+    "SMC supplies only the stated X0 replies and preserves X19..X30",
+    "printf is skipped and X0..X18 are poisoned",
+    "PC values are file offsets; no runtime load-base claim"
+  ],
+  "scenario_count": 144,
+  "all_match": true,
+  "visited_instruction_offsets": [
+    "0xf6088",
+    "0xf608c",
+    "0xfae2c",
+    "0xfae30",
+    "0xfae34",
+    "0xfae38",
+    "0xfae3c",
+    "0xfae40",
+    "0xfae44",
+    "0xfae48",
+    "0xfae4c",
+    "0xfae50",
+    "0xfae54",
+    "0xfae58",
+    "0xfae5c",
+    "0xfae60",
+    "0xfae64",
+    "0xfae68",
+    "0xfae6c",
+    "0xfae70",
+    "0xfae74",
+    "0xfae78",
+    "0xfae7c",
+    "0xfae80",
+    "0xfae84",
+    "0xfae88",
+    "0xfae8c",
+    "0xfae90",
+    "0xfae94",
+    "0xfae98",
+    "0xfae9c",
+    "0xfaea0",
+    "0xfaea4",
+    "0xfaea8",
+    "0xfaeac",
+    "0xfaeb0",
+    "0xfaeb4",
+    "0xfaeb8",
+    "0xfaebc",
+    "0xfaec0",
+    "0xfaec4",
+    "0xfb5bc",
+    "0xfb5c0",
+    "0xfb5c4",
+    "0xfb5c8",
+    "0xfb5cc",
+    "0xfb5d0",
+    "0xfb5d4",
+    "0xfb5d8",
+    "0xfb5dc",
+    "0xfb5e0",
+    "0xfb5e4",
+    "0xfb5e8",
+    "0xfb5ec",
+    "0xfb5f0",
+    "0xfb5f4",
+    "0xfb5f8",
+    "0xfb5fc",
+    "0xfb600",
+    "0xfb604",
+    "0xfb608",
+    "0xfb60c",
+    "0xfb610",
+    "0xfb614",
+    "0xfb618",
+    "0xfb61c",
+    "0xfb620",
+    "0xfb624",
+    "0xfb628",
+    "0xfb62c",
+    "0xfb630",
+    "0xfb634",
+    "0xfb638",
+    "0xfb63c",
+    "0xfb640",
+    "0xfb644",
+    "0xfb648",
+    "0xfb64c"
+  ],
+  "scenarios": [
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x180000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x180000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x180000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffffffffffff",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x180000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xffffffff",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x1000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x1000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x180000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0001000",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x0"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0000001"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x180000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x100000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x100000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x100000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x1",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100000001"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x1000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100001000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x180000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100180000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100200000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x100000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100000000",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0x100000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x100000000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xfffffffffff00000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x3"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xfffffffffff00000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0xffffffff"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xfffffffffff00000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x1"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x1",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xfffffffffff00001"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x1000"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x1000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xfffffffffff01000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x180000"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x180000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x80000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x1234567800200000"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x200000",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x100000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x1234567800000000"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xfffffffffff00000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfffffffffff00000",
+        "size_x0": "0x1234567800000003"
+      },
+      "registers": {
+        "normalized_base": "0xfffffffffff00000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xfffffffffff00000"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe2a15f3dd0e5047d",
+        "size_x0": "0xf888f508192b9393"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x192b9393",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x192b9393"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xdae60b3d88f00000",
+        "size_x0": "0x121c5f61391410d"
+      },
+      "registers": {
+        "normalized_base": "0xdae60b3d88f00000",
+        "size_low32": "0x1391410d",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xdae60b3d9c81410d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2142f92c757f3da1",
+        "size_x0": "0xd20d28bdaeaf5880"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xaeaf5880",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xaeaf5880"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xcfd16e8906200000",
+        "size_x0": "0x903cf70dc9e4d5f2"
+      },
+      "registers": {
+        "normalized_base": "0xcfd16e8906200000",
+        "size_low32": "0xc9e4d5f2",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xcfd16e89d004d5f2"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2a8949680e01e677",
+        "size_x0": "0x849032bd8be42966"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x8be42966",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x8be42966"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x254187efe2d00000",
+        "size_x0": "0x8f073b7bf12a31a9"
+      },
+      "registers": {
+        "normalized_base": "0x254187efe2d00000",
+        "size_low32": "0xf12a31a9",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x254187f0d3fa31a9"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xc64b1aaa016b2a4",
+        "size_x0": "0xfe4ca9a9a2bbf0d5"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xa2bbf0d5",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xa2bbf0d5"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x4d2f6bc41ac00000",
+        "size_x0": "0xc6313644a6a759d"
+      },
+      "registers": {
+        "normalized_base": "0x4d2f6bc41ac00000",
+        "size_low32": "0x4a6a759d",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x4d2f6bc4652a759d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1a60f7989a41ae3d",
+        "size_x0": "0xba323df7c472933b"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xc472933b",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xc472933b"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x9bc7bc5d45100000",
+        "size_x0": "0x2ea4e664695bdfa2"
+      },
+      "registers": {
+        "normalized_base": "0x9bc7bc5d45100000",
+        "size_low32": "0x695bdfa2",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x9bc7bc5dae6bdfa2"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x98d01938a3ab71b1",
+        "size_x0": "0x580c60284e056e8a"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x4e056e8a",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x4e056e8a"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xcf32f35d57c00000",
+        "size_x0": "0xc163dfd25f586d78"
+      },
+      "registers": {
+        "normalized_base": "0xcf32f35d57c00000",
+        "size_low32": "0x5f586d78",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xcf32f35db7186d78"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x37acb7dab2900adb",
+        "size_x0": "0x993138a714424c97"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x14424c97",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x14424c97"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x827077934d400000",
+        "size_x0": "0x24d29583fd5973d4"
+      },
+      "registers": {
+        "normalized_base": "0x827077934d400000",
+        "size_low32": "0xfd5973d4",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x827077944a9973d4"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x93d54f6adf3b737b",
+        "size_x0": "0x60e0169fa3740348"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xa3740348",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xa3740348"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xfc6bf2f914900000",
+        "size_x0": "0xdf188ed3be82a540"
+      },
+      "registers": {
+        "normalized_base": "0xfc6bf2f914900000",
+        "size_low32": "0xbe82a540",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xfc6bf2f9d312a540"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x641c1a7a97ba7eb6",
+        "size_x0": "0xbddae8b6ab09caa7"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xab09caa7",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xab09caa7"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xb9d90b5b08900000",
+        "size_x0": "0xf049d4ea963c12e3"
+      },
+      "registers": {
+        "normalized_base": "0xb9d90b5b08900000",
+        "size_low32": "0x963c12e3",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xb9d90b5b9ecc12e3"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xff073d071fa2dc5d",
+        "size_x0": "0x98deb9944c35023"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x44c35023",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x44c35023"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xdb273fdb37d00000",
+        "size_x0": "0xfbe4f74f3833bfee"
+      },
+      "registers": {
+        "normalized_base": "0xdb273fdb37d00000",
+        "size_low32": "0x3833bfee",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xdb273fdb7003bfee"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x985abface42357e2",
+        "size_x0": "0x7800444adb763e87"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xdb763e87",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xdb763e87"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x60d90e0e24c00000",
+        "size_x0": "0x25c708af7de15c42"
+      },
+      "registers": {
+        "normalized_base": "0x60d90e0e24c00000",
+        "size_low32": "0x7de15c42",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x60d90e0ea2a15c42"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xdd0fca20f4c7c9be",
+        "size_x0": "0xbed3914a174f2d49"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x174f2d49",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x174f2d49"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x56944092e5e00000",
+        "size_x0": "0xe940ac0165044abb"
+      },
+      "registers": {
+        "normalized_base": "0x56944092e5e00000",
+        "size_low32": "0x65044abb",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x569440934ae44abb"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xf2a252a036814ffa",
+        "size_x0": "0xcc0c0c7a467eae1c"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x467eae1c",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x467eae1c"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3868333ebea00000",
+        "size_x0": "0x11e37742e1b1bebf"
+      },
+      "registers": {
+        "normalized_base": "0x3868333ebea00000",
+        "size_low32": "0xe1b1bebf",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x3868333fa051bebf"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xea2ea11ff289c4af",
+        "size_x0": "0xad69228aec47a4bf"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xec47a4bf",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xec47a4bf"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xa067157f19f00000",
+        "size_x0": "0x9ca9ccf22352c8c3"
+      },
+      "registers": {
+        "normalized_base": "0xa067157f19f00000",
+        "size_low32": "0x2352c8c3",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xa067157f3d42c8c3"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x12470cd27d4886b",
+        "size_x0": "0x2cfa9fdcf57af71d"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xf57af71d",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xf57af71d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe14879bb6c00000",
+        "size_x0": "0xdf3ce5891ec5ff42"
+      },
+      "registers": {
+        "normalized_base": "0xe14879bb6c00000",
+        "size_low32": "0x1ec5ff42",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe14879bd585ff42"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe6b0c95163cb3561",
+        "size_x0": "0x2b82f167a1be33da"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xa1be33da",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xa1be33da"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xdea0bbe85bb00000",
+        "size_x0": "0x10a41cd01f3fedaf"
+      },
+      "registers": {
+        "normalized_base": "0xdea0bbe85bb00000",
+        "size_low32": "0x1f3fedaf",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xdea0bbe87aefedaf"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe6ff9690b1ab1d2c",
+        "size_x0": "0x558077e8e4321556"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xe4321556",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe4321556"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xa4351adfeb300000",
+        "size_x0": "0x5394a4f622945ea6"
+      },
+      "registers": {
+        "normalized_base": "0xa4351adfeb300000",
+        "size_low32": "0x22945ea6",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xa4351ae00dc45ea6"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xd2f1531610830edd",
+        "size_x0": "0x4f9f4c98a612a8cf"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xa612a8cf",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xa612a8cf"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1e73d2aa48c00000",
+        "size_x0": "0xd9705e858a186e9b"
+      },
+      "registers": {
+        "normalized_base": "0x1e73d2aa48c00000",
+        "size_low32": "0x8a186e9b",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x1e73d2aad2d86e9b"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xec4cd03d43843ca0",
+        "size_x0": "0xeaadc8075d6c4244"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x5d6c4244",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x5d6c4244"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1ca8568868100000",
+        "size_x0": "0x6c14e5b86e15db26"
+      },
+      "registers": {
+        "normalized_base": "0x1ca8568868100000",
+        "size_low32": "0x6e15db26",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x1ca85688d625db26"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x333064e4812b559d",
+        "size_x0": "0x52cfc2b39962d032"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x9962d032",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x9962d032"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x69f6e25d87f00000",
+        "size_x0": "0x4372a58d06424436"
+      },
+      "registers": {
+        "normalized_base": "0x69f6e25d87f00000",
+        "size_low32": "0x6424436",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x69f6e25d8e324436"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe16ac28ebfcde7ff",
+        "size_x0": "0x21d25dbff5858614"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xf5858614",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xf5858614"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7e820c7fcb000000",
+        "size_x0": "0x57a89289500463f4"
+      },
+      "registers": {
+        "normalized_base": "0x7e820c7fcb000000",
+        "size_low32": "0x500463f4",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x7e820c801b0463f4"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xf9fb195f4edb9ed9",
+        "size_x0": "0xbaeaa618ae039850"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xae039850",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xae039850"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1b196e4df5800000",
+        "size_x0": "0xc5fd92ca9cd14ca1"
+      },
+      "registers": {
+        "normalized_base": "0x1b196e4df5800000",
+        "size_low32": "0x9cd14ca1",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x1b196e4e92514ca1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xf35764cebe9486f4",
+        "size_x0": "0x4dead01452daaca6"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x52daaca6",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x52daaca6"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x567778a746f00000",
+        "size_x0": "0x4f154faa7d3c8b7d"
+      },
+      "registers": {
+        "normalized_base": "0x567778a746f00000",
+        "size_low32": "0x7d3c8b7d",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x567778a7c42c8b7d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5696724657ce5e5d",
+        "size_x0": "0xde2ed3a2927f480e"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x927f480e",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x927f480e"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x4a5cb82dc3a00000",
+        "size_x0": "0xd5a68e06ba25869e"
+      },
+      "registers": {
+        "normalized_base": "0x4a5cb82dc3a00000",
+        "size_low32": "0xba25869e",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x4a5cb82e7dc5869e"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xb8e305e4f6cbf2fb",
+        "size_x0": "0xf4bb2874d6cea446"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xd6cea446",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xd6cea446"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x9fbcb2dcb0100000",
+        "size_x0": "0xfd48848a7958b281"
+      },
+      "registers": {
+        "normalized_base": "0x9fbcb2dcb0100000",
+        "size_low32": "0x7958b281",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x9fbcb2dd2968b281"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6f4d823b1c1a8747",
+        "size_x0": "0x62297d44d1a05ba1"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xd1a05ba1",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xd1a05ba1"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x366dec5835a00000",
+        "size_x0": "0x53b660bd77d34a38"
+      },
+      "registers": {
+        "normalized_base": "0x366dec5835a00000",
+        "size_low32": "0x77d34a38",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x366dec58ad734a38"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xafa04b2eecc202b",
+        "size_x0": "0x99ab34f314291d39"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x14291d39",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x14291d39"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xf0fff9313bc00000",
+        "size_x0": "0x57de41f79939af14"
+      },
+      "registers": {
+        "normalized_base": "0xf0fff9313bc00000",
+        "size_low32": "0x9939af14",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xf0fff931d4f9af14"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xb6f72bc79a21d6bc",
+        "size_x0": "0x3e215859505d6e31"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x505d6e31",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x505d6e31"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xd5a807dde4600000",
+        "size_x0": "0xd76140a16fb8b09b"
+      },
+      "registers": {
+        "normalized_base": "0xd5a807dde4600000",
+        "size_low32": "0x6fb8b09b",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xd5a807de5418b09b"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5b82cfa0ee40977a",
+        "size_x0": "0xa3250ac1c87d1e4d"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0xc87d1e4d",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xc87d1e4d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x38101433d3300000",
+        "size_x0": "0x23957e9fa964712b"
+      },
+      "registers": {
+        "normalized_base": "0x38101433d3300000",
+        "size_low32": "0xa964712b",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x381014347c94712b"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1fb51d0ae3aa213e",
+        "size_x0": "0x319986495c4c6b4a"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x5c4c6b4a",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x5c4c6b4a"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1a86540e35000000",
+        "size_x0": "0x60a397602ad606c7"
+      },
+      "registers": {
+        "normalized_base": "0x1a86540e35000000",
+        "size_low32": "0x2ad606c7",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x1a86540e5fd606c7"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x8da0b62d34e78993",
+        "size_x0": "0x2894ea4d87c8c428"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x87c8c428",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x87c8c428"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xbcbbf0cca2100000",
+        "size_x0": "0xcfae052473ba2e7d"
+      },
+      "registers": {
+        "normalized_base": "0xbcbbf0cca2100000",
+        "size_low32": "0x73ba2e7d",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xbcbbf0cd15ca2e7d"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0xbba13466bea98912",
+        "size_x0": "0xf43ef9113f9af401"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x3f9af401",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x3f9af401"
+      },
+      "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3e046663d8400000",
+        "size_x0": "0xc7383bb45f03cfe7"
+      },
+      "registers": {
+        "normalized_base": "0x3e046663d8400000",
+        "size_low32": "0x5f03cfe7",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0x3e0466643743cfe7"
+      },
+      "matches_response_model": true
+    }
+  ],
+  "provider_executed": false,
+  "runtime_observed": false,
+  "memory_map_verified": false,
+  "range_is_free": false,
+  "ldfw_sha256": "9d52a013bffde6f3d734e02a359ce9323a7db75878fce60569f5989b63e057fd"
+}

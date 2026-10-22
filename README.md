@@ -118,7 +118,9 @@ Uma [região Harx omitida na construção de RAM](docs/lk-harx-memory-gap.md) fo
 
 O [log Harx](docs/harx-log-observation.md) foi cruzado com fonte, configuração embutida e DTB stock. A coleta no aparelho confirmou `exynos_el2_log` com modo 0644, mas retornou **UNREADABLE** para uid=2000(shell); nenhuma página foi aberta ou capturada. Não repetir nas mesmas condições. Os 40 testes de host anteriores validam as ferramentas; a chamada 0xc6000040 foi corrigida na documentação para registro de callback/buffer de crash.
 
-O [tratamento de SEC_PGTBL no LK](docs/sec-pgtbl-hzc2.md) agora tem um modelo de respostas explícitas: a checagem associada ao tamanho testa novamente a base, sem verificar o alinhamento do tamanho retornado. Sete testes novos e a CLI nas imagens originais passaram. O LDFW foi conferido por hash, mas seu handler não foi recuperado; cenários fornecidos não são medições ou mapa de RAM validado.
+O [tratamento de SEC_PGTBL no LK](docs/sec-pgtbl-hzc2.md) foi conferido executando as instruções originais em Unicorn: **144 cenários controlados** coincidiram com o modelo, inclusive a aceitação local de tamanho desalinhado. A suíte de host ampliada passou em **14 testes**. As respostas SMC foram fornecidas explicitamente; o provedor não foi executado.
+
+O contêiner LDFW tem seis registros e sua entrega ao monitor por SMC -0x500 foi rastreada. O `drm_fw`, candidato pelo identificador 0x82002000, está marcado como cifrado; somente o tail tem código em claro conferido. Recuperar o handler e seus retornos reais exige código DRM HZC2 em claro com origem verificável ou fonte correspondente. O arquivo cifrado original já foi recebido e não precisa ser reenviado.
 
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 

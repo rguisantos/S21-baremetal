@@ -82,32 +82,308 @@
     "tests_size": false
   },
   "ldfw_container": {
-    "header_words_le": {
-      "0x0": "0x10adab1e",
-      "0x4": "0x211000",
-      "0x8": "0x100198",
-      "0xc": "0x100180",
-      "0x10": "0x100150",
-      "0x14": "0x100168",
-      "0x18": "0x82001000",
-      "0x1c": "0x50211025",
-      "0x20": "0x1001b0",
-      "0x24": "0x1000000",
-      "0x28": "0x1",
-      "0x2c": "0x29000"
+    "records": [
+      {
+        "name": "CryptoManagerV50",
+        "file_offset": "0x0",
+        "end_exclusive": "0x211000",
+        "size": 2166784,
+        "sha256": "3c13d0a90368e7b97044d9e1abc8dbb9090a2096481ee049a022d96a49e853e2",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x211000",
+          "init_entry": "0x100198",
+          "entry_point": "0x100180",
+          "suspend_entry": "0x100150",
+          "resume_entry": "0x100168",
+          "start_smc_id": "0x82001000",
+          "version": "0x50211025",
+          "set_runtime_entry": "0x1001b0"
+        },
+        "reserved_words_le": [
+          "0x1000000",
+          "0x1",
+          "0x29000"
+        ],
+        "encryption_flag_raw": 1,
+        "encrypted_interval_by_related_format": {
+          "start_relative": "0x150",
+          "end_exclusive_relative": "0x2bf00",
+          "start_file": "0x150",
+          "end_exclusive_file": "0x2bf00",
+          "size": 179632,
+          "sha256": "42a65adc9e3fec109faee325a203ee87caf38bed1c8d8bb48c9812870fd95353"
+        },
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      },
+      {
+        "name": "fmp_fw_V20",
+        "file_offset": "0x211000",
+        "end_exclusive": "0x228000",
+        "size": 94208,
+        "sha256": "6837619123b48172af08820123cfe80fa1cf193a59a4fc712eef6d83e93e16c2",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x17000",
+          "init_entry": "0x1001c8",
+          "entry_point": "0x1001b0",
+          "suspend_entry": "0x100180",
+          "resume_entry": "0x100198",
+          "start_smc_id": "0x82001800",
+          "version": "0x20201013",
+          "set_runtime_entry": "0x1001e0"
+        },
+        "reserved_words_le": [
+          "0x0",
+          "0x1",
+          "0x3000"
+        ],
+        "encryption_flag_raw": 1,
+        "encrypted_interval_by_related_format": {
+          "start_relative": "0x180",
+          "end_exclusive_relative": "0x3000",
+          "start_file": "0x211180",
+          "end_exclusive_file": "0x214000",
+          "size": 11904,
+          "sha256": "4b7671294792cba46206ca96b58051eefc60510c16a580a7e45bf8f3c78b00f0"
+        },
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      },
+      {
+        "name": "drm_fw",
+        "file_offset": "0x228000",
+        "end_exclusive": "0x389000",
+        "size": 1445888,
+        "sha256": "0315001147979449642cdb35a9354d56c79af1eda7901353cf2cbc4c8c7b6353",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x161000",
+          "init_entry": "0x100198",
+          "entry_point": "0x100180",
+          "suspend_entry": "0x100150",
+          "resume_entry": "0x100168",
+          "start_smc_id": "0x82002000",
+          "version": "0x20230120",
+          "set_runtime_entry": "0x1001b0"
+        },
+        "reserved_words_le": [
+          "0x0",
+          "0x1",
+          "0xc000"
+        ],
+        "encryption_flag_raw": 1,
+        "encrypted_interval_by_related_format": {
+          "start_relative": "0x150",
+          "end_exclusive_relative": "0x125b0",
+          "start_file": "0x228150",
+          "end_exclusive_file": "0x23a5b0",
+          "size": 74848,
+          "sha256": "3d28660c0688a6b8c8a99fcdf7a672aec8e9642ed6883fcbd2434ff5710dd9b9"
+        },
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      },
+      {
+        "name": "srpmb_fw",
+        "file_offset": "0x389000",
+        "end_exclusive": "0x3da000",
+        "size": 331776,
+        "sha256": "4fbd23fa4b71a3ab3a4b0b587d08377b6be38f5e60869f1f162e57ec12cdf482",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x51000",
+          "init_entry": "0x100198",
+          "entry_point": "0x100180",
+          "suspend_entry": "0x100150",
+          "resume_entry": "0x100168",
+          "start_smc_id": "0x82003800",
+          "version": "0x24211108",
+          "set_runtime_entry": "0x1001b0"
+        },
+        "reserved_words_le": [
+          "0x0",
+          "0x1",
+          "0x4000"
+        ],
+        "encryption_flag_raw": 1,
+        "encrypted_interval_by_related_format": {
+          "start_relative": "0x150",
+          "end_exclusive_relative": "0x4010",
+          "start_file": "0x389150",
+          "end_exclusive_file": "0x38d010",
+          "size": 16064,
+          "sha256": "5e572e2cb322853d5db337d5e9a492cf638abf59955f69351596cfcd67e0e502"
+        },
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      },
+      {
+        "name": "hdcp_fw",
+        "file_offset": "0x3da000",
+        "end_exclusive": "0x3fb000",
+        "size": 135168,
+        "sha256": "d72b4c7e8692d9584f2f85c5d33e342f63d5b6f2366dccc838a5ca3717719a8f",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x21000",
+          "init_entry": "0x100198",
+          "entry_point": "0x100180",
+          "suspend_entry": "0x100150",
+          "resume_entry": "0x100168",
+          "start_smc_id": "0x82004000",
+          "version": "0x20211118",
+          "set_runtime_entry": "0x1001b0"
+        },
+        "reserved_words_le": [
+          "0x0",
+          "0x1",
+          "0x9000"
+        ],
+        "encryption_flag_raw": 1,
+        "encrypted_interval_by_related_format": {
+          "start_relative": "0x150",
+          "end_exclusive_relative": "0x96c0",
+          "start_file": "0x3da150",
+          "end_exclusive_file": "0x3e36c0",
+          "size": 38256,
+          "sha256": "ebab575c65786fc007cbfb6e8eeff13a5b1f67129a42e379ddb66395a4e4121b"
+        },
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      },
+      {
+        "name": "tail_fw",
+        "file_offset": "0x3fb000",
+        "end_exclusive": "0x3fc000",
+        "size": 4096,
+        "sha256": "e54846c83ea0ed5b304427c06997db8cff481edb79630f4ad39e104a3d6031a3",
+        "header": {
+          "magic": "0x10adab1e",
+          "size": "0x1000",
+          "init_entry": "0x1000",
+          "entry_point": "0x1070",
+          "suspend_entry": "0x1040",
+          "resume_entry": "0x1058",
+          "start_smc_id": "0x82001800",
+          "version": "0x20150828",
+          "set_runtime_entry": "0x10a0"
+        },
+        "reserved_words_le": [
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        "encryption_flag_raw": 0,
+        "encrypted_interval_by_related_format": null,
+        "plaintext_validated": false,
+        "runtime_mapping_verified": false
+      }
+    ],
+    "record_span_bytes": 4177920,
+    "signer_info_offset": "0x3fc000",
+    "signer_tag": "SignerVer03",
+    "signature_verified": false,
+    "common_header_source": "https://github.com/u-boot/u-boot/blob/3d9115a045d2d48c28019b3d6673ab30271819f5/board/samsung/e850-96/fw.c",
+    "encryption_metadata_source": "https://github.com/halal-beef/Exynos9830-Firmware-Decryptor/blob/5142272e65b8525647643131c42a0f495f60898c/decrypt-ldfws.py",
+    "related_crypto_source_soc": "Exynos9830; not an Exynos2100 key validation",
+    "hzc2_decryption_validated": false,
+    "runtime_load_base_verified": false,
+    "candidate_drm": {
+      "name": "drm_fw",
+      "file_offset": "0x228000",
+      "start_smc_id": "0x82002000",
+      "queried_service": "0x82002060",
+      "service_offset": "0x60",
+      "relationship": "identifier proximity, not a recovered dispatcher"
     },
-    "marker_offset": "0x30",
-    "marker": "CryptoManagerV50",
-    "name_offset": "0x3fc09c",
-    "name": "ldfw.img",
+    "tail_aarch64_zero_leaves": [
+      {
+        "file_offset": "0x3fb0b8",
+        "x0": "0x0",
+        "scope": "local_leaf_only",
+        "sec_pgtbl_reachability_verified": false
+      },
+      {
+        "file_offset": "0x3fb0c0",
+        "x0": "0x0",
+        "scope": "local_leaf_only",
+        "sec_pgtbl_reachability_verified": false
+      },
+      {
+        "file_offset": "0x3fb0c8",
+        "x0": "0x0",
+        "scope": "local_leaf_only",
+        "sec_pgtbl_reachability_verified": false
+      },
+      {
+        "file_offset": "0x3fb0d0",
+        "x0": "0x0",
+        "scope": "local_leaf_only",
+        "sec_pgtbl_reachability_verified": false
+      },
+      {
+        "file_offset": "0x3fb0d8",
+        "x0": "0x0",
+        "scope": "local_leaf_only",
+        "sec_pgtbl_reachability_verified": false
+      }
+    ],
+    "loader": {
+      "function_file_offset": "0xf65f8",
+      "normal_world_buffer": "0xfa000000",
+      "record_size_field": 4,
+      "version_field": "0x1c",
+      "name_field": "0x30",
+      "load_smc_signed": -1280,
+      "wrapper_file_offset": "0xf60e8",
+      "smc_file_offset": "0xf60fc",
+      "calls": {
+        "0xf667c": "0x1b1658",
+        "0xf66b0": "0xf60e8"
+      },
+      "instruction_words": {
+        "0xf6630": "d2bf4013",
+        "0xf6634": "529563c0",
+        "0xf6638": "72a215a0",
+        "0xf663c": "b9400276",
+        "0xf6640": "6b0002df",
+        "0xf6658": "9100c261",
+        "0xf6668": "b9401e62",
+        "0xf6680": "b9400660",
+        "0xf6684": "8b000273",
+        "0xf6688": "8b0002b5",
+        "0xf668c": "b9400260",
+        "0xf6690": "6b16001f",
+        "0xf6694": "54fffe20",
+        "0xf66a8": "aa1503e1",
+        "0xf66ac": "d2bf4000",
+        "0xf60e8": "aa0003e3",
+        "0xf60ec": "aa0103e2",
+        "0xf60f0": "92809fe0",
+        "0xf60f4": "aa0303e1",
+        "0xf60f8": "d2800003",
+        "0xf60fc": "d4000003",
+        "0xf6100": "d65f03c0"
+      },
+      "execution_observed": false
+    },
+    "header_fields_corroborated_by_hzc2_loader": [
+      "magic",
+      "size",
+      "version",
+      "fw_name"
+    ],
     "header_field_semantics_verified": false,
+    "header_interpretation": "common layout corroborated; encryption metadata from related format",
     "sec_pgtbl_handler_recovered": false,
     "provider_dispatch_verified": false
   },
   "runtime_observed": false,
   "memory_map_verified": false,
   "limits": [
-    "LDFW marker/header bytes do not establish a decryption algorithm or load address",
+    "LDFW header metadata does not validate an Exynos2100 key, decryption or load address",
     "LDFW dependency is indicated by LK error strings; service provider dispatch unresolved",
     "No service invocation, signature check, firmware patch or free-memory claim"
   ]

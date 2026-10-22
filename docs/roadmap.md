@@ -32,6 +32,15 @@ leitura. A captura não chegou a abrir seu conteúdo. Esse caminho também
 está encerrado nas condições atuais, sem repetir leituras ou pedir um log
 que não foi capturado. O material recebido basta para a análise estática.
 
+No [SEC_PGTBL/LDFW](sec-pgtbl-hzc2.md), o chamador LK está conferido por
+144 cenários Unicorn com respostas substituídas. O contêiner tem seis
+registros; o DRM candidato está marcado como cifrado e a carga até SMC
+-0x500 foi ligada ao LK. Para recuperar esse handler, a lacuna específica
+é código DRM HZC2 em claro com origem verificável ou fonte correspondente.
+Reenviar o mesmo contêiner cifrado não ajuda. Emulação/simbolismo do provedor
+dependem primeiro desse código e da reconstrução de seu estado de entrada.
+Outros chamadores e trechos em claro podem continuar sendo analisados.
+
 ## Evidências
 
 - [Diagnóstico e matriz de entrada](entry-diagnostic.md).

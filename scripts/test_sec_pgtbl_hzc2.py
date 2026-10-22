@@ -1,11 +1,12 @@
-"""Independent register scenarios for the traced LK SEC_PGTBL result handling."""
+"""Independent LK reply scenarios and bounded LDFW container fixtures."""
 from pathlib import Path
 import subprocess
+import struct
 import sys
 import tempfile
 import unittest
 
-from inspect_sec_pgtbl_hzc2 import response_model
+from inspect_sec_pgtbl_hzc2 import parse_ldfw_records, response_model
 
 
 class ReplyTests(unittest.TestCase):
@@ -75,6 +76,89 @@ class ReplyTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1)
             self.assertEqual(result.stdout, '')
             self.assertIn('unsupported image', result.stderr)
+
+
+def container_fixture():
+    """Two independently constructed page-sized records and a signer trailer."""
+    data = bytearray(0x20a4)
+    for offset, name, flag in ((0, b'fixture_fw', 1), (0x1000, b'tail_fw', 0)):
+        struct.pack_into('<II', data, offset, 0x10adab1e, 0x1000)
+        struct.pack_into('<I', data, offset + 0x28, flag)
+        data[offset + 0x30:offset + 0x30 + len(name)] = name
+    struct.pack_into('<II', data, 0x44, 0x150, 0x250)
+    data[0x2000:0x200b] = b'SignerVer03'
+    return data
+
+
+class ContainerTests(unittest.TestCase):
+    def test_walks_record_sizes_instead_of_scanning_for_magic(self):
+        data = container_fixture()
+        struct.pack_into('<I', data, 0x800, 0x10adab1e)
+        result = parse_ldfw_records(data)
+        self.assertEqual([r['name'] for r in result['records']], ['fixture_fw', 'tail_fw'])
+        self.assertEqual(result['record_span_bytes'], 0x2000)
+        self.assertEqual(result['signer_info_offset'], '0x2000')
+        self.assertFalse(result['signature_verified'])
+        region = result['records'][0]['encrypted_interval_by_related_format']
+        # 0x48 is the EXCLUSIVE END from the related format, not its length.
+        self.assertEqual(region['size'], 0x100)
+        self.assertEqual(region['end_exclusive_file'], '0x250')
+        self.assertIsNone(result['records'][1]['encrypted_interval_by_related_format'])
+
+    def test_rejects_bad_sizes_and_truncation(self):
+        for size in (0, 0x40, 0x1001, 0x3000):
+            data = container_fixture()
+            struct.pack_into('<I', data, 4, size)
+            with self.subTest(size=size), self.assertRaises(ValueError):
+                parse_ldfw_records(data)
+        for length in (0, 0x20, 0x1000, 0x2000, 0x20a3):
+            with self.subTest(length=length), self.assertRaises(ValueError):
+                parse_ldfw_records(container_fixture()[:length])
+
+    def test_rejects_invalid_encrypted_intervals(self):
+        for start, end in ((0x30, 0x250), (0x150, 0x150), (0x250, 0x150),
+                           (0x151, 0x250), (0x150, 0x251), (0x150, 0x1010)):
+            data = container_fixture()
+            struct.pack_into('<II', data, 0x44, start, end)
+            with self.subTest(start=start, end=end), self.assertRaises(ValueError):
+                parse_ldfw_records(data)
+
+    def test_rejects_unknown_flags_names_and_missing_tail(self):
+        for offset, value in ((0x28, 2), (0x30, 0), (0x30, 0xff), (0x1030, ord('x'))):
+            data = container_fixture()
+            data[offset] = value
+            with self.subTest(offset=offset, value=value), self.assertRaises(ValueError):
+                parse_ldfw_records(data)
+        data = container_fixture()
+        data[0x1030:0x1040] = data[0x30:0x40]
+        with self.assertRaises(ValueError):
+            parse_ldfw_records(data)
+
+    def test_rejects_record_after_tail_and_nonrecord_bytes(self):
+        data = container_fixture()
+        data[0x30:0x40], data[0x1030:0x1040] = data[0x1030:0x1040], data[0x30:0x40]
+        with self.assertRaises(ValueError):
+            parse_ldfw_records(data)
+        data = container_fixture()
+        data[0x1000] = 0
+        with self.assertRaises(ValueError):
+            parse_ldfw_records(data)
+
+    def test_bounded_number_of_records(self):
+        data = bytearray(33 * 0x1000 + 0xa4)
+        for index in range(33):
+            offset = index * 0x1000
+            struct.pack_into('<II', data, offset, 0x10adab1e, 0x1000)
+            name = f'fixture{index}'.encode()
+            data[offset + 0x30:offset + 0x30 + len(name)] = name
+        data[-0xa4:-0xa4 + 11] = b'SignerVer03'
+        with self.assertRaises(ValueError):
+            parse_ldfw_records(data)
+
+    def test_emulator_rejects_foreign_firmware_before_loading_unicorn(self):
+        from emulate_sec_pgtbl_hzc2 import emulate_caller
+        with self.assertRaisesRegex(ValueError, 'exact HZC2'):
+            emulate_caller(b'not the firmware', 0xe0000000, 0x1000)
 
 
 if __name__ == '__main__':

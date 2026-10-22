@@ -462,3 +462,42 @@ sintético conferidos; relatório sem cenário versionado, sem novos blobs.
 README, hardware, catálogo e roadmap atualizados. Nenhuma repetição das
 coletas bloqueadas ou alteração de driver/payload. Próxima lacuna continua
 sendo o provedor e os valores efetivos soc_info/SEC_PGTBL.
+
+## 2026-10-21 Campo Grande / 2026-10-22 UTC — contêiner LDFW e Unicorn
+
+Aplicadas as propostas de análise estática/emulação aos arquivos já recebidos.
+Percurso por magic 0x10adab1e e tamanho +0x4 recupera seis registros até
+0x3fc000: CryptoManagerV50, fmp_fw_V20, drm_fw, srpmb_fw, hdcp_fw e tail_fw.
+Cabeçalho comum cruzado com U-Boot fixado em 3d9115a; offsets de tamanho,
+versão e nome corroborados pelo próprio LK. Loop em 0xf6658–0xf6694;
+0xf66b0 chama wrapper 0xf60e8, SMC -0x500 em 0xf60fc, buffer fa000000 e
+prefixo de 3fc000 bytes. É entrega ao monitor, sem execução observada.
+
+Formato relacionado Exynos9830, commit 5142272, interpreta +0x28 como
+cifragem e +0x44/+0x48 como início/fim exclusivo. Cinco registros têm flag 1;
+DRM em 0x228000 tem start_smc_id 0x82002000 e intervalo 0x228150–0x23a5b0,
+74.848 bytes. A diferença de 0x60 para a consulta é pista, não dispatch
+recuperado. Ensaio offline limitado com a hipótese/chave pública 9830 não
+validou plaintext; nenhuma imagem modificada foi gravada ou publicada.
+Algoritmo/chaves/IV/base runtime do HZC2 continuam sem validação. Apresentação
+original OffensiveCon 2022 corrobora LDFWs cifrados na arquitetura S21.
+
+No tail em claro, conferidos cinco leaves AArch64 MOV W0,#0;RET. Não foram
+atribuídos ao SEC_PGTBL. Novo parser stdlib limita input/registros/tamanhos,
+rejeita intervalos malformados e mantém assinatura/provedor não verificados.
+
+Unicorn 2.1.4 instalado fora do Git. Novo harness executa o chamador real
+0xfae2c–0xfaec8 e ramos de erro com somente três páginas RX. Intercepta SMC,
+exige argumentos conhecidos, fornece duas respostas explícitas, omite printf
+e envenena voláteis; orçamento de 256 visitas/1s por cenário. 80 combinações
+e 64 pares de seed fixa, total 144, coincidiram com X21/W20/W22/X27 do modelo.
+O tamanho sintético 0x1000 com base 0xe0000000 manteve W22=1. Provedor não executado;
+sem retorno real, MMIO, mapa de RAM ou alegação de estado do aparelho.
+
+14 testes de host passaram, incluindo sete novos de parser/identidade.
+Relatórios metadata-only atualizados/versionados; README, hardware, índice,
+catálogo e roadmap revistos. As suítes anteriores R8/R9/R10 não foram
+reexecutadas, pois seus arquivos não mudaram. Para recuperar especificamente
+o handler falta DRM HZC2 em claro com origem verificável ou fonte equivalente;
+o contêiner cifrado e os READMEs já enviados não precisam ser reenviados.
+Nenhuma coleta bloqueada foi repetida, sem root ou tracing no telefone.
