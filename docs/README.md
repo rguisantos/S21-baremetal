@@ -7,6 +7,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Roadmap e estado atual](roadmap.md): evidências, prioridades e critérios separados para diagnóstico físico e R10 em uma CPU.
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
+- [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.
+- [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 
 - [R10 em uma CPU](r10-single-cpu.md): entrada, exceções, GIC e timer.
@@ -36,7 +38,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 | Diretório | Finalidade |
 |---|---|
 | `r8/` | Código R8/R9/R10, Makefile e fixtures/testes C/assembly |
-| `lab/xnu/` | Init Darwin, empacotador Mach-O fixo e codec/validador de boot_args/árvore Apple; kernel/loader e UEFI externos |
+| `lab/xnu/` | Init Darwin, codecs/validação, adaptador de recursos FDT e patch externo auditado; kernel/loader e UEFI externos |
 | `shim/` | Shim legado em quarentena e componentes atuais do contêiner; consultar os documentos antes de executar |
 | `scripts/` | Testes, bootstrap, inspeção e ferramentas históricas; [catálogo](../scripts/README.md) |
 | `tools/` | Empacotador e toolchain/QEMU local; binários grandes preexistentes |

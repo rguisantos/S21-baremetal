@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-22 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, 3696834](https://github.com/rguisantos/S21-baremetal/commit/36968343c59fd454077069426136bfe37d5564d5).
+[main anterior a esta entrega, 348cf5b](https://github.com/rguisantos/S21-baremetal/commit/348cf5ba5bb3ee5922dc1edb6caedfa6f157a532).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -27,13 +27,14 @@ não mudam o estado de validação no telefone.
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
 | XNU/Darwin no QEMU | **Kernel prebuilt + init próprio executados** | PID 1/UID 0, APFS, timer e retorno; arquivo com um byte alterado recusado; 13 testes de host; sem iOS gráfico ou hardware Samsung |
-| Contrato binário XNU | **X2 parcial, validado no host/QEMU** | 28 testes e layout C; argumentos/árvore de 736/14800 bytes reemitidos sem alteração; retomada 17/17; faltam tradução FDT e memória Samsung confiável |
+| Contrato/adaptador XNU | **X2 parcial, validado no host/QEMU** | Codec/layout/captura anteriores; 29 novos testes e fragmento HZC2 de 1944 bytes com recursos/proveniência; faltam integração no loader e memória Samsung confiável |
+| Preparação do userland HackiOS | **Quatro falhas reproduzidas no host** | Seis fixtures de jobs e quatro controles Bash; patch conferido. Interface iOS do relato GLM ainda sem reprodução local |
 | R10 físico, depois SMP/periféricos | **Etapas futuras** | Uma CPU primeiro; PSCI/SMP, SPIs, MCT e display após comprovar a base |
 
 As contagens acima pertencem a suítes diferentes e não devem ser somadas
-como uma porcentagem de prontidão. Nesta entrega, executamos somente os
-novos testes/layout/captura XNU e a inspeção C do DTB HZC2. Os demais
-resultados são registros das entregas anteriores.
+como uma porcentagem de prontidão. Nesta entrega, executamos os 29 testes
+novos do adaptador, a projeção HZC2 e os controles de preparação do
+userland. Os demais resultados são registros das entregas anteriores.
 
 ## Dois marcos físicos com requisitos diferentes
 
@@ -90,7 +91,7 @@ fontes, serviços iOS e execução física continuam pendentes.
 |---|---|
 | X0 — referência e diferenças | Concluída: 7 hashes prebuilt conferidos; gerador reconhece CPUs, mas deixa GIC TODO no nosso DTB 2+1 células |
 | X1 — XNU + programa mínimo no QEMU | Concluído com prebuilt externo: caso positivo, controle negativo e 13 testes de host; build dos fontes segue como validação separada |
-| X2 — contrato Samsung → XNU | Parcial: codec próprio, 28 testes, layout C e captura QEMU conferidos; faltam tradução FDT/árvore Apple e plano de memória Samsung verificável, separados do ABI FDT do R10 |
+| X2 — contrato Samsung → XNU | Parcial: codec/layout/captura e adaptador de recursos FDT conferidos; faltam integração no carregador e plano de memória Samsung verificável, separados do ABI FDT do R10 |
 | X3 — XNU físico em uma CPU | Depende de carregamento, memória, entrada e observação demonstrados nos marcos físicos acima |
 | X4 — APFS/userland/interface | Primeiro no laboratório; no telefone, framebuffer/CPU antes de GPU e periféricos |
 
@@ -102,11 +103,16 @@ limites e critérios de aceitação dessa frente.
 O usuário aprovou investigar a futura escolha Android/XNU no telefone.
 A [estratégia](dual-boot-strategy.md) separa o laboratório já executado,
 diagnóstico físico, adaptação XNU, userland/interface e seleção de boot.
-O [contrato binário](xnu-boot-contract.md) já foi conferido com os buffers
-do laboratório. O próximo trabalho XNU é traduzir recursos FDT para a
-árvore Apple com origem explícita e recusa de memória incompleta; isso
-pode avançar no host em paralelo a P1/P2 sem inventar bancos ou reservas
-do S21. A inspeção da base HZC2 não gerou plano de carga.
+O [contrato binário](xnu-boot-contract.md) foi conferido com os buffers do
+laboratório, e o [adaptador de recursos](xnu-fdt-adapter.md) já preserva
+GIC/CPUs/PSCI/timer do FDT. O próximo trabalho XNU é integrar a geração num
+caminho de carga de laboratório com memória declarada e contraprovas antes
+do salto. Isso avança em paralelo a P1/P2; a base HZC2 não gerou plano físico.
+
+As falhas de preparação trazidas no relato GLM foram
+[reproduzidas com entradas sintéticas](hackios-userland-host.md). Os
+checkpoints gráficos citados continuam como relato em andamento; não
+alteram o estado de XNU físico, display Exynos ou escolha de boot.
 
 ## Critérios para iniciar o Marco A
 

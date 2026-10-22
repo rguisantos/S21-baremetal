@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "upstream_revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+  "source_sha256": {
+    "userland/mkjobs.py": "b5d297070abd74cdef8faec4a9600bbc41702a05ce884681f61cb6fb205ad88f",
+    "userland/build.sh": "a4268a3f68931c00c48ee14c4f58cb20997c71eef37a12debc42c286991ae02d",
+    "tools/apfs/mkapfs.py": "c14a81ae9286c69a77673552fcf240de84d37e8fde16f617b2d2efc84d758bdc"
+  },
+  "scope": "Six synthetic job-generation fixtures and four isolated Bash fragments; no iOS files or GUI run",
+  "passed": true,
+  "jobs_cases": {
+    "original_umask002": {
+      "umask": "0o2",
+      "packed_env_test": false,
+      "files": [
+        "RWA_PACKED16",
+        "org.s21.fixture.named.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": false,
+      "apfs_input_metadata": {
+        "RWA_PACKED16": {
+          "mode": "0o664",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.named.plist": {
+          "mode": "0o664",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": false,
+      "all_directories_mode_0755": false,
+      "env_propagated": null,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    },
+    "original_umask022": {
+      "umask": "0o22",
+      "packed_env_test": false,
+      "files": [
+        "RWA_PACKED16",
+        "org.s21.fixture.named.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": false,
+      "apfs_input_metadata": {
+        "RWA_PACKED16": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.named.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": true,
+      "all_directories_mode_0755": true,
+      "env_propagated": null,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    },
+    "fixed_umask002": {
+      "umask": "0o2",
+      "packed_env_test": false,
+      "files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": true,
+      "apfs_input_metadata": {
+        "org.s21.fixture.named.plist": {
+          "mode": "0o664",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-a.plist": {
+          "mode": "0o664",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-b.plist": {
+          "mode": "0o664",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": false,
+      "all_directories_mode_0755": false,
+      "env_propagated": null,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    },
+    "fixed_umask022": {
+      "umask": "0o22",
+      "packed_env_test": false,
+      "files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": true,
+      "apfs_input_metadata": {
+        "org.s21.fixture.named.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-a.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-b.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": true,
+      "all_directories_mode_0755": true,
+      "env_propagated": null,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    },
+    "original_umask022_env1": {
+      "umask": "0o22",
+      "packed_env_test": true,
+      "files": [
+        "RWA_PACKED16",
+        "org.s21.fixture.named.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": false,
+      "apfs_input_metadata": {
+        "RWA_PACKED16": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.named.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": true,
+      "all_directories_mode_0755": true,
+      "env_propagated": true,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    },
+    "fixed_umask022_env1": {
+      "umask": "0o22",
+      "packed_env_test": true,
+      "files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "expected_files": [
+        "org.s21.fixture.named.plist",
+        "org.s21.fixture.rest-a.plist",
+        "org.s21.fixture.rest-b.plist"
+      ],
+      "names_preserved": true,
+      "apfs_input_metadata": {
+        "org.s21.fixture.named.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-a.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        },
+        "org.s21.fixture.rest-b.plist": {
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0
+        }
+      },
+      "all_files_mode_0644": true,
+      "all_directories_mode_0755": true,
+      "env_propagated": true,
+      "generator_stdout": "  job org.s21.fixture.named: /bin/named\n  ... and 2 more jobs, started on demand only\n"
+    }
+  },
+  "shell_fragments": {
+    "copy_original": {
+      "returncode": 1,
+      "stdout": "",
+      "copied_files": [
+        "hello_dyn",
+        "mg_test",
+        "rwtouch",
+        "surf_test",
+        "svc_test"
+      ]
+    },
+    "copy_fixed": {
+      "returncode": 0,
+      "stdout": "",
+      "copied_files": [
+        "hello_dyn",
+        "mg_test",
+        "rwtouch",
+        "surf_test",
+        "svc_test"
+      ]
+    },
+    "zone_original": {
+      "returncode": 1,
+      "stdout": "",
+      "copied_files": []
+    },
+    "zone_fixed": {
+      "returncode": 0,
+      "stdout": "UTC\n",
+      "copied_files": []
+    }
+  },
+  "patch_sha256": "aa54331061fe0735417ca8b6476e788b02ac4b2b6041c7f479d54c37824e48d9",
+  "patch_applied_to_upstream_checkout": false,
+  "fixed_files_sha256": {
+    "userland/mkjobs.py": "468cd688fd0f937dfe199427d39992141fed8a7c75aca3635a00ee34b2917027",
+    "userland/build.sh": "3035f1550922a3095b34226ac6c487087cfa7aef3cc223a7206b938ac140df77"
+  },
+  "script_sha256": "62fb7aa607cd9667f79f4e712179952dae39ae0717568e325c321fb31bed73f4",
+  "full_apfs_built": false,
+  "launchd_executed": false,
+  "springboard_observed": false,
+  "date": "2026-10-22",
+  "timezone": "America/Campo_Grande",
+  "s21_baseline_commit": "348cf5ba5bb3ee5922dc1edb6caedfa6f157a532",
+  "primary_sources": [
+    {
+      "repository": "oosexgang/hackios-xnu-userland",
+      "revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+      "path": "userland/mkjobs.py",
+      "bytes": 26321,
+      "git_blob": "a92a4efa73630c2c13570ec98fd09f07462bbad3",
+      "sha256": "b5d297070abd74cdef8faec4a9600bbc41702a05ce884681f61cb6fb205ad88f",
+      "url": "https://github.com/oosexgang/hackios-xnu-userland/blob/906425b75e02b4f99eb5d7bb1ef7c9583472d772/userland/mkjobs.py"
+    },
+    {
+      "repository": "oosexgang/hackios-xnu-userland",
+      "revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+      "path": "userland/build.sh",
+      "bytes": 58049,
+      "git_blob": "582866f82497f32c86226f6a095e0a8e0c9dc791",
+      "sha256": "a4268a3f68931c00c48ee14c4f58cb20997c71eef37a12debc42c286991ae02d",
+      "url": "https://github.com/oosexgang/hackios-xnu-userland/blob/906425b75e02b4f99eb5d7bb1ef7c9583472d772/userland/build.sh"
+    },
+    {
+      "repository": "oosexgang/hackios-xnu-userland",
+      "revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+      "path": "tools/apfs/mkapfs.py",
+      "bytes": 44142,
+      "git_blob": "23c3f70819af1fc25e078894df3b4b5dbaa7724a",
+      "sha256": "c14a81ae9286c69a77673552fcf240de84d37e8fde16f617b2d2efc84d758bdc",
+      "url": "https://github.com/oosexgang/hackios-xnu-userland/blob/906425b75e02b4f99eb5d7bb1ef7c9583472d772/tools/apfs/mkapfs.py"
+    }
+  ],
+  "head_refs_checked": {
+    "kernel": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+    "userland": "906425b75e02b4f99eb5d7bb1ef7c9583472d772"
+  },
+  "invocation": [
+    "python3",
+    "scripts/check_hackios_userland.py",
+    "--userland-tree",
+    "@USERLAND@",
+    "--out",
+    "@NEW_OUTPUT@"
+  ],
+  "patch": {
+    "path": "lab/xnu/patches/hackios-userland-portability.patch",
+    "sha256": "aa54331061fe0735417ca8b6476e788b02ac4b2b6041c7f479d54c37824e48d9",
+    "git_apply_check_passed": true,
+    "bash_syntax_passed": true
+  },
+  "external_report": {
+    "source": "user-provided GLM-5.3 transcript",
+    "status": "still running as reported by user",
+    "raw_final_log_received": false,
+    "final_framebuffer_screenshot_received": false
+  },
+  "qemu_state_reference": {
+    "url": "https://www.qemu.org/docs/master/system/vm-templating.html",
+    "retrieved": "2026-10-22",
+    "documentation_version": "11.1.50",
+    "local_qemu_10_0_13_migration_tested": false
+  }
+}

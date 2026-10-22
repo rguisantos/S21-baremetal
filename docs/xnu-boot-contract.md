@@ -7,8 +7,9 @@ QEMU: **736 bytes de argumentos e 14800 bytes de árvore foram decodificados
 e reemitidos sem mudar nenhum byte**. Após remover o breakpoint, a mesma
 execução satisfez os 17 critérios do laboratório.
 
-O componente está em `lab/xnu/boot_contract.py`. Ainda não converte o FDT
-Samsung, aloca memória, carrega imagens ou inicia XNU no aparelho. Os dados
+O componente está em `lab/xnu/boot_contract.py`. A entrega seguinte
+acrescentou um [adaptador separado de recursos FDT](xnu-fdt-adapter.md).
+Não há alocação, carregamento de imagens ou XNU no aparelho. Os dados
 HZC2 disponíveis continuam insuficientes para gerar um plano físico.
 
 ## Layout conferido
@@ -182,10 +183,10 @@ leu CPUs/GIC/timer, mas a política de boot recusou o conteúdo: **zero
 bancos RAM, 29 reservas e uma reserva não resolvida**. Não foi gerado
 handoff candidato. Esse DTB base não é o FDT final ajustado pelo LK.
 
-O próximo trabalho X2 é traduzir recursos FDT para a árvore Apple com
-proveniência explícita, sem completar a RAM ausente. O plano de carga só
-pode existir após uma declaração verificável de bancos/reservas e posse
-dos buffers. Carregador Samsung, entrada/cache, canal de observação e
+O [adaptador de recursos](xnu-fdt-adapter.md) já traduz CPU/GIC/PSCI/timer
+com proveniência explícita, sem completar a RAM ausente. A integração num
+carregador ainda está pendente. O plano físico depende de uma declaração
+verificável de bancos/reservas e posse dos buffers. Entrada/cache, canal de observação e
 permissões GIC/timer permanecem nos marcos físicos
 [P1/P2 e A/B](roadmap.md). Não precisamos de outro anexo para continuar o
 desenvolvimento no host.

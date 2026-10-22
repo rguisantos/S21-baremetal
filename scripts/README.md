@@ -9,6 +9,8 @@ Execute a partir da raiz do repositório. Os comandos de validação estão no [
 | Ambiente | `bootstrap_tools.sh`, `cross-run.sh`, `run_qemu.sh` | Ferramentas locais e execução dos módulos |
 | Laboratório XNU | `run_xnu_lab.py`, `test_xnu_lab.py` | Init próprio no QEMU com prebuilt fixado; caso positivo, controle negativo e verificações de host; [reprodução](../docs/xnu-qemu-lab.md) |
 | Contrato XNU | `capture_xnu_contract.py`, `test_xnu_contract.py` | Layout C/28 testes de host; captura de argumentos e árvore por GDB no QEMU, seguida de retomada até PASS; [escopo e reprodução](../docs/xnu-boot-contract.md) |
+| Recursos XNU | `inspect_xnu_fdt.py`, `test_xnu_fdt_adapter.py` | FDT → fragmento Apple, parser C sanitizado e 29 testes; sem gerar boot_args ou plano físico; [contrato](../docs/xnu-fdt-adapter.md) |
+| Preparação HackiOS | `check_hackios_userland.py` | Reproduz colisão/modos dos jobs e falhas Bash com entradas sintéticas; gera patch sem alterar o checkout; [evidências](../docs/hackios-userland-host.md) |
 | Inspeção atual | `inspect_proton.py`, `inspect_sboot_hzc2.py` | ZIP Proton e relatório somente leitura do sboot HZC2 identificado por SHA-256 |
 | Forense legada | `parse_fdt.py`, `abl_triage.py` | Leitores ainda não auditados; não usar como única evidência |
 | Experimentos históricos | `build_kit*.sh`, `snapshot_project.sh`, `mk_append_r9.py`, `test_delta*`, `test_header_qemu.sh`, `kit-assets/`, `magiskboot/` | Kits DAY1/DAY2, repack e experiências anteriores; fora do fluxo atual validado |

@@ -777,3 +777,48 @@ RAM desconhecida. P1/P2 físicos mantidos; nenhum anexo adicional pedido,
 binário bruto versionado, shim habilitado ou operação no aparelho. Suítes
 antigas R8/R9/R10 e do init XNU não foram reexecutadas. APK preexistente e
 temporários do toolchain excluídos da entrega.
+
+## 2026-10-22 — projeção FDT Samsung e correções de preparação HackiOS
+
+Usuário trouxe relato GLM-5.3 de execução do userland iOS no QEMU, ainda
+em andamento. Heads upstream conferidos: kernel 8e611870, userland 906425b7,
+iguais aos commits já auditados. Não recebemos nessa mensagem print final
+ou serial bruto completo daquela execução; os checkpoints gráficos
+permanecem relato externo. Nenhum download iOS/SDK ou sessão GUI local.
+
+Continuado X2: inspetor C de host expõe o parser R10 existente, sem defaults
+de destino ou alteração de produção. Adaptador reutiliza também o leitor
+FDT limitado; cruza intervalos GIC e MPIDRs/ordem, lê PSCI/clock/timer
+virtual explícitos e registra propriedades de origem. Projeta somente
+recursos na árvore Apple, sem RAMDisk, janela DRAM, estado de CPUs ou
+identidade Apple. Bases MMIO não são usadas para tocar hardware.
+
+Base HZC2 gerou fragmento de 1944 bytes, reemitido byte a byte. Preservados
+oito MPIDRs, SMC, GICD/10000, GICR/200000 e 26 MHz nominais; físico INTID30,
+virtual INTID27, flag Linux use-physical-timer. Sem bancos RAM e com 29
+reservas/indicador não resolvido, não gerou plano de carga. Initrd
+declarado [84000000,841fffff) foi conservado: tamanho 1fffff, sem arredondar
+para 2 MiB. FDT base não é o resultado dinâmico do bootloader.
+
+29 testes novos passaram com ASan/UBSan, incluindo composição positiva de
+memória sintética, bancos acima de 4 GiB e recusas por RAM/reservas/PSCI/
+CPU/timer/GIC/corrupção/sobreposição. LeakSanitizer desativado porque o
+host instrumentado não permite inspeção de threads; demais sanitizers
+ativos. API de candidato protege initrd Linux e buffers vivos, exige
+declaração explícita de completude e sempre conserva hardware_ready=false.
+
+Relato GLM aproveitado por reprodução independente: seis fixtures de jobs
+mostram colisão em RWA_PACKED16 com variável ausente/presente e modos
+0664 sob umask002, conservados pelo leitor APFS original com UID/GID0.
+Renomear iterador preserva nomes; umask022 produz modos0644/diretório0755.
+Quatro fragmentos Bash reproduzem/controlam falhas de drawable_test
+ausente e timedatectl com set-e. Patch preserva whitespace, foi conferido
+por git apply --check e bash -n e não altera o checkout externo. Não foi
+executado build completo, APFS completo ou launchd/SpringBoard.
+
+Documentados adaptação, patch, hashes e ensaios; fragmento inteiro incluído
+em hexadecimal no manifesto. README/índices/roadmap/estratégia atualizados.
+Próximo X2: integrar projeção ao caminho de carga do laboratório com
+memória explícita e contraprovas. P1/P2 físicos mantidos; nenhum arquivo
+extra solicitado, operação no telefone ou reexecução das suítes antigas.
+APK preexistente e temporários do toolchain fora da entrega.
