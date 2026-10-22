@@ -7,7 +7,8 @@ import sys
 import tempfile
 import unittest
 
-from check_lk_v3_layout import model
+from check_lk_v3_layout import check_fdt_initrd, model
+from test_fdt import encode, node, u32, u64
 
 
 def fixture():
@@ -30,6 +31,66 @@ def fixture():
 
 
 class LayoutTest(unittest.TestCase):
+    def test_chosen_values_match_copies_without_padding(self):
+        boot, vendor = fixture()
+        report = model(boot, vendor, 0)
+        chosen = report['chosen_initrd']
+        self.assertEqual(chosen['start'], report['copies'][1]['destination'])
+        self.assertEqual(chosen['end_exclusive'], report['copies'][2]['destination_end'])
+        self.assertEqual(chosen['property_bytes_be'],
+                         {'linux,initrd-start':'84080000', 'linux,initrd-end':'84082026'})
+        self.assertFalse(report['fdt_initrd_check']['performed'])
+
+    def test_partial_fdt_check_does_not_validate_memory_or_reservations(self):
+        boot, vendor = fixture()
+        report = model(boot, vendor, 0)
+        data = encode(node('', children=[node('chosen',
+                      {'linux,initrd-start':u32(0x84080000), 'linux,initrd-end':u32(0x84082026)})]))
+        result = check_fdt_initrd(data, report)
+        self.assertTrue(result['matches'])
+        self.assertEqual(result['scope'], 'chosen_initrd_only')
+        self.assertFalse(result['is_final_fdt'])
+        self.assertFalse(result['memory_map_verified'])
+        self.assertFalse(result['reservations_verified'])
+
+    def test_stale_missing_or_different_width_initrd_is_rejected(self):
+        boot, vendor = fixture()
+        report = model(boot, vendor, 0)
+        cases = ({}, {'linux,initrd-start':u32(0x84080000)},
+                 {'linux,initrd-start':u32(0x84000000), 'linux,initrd-end':u32(0x841fffff)},
+                 {'linux,initrd-start':u64(0x84080000), 'linux,initrd-end':u64(0x84082026)},
+                 {'linux,initrd-start':u32(0x84080000), 'linux,initrd-end':u32(0x84082027)})
+        for props in cases:
+            with self.subTest(props=props), self.assertRaisesRegex(ValueError, '/chosen/'):
+                check_fdt_initrd(encode(node('', children=[node('chosen', props)])), report)
+
+    def test_partial_check_rejects_malformed_fdt(self):
+        boot, vendor = fixture()
+        with self.assertRaises(ValueError):
+            check_fdt_initrd(b'bad', model(boot, vendor, 0))
+
+    def test_duplicate_property_cannot_hide_stale_initrd(self):
+        boot, vendor = fixture()
+        data = bytearray(encode(node('', children=[node('chosen', {
+            'linux,initrd-start':u32(0x84000000), 'candidate-start':u32(0x84080000),
+            'linux,initrd-end':u32(0x84082026)})])))
+        strings = struct.unpack_from('>I', data, 12)[0]
+        stale_name = data.index(b'linux,initrd-start\0', strings)-strings
+        replacement_name = data.index(b'candidate-start\0', strings)-strings
+        pos = data.index(u32(3, 4, replacement_name)+u32(0x84080000))
+        struct.pack_into('>I', data, pos+8, stale_name)
+        with self.assertRaisesRegex(ValueError, 'duplicate FDT property'):
+            check_fdt_initrd(bytes(data), model(boot, vendor, 0))
+
+    def test_duplicate_node_cannot_hide_stale_chosen(self):
+        boot, vendor = fixture()
+        data = encode(node('', children=[node('chosen', {
+            'linux,initrd-start':u32(0x84000000), 'linux,initrd-end':u32(0x841fffff)}),
+            node('chosen', {'linux,initrd-start':u32(0x84080000),
+                            'linux,initrd-end':u32(0x84082026)})]))
+        with self.assertRaisesRegex(ValueError, 'duplicate FDT node'):
+            check_fdt_initrd(data, model(boot, vendor, 0))
+
     def test_unaligned_components_and_separate_memory_extent(self):
         boot, vendor = fixture()
         report = model(boot, vendor, 0)

@@ -59,6 +59,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Pipeline DTB/DTBO/DPM](lk-dtb-pipeline.md): ponteiro vendor ligado ao buffer do kernel, seletor por revisão e oito candidatos de host.
 
+- [Escritas dinâmicas no FDT](lk-dynamic-fdt.md): initrd ligado às cópias, checagem parcial de chosen, reservas condicionais e origem do tamanho de RAM.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

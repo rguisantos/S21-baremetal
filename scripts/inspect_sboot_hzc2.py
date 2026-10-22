@@ -168,6 +168,24 @@ def inspect(path):
             merge_result_destination='0x8b080000', dpm_buffer_candidate='0xf0005000',
             selector='First inclusive range; REV limits when REV(custom1)<=0xff, raw LE otherwise',
             limit='Conditional static branches; revision, UFDT output and final FDT not observed'),
+        'dynamic_fdt_writes': dict(
+            calls={hex(off): hex(bl_target(u32(off), off)) for off in
+                   (0xfb42c, 0xfb49c, 0xfb4a4, 0xfb4d8, 0xfad84, 0x147310,
+                    0x1487b8, 0x1487d8, 0x148afc, 0x148b1c, 0x148b38,
+                    0x148b60, 0x148bcc, 0x148bf4, 0x148c2c)},
+            instruction_words={hex(off): f'{u32(off):08x}' for off in
+                               (0xfb408, 0xfb4a8, 0xfb4ac, 0xfb4b4,
+                                0x12e9b8, 0x12e9bc, 0x12e9c8, 0x12e9cc,
+                                0xf14ac, 0xf14b4, 0x148ae8, 0x148aec,
+                                0x148b18, 0x148b20, 0x148b3c, 0x148b48,
+                                0x148b58, 0x1486e8, 0x14870c,
+                                0x11b764, 0x11b76c, 0x11b770)},
+            string_literals={hex(off): data[off:data.index(0, off)].decode('ascii')
+                             for off in (0x216468, 0x216578, 0x216580, 0x216600,
+                                         0x22cb40, 0x22cb50, 0x23c688,
+                                         0x23c690, 0x23c6a0, 0x23c6b0, 0x23c6c0,
+                                         0x23bca8, 0x23bcc8)},
+            limit='Conditional writers, not observed FDT properties or a complete memory map'),
         'uart_pinmux_audit': dict(
             lk_routine_offset='0xef3e0',
             instruction_words={hex(off): f'{u32(off):08x}' for off in

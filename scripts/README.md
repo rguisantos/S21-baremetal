@@ -29,6 +29,6 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 
 - `check_uart_clock_evidence.py`: cruza sboot HZC2 com quatro fontes de clock identificadas por hash; verifica frequência nominal, seletores, UBRDIV e inventário de gates/QCH. Não lê hardware ou produz writes; [detalhes](../docs/uart-gates.md).
 
-- `check_lk_v3_layout.py` e `test_lk_v3_layout.py`: modelo offline das cópias kernel/ramdisk do LK HZC2 e testes de limites; requer imagens raw v3 e deslocamento explícito. Não empacota nem verifica bootabilidade; [escopo](../docs/lk-v3-layout.md).
+- `check_lk_v3_layout.py` e `test_lk_v3_layout.py`: modelo offline das cópias kernel/ramdisk e células de initrd do LK HZC2; requer imagens raw v3 e deslocamento explícito. `--fdt` compara chosen, com limite de 2 MiB e recusa de duplicidades. Não empacota nem verifica bootabilidade; [escopo](../docs/lk-v3-layout.md), [escritas dinâmicas](../docs/lk-dynamic-fdt.md).
 
 - `check_lk_dtb_selection.py` e `test_lk_dtb_selection.py`: seleção por revisão explícita, validação das tabelas e resolução de símbolos DPM na base. Auditoria somente leitura, sem aplicar overlays ou produzir FDT final; [pipeline e teste separado com libfdt](../docs/lk-dtb-pipeline.md).

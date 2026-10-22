@@ -7,7 +7,7 @@ telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 | Etapa | Estado e resultado | Critério restante |
 |---|---|---|
 | 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M|C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
-| 2. Contrato Samsung | Cópia v2/v3 e salto ligados ao KASLR; modelo v3 confere kernel/ramdisks; seleção DTB e merges DTBO/DPM ligados ao buffer final | Fechar verificações/transformações, conteúdo do FDT após ajustes dinâmicos, reservas e estado final de entrada |
+| 2. Contrato Samsung | Cópias e KASLR ligados; seleção DTB/DTBO/DPM rastreada; initrd de chosen ligado às cópias, escritores de reservas e getter de RAM localizados | Fechar retornos de serviços/ramos, mapa efetivo, checks posteriores e estado final de entrada |
 | 3. Observação | UART0 debug identificada nas fontes; callbacks UART/log em memória rastreados | Acesso físico ou recuperação verificável de um registro no aparelho |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
@@ -32,6 +32,7 @@ não repetir esses procedimentos nas mesmas condições. Não se pressupõe root
 - [Cópia da Image e salto](lk-kernel-copy.md).
 - [Modelo de layout LK v3 e testes de host](lk-v3-layout.md).
 - [Seleção e merges DTB/DTBO/DPM](lk-dtb-pipeline.md).
+- [Initrd, reservas e origem do tamanho de RAM](lk-dynamic-fdt.md).
 - [Console e UART0](lk-console-handoff.md), [jig/MUIC](uart-routing.md).
 - [Log em memória](lk-memory-log.md).
 - [Resultados de coleta](runtime-collection.md), [logs indisponíveis](boot-log-collection.md).

@@ -29,10 +29,10 @@ def align(value):
     return (value+PAGE-1) & -PAGE
 
 
-def read_input(path):
+def read_input(path, limit=MAX_FILE):
     with Path(path).open('rb') as stream:
-        data = stream.read(MAX_FILE+1)
-    require(len(data) <= MAX_FILE, 'input exceeds 64 MiB limit')
+        data = stream.read(limit+1)
+    require(len(data) <= limit, f'input exceeds {limit//(1024*1024)} MiB limit')
     return data
 
 
@@ -40,6 +40,20 @@ def checked_slice(data, offset, size, label):
     require(0 <= offset <= len(data) and 0 <= size <= len(data)-offset,
             'truncated '+label)
     return memoryview(data)[offset:offset+size]
+
+
+def check_fdt_initrd(data, layout):
+    """Check only the two chosen properties against the traced v3 writer."""
+    from inspect_proton import fdt_nodes
+    nodes = fdt_nodes(data)
+    chosen = nodes.get('/chosen', {})
+    for name, expected in layout['chosen_initrd']['property_bytes_be'].items():
+        require(chosen.get(name) == bytes.fromhex(expected),
+                '/chosen/'+name+' differs from modeled 4-byte LK property')
+    return dict(performed=True, scope='chosen_initrd_only', matches=True,
+                fdt_size=len(data), fdt_sha256=hashlib.sha256(data).hexdigest(),
+                is_final_fdt=False, memory_map_verified=False,
+                reservations_verified=False)
 
 
 def model(boot, vendor, offset):
@@ -99,6 +113,13 @@ def model(boot, vendor, offset):
                    memory_end=hex(kernel_dest+image_size),
                    bytes_beyond_kernel_copy=image_size-kernel_size,
                    tail_zeroing_verified=False),
+        chosen_initrd=dict(
+            start=hex(RAMDISK_BASE), end_exclusive=hex(ramdisk_end),
+            total_size=vendor_rd_size+boot_rd_size, property_width_bytes=4,
+            property_bytes_be={'linux,initrd-start':struct.pack('>I', RAMDISK_BASE).hex(),
+                               'linux,initrd-end':struct.pack('>I', ramdisk_end).hex()},
+            writer_calls=['0xfb42c', '0xfb4d8'], runtime_observed=False),
+        fdt_initrd_check=dict(performed=False),
         vendor_dtb_region=dict(file_offset=hex(dtb_off), size=dtb_size,
                                staged_pointer=hex(VENDOR_STAGING+dtb_off),
                                registration_call_file_offset='0x12e850',
@@ -116,11 +137,15 @@ def main():
     parser.add_argument('vendor_boot', type=Path, help='raw vendor_boot.img, not LZ4')
     parser.add_argument('--offset', required=True, type=lambda value: int(value, 0),
                         help='explicit modeled KASLR offset (0..0x1f8000, step 0x8000)')
+    parser.add_argument('--fdt', type=Path,
+                        help='optional raw FDT: check only its chosen initrd properties')
     args = parser.parse_args()
     try:
         evidence = inspect(args.sboot)
         result = model(read_input(args.boot), read_input(args.vendor_boot), args.offset)
         result['firmware_sha256'] = evidence['sha256']
+        if args.fdt is not None:
+            result['fdt_initrd_check'] = check_fdt_initrd(read_input(args.fdt, 2*1024*1024), result)
     except (OSError, ValueError, struct.error) as exc:
         parser.exit(1, f'check_lk_v3_layout: {exc}\n')
     print(json.dumps(result, indent=2))

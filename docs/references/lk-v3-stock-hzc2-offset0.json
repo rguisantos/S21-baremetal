@@ -53,6 +53,24 @@
     "bytes_beyond_kernel_copy": 4507136,
     "tail_zeroing_verified": false
   },
+  "chosen_initrd": {
+    "start": "0x84080000",
+    "end_exclusive": "0x84ca12df",
+    "total_size": 12718815,
+    "property_width_bytes": 4,
+    "property_bytes_be": {
+      "linux,initrd-start": "84080000",
+      "linux,initrd-end": "84ca12df"
+    },
+    "writer_calls": [
+      "0xfb42c",
+      "0xfb4d8"
+    ],
+    "runtime_observed": false
+  },
+  "fdt_initrd_check": {
+    "performed": false
+  },
   "vendor_dtb_region": {
     "file_offset": "0xb77000",
     "size": 389940,

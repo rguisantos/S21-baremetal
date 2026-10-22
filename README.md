@@ -108,6 +108,8 @@ O [modelo offline LK v3](docs/lk-v3-layout.md) confere as três cópias kernel/r
 
 A [seleção DTB e os merges DTBO/DPM](docs/lk-dtb-pipeline.md) foram ligados ao buffer 0x8b080000. O seletor offline passou em seis testes; oito candidatos de placa+DPM passaram na aplicação com libfdt, mantendo UART/GIC/timer/PSCI e sem nós RAM. Isso não reproduz a UFDT Samsung nem o FDT final do aparelho.
 
+O [rastreio das escritas dinâmicas](docs/lk-dynamic-fdt.md) ligou chosen ao initrd concatenado: 0x84080000–0x84ca12df no ramo stock v3. O verificador aceita `--fdt` para comparar essas propriedades e recusa os valores antigos dos candidatos estáticos; a suíte conjunta passou em 19 testes. Reservas condicionais e o getter de tamanho de RAM foram localizados, sem reconstruir o mapa efetivo.
+
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.

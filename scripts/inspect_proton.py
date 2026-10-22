@@ -32,7 +32,9 @@ def fdt_nodes(data):
             stop = data.index(0, pos)
             stack.append(data[pos:stop].decode('ascii'))
             pos = wire.align(stop+1, 4)
-            nodes['/'+'/'.join(filter(None, stack))] = {}
+            path = '/'+'/'.join(filter(None, stack))
+            wire.require(path not in nodes, 'duplicate FDT node path')
+            nodes[path] = {}
         elif token == 2:
             stack.pop()
         elif token == 3:
@@ -40,7 +42,9 @@ def fdt_nodes(data):
             pos += 8
             stop = data.index(0, strings+name)
             key = data[strings+name:stop].decode('ascii')
-            nodes['/'+'/'.join(filter(None, stack))][key] = data[pos:pos+length]
+            props = nodes['/'+'/'.join(filter(None, stack))]
+            wire.require(key not in props, 'duplicate FDT property')
+            props[key] = data[pos:pos+length]
             pos = wire.align(pos+length, 4)
         elif token == 9:
             break

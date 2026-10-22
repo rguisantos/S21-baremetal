@@ -302,3 +302,21 @@ nenhum nó RAM. Três logs reserved-memory ficam disabled e security fica0;
 isso não prova causa da indisponibilidade de logs ou liberação da memória.
 Relatórios JSON sem blobs, documentação e índices atualizados. UFDT Samsung,
 edições dinâmicas, reservas e execução no aparelho permanecem sem validação.
+
+## 2026-10-21 — chosen/initrd, reservas e origem do tamanho de RAM
+
+Escritor v3 de chosen ligado aos tamanhos dos headers: início84080000,
+fim84ca12df, duas células de4 bytes, sem padding entre os ramdisks.
+Modelo v3 passou a emitir os bytes esperados e aceitar --fdt para comparação
+parcial, sem declarar mapa/reservas/bootabilidade validados. Os oito candidatos
+placa+DPM foram recusados por chosen antigo; cells reserved-memory2/1 conferidos.
+Leitor Python comum reforçado para recusar propriedades e caminhos duplicados,
+que antes eram sobrescritos no dicionário. Testes reproduzem ocultação de
+chosen antigo por segunda propriedade/nó. Suíte conjunta: 19/19.
+Construtor148770 consulta larguras de células, escreve reg e compatible;
+documentados el2_code, earlymem por HVC e kaslr, além de extras no ramo modo5,
+sem assumir execução/sucesso. Getter11b758 lê64 bits de02038848 e usa cache;
+setter11b798 pode limitar esse tamanho, chamado no caminho DRAMSIZE de147310.
+Nenhum valor real desses serviços, mapa completo ou estado final foi capturado.
+Inspector, relatório stock, README, catálogo e roadmap atualizados; sem writes
+no telefone e sem novos arquivos solicitados ao usuário.

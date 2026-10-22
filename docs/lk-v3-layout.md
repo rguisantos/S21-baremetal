@@ -68,6 +68,8 @@ O programa usa somente a biblioteca padrão. Lê arquivos raw, limita cada
 contêiner a 64 MiB, exige o hash exato do sboot, headers v3 conhecidos,
 página vendor de 4096 bytes e Image ARM64 little-endian sem compressão.
 Confere todos os intervalos de componentes antes de emitir o relatório.
+Também modela as células de initrd; `--fdt` permite a
+[comparação parcial de chosen](lk-dynamic-fdt.md), limitada a 2 MiB.
 Recusa deslocamentos fora de 0..0x1f8000, passo 0x8000, e sobreposições entre
 as extensões de destino modeladas. Não extrai arquivos nem escreve contêineres.
 
@@ -101,4 +103,6 @@ Ainda faltam a seleção/alteração final do FDT, reservas de RAM, estado de
 EL/MMU/caches e um canal de observação. O modelo não transforma o shim em
 carregador Samsung nem prepara um pacote de flash. O consumidor do ponteiro
 foi rastreado na [seleção DTB e merges DTBO/DPM](lk-dtb-pipeline.md).
-Restam os valores das edições dinâmicas e os checks posteriores até o salto.
+As [escritas de initrd e os escritores condicionais de reservas](lk-dynamic-fdt.md)
+também foram rastreados. Restam os valores de serviços e ramos que definem
+o mapa efetivo, além dos checks posteriores até o salto.

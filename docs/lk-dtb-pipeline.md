@@ -151,6 +151,7 @@ as palavras dos registradores/seletores. Intervalos para desassemblagem:
 ## Próximo bloqueio
 
 A seleção da revisão no telefone, o FDT após todas as edições dinâmicas e as
-reservas efetivas continuam desconhecidos. O próximo rastreio deve ligar os
-argumentos de initrd/memória/reservas às propriedades escritas no buffer final.
+reservas efetivas continuam desconhecidos. A continuação ligou os argumentos
+de initrd e algumas reservas aos [escritores de propriedades](lk-dynamic-fdt.md).
+Os retornos de serviços e a seleção dos ramos de RAM ainda precisam ser fechados.
 Não se altera a entrada R10 ou seu mapa de RAM com base nesses candidatos.
