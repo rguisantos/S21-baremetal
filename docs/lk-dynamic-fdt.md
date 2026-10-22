@@ -62,7 +62,7 @@ criar nós pelo helper 0x148770, com estes argumentos:
 | Nome / compatible | Base, tamanho | Condição adicional |
 |---|---|---|
 | el2_code / el2,uh | 0xc1400000, 0x200000 | caminho comum após lookup da raiz |
-| el2_earlymem / el2,uh | dois buffers locais, sem conteúdo observado | consulta HVC 0x83000004 |
+| el2_earlymem / el2,uh | dois buffers locais, sem conteúdo observado | chamada HVC 0x83000004; handler de alocação rastreado no uH |
 | kaslr / kernel-kaslr | 0x80001000, 0x1000 | caminho comum após earlymem |
 | sboot / sboot,rmem | 0xe8000000, 0x1800000 | getter 0x12dbc8(0x11) retorna 5 |
 | mz_zeroisation / sboot,mz | 0xfb400000, 0x1000 | mesmo ramo de valor 5 |
@@ -76,6 +76,11 @@ reservas finais e não autoriza considerar o restante como memória livre.
 0x148b20, seus conteúdos são carregados como base/tamanho. O estado inicial
 zero não comprova o resultado do serviço; esse HVC também não estabelece
 conduíte PSCI alternativo. O DTB continua declarando PSCI SMC.
+
+Atualização de 2026-10-22 UTC: o [handler no uH do pacote BL](el2-earlymem-hzc2.md)
+foi identificado. Pode calcular, alocar e inicializar a região, dependendo de
+uma lista de intervalos e de seu estado de inicialização. Não é uma consulta
+pura; base e tamanho efetivos permanecem desconhecidos.
 
 0x1486a0 consulta `#address-cells`/`#size-cells`. Com uma célula grava quatro
 bytes big-endian; com duas, oito. Nos oito candidatos de host, reserved-memory

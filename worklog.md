@@ -320,3 +320,27 @@ setter11b798 pode limitar esse tamanho, chamado no caminho DRAMSIZE de147310.
 Nenhum valor real desses serviços, mapa completo ou estado final foi capturado.
 Inspector, relatório stock, README, catálogo e roadmap atualizados; sem writes
 no telefone e sem novos arquivos solicitados ao usuário.
+
+## 2026-10-22 UTC — uH earlymem e Harx soc_info
+
+Membros uh.bin/harx.bin descomprimidos do BL HZC2 recebido, com hashes e
+consumo LZ4 conferidos; nenhum blob novo no Git. HVC 0x83000004 do LK ligado
+ao registro do callback 0x6c3c no uH, aplicação 0/comando 4, construtor
+0x3368, tabela 0x16000 e ponteiro 0xc1401708. O handler 0x1708 altera lista
+e estado, calcula tamanho no ramo automático, aloca e grava base de 64 bits
+e tamanho de 32 bits nos buffers previamente zerados pelo LK. Não é consulta
+pura; não se observaram os intervalos ou o resultado real.
+
+Harx consulta 0x8200012e e exige versão 0x66001000, com mensagens soc_info.
+LK usa o identificador legado -0x12e com a mesma versão, sem tradução
+comprovada entre IDs. O header do kernel dá nome SJTAG ao ID positivo;
+registrada a divergência sem importar essa semântica para o BL. O getter
+Harx também lê 0x02038848, exige múltiplo de 1 GiB e evita leitura sem cache
+quando a MMU de EL2 está ligada.
+
+Novo inspetor com biblioteca padrão, leitura limitada e hash obrigatório
+para as três imagens; relatório JSON só com metadados e instruções. Três
+testes de limites passaram e 19 testes LK continuaram passando. README,
+índices e roadmap atualizados. Continuação: origem dos intervalos uH e
+tradução soc_info. Nenhum arquivo extra solicitado, serviço executado ou
+acesso ao telefone realizado.
