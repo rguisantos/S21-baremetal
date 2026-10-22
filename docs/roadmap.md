@@ -33,7 +33,9 @@ está encerrado nas condições atuais, sem repetir leituras ou pedir um log
 que não foi capturado. O material recebido basta para a análise estática.
 
 No [SEC_PGTBL/LDFW](sec-pgtbl-hzc2.md), o chamador LK está conferido por
-144 cenários Unicorn com respostas substituídas. O contêiner tem seis
+248 cenários Unicorn com respostas substituídas, incluindo 104 injeções
+hipotéticas dos 52 status declarados no header Samsung recebido. O enum
+não foi ligado ao retorno da consulta ou à carga -0x500. O contêiner tem seis
 registros; o DRM candidato está marcado como cifrado e a carga até SMC
 -0x500 foi ligada ao LK. Para recuperar esse handler, a lacuna específica
 é código DRM HZC2 em claro com origem verificável ou fonte correspondente.

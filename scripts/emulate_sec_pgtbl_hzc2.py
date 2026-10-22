@@ -94,26 +94,36 @@ def emulate_caller(sboot, base_result, size_result):
                              'PC values are file offsets; no runtime load-base claim'])
 
 
-def self_check(sboot):
+def self_check(sboot, drm_header=None):
     bases = (0, 3, U64, 0xffffffff, 0xe0001000, 0xe0000000,
              0x100000000, 0xfffffffffff00000)
     sizes = (0, 3, 0xffffffff, 1, 0x1000, 0x180000, 0x200000,
              0x1234567800200000, 0x1234567800000000, 0x1234567800000003)
-    scenarios = list(itertools.product(bases, sizes))
+    scenarios = [(base, size, None) for base, size in itertools.product(bases, sizes)]
     rng = random.Random(0x82002060)
     for index in range(64):
         base = rng.getrandbits(64)
         if index % 2:
             base &= ~0xfffff
-        scenarios.append((base, rng.getrandbits(64)))
+        scenarios.append((base, rng.getrandbits(64), None))
+    if drm_header is not None:
+        # These are hypothetical injections into a DIFFERENT service's replies.
+        # A declared status name does not establish the query provider's ABI.
+        for literal, symbol in drm_header['enum_by_value'].items():
+            value = int(literal, 0)
+            scenarios.append((value, 0x200000, dict(symbol=symbol, value=literal, supplied_to='base')))
+            scenarios.append((0xe0000000, value, dict(symbol=symbol, value=literal, supplied_to='size')))
     results = []
     covered = set()
-    for base, size in scenarios:
+    for base, size, probe in scenarios:
         result = emulate_caller(sboot, base, size)
         covered.update(result['trace'])
-        results.append(dict(inputs=result['inputs'], registers=result['registers'],
-                            matches_response_model=result['matches_response_model']))
-    return dict(mode='unicorn_lk_caller_self_check_with_mock_smc',
+        row = dict(inputs=result['inputs'], registers=result['registers'],
+                   matches_response_model=result['matches_response_model'])
+        if probe is not None:
+            row['declared_enum_value_probe'] = probe
+        results.append(row)
+    report = dict(mode='unicorn_lk_caller_self_check_with_mock_smc',
                 unicorn_version=result['unicorn_version'], sboot_sha256=IMAGES['sboot'][1],
                 start_pc=hex(START), stop_pc=hex(STOP),
                 limits=dict(mapped_instruction_pages=3, max_instruction_visits=256,
@@ -123,6 +133,12 @@ def self_check(sboot):
                 visited_instruction_offsets=sorted(covered, key=lambda value: int(value, 0)),
                 scenarios=results, provider_executed=False, runtime_observed=False,
                 memory_map_verified=False, range_is_free=False)
+    if drm_header is not None:
+        report['drm_header'] = drm_header
+        report['core_scenario_count'] = 144
+        report['declared_enum_probe_count'] = len(results) - 144
+        report['sec_pgtbl_provider_contract_verified'] = False
+    return report
 
 
 def main():
@@ -132,6 +148,7 @@ def main():
     parser.add_argument('--base-result', type=lambda value: int(value, 0))
     parser.add_argument('--size-result', type=lambda value: int(value, 0))
     parser.add_argument('--self-check', action='store_true')
+    parser.add_argument('--drm-header', help='optional exact Samsung header; adds hypothetical enum probes')
     args = parser.parse_args()
     if args.self_check:
         if args.base_result is not None or args.size_result is not None:
@@ -140,10 +157,12 @@ def main():
         parser.error('supply both explicit replies or --self-check')
     try:
         # Validate BOTH images and the container before any scenario execution.
-        evidence = inspect(args.sboot, args.ldfw)
+        evidence = inspect(args.sboot, args.ldfw, args.drm_header)
         sboot = read_exact(args.sboot, *IMAGES['sboot'])
-        report = self_check(sboot) if args.self_check else emulate_caller(
+        report = self_check(sboot, evidence.get('drm_header')) if args.self_check else emulate_caller(
             sboot, args.base_result, args.size_result)
+        if args.drm_header is not None:
+            report['drm_header'] = evidence['drm_header']
         report['ldfw_sha256'] = evidence['inputs']['ldfw_sha256']
     except (OSError, ValueError) as error:
         parser.exit(1, f'emulate_sec_pgtbl_hzc2: {error}\n')

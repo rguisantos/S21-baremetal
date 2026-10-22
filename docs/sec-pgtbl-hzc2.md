@@ -89,6 +89,77 @@ O start_smc_id **0x82002000** torna `drm_fw` candidato para **0x82002060**
 identificadores não prova limites da faixa, índice de tabela ou endereço do
 handler. O dispatch e o handler SEC_PGTBL **continuam não recuperados**.
 
+## Enum DRM confirmado na fonte e contratos distintos
+
+O `Kernel.tar.gz` recebido, SHA-256
+`c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2`,
+contém **include/soc/samsung/exynos-smc.h**, 8.105 bytes, SHA-256
+**c896ed8086009ae3055c6ac6b3164744c9e7cf7286a0ad993eba2b4792b7db49**.
+Esse arquivo é byte a byte idêntico ao
+[header público fixado](https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/include/soc/samsung/exynos-smc.h).
+O Git blob dos dois é 45c8d284835868ed8e9970340590c3294aba9fbd.
+Não foi necessário baixar novamente o pacote Samsung ou pedir outro arquivo.
+
+O enum **drmdrv_result_t**, linhas 181–250, tem **52 constantes**. Define
+DRMDRV_OK=0 e a família comum 0x1001–0x100b, incluindo
+**E_DRMDRV_INVALID_SIZE_ALIGN=0x1003**.
+Há também famílias TZASC, mídia, G2D, RTC, CFW, secure buffer e MFC.
+O relatório registra todas as declarações, sem inventar retornos do provedor.
+
+Também foram confirmados SMC_PROTECTION_SET=0x82002010 e
+SMC_DRM_FW_LOADING=0x82002011. Esse header **não declara 0x82002060 ou -0x500**.
+Seu wrapper exynos_smc passa comando/argumentos ao SMCCC e devolve res.a0;
+`struct arm_smccc_res` armazena respostas no chamador. Isso não fornece a
+implementação do handler seguro nem uma struct de entrada para -0x500.
+
+| Serviço | Evidência do chamador | Interpretação de retorno |
+|---|---|---|
+| -0x500 | LK 0xf66b0 → wrapper 0xf60e8 | casos especiais, erro de assinatura e contadores de carga |
+| 0x82002060, índices 1/2 | LK 0xfae40/0xfae90 | base/tamanho ou sentinelas; zero é inválido |
+| 0x82002010 | MFC e GPU na fonte | zero é sucesso da proteção |
+| 0x82002011 | definição no header | o nome não prova decriptação/descompactação do LDFW HZC2 |
+| 0x82002110/0x82002111 | ION HPA protect/unprotect | comparação explícita com DRMDRV_OK |
+| 0x82002112/0x82002113 | MFC protect/unprotect de FW | comparação explícita com DRMDRV_OK |
+
+Na fonte recebida, `drivers/staging/android/ion/exynos/ion_hpa_heap.c`
+(SHA e6e7215e…7dd4f04, linhas 140–141/165–167) passa o endereço físico de
+protdesc e testa DRMDRV_OK. `drivers/media/platform/exynos/mfc/mfc_core_ops.c`
+(SHA 30fc24cc…c26f8aa, linhas 58–60/121–123) testa esse retorno para proteção
+do buffer de firmware MFC. `mfc_core_pm.c` (SHA e0edeb87…60e86d,
+linhas 76–79/151–153) faz o mesmo no controle da proteção do core.
+Esses chamadores sustentam o ABI de status nesses caminhos; não ligam o enum
+à consulta SEC_PGTBL ou ao carregador legado.
+
+### O retorno de carga -0x500
+
+O wrapper escreve **X0=0xfffffffffffffb00**; 0xfffffb00 são seus 32 bits
+baixos. Os argumentos são o ponteiro do contêiner em X1, comprimento em X2
+e zero em X3. Após o retorno, 0xf66b4 interpreta W0 como signed de 32 bits.
+O LK trata -1, 0x1230 e 0x1231 separadamente; testa o prefixo 0xfdaa0000 em
+retornos negativos e associa zero à mensagem de nenhum LDFW inicializado.
+No caminho normal, 0xf6748/0xf674c separam falhas nos bits 31:16 e tentativas
+nos bits 15:0. As palavras e strings estão no relatório reproduzível.
+
+Assim, interpretar todo X0 por um único `x0 == DRMDRV_OK` descartaria esse
+contrato. Como hipótese aritmética, a palavra 0x1003 nesse caminho normal
+seria separada em 4.099 tentativas e zero falhas. Isso **não foi observado**
+no monitor e não é o significado de E_DRMDRV_INVALID_SIZE_ALIGN nesse ABI.
+
+### Como usar os nomes nos testes
+
+`--drm-header` exige o hash/tamanho exatos, extrai somente declarações
+inteiras explícitas e acrescenta o catálogo de nomes como metadado. Não
+substitui a classificação das respostas de base/tamanho por sucesso/erro DRM.
+No Unicorn, cada uma das 52 palavras pode ser **fornecida hipoteticamente**
+como base e como tamanho, gerando 104 cenários adicionais identificados.
+
+Por exemplo, base=0xe0000000 e tamanho fornecido=0x1003 mantêm W22=1 e
+X27=0xe0001003 no LK. O nome declarado é E_DRMDRV_INVALID_SIZE_ALIGN,
+mas o chamador não o reconhece como esse erro: conserva 4.099 bytes.
+Fornecido como base, 0x1003 é rejeitado por desalinhamento. DRMDRV_OK=0
+também continua sendo sentinela inválida nessa consulta. Nenhum desses
+ensaios demonstra que o handler HZC2 realmente produza esses valores.
+
 ## Chamadas e largura dos retornos
 
 | Etapa no sboot | Efeito |
@@ -168,7 +239,7 @@ instruções e um segundo de emulação. Saídas, argumentos do SMC e chamadas
 omitidas são conferidos; execução ou acesso inesperado provoca erro. Os PCs
 usam offsets de arquivo como endereços artificiais, sem alegar base runtime.
 
-A matriz reproduzível tem **144 cenários**: 80 combinações explícitas e 64
+A matriz básica tem **144 cenários**: 80 combinações explícitas e 64
 pares pseudoaleatórios com seed fixa. Todos coincidiram com o modelo para
 X21, W20, W22 e X27, cobrindo sentinelas, truncamento e wrap. O ramo do erro
 de alinhamento do tamanho não foi visitado. O exemplo base=0xe0000000,
@@ -176,7 +247,9 @@ tamanho=0x1000 manteve W22=1 e X27=0xe0001000. É uma confirmação executável
 do comportamento local sob as hipóteses, não uma resposta observada.
 
 O [relatório da matriz](references/sec-pgtbl-unicorn-hzc2.json) identifica
-versão do emulador, hashes, entradas, registradores e PCs cobertos.
+versão do emulador, hashes, entradas, registradores e PCs cobertos. A execução
+atual com `--drm-header` acrescenta 104 sondagens hipotéticas com nomes do
+enum: **248/248 cenários coincidiram com o modelo**, sem alterar a consulta.
 `provider_executed`, `runtime_observed`, `memory_map_verified` e
 `range_is_free` permanecem falsos.
 
@@ -185,6 +258,10 @@ versão do emulador, hashes, entradas, registradores e PCs cobertos.
 ```bash
 # Somente evidências dos dois arquivos originais, sem cenário presumido.
 python3 scripts/inspect_sec_pgtbl_hzc2.py /caminho/sboot.bin /caminho/ldfw.img
+
+# Catálogo verificado de status; não converte a consulta em operação de status.
+python3 scripts/inspect_sec_pgtbl_hzc2.py /caminho/sboot.bin /caminho/ldfw.img \
+  --drm-header /caminho/include/soc/samsung/exynos-smc.h
 
 # Exemplo fictício de retorno; não são valores medidos no telefone.
 python3 scripts/inspect_sec_pgtbl_hzc2.py /caminho/sboot.bin /caminho/ldfw.img \
@@ -198,6 +275,11 @@ python3 -m venv /tmp/s21-unicorn-env
 /tmp/s21-unicorn-env/bin/python scripts/emulate_sec_pgtbl_hzc2.py \
   /caminho/sboot.bin /caminho/ldfw.img --self-check
 
+# 144 cenários básicos + 104 injeções hipotéticas das palavras do enum.
+/tmp/s21-unicorn-env/bin/python scripts/emulate_sec_pgtbl_hzc2.py \
+  /caminho/sboot.bin /caminho/ldfw.img --self-check \
+  --drm-header /caminho/include/soc/samsung/exynos-smc.h
+
 /tmp/s21-unicorn-env/bin/python scripts/emulate_sec_pgtbl_hzc2.py \
   /caminho/sboot.bin /caminho/ldfw.img \
   --base-result 0xe0000000 --size-result 0x1000
@@ -209,12 +291,12 @@ juntas como valores brutos unsigned de 64 bits; não há respostas padrão.
 O relatório sem cenário está em [sec-pgtbl-hzc2.json](references/sec-pgtbl-hzc2.json),
 somente com metadados, palavras de instrução e strings.
 
-**14 testes de host passaram**, incluindo os sete anteriores de respostas
-e mais sete de limites do contêiner/recusa do emulador: tamanhos inválidos,
-truncamento, intervalos cifrados, nomes, flag desconhecida, término e limite
-de registros. As CLIs foram executadas nas imagens originais e a matriz
-Unicorn passou em 144/144 cenários. As suítes R8/R9/R10 anteriores não foram
-reexecutadas; seus arquivos não mudaram.
+**20 testes de host passaram**: os 14 anteriores de respostas/contêiner e
+seis de leitura dos enums, recusa de expressões/duplicidades/tamanho/hash e
+preservação da semântica da consulta diante de nomes de status. As CLIs
+foram executadas nas imagens e no header originais; o Unicorn passou em
+248/248 cenários com a opção de header. As suítes R8/R9/R10 anteriores não
+foram reexecutadas; seus arquivos não mudaram.
 
 ## O que falta para recuperar o handler
 
@@ -230,6 +312,14 @@ constantes não enumera retornos reais. Mesmo com plaintext, será necessário
 reconstruir o dispatch, a inicialização e as dependências do handler antes
 de atribuir significado às suas saídas. Retorno local e resposta que chega
 ao LK também podem passar por adaptações de contexto do monitor.
+
+O harness atual intercepta o SMC no chamador Normal World e não contém a
+execução do monitor/TEE ou a RAM Secure pós-decriptação. Portanto não existe
+nele um dump pós-SMC do plaintext para extrair. Um eventual código em claro
+também pode continuar sendo imagem raw com cabeçalho LDFW; ELF não é requisito
+garantido pelo formato observado. A referência pública distingue monitor EL3
+de LDFWs/TEE em S-EL1. A presença de enums no OSS não revela chaves ou corpo
+executável HZC2. O nome HZC2_DRM_INIT não foi encontrado nas fontes consultadas.
 
 Tracing do kernel exigiria um canal de observação que não existe na sessão
 rish atual. As recusas já recebidas continuam válidas; não se repetiram

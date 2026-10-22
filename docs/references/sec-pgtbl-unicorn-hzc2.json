@@ -15,7 +15,7 @@
     "printf is skipped and X0..X18 are poisoned",
     "PC values are file offsets; no runtime load-base claim"
   ],
-  "scenario_count": 144,
+  "scenario_count": 248,
   "all_match": true,
   "visited_instruction_offsets": [
     "0xf6088",
@@ -1969,11 +1969,1961 @@
         "x27_end_wrapped64": "0x3e0466643743cfe7"
       },
       "matches_response_model": true
+    },
+    {
+      "inputs": {
+        "base_x0": "0x0",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "DRMDRV_OK",
+        "value": "0x0",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x0"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x0",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0xe0000000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "DRMDRV_OK",
+        "value": "0x0",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID",
+        "value": "0x1001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID",
+        "value": "0x1001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_ADDR_ALIGN",
+        "value": "0x1002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_ADDR_ALIGN",
+        "value": "0x1002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_SIZE_ALIGN",
+        "value": "0x1003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_SIZE_ALIGN",
+        "value": "0x1003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_MEMCPY_LENGTH",
+        "value": "0x1004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_MEMCPY_LENGTH",
+        "value": "0x1004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1005",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OUT_OF_DRAM",
+        "value": "0x1005",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1005"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1005",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001005"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OUT_OF_DRAM",
+        "value": "0x1005",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1006",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OUT_OF_SECMEM",
+        "value": "0x1006",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1006"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1006",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001006"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OUT_OF_SECMEM",
+        "value": "0x1006",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1007",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_ADDR",
+        "value": "0x1007",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1007"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1007",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001007"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_ADDR",
+        "value": "0x1007",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1008",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_SIZE",
+        "value": "0x1008",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1008"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1008",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001008"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_SIZE",
+        "value": "0x1008",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x1009",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_CMD",
+        "value": "0x1009",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x1009"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x1009",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0001009"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_CMD",
+        "value": "0x1009",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100a",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OVERFLOWED",
+        "value": "0x100a",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x100a"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x100a",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe000100a"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OVERFLOWED",
+        "value": "0x100a",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x100b",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OVERLAP_SECOS",
+        "value": "0x100b",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x100b"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x100b",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe000100b"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_ADDR_OVERLAP_SECOS",
+        "value": "0x100b",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_ALIGN_CHECK",
+        "value": "0x2001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_ALIGN_CHECK",
+        "value": "0x2001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_CONTIG_CHECK",
+        "value": "0x2002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_CONTIG_CHECK",
+        "value": "0x2002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_GET_ORDER",
+        "value": "0x2003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_GET_ORDER",
+        "value": "0x2003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_INVALID_INDEX",
+        "value": "0x2004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_INVALID_INDEX",
+        "value": "0x2004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2005",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_INVALID_ENABLED",
+        "value": "0x2005",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2005"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2005",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002005"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_INVALID_ENABLED",
+        "value": "0x2005",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x2006",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_NOT_PROTECTED",
+        "value": "0x2006",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x2006"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x2006",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0002006"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_TZASC_NOT_PROTECTED",
+        "value": "0x2006",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_POWER",
+        "value": "0x3001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_POWER",
+        "value": "0x3001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_CLOCK",
+        "value": "0x3002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_CLOCK",
+        "value": "0x3002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_SMMU_CLOCK",
+        "value": "0x3003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_SMMU_CLOCK",
+        "value": "0x3003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_SMMU_ENABLED",
+        "value": "0x3004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MEDIA_CHECK_SMMU_ENABLED",
+        "value": "0x3004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3005",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_WB_CHECK_FAILED",
+        "value": "0x3005",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3005"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3005",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003005"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_WB_CHECK_FAILED",
+        "value": "0x3005",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3006",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_WITH_NO_HDCP_FAILED",
+        "value": "0x3006",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3006"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3006",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003006"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_WITH_NO_HDCP_FAILED",
+        "value": "0x3006",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3007",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MSCL_LOCAL_PATH_FAILED",
+        "value": "0x3007",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3007"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3007",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003007"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MSCL_LOCAL_PATH_FAILED",
+        "value": "0x3007",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3008",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_POWER_OFF",
+        "value": "0x3008",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3008"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3008",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003008"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_POWER_OFF",
+        "value": "0x3008",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x3009",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_CLOCK_OFF",
+        "value": "0x3009",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x3009"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x3009",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0003009"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_HDMI_CLOCK_OFF",
+        "value": "0x3009",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x300a",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_REFCOUNT",
+        "value": "0x300a",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x300a"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x300a",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe000300a"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_REFCOUNT",
+        "value": "0x300a",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x4001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_G2D_INVALID_PARAM",
+        "value": "0x4001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x4001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x4001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0004001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_G2D_INVALID_PARAM",
+        "value": "0x4001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x4002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_G2D_BLIT_TIMEOUT",
+        "value": "0x4002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x4002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x4002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0004002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_G2D_BLIT_TIMEOUT",
+        "value": "0x4002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_GET_RTC_TIME",
+        "value": "0x5001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x5001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x5001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0005001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_GET_RTC_TIME",
+        "value": "0x5001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_SET_RTC_TIME",
+        "value": "0x5002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x5002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x5002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0005002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_SET_RTC_TIME",
+        "value": "0x5002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_GET_RTC_TICK_TIME",
+        "value": "0x5003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x5003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x5003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0005003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_GET_RTC_TICK_TIME",
+        "value": "0x5003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x5004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_SET_RTC_TICK_TIME",
+        "value": "0x5004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x5004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x5004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0005004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_SET_RTC_TICK_TIME",
+        "value": "0x5004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_ERROR",
+        "value": "0x6001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_ERROR",
+        "value": "0x6001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_BUFFER_LIST_FULL",
+        "value": "0x6002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_BUFFER_LIST_FULL",
+        "value": "0x6002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_NOT_PROTECTED_BUFFER",
+        "value": "0x6003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_NOT_PROTECTED_BUFFER",
+        "value": "0x6003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_INVALID_DEV_ARG",
+        "value": "0x6004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_INVALID_DEV_ARG",
+        "value": "0x6004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6005",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_INIT_FAIL",
+        "value": "0x6005",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6005"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6005",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006005"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_INIT_FAIL",
+        "value": "0x6005",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6006",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_PROT_FAIL",
+        "value": "0x6006",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6006"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6006",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006006"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_PROT_FAIL",
+        "value": "0x6006",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6007",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_ENABLED_ALREADY",
+        "value": "0x6007",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6007"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6007",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006007"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_ENABLED_ALREADY",
+        "value": "0x6007",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6008",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_NOT_EXIST_IN_CFW_BUFF_LIST",
+        "value": "0x6008",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6008"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6008",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006008"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_NOT_EXIST_IN_CFW_BUFF_LIST",
+        "value": "0x6008",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x6009",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_DUPLICATED_BUFFER",
+        "value": "0x6009",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x6009"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x6009",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0006009"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_DUPLICATED_BUFFER",
+        "value": "0x6009",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x600a",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_BUFFER_IS_OVERLAPPED",
+        "value": "0x600a",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x600a"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x600a",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe000600a"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_CFW_BUFFER_IS_OVERLAPPED",
+        "value": "0x600a",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_DUPLICATED_BUFFER",
+        "value": "0x7001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x7001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x7001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0007001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_DUPLICATED_BUFFER",
+        "value": "0x7001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_BUFFER_LIST_FULL",
+        "value": "0x7002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x7002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x7002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0007002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_BUFFER_LIST_FULL",
+        "value": "0x7002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_NOT_EXIST_IN_SEC_BUFFER_LIST",
+        "value": "0x7003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x7003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x7003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0007003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_NOT_EXIST_IN_SEC_BUFFER_LIST",
+        "value": "0x7003",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7004",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_OVERLAP_RESERVED_ASP_REGION",
+        "value": "0x7004",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x7004"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x7004",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0007004"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_OVERLAP_RESERVED_ASP_REGION",
+        "value": "0x7004",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x7005",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_BUFFER_TYPE",
+        "value": "0x7005",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x7005"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x7005",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0007005"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_INVALID_BUFFER_TYPE",
+        "value": "0x7005",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x8001",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_IS_NOT_PROTECTED",
+        "value": "0x8001",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x8001"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x8001",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0008001"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_IS_NOT_PROTECTED",
+        "value": "0x8001",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x8002",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_ARG_IS_NULL",
+        "value": "0x8002",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x8002"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x8002",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0008002"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_ARG_IS_NULL",
+        "value": "0x8002",
+        "supplied_to": "size"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0x8003",
+        "size_x0": "0x200000"
+      },
+      "registers": {
+        "normalized_base": "0x0",
+        "size_low32": "0x200000",
+        "w22_split_flag": 0,
+        "x27_end_wrapped64": "0x200000"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_INVALID_SIZE",
+        "value": "0x8003",
+        "supplied_to": "base"
+      }
+    },
+    {
+      "inputs": {
+        "base_x0": "0xe0000000",
+        "size_x0": "0x8003"
+      },
+      "registers": {
+        "normalized_base": "0xe0000000",
+        "size_low32": "0x8003",
+        "w22_split_flag": 1,
+        "x27_end_wrapped64": "0xe0008003"
+      },
+      "matches_response_model": true,
+      "declared_enum_value_probe": {
+        "symbol": "E_DRMDRV_MFC_FW_INVALID_SIZE",
+        "value": "0x8003",
+        "supplied_to": "size"
+      }
     }
   ],
   "provider_executed": false,
   "runtime_observed": false,
   "memory_map_verified": false,
   "range_is_free": false,
+  "drm_header": {
+    "source_path": "include/soc/samsung/exynos-smc.h",
+    "source_size": 8105,
+    "source_sha256": "c896ed8086009ae3055c6ac6b3164744c9e7cf7286a0ad993eba2b4792b7db49",
+    "public_identical_header": "https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/include/soc/samsung/exynos-smc.h",
+    "enum_count": 52,
+    "enum_by_value": {
+      "0x0": "DRMDRV_OK",
+      "0x1001": "E_DRMDRV_INVALID",
+      "0x1002": "E_DRMDRV_INVALID_ADDR_ALIGN",
+      "0x1003": "E_DRMDRV_INVALID_SIZE_ALIGN",
+      "0x1004": "E_DRMDRV_INVALID_MEMCPY_LENGTH",
+      "0x1005": "E_DRMDRV_ADDR_OUT_OF_DRAM",
+      "0x1006": "E_DRMDRV_ADDR_OUT_OF_SECMEM",
+      "0x1007": "E_DRMDRV_INVALID_ADDR",
+      "0x1008": "E_DRMDRV_INVALID_SIZE",
+      "0x1009": "E_DRMDRV_INVALID_CMD",
+      "0x100a": "E_DRMDRV_ADDR_OVERFLOWED",
+      "0x100b": "E_DRMDRV_ADDR_OVERLAP_SECOS",
+      "0x2001": "E_DRMDRV_TZASC_ALIGN_CHECK",
+      "0x2002": "E_DRMDRV_TZASC_CONTIG_CHECK",
+      "0x2003": "E_DRMDRV_TZASC_GET_ORDER",
+      "0x2004": "E_DRMDRV_TZASC_INVALID_INDEX",
+      "0x2005": "E_DRMDRV_TZASC_INVALID_ENABLED",
+      "0x2006": "E_DRMDRV_TZASC_NOT_PROTECTED",
+      "0x3001": "E_DRMDRV_MEDIA_CHECK_POWER",
+      "0x3002": "E_DRMDRV_MEDIA_CHECK_CLOCK",
+      "0x3003": "E_DRMDRV_MEDIA_CHECK_SMMU_CLOCK",
+      "0x3004": "E_DRMDRV_MEDIA_CHECK_SMMU_ENABLED",
+      "0x3005": "E_DRMDRV_WB_CHECK_FAILED",
+      "0x3006": "E_DRMDRV_HDMI_WITH_NO_HDCP_FAILED",
+      "0x3007": "E_DRMDRV_MSCL_LOCAL_PATH_FAILED",
+      "0x3008": "E_DRMDRV_HDMI_POWER_OFF",
+      "0x3009": "E_DRMDRV_HDMI_CLOCK_OFF",
+      "0x300a": "E_DRMDRV_INVALID_REFCOUNT",
+      "0x4001": "E_DRMDRV_G2D_INVALID_PARAM",
+      "0x4002": "E_DRMDRV_G2D_BLIT_TIMEOUT",
+      "0x5001": "E_DRMDRV_GET_RTC_TIME",
+      "0x5002": "E_DRMDRV_SET_RTC_TIME",
+      "0x5003": "E_DRMDRV_GET_RTC_TICK_TIME",
+      "0x5004": "E_DRMDRV_SET_RTC_TICK_TIME",
+      "0x6001": "E_DRMDRV_CFW_ERROR",
+      "0x6002": "E_DRMDRV_CFW_BUFFER_LIST_FULL",
+      "0x6003": "E_DRMDRV_CFW_NOT_PROTECTED_BUFFER",
+      "0x6004": "E_DRMDRV_CFW_INVALID_DEV_ARG",
+      "0x6005": "E_DRMDRV_CFW_INIT_FAIL",
+      "0x6006": "E_DRMDRV_CFW_PROT_FAIL",
+      "0x6007": "E_DRMDRV_CFW_ENABLED_ALREADY",
+      "0x6008": "E_DRMDRV_CFW_NOT_EXIST_IN_CFW_BUFF_LIST",
+      "0x6009": "E_DRMDRV_CFW_DUPLICATED_BUFFER",
+      "0x600a": "E_DRMDRV_CFW_BUFFER_IS_OVERLAPPED",
+      "0x7001": "E_DRMDRV_DUPLICATED_BUFFER",
+      "0x7002": "E_DRMDRV_BUFFER_LIST_FULL",
+      "0x7003": "E_DRMDRV_NOT_EXIST_IN_SEC_BUFFER_LIST",
+      "0x7004": "E_DRMDRV_OVERLAP_RESERVED_ASP_REGION",
+      "0x7005": "E_DRMDRV_INVALID_BUFFER_TYPE",
+      "0x8001": "E_DRMDRV_MFC_FW_IS_NOT_PROTECTED",
+      "0x8002": "E_DRMDRV_MFC_FW_ARG_IS_NULL",
+      "0x8003": "E_DRMDRV_MFC_FW_INVALID_SIZE"
+    },
+    "command_definitions": {
+      "SMC_PROTECTION_SET": "0x82002010",
+      "SMC_DRM_FW_LOADING": "0x82002011",
+      "SMC_DRM_PPMP_PROT": "0x82002110",
+      "SMC_DRM_PPMP_UNPROT": "0x82002111",
+      "SMC_DRM_PPMP_MFCFW_PROT": "0x82002112",
+      "SMC_DRM_PPMP_MFCFW_UNPROT": "0x82002113"
+    },
+    "sec_pgtbl_query_id_declared": false,
+    "load_ldfw_legacy_id_declared": false,
+    "scope": "declared DRM status names; not SEC_PGTBL query replies or loader results",
+    "sec_pgtbl_provider_contract_verified": false,
+    "provider_executed": false,
+    "runtime_observed": false
+  },
+  "core_scenario_count": 144,
+  "declared_enum_probe_count": 104,
+  "sec_pgtbl_provider_contract_verified": false,
   "ldfw_sha256": "9d52a013bffde6f3d734e02a359ce9323a7db75878fce60569f5989b63e057fd"
 }

@@ -6,7 +6,8 @@ import sys
 import tempfile
 import unittest
 
-from inspect_sec_pgtbl_hzc2 import parse_ldfw_records, response_model
+from inspect_sec_pgtbl_hzc2 import (drm_header_evidence, parse_drm_enum,
+                                   parse_ldfw_records, response_model)
 
 
 class ReplyTests(unittest.TestCase):
@@ -159,6 +160,65 @@ class ContainerTests(unittest.TestCase):
         from emulate_sec_pgtbl_hzc2 import emulate_caller
         with self.assertRaisesRegex(ValueError, 'exact HZC2'):
             emulate_caller(b'not the firmware', 0xe0000000, 0x1000)
+
+
+DRM_ENUM_FIXTURE = '''
+/* enum drmdrv_result_t { FAKE = 1 }; */
+enum drmdrv_result_t {
+    DRMDRV_OK = 0x0000,
+    E_DRMDRV_INVALID_ADDR_ALIGN = 0x1002, // address alignment
+    E_DRMDRV_INVALID_SIZE_ALIGN = 0x1003,
+};
+'''
+
+
+class DrmHeaderTests(unittest.TestCase):
+    def test_reads_names_and_values_ignoring_comments(self):
+        values = parse_drm_enum(DRM_ENUM_FIXTURE)
+        self.assertEqual(values, dict(DRMDRV_OK=0, E_DRMDRV_INVALID_ADDR_ALIGN=0x1002,
+                                      E_DRMDRV_INVALID_SIZE_ALIGN=0x1003))
+
+    def test_refuses_expressions_and_implicit_values(self):
+        for expression in ('1 << 12', 'function_call()', 'previous + 1', ''):
+            text = DRM_ENUM_FIXTURE.replace('= 0x1003', '= ' + expression)
+            with self.subTest(expression=expression), self.assertRaises(ValueError):
+                parse_drm_enum(text)
+
+    def test_refuses_duplicate_names_values_and_invalid_success(self):
+        for text in (DRM_ENUM_FIXTURE.replace('0x1003', '0x1002'),
+                     DRM_ENUM_FIXTURE.replace('E_DRMDRV_INVALID_SIZE_ALIGN', 'E_DRMDRV_INVALID_ADDR_ALIGN'),
+                     DRM_ENUM_FIXTURE.replace('0x0000', '1'),
+                     DRM_ENUM_FIXTURE.replace('0x1003', '0x100000000')):
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                parse_drm_enum(text)
+
+    def test_refuses_missing_ambiguous_and_oversized_declarations(self):
+        for text in ('', 'enum drmdrv_result_t {};', DRM_ENUM_FIXTURE * 2, ' ' * 16385, None):
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                parse_drm_enum(text)
+
+    def test_requires_source_hash_not_only_plausible_enum(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'exynos-smc.h'
+            path.write_text(DRM_ENUM_FIXTURE)
+            with self.assertRaisesRegex(ValueError, 'unsupported image'):
+                drm_header_evidence(path)
+
+    def test_declared_drm_names_do_not_reclassify_query_replies(self):
+        values = parse_drm_enum(DRM_ENUM_FIXTURE)
+        zero = values['DRMDRV_OK']
+        result = response_model(zero, zero)
+        self.assertEqual(result['lk']['base_status'], 'invalid_type')
+        self.assertEqual(result['lk']['size_status'], 'invalid_type')
+        code = values['E_DRMDRV_INVALID_SIZE_ALIGN']
+        result = response_model(0xe0000000, code)
+        self.assertEqual(result['lk']['size_low32'], '0x1003')
+        self.assertEqual(result['lk']['w22_split_flag'], 1)
+        self.assertFalse(result['runtime_observed'])
+        self.assertFalse(result['host_arithmetic_guard']['passes'])
+        result = response_model(code, 0x200000)
+        self.assertEqual(result['lk']['base_status'], 'base_unaligned')
+        self.assertEqual(result['lk']['w22_split_flag'], 0)
 
 
 if __name__ == '__main__':

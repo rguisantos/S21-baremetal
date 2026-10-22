@@ -501,3 +501,35 @@ reexecutadas, pois seus arquivos não mudaram. Para recuperar especificamente
 o handler falta DRM HZC2 em claro com origem verificável ou fonte equivalente;
 o contêiner cifrado e os READMEs já enviados não precisam ser reenviados.
 Nenhuma coleta bloqueada foi repetida, sem root ou tracing no telefone.
+
+## 2026-10-21 Campo Grande / 2026-10-22 UTC — enum DRM e contexto dos retornos
+
+Conferida a sugestão de smc.h no Kernel.tar.gz já recebido. Arquivo real:
+include/soc/samsung/exynos-smc.h, 8105 bytes, SHA c896ed8086009ae3055c6ac6b3164744c9e7cf7286a0ad993eba2b4792b7db49.
+Header público em Exynos-2100/universal2100, commit 37c14d8, é idêntico
+(Git blob 45c8d284835868ed8e9970340590c3294aba9fbd). Enum drmdrv_result_t
+contém 52 valores, confirmando a família 0x1001–0x100b proposta pelo usuário.
+SMC_PROTECTION_SET=82002010 e SMC_DRM_FW_LOADING=82002011 também confirmados.
+Esse header não declara a consulta 82002060 ou o carregamento legado -500;
+definições não fornecem corpo seguro, chaves ou enum produzido pela consulta.
+
+Chamadores ION HPA, MFC ops/PM e GPU conferidos na fonte recebida: operações
+de proteção testam DRMDRV_OK. Não transferido esse teste para SEC_PGTBL,
+que usa zero como inválido. No LK, resposta de -500 passa por W0 signed,
+casos -1/1230/1231, prefixo de assinatura fdaa e desempacotamento de
+tentativas/falhas em 16 bits. Wrapper efetivo escreve X0=fffffffffffffb00.
+Palavras/strings e metadados de fonte registrados, sem executar o serviço.
+
+Opção --drm-header nos inspetor/emulador requer identidade exata. Parser de
+enum aceita somente inteiros explícitos e rejeita expressões/duplicidades,
+sem eval. Os 52 nomes são catálogo de status, sem reclassificar dados de RAM.
+Unicorn repetiu os 144 cenários básicos e mais 104 injeções hipotéticas das
+52 palavras como base/tamanho: 248/248 coincidiram. Exemplo fornecido 1003
+como tamanho mantém W22=1 e fim e0001003; não demonstra retorno real do DRM.
+
+20 testes de host passaram (14 anteriores e seis de enum/contexto/hash).
+Relatórios JSON e documentação atualizados. Nenhuma suíte R8/R9/R10 foi
+reexecutada, sem mudanças nesses componentes. O harness contém só o chamador
+Normal World com SMC interceptado: não existe RAM Secure descriptografada
+nele para dump. ELF também não é requisito garantido para plaintext LDFW.
+Sem novos pedidos de arquivos já recebidos, sem coleta/root/tracing no telefone.
