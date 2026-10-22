@@ -367,3 +367,27 @@ Inspetor EL2 e JSON ampliados com chamadas, palavras e handler do comando 2.
 README, índices e roadmap atualizados. Próxima lacuna: valores/ramos usados
 para construir os bancos e tradução soc_info, sem novo arquivo necessário
 ou execução no aparelho.
+
+## 2026-10-22 UTC — retorno constante do serviço de memória Harx
+
+Helper LK 0xf9320 ligado ao HVC OEM 0xc6000020, separado do namespace uH.
+Handler Harx 0x1534 reconhece o ID e usa tabela i16 em 0xc9c0, relativa
+a 0x1b0c. Índices 0/1/2 chegam a caminhos MOVZ/MOVK: versão 0xe1200100,
+base 0xc0000000 e tamanho 0x01400000. Resultado gravado no contexto por
+0x2128. O chamador exige versão e conserva os buffers apenas no sucesso.
+
+Ramo 0xfaf38–0xfaf58 cria RAM até a base Harx e avança x19 para o fim,
+omitindo condicionalmente 20 MiB até 0xc1400000. Sem afirmar que esse ramo
+executou ou que o restante está livre. Escritor do flag relativo 0x487c90
+localizado em 0xf90d8, antes do HVC de inicialização; flag 1 isolado não
+prova sucesso completo. Soc_info Harx tem nomes impressos distintos para
+quantidade reservada (índice 1) e tamanho Secure DRAM (índice 20); mantida
+a lacuna da tradução para o identificador legado LK.
+
+Inspetor ampliado com decodificador limitado de folhas constantes, tabela
+assinada, verificação do destino de saída e metadados do ramo LK. Três
+testes novos de decodificação/recusa passaram; com LK e EL2: 33 testes de
+host. CLI conferida nas três imagens recebidas; JSON, README, índices e
+roadmap atualizados. Continuam pendentes respostas soc_info/SEC_PGTBL e
+estado efetivo de boot. Nenhum arquivo adicional solicitado, serviço
+executado, driver alterado ou acesso ao telefone realizado.

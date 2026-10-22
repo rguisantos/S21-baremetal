@@ -50,6 +50,74 @@ def calls(data, offsets):
             for off in offsets}
 
 
+def instruction(data, offset):
+    if offset < 0 or offset % 4 or offset + 4 > len(data):
+        raise ValueError('instruction outside aligned image bytes')
+    return struct.unpack_from('<I', data, offset)[0]
+
+
+def jump_table_target(data, table, index, base):
+    entry = table + index * 2
+    if index < 0 or entry < 0 or entry + 2 > len(data):
+        raise ValueError('jump table entry outside image')
+    displacement = struct.unpack_from('<h', data, entry)[0]
+    target = base + displacement * 4
+    instruction(data, target)
+    return target
+
+
+def constant_return(data, start, exit_offset):
+    """Decode only MOVZ X28, optional MOVK X28, then B to the known exit.
+
+    This bounded leaf decoder deliberately rejects loads, calls, conditional
+    paths, other registers and other A64 immediate encodings.
+    """
+    instruction(data, exit_offset)
+    value = None
+    for offset in range(start, start + 6 * 4, 4):
+        word = instruction(data, offset)
+        if word >> 26 == 0b000101:
+            displacement = word & 0x3ffffff
+            if displacement & 0x2000000:
+                displacement -= 0x4000000
+            if value is None or offset + displacement * 4 != exit_offset:
+                raise ValueError('constant path does not reach expected result store')
+            return dict(value=value, branch_offset=offset)
+        opcode = word & 0xff800000
+        if word & 31 != 28 or opcode not in (0xd2800000, 0xf2800000):
+            raise ValueError('unsupported instruction in constant return path')
+        shift = ((word >> 21) & 3) * 16
+        immediate = ((word >> 5) & 0xffff) << shift
+        if opcode == 0xd2800000:
+            if value is not None:
+                raise ValueError('expected only one initial MOVZ')
+            value = immediate
+        else:
+            if value is None:
+                raise ValueError('MOVK requires an initial MOVZ')
+            value = (value & ~(0xffff << shift)) | immediate
+    raise ValueError('constant return path exceeds instruction limit')
+
+
+def harx_memory_info(data):
+    results = {}
+    for query in (0, 1, 2):
+        target = jump_table_target(data, 0xc9c0, query, 0x1b0c)
+        result = constant_return(data, target, 0x2124)
+        results[str(query)] = dict(target=hex(target), value=hex(result['value']),
+                                   branch_offset=hex(result['branch_offset']))
+    if instruction(data, 0x2128) != 0xf900001c:  # STR X28, [X0]
+        raise ValueError('unexpected result context store')
+    base, size = (int(results[str(query)]['value'], 16) for query in (1, 2))
+    return dict(
+        service_id='0xc6000020', table_offset='0xc9c0', queries=results,
+        result_store='0x2128: STR X28, [X0]',
+        conditional_interval=dict(base=hex(base), size=hex(size),
+                                  end_exclusive=hex(base + size)),
+        runtime_execution_verified=False,
+        limit='Constant returns in this handler; LK feature flag and actual HVC outcome unobserved')
+
+
 def inspect(sboot_path, uh_path, harx_path):
     paths = dict(sboot=sboot_path, uh=uh_path, harx=harx_path)
     images = {name: read_exact(paths[name], *identity)
@@ -65,7 +133,7 @@ def inspect(sboot_path, uh_path, harx_path):
     range_pointer = struct.unpack_from('<Q', uh, table + 2 * 8)[0]
     range_handler = pointer_offset(range_pointer, UH_BASE, len(uh))
     strings = {}
-    for off in (0xd145, 0xd179, 0xd19c, 0xd1d1):
+    for off in (0xc169, 0xc19e, 0xc1be, 0xd145, 0xd179, 0xd19c, 0xd1d1):
         strings[hex(off)] = harx[off:harx.index(0, off)].decode('ascii')
     return {
         'mode': 'static_read_only',
@@ -124,14 +192,41 @@ def inspect(sboot_path, uh_path, harx_path):
                                 0x2018, 0x2020, 0x2028, 0x2030)),
             'limit': 'Range-list contents, allocation result and runtime execution unobserved',
         },
+        'harx_memory_info': harx_memory_info(harx),
+        'lk_harx_gap': {
+            'feature_flag_image_relative': '0x487c90',
+            'flag_store_before_init_hvc': '0xf90d8',
+            'flag_does_not_prove_init_hvc_success': True,
+            'calls': calls(sboot, (0xf90dc, 0xfaee8, 0xf9368, 0xf9394,
+                                   0xf93bc, 0xfaf34, 0xfaf50)),
+            'words': words(sboot, (0xf90a4, 0xf90c4, 0xf90d8, 0xf9334,
+                                   0xf9340, 0xf9348, 0xf934c,
+                                   0xf936c, 0xf9370, 0xf9374, 0xf9378,
+                                   0xf93cc, 0xf93d0, 0xf93d4,
+                                   0xf93e8, 0xf93ec, 0xf93f0,
+                                   0xfaeec, 0xfaef0, 0xfaf38, 0xfaf3c,
+                                   0xfaf40, 0xfaf44, 0xfaf48, 0xfaf4c,
+                                   0xfaf54, 0xfaf58)),
+            'harx_words': words(harx, (0x156c, 0x15f0, 0x15f4, 0x15f8,
+                                       0x15fc, 0x1aec, 0x1afc, 0x1b00,
+                                       0x1b04, 0x1b08, 0x1b0c, 0x1b14,
+                                       0x2114, 0x2118, 0x2124, 0x2128)),
+            'limit': 'Conditional omission from RAM-node construction, not a complete reservation map',
+        },
         'harx_soc_info': {
             'service_id': '0x8200012e', 'expected_version': '0x66001000',
             'lk_legacy_service_id': '-0x12e',
             'legacy_translation_verified': False,
-            'calls': calls(harx, (0x2308, 0x23dc)),
+            'calls': calls(harx, (0x3a0, 0x3b4, 0x3c0, 0x2308, 0x23dc)),
+            'printed_field_indices': {
+                'secure_dram_base': dict(index=2, call='0x3a0', label='0xc19e'),
+                'reserved_dram_size': dict(index=1, call='0x3c0', label='0xc169'),
+                'secure_dram_size': dict(index=20, call='0x3b4', label='0xc1be'),
+            },
             'words': words(harx, (0x2298, 0x229c, 0x22a0, 0x22a8,
                                   0x22f0, 0x22f8, 0x2314, 0x2318,
-                                  0x23c4, 0x23cc, 0x9aa4, 0x9aa8, 0x9aac)),
+                                  0x23c4, 0x23cc, 0x9aa4, 0x9aa8, 0x9aac,
+                                  0x390, 0x3a8, 0x3bc, 0x460, 0x470, 0x480)),
             'strings': strings,
             'ram_size_source_address': '0x02038848',
         },

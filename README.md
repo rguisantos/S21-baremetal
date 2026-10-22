@@ -114,6 +114,8 @@ O [handler uH de earlymem](docs/el2-earlymem-hzc2.md) foi ligado ao HVC 0x830000
 
 Os [intervalos enviados ao uH](docs/lk-uh-range-registration.md) vêm do FDT corrente: o LK seleciona nomes com prefixo `memory` e envia somente a primeira tupla de `reg` pelo comando 0x83000002, antes de pedir earlymem. A nova checagem reproduz esses argumentos sem executar serviços; o conjunto offline passou em 30 testes. Falta determinar os valores usados na construção dinâmica dos bancos.
 
+Uma [região Harx omitida na construção de RAM](docs/lk-harx-memory-gap.md) foi ligada ao serviço 0xc6000020: o handler tem retornos constantes para 0xc0000000–0xc1400000 (20 MiB). O inspetor agora decodifica esses retornos e a suíte offline passou em 33 testes. A execução desse ramo e os demais valores soc_info/SMC continuam sem observação no telefone.
+
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.

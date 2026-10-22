@@ -159,14 +159,125 @@
     },
     "limit": "Range-list contents, allocation result and runtime execution unobserved"
   },
+  "harx_memory_info": {
+    "service_id": "0xc6000020",
+    "table_offset": "0xc9c0",
+    "queries": {
+      "0": {
+        "target": "0x2114",
+        "value": "0xe1200100",
+        "branch_offset": "0x211c"
+      },
+      "1": {
+        "target": "0x1b0c",
+        "value": "0xc0000000",
+        "branch_offset": "0x1b10"
+      },
+      "2": {
+        "target": "0x1b14",
+        "value": "0x1400000",
+        "branch_offset": "0x1b18"
+      }
+    },
+    "result_store": "0x2128: STR X28, [X0]",
+    "conditional_interval": {
+      "base": "0xc0000000",
+      "size": "0x1400000",
+      "end_exclusive": "0xc1400000"
+    },
+    "runtime_execution_verified": false,
+    "limit": "Constant returns in this handler; LK feature flag and actual HVC outcome unobserved"
+  },
+  "lk_harx_gap": {
+    "feature_flag_image_relative": "0x487c90",
+    "flag_store_before_init_hvc": "0xf90d8",
+    "flag_does_not_prove_init_hvc_success": true,
+    "calls": {
+      "0xf90dc": "0xedff0",
+      "0xfaee8": "0xf9320",
+      "0xf9368": "0xedff0",
+      "0xf9394": "0xedff0",
+      "0xf93bc": "0xedff0",
+      "0xfaf34": "0xf1570",
+      "0xfaf50": "0xf1570"
+    },
+    "words": {
+      "0xf90a4": "d0001c66",
+      "0xf90c4": "52800027",
+      "0xf90d8": "393240c7",
+      "0xf9334": "fa5f1024",
+      "0xf9340": "d0001c60",
+      "0xf9348": "39724000",
+      "0xf934c": "340004e0",
+      "0xf936c": "d2802001",
+      "0xf9370": "f2bc2401",
+      "0xf9374": "eb01001f",
+      "0xf9378": "54000401",
+      "0xf93cc": "f90002b3",
+      "0xf93d0": "52800000",
+      "0xf93d4": "f9000296",
+      "0xf93e8": "f90002bf",
+      "0xf93ec": "12800000",
+      "0xf93f0": "f900003f",
+      "0xfaeec": "340042e0",
+      "0xfaef0": "a9097fbf",
+      "0xfaf38": "f9404ba1",
+      "0xfaf3c": "b4000101",
+      "0xfaf40": "f9404fa0",
+      "0xfaf44": "b40000c0",
+      "0xfaf48": "4b130021",
+      "0xfaf4c": "aa1303e0",
+      "0xfaf54": "a94903b3",
+      "0xfaf58": "8b000273"
+    },
+    "harx_words": {
+      "0x156c": "aa0103fc",
+      "0x15f0": "52800401",
+      "0x15f4": "72b8c001",
+      "0x15f8": "6b01001f",
+      "0x15fc": "54002780",
+      "0x1aec": "7100179f",
+      "0x1afc": "787c5800",
+      "0x1b00": "10000061",
+      "0x1b04": "8b20a820",
+      "0x1b08": "d61f0000",
+      "0x1b0c": "d2b8001c",
+      "0x1b14": "d2a0281c",
+      "0x2114": "d280201c",
+      "0x2118": "f2bc241c",
+      "0x2124": "f9403ba0",
+      "0x2128": "f900001c"
+    },
+    "limit": "Conditional omission from RAM-node construction, not a complete reservation map"
+  },
   "harx_soc_info": {
     "service_id": "0x8200012e",
     "expected_version": "0x66001000",
     "lk_legacy_service_id": "-0x12e",
     "legacy_translation_verified": false,
     "calls": {
+      "0x3a0": "0x22d4",
+      "0x3b4": "0x22d4",
+      "0x3c0": "0x22d4",
       "0x2308": "0x9aa4",
       "0x23dc": "0x9aa4"
+    },
+    "printed_field_indices": {
+      "secure_dram_base": {
+        "index": 2,
+        "call": "0x3a0",
+        "label": "0xc19e"
+      },
+      "reserved_dram_size": {
+        "index": 1,
+        "call": "0x3c0",
+        "label": "0xc169"
+      },
+      "secure_dram_size": {
+        "index": 20,
+        "call": "0x3b4",
+        "label": "0xc1be"
+      }
     },
     "words": {
       "0x2298": "d2910900",
@@ -181,9 +292,18 @@
       "0x23cc": "f2b04000",
       "0x9aa4": "d5033f9f",
       "0x9aa8": "d4000003",
-      "0x9aac": "d65f03c0"
+      "0x9aac": "d65f03c0",
+      "0x390": "52800040",
+      "0x3a8": "52800280",
+      "0x3bc": "52800020",
+      "0x460": "aa1403e1",
+      "0x470": "aa1503e1",
+      "0x480": "aa1603e1"
     },
     "strings": {
+      "0xc169": "\u0014* Reserved DRAM size for security purpose : 0x%llx\n",
+      "0xc19e": "\u0014* Secure DRAM - base : 0x%llx\n",
+      "0xc1be": "\u0014* Secure DRAM - size : 0x%llx\n",
       "0xd145": "\n[H-Arx] EL2 MMU is enabled and iRAM is not mapped\n",
       "0xd179": "\n[H-Arx] Invalid DRAM size [%llx]\n",
       "0xd19c": "\nSOC_INFO_VERSION in EL3(%llx) is different with %x\n",

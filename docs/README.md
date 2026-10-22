@@ -65,6 +65,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Intervalos LK → uH](lk-uh-range-registration.md): percurso dos nós memory do FDT, primeira tupla de reg, comando 2 e checagem offline dos argumentos.
 
+- [Intervalo Harx no construtor de RAM](lk-harx-memory-gap.md): retornos constantes do serviço OEM, condição do LK e dependências ainda abertas.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

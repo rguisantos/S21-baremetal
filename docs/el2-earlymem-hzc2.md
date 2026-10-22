@@ -121,6 +121,10 @@ documentado. Exige tamanho múltiplo de 1 GiB e, sem cache, evita a leitura
 quando SCTLR_EL2.M está ligado. Isso reforça a procedência do campo entre
 componentes, mas seu conteúdo efetivo continua desconhecido.
 
+O serviço OEM separado 0xc6000020 teve os retornos de versão/base/tamanho
+decodificados posteriormente: [intervalo Harx e condição do LK](lk-harx-memory-gap.md).
+Essa informação fecha um caso condicional, sem resolver os retornos soc_info.
+
 ## Resultado e próxima lacuna
 
 Três testes de limites/identidade passaram, junto dos 19 testes LK existentes.

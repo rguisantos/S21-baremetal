@@ -113,6 +113,10 @@ Seu contrato completo com estágios anteriores permanece aberto. Um tamanho
 total também não determina bancos/furos: a construção depende de retornos
 SMC e ramos descritos em [bootloader-hzc2.md](bootloader-hzc2.md#ram-e-reservas-dependem-do-estado-de-boot).
 
+Um desses intervalos agora tem retornos constantes rastreados no Harx:
+[0xc0000000–0xc1400000, omitido em ramo do construtor](lk-harx-memory-gap.md).
+A condição de execução e o restante dos bancos ainda não foram observados.
+
 ## Reprodução e resultado
 
 ```bash
