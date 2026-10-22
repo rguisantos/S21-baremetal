@@ -2,7 +2,7 @@
 
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-**Estado em 2026-10-21 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTB stock confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
+**Estado em 2026-10-22 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
 ## Módulos e validação
 
@@ -14,7 +14,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 | R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
 | R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
-| Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [6 casos QEMU PASS](docs/entry-diagnostic.md); sem execução no telefone |
+| Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
 
 Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
@@ -64,6 +64,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 
 - [Mapa de hardware confirmado e pendências](EXYNOS2100_HARDWARE.md)
 - [Imagens stock HZC2: cabeçalhos, DTB, overlays e hashes](docs/stock-firmware-hzc2.md)
+- [DTS recebidos: patch de três listas e reprodução exata da base HZC2](docs/dts-source-roundtrip.md)
 - [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
@@ -107,6 +108,8 @@ A [cadeia de cópia da Image no LK](docs/lk-kernel-copy.md) foi ligada ao destin
 O [modelo offline LK v3](docs/lk-v3-layout.md) confere as três cópias kernel/ramdisk nas imagens stock, a extensão declarada pela Image e o ponteiro DTB staging. Sete testes de host passaram, incluindo 64 cenários de deslocamento e recusas de entradas inválidas. Não é um empacotador ou validação de boot no aparelho.
 
 A [seleção DTB e os merges DTBO/DPM](docs/lk-dtb-pipeline.md) foram ligados ao buffer 0x8b080000. O seletor offline passou em seis testes; oito candidatos de placa+DPM passaram na aplicação com libfdt, mantendo UART/GIC/timer/PSCI e sem nós RAM. Isso não reproduz a UFDT Samsung nem o FDT final do aparelho.
+
+A [recompilação dos DTS enviados](docs/dts-source-roundtrip.md) identificou três escapes octais ambíguos em listas de CPUs. O patch em uma cópia, compilado com DTC 1.7.2 e `-a 4`, reproduz os 389.876 bytes da base stock. O overlay genérico UNIVERSAL2100 habilita UART0 e mantém UART1 desabilitada; o P3S-fonte r17 habilita ambas, mas seu binário difere do overlay stock. Os candidatos continuam sem RAM e foram corretamente recusados na checagem do initrd LK v3. Os originais foram preservados.
 
 O [rastreio das escritas dinâmicas](docs/lk-dynamic-fdt.md) ligou chosen ao initrd concatenado: 0x84080000–0x84ca12df no ramo stock v3. O verificador aceita `--fdt` para comparar essas propriedades e recusa os valores antigos dos candidatos estáticos; a suíte conjunta passou em 19 testes. Reservas condicionais e o getter de tamanho de RAM foram localizados, sem reconstruir o mapa efetivo.
 

@@ -1,13 +1,13 @@
 # Roadmap até o primeiro diagnóstico no S21
 
-Estado em 2026-10-21 (Campo Grande). Alvo: SM-G998B/p3s, firmware stock HZC2 observado nas
+Estado em 2026-10-22 (Campo Grande). Alvo: SM-G998B/p3s, firmware stock HZC2 observado nas
 propriedades recebidas. O R10 e o diagnóstico ainda não foram executados no
 telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 
 | Etapa | Estado e resultado | Critério restante |
 |---|---|---|
 | 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M+C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
-| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; percurso memory alimenta uH; serviço Harx tem intervalo constante de 20 MiB omitido em ramo do construtor | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, mapa completo, checks posteriores e estado final de entrada |
+| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; DTS corrigido reproduz a base stock; percurso memory alimenta uH; serviço Harx tem intervalo constante de 20 MiB omitido em ramo do construtor | Fechar retornos soc_info/SEC_PGTBL e ramos efetivos, mapa completo, checks posteriores e estado final de entrada |
 | 3. Observação | UART0 e logs rastreados; exynos_el2_log confirmado no aparelho, mas UNREADABLE para uid=2000, sem captura | Continuar investigação estática e estabelecer outro canal verificável; não repetir as coletas bloqueadas |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
@@ -43,12 +43,20 @@ Reenviar o mesmo contêiner cifrado não ajuda. Emulação/simbolismo do provedo
 dependem primeiro desse código e da reconstrução de seu estado de entrada.
 Outros chamadores e trechos em claro podem continuar sendo analisados.
 
+A [base DTS recebida](dts-source-roundtrip.md) agora reproduz o DTB HZC2
+byte a byte após um patch de três listas de CPUs. Esse marco permite usar a
+base textual com identidade conferida. O overlay genérico não substitui o
+P3S; ambos os candidatos aplicados no host continuam sem bancos RAM e com
+initrd antigo. A prioridade seguinte permanece nos ajustes dinâmicos e nos
+valores efetivos do LK, sem preencher as lacunas com esses candidatos.
+
 ## Evidências
 
 - [Diagnóstico e matriz de entrada](entry-diagnostic.md).
 - [Cópia da Image e salto](lk-kernel-copy.md).
 - [Modelo de layout LK v3 e testes de host](lk-v3-layout.md).
 - [Seleção e merges DTB/DTBO/DPM](lk-dtb-pipeline.md).
+- [DTS recebidos e identidade binária da base stock](dts-source-roundtrip.md).
 - [Initrd, reservas e origem do tamanho de RAM](lk-dynamic-fdt.md).
 - [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
 - [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).

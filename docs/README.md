@@ -16,6 +16,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Hardware](../EXYNOS2100_HARDWARE.md) e [firmware stock HZC2](stock-firmware-hzc2.md).
 - [Fontes Samsung e READMEs recebidos](samsung-reference.md).
+- [DTS enviados e recompilação HZC2](dts-source-roundtrip.md): patch de três listas de CPUs, identidade binária da base stock e limites dos overlays genérico/P3S.
 - [Proton: fonte](proton-reference.md), [binários](proton-binary.md) e [contrato do carregador Samsung](loader-contract.md).
 - [Referência TWRP](twrp-reference.md) e [limites da coleta Shizuku](runtime-collection.md).
 

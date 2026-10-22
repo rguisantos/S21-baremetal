@@ -533,3 +533,43 @@ reexecutada, sem mudanças nesses componentes. O harness contém só o chamador
 Normal World com SMC interceptado: não existe RAM Secure descriptografada
 nele para dump. ELF também não é requisito garantido para plaintext LDFW.
 Sem novos pedidos de arquivos já recebidos, sem coleta/root/tracing no telefone.
+
+## 2026-10-22 Campo Grande — DTS recebidos e reprodução da base HZC2
+
+Recuperados os dois DTS enviados e conferida identidade com os membros
+exatos do Kernel.tar.gz c5ad9994…86bf2: base 495720 bytes/586ca569…8ca8 e
+overlay UNIVERSAL2100 rev11 234843 bytes/e623b6ed…e43a. Os originais ficaram
+intactos. A compilação direta da base produziu 2249 nós, com apenas três
+propriedades diferentes da base binária HZC2: /ems/pe-list/list@0..2/cpus.
+Escapes como \04 e \07 consumiam dígitos da próxima string como octal.
+
+Patch de três linhas troca essas representações por listas separadas por
+vírgula. Aplicação com GNU patch a uma cópia e compilação DTC 1.7.2 -a 4
+reproduziram todos os 389876 bytes da base de vendor_boot em 0xb77040,
+SHA d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d.
+Caminhos/propriedades também comparados com o parser estrito. Transporte
+LZ4 de boot/vendor consumido integralmente e hashes brutos conferidos.
+Ferramentas Debian extraídas fora do Git, sem root ou alteração de binários
+versionados. Avisos herdados do compilador foram contados, sem alegar
+validação de todos os bindings ou efeito observado no scheduler do telefone.
+
+Overlay genérico compilou e aplicado à base tem 3311 nós, UART0 okay,
+UART1 disabled. A referência P3S r17 do mesmo pacote tem 3778 nós depois
+da aplicação e ambas UARTs okay. Seu DTBO compilado difere do hash stock
+da entrada 2, embora tenha o mesmo tamanho; não foi feita a comparação
+das propriedades desse overlay com o binário stock. Metadados rev11/0x11
+não determinam a revisão efetivamente selecionada no aparelho.
+
+As duas aplicações fdtoverlay 1.7.2 conservaram GIC/timer/PSCI e não criaram
+nós RAM. Mantiveram initrd 84000000–841fffff e foram corretamente recusadas
+pela checagem LK v3, cujo modelo stock produz 84080000–84ca12df, fim
+exclusivo. Inventário bruto de reserved-memory: 46 descendentes, 29 com
+reg, 16 size sem reg e um contêiner. Não deduzir endereços de heaps, código
+DRM em claro ou RAM livre a partir dessas declarações.
+
+Patch pequeno, relatório JSON e reprodução documentados; README, índice,
+hardware, referência externa e roadmap atualizados. Nenhum blob de firmware
+ou DTS completo acrescentado ao Git. R8/R9/R10 não mudaram e suas suítes
+anteriores não foram reexecutadas. Sem nova coleta bloqueada, pedido de
+reenvio, flash ou teste físico. Próxima lacuna: ajustes dinâmicos de memória
+e estado/valores efetivos do LK.

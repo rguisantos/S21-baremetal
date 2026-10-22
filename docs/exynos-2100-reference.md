@@ -108,6 +108,12 @@ freq_mif de cenários MFC UHD**, 0x22e980 → 0x177bb8. Essa comparação textua
 não é prova de DTBs compilados idênticos. UART/GIC/timer não receberam ali
 uma alteração que resolva o bring-up.
 
+Continuação em 2026-10-22: a [recompilação dos DTS recebidos](dts-source-roundtrip.md)
+isolou três listas `/ems/pe-list/list@*/cpus` com escapes octais ambíguos.
+Corrigir essas linhas na base recebida e compilar com DTC 1.7.2/`-a 4`
+reproduz o DTB base stock HZC2 byte a byte. Essa comparação binária é com a
+base recebida, sem estender a identidade ao fork ou aos overlays P3S.
+
 O overlay r22 tem outras diferenças, incluindo dados de display/touch e
 endereços kallsyms da build. Não portar endereços kallsyms, retirar reservas
 ou trocar o overlay stock por esse arquivo para fazer o payload caber.

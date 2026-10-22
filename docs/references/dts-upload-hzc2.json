@@ -1,0 +1,608 @@
+{
+  "mode": "received_dts_compile_and_overlay_audit",
+  "date": "2026-10-22",
+  "runtime_observed": false,
+  "inputs": {
+    "exynos2100.dts": {
+      "size": 495720,
+      "sha256": "586ca56987bbaacce0a38ddaee8a852721caaaeb9096ada6bfde8bc8c0d88ca8",
+      "archive_member": "arch/arm64/boot/dts/exynos/exynos2100.dts",
+      "identical_to_archive_member": true
+    },
+    "exynos2100-universal2100_rev11.dts": {
+      "size": 234843,
+      "sha256": "e623b6edfe35d7714546f108cdd4ba6cea69d030bc087b7f9b2a32ea63afe43a",
+      "archive_member": "arch/arm64/boot/dts/exynos/exynos2100-universal2100_rev11.dts",
+      "identical_to_archive_member": true
+    }
+  },
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "compiler": {
+    "name": "DTC",
+    "version": "1.7.2",
+    "corrected_base_alignment": 4,
+    "uncorrected_base_alignment": "default",
+    "overlay_applier": "fdtoverlay 1.7.2",
+    "validator": "scripts/inspect_proton.py:fdt_nodes",
+    "warnings": {
+      "base-uncorrected": {
+        "stderr_lines": 978,
+        "categories": {
+          "avoid_unnecessary_addr_size": 1,
+          "clocks_property": 359,
+          "cooling_device_property": 27,
+          "dmas_property": 34,
+          "gpios_property": 4,
+          "interrupt_map": 1,
+          "interrupt_provider": 1,
+          "iommus_property": 78,
+          "phys_property": 9,
+          "power_domains_property": 71,
+          "thermal_sensors_property": 7,
+          "unique_unit_address": 108,
+          "unit_address_format": 70,
+          "unit_address_vs_reg": 208
+        }
+      },
+      "base-fixed": {
+        "stderr_lines": 978,
+        "categories": {
+          "avoid_unnecessary_addr_size": 1,
+          "clocks_property": 359,
+          "cooling_device_property": 27,
+          "dmas_property": 34,
+          "gpios_property": 4,
+          "interrupt_map": 1,
+          "interrupt_provider": 1,
+          "iommus_property": 78,
+          "phys_property": 9,
+          "power_domains_property": 71,
+          "thermal_sensors_property": 7,
+          "unique_unit_address": 108,
+          "unit_address_format": 70,
+          "unit_address_vs_reg": 208
+        }
+      },
+      "generic": {
+        "stderr_lines": 307,
+        "categories": {
+          "avoid_unnecessary_addr_size": 1,
+          "clocks_property": 2,
+          "gpios_property": 114,
+          "interrupts_property": 22,
+          "sound_dai_property": 120,
+          "unique_unit_address": 1,
+          "unit_address_format": 3,
+          "unit_address_vs_reg": 44
+        }
+      },
+      "p3s-r17": {
+        "stderr_lines": 553,
+        "categories": {
+          "avoid_default_addr_size": 54,
+          "avoid_unnecessary_addr_size": 1,
+          "clocks_property": 6,
+          "gpios_property": 186,
+          "i2c_bus_reg": 1,
+          "interrupts_property": 30,
+          "io_channels_property": 11,
+          "pci_device_bus_num": 1,
+          "pci_device_reg": 1,
+          "reg_format": 9,
+          "simple_bus_reg": 1,
+          "sound_dai_property": 120,
+          "spi_bus_reg": 1,
+          "unique_unit_address": 1,
+          "unit_address_format": 19,
+          "unit_address_vs_reg": 111
+        }
+      }
+    }
+  },
+  "uncorrected_base": {
+    "size": 389863,
+    "sha256": "ecf922db002ff7d546a33c0a0347c6f9bc33ce35d580a9377f695caff1dce4a4",
+    "node_count": 2249,
+    "property_count": 14675,
+    "memory_nodes": [],
+    "property_differences_from_stock": [
+      {
+        "path": "/ems/pe-list/list@0",
+        "property": "cpus",
+        "uncorrected_hex": "302d33042d360700",
+        "stock_hex": "302d3300342d36003700",
+        "stock_strings": [
+          "0-3",
+          "4-6",
+          "7"
+        ]
+      },
+      {
+        "path": "/ems/pe-list/list@1",
+        "property": "cpus",
+        "uncorrected_hex": "342d3607002d3300",
+        "stock_hex": "342d36003700302d3300",
+        "stock_strings": [
+          "4-6",
+          "7",
+          "0-3"
+        ]
+      },
+      {
+        "path": "/ems/pe-list/list@2",
+        "property": "cpus",
+        "uncorrected_hex": "37042d36002d3300",
+        "stock_hex": "3700342d3600302d3300",
+        "stock_strings": [
+          "7",
+          "4-6",
+          "0-3"
+        ]
+      }
+    ]
+  },
+  "patch": {
+    "path": "docs/references/exynos2100-cpu-lists.patch",
+    "size": 276,
+    "sha256": "75acc97c1d27b5ffc3cd64b955add18258aa3872d7200764215dfea7f9570b48",
+    "gnu_patch_reproduction_verified": true,
+    "original_uploads_unchanged": true,
+    "unified_context_lines": 0
+  },
+  "corrected_source": {
+    "size": 495732,
+    "sha256": "8ac53dbeeaef34388d34954f6e18ac5d99b6254e354e98019a348f0ef0dc01ba"
+  },
+  "corrected_base": {
+    "size": 389876,
+    "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d",
+    "node_count": 2249,
+    "property_count": 14675,
+    "memory_nodes": [],
+    "byte_equal_to_stock_base": true,
+    "property_equal_to_stock_base": true
+  },
+  "stock_base": {
+    "size": 389876,
+    "sha256": "d75cd25518112ec3a64235497b33f2caf84d60e8080b92c17ef98774c439aa2d",
+    "node_count": 2249,
+    "property_count": 14675,
+    "memory_nodes": [],
+    "vendor_boot_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+    "file_offset": "0xb77040"
+  },
+  "generic_overlay": {
+    "size": 188467,
+    "sha256": "22d4c7ddf804377016e7aed0a65c768f14d290fda670502e7e2781f7d6923924",
+    "node_count": 1280,
+    "property_count": 4902,
+    "memory_nodes": [],
+    "compatible": [
+      "samsung,exynos2100",
+      "samsung,UNIVERSAL2100"
+    ],
+    "board_id": 1,
+    "board_rev": "0x11",
+    "fixups": {
+      "chosen": [
+        "/fragment@23:target:0"
+      ],
+      "serial_0": [
+        "/fragment@24:target:0"
+      ]
+    },
+    "is_p3s_stock_overlay": false
+  },
+  "p3s_source_reference": {
+    "archive_member": "arch/arm64/boot/dts/samsung/p3s/p3s_eur_openx_w01_r17.dts",
+    "size": 373178,
+    "sha256": "85c8e16e77dc0a7c4f02407f5a2a01e52c467c34e1da73db8d7bcc6ae0ccb56a",
+    "compiled": {
+      "size": 295844,
+      "sha256": "fd21d7c63617196ecc8e7ad2e12b12ea29ba3e6459981bfbc8f4ad4106303303",
+      "node_count": 1980,
+      "property_count": 7783,
+      "memory_nodes": []
+    },
+    "compatible": [
+      "SAMSUNG,P3S_EUR_OPENX",
+      "SAMSUNG,EXYNOS2100"
+    ],
+    "stock_dtbo_entry2_reference": {
+      "index": 2,
+      "file_offset": 566652,
+      "size": 295844,
+      "revision_min": 17,
+      "revision_max": 17,
+      "range_encoding": "big",
+      "id": 0,
+      "rev": 0,
+      "custom2": 0,
+      "custom3": 0,
+      "sha256": "6046fd7ea6b39824a217ea5696185002e8667130e765a21dbaf75d61a8924f2b"
+    },
+    "byte_equal_to_stock_entry2": false,
+    "stock_overlay_property_comparison_performed": false,
+    "stock_reference_report": "docs/references/lk-dtb-stock-rev10.json"
+  },
+  "host_overlay_checks": {
+    "generic_rev11": {
+      "size": 541964,
+      "sha256": "79640fa9b5d3be154a6fcee100811282e8eac5dbe42229129f9bf342ac29447a",
+      "node_count": 3311,
+      "property_count": 19106,
+      "memory_nodes": [],
+      "root_model": [
+        "Samsung UNIVERSAL2100 board based on EXYNOS2100"
+      ],
+      "uart_status": {
+        "/uart@10540000": [
+          "okay"
+        ],
+        "/uart@10840000": [
+          "disabled"
+        ]
+      },
+      "chosen_initrd": {
+        "linux,initrd-start": "0x84000000",
+        "linux,initrd-end": "0x841fffff"
+      },
+      "matches_lk_v3_initrd": false,
+      "expected_refusal": "/chosen/linux,initrd-start differs from modeled 4-byte LK property",
+      "is_final_fdt": false,
+      "runtime_observed": false,
+      "resource_properties_equal_to_base": {
+        "/psci": {
+          "compatible": true,
+          "method": true
+        },
+        "/interrupt-controller@10200000": {
+          "compatible": true,
+          "reg": true,
+          "interrupts": true
+        },
+        "/timer": {
+          "compatible": true,
+          "interrupts": true,
+          "clock-frequency": true
+        }
+      }
+    },
+    "p3s_source_r17": {
+      "size": 631831,
+      "sha256": "3484863ee37d92c330405fefe64e53b16823fa00cda627e95c3ed8f032c9db29",
+      "node_count": 3778,
+      "property_count": 21738,
+      "memory_nodes": [],
+      "root_model": [
+        "Samsung P3S board based on EXYNOS2100"
+      ],
+      "uart_status": {
+        "/uart@10540000": [
+          "okay"
+        ],
+        "/uart@10840000": [
+          "okay"
+        ]
+      },
+      "chosen_initrd": {
+        "linux,initrd-start": "0x84000000",
+        "linux,initrd-end": "0x841fffff"
+      },
+      "matches_lk_v3_initrd": false,
+      "expected_refusal": "/chosen/linux,initrd-start differs from modeled 4-byte LK property",
+      "is_final_fdt": false,
+      "runtime_observed": false,
+      "resource_properties_equal_to_base": {
+        "/psci": {
+          "compatible": true,
+          "method": true
+        },
+        "/interrupt-controller@10200000": {
+          "compatible": true,
+          "reg": true,
+          "interrupts": true
+        },
+        "/timer": {
+          "compatible": true,
+          "interrupts": true,
+          "clock-frequency": true
+        }
+      }
+    }
+  },
+  "lk_v3_initrd": {
+    "start": "0x84080000",
+    "end_exclusive": "0x84ca12df",
+    "total_size": 12718815,
+    "property_width_bytes": 4,
+    "property_bytes_be": {
+      "linux,initrd-start": "84080000",
+      "linux,initrd-end": "84ca12df"
+    },
+    "writer_calls": [
+      "0xfb42c",
+      "0xfb4d8"
+    ],
+    "runtime_observed": false
+  },
+  "reservations": {
+    "descendant_count": 46,
+    "with_reg": 29,
+    "size_without_reg": 16,
+    "containers_without_reg_or_size": 1,
+    "interpretation": "Raw property bytes; no allocation, bus translation or free-memory union inferred",
+    "entries": [
+      {
+        "path": "/reserved-memory/ect_binary",
+        "reg_hex": "00000000900000000003a000",
+        "compatible_hex": "6578796e6f732c6563745f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/el3mon_reserve",
+        "reg_hex": "00000000bff8000000080000",
+        "compatible_hex": "6578796e6f732c656c336d6f6e00"
+      },
+      {
+        "path": "/reserved-memory/ramoops@8f000000",
+        "reg_hex": "000000008f00000000040000",
+        "compatible_hex": "72616d6f6f707300"
+      },
+      {
+        "path": "/reserved-memory/sec_rdx_bootdev",
+        "reg_hex": "00000008b00000000b600000",
+        "compatible_hex": "6578796e6f732c7365635f64656275675f7264785f626f6f7464657600"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/header",
+        "reg_hex": "00000000f000000000010000",
+        "no-map_hex": ""
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_kernel",
+        "reg_hex": "00000000f001000000200000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_platform",
+        "reg_hex": "00000000f021000000400000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_s2d",
+        "reg_hex": "00000000f061000001200000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_first",
+        "reg_hex": "00000000f181000000200000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_init",
+        "reg_hex": "00000000f1a1000000040000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_arrdumpreset",
+        "reg_hex": "00000000f1a5000000b00000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_arrdumppanic",
+        "reg_hex": "00000000f255000000600000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_kevents",
+        "reg_hex": "00000000f2b5000000600000"
+      },
+      {
+        "path": "/reserved-memory/debug_snapshot/log_fatal",
+        "reg_hex": "00000000f315000000400000"
+      },
+      {
+        "path": "/reserved-memory/log_teegris",
+        "reg_hex": "00000000f4b0000000010000"
+      },
+      {
+        "path": "/reserved-memory/log_bcm",
+        "reg_hex": "00000000ff00000000400000",
+        "compatible_hex": "6578796e6f732c62636d64626700"
+      },
+      {
+        "path": "/reserved-memory/log_llc",
+        "reg_hex": "00000000ff40000000800000",
+        "compatible_hex": "6578796e6f732c6c6c6300"
+      },
+      {
+        "path": "/reserved-memory/log_ppc",
+        "reg_hex": "00000000ffc0000000100000",
+        "compatible_hex": "6578796e6f732c70706300"
+      },
+      {
+        "path": "/reserved-memory/seclog_mem",
+        "reg_hex": "00000000c300000000080000",
+        "compatible_hex": "6578796e6f732c7365636c6f6700"
+      },
+      {
+        "path": "/reserved-memory/s2mpu_table",
+        "reg_hex": "00000000c180000000800000",
+        "compatible_hex": "6578796e6f732c73326d70755f7461626c6500"
+      },
+      {
+        "path": "/reserved-memory/cp_rmem",
+        "reg_hex": "00000008800000000d800000",
+        "compatible_hex": "6578796e6f732c6d6f64656d5f696600"
+      },
+      {
+        "path": "/reserved-memory/cp_rmem1",
+        "reg_hex": "00000008900000000a000000",
+        "compatible_hex": "6578796e6f732c6d6f64656d5f696600"
+      },
+      {
+        "path": "/reserved-memory/dummy_heap",
+        "reg_hex": "000000089e00000002000000",
+        "alignment_hex": "0000000000400000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/camera_rmem",
+        "reg_hex": "00000000ed21000000100000",
+        "compatible_hex": "6578796e6f732c63616d6572615f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/camera_ddk",
+        "size_hex": "00e60000",
+        "alignment_hex": "0000000000200000",
+        "alloc-ranges_hex": "0000000a00000000100000000000000040000000b0000000",
+        "compatible_hex": "6578796e6f732c63616d6572615f64646b00",
+        "no-map_hex": ""
+      },
+      {
+        "path": "/reserved-memory/abox-dbg",
+        "size_hex": "02900000",
+        "alloc-ranges_hex": "00000000c000000020000000",
+        "compatible_hex": "6578796e6f732c61626f785f64626700"
+      },
+      {
+        "path": "/reserved-memory/abox-slog",
+        "reg_hex": "000000089a80000002800000",
+        "compatible_hex": "6578796e6f732c61626f785f736c6f6700"
+      },
+      {
+        "path": "/reserved-memory/abox-rmem",
+        "reg_hex": "000000088d80000002800000",
+        "compatible_hex": "6578796e6f732c61626f785f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/abox-rdma-compr",
+        "size_hex": "00050000",
+        "alloc-ranges_hex": "00000000c000000020000000",
+        "compatible_hex": "6578796e6f732c61626f785f72646d615f636f6d70725f62756666657200"
+      },
+      {
+        "path": "/reserved-memory/dpado-rmem",
+        "size_hex": "00200000",
+        "alloc-ranges_hex": "00000000c000000020000000",
+        "compatible_hex": "6578796e6f732c64705f61646f5f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/memlog_region",
+        "reg_hex": "000000089a00000000800000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "no-map_hex": ""
+      },
+      {
+        "path": "/reserved-memory/default_cma",
+        "reg_hex": "000000089d00000001000000",
+        "alignment_hex": "0000000000400000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/dsp-shmem",
+        "size_hex": "00001000",
+        "alloc-ranges_hex": "00000000c000000040000000",
+        "compatible_hex": "6578796e6f732c6473705f73686d656d00"
+      },
+      {
+        "path": "/reserved-memory/dsp-master-rmem",
+        "size_hex": "00110000",
+        "alloc-ranges_hex": "00000000c000000040000000",
+        "compatible_hex": "6578796e6f732c6473705f6d61737465725f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/npu-fw-rmem",
+        "size_hex": "00200000",
+        "alignment_hex": "0000000000010000",
+        "alloc-ranges_hex": "00000000c000000040000000",
+        "compatible_hex": "6578796e6f732c6e70755f66775f726d656d00"
+      },
+      {
+        "path": "/reserved-memory/vfw_heap",
+        "size_hex": "00400000",
+        "alignment_hex": "0000000000010000"
+      },
+      {
+        "path": "/reserved-memory/crypto_heap",
+        "size_hex": "03000000",
+        "alignment_hex": "0000000000400000",
+        "alloc-ranges_hex": "0000000a00000000100000000000000040000000b0000000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/vstream_heap",
+        "size_hex": "04800000",
+        "alignment_hex": "0000000000400000",
+        "alloc-ranges_hex": "0000000040000000b0000000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/vframe_heap",
+        "size_hex": "20000000",
+        "alignment_hex": "0000000000010000"
+      },
+      {
+        "path": "/reserved-memory/vscaler_heap",
+        "size_hex": "03400000",
+        "alignment_hex": "0000000000010000"
+      },
+      {
+        "path": "/reserved-memory/gpu_buffer",
+        "size_hex": "04000000",
+        "alignment_hex": "0000000000010000"
+      },
+      {
+        "path": "/reserved-memory/vnfw_heap",
+        "size_hex": "00400000",
+        "alignment_hex": "0000000000400000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/tui_heap",
+        "size_hex": "04800000",
+        "alignment_hex": "0000000000400000",
+        "alloc-ranges_hex": "0000000040000000b0000000",
+        "compatible_hex": "7368617265642d646d612d706f6f6c00",
+        "reusable_hex": ""
+      },
+      {
+        "path": "/reserved-memory/secure_camera_heap",
+        "reg_hex": "0000000096000000038b0000",
+        "alignment_hex": "0000000000010000"
+      },
+      {
+        "path": "/reserved-memory/camera_heap",
+        "size_hex": "27900000",
+        "alignment_hex": "0000000000400000",
+        "alloc-ranges_hex": "0000000a00000000ffffffff0000000900000000ffffffff"
+      }
+    ]
+  },
+  "memory_map_verified": false,
+  "provider_plaintext_recovered": false,
+  "is_final_fdt": false,
+  "limits": [
+    "Generic UNIVERSAL2100 overlay is not the P3S stock overlay",
+    "No hardware revision selected or observed by this audit",
+    "Static trees omit dynamic RAM nodes and retain stale initrd properties",
+    "No firmware signature, UART clock/pinmux, secure provider or hardware execution validated"
+  ],
+  "stock_images": {
+    "boot.img": {
+      "raw_size": 67108864,
+      "raw_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+      "lz4_size": 20255202,
+      "lz4_sha256": "cb5f76269c71f5d643afdcda57ff1561b708b9fcb724876b59b0d407abb3477e",
+      "lz4_consumed_entirely": true
+    },
+    "vendor_boot.img": {
+      "raw_size": 67108864,
+      "raw_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+      "lz4_size": 12320188,
+      "lz4_sha256": "179c36e8fbcd9163f800dd9ab5a169cbbed702f1390bd45f05ed602b3916e736",
+      "lz4_consumed_entirely": true
+    }
+  }
+}

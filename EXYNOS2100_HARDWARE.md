@@ -1,6 +1,6 @@
 # Exynos 2100 / SM-G998B: estado confirmado
 
-Atualizado em 2026-10-21 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
+Atualizado em 2026-10-22 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
 
 ## Recursos extraídos do firmware
 
@@ -23,6 +23,8 @@ Tamanho da região GICR dividido pelo número de CPUs não prova stride. Descobr
 
 `okay` na UART não comprova clock, pinmux, USI ou permissão de acesso no handoff. Os valores dos cabeçalhos de boot também não provam PC, EL ou RAM livre. Há reservas acima de 4 GiB; não deduzir memória livre pelo total de RAM ou por um endereço aparente.
 
+A [recompilação do DTS recebido](docs/dts-source-roundtrip.md), após corrigir três listas de CPUs em uma cópia, reproduziu essa base stock byte a byte. O overlay genérico UNIVERSAL2100 rev11 enviado separadamente mantém UART1 disabled e não deve ser confundido com os overlays P3S stock da tabela acima. Os candidatos de host continuam sem nós RAM e com initrd anterior aos ajustes LK.
+
 ## Implementação atual
 
 O R10 exige uma entrada EL2 controlada, mantém MMU desligada, verifica o FDT e o intervalo completo da imagem/pilhas, herda o Distributor e habilita somente a PPI do timer em uma CPU. Usa ICC_IAR1/EOIR1/PMR/IGRPEN1 e frame SGI correto; não reinicializa SPIs nem segurança global. Falhas param no dispatcher específico, sem pular instruções. UART é opt-in; MCT, MMU experimental, SPI e SMP ficam fora da main.
@@ -32,6 +34,7 @@ Essa verificação acontece após BSS/pilha iniciais. O carregador deve reservar
 ## Evidências e pendências
 
 - [Firmware stock e hashes](docs/stock-firmware-hzc2.md)
+- [DTS recebidos, patch e reprodução binária da base HZC2](docs/dts-source-roundtrip.md)
 - [Fonte Samsung e protocolo dos drivers](docs/samsung-reference.md)
 - [FDT e limites do contrato](docs/fdt-resources.md)
 - [Validação de entrada, GIC e timer](docs/r10-single-cpu.md)
