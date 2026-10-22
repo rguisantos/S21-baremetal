@@ -6,7 +6,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
-A [revisão dos projetos HackiOS/XNU](docs/hackios-xnu-reference.md) abre uma frente de laboratório Darwin: plataforma ARM genérica, boot_args/árvore Apple, APFS e adaptações de userland. Os alvos upstream são POCO/Snapdragon e QEMU; o exercício com nosso DTB identificou limites do gerador de perfil. O port Samsung e o primeiro diagnóstico no S21 continuam pendentes.
+A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. Kernel/loader são prebuilt identificados; não houve execução do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
 ## Módulos e validação
 
@@ -20,6 +20,7 @@ A [revisão dos projetos HackiOS/XNU](docs/hackios-xnu-reference.md) abre uma fr
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
 | Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
+| Laboratório XNU | UEFI/loader → XNU prebuilt → init Darwin próprio | QEMU em uma CPU; caso positivo e arquivo corrompido recusado; sem userland iOS |
 
 Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
@@ -35,6 +36,7 @@ python3 scripts/test_payload.py
 python3 scripts/test_payload_stage.py
 python3 scripts/test_payload_loader.py
 python3 scripts/test_entry_diag.py
+python3 scripts/test_xnu_lab.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```
@@ -82,6 +84,8 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
 - [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)
+- [XNU no QEMU com programa próprio: execução e contraprova](docs/xnu-qemu-lab.md)
+- [Objetivo Android/XNU: contratos e marcos da escolha de boot](docs/dual-boot-strategy.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
 - [Resultados reproduzidos nesta revisão](docs/validation-2026-10-20.md)
 - [Integração dos PRs](PR_INTEGRATION.md) e [histórico de investigação](worklog.md)

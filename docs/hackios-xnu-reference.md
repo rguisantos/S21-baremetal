@@ -48,6 +48,12 @@ O [manifesto](references/hackios-xnu-20261022.json) registra identidade,
 hashes dos arquivos consultados, integridade dos prebuilt e o exercício
 do gerador. Nenhum desses checks é teste de funcionamento no S21.
 
+**Continuação na mesma data:** o [laboratório XNU](xnu-qemu-lab.md) depois
+executou o kernel/loader prebuilt no QEMU com nosso init, APFS e timer.
+Há caso positivo e contraprova com um byte alterado. Essa evidência é
+separada da revisão estática acima; o userland iOS e o S21 permanecem
+sem execução demonstrada.
+
 ## Aproveitamento por camada
 
 | Camada e fontes upstream | Possibilidade concreta | Trabalho específico no S21 |

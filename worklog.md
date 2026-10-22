@@ -709,3 +709,35 @@ físicos foram preservados. Nenhum arquivo adicional solicitado, IPSW/SDK
 baixado, código de payload modificado ou suíte R8/R9/R10 reexecutada.
 Modificação preexistente do APK e arquivos temporários do toolchain
 permanecem fora da entrega.
+
+## 2026-10-22 — XNU no QEMU e objetivo Android/XNU
+
+Usuário aprovou continuar com a possibilidade futura de escolher Android
+ou XNU/userland iOS. Criado laboratório separado: UEFI Debian não Secure
+Boot, loader/kernel HackiOS prebuilt nos commits e hashes já examinados,
+APFS mínimo e programa Darwin próprio em assembly. GNU as/objcopy geram
+texto sem SDK; empacotador fixo cria Mach-O estático de 16 KiB. Nenhum
+programa Apple de userland, IPSW ou SDK foi usado. Kernel não recompilado.
+
+Diagnóstico roda como /sbin/launchd apenas pelo nome exigido na entrada;
+confere PID1/UID0, conteúdo exato/EOF de um arquivo APFS, select de 200 ms
+e avanço de relógio entre 100 ms e 10 s, depois pede RB_HALT. Corrigido
+argumento opcional X2 de gettimeofday após conferir kern_time.c da base
+Apple: residual não nulo podia produzir EFAULT. Ensaio de calibração com
+hello upstream terminava em panic ao sair de PID1; casos finais usam nosso
+programa e encerram sem panic, voltando ao carregador.
+
+Caso final positivo: 17 critérios satisfeitos, QEMU saiu 0. Controle com
+mesmo executável e arquivo do mesmo tamanho, alterado em um único byte:
+FAIL APFS fixture, QEMU saiu 0, harness saiu 1. Isso demonstra recusa mesmo
+com encerramento normal; as fases posteriores não foram executadas no
+controle. 13 testes de host passaram, separados das duas execuções QEMU.
+
+Runner verifica entradas por SHA/revisão, exige UEFI testada e pasta nova,
+cria NVRAM/FAT próprios e registra comandos, hashes, resultado e serial.
+Publicados relatório e transcrições completas em texto com controles
+escapados; hashes brutos separados. Sem novos binários, imagens ou
+dependências no Git. README, índices e roadmap registram X1 concluído
+com prebuilt e D0–D4 até eventual escolha de boot. P1/P2 Samsung mantidos;
+nenhum teste no S21, menu de boot ou userland iOS executado. R8/R9/R10 e
+firmware recebido não mudaram; suas suítes não foram reexecutadas.

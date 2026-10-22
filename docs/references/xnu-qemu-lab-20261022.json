@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "timezone": "America/Campo_Grande",
+  "scope": "QEMU virt, one CPU, pinned external XNU/loader prebuilt, own static Darwin init; no phone or iOS userland",
+  "s21_baseline_commit": "95788e976fc8b0ada7d507ae5a75dd0c45013495",
+  "upstream_revisions": {
+    "kernel": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+    "userland": "906425b75e02b4f99eb5d7bb1ef7c9583472d772"
+  },
+  "uefi_package": {
+    "name": "qemu-efi-aarch64_2025.02-8+deb13u1_all.deb",
+    "bytes": 5122856,
+    "sha256": "a00b2411a79c8aeafd95a7c868ac3cd1aab592f1af9fff965f02d81a625276ed",
+    "url": "https://deb.debian.org/debian/pool/main/e/edk2/qemu-efi-aarch64_2025.02-8+deb13u1_all.deb",
+    "checksum_reference": "https://packages.debian.org/trixie/all/qemu-efi-aarch64/download"
+  },
+  "host_tests": {
+    "command": [
+      "python3",
+      "scripts/test_xnu_lab.py"
+    ],
+    "passed": 13,
+    "failed": 0,
+    "test_script_sha256": "9eeb9edb0fa95589920fbf96093fe9b9843fac06b00758c46af97eadfb18cdb7"
+  },
+  "output_reuse_control": {
+    "setup_exit_code": 2,
+    "existing_report_preserved": true
+  },
+  "negative_control": {
+    "same_init": true,
+    "fixture_size_equal": true,
+    "fixture_byte_differences": 1,
+    "qemu_exit_zero_in_both": true,
+    "runner_exit_negative": 1,
+    "meaning": "A normal QEMU exit does not override the deliberate file-content failure."
+  },
+  "path_placeholders": {
+    "@TOOLS@": "extracted local toolchain/QEMU root",
+    "@KERNEL@": "pinned kernel clone",
+    "@USERLAND@": "pinned userland clone",
+    "@EFI@": "extracted package usr/share/AAVMF",
+    "@RUN@": "new isolated run directory"
+  },
+  "serial_display_transform": "Replace CRLF with LF; escape bytes other than TAB/ASCII 32..126, and all trailing spaces/tabs, as lowercase \\xNN per line; retain all content.",
+  "cases": {
+    "positive": {
+      "schema_version": 1,
+      "scope": "QEMU virt; one CPU; external prebuilt XNU; own Darwin init",
+      "passed": true,
+      "negative_fixture": false,
+      "inputs": {
+        "xnuloader/mkpayload.py": {
+          "path": "@KERNEL@/xnuloader/mkpayload.py",
+          "bytes": 1743,
+          "sha256": "f5a1aec8de1aed3d6e88f05851279639d5062d3b666fff1a294b0ed48c08d717"
+        },
+        "tools/apfs/mkapfs.py": {
+          "path": "@USERLAND@/tools/apfs/mkapfs.py",
+          "bytes": 44142,
+          "sha256": "c14a81ae9286c69a77673552fcf240de84d37e8fde16f617b2d2efc84d758bdc"
+        },
+        "prebuilt/mach.development.bcm2837": {
+          "path": "@KERNEL@/prebuilt/mach.development.bcm2837",
+          "bytes": 15623056,
+          "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+        },
+        "prebuilt/loader.efi": {
+          "path": "@KERNEL@/prebuilt/loader.efi",
+          "bytes": 68096,
+          "sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1"
+        },
+        "efi_code": {
+          "path": "@EFI@/AAVMF_CODE.no-secboot.fd",
+          "bytes": 67108864,
+          "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+        },
+        "efi_vars_template": {
+          "path": "@EFI@/AAVMF_VARS.fd",
+          "bytes": 67108864,
+          "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+        }
+      },
+      "own_sources_sha256": {
+        "lab/xnu/init.S": "3cde2119302171424d5c3ffbd8e232dbc468c1d36112eed54f343b48f4a8da94",
+        "lab/xnu/macho.py": "e5e97a7c593821536a3c63070c4f8624b725b312cd894e6f560438e9bdf02ee6",
+        "scripts/run_xnu_lab.py": "9cdd003c59da300292fd18e9c508e410ee8eb26a55338098bfe27c89f78cdc15"
+      },
+      "qemu_version": "QEMU emulator version 10.0.13 (Debian 1:10.0.13+ds-0+deb13u1)",
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "kernel_cmdline": "cpus=1 loader_return_after=30",
+      "duration_seconds": 6.667,
+      "qemu_returncode": 0,
+      "timed_out": false,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true
+      },
+      "artifacts": {
+        "init.text": {
+          "bytes": 886,
+          "sha256": "52be498689cad4eb0266c17ea7172cbde74be13ce14330057bf14300ccf94842"
+        },
+        "root/sbin/launchd": {
+          "bytes": 16384,
+          "sha256": "4edb6e75fb3d712ede641692d6b7c83a174c649417c73c9fd2f215b67a350f14"
+        },
+        "root/etc/s21-lab.txt": {
+          "bytes": 23,
+          "sha256": "7759647a9ea1f50ea1b5f765b3ff6ba134c262a9ab4b8c855534ca67f526133d"
+        },
+        "root.apfs": {
+          "bytes": 4194304,
+          "sha256": "97bc2c81b9e2b7d8c14552b235fa534b0211a6efbde70ea5a4ae8775a759cea5"
+        },
+        "payload.bin": {
+          "bytes": 19817496,
+          "sha256": "2a1549161080bbb2d44edee56cb3f5b3b202e802ce81cd41e0b5e73eddb80e1f"
+        },
+        "serial.log": {
+          "bytes": 22640,
+          "sha256": "d8ef6a76f7d422e2713220d5bed25d8414a6ae7660696f616c189dfc18be18a5"
+        }
+      },
+      "not_demonstrated": [
+        "XNU build from source",
+        "iOS userland/SpringBoard",
+        "Samsung boot/dual boot",
+        "Exynos or Mali hardware",
+        "SMP"
+      ],
+      "runner_exit_code": 0,
+      "serial_transcript": {
+        "path": "docs/references/xnu-qemu-positive-20261022.txt",
+        "bytes": 22333,
+        "sha256": "aece2ff11248bd4754bcaa6d4760b003eaf4fc92ce120a086a1784bd00b09d79",
+        "complete_not_truncated": true,
+        "raw_sha256": "d8ef6a76f7d422e2713220d5bed25d8414a6ae7660696f616c189dfc18be18a5"
+      }
+    },
+    "negative": {
+      "schema_version": 1,
+      "scope": "QEMU virt; one CPU; external prebuilt XNU; own Darwin init",
+      "passed": false,
+      "negative_fixture": true,
+      "inputs": {
+        "xnuloader/mkpayload.py": {
+          "path": "@KERNEL@/xnuloader/mkpayload.py",
+          "bytes": 1743,
+          "sha256": "f5a1aec8de1aed3d6e88f05851279639d5062d3b666fff1a294b0ed48c08d717"
+        },
+        "tools/apfs/mkapfs.py": {
+          "path": "@USERLAND@/tools/apfs/mkapfs.py",
+          "bytes": 44142,
+          "sha256": "c14a81ae9286c69a77673552fcf240de84d37e8fde16f617b2d2efc84d758bdc"
+        },
+        "prebuilt/mach.development.bcm2837": {
+          "path": "@KERNEL@/prebuilt/mach.development.bcm2837",
+          "bytes": 15623056,
+          "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+        },
+        "prebuilt/loader.efi": {
+          "path": "@KERNEL@/prebuilt/loader.efi",
+          "bytes": 68096,
+          "sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1"
+        },
+        "efi_code": {
+          "path": "@EFI@/AAVMF_CODE.no-secboot.fd",
+          "bytes": 67108864,
+          "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+        },
+        "efi_vars_template": {
+          "path": "@EFI@/AAVMF_VARS.fd",
+          "bytes": 67108864,
+          "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+        }
+      },
+      "own_sources_sha256": {
+        "lab/xnu/init.S": "3cde2119302171424d5c3ffbd8e232dbc468c1d36112eed54f343b48f4a8da94",
+        "lab/xnu/macho.py": "e5e97a7c593821536a3c63070c4f8624b725b312cd894e6f560438e9bdf02ee6",
+        "scripts/run_xnu_lab.py": "9cdd003c59da300292fd18e9c508e410ee8eb26a55338098bfe27c89f78cdc15"
+      },
+      "qemu_version": "QEMU emulator version 10.0.13 (Debian 1:10.0.13+ds-0+deb13u1)",
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "kernel_cmdline": "cpus=1 loader_return_after=30",
+      "duration_seconds": 6.473,
+      "qemu_returncode": 0,
+      "timed_out": false,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": false,
+        "user_sleep_and_clock": false,
+        "user_all_pass": false,
+        "ordered_user_checks": false,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": false,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true
+      },
+      "artifacts": {
+        "init.text": {
+          "bytes": 886,
+          "sha256": "52be498689cad4eb0266c17ea7172cbde74be13ce14330057bf14300ccf94842"
+        },
+        "root/sbin/launchd": {
+          "bytes": 16384,
+          "sha256": "4edb6e75fb3d712ede641692d6b7c83a174c649417c73c9fd2f215b67a350f14"
+        },
+        "root/etc/s21-lab.txt": {
+          "bytes": 23,
+          "sha256": "27e4ec2faaf3b6cfc62f792597e91c7028b22b6187ab98465874e2a55d3c9970"
+        },
+        "root.apfs": {
+          "bytes": 4194304,
+          "sha256": "2d7f856ce7cb894af44b657af57d791d754be2b5726bc8a31fe6e20316826d26"
+        },
+        "payload.bin": {
+          "bytes": 19817496,
+          "sha256": "dce4e3d36cd22dc02190f5fd177e97518eca13880a2b18754e46390279f239eb"
+        },
+        "serial.log": {
+          "bytes": 22435,
+          "sha256": "4c7b046fa8bc91b513235fb47d54d3c19dec129bebba6a7b89d64aa002f4a6cf"
+        }
+      },
+      "not_demonstrated": [
+        "XNU build from source",
+        "iOS userland/SpringBoard",
+        "Samsung boot/dual boot",
+        "Exynos or Mali hardware",
+        "SMP"
+      ],
+      "runner_exit_code": 1,
+      "serial_transcript": {
+        "path": "docs/references/xnu-qemu-negative-20261022.txt",
+        "bytes": 22126,
+        "sha256": "bfc079dfbcbc63bf31cc4640ad8213a5dcf04095773c125373eb61a6a673260b",
+        "complete_not_truncated": true,
+        "raw_sha256": "4c7b046fa8bc91b513235fb47d54d3c19dec129bebba6a7b89d64aa002f4a6cf"
+      }
+    }
+  }
+}

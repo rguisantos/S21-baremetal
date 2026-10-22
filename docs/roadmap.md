@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-22 (Campo Grande)**. Base técnica revisada:
-[main em 56406dc](https://github.com/rguisantos/S21-baremetal/commit/56406dc234be3e0c36a70106ac80a5aa7cf0a37d).
+[main em 95788e9](https://github.com/rguisantos/S21-baremetal/commit/95788e976fc8b0ada7d507ae5a75dd0c45013495).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -26,6 +26,7 @@ não mudam o estado de validação no telefone.
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
+| XNU/Darwin no QEMU | **Kernel prebuilt + init próprio executados** | PID 1/UID 0, APFS, timer e retorno; arquivo com um byte alterado recusado; 13 testes de host; sem iOS gráfico ou hardware Samsung |
 | R10 físico, depois SMP/periféricos | **Etapas futuras** | Uma CPU primeiro; PSCI/SMP, SPIs, MCT e display após comprovar a base |
 
 As contagens acima pertencem a suítes diferentes e não devem ser somadas
@@ -78,14 +79,15 @@ reais ou os callbacks: repetir a mesma matriz não fecharia essas lacunas.
 Os dois projetos [HackiOS examinados por commit](hackios-xnu-reference.md)
 oferecem uma base XNU ARM genérica, carregador Mach-O/boot_args, APFS e
 adaptações de userland iOS 16.5. Seu alvo físico é redwood/Snapdragon; não
-há port p3s entregue. A revisão estática e o exercício do gerador com HZC2
-foram concluídos; build, boot QEMU HackiOS e execução física não foram
-reproduzidos por esta entrega.
+há port p3s entregue. Após a revisão estática, foi
+[reproduzido o boot XNU com programa próprio no QEMU](xnu-qemu-lab.md).
+O kernel e loader usados são prebuilt verificados; build XNU a partir dos
+fontes, serviços iOS e execução física continuam pendentes.
 
 | Etapa | Estado / dependência |
 |---|---|
 | X0 — referência e diferenças | Concluída: 7 hashes prebuilt conferidos; gerador reconhece CPUs, mas deixa GIC TODO no nosso DTB 2+1 células |
-| X1 — XNU + programa mínimo no QEMU | Proposta em ambiente separado; pode avançar em paralelo a P1/P2 |
+| X1 — XNU + programa mínimo no QEMU | Concluído com prebuilt externo: caso positivo, controle negativo e 13 testes de host; build dos fontes segue como validação separada |
 | X2 — contrato Samsung → XNU | Especificação e fixtures futuras; exige boot_args/árvore Apple próprios, separados do ABI FDT do R10 |
 | X3 — XNU físico em uma CPU | Depende de carregamento, memória, entrada e observação demonstrados nos marcos físicos acima |
 | X4 — APFS/userland/interface | Primeiro no laboratório; no telefone, framebuffer/CPU antes de GPU e periféricos |
@@ -94,6 +96,13 @@ Essa frente não conclui P1–P6 ou os Marcos A/B. GICR, timer virtual/físico,
 USB/UEFI Qualcomm e Mali exigem adaptações próprias. Não é necessário
 reenviar firmware para continuar a análise; a revisão contém fontes,
 limites e critérios de aceitação dessa frente.
+
+O usuário aprovou investigar a futura escolha Android/XNU no telefone.
+A [estratégia](dual-boot-strategy.md) separa o laboratório já executado,
+diagnóstico físico, adaptação XNU, userland/interface e seleção de boot.
+O próximo trabalho XNU é especificar e testar o adaptador de argumentos e
+memória; isso pode avançar no host em paralelo a P1/P2 sem inventar bancos
+ou reservas do S21.
 
 ## Critérios para iniciar o Marco A
 
