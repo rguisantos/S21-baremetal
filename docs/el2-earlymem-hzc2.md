@@ -68,7 +68,8 @@ argumento zero; alcança o ramo de cálculo automático se as validações passa
 O estado em 0x171f8 contém uma lista de intervalos. Antes da inicialização,
 o comando 2, handler 0x2004, pode adicionar base/tamanho por 0x4574.
 Existe no LK um wrapper 0x209a38 que monta 0x83000002 e chama o mesmo HVC;
-a presença desse wrapper não prova quais intervalos foram registrados.
+seu chamador foi posteriormente ligado ao [percurso memory do FDT](lk-uh-range-registration.md).
+Os valores efetivamente registrados continuam desconhecidos.
 
 | Operação no comando 4 | Offsets uH |
 |---|---|
@@ -127,8 +128,10 @@ A CLI foi executada com as três imagens originais; o relatório permanece com
 `runtime_values_observed=false`, `memory_map_verified=false` e
 `is_final_fdt=false`. Não houve nova coleta rish ou mudança nos drivers.
 
-O próximo ponto é rastrear quem fornece os intervalos ao uH e a tradução
-dos serviços soc_info que alimentam os bancos. O material já recebido basta
-para essa continuação; nenhum arquivo adicional é necessário neste marco.
-O mapa completo, o resultado da alocação e o estado final de entrada ainda
-impedem declarar o payload pronto para execução física.
+Atualização: a origem imediata dos intervalos foi ligada ao percurso de nós
+memory do FDT corrente, antes da chamada earlymem. A checagem e a validação
+ampliada estão em [Intervalos LK → uH](lk-uh-range-registration.md).
+O próximo ponto são os valores/ramos que constroem esses bancos e a tradução
+soc_info. O material já recebido basta para continuar. O mapa completo, o
+resultado da alocação e o estado final de entrada ainda impedem declarar o
+payload pronto para execução física.

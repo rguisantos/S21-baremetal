@@ -62,6 +62,8 @@ def inspect(sboot_path, uh_path, harx_path):
         raise ValueError('unexpected app0 command4 handler')
     constructor_pointer = struct.unpack_from('<Q', uh, 0x12568)[0]
     constructor = pointer_offset(constructor_pointer, UH_BASE, len(uh))
+    range_pointer = struct.unpack_from('<Q', uh, table + 2 * 8)[0]
+    range_handler = pointer_offset(range_pointer, UH_BASE, len(uh))
     strings = {}
     for off in (0xd145, 0xd179, 0xd19c, 0xd1d1):
         strings[hex(off)] = harx[off:harx.index(0, off)].decode('ascii')
@@ -78,6 +80,20 @@ def inspect(sboot_path, uh_path, harx_path):
                                    0x209a28, 0x209a38, 0x209a3c, 0x209a40,
                                    0x209a44, 0x209a58)),
         },
+        'lk_range_registration': {
+            'node_name_prefix': 'memory', 'property': 'reg',
+            'walker_file_offset': '0x148c38', 'callback_file_offset': '0x209a38',
+            'service_id': '0x83000002',
+            'reg_bytes_read_per_node': 12, 'callback_checks_uh_return': False,
+            'calls': calls(sboot, (0xfb4f0, 0xfb4fc, 0x148c6c, 0x148cbc,
+                                   0x148cc8, 0x148cd8, 0x148cf0, 0x148d08,
+                                   0x148d3c)),
+            'words': words(sboot, (0xfb4e0, 0xfb4e4, 0xfb4e8, 0xfb4ec,
+                                   0x148c50, 0x148c84, 0x148cdc, 0x148d04,
+                                   0x148d0c, 0x148d10, 0x148d18, 0x148d20,
+                                   0x148d24, 0x148d2c, 0x148d30, 0x209a60)),
+            'limit': 'Callback argument derivation only; actual dynamic FDT not acquired',
+        },
         'uh_dispatch': {
             'registered_range': ['0x83000000', '0x8300ffff'],
             'dispatcher_file_offset': '0x6c3c', 'app': 0, 'command': 4,
@@ -86,6 +102,8 @@ def inspect(sboot_path, uh_path, harx_path):
             'table_file_offset': hex(table),
             'selected_pointer': hex(handler_pointer),
             'handler_file_offset': hex(handler),
+            'range_handler_pointer': hex(range_pointer),
+            'range_handler_file_offset': hex(range_handler),
             'words': words(uh, (0x7c9c, 0x7ca0, 0x7ca4, 0x7ca8, 0x7cac,
                                 0x6c54, 0x6c60, 0x6c68, 0x6c6c,
                                 0x6cb8, 0x6cc4, 0x6cd8, 0x6ce0, 0x6ce4,

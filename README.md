@@ -112,6 +112,8 @@ O [rastreio das escritas dinâmicas](docs/lk-dynamic-fdt.md) ligou chosen ao ini
 
 O [handler uH de earlymem](docs/el2-earlymem-hzc2.md) foi ligado ao HVC 0x83000004 do LK no mesmo pacote BL. Ele pode alocar e inicializar memória; não é uma consulta pura. Um novo inspetor offline exige os hashes de sboot/uH/Harx e registra a cadeia. Os três testes novos e os 19 testes LK passaram; base/tamanho efetivos e mapa final continuam desconhecidos. Nenhum arquivo adicional é necessário para continuar esta análise.
 
+Os [intervalos enviados ao uH](docs/lk-uh-range-registration.md) vêm do FDT corrente: o LK seleciona nomes com prefixo `memory` e envia somente a primeira tupla de `reg` pelo comando 0x83000002, antes de pedir earlymem. A nova checagem reproduz esses argumentos sem executar serviços; o conjunto offline passou em 30 testes. Falta determinar os valores usados na construção dinâmica dos bancos.
+
 O diagnóstico também foi testado com `SCTLR.C` ligado por uma fixture QEMU: recusou a entrada em EL1/EL2 antes de gravar o registro. O teste padrão ampliado agora cobre seis entradas aceitas e seis recusas, incluindo MMU ligada e M|C em EL1/EL2.
 
 O [roadmap atual](docs/roadmap.md) registra os marcos concluídos e o que ainda bloqueia o primeiro diagnóstico no telefone.

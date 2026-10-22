@@ -344,3 +344,26 @@ testes de limites passaram e 19 testes LK continuaram passando. README,
 índices e roadmap atualizados. Continuação: origem dos intervalos uH e
 tradução soc_info. Nenhum arquivo extra solicitado, serviço executado ou
 acesso ao telefone realizado.
+
+## 2026-10-22 UTC — origem dos intervalos LK → uH
+
+Referência ao wrapper 0x209a38 localizada por ADRP+ADD em 0xfb4e0/0xfb4e8,
+passada como callback ao percurso 0x148c38 em 0xfb4f0. O percurso compara
+o prefixo memory do nome, lê a primeira tupla reg como base64/tamanho32
+big-endian e chama o callback por BLR em 0x148d2c. Não filtra device_type,
+status ou traduz ranges; não percorre tuplas adicionais. A chamada seguinte
+0xfb4fc entra no escritor de reservas e pedido earlymem. Wrapper sempre
+retorna zero, sem comprovar aceitação pelo uH.
+
+Novo check_lk_uh_ranges.py vinculado ao sboot HZC2 na CLI, leitura FDT de
+até 2 MiB e modelo limitado a células explícitas 2/1, tuplas completas e
+fim sem overflow. Essas verificações de host não são atribuídas ao LK.
+Relatório conserva ordem e tuplas ignoradas; não simula alocação ou memória
+livre. Oito testes novos passaram; total com LK/EL2: 30 testes de host.
+CLI sintética passou e DTB base stock de 389876 bytes foi recusado por
+ausência de bancos. Hash do vendor_boot raw conferido novamente.
+
+Inspetor EL2 e JSON ampliados com chamadas, palavras e handler do comando 2.
+README, índices e roadmap atualizados. Próxima lacuna: valores/ramos usados
+para construir os bancos e tradução soc_info, sem novo arquivo necessário
+ou execução no aparelho.

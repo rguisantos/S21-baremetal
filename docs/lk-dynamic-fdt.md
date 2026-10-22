@@ -82,6 +82,11 @@ foi identificado. Pode calcular, alocar e inicializar a região, dependendo de
 uma lista de intervalos e de seu estado de inicialização. Não é uma consulta
 pura; base e tamanho efetivos permanecem desconhecidos.
 
+O [chamador que fornece os intervalos](lk-uh-range-registration.md) também
+foi ligado: 0xfb4f0 percorre nomes com prefixo memory e envia a primeira
+tupla de reg de cada nó ao comando uH 2, antes do pedido earlymem. Ainda
+faltam os valores que alimentam a construção dinâmica desses bancos.
+
 0x1486a0 consulta `#address-cells`/`#size-cells`. Com uma célula grava quatro
 bytes big-endian; com duas, oito. Nos oito candidatos de host, reserved-memory
 tem **2 células de endereço e 1 de tamanho**, resultando em reg de 12 bytes

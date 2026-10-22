@@ -63,6 +63,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [uH earlymem e Harx soc_info](el2-earlymem-hzc2.md): handler do HVC ligado ao LK, efeitos de alocação e relatório offline vinculado aos três hashes HZC2.
 
+- [Intervalos LK → uH](lk-uh-range-registration.md): percurso dos nós memory do FDT, primeira tupla de reg, comando 2 e checagem offline dos argumentos.
+
 - [Roadmap atual até o diagnóstico físico](roadmap.md): marcos, critérios e bloqueios.
 
 - [Kernel Exynos-2100/universal2100](exynos-2100-reference.md): comparação fixada por commit, aproveitamento e limites.

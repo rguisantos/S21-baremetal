@@ -40,6 +40,45 @@
       "0x209a58": "f2b06000"
     }
   },
+  "lk_range_registration": {
+    "node_name_prefix": "memory",
+    "property": "reg",
+    "walker_file_offset": "0x148c38",
+    "callback_file_offset": "0x209a38",
+    "service_id": "0x83000002",
+    "reg_bytes_read_per_node": 12,
+    "callback_checks_uh_return": false,
+    "calls": {
+      "0xfb4f0": "0x148c38",
+      "0xfb4fc": "0x148a80",
+      "0x148c6c": "0x11e9f8",
+      "0x148cbc": "0x11ef20",
+      "0x148cc8": "0x1b2660",
+      "0x148cd8": "0x1b26b0",
+      "0x148cf0": "0x11f3e8",
+      "0x148d08": "0x1af3c0",
+      "0x148d3c": "0x11e9f8"
+    },
+    "words": {
+      "0xfb4e0": "d0000862",
+      "0xfb4e4": "f0000881",
+      "0xfb4e8": "9128e042",
+      "0xfb4ec": "91158021",
+      "0x148c50": "aa0203f8",
+      "0x148c84": "911562f7",
+      "0x148cdc": "35fffda0",
+      "0x148d04": "b4fffc76",
+      "0x148d0c": "f9402ba2",
+      "0x148d10": "b9400ac1",
+      "0x148d18": "dac00c42",
+      "0x148d20": "aa0203e0",
+      "0x148d24": "5ac00821",
+      "0x148d2c": "d63f0300",
+      "0x148d30": "2a1303e1",
+      "0x209a60": "52800000"
+    },
+    "limit": "Callback argument derivation only; actual dynamic FDT not acquired"
+  },
   "uh_dispatch": {
     "registered_range": [
       "0x83000000",
@@ -53,6 +92,8 @@
     "table_file_offset": "0x16000",
     "selected_pointer": "0xc1401708",
     "handler_file_offset": "0x1708",
+    "range_handler_pointer": "0xc1402004",
+    "range_handler_file_offset": "0x2004",
     "words": {
       "0x7c9c": "f0ffffe3",
       "0x7ca0": "9130f063",

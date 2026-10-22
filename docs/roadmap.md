@@ -7,7 +7,7 @@ telefone. Os resultados de QEMU não validam SoC, Harx ou LK Samsung.
 | Etapa | Estado e resultado | Critério restante |
 |---|---|---|
 | 1. Entrada do diagnóstico | EL1/EL2; relocação em 64 offsets testada anteriormente; recusas C/M/M|C agora conferidas por tradução real em QEMU | EL3/traps superiores e caches herdadas permanecem fora do escopo dessa matriz |
-| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; HVC earlymem rastreado ao alocador uH; getter de RAM localizado também no Harx | Rastrear os intervalos fornecidos ao uH e a tradução soc_info; fechar mapa efetivo, checks posteriores e estado final de entrada |
+| 2. Contrato Samsung | Cópias/KASLR, seleção DTB/DTBO/DPM e initrd ligados; percurso memory do FDT alimenta comando 2 uH antes do alocador earlymem; getter de RAM localizado também no Harx | Fechar valores e ramos de construção dos bancos, tradução soc_info, mapa efetivo, checks posteriores e estado final de entrada |
 | 3. Observação | UART0 debug identificada nas fontes; callbacks UART/log em memória rastreados | Acesso físico ou recuperação verificável de um registro no aparelho |
 | 4. Carregamento | Image diagnóstica e S21R10 são formatos separados; shim em quarentena | Caminho compatível com o estado real do bootloader, artefato revisado e recuperação definida |
 | 5. Primeiro diagnóstico físico | Pendente | Executar e recuperar EL, argumentos, endereço e SCTLR |
@@ -34,6 +34,7 @@ não repetir esses procedimentos nas mesmas condições. Não se pressupõe root
 - [Seleção e merges DTB/DTBO/DPM](lk-dtb-pipeline.md).
 - [Initrd, reservas e origem do tamanho de RAM](lk-dynamic-fdt.md).
 - [Alocação earlymem no uH e soc_info no Harx](el2-earlymem-hzc2.md).
+- [Intervalos do FDT enviados ao uH e teste do percurso LK](lk-uh-range-registration.md).
 - [Console e UART0](lk-console-handoff.md), [jig/MUIC](uart-routing.md).
 - [Log em memória](lk-memory-log.md).
 - [Resultados de coleta](runtime-collection.md), [logs indisponíveis](boot-log-collection.md).
