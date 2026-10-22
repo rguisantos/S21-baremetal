@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-22 (Campo Grande)**. Base técnica revisada:
-[main em a048682](https://github.com/rguisantos/S21-baremetal/commit/a04868289c418e24768ccead81dc17be14e448fa).
+[main em 56406dc](https://github.com/rguisantos/S21-baremetal/commit/56406dc234be3e0c36a70106ac80a5aa7cf0a37d).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -72,6 +72,28 @@ que cercam o helper**, mantendo observação e memória como frentes paralelas.
 A [auditoria do helper](lk-cache-handoff.md) fechou a seleção do EL ativo,
 o gate por M e os operandos set/way nesse escopo. Não executou caches/MMU
 reais ou os callbacks: repetir a mesma matriz não fecharia essas lacunas.
+
+## Frente XNU/Darwin em laboratório
+
+Os dois projetos [HackiOS examinados por commit](hackios-xnu-reference.md)
+oferecem uma base XNU ARM genérica, carregador Mach-O/boot_args, APFS e
+adaptações de userland iOS 16.5. Seu alvo físico é redwood/Snapdragon; não
+há port p3s entregue. A revisão estática e o exercício do gerador com HZC2
+foram concluídos; build, boot QEMU HackiOS e execução física não foram
+reproduzidos por esta entrega.
+
+| Etapa | Estado / dependência |
+|---|---|
+| X0 — referência e diferenças | Concluída: 7 hashes prebuilt conferidos; gerador reconhece CPUs, mas deixa GIC TODO no nosso DTB 2+1 células |
+| X1 — XNU + programa mínimo no QEMU | Proposta em ambiente separado; pode avançar em paralelo a P1/P2 |
+| X2 — contrato Samsung → XNU | Especificação e fixtures futuras; exige boot_args/árvore Apple próprios, separados do ABI FDT do R10 |
+| X3 — XNU físico em uma CPU | Depende de carregamento, memória, entrada e observação demonstrados nos marcos físicos acima |
+| X4 — APFS/userland/interface | Primeiro no laboratório; no telefone, framebuffer/CPU antes de GPU e periféricos |
+
+Essa frente não conclui P1–P6 ou os Marcos A/B. GICR, timer virtual/físico,
+USB/UEFI Qualcomm e Mali exigem adaptações próprias. Não é necessário
+reenviar firmware para continuar a análise; a revisão contém fontes,
+limites e critérios de aceitação dessa frente.
 
 ## Critérios para iniciar o Marco A
 

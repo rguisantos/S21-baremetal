@@ -678,3 +678,34 @@ README, hardware, índice, catálogo e roadmap atualizados. R8/R9/R10 e a
 Image diagnóstica não mudaram; suas suítes e os 44 testes LK anteriores não
 foram reexecutados. Sem firmware/dependências novos no Git, coleta bloqueada
 repetida ou teste físico. Alteração preexistente do APK ficou fora do commit.
+
+## 2026-10-22 — referências HackiOS / XNU indicadas pelo usuário
+
+Clonados separadamente hackios-xnu-kernel em 8e611870 e hackios-xnu-userland
+em 906425b7. Revisão direcionada dos perfis, contrato de carga, GIC/PSCI,
+retorno/logs, substitutos IOKit, init/ABI, montagem de imagens e frontend
+AIR/Mesa. Alvos upstream redwood/Snapdragon e QEMU; kernel, UEFI e iOS não
+foram executados nesta revisão. Resultados de interface
+gráfica e corpus AIR permanecem relatos upstream.
+
+Conferidos 7/7 hashes do prebuilt/SHA256SUMS; formatos Mach-O arm64 e EFI
+AArch64 identificados. Exercitado common/new-device.sh com DTB base HZC2
+verificado por hash e DTC 1.7.2: oito CPUs, shift 8, small_cores=0x0f;
+GIC ficou TODO porque o parser cobre quatro ou pelo menos oito células,
+enquanto nosso reg tem seis (endereço 2, tamanho 1). Saída gerada somente
+na cópia externa, sem perfil executável adicionado ao S21-baremetal.
+
+Registrados contratos distintos XNUP/Mach-O/boot_args/árvore Apple e
+S21R10/ELF/FDT; stride GICR fixo 0x20000 e mapa de 1 MiB versus os 2 MiB
+HZC2; timer virtual INTID27 versus físico INTID30 do R10; dependência de
+UEFI/protocolos USB Qualcomm. Retorno/log em RAM e framebuffer com CPU são
+referências úteis, ainda sem backend Samsung. write_logs pode gravar em
+logdump no alvo upstream. AIR → NIR é oportunidade de pesquisa, sem driver
+Mali fornecido pelo caminho freedreno/ir3.
+
+Nova referência e manifesto de hashes publicados; README, índice e
+roadmap incluem X0–X4 como frente de laboratório. P1–P6 e os requisitos
+físicos foram preservados. Nenhum arquivo adicional solicitado, IPSW/SDK
+baixado, código de payload modificado ou suíte R8/R9/R10 reexecutada.
+Modificação preexistente do APK e arquivos temporários do toolchain
+permanecem fora da entrega.

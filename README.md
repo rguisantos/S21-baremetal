@@ -6,6 +6,8 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
+A [revisão dos projetos HackiOS/XNU](docs/hackios-xnu-reference.md) abre uma frente de laboratório Darwin: plataforma ARM genérica, boot_args/árvore Apple, APFS e adaptações de userland. Os alvos upstream são POCO/Snapdragon e QEMU; o exercício com nosso DTB identificou limites do gerador de perfil. O port Samsung e o primeiro diagnóstico no S21 continuam pendentes.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |
@@ -79,6 +81,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
+- [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)
 - [Resultados reproduzidos nesta revisão](docs/validation-2026-10-20.md)
 - [Integração dos PRs](PR_INTEGRATION.md) e [histórico de investigação](worklog.md)

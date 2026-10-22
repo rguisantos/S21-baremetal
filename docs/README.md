@@ -20,6 +20,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [DTS enviados e recompilação HZC2](dts-source-roundtrip.md): patch de três listas de CPUs, identidade binária da base stock e limites dos overlays genérico/P3S.
 - [Proton: fonte](proton-reference.md), [binários](proton-binary.md) e [contrato do carregador Samsung](loader-contract.md).
 - [Referência TWRP](twrp-reference.md) e [limites da coleta Shizuku](runtime-collection.md).
+- [HackiOS/XNU](hackios-xnu-reference.md): possibilidades de laboratório Darwin, contratos distintos, exercício do gerador com HZC2 e dependências do port Exynos.
 
 ## Histórico e decisões
 
