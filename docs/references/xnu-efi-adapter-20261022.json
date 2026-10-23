@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "timezone": "America/Campo_Grande",
+  "s21_baseline_commit": "9554ff10e75fbf4f27bb0b52e25e221a49d89808",
+  "execution": {
+    "schema_version": 1,
+    "scope": "Rebuilt EFI consumer in one-CPU QEMU; synthetic FDT, pinned XNU, own init",
+    "passed": true,
+    "build": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@RUN@/build/loader.c",
+          "-o",
+          "@RUN@/build/loader.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@RUN@/build/efi_resources.c",
+          "-o",
+          "@RUN@/build/efi_resources.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@RUN@/build/loader.efi",
+          "@RUN@/build/loader.obj",
+          "@RUN@/build/efi_resources.obj"
+        ]
+      ],
+      "patched_source_sha256": "25c5ced15d1394532c1b7a7a889fa93475c7017ad817d4791287e3fbff042e9a",
+      "efi_sha256": "72bf433f2b9160e4ba29781c6c6e587f367b15e63c15f0e9c069e9bc8af6c49e",
+      "efi_bytes": 71680,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "cases": {
+      "positive": {
+        "case": "positive",
+        "passed": true,
+        "checks": {
+          "qemu_exit_zero": true,
+          "no_timeout": true,
+          "darwin_kernel": true,
+          "gic_virtual_timer": true,
+          "apfs_root": true,
+          "user_pid1_uid0": true,
+          "user_apfs_fixture": true,
+          "user_sleep_and_clock": true,
+          "user_all_pass": true,
+          "ordered_user_checks": true,
+          "cpu_halted": true,
+          "loader_returned_normally": true,
+          "complete_return_log": true,
+          "no_failure_marker": true,
+          "no_panic": true,
+          "no_user_trap": true,
+          "no_early_exception": true,
+          "native_resources": true,
+          "native_layout": true,
+          "no_native_rejection": true
+        },
+        "capture": {
+          "pc": "0xfffffff007453994",
+          "x0_virtual": "0xfffffff0086f4000",
+          "pstate": "0x600003c4",
+          "profile": {
+            "profile_consistent": true,
+            "hardware_ready": false,
+            "window": [
+              "0xf4000000",
+              "0xca000000"
+            ],
+            "placements": {
+              "boot_args": [
+                "0xf86f4000",
+                "0x2e0"
+              ],
+              "Apple DT": [
+                "0xf86e4000",
+                "0x39d0"
+              ],
+              "__TEXT": [
+                "0xf7004000",
+                "0x1a0000"
+              ],
+              "__DATA_CONST": [
+                "0xf71a4000",
+                "0xe8000"
+              ],
+              "__TEXT_EXEC": [
+                "0xf728c000",
+                "0x854000"
+              ],
+              "__KLD": [
+                "0xf7ae0000",
+                "0x4000"
+              ],
+              "__LASTDATA_CONST": [
+                "0xf7ae4000",
+                "0x4000"
+              ],
+              "__KLDDATA": [
+                "0xf7ae8000",
+                "0x4000"
+              ],
+              "__DATA": [
+                "0xf7aec000",
+                "0x450000"
+              ],
+              "__BOOTDATA": [
+                "0xf7f3c000",
+                "0x4c000"
+              ],
+              "__LINKINFO": [
+                "0xf7f88000",
+                "0x90000"
+              ],
+              "__LINKEDIT": [
+                "0xf8018000",
+                "0x2ca390"
+              ],
+              "RAMDisk": [
+                "0xf82e4000",
+                "0x400000"
+              ]
+            },
+            "gic": [
+              [
+                "0x8000000",
+                "0x10000"
+              ],
+              [
+                "0x80a0000",
+                "0x100000"
+              ]
+            ],
+            "cpus": [
+              "0x0"
+            ],
+            "psci_method": "hvc",
+            "note": "Consistency with supplied declarations; no allocation, firmware or ownership proof."
+          },
+          "boot_args_sha256": "8b37367b100df33c9a96f1f8e84671ed34ab4152c71c61b99022229256096c03",
+          "tree_sha256": "0d7a53f4c7eb2f769e3b4dc8f1d454fcc786d9d401364ded1da797e58f3245ac",
+          "tree_bytes": 14800,
+          "resource_fields_match": true,
+          "read_only_gdb": true
+        },
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/positive/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/positive/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/positive/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/positive/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none",
+          "-S",
+          "-gdb",
+          "stdio"
+        ],
+        "serial_sha256": "3134d8ee3f9b08174992c49131d0d07902c0123841141529ebfb10b5bb53d25b",
+        "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+        "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+        "hardware_ready": false
+      },
+      "truncated": {
+        "case": "truncated",
+        "passed": true,
+        "checks": {
+          "exit_zero": true,
+          "rejected": true,
+          "no_jump": true,
+          "no_kernel_copy": true,
+          "no_darwin": true,
+          "no_user_init": true
+        },
+        "capture": null,
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/truncated/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/truncated/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/truncated/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/truncated/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none"
+        ],
+        "serial_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+        "resource_sha256": "80f5d9fc2dcff188245e5481eeccab6ebc160888968df628d9d62cb7f71439d4",
+        "payload_sha256": "083011687ecabe3b48afef1db785c33a4bf743896e8c1109673f2fd044e172af",
+        "hardware_ready": false
+      },
+      "counter": {
+        "case": "counter",
+        "passed": true,
+        "checks": {
+          "exit_zero": true,
+          "rejected": true,
+          "no_jump": true,
+          "no_kernel_copy": true,
+          "no_darwin": true,
+          "no_user_init": true
+        },
+        "capture": null,
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/counter/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/counter/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/counter/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/counter/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none"
+        ],
+        "serial_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+        "resource_sha256": "d9fe610dc22f531cd77055522cfd962810d403d8a11270652b75b10e726a5132",
+        "payload_sha256": "5b383c2256452e38bd418a411ea8996eaef651dbec98b569cb21713d09999abe",
+        "hardware_ready": false
+      },
+      "gic": {
+        "case": "gic",
+        "passed": true,
+        "checks": {
+          "exit_zero": true,
+          "rejected": true,
+          "no_jump": true,
+          "no_kernel_copy": true,
+          "no_darwin": true,
+          "no_user_init": true
+        },
+        "capture": null,
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/gic/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/gic/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/gic/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/gic/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none"
+        ],
+        "serial_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+        "resource_sha256": "243e4d70014c48581d7672dbb655bbad898c162c4e4c8f944147de2e70e054e5",
+        "payload_sha256": "207d0bdac8911d75e45b04afa2e2ec629197d864139c6ccbb3d6abcd2a37c384",
+        "hardware_ready": false
+      },
+      "duplicate": {
+        "case": "duplicate",
+        "passed": true,
+        "checks": {
+          "exit_zero": true,
+          "rejected": true,
+          "no_jump": true,
+          "no_kernel_copy": true,
+          "no_darwin": true,
+          "no_user_init": true
+        },
+        "capture": null,
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/duplicate/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/duplicate/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/duplicate/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/duplicate/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none"
+        ],
+        "serial_sha256": "a4005e4fdde02a4d6d4fb248a9b9d9a27c6610f9b3065a9ff31b61843ccd0151",
+        "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+        "payload_sha256": "fb7a73de4ecb41a4dc411abef6077d5493412543bc30bf2e4d7c6657b6e90888",
+        "hardware_ready": false
+      },
+      "kernel-bounds": {
+        "case": "kernel-bounds",
+        "passed": true,
+        "checks": {
+          "exit_zero": true,
+          "rejected": true,
+          "no_jump": true,
+          "no_kernel_copy": true,
+          "no_darwin": true,
+          "no_user_init": true
+        },
+        "capture": null,
+        "qemu_returncode": 0,
+        "command": [
+          "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "--library-path",
+          "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+          "@TOOLS@/usr/bin/qemu-system-aarch64",
+          "-L",
+          "@TOOLS@/usr/share/qemu",
+          "-M",
+          "virt,gic-version=3",
+          "-cpu",
+          "cortex-a76",
+          "-smp",
+          "1",
+          "-m",
+          "6G",
+          "-accel",
+          "tcg,tb-size=128",
+          "-drive",
+          "if=pflash,format=raw,readonly=on,file=@EFI@/AAVMF_CODE.no-secboot.fd",
+          "-drive",
+          "if=pflash,format=raw,file=@RUN@/kernel-bounds/vars.fd",
+          "-drive",
+          "file=fat:rw:@RUN@/kernel-bounds/esp,format=raw,if=virtio",
+          "-device",
+          "loader,file=@RUN@/kernel-bounds/payload.bin,addr=0xF0000000,force-raw=on",
+          "-display",
+          "none",
+          "-serial",
+          "file:@RUN@/kernel-bounds/serial.log",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-nic",
+          "none"
+        ],
+        "serial_sha256": "a4005e4fdde02a4d6d4fb248a9b9d9a27c6610f9b3065a9ff31b61843ccd0151",
+        "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+        "payload_sha256": "2ec9cdd5caa686b124afad973f0d3e5aa5c1ed5277ea4cf158dab56c0e36f031",
+        "hardware_ready": false
+      }
+    },
+    "fixture": {
+      "source": {
+        "bytes": 864,
+        "sha256": "b1dc1762dbe1aa428e7f06887223d074d8e33ed8ab9361d7dfd44d250e374d05"
+      },
+      "resource_projection": true,
+      "ram": [
+        [
+          "0x40000000",
+          "0x180000000"
+        ]
+      ],
+      "reserved": [],
+      "unresolved_reserved": false,
+      "initrd": [],
+      "initrd_interpretation": "Linux end-exclusive declaration; no rounding or off-by-one correction",
+      "cpus": [
+        "0x0"
+      ],
+      "psci_method": "hvc",
+      "counter_frequency_from_fdt": 62500000,
+      "gic": [
+        [
+          "0x8000000",
+          "0x10000"
+        ],
+        [
+          "0x80a0000",
+          "0x100000"
+        ]
+      ],
+      "redist_stride_from_fdt": "0x0",
+      "timer": {
+        "node": "/timer",
+        "physical_intid": 30,
+        "virtual_intid": 27,
+        "virtual_flags_from_fdt": "0x4",
+        "linux_use_physical_timer": false
+      },
+      "provenance": {
+        "/chosen/psci-method": {
+          "node": "/psci",
+          "property": "method"
+        },
+        "/arm-io/gic/reg": {
+          "node": "/gic@8000000",
+          "property": "reg",
+          "parent_address_cells": 2,
+          "parent_size_cells": 2,
+          "endianness": "big to little"
+        },
+        "/cpus/*/reg": {
+          "nodes_in_order": [
+            "/cpus/cpu@0"
+          ],
+          "property": "reg",
+          "parent_address_cells": 2,
+          "endianness": "big to little, require u32"
+        },
+        "/cpus/*/timebase-frequency": {
+          "node": "/timer",
+          "property": "clock-frequency",
+          "interpretation": "nominal FDT value, not measured CNTFRQ"
+        }
+      },
+      "memory_description_blockers": [],
+      "memory_ownership_verified": false,
+      "load_plan_generated": false,
+      "hardware_ready": false,
+      "runtime_requirements": [
+        "owned RAM window and complete effective reservations",
+        "Samsung load path, entry state and cache coherence",
+        "ICC access, virtual timer permissions and effective CNTFRQ",
+        "redistributor discovery by affinity, not inferred stride",
+        "recoverable output channel"
+      ],
+      "scope": "Static resources from supplied FDT; frequency is nominal; no MMIO or SMC/HVC executed"
+    },
+    "kernel_sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c",
+    "ramdisk_sha256": "97bc2c81b9e2b7d8c14552b235fa534b0211a6efbde70ea5a4ae8775a759cea5",
+    "own_sources_sha256": {
+      "lab/xnu/efi_resources.c": "41043fcabceb8c9ae4104ec8b35fda1e67c8c411031ddc9b90c80728109fe2eb",
+      "lab/xnu/efi_resources.h": "573ad1abd8bca31299710a1a2bf8195c535c8b2c3faaef64f774b830c2b1db6b",
+      "lab/xnu/efi_lab.py": "39682d8f1cd10a382ec55b16f9df2c6173492256517c6b424f6cd8220d1fda0e",
+      "scripts/run_xnu_adapter_lab.py": "871689cc52db688b3588dcc6eeb67d108e554d1164e81d8766bea710ff7a16d0",
+      "lab/xnu/fdt_adapter.py": "73bb6c940e9ee1b12f41e364b0aeb27021c72ee8242fe72767e6416f7a9e524e",
+      "lab/xnu/boot_contract.py": "1b78467af8ef2bc0c9ebb0230a867c004dde95d33ce8a6df6e5127b931231fe2",
+      "scripts/capture_xnu_contract.py": "35b3e37eeaa356b3833806f40abe6ad34b95f49d2dbeb32e4278a94c096e8b1c",
+      "scripts/run_xnu_lab.py": "9cdd003c59da300292fd18e9c508e410ee8eb26a55338098bfe27c89f78cdc15",
+      "scripts/test_fdt.py": "7a053feee69688b8743a4c42d95884e09373ef58dcb0aa02e456ae19b92b6d3b",
+      "lab/xnu/fdt_probe.c": "ed3be2dc3b28a06f3b313514479a0d9cda66fb2ad57b0d4371a70803a504131a",
+      "r8/r10_payload/fdt.c": "4adb9dece2adfda83e9948d15b404f5dc6492e0e76ec7215ee72019e7a5be389",
+      "r8/r10_payload/fdt.h": "854da5c2a5613fbccfe27d6c3993f14472eb8c12ab27cae44699b5ebc881dad2",
+      "scripts/inspect_proton.py": "cf3dcec34e9d1016f544a9e27ddcb87769ac917e9b7d83c3856bb6bcec3505da",
+      "tools/mkpayload.py": "1be75e482d23082613b55871d2444bc736de946a8d8a8564ef836142c9fef166"
+    },
+    "memory_scope": "QEMU declaration and observed UEFI allocation; complete firmware reservation map not captured",
+    "hardware_ready": false,
+    "iOS_gui_tested": false,
+    "Samsung_tested": false
+  },
+  "host_tests": {
+    "command": [
+      "python3",
+      "scripts/test_xnu_efi_resources.py"
+    ],
+    "passed": 16,
+    "failed": 0,
+    "sha256": "8c29228bc3196b73f3d36294c2ee7d5a0c0a26e251f19fb2210e23ba0833259c",
+    "instrumentation": "ASan/UBSan halt; LeakSanitizer disabled on traced host"
+  },
+  "serial_displays": {
+    "positive": {
+      "path": "docs/references/xnu-efi-positive-20261022.txt",
+      "sha256": "082c542233305954a250b1a104e7617c863c66041717df7f8bc9fb07d51e1399",
+      "raw_sha256": "3134d8ee3f9b08174992c49131d0d07902c0123841141529ebfb10b5bb53d25b",
+      "raw_bytes": 22643
+    },
+    "truncated": {
+      "path": "docs/references/xnu-efi-truncated-20261022.txt",
+      "sha256": "6556c2761df25ae8338302e3332efd9d919e27d987a3f1abba8aee2a2f2b55bc",
+      "raw_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+      "raw_bytes": 433
+    },
+    "counter": {
+      "path": "docs/references/xnu-efi-counter-20261022.txt",
+      "sha256": "6556c2761df25ae8338302e3332efd9d919e27d987a3f1abba8aee2a2f2b55bc",
+      "raw_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+      "raw_bytes": 433
+    },
+    "gic": {
+      "path": "docs/references/xnu-efi-gic-20261022.txt",
+      "sha256": "6556c2761df25ae8338302e3332efd9d919e27d987a3f1abba8aee2a2f2b55bc",
+      "raw_sha256": "5621c22fd7c31a8c480e2341979cf991035212d2ac30cafe08ddde12d30a17fc",
+      "raw_bytes": 433
+    },
+    "duplicate": {
+      "path": "docs/references/xnu-efi-duplicate-20261022.txt",
+      "sha256": "4284999d75f455e6a108ea3efb4a60d8a584e47e6815325dbd81f5aa4435ab6a",
+      "raw_sha256": "a4005e4fdde02a4d6d4fb248a9b9d9a27c6610f9b3065a9ff31b61843ccd0151",
+      "raw_bytes": 431
+    },
+    "kernel-bounds": {
+      "path": "docs/references/xnu-efi-kernel-bounds-20261022.txt",
+      "sha256": "4284999d75f455e6a108ea3efb4a60d8a584e47e6815325dbd81f5aa4435ab6a",
+      "raw_sha256": "a4005e4fdde02a4d6d4fb248a9b9d9a27c6610f9b3065a9ff31b61843ccd0151",
+      "raw_bytes": 431
+    }
+  },
+  "serial_transform": "CRLF to LF; escape controls and trailing spaces/tabs; no truncation",
+  "baseline_recovery": {
+    "reason": "execution environment reset; temporary dependencies and prior runs absent",
+    "criteria_passed": 17,
+    "kernel_and_loader": "original pinned prebuilt"
+  },
+  "same_host_rebuild": {
+    "sha256": "72bf433f2b9160e4ba29781c6c6e587f367b15e63c15f0e9c069e9bc8af6c49e",
+    "matches_prior_release_build": true,
+    "scope": "same host and tools, different output directories; not independent kernel source build"
+  },
+  "fixture_fdt_sha256": "b1dc1762dbe1aa428e7f06887223d074d8e33ed8ab9361d7dfd44d250e374d05",
+  "fragment_bytes": 908,
+  "fragment_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+  "hardware_ready": false
+}

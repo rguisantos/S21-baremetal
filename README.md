@@ -8,7 +8,9 @@ O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os crité
 
 A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. Kernel/loader são prebuilt identificados; não houve execução do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
-O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layout C conferido e captura QEMU de 736/14800 bytes reemitidos sem alteração. O novo [adaptador FDT → recursos Apple](docs/xnu-fdt-adapter.md) passou 29 testes e traduziu CPUs/GIC/PSCI/timer do HZC2 para um fragmento de 1944 bytes. X2 segue parcial: faltam integração no carregador e memória física confiável; a base HZC2 continua sem bancos RAM e com reservas incompletas.
+O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layout C conferido e captura QEMU de 736/14800 bytes reemitidos sem alteração. O [adaptador FDT → recursos Apple](docs/xnu-fdt-adapter.md) passou 29 testes e traduziu CPUs/GIC/PSCI/timer do HZC2 para um fragmento de 1944 bytes. X2 segue parcial no telefone: a base HZC2 continua sem bancos RAM e com reservas incompletas.
+
+A [integração EFI no laboratório](docs/xnu-efi-adapter-lab.md) já foi executada: carregador recompilado consumindo o fragmento QEMU, **20 critérios positivos**, **cinco recusas antes da cópia/salto** e **16 testes de host**. O kernel continua prebuilt; memória e carregamento físicos do S21 permanecem pendentes.
 
 As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no host](docs/hackios-userland-host.md): colisão dos jobs, permissões, drawable_test opcional e fallback de timezone. Há patch conferido e controles sintéticos; a interface iOS do relato ainda não foi reproduzida aqui.
 
@@ -43,6 +45,7 @@ python3 scripts/test_entry_diag.py
 python3 scripts/test_xnu_lab.py
 python3 scripts/test_xnu_contract.py
 python3 scripts/test_xnu_fdt_adapter.py
+python3 scripts/test_xnu_efi_resources.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```
@@ -93,6 +96,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [XNU no QEMU com programa próprio: execução e contraprova](docs/xnu-qemu-lab.md)
 - [Contrato XNU: layout, captura de argumentos/árvore e política de memória](docs/xnu-boot-contract.md)
 - [FDT Samsung → recursos Apple: tradução, origem e recusas](docs/xnu-fdt-adapter.md)
+- [Consumidor EFI: build, boot QEMU e cinco recusas antes do salto](docs/xnu-efi-adapter-lab.md)
 - [Preparação HackiOS: quatro falhas reproduzidas e patch](docs/hackios-userland-host.md)
 - [Objetivo Android/XNU: contratos e marcos da escolha de boot](docs/dual-boot-strategy.md)
 - [Coleta sem root com Shizuku: resultado e limites](docs/runtime-collection.md)

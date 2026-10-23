@@ -822,3 +822,42 @@ Próximo X2: integrar projeção ao caminho de carga do laboratório com
 memória explícita e contraprovas. P1/P2 físicos mantidos; nenhum arquivo
 extra solicitado, operação no telefone ou reexecução das suítes antigas.
 APK preexistente e temporários do toolchain fora da entrega.
+
+## 2026-10-22 — consumidor EFI dos recursos, executado no QEMU
+
+Integrada a projeção ao carregador de laboratório: variante compilada do
+loader upstream 8e611870, com validador C freestanding e entrada adtres no
+XNUP. Cópia do fonte verificada por hash; checkout externo intacto. EFI
+AA64 de 71680 bytes, compilada com Clang/LLD 19.1.7, sem SDK Apple. Kernel
+continua prebuilt; somente o carregador foi recompilado.
+
+Fixture FDT explícita declara uma CPU, 6 GiB, HVC, 62,5 MHz e GIC QEMU.
+Perfil acrescenta PL011; fragmento Apple de 908 bytes. Parser C limita
+payload/nomes/padding/duplicidades e bounds Mach-O; consumidor exige o
+perfil, compara CNTFRQ/MPIDR e confere intervalos antes do salto. Não é
+parser geral Apple, autenticação de executáveis ou caminho Samsung.
+
+Reinício do ambiente perdeu dependências/ensaios temporários e reabriu um
+checkout antigo. Main recuperada por fast-forward, clones fixados e
+ferramentas recompostos. Baseline antigo reexecutado por essa mudança de
+ambiente: 17/17. Nenhum arquivo adicional solicitado ao usuário.
+
+Execuções finais: positivo 20 critérios PASS, incluindo as marcas nativas
+de recursos/layout. GDB somente leitura em arm_init conferiu GIC, CPU,
+PSCI, contador, I/O/UART e reemissão de 736/14800 bytes; removido breakpoint
+e retomado até init/APFS/timer/RB_HALT/retorno normal. Cinco recusas:
+fragmento truncado, frequência alterada, GIC incompatível, entrada duplicada
+e comando Mach-O zero. Todas sem marca de cópia/salto/Darwin/init e com
+recusa explícita, apesar de QEMU sair 0.
+
+16 testes de host do mesmo C passaram com ASan/UBSan, incluindo todos os
+prefixos do fragmento e recusa do fragmento HZC2. Duas compilações em pastas
+diferentes no mesmo host geraram EFI de SHA72bf433f...; isso não é build
+independente do kernel. Fixture/memória UEFI não descrevem o S21; mapa
+completo de reservas do firmware não foi capturado. hardware_ready=false.
+
+Publicados código, instruções, manifestos de build/ferramentas e seis
+transcrições; README, índices, estratégia e roadmap atualizados. Artefatos
+brutos e dependências fora do Git. P1/P2 físicos mantidos; sem operação no
+telefone, userland iOS ou SMP. Suítes R8/R9/R10 não reexecutadas; fontes
+de produção e temporários de toolchain preservados fora desta alteração.

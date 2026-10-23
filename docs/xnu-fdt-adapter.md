@@ -124,8 +124,8 @@ não mudaram.
 
 ## Continuação
 
-O próximo trabalho X2 é integrar essa geração a um caminho de carga de
-laboratório com memória declarada e contraprovas antes do salto. O caminho
+Essa integração já foi [executada numa variante EFI de laboratório](xnu-efi-adapter-lab.md),
+com um caso positivo e cinco recusas antes da cópia/salto. O caminho
 físico continua condicionado a P1/P2 do [roadmap](roadmap.md): região sob
 posse demonstrada, FDT efetivo/reservas, entrada/coerência, acesso GIC/timer
 e resultado recuperável. Os arquivos já recebidos bastam para essa próxima

@@ -1,0 +1,78 @@
+{
+  "index_url": "https://deb.debian.org/debian/dists/trixie/main/binary-amd64/Packages.xz",
+  "index_sha256": "7778d3e3f303b7ddb8ce0fe7c8d57473a076c6bf2e8f241f75421d2396352498",
+  "packages": [
+    {
+      "Package": "clang-19",
+      "Version": "1:19.1.7-3+b1",
+      "Filename": "pool/main/l/llvm-toolchain-19/clang-19_19.1.7-3+b1_amd64.deb",
+      "Size": "116584",
+      "SHA256": "bbb74458d782b7792b61b0eed92746df5e6d033778c045cf8c2b3835b7c4efc4",
+      "url": "https://deb.debian.org/debian/pool/main/l/llvm-toolchain-19/clang-19_19.1.7-3+b1_amd64.deb"
+    },
+    {
+      "Package": "libclang-common-19-dev",
+      "Version": "1:19.1.7-3+b1",
+      "Filename": "pool/main/l/llvm-toolchain-19/libclang-common-19-dev_19.1.7-3+b1_amd64.deb",
+      "Size": "739932",
+      "SHA256": "4018e40e2d4144fe38c45822e68cca63c1bf6c7872c3073ebb262ad4b2f9b8bc",
+      "url": "https://deb.debian.org/debian/pool/main/l/llvm-toolchain-19/libclang-common-19-dev_19.1.7-3+b1_amd64.deb"
+    },
+    {
+      "Package": "libclang-cpp19",
+      "Version": "1:19.1.7-3+b1",
+      "Filename": "pool/main/l/llvm-toolchain-19/libclang-cpp19_19.1.7-3+b1_amd64.deb",
+      "Size": "13191148",
+      "SHA256": "a7d2b6df51050834f6ea5c0d5e34869c2298b0bcdaa91eff17ba3db2cd545c47",
+      "url": "https://deb.debian.org/debian/pool/main/l/llvm-toolchain-19/libclang-cpp19_19.1.7-3+b1_amd64.deb"
+    },
+    {
+      "Package": "libllvm19",
+      "Version": "1:19.1.7-3+b1",
+      "Filename": "pool/main/l/llvm-toolchain-19/libllvm19_19.1.7-3+b1_amd64.deb",
+      "Size": "25978316",
+      "SHA256": "db0d614d61345ca710fb73e75105f1ec6e38898fa7b3aa99fa7eb7d8b0a11d57",
+      "url": "https://deb.debian.org/debian/pool/main/l/llvm-toolchain-19/libllvm19_19.1.7-3+b1_amd64.deb"
+    },
+    {
+      "Package": "lld-19",
+      "Version": "1:19.1.7-3+b1",
+      "Filename": "pool/main/l/llvm-toolchain-19/lld-19_19.1.7-3+b1_amd64.deb",
+      "Size": "1374952",
+      "SHA256": "756a805e8811d527dd2b5417f016c9342b8631fa9c1ddcd56265c13ae33bf3a4",
+      "url": "https://deb.debian.org/debian/pool/main/l/llvm-toolchain-19/lld-19_19.1.7-3+b1_amd64.deb"
+    },
+    {
+      "Package": "libz3-4",
+      "Version": "4.13.3-1",
+      "Filename": "pool/main/z/z3/libz3-4_4.13.3-1_amd64.deb",
+      "Size": "8560036",
+      "SHA256": "71383373523ef62d47eccf660cf6535c3febcbb3f88e54cb7a43124014b57359",
+      "url": "https://deb.debian.org/debian/pool/main/z/z3/libz3-4_4.13.3-1_amd64.deb"
+    },
+    {
+      "Package": "qemu-efi-aarch64",
+      "Version": "2025.02-8+deb13u1",
+      "Filename": "pool/main/e/edk2/qemu-efi-aarch64_2025.02-8+deb13u1_all.deb",
+      "Size": "5122856",
+      "SHA256": "a00b2411a79c8aeafd95a7c868ac3cd1aab592f1af9fff965f02d81a625276ed",
+      "url": "https://deb.debian.org/debian/pool/main/e/edk2/qemu-efi-aarch64_2025.02-8+deb13u1_all.deb"
+    }
+  ],
+  "date": "2026-10-22",
+  "scope": "Extracted into own directories; no host installation; selected package checksums verified against Debian index",
+  "source_reference": "https://packages.debian.org/source/trixie/llvm-toolchain-19",
+  "host": {
+    "architecture": "x86_64",
+    "python": "3.12.14",
+    "libc": [
+      "glibc",
+      "2.39"
+    ]
+  },
+  "host_runtime_dependencies": "libc, libstdc++, libgcc, libffi, libedit, libxml2 and their transitive runtime dependencies also come from host; not a hermetic root",
+  "binary_sha256": {
+    "clang": "0a3c55936ac43954fbe4914e6e73b577ca9e35e75d89ef13d3e28c187f41ca1a",
+    "lld-link": "7a2fd87d82662beac4371a1a21067b37cd4b7d43777aa61c089d85c45f772f6e"
+  }
+}

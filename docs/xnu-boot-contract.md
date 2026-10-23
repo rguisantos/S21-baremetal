@@ -184,8 +184,8 @@ bancos RAM, 29 reservas e uma reserva não resolvida**. Não foi gerado
 handoff candidato. Esse DTB base não é o FDT final ajustado pelo LK.
 
 O [adaptador de recursos](xnu-fdt-adapter.md) já traduz CPU/GIC/PSCI/timer
-com proveniência explícita, sem completar a RAM ausente. A integração num
-carregador ainda está pendente. O plano físico depende de uma declaração
+com proveniência explícita, sem completar a RAM ausente. A integração já
+foi [executada na EFI de laboratório](xnu-efi-adapter-lab.md). O plano físico depende de uma declaração
 verificável de bancos/reservas e posse dos buffers. Entrada/cache, canal de observação e
 permissões GIC/timer permanecem nos marcos físicos
 [P1/P2 e A/B](roadmap.md). Não precisamos de outro anexo para continuar o

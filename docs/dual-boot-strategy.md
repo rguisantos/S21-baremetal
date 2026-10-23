@@ -34,7 +34,7 @@ mas os adaptadores de entrada têm de continuar explícitos.
 |---|---|---|
 | D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel/loader prebuilt; não é iOS gráfico |
 | D1 — entrada Samsung observável | Diagnóstico mínimo no S21 e registro recuperado; região/coerência e percurso de carga demonstrados | Pendente; Marco A do roadmap principal |
-| D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial: codec/captura e projeção de recursos FDT conferidos; faltam integração no loader, memória confiável e execução física, que depende de D1 |
+| D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial: codec, projeção e consumidor EFI executados no QEMU; memória/entrada Samsung e execução física dependem de D1 |
 | D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Pendente |
 | D4 — escolha Android/XNU | Dois caminhos iniciam individualmente; seleção, retorno/recuperação e armazenamento têm testes próprios | Pendente |
 
@@ -50,10 +50,10 @@ armazenamento, energia e, posteriormente, GPU e comunicação.
 
 ## Próxima entrega
 
-Integrar a projeção de recursos a um caminho de carga de laboratório com
-memória explícita e contraprovas antes do salto. O codec anterior passou
-28 testes e captura QEMU; o novo adaptador passou 29 testes e gerou um
-fragmento de 1944 bytes a partir do HZC2. Essa base permanece recusada para
+Ampliar o consumidor de recursos do laboratório preservando as recusas.
+A [integração EFI](xnu-efi-adapter-lab.md) passou um caso positivo e cinco
+recusas; os validadores C passaram 16 testes. O codec/adaptador anteriores
+continuam com evidências próprias. A base HZC2 permanece recusada para
 memória por ausência de bancos RAM e reservas incompletas. Ainda não há
 plano físico ou adaptador executável Samsung.
 
