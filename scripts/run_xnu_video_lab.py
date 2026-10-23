@@ -86,6 +86,9 @@ def run_case(args,work,name,loader,kernel,ramdisk,tree):
     allocations=re.findall(rb'^S21 VIDEO ALLOCATION ([0-9a-f]{1,16}) ([0-9a-f]{1,16})\r?$',serial,re.M)
     adapter.require(len(allocations)==1,'missing/duplicate framebuffer allocation')
     frame_claim=dict(zip(('base','size'),(int(x,16) for x in allocations[0])))
+    phases=re.findall(rb'^S21 VIDEO ACQUIRED AFTER ([01])\r?$',serial,re.M)
+    adapter.require(len(phases)==1,'missing/duplicate framebuffer allocation phase')
+    frame_claim['after_stage']=int(phases[0])
     ownership=None
     if name=='positive':
         profile,ownership=memory.verify(maps,claims,boot,actual,boot.physical(x0,c.BOOT_SIZE).base,kernel,video_claim=frame_claim)

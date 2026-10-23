@@ -111,7 +111,7 @@ def parse_serial(serial):
     return snapshots, claims
 
 
-def verify(snapshots, claims, args, tree, boot_pa, kernel, *, video_claim=None):
+def verify(snapshots, claims, args, tree, boot_pa, kernel, *, video_claim=None, resident_claim=None):
     require(set(snapshots) == set(range(4)) and set(claims) == {"payload", "window"},
             "all four UEFI stages and both allocation records are required")
     window = c.Span(args.phys_base, args.mem_size)
@@ -142,6 +142,19 @@ def verify(snapshots, claims, args, tree, boot_pa, kernel, *, video_claim=None):
         profile["video"] = {"base":hex(frame.allocation.base),"pixels_bytes":frame.pixels.size,
                             "allocation_bytes":frame.allocation.size,"width":frame.width,
                             "height":frame.height,"stride":frame.stride,"format":"XR24"}
+    two_disks="RAMDisk1" in tree.at("/chosen/memory-map").properties
+    require(two_disks == (resident_claim is not None), "resident declaration required for two-disk profile")
+    if resident_claim is not None:
+        from . import resident
+        image=resident.allocation(resident_claim)
+        require(image.base==window.base+resident.OFFSET and window.contains(image),
+                "resident image outside canonical window")
+        require(profile["placements"]["RAMDisk"]==[hex(image.base),hex(image.size)],
+                "resident image is not the declared md0")
+        require(snapshots[1].covers(image,7) and all(snapshots[i].covers(image,2) for i in (2,3)),
+                "resident ownership missing")
+        profile["resident"]={"base":hex(image.base),"bytes":resident_claim["size"],"allocation_bytes":image.size,
+                             "root":"RAMDisk/md0","small_disk":"RAMDisk1/md1"}
     placements = {name: c.Span(*(int(x, 16) for x in values)) for name, values in profile["placements"].items()}
     for name, span in placements.items():
         require(all(snapshots[stage].covers(span, 2) for stage in (2, 3)),

@@ -46,11 +46,14 @@ def fragment(resource):
     return tree
 
 
-def pack(kernel, ramdisk, resource):
+def pack(kernel, ramdisk, resource, resident=None):
     body=bytearray()
     for name,data in (("kernel",kernel),("ramdisk",ramdisk),("adtres",resource),
                       ("cmdline",b"cpus=1 loader_return_after=30\0")):
         body += struct.pack("<16sII",name.encode(),len(data),0)+data+b"\0"*(-len(data)%16)
+    if resident is not None:
+        adapter.require(len(resident)==32, "resident descriptor must have 32 bytes")
+        body += struct.pack("<16sII",b"resident",32,0)+resident
     body += b"\0"*24
     adapter.require(len(body)+8 <= 64*1024*1024, "payload exceeds 64 MiB")
     return struct.pack("<II",0x50554e58,len(body))+body
@@ -81,6 +84,7 @@ parse_payload(struct payload_info *pi, int verbose)
     pi->cmdline = value.cmdline;
     pi->resource = value.resource;
     pi->resource_size = value.resource_size;
+    pi->resident_rd = value.resident.size;
     return 1;
 }
 '''+source[end:]
@@ -107,7 +111,7 @@ parse_payload(struct payload_info *pi, int verbose)
     edit('uint64_t gic_reg[4] = { plat->gic_dist - plat->io_base, 0x10000, plat->gic_redist - plat->io_base, 0x100000 };',
          'uint64_t gic_reg[4] = { plat->gic_dist - plat->io_base, adapter.dist_size, plat->gic_redist - plat->io_base, adapter.redist_size };')
     edit('\tba->deviceTreeLength = dt_len;\n', '''\tba->deviceTreeLength = dt_len;
-    if (!s21_layout_check(phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size, dt_pa, dt_len, ba_pa, top)) {
+    if (!s21_resident_layout(&s21_resident_cfg, phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size, dt_pa, dt_len, ba_pa, top)) {
         print("S21 XNU ADAPTER: REJECT layout\\n");
         return 0;
     }
@@ -121,10 +125,10 @@ parse_payload(struct payload_info *pi, int verbose)
 choose_window(const struct payload_info *pi)
 {
     (void)pi;
-    return s21_choose_window();
+    return win_size ? 1 : s21_choose_window();
 }
 '''+source[end:]
-    edit('\t/* --- load segments -------------------------------------------------- */', '''    if (!s21_layout_check(phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size,
+    edit('\t/* --- load segments -------------------------------------------------- */', '''    if (!s21_resident_layout(&s21_resident_cfg, phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size,
                           dt_pa, dt_max, ba_pa, top) || !s21_owned(2)) {
         print("S21 UEFI: REJECT before copy\\n");
         return 0;
@@ -156,12 +160,16 @@ choose_window(const struct payload_info *pi)
 \tuint32_t desc_ver;
 \tstruct payload_info pi;''', '''\tuint64_t map_size, desc_size;
 \tstruct payload_info pi;''')
-    edit('\tinstall_exception_hook();', '''    if (!s21_claim_payload()) {
+    edit('\tPLAT = &platform_qemu_virt;\n\tif (EFI_ERROR(BS->locate_protocol', '''    if (!s21_claim_payload()) {
         s21_memory_dump();
         reboot();
         return 0;
     }
-\tinstall_exception_hook();''')
+    if (!s21_prepare_resident()) {
+        s21_memory_dump(); reboot(); return 0;
+    }
+\tPLAT = &platform_qemu_virt;
+\tif (EFI_ERROR(BS->locate_protocol''')
     edit('''\t\trun_kernel(0, 0);
 \t}
 \treboot();''', '''\t\trun_kernel(0, 0);
@@ -176,7 +184,8 @@ choose_window(const struct payload_info *pi)
     return source
 
 
-def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0):
+def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0, resident_test=0):
+    adapter.require(resident_test in (0,1),"unsupported resident laboratory fault")
     adapter.require(video_test in (0,1,2,3),"unsupported video laboratory fault")
     adapter.require(memory_test in (0,1,2,3),"unsupported UEFI laboratory fault")
     reference=json.loads((ROOT/"docs/references/hackios-xnu-20261022.json").read_text())
@@ -204,7 +213,7 @@ def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0):
         for name in ("loader","efi_resources","efi_memory","efi_video"):
             cmd=[str(clang),"--target=aarch64-unknown-windows","-ffreestanding","-fno-builtin",
                  "-fno-stack-protector","-fshort-wchar","-mgeneral-regs-only","-O1","-Wall","-Wextra",
-                 "-Wno-unused-parameter","-DS21_MEMORY_TEST="+str(memory_test),"-DS21_VIDEO_TEST="+str(video_test),
+                 "-Wno-unused-parameter","-DS21_MEMORY_TEST="+str(memory_test),"-DS21_VIDEO_TEST="+str(video_test),"-DS21_RESIDENT_TEST="+str(resident_test),
                  "-c",str(out/(name+".c")),"-o",str(out/(name+".obj"))]
             subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45); commands.append(cmd)
         cmd=[str(link),"/subsystem:efi_application","/entry:efi_main","/nodefaultlib","/base:0xA1000000",
@@ -213,6 +222,6 @@ def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0):
     binary=(out/"loader.efi").read_bytes(); pe=struct.unpack_from("<I",binary,60)[0]
     adapter.require(binary[pe:pe+4]==b"PE\0\0" and struct.unpack_from("<H",binary,pe+4)[0]==0xaa64
                     and struct.unpack_from("<H",binary,pe+24+68)[0]==10,"not an AArch64 EFI application")
-    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,"video_test":video_test,
+    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,"video_test":video_test,"resident_test":resident_test,
             "patched_source_sha256":sha((out/"loader.c").read_bytes()),"efi_sha256":sha(binary),
             "efi_bytes":len(binary),"clang_version":subprocess.check_output([str(clang),"--version"],env=env,text=True).splitlines()[0]}

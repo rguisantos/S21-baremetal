@@ -73,6 +73,18 @@ class VideoTests(unittest.TestCase):
         with self.assertRaises(c.ContractError):self.verify(maps=maps)
         for claim in ({'base':FIELDS[0]+4096,'size':SIZE},{'base':FIELDS[0],'size':SIZE-4096}):
             with self.assertRaises(c.ContractError):self.verify(claim=claim)
+    def test_framebuffer_allocated_after_snapshot_zero_or_one(self):
+        for phase in (0,1):
+            maps=self.maps()
+            for i in range(phase+1):maps[i]=m.Snapshot(descriptor(FIELDS[0],SIZE,7),48,1)
+            claim={'base':FIELDS[0],'size':SIZE,'after_stage':phase}
+            self.assertEqual(self.verify(maps=maps,claim=claim).allocation.size,SIZE)
+            # Changing the actual transition or declaring the wrong stage fails.
+            maps[phase]=m.Snapshot(descriptor(FIELDS[0],SIZE,2),48,1)
+            with self.assertRaises(c.ContractError):self.verify(maps=maps,claim=claim)
+    def test_invalid_allocation_phase(self):
+        for phase in (-1,2,True):
+            with self.assertRaises(c.ContractError):self.verify(claim={'base':FIELDS[0],'size':SIZE,'after_stage':phase})
     def test_overlap_window_and_payload(self):
         for field in ('window','payload'):
             with self.assertRaises(c.ContractError):self.verify(**{field:c.Span(FIELDS[0]+4096,4096)})

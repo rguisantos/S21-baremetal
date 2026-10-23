@@ -170,9 +170,10 @@ retomar o ensaio sem repetir a extração caso o ambiente seja restaurado.
 ## Relação com o port S21
 
 Este ensaio usa o ABI upstream de imagem residente, separado do consumidor
-EFI restrito do S21-baremetal. O consumidor atual ainda precisa de uma
-extensão verificada para essa imagem: descritor, janela física, reservas e
-recusas próprias. Não removemos seus controles para aceitar o sistema maior.
+EFI restrito do S21-baremetal. A [extensão para disco residente](xnu-resident-contract.md) foi implementada
+e exercitada com uma imagem de 4 MiB, init próprio e recusas. Falta o perfil
+explícito e a execução do userland completo por essa variante; o ensaio
+gráfico aqui registrado continua usando o loader de referência.
 
 O resultado de interface e interação no QEMU fecha uma etapa do
 laboratório X4. O primeiro diagnóstico no telefone, entrada/cache, mapa de

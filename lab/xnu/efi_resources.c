@@ -127,6 +127,23 @@ static int macho(const uint8_t *data,uint32_t size)
     for (uint32_t i=0;i<segments;++i) if (executable[i] && entry>=starts[i] && entry-starts[i]<files[i]) return 1;
     return 0;
 }
+/* Typed, QEMU-only descriptor. No address from an unchecked string is used. */
+int s21_resident_decode(const void *raw,uint32_t size,struct s21_resident *out)
+{
+    const uint8_t *p=raw;
+    if (!p || !out || size!=32 || !named(p,8,"S21RDSK") || u32(p+8)!=1 || u32(p+12)) return 0;
+    uint64_t base=u64(p+16), n=u64(p+24);
+    if (base!=S21_RESIDENT_BASE || !n || n%4096 || n>S21_RESIDENT_LIMIT) return 0;
+    *out=(struct s21_resident){base,n}; return 1;
+}
+/* Header consistency only, not an APFS checksum or image authentication.
+ * Caller must establish ownership of the complete descriptor range first. */
+int s21_resident_apfs(const void *raw,uint64_t size)
+{
+    const uint8_t *p=raw;
+    return p && size>=4096 && size<=S21_RESIDENT_LIMIT && size%4096==0 &&
+        u32(p+32)==0x4253584e && u32(p+36)==4096 && u64(p+40)==size/4096;
+}
 int s21_payload_decode(const void *raw,uint32_t available,struct s21_payload *out)
 {
     const uint8_t *data=raw;
@@ -137,7 +154,7 @@ int s21_payload_decode(const void *raw,uint32_t available,struct s21_payload *ou
     while (at<=end && end-at>=24) {
         const uint8_t *p=data+at; at+=24;
         if (!p[0]) {
-            if (!zero(p,24) || at!=end || seen!=15 || !macho(result.kernel,result.kernel_size)) return 0;
+            if (!zero(p,24) || at!=end || (seen!=15 && seen!=31) || !macho(result.kernel,result.kernel_size)) return 0;
             *out=result; return 1;
         }
         uint32_t size=u32(p+16), bit=0;
@@ -148,6 +165,9 @@ int s21_payload_decode(const void *raw,uint32_t available,struct s21_payload *ou
             bit=4; result.cmdline=(const char *)data+at;
             if (size>608 || !named(data+at,size,"cpus=1 loader_return_after=30")) return 0;
         } else if (named(p,16,"adtres")) { bit=8; result.resource=data+at; result.resource_size=size; }
+        else if (named(p,16,"resident")) {
+            bit=16; if (!s21_resident_decode(data+at,size,&result.resident)) return 0;
+        }
         else return 0;
         if (seen&bit) return 0;
         seen|=bit;
@@ -168,5 +188,20 @@ int s21_layout_check(uint64_t base,uint64_t size,uint64_t lo,uint64_t hi,
         if (!span(starts[i],sizes[i]) || starts[i]<base || starts[i]+sizes[i]>top) return 0;
         for (uint32_t j=0;j<i;++j) if (overlap(starts[i],sizes[i],starts[j],sizes[j])) return 0;
     }
+    return 1;
+}
+
+int s21_resident_layout(const struct s21_resident *r,uint64_t base,uint64_t size,
+                        uint64_t lo,uint64_t hi,uint64_t rd,uint64_t rn,
+                        uint64_t dt,uint64_t dn,uint64_t ba,uint64_t top)
+{
+    if (!r || !s21_layout_check(base,size,lo,hi,rd,rn,dt,dn,ba,top)) return 0;
+    if (!r->size) return r->base==0;
+    if (r->base!=S21_RESIDENT_BASE || r->size>S21_RESIDENT_LIMIT || r->size%4096 ||
+        base>UINT64_MAX-S21_RESIDENT_OFFSET || r->base!=base+S21_RESIDENT_OFFSET) return 0;
+    uint64_t n=(r->size+0x3fff)&~UINT64_C(0x3fff);
+    if (!span(r->base,n) || r->base<base || r->base+n>top || r->base+n>base+size) return 0;
+    uint64_t starts[]={lo,rd,dt,ba}, sizes[]={hi-lo,rn,dn,736};
+    for (uint32_t i=0;i<4;++i) if (overlap(r->base,n,starts[i],sizes[i])) return 0;
     return 1;
 }

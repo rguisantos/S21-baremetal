@@ -12,11 +12,13 @@ O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layo
 
 A [integração EFI no laboratório](docs/xnu-efi-adapter-lab.md) agora tem [reservas e quatro mapas UEFI capturados](docs/xnu-uefi-memory.md): payload reservado, janela inteira conferida antes da cópia/salto e buffers cruzados com o contrato observado. Foram **22 critérios positivos**, **oito recusas**, **22 testes de memória/evidência** e **16 testes de recursos**. O kernel continua prebuilt; memória e carregamento físicos do S21 permanecem pendentes.
 
-As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no host](docs/hackios-userland-host.md): colisão dos jobs, permissões, drawable_test opcional e fallback de timezone. Há patch conferido e controles sintéticos. O novo relato do GLM informa interface iOS funcionando com loader modificado; essa sessão ainda não foi reproduzida aqui.
+As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no host](docs/hackios-userland-host.md): colisão dos jobs, permissões, drawable_test opcional e fallback de timezone. Há patch conferido e controles sintéticos. O relato GLM foi seguido pela reprodução local da interface, com o loader corrigido na fonte e capturas/ações preservadas.
 
 O [defeito ramfb do prebuilt foi confirmado no QEMU](docs/xnu-ramfb-audit.md): o loader declara 800×600 após configurar 1125×2436. A correção na fonte passou seis controles, com captura real do padrão EFI, erro/timeout recusados e regressão XNU de 22 critérios. A fonte original recompilada com Clang 19 também funciona nesse teste; a falha não deve ser generalizada a toda compilação.
 
 O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O ensaio do consumidor restrito usa init próprio. Em uma execução separada do ABI de referência, o [SpringBoard apareceu localmente](docs/hackios-userland-qemu.md).
+
+O [disco APFS residente do consumidor EFI](docs/xnu-resident-contract.md) agora tem descritor binário, reserva da janela e papéis md0/md1 conferidos. O ensaio usa init próprio e disco de 4 MiB: dois boots positivos (com/sem ramfb), quatro recusas e três regressões passaram, além de 62 testes de host. A interface iOS completa dessa variante é a próxima etapa.
 
 ## Módulos e validação
 
@@ -98,6 +100,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
+- [Imagem APFS residente: descritor, reservas e raiz md0](docs/xnu-resident-contract.md)
 - [Userland iOS 16.5 no QEMU: entradas, checkpoint e capturas](docs/hackios-userland-qemu.md)
 - [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)
 - [XNU no QEMU com programa próprio: execução e contraprova](docs/xnu-qemu-lab.md)

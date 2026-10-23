@@ -980,3 +980,34 @@ binários capturados e PNG; README/roadmap/índices atualizados. Kernel ainda
 prebuilt, init próprio, UEFI residente. Sem SpringBoard/input/iOS local,
 SMP ou Samsung. Próximo gráfico é preparar/reproduzir o userland com
 revisões, imagens, patches e interação identificáveis. P1/P2 físicos abertos.
+
+
+## 2026-10-23 — disco residente no consumidor EFI restrito
+
+Descritor binário `resident` versionado, preservando os quatro itens XNUP
+obrigatórios e a cmdline restrita. Payload reservado antes do GOP; com
+residente, janela inteira reservada antecipadamente. O primeiro acesso ao
+cabeçalho exige EfiLoaderData para a imagem inteira; não é autenticação APFS
+nem prova do estado anterior à aplicação EFI.
+
+Dois discos conferidos no C antes da cópia/salto e pelo leitor Python na
+árvore capturada: residente em md0, payload pequeno em md1. A prova usou
+4 MiB de APFS próprio como residente e 16 KiB de zeros como md1; PID 1,
+arquivo APFS, timer e retorno passaram. Capturamos boot_args, árvore e
+primeiro bloco APFS em arm_init, com GDB somente de leitura.
+
+Seis casos residentes passaram (29/30 critérios nos positivos sem/com vídeo,
+quatro recusas); três regressões passaram (25/22 critérios e recusa de
+framebuffer em 7 critérios). Os 62 testes de host passaram. Registramos a
+fase de aquisição do framebuffer para conferir páginas convencionais antes
+e EfiLoaderData depois, mantendo a política dos registros históricos.
+
+Uma repetição parou ainda no firmware UEFI por timeout de 90 segundos;
+o log anterior à aplicação foi preservado e excluído dos PASS. O retry
+com diretório/NVRAM novos passou. Não atribuímos causa ao guard.
+
+Ver [contrato e reprodução](docs/xnu-resident-contract.md) e
+[relatório/hashes/mapas](docs/references/xnu-resident-20261023/report.json).
+O userland iOS completo pelo consumidor restrito continua pendente de perfil
+explícito, memória e nova evidência de interface. Nenhum teste Samsung foi
+realizado nesta etapa.

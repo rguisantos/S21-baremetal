@@ -25,10 +25,21 @@ def decode(fields):
 
 def verify_maps(fields, snapshots, claim, window, payload):
     frame = decode(fields)
-    if claim != {'base':frame.allocation.base,'size':frame.allocation.size}:
+    phase=claim.get('after_stage')
+    expected={'base':frame.allocation.base,'size':frame.allocation.size}
+    if phase is not None:expected['after_stage']=phase
+    if claim != expected:
         raise c.ContractError('framebuffer differs from successful ramfb allocation')
     if frame.allocation.overlaps(window) or frame.allocation.overlaps(payload):
         raise c.ContractError('framebuffer overlaps kernel window or payload')
-    if set(snapshots) != set(range(4)) or not all(s.covers(frame.allocation,2) for s in snapshots.values()):
-        raise c.ContractError('framebuffer is not LoaderData across all UEFI snapshots')
+    if set(snapshots) != set(range(4)):
+        raise c.ContractError('four framebuffer snapshots required')
+    if phase is None:
+        # Historical runs allocated the framebuffer before snapshot zero.
+        if not all(s.covers(frame.allocation,2) for s in snapshots.values()):
+            raise c.ContractError('framebuffer is not LoaderData across all UEFI snapshots')
+    else:
+        if type(phase) is not int or phase not in (0,1) or not all(
+                s.covers(frame.allocation,7 if i<=phase else 2) for i,s in snapshots.items()):
+            raise c.ContractError('framebuffer allocation phase/ownership mismatch')
     return frame
