@@ -1,0 +1,4394 @@
+{
+  "date": "2026-10-23",
+  "case": "positive",
+  "inputs": {
+    "root": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/restored/root.apfs",
+      "bytes": 4194304,
+      "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065"
+    },
+    "system": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/restored/system.apfs",
+      "bytes": 2548080640,
+      "sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393"
+    },
+    "efi_code": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+      "bytes": 67108864,
+      "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+    },
+    "efi_vars": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_VARS.fd",
+      "bytes": 67108864,
+      "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+    },
+    "kernel": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/kernel/prebuilt/mach.development.bcm2837",
+      "bytes": 15623056,
+      "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+    }
+  },
+  "build": {
+    "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+    "upstream_sources": {
+      "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+      "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+      "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+    },
+    "symbols": {
+      "__ImageBase": 2701131776,
+      "loader_save_ctx": 2701135872,
+      "loader_return_stub": 2701136128,
+      "other_cpu_entry": 2701136448,
+      "other_cpu_return_stub": 2701139968,
+      "memset": 2701140096,
+      "memcmp": 2701140120,
+      "memcpy": 2701140176,
+      "efi_main": 2701140296,
+      "s21_resources_decode": 2701179136,
+      "s21_resources_qemu": 2701181748,
+      "s21_resident_decode": 2701181944,
+      "s21_resident_apfs": 2701182320,
+      "s21_profile_decode": 2701182416,
+      "s21_profile_cmdline": 2701182588,
+      "s21_profile_headroom": 2701182860,
+      "s21_payload_decode": 2701182984,
+      "s21_layout_check": 2701185872,
+      "s21_resident_layout": 2701186156,
+      "s21_memory_region": 2701186552,
+      "s21_memory_valid": 2701186868,
+      "s21_memory_covers": 2701187164,
+      "s21_memory_largest": 2701187616,
+      "s21_video_geometry": 2701188112,
+      "??_C@_00CNPNBAHC@?$AA@": 2701192773,
+      "??_C@_02IGJGHHBN@tz?$AA@": 2701192776,
+      "??_C@_04JABGNABB@?$CFs?$CFx?$AA@": 2701192780,
+      "??_C@_03KHOJPICI@?5?$CFx?$AA@": 2701192788,
+      "??_C@_02EJEOCNCO@?9v?$AA@": 2701192792,
+      "??_C@_03PBJBJNON@cpu?$AA@": 2701192796,
+      "??_C@_04JHFDPHPH@uart?$AA@": 2701192800,
+      "??_C@_06MJDCIMPN@reboot?$AA@": 2701192808,
+      "??_C@_06KJFADLGN@result?$AA@": 2701192816,
+      "??_C@_05DHJDAOHK@right?$AA@": 2701192824,
+      "??_C@_04NKFICFGN@cpus?$AA@": 2701192832,
+      "??_C@_06FLFNCHHK@adtres?$AA@": 2701192840,
+      "??_C@_06BADBBIBE@ranges?$AA@": 2701192848,
+      "??_C@_05MKJDPMKP@super?$AA@": 2701192856,
+      "??_C@_03FEDGNFCG@hyp?$AA@": 2701192864,
+      "??_C@_03OBBNDHJF@isp?$AA@": 2701192868,
+      "??_C@_03BDHHOPEI@dsp?$AA@": 2701192872,
+      "??_C@_03DBJFEFGO@aop?$AA@": 2701192876,
+      "??_C@_06MJGPEDOP@ui?9pip?$AA@": 2701192880,
+      "??_C@_06JPCBIIMC@arm?9io?$AA@": 2701192888,
+      "??_C@_06DBHEJNGA@common?$AA@": 2701192896,
+      "??_C@_06OLOAFLMC@chosen?$AA@": 2701192904,
+      "??_C@_06LPLGMLP@screen?$AA@": 2701192912,
+      "??_C@_05MLDONODB@modem?$AA@": 2701192920,
+      "??_C@_05FCCBPJPD@nvram?$AA@": 2701192928,
+      "??_C@_04JIHPDEMH@pram?$AA@": 2701192936,
+      "??_C@_06GMKELIII@kernel?$AA@": 2701192944,
+      "??_C@_05NCCFOPHA@model?$AA@": 2701192952,
+      "??_C@_03PCCLJDHF@xbl?$AA@": 2701192960,
+      "??_C@_03NPDKILGA@abl?$AA@": 2701192964,
+      "??_C@_05LEFLIPJH@flash?$AA@": 2701192968,
+      "??_C@_04KEILHPIK@hung?$AA@": 2701192976,
+      "??_C@_03HLCNLMFP@reg?$AA@": 2701192984,
+      "??_C@_05HDBKIDE@state?$AA@": 2701192988,
+      "??_C@_04MEMAJGDJ@name?$AA@": 2701192996,
+      "??_C@_06PGBCDNGI@cpu?9id?$AA@": 2701193004,
+      "??_C@_06KAOCKAGB@upload?$AA@": 2701193012,
+      "??_C@_03DOIFNDIJ@hvc?$AA@": 2701193020,
+      "??_C@_03KJOOEPIG@smc?$AA@": 2701193024,
+      "??_C@_03HBJMCHJC@gic?$AA@": 2701193028,
+      "??_C@_02BMCPJMB@sb?$AA@": 2701193032,
+      "??_C@_06FNKMPIBD@camera?$AA@": 2701193036,
+      "??_C@_03BAPFIKPP@?$CFs?$FN?$AA@": 2701193044,
+      "??_C@_04LFEKBJKM@OKAY?$AA@": 2701193048,
+      "??_C@_04OOEBCMBF@FAIL?$AA@": 2701193056,
+      "??_C@_05BLCOMLNL@WRONG?$AA@": 2701193064,
+      "??_C@_04FBDBODBG@sRGB?$AA@": 2701193072,
+      "??_C@_04KPGPCFLG@LL?1A?$AA@": 2701193080,
+      "??_C@_05FJDBANHO@cpus?$DN?$AA@": 2701193088,
+      "??_C@_04CKPNFBDF@ufs?$DN?$AA@": 2701193096,
+      "??_C@_06FLLFAFC@torch?$DN?$AA@": 2701193104,
+      "??_C@_03DKLLGDLG@rd?$DN?$AA@": 2701193112,
+      "??_C@_05CDMBOGPO@cam?$DN5?$AA@": 2701193116,
+      "??_C@_05KBDAJNHJ@A1865?$AA@": 2701193124,
+      "??_C@_05DIGMFHHM@t8015?$AA@": 2701193132,
+      "??_C@_03LOHCHBBO@0?45?$AA@": 2701193140,
+      "??_C@_03BBCGEKO@sb2?$AA@": 2701193144,
+      "??_C@_05EEIMPJCF@MQAC2?$AA@": 2701193148,
+      "??_C@_04BAMDJKL@cpu0?$AA@": 2701193156,
+      "??_C@_05PMAIACLL@uart0?$AA@": 2701193164,
+      "??_C@_01GBGANLPD@0?$AA@": 2701193168,
+      "??_C@_03KHICJKCI@?4?4?4?$AA@": 2701193172,
+      "??_C@_05HJIEIKOJ@?$CFd?5s?6?$AA@": 2701193176,
+      "??_C@_01EEMJAFIK@?6?$AA@": 2701193180,
+      "??_C@_0BO@IGHGLFKA@rear?9cam?9telephoto?9capability?$AA@": 2701193184,
+      "??_C@_0BH@OOJKLDAI@front?9flash?9capability?$AA@": 2701193216,
+      "??_C@_0CA@BDBELIDH@pipelined?9stillimage?9capability?$AA@": 2701193240,
+      "??_C@_0BA@EGLLAEMH@ui?9reachability?$AA@": 2701193272,
+      "??_C@_0BD@FMOLBBFG@ui?9weather?9quality?$AA@": 2701193288,
+      "??_C@_0BG@JCDOJEOE@ui?9background?9quality?$AA@": 2701193312,
+      "??_C@_08GMGMDIBM@geometry?$AA@": 2701193336,
+      "??_C@_0BM@OHCELBAB@UEFI?5gives?5it?5out?5read?5only?$AA@": 2701193352,
+      "??_C@_09ODICFLHF@read?5only?$AA@": 2701193384,
+      "??_C@_0BB@OLHJKPBI@memory?9frequency?$AA@": 2701193400,
+      "??_C@_0O@EPOACKGC@bus?9frequency?$AA@": 2701193424,
+      "??_C@_0BF@NDHBBOON@peripheral?9frequency?$AA@": 2701193440,
+      "??_C@_0BA@MMKOFPNM@clock?9frequency?$AA@": 2701193464,
+      "??_C@_0BD@DNGHAEEG@timebase?9frequency?$AA@": 2701193480,
+      "??_C@_0BA@FEHOOKEB@fixed?9frequency?$AA@": 2701193504,
+      "??_C@_0BE@JOJNCDKI@device?9color?9policy?$AA@": 2701193520,
+      "??_C@_0N@IGJCHPNP@oled?9display?$AA@": 2701193544,
+      "??_C@_0L@MMDEDNLH@no?5display?$AA@": 2701193560,
+      "??_C@_08HOHDBOJB@?$CFs?5?$CFd?5?$CFx?$AA@": 2701193576,
+      "??_C@_0BB@IGNINEMA@no?5memory?5window?$AA@": 2701193592,
+      "??_C@_0BN@POADKDIP@stage?9light?9portrait?9preview?$AA@": 2701193616,
+      "??_C@_0BG@IGEFIIFO@artwork?9display?9gamut?$AA@": 2701193648,
+      "??_C@_0M@HPOKBKLF@front?9burst?$AA@": 2701193672,
+      "??_C@_0L@KGCDPCEB@rear?9burst?$AA@": 2701193688,
+      "??_C@_0N@GDDEMFDN@oem?5selftest?$AA@": 2701193704,
+      "??_C@_0BA@BNAIFBGK@sandman?9support?$AA@": 2701193720,
+      "??_C@_09HBBMEMOA@qemu?9virt?$AA@": 2701193736,
+      "??_C@_0BB@PDEFBCDF@development?9cert?$AA@": 2701193752,
+      "??_C@_0BA@KLHKGKHO@production?9cert?$AA@": 2701193776,
+      "??_C@_0BJ@POOPKFMA@the?5kernel?5did?5not?5start?$AA@": 2701193792,
+      "??_C@_0BB@NLGBNHDF@personal?9hotspot?$AA@": 2701193824,
+      "??_C@_0L@JPGBELAA@oem?5reboot?$AA@": 2701193848,
+      "??_C@_0M@HCDPHJNH@secure?9boot?$AA@": 2701193864,
+      "??_C@_0BC@LJEIJNKJ@single?9stage?9boot?$AA@": 2701193880,
+      "??_C@_0P@NPAMEMID@oem?5screenshot?$AA@": 2701193904,
+      "??_C@_0BB@LJEBHHFN@nvram?9bank?9count?$AA@": 2701193920,
+      "??_C@_0L@BCLIOAO@checkpoint?$AA@": 2701193944,
+      "??_C@_08MEIDLGJN@resident?$AA@": 2701193960,
+      "??_C@_09NMOLGLEM@assistant?$AA@": 2701193976,
+      "??_C@_0BH@JIILNJAL@compatible?9app?9variant?$AA@": 2701193992,
+      "??_C@_0CE@EBMPEINP@it?5is?5not?5on?5the?5first?5logical?5u@": 2701194016,
+      "??_C@_0BL@PPMJBKGD@front?9stage?9light?9portrait?$AA@": 2701194056,
+      "??_C@_0BK@FKPOJKMD@rear?9stage?9light?9portrait?$AA@": 2701194088,
+      "??_C@_0N@CIALCCMB@wifi?9chipset?$AA@": 2701194120,
+      "??_C@_0BB@CBCGBGHC@baseband?9chipset?$AA@": 2701194136,
+      "??_C@_0BB@KAMLBBHF@before?5the?5reset?$AA@": 2701194160,
+      "??_C@_07IFEJIFCD@product?$AA@": 2701194184,
+      "??_C@_0BO@PHBEJPGD@certificate?9production?9status?$AA@": 2701194192,
+      "??_C@_0L@KFNIOFBN@auto?9focus?$AA@": 2701194224,
+      "??_C@_0BB@DPFKEFHJ@machine?9timeouts?$AA@": 2701194240,
+      "??_C@_08LMJEPNLL@defaults?$AA@": 2701194264,
+      "??_C@_0N@HKAODDEK@post?9effects?$AA@": 2701194280,
+      "??_C@_0N@CLFMPBP@live?9effects?$AA@": 2701194296,
+      "??_C@_0BJ@FCBMBICO@device?9perf?9memory?9class?$AA@": 2701194312,
+      "??_C@_0BK@NHBFBNNF@graphics?9featureset?9class?$AA@": 2701194344,
+      "??_C@_0BD@LDEIHOOL@location?9reminders?$AA@": 2701194376,
+      "??_C@_0BB@FAFCPOE@supports?9avatars?$AA@": 2701194400,
+      "??_C@_0BB@JMIPIICM@allow?932bit?9apps?$AA@": 2701194424,
+      "??_C@_07FOPBDDAL@options?$AA@": 2701194448,
+      "??_C@_0BA@KCANKECB@ufs?3?5?$CFs?3?5begins?$AA@": 2701194456,
+      "??_C@_0N@IEDFJPFG@video?9stills?$AA@": 2701194472,
+      "??_C@_0P@HKNOOBCF@?$CDaddress?9cells?$AA@": 2701194488,
+      "??_C@_0M@BJMGEBBL@?$CDsize?9cells?$AA@": 2701194504,
+      "??_C@_0BO@DCFINENE@graphics?9featureset?9fallbacks?$AA@": 2701194520,
+      "??_C@_0BA@GPJDJFLG@ptp?9large?9files?$AA@": 2701194552,
+      "??_C@_0BL@GGAHGOCH@supports?93rd?9party?9haptics?$AA@": 2701194568,
+      "??_C@_07LLMPHAMC@haptics?$AA@": 2701194600,
+      "??_C@_0N@KJNADAOP@builtin?9mics?$AA@": 2701194608,
+      "??_C@_0BF@MMGGGPHH@artwork?9scale?9factor?$AA@": 2701194624,
+      "??_C@_0BH@CGONHGHK@public?9key?9accelerator?$AA@": 2701194648,
+      "??_C@_0BD@GMMPBPKC@kern?4vm_compressor?$AA@": 2701194672,
+      "??_C@_0BC@BIFKBCMP@software?9behavior?$AA@": 2701194696,
+      "??_C@_0P@IFHGFHGC@itunes?9min?9ver?$AA@": 2701194720,
+      "??_C@_0BF@CCDDMFEN@mobiledevice?9min?9ver?$AA@": 2701194736,
+      "??_C@_0BK@NKBPBILK@mobiledevice?9beta?9min?9ver?$AA@": 2701194760,
+      "??_C@_0BN@OOPBLOJG@front?9cam?9offset?9from?9center?$AA@": 2701194792,
+      "??_C@_0N@KCKFIEGL@manufacturer?$AA@": 2701194824,
+      "??_C@_0BF@KBKLGDFJ@interrupt?9controller?$AA@": 2701194840,
+      "??_C@_09HPENCACP@xnuloader?$AA@": 2701194864,
+      "??_C@_0BI@GGAPFOLF@regulatory?9model?9number?$AA@": 2701194880,
+      "??_C@_0N@MPILOKJM@model?9number?$AA@": 2701194904,
+      "??_C@_0BC@DJGPLFN@mlb?9serial?9number?$AA@": 2701194920,
+      "??_C@_0O@INIBJBEF@serial?9number?$AA@": 2701194944,
+      "??_C@_09MJDMIOEE@front?9hdr?$AA@": 2701194960,
+      "??_C@_08KBJHAJJH@rear?9hdr?$AA@": 2701194976,
+      "??_C@_0P@IEGIAMPI@front?9auto?9hdr?$AA@": 2701194992,
+      "??_C@_0O@ECLKNENN@rear?9auto?9hdr?$AA@": 2701195008,
+      "??_C@_0M@NLCBEMBC@camera?9rear?$AA@": 2701195024,
+      "??_C@_08NJHBHLNH@oem?5stop?$AA@": 2701195040,
+      "??_C@_0M@GHBJHLEJ@closed?9loop?$AA@": 2701195056,
+      "??_C@_0L@EIFMBAHD@oem?5memmap?$AA@": 2701195072,
+      "??_C@_0L@FNPMAPHN@memory?9map?$AA@": 2701195088,
+      "??_C@_0BC@DNDMJEDP@disable?9globe?9map?$AA@": 2701195104,
+      "??_C@_09BFIHEOJM@video?9cap?$AA@": 2701195128,
+      "??_C@_0BP@KEJHHMHG@effective?9production?9status?9ap?$AA@": 2701195144,
+      "??_C@_0BL@KOECLNAB@effective?9security?9mode?9ap?$AA@": 2701195176,
+      "??_C@_0BK@KAIJLJHA@front?9max?9video?9fps?91080p?$AA@": 2701195208,
+      "??_C@_0BJ@JNLMHCFH@rear?9max?9video?9fps?91080p?$AA@": 2701195240,
+      "??_C@_0BP@EEAHAPJG@rear?9max?9slomo?9video?9fps?91080p?$AA@": 2701195272,
+      "??_C@_0BJ@IHNFKEK@front?9max?9video?9fps?9720p?$AA@": 2701195304,
+      "??_C@_0BI@OFCDKKCP@rear?9max?9video?9fps?9720p?$AA@": 2701195336,
+      "??_C@_0BO@IIAELHMG@rear?9max?9slomo?9video?9fps?9720p?$AA@": 2701195360,
+      "??_C@_0M@CINLNCO@rear?9slowmo?$AA@": 2701195392,
+      "??_C@_0BM@GHOMJHAB@hearingaid?9low?9energy?9audio?$AA@": 2701195408,
+      "??_C@_0M@CGLHPCMG@region?9info?$AA@": 2701195440,
+      "??_C@_07FHEBEGMG@oem?5run?$AA@": 2701195456,
+      "??_C@_0P@EMICBBPB@before?5the?5run?$AA@": 2701195464,
+      "??_C@_0BE@KIJBJKGL@product?9description?$AA@": 2701195480,
+      "??_C@_0BA@MCMOEEFI@early?9exception?$AA@": 2701195504,
+      "??_C@_0BO@JEDEMLMM@hearingaid?9audio?9equalization?$AA@": 2701195520,
+      "??_C@_0BB@MJGDBMKP@display?9rotation?$AA@": 2701195552,
+      "??_C@_0BC@EEFDODHP@offline?9dictation?$AA@": 2701195576,
+      "??_C@_09EDNLLPFB@dictation?$AA@": 2701195584,
+      "??_C@_0BL@GNECEIHD@front?9burst?9image?9duration?$AA@": 2701195600,
+      "??_C@_0BK@MIHFMIND@rear?9burst?9image?9duration?$AA@": 2701195632,
+      "??_C@_0BA@MJKMMFPE@car?9integration?$AA@": 2701195664,
+      "??_C@_0BL@EPMAOAIG@supports?9burnin?9mitigation?$AA@": 2701195680,
+      "??_C@_0BK@KGHKFJ@volume?9up?9button?9location?$AA@": 2701195712,
+      "??_C@_0BM@DIAJHKI@volume?9down?9button?9location?$AA@": 2701195744,
+      "??_C@_0BF@FPMICOAA@side?9button?9location?$AA@": 2701195776,
+      "??_C@_0BD@HGAOKOPA@camera?9hdr?9version?$AA@": 2701195800,
+      "??_C@_0BM@EHJMKFFL@activation?9protocol?9version?$AA@": 2701195824,
+      "??_C@_0BB@LALKFNCG@firmware?9version?$AA@": 2701195856,
+      "??_C@_0N@EJNNPHOD@udid?9version?$AA@": 2701195880,
+      "??_C@_07CPCPJPKL@version?$AA@": 2701195896,
+      "??_C@_0BA@OMEPMAAM@watch?9companion?$AA@": 2701195904,
+      "??_C@_0N@BHFBFBEA@front?9hdr?9on?$AA@": 2701195920,
+      "??_C@_0M@KNFIKOKN@rear?9hdr?9on?$AA@": 2701195936,
+      "??_C@_0BA@BBBHEBBB@log?5not?5written?$AA@": 2701195952,
+      "??_C@_0BA@KDMGCLPP@oem?5clearscreen?$AA@": 2701195968,
+      "??_C@_0N@BKHJPKPK@has?9applelpm?$AA@": 2701195984,
+      "??_C@_0BJ@LNKBBAJN@aggregate?9cam?9photo?9zoom?$AA@": 2701196000,
+      "??_C@_0BF@BPIGDFIG@front?9max?9video?9zoom?$AA@": 2701196032,
+      "??_C@_0BE@OIBNAOHL@rear?9max?9video?9zoom?$AA@": 2701196056,
+      "??_C@_0BJ@IIJCBOII@aggregate?9cam?9video?9zoom?$AA@": 2701196080,
+      "??_C@_0BF@HFPPCOOJ@artwork?9device?9idiom?$AA@": 2701196112,
+      "??_C@_0L@BEEAMNDI@thin?9bezel?$AA@": 2701196136,
+      "??_C@_0M@NEHLDNKJ@oem?5ramdisk?$AA@": 2701196152,
+      "??_C@_07BHCBOAMP@ramdisk?$AA@": 2701196168,
+      "??_C@_07OHIHJBDH@RAMDisk?$AA@": 2701196176,
+      "??_C@_0M@PFHFMAOE@selftest?9ok?$AA@": 2701196184,
+      "??_C@_0BD@HBJHGFGF@nvram?9current?9bank?$AA@": 2701196200,
+      "??_C@_0BL@JMJOIGOK@compatible?9device?9fallback?$AA@": 2701196224,
+      "??_C@_08LOJODFCA@put?5back?$AA@": 2701196256,
+      "??_C@_0BF@KCFHCCMF@the?5kernel?5came?5back?$AA@": 2701196272,
+      "??_C@_0BG@OCOCPOEN@rear?9max?9video?9fps?94k?$AA@": 2701196296,
+      "??_C@_09FIEGKEPP@bluetooth?$AA@": 2701196320,
+      "??_C@_0BH@NDEMJLH@front?9max?9burst?9length?$AA@": 2701196336,
+      "??_C@_0BG@BNCNEIPI@rear?9max?9burst?9length?$AA@": 2701196360,
+      "??_C@_0BD@NCMICJM@ufs?3?5unit?5?$CFd?3?5path?$AA@": 2701196384,
+      "??_C@_0BD@HJLEKFID@boot?9manifest?9hash?$AA@": 2701196408,
+      "??_C@_0L@JMJNLKPB@boot?9epoch?$AA@": 2701196432,
+      "??_C@_07CHPEPLIF@oem?5log?$AA@": 2701196448,
+      "??_C@_0BA@HOBNGPBO@the?5kernel?5hung?$AA@": 2701196456,
+      "??_C@_07BMPLEEBA@waiting?$AA@": 2701196472,
+      "??_C@_0BC@CLAAHCJ@display?9mirroring?$AA@": 2701196480,
+      "??_C@_07PANPENDC@running?$AA@": 2701196504,
+      "??_C@_0BP@CJJDNFCM@p3?9color?9space?9video?9recording?$AA@": 2701196512,
+      "??_C@_0N@BLJFMHKD@no?5recording?$AA@": 2701196544,
+      "??_C@_0O@BEOBOCAF@oem?5recording?$AA@": 2701196560,
+      "??_C@_0BD@PBEJGCJF@no?5sound?5recording?$AA@": 2701196576,
+      "??_C@_0BO@OBKFPABJ@supports?9maps?9optical?9heading?$AA@": 2701196600,
+      "??_C@_08KNMHJEEI@oem?5hang?$AA@": 2701196632,
+      "??_C@_0L@CBHIFFGI@0xffffffff?$AA@": 2701196648,
+      "??_C@_0BB@JCEFLFJE@0123456789abcdef?$AA@": 2701196664,
+      "??_C@_09OOIOBDMK@dram?9size?$AA@": 2701196688,
+      "??_C@_0BA@NNOILHPL@nvram?9bank?9size?$AA@": 2701196704,
+      "??_C@_0BI@FGHLJEOK@embedded?9panic?9log?9size?$AA@": 2701196720,
+      "??_C@_0BC@GHMADFNO@max?9download?9size?$AA@": 2701196744,
+      "??_C@_08LGMHNPGE@bad?5size?$AA@": 2701196768,
+      "??_C@_0BK@KIFGPDI@rear?9max?9video?9frame_rate?$AA@": 2701196784,
+      "??_C@_09HJGLLOJI@dram?9base?$AA@": 2701196816,
+      "??_C@_0N@CLBGNOCA@siri?9gesture?$AA@": 2701196832,
+      "??_C@_0BD@NLBCIDMM@live?9photo?9capture?$AA@": 2701196848,
+      "??_C@_0CE@GMHOCMOJ@watchdog?5test?3?5not?5petting?5any?5m@": 2701196872,
+      "??_C@_0L@BOPBCMFP@small?9core?$AA@": 2701196912,
+      "??_C@_0N@BLDNJMBN@no?9such?9core?$AA@": 2701196928,
+      "??_C@_0CC@CJPOFKBH@its?5blocks?5are?5not?5what?5they?5wer@": 2701196944,
+      "??_C@_0BC@EOGMKOOH@lockdown?9certtype?$AA@": 2701196984,
+      "??_C@_0BH@JBEPOLCG@artwork?9device?9subtype?$AA@": 2701197008,
+      "??_C@_0M@KJEGLGCO@device_type?$AA@": 2701197032,
+      "??_C@_0M@JFICGBIP@target?9type?$AA@": 2701197048,
+      "??_C@_0BA@DGFLJLD@target?9sub?9type?$AA@": 2701197064,
+      "??_C@_0BB@NKKOAILG@oem?5ramdisk?5none?$AA@": 2701197080,
+      "??_C@_07PNJCLMKK@cmdline?$AA@": 2701197104,
+      "??_C@_0P@CBJOBGFI@has?9boot?9chime?$AA@": 2701197112,
+      "??_C@_08MPIGJBK@the?5same?$AA@": 2701197128,
+      "??_C@_0N@CDHGEBKP@product?9name?$AA@": 2701197144,
+      "??_C@_0O@LAHGFOHH@platform?9name?$AA@": 2701197160,
+      "??_C@_0N@BOMGCCGL@boot?9console?$AA@": 2701197176,
+      "??_C@_0L@KFBIPGFP@labprofile?$AA@": 2701197192,
+      "??_C@_0L@JNOGJJCA@compatible?$AA@": 2701197208,
+      "??_C@_08IBOGFJJC@writable?$AA@": 2701197224,
+      "??_C@_0M@FMLPJEJA@gps?9capable?$AA@": 2701197240,
+      "??_C@_0O@ILOKLLIH@display?9scale?$AA@": 2701197256,
+      "??_C@_0N@FDKCMFDM@global?9scale?$AA@": 2701197272,
+      "??_C@_0N@OAFDHDLI@bluetooth?9le?$AA@": 2701197288,
+      "??_C@_0M@CCEAPMHO@device?9tree?$AA@": 2701197304,
+      "??_C@_0BM@DABFECBP@artwork?9dynamic?9displaymode?$AA@": 2701197320,
+      "??_C@_0BK@GCGDIMKJ@certificate?9security?9mode?$AA@": 2701197352,
+      "??_C@_0BG@OOCDPJBN@low?9power?9wallet?9mode?$AA@": 2701197384,
+      "??_C@_0BE@HKHDMMMN@ephemeral?9data?9mode?$AA@": 2701197408,
+      "??_C@_0CA@LNGEDKEA@RF?9exposure?9separation?9distance?$AA@": 2701197432,
+      "??_C@_07FEOOGBEB@redwood?$AA@": 2701197464,
+      "??_C@_0M@GNEBHLAM@psci?9method?$AA@": 2701197472,
+      "??_C@_09CHNDAHLN@oem?5sound?$AA@": 2701197488,
+      "??_C@_0BA@NINGALLD@unknown?5command?$AA@": 2701197504,
+      "??_C@_0CH@IPPCPFKF@it?5does?5not?5begin?5and?5end?5where?5@": 2701197520,
+      "??_C@_0L@GHDAEEOJ@product?9id?$AA@": 2701197560,
+      "??_C@_0P@IDOGDJKC@unique?9chip?9id?$AA@": 2701197576,
+      "??_C@_07LOAGBCPO@chip?9id?$AA@": 2701197592,
+      "??_C@_08HBPOODJN@board?9id?$AA@": 2701197600,
+      "??_C@_0BI@KHKKGOGA@iap2?9protocol?9supported?$AA@": 2701197616,
+      "??_C@_0M@NLOLDJNG@not?9started?$AA@": 2701197640,
+      "??_C@_0CG@IAMMLPJL@NOT?5PUT?5BACK?3?5the?5storage?5is?5not@": 2701197656,
+      "??_C@_08LAGFCGA@returned?$AA@": 2701197696,
+      "??_C@_0O@PONFBHPK@debug?9enabled?$AA@": 2701197712,
+      "??_C@_09KNCEKIFA@not?5tried?$AA@": 2701197728,
+      "??_C@_0M@LGDPDIPE@random?9seed?$AA@": 2701197744,
+      "??_C@_0P@EKLHPOO@short?5download?$AA@": 2701197760,
+      "??_C@_0CG@EGKPPACI@its?5unique?5GUID?5is?5not?5the?5one?5i@": 2701197776,
+      "??_C@_0CE@EJJDCJBG@its?5type?5GUID?5is?5not?5the?5one?5it?5@": 2701197816,
+      "??_C@_08OOHKHLPO@?$CFd?5?$CFd?5?$CFd?$AA@": 2701197856,
+      "??_C@_09NBAAEHBH@etc?1ramfb?$AA@": 2701197872,
+      "??_C@_08NOEPOPLB@userdata?$AA@": 2701197888,
+      "??_C@_0BB@KGKIFOE@nvram?9proxy?9data?$AA@": 2701197904,
+      "??_C@_0N@HOHDBPBJ@pearl?9camera?$AA@": 2701197928,
+      "??_C@_0BB@LOIDDBMC@aggregate?9camera?$AA@": 2701197944,
+      "??_C@_08OLFOCDMK@panorama?$AA@": 2701197968,
+      "??_C@_07PDOPKIEJ@?5?$CFx?4?$CFx?$FL?$AA@": 2701197984,
+      "??_C@_09CEGDJJMH@DIFFERENT?$AA@": 2701197992,
+      "??_C@_0N@JPNHCBOL@RDW00POCOX5P?$AA@": 2701198008,
+      "??_C@_07JKHMOBCG@S21RDSK?$AA@": 2701198024,
+      "??_C@_07CDIINJIO@S21ULAB?$AA@": 2701198032,
+      "??_C@_08CJKMMLL@bootcpu?$DN?$AA@": 2701198040,
+      "??_C@_0BF@HIHHHKAH@loader_return_after?$DN?$AA@": 2701198056,
+      "??_C@_07BLPLIGMN@serial?$DN?$AA@": 2701198080,
+      "??_C@_08CJMABJFI@cpumask?$DN?$AA@": 2701198088,
+      "??_C@_0M@LGKGDCDF@ufs_native?$DN?$AA@": 2701198104,
+      "??_C@_07IOBKECOP@getvar?3?$AA@": 2701198120,
+      "??_C@_0DC@IEKOHMDI@cores?5for?5the?5kernel?0?5in?5the?5ord@": 2701198128,
+      "??_C@_09LHAGNAJJ@download?3?$AA@": 2701198184,
+      "??_C@_0L@LNFMGEPB@arm?0gic?9v3?$AA@": 2701198200,
+      "??_C@_08CCLCHNFN@gamut?$DNp3?$AA@": 2701198216,
+      "??_C@_0BA@FKNMEDFA@s21_userland_v1?$AA@": 2701198232,
+      "??_C@_08HOAHCFCM@RAMDisk1?$AA@": 2701198248,
+      "??_C@_09JFLAAOFA@battery?$DN1?$AA@": 2701198264,
+      "??_C@_0M@CIOKBEGF@ufs_write?$DN1?$AA@": 2701198280,
+      "??_C@_0M@BLNGJMED@ufs_probe?$DN1?$AA@": 2701198296,
+      "??_C@_09PLMJBCCP@arm?0pl011?$AA@": 2701198312,
+      "??_C@_0BC@DIFKAELM@mac?9address?9wifi0?$AA@": 2701198328,
+      "??_C@_0BH@PINADKDA@mac?9address?9bluetooth0?$AA@": 2701198352,
+      "??_C@_0BD@HEFMAPOE@iBoot?98422?4100?4650?$AA@": 2701198376,
+      "??_C@_0BO@FFGLLDBP@cpus?$DN1?5loader_return_after?$DN30?$AA@": 2701198400,
+      "??_C@_0BC@NNGAGENK@RDW00POCOX5PMLB00?$AA@": 2701198432,
+      "??_C@_0L@DKMELJBJ@0x03f00000?$AA@": 2701198456,
+      "??_C@_0CH@EBCFNFB@a?5kernel?5is?5running?5?$CIoem?5stop?5en@": 2701198472,
+      "??_C@_0BF@OEODKHLE@S21?5UEFI?5DESC?5?$CFd?5?$CFx?5?$AA@": 2701198512,
+      "??_C@_0L@JDDNJECM@debug?$DN0x8?5?$AA@": 2701198536,
+      "??_C@_0BE@EIBKBHMM@debug?$DN0x8?5serial?$DN3?5?$AA@": 2701198552,
+      "??_C@_0O@OBANGCHO@hv_wdt_pet?$DN1?5?$AA@": 2701198576,
+      "??_C@_07HPCANKPB@cpus?$DN1?5?$AA@": 2701198592,
+      "??_C@_07NHLMNIGE@rd?$DNmd0?5?$AA@": 2701198600,
+      "??_C@_0BO@IJMDIFDK@S21?5UEFI?3?5REJECT?5before?5copy?6?$AA@": 2701198608,
+      "??_C@_0CG@MCBHGHIC@S21?5UEFI?3?5ownership?5PASS?5before?5@": 2701198640,
+      "??_C@_0DK@OHHBNIHM@EARLY?5KERNEL?5EXCEPTION?3?5esr?$DN?$CFx?5e@": 2701198680,
+      "??_C@_0DC@NIFMFOPJ@CurrentEL?$DN?$CFx?5MIDR?$DN?$CFx?5MMFR0?$DN?$CFx?5CN@": 2701198744,
+      "??_C@_0DI@BHOAHPMG@battery?3?5ChargerEx?$DN?$CFx?5QcomCharge@": 2701198800,
+      "??_C@_0BM@KDLEEIDE@kernel?5loaded?5at?5pa?5?$CFx?4?4?$CFx?6?$AA@": 2701198856,
+      "??_C@_0BL@EGBAKGHN@kernel?5va?5?$CFx?4?4?$CFx?5entry?5?$CFx?6?$AA@": 2701198888,
+      "??_C@_0CD@KEDBNLBG@S21?5UEFI?5CLAIM?5window?5?$CFx?5?$CFx?5?$CFx?5?$CF@": 2701198920,
+      "??_C@_0CE@JDHNEDP@S21?5UEFI?5CLAIM?5payload?5?$CFx?5?$CFx?5?$CFx?5@": 2701198960,
+      "??_C@_0BN@LCCDCNKL@S21?5UEFI?5MAP?5?$CFd?5?$CFx?5?$CFx?5?$CFx?5?$CFx?6?$AA@": 2701199000,
+      "??_C@_0CA@OPBJIEJH@S21?5RESIDENT?5DECLARATION?5?$CFx?5?$CFx?6?$AA@": 2701199032,
+      "??_C@_0BM@PIFCDOIM@S21?5VIDEO?5ALLOCATION?5?$CFx?5?$CFx?6?$AA@": 2701199064,
+      "??_C@_0DK@MDAPKLBO@ufs?3?5firmware?5table?5?$CFd?3?5?$CFx?9?$CFx?9?$CFx@": 2701199096,
+      "??_C@_0DE@LBOEGMDC@the?5kernel?5left?5a?5screen?5recordi@": 2701199160,
+      "??_C@_0DD@BMFMIMBF@the?5kernel?5left?5a?5sound?5recordin@": 2701199216,
+      "??_C@_0BH@EICOJKOK@display?5?$CFd?5x?5?$CFd?5at?5?$CFx?6?$AA@": 2701199272,
+      "??_C@_0CJ@LBBBLMNJ@phys?5window?5?$CFx?5size?5?$CFx?0?5claim?5st@": 2701199296,
+      "??_C@_0CB@JCEDADG@S21?5RAMFB?3?5REJECT?5DMA?5status?5?$CFx?6@": 2701199344,
+      "??_C@_0BO@MJCFPPNG@exception?5hook?5?$CFd?3?5status?5?$CFx?6?$AA@": 2701199384,
+      "??_C@_0CI@FGAGDFNA@ufs?3?5?$CFs?3?5reading?5at?5block?5?$CFd?3?5er@": 2701199416,
+      "??_C@_0CN@PBNLDGDO@device?5tree?5?$CFx?5len?5?$CFx?0?5boot_args@": 2701199456,
+      "??_C@_0P@DMCCNIIJ@jumping?5to?5?$CFx?6?$AA@": 2701199504,
+      "??_C@_0CD@BFKPCCJH@resident?5ramdisk?5at?5pa?5?$CFx?5size?5?$CF@": 2701199520,
+      "??_C@_0BK@KMAPFJFM@ramdisk?5at?5pa?5?$CFx?5size?5?$CFx?6?$AA@": 2701199560,
+      "??_C@_0DL@CCGCFMGJ@S21?5XNU?5ADAPTER?3?5resources?5PASS?5@": 2701199592,
+      "??_C@_0BG@LHDPKCEN@usb?3?5start?5failed?5?$CFx?6?$AA@": 2701199656,
+      "??_C@_0CG@DKLMDBDN@ufs?3?5probe?3?5Block?5I?1O?5read?5faile@": 2701199680,
+      "??_C@_0CH@LIGAKMMI@ufs?3?5probe?3?5ReadBlocksEx?5?$CFd?5fail@": 2701199720,
+      "??_C@_0BN@BKGGCIHM@S21?5RESIDENT?3?5REJECT?5window?6?$AA@": 2701199760,
+      "??_C@_0BK@IJPHEBFB@unexpected?5kernel?5layout?6?$AA@": 2701199792,
+      "??_C@_0CA@EOHAOG@S21?5XNU?5ADAPTER?3?5REJECT?5layout?6?$AA@": 2701199824,
+      "??_C@_0BG@KJPBLPKE@ufs?3?5probe?3?5no?5event?6?$AA@": 2701199856,
+      "??_C@_0DN@MIKNEGDD@core?5?$CFx?3?5the?5firmware?5answers?5?$CFd@": 2701199880,
+      "??_C@_0CC@HNDNIFBC@S21?5VIDEO?3?5REJECT?5boot?5arguments@": 2701199944,
+      "??_C@_0BK@PFFFKKF@usb?3?5no?5transfer?5buffers?6?$AA@": 2701199984,
+      "??_C@_0CC@PBBGMMDB@ufs?3?5?$CFd?5raw?5units?0?5?$CFd?5partitions@": 2701200016,
+      "??_C@_0CG@LECFCPNN@ufs?3?5?$CFs?3?5fnv?5?$CFx?5over?5?$CFd?5bytes?0?5?$CF@": 2701200056,
+      "??_C@_0DK@BDABMNHH@ufs?3?5darwin?3?5no?5Block?5I?1O?52?3?5one@": 2701200096,
+      "??_C@_0CG@MDENCADL@kernel?5returned?3?5log?5at?5?$CFx?0?5?$CFd?5b@": 2701200160,
+      "??_C@_0CD@JBKKLDMJ@S21?5XNU?5ADAPTER?3?5REJECT?5resource@": 2701200200,
+      "??_C@_0BJ@MJJNHDJL@ufs?3?5?$CFs?3?5UEFI?8s?5list?5?$CFs?6?$AA@": 2701200240,
+      "??_C@_0N@BKIFFBFO@platform?5?$CFs?6?$AA@": 2701200272,
+      "??_C@_0BE@NKCBHKAH@ufs?3?5?$CFs?5?$CFs?5?$CL?$CFx?3?5?$CFs?6?$AA@": 2701200288,
+      "??_C@_0N@GNCCOPDL@cmdline?3?5?$CFs?6?$AA@": 2701200312,
+      "??_C@_0CK@GNIOKJII@ufs?3?5darwin?3?5no?5write?5will?5be?5se@": 2701200328,
+      "??_C@_0CK@IEPPKNPM@ufs?3?5?$CFs?3?5doorbell?5?$CFx?5still?5set?5a@": 2701200376,
+      "??_C@_0DH@LCELEHLI@ufs?3?5?$CFs?3?5?$CFd?5bytes?5asked?5for?0?5the@": 2701200424,
+      "??_C@_0CC@OKIJIDEI@S21?5RESIDENT?3?5REJECT?5APFS?5header@": 2701200480,
+      "??_C@_0CG@DFGHJPDN@ufs?3?5?$CFs?3?5doorbell?5?$CFx?5after?5the?5c@": 2701200520,
+      "??_C@_0CK@LMOOOOMK@S21?5XNU?5ADAPTER?3?5layout?5PASS?5bef@": 2701200560,
+      "??_C@_0CD@KGGDKFKH@S21?5UEFI?3?5REJECT?5window?5selectio@": 2701200608,
+      "??_C@_0CE@EODHCJAJ@S21?5UEFI?3?5REJECT?5window?5allocati@": 2701200648,
+      "??_C@_0CF@DPJGKDBL@S21?5UEFI?3?5REJECT?5payload?5allocat@": 2701200688,
+      "??_C@_0BP@DLHNNPFK@S21?5USERLAND?3?5REJECT?5headroom?6?$AA@": 2701200728,
+      "??_C@_0DJ@GOAFGDAE@ufs?3?5no?5partition?5information?3?5t@": 2701200760,
+      "??_C@_0CP@FDICBNBP@kernel?5and?5ramdisk?5overlap?5the?5r@": 2701200824,
+      "??_C@_0CD@INIIDHHJ@S21?5UEFI?3?5REJECT?5payload?5not?5fre@": 2701200872,
+      "??_C@_0CA@KEGPFAPM@usb?3?5device?5protocol?5not?5found?6?$AA@": 2701200912,
+      "??_C@_0CA@FMJKHNNJ@?$CFd?5s?3?5the?5core?5has?5not?5arrived?6?$AA@": 2701200944,
+      "??_C@_0CH@IJIOKFPP@core?5?$CFx?5was?5started?5but?5never?5ar@": 2701200976,
+      "??_C@_0O@DJMDOICM@usb?3?5started?6?$AA@": 2701201016,
+      "??_C@_0BO@FOGOBDFP@return?9path?5self?5test?5passed?6?$AA@": 2701201032,
+      "??_C@_0BF@NCPOGPAP@GetMemoryMap?5failed?6?$AA@": 2701201064,
+      "??_C@_0BG@NLHCDNOD@no?5kernel?5in?5payload?6?$AA@": 2701201088,
+      "??_C@_0CB@HADIOMNI@S21?5XNU?5ADAPTER?3?5REJECT?5payload?6@": 2701201112,
+      "??_C@_0CJ@EKBCOCPP@ufs?3?5super?3?5its?5start?5could?5not?5@": 2701201152,
+      "??_C@_0CM@FAHCNFAL@ufs?3?5userdata?3?5its?5start?5could?5n@": 2701201200,
+      "??_C@_0DA@LCCPCCEL@ufs?3?5unit?5?$CFd?3?5the?5GPT?5header?5cou@": 2701201248,
+      "??_C@_0CP@NDDCGEKO@ufs?3?5unit?5?$CFd?3?5the?5GPT?5table?5coul@": 2701201296,
+      "??_C@_0DN@HLGNLPBJ@battery?3?5flags?$DN?$CFx?5SOC?$DN?$CFd?$CF?$CF?5V?$DN?$CFd?5@": 2701201344,
+      "??_C@_0CK@CHBKPJAE@return?5slot?5patched?5at?5?$CFx?0?5check@": 2701201408,
+      "??_C@_0CG@PBFMPALE@core?5?$CFx?5did?5not?5start?3?5PSCI?5erro@": 2701201456,
+      "??_C@_0DP@FPJLEJME@ufs?3?5unit?5?$CFd?3?5media?5?$CFd?0?5?$CFd?5block@": 2701201496,
+      "??_C@_0CC@FBKGKJIP@S21?5USERLAND?5PROFILE?5?$CFd?5epoch?5?$CFd@": 2701201560,
+      "??_C@_0CC@MNAKHGKB@ufs?3?5unit?5?$CFd?3?5GPT?5header?5size?5?$CFd@": 2701201600,
+      "??_C@_0CI@JJEONHN@S21?5VIDEO?3?5REJECT?5framebuffer?5st@": 2701201640,
+      "??_C@_0CM@HAFLAOGE@S21?5UEFI?3?5REJECT?5window?5ownershi@": 2701201680,
+      "??_C@_0CN@HEFBIGLK@S21?5UEFI?3?5REJECT?5payload?5ownersh@": 2701201728,
+      "??_C@_0CJ@PPNKBCFJ@S21?5RESIDENT?3?5REJECT?5ownership?5s@": 2701201776,
+      "??_C@_0CO@CAFLODNB@S21?5RESIDENT?3?5ownership?1header?5P@": 2701201824,
+      "??_C@_0BK@HMKFPNIC@STOPPED?5AT?5CHECKPOINT?5?$CFd?6?$AA@": 2701201872,
+      "??_C@_0BN@DEMLPDDE@S21?5VIDEO?5ACQUIRED?5AFTER?5?$CFd?6?$AA@": 2701201904,
+      "??_C@_0BB@IBEHIDGA@S21?5UEFI?5END?5?$CFd?6?$AA@": 2701201936,
+      "??_C@_0DG@CNJPCAFI@ufs?3?5?$CFd?5blocks?5from?5?$CFd?5of?5darwin@": 2701201960,
+      "??_C@_0CA@EGCGENFA@S21?5VIDEO?3?5boot?5arguments?5PASS?6?$AA@": 2701202016,
+      "??_C@_0BP@GOJMHKC@kernel?5is?5not?5a?564?9bit?5Mach?9O?6?$AA@": 2701202048,
+      "??_C@_0BL@INMCAFED@not?5enough?5contiguous?5RAM?6?$AA@": 2701202080,
+      "??_C@_0CM@BEGPBHLI@ufs?3?5no?5partition?5information?5in@": 2701202112,
+      "??_C@_0DC@HFOFHOJM@ufs?3?5a?5write?5of?5?$CFd?5blocks?5from?5?$CF@": 2701202160,
+      "??_C@_0BL@GPNFLNPP@?5?5total?5of?5type?5?$CFd?3?5?$CFd?5MB?6?$AA@": 2701202216,
+      "??_C@_0BL@HAFMFFGM@?5?5?$CFx?5?9?5?$CFx?5?5type?5?$CFd?5?5?$CFd?5MB?6?$AA@": 2701202248,
+      "??_C@_0CB@IGBPNEAD@ufs?3?5part?5?$CFs?3?5lba?5?$CFd?4?4?$CFd?0?5?$CFd?5KB?6@": 2701202280,
+      "??_C@_0BD@OPNGHOPD@?6?$DN?$DN?5KERNEL?5LOG?5?$DN?$DN?6?$AA@": 2701202320,
+      "??_C@_0BD@GNJBFDDH@?6?$DN?$DN?5END?5OF?5LOG?5?$DN?$DN?6?$AA@": 2701202344,
+      "??_C@_0BE@FCCGAMO@?$DN?$DN?5XNULOADER?5v3?5?$DN?$DN?6?$AA@": 2701202368,
+      "??_C@_0BL@EFOJADEN@?$DN?$DN?5XNULOADER?5run?5?$CIusb?$CJ?5?$DN?$DN?6?$AA@": 2701202392,
+      "??_C@_0CI@BDCJGIBC@ufs?3?5unit?5?$CFd?3?5no?5GPT?5header?5in?5b@": 2701202424,
+      "??_C@_0DK@HJMPEGHO@log?3?5?$CFd?5bytes?5written?5to?5logdump@": 2701202464,
+      "??_C@_0CG@IPOJOOLN@loader?5image?5base?5?$CFx?5?$CIelr?5offset@": 2701202528,
+      "??_C@_0DC@DJODLIHO@the?5kernel?5will?5run?5on?5core?5?$CFx?5?$CI@": 2701202568,
+      "??_C@_0CK@HHLEPCJP@ufs?3?5super?3?5no?5liblp?5geometry?5?$CIm@": 2701202624,
+      "??_C@_0L@IIANBIG@?5?$CILUN?5?$CFd?$CJ?6?$AA@": 2701202672,
+      "??_C@_0DA@JKMOHFEJ@ufs?3?5?$CFs?3?5clearing?5the?5kernel?8s?5s@": 2701202688,
+      "??_C@_0EL@FEBICFON@watchdog?3?5status?5ret?$DN?$CFx?5ctl?$DN?$CFx?5s@": 2701202736,
+      "??_C@_0EC@FFKIOLJB@?6UEFI?5EXCEPTION?5type?$DN?$CFd?5elr?$DN?$CFx?5e@": 2701202816,
+      "??_C@_0EH@OKELBCCP@ufs?3?5?$CFs?3?5completion?5?$CFx?0?5at?5the?5k@": 2701202896,
+      "??_C@_0EG@DOKCDMHG@S21?5UEFI?3?5REJECT?5map?5stage?5?$CFd?5st@": 2701202976,
+      "??_C@_0HA@FLNIHEEF@ufs?3?5?$CFs?3?5list?5?$CFx?3?$CFx?5?$CIUEFI?8s?5?$CFx?3?$CF@": 2701203056,
+      "??_C@_0GG@NNJAAOFM@ufs?3?5controller?5at?5?$CFx?3?5CAP?5?$CFx?0?5V@": 2701203168,
+      "??_C@_0EP@KJNOGDPA@ufs?3?5?$CFs?3?5UEFI?8s?5transfer?5list?5is@": 2701203280,
+      "??_C@_0EA@DALDMHNB@ufs?3?5UEFI?8s?5list?5moved?5from?5?$CFx?3?$CF@": 2701203360,
+      "??_C@_0FM@GHIEFEHI@ufs?3?5the?5kernel?8s?5own?5transfer?5l@": 2701203424,
+      "??_C@_0EN@PIMDNHDB@THE?5KERNEL?5HUNG?5on?5core?5?$CFx?3?5no?5s@": 2701203520,
+      "??_C@_0EH@DFBCFPGI@ufs?3?5the?5kernel?5put?5its?5own?5list@": 2701203600,
+      "??_C@_0FE@LPFMCKJA@log?3?5NOT?5WRITTEN?5to?5logdump?3?5UEF@": 2701203680,
+      "??_C@_0FI@JLLECIDK@THE?5KERNEL?5LEFT?5CORE?5?$CFx?5RUNNING?5@": 2701203776,
+      "??_C@_0EH@JFGEMFAD@ufs?3?5UEFI?8s?5transfer?5list?5is?5at?5@": 2701203872,
+      "??_C@_0FD@GBFGGGFN@ufs?3?5darwin?5?$CILBA?5?$CFd?4?4?$CFd?5of?5unit?5@": 2701203952,
+      "??_C@_0FG@PLLGLPLJ@ufs?3?5the?5kernel?5may?5put?5its?5own?5@": 2701204048,
+      "??_C@_0GA@GKHOEDEC@ufs?3?5?$CFs?3?5the?5controller?5has?5list@": 2701204144,
+      "??_C@_0LG@GCONPJAM@ufs?3?5darwin?3?5Block?5I?1O?52?5there?4?5@": 2701204240,
+      "??_C@_0FI@HALOBDIN@ufs?3?5the?5controller?5has?5this?5loa@": 2701204432,
+      "??_C@_0EF@JNJLLAFE@core?5?$CFx?5is?5not?5off?5?$CIthe?5firmware@": 2701204528,
+      "??_C@_0EG@BDNCEKPJ@ufs?3?5?$CFd?5writes?5into?5darwin?0?5?$CFd?5b@": 2701204608,
+      "??_C@_0FK@FAEBHPHB@ufs?3?5a?5read?5asked?5for?5while?5the?5@": 2701204688,
+      "??_C@_0ED@LIMCHKAM@ufs?3?5super?3?5slot?5?$CFd?3?5header?5of?5?$CF@": 2701204784,
+      "??_C@_0EC@DGAFCHCF@ufs?3?5unit?5?$CFd?3?5GPT?5header?5crc?5?$CFs?0@": 2701204864,
+      "??_C@_0EA@NBDNLCFF@ufs?3?5super?3?5slot?5?$CFd?3?5no?5metadata@": 2701204944,
+      "??_C@_0EN@NKOBNEEN@ufs?3?5block?5service?3?5?$CFd?5partition@": 2701205008,
+      "??_C@_0EF@EILHJKHB@?$CFd?5s?3?5the?5kernel?5has?5logged?5?$CFd?5b@": 2701205088,
+      "??_C@_0FN@MLLIGFLF@memory?5map?5?$CItype?57?5?$DN?5free?0?51?12?5?$DN@": 2701205168,
+      "??_C@_0FD@ILJBKOHL@resident?5image?5at?5pa?5?$CFx?5size?5?$CFx?3@": 2701205264,
+      "??_C@_0EH@LEMGBCEH@ufs?3?5unit?5?$CFd?3?5GPT?5header?5crc?5?$CFs?5@": 2701205360,
+      "??_C@_0EI@LHOPJHPI@?5?5?$CIpa?9va?5slide?5?$CFx?3?5subtract?5it?5f@": 2701205440,
+      "loader_ctx": 2701226064,
+      "other_cpu_stage": 2701226432,
+      "other_cpu_done": 2701226496,
+      "psci_by_hvc": 2701226560,
+      "other_cpu_fault": 2701136532,
+      "other_cpu_vectors": 2701137920,
+      "print": 2701143088,
+      "s21_memory_dump": 2701143696,
+      "parse_payload": 2701144496,
+      "run_kernel": 2701144676,
+      "hc_take_back": 2701154360,
+      "s21_choose_window": 2701155300,
+      "exception_handler": 2701155980,
+      "usb_dummy_notify": 2701156104,
+      "write_logs": 2701156108,
+      "compose_logs": 2701157104,
+      "usb_wait": 2701157596,
+      "fb_command": 2701157944,
+      "fb_reply": 2701161812,
+      "parse_number": 2701161980,
+      "fb_reply_data": 2701162088,
+      "set_result": 2701162292,
+      "print_memory_map": 2701162540,
+      "compose_live_log": 2701162860,
+      "s21_owned": 2701163868,
+      "charger_start": 2701164540,
+      "hc_init": 2701164840,
+      "ufs_survey": 2701165236,
+      "block_start": 2701168800,
+      "s21_video_boot": 2701171588,
+      "dt_begin": 2701171800,
+      "dt_identity": 2701171924,
+      "dt_prop_padded": 2701172136,
+      "dt_prop": 2701172320,
+      "firmware_epoch": 2701172680,
+      "build_nvram_image": 2701172920,
+      "dt_identity_one": 2701173168,
+      "run_on_other_cpu": 2701173332,
+      "charger_poll": 2701176232,
+      "block_io2_probe": 2701177048,
+      "nvram_chrp_header": 2701177728,
+      "block_poll": 2701177960,
+      "read_node": 2701180372,
+      "text": 2701181080,
+      "value": 2701181480,
+      "u64": 2701181740,
+      "named": 2701182176,
+      "efi_main.gop_guid": 2701189120,
+      "platform_qemu_virt": 2701189136,
+      "platform_redwood": 2701189216,
+      "install_exception_hook.cpu_guid": 2701189296,
+      "usb_start.usb_guid": 2701189312,
+      "usb_start.init_guid": 2701189328,
+      "usb_cfg_desc": 2701189344,
+      "usb_ss_cfg_desc": 2701189376,
+      "usb_str0": 2701189420,
+      "usb_str_mfr": 2701189424,
+      "usb_str_prod": 2701189432,
+      "usb_str_serial": 2701189456,
+      "usb_str_iface": 2701189480,
+      "usb_dev_desc": 2701189504,
+      "usb_ss_dev_desc": 2701189528,
+      "usb_qualifier": 2701189552,
+      "usb_bos": 2701189568,
+      "find_log_partition.part_guid": 2701189616,
+      "find_log_partition.blk_guid": 2701189632,
+      "find_log_partition.want": 2701189648,
+      "compose_logs.sep": 2701189664,
+      "compose_logs.end": 2701189688,
+      "compose_live_log.sep": 2701189720,
+      "run_kernel.prefix": 2701189776,
+      "run_kernel.prefix.1": 2701189800,
+      "run_kernel.hex.2": 2701189824,
+      "identity_root_data": 2701189856,
+      "identity_root": 2701189936,
+      "run_kernel.wifi_address": 2701190032,
+      "run_kernel.bluetooth_address": 2701190040,
+      "run_kernel.manifest_hash": 2701190048,
+      "run_kernel.no_behavior": 2701190096,
+      "identity_product_data": 2701190112,
+      "identity_product": 2701190496,
+      "identity_haptics_data": 2701191472,
+      "identity_haptics": 2701191480,
+      "identity_camera_data": 2701191520,
+      "identity_camera": 2701191696,
+      "charger_start.charger_ex_guid": 2701192400,
+      "charger_start.qcom_charger_guid": 2701192416,
+      "ufs_survey.part_guid": 2701192432,
+      "ufs_survey.blk_guid": 2701192448,
+      "ufs_references": 2701192464,
+      "block_start.part_guid": 2701192592,
+      "block_start.blk_guid": 2701192608,
+      "block_start.dp_guid": 2701192624,
+      "block_is_darwin.type": 2701192640,
+      "block_is_darwin.uniq": 2701192656,
+      "block_is_darwin.name": 2701192672,
+      "block_io2_probe.blk2_guid": 2701192680,
+      "firmware_epoch.before_month": 2701192696,
+      "s21_profile_cmdline.prefix": 2701192720,
+      "s21_payload_status": 2701209600,
+      "s21_window_status": 2701209608,
+      "usb_start.cfg": 2701209616,
+      "usb_start.ss_cfg": 2701209624,
+      "usb_start.strings": 2701209632,
+      "staged_data": 2701209672,
+      "last_result": 2701209680,
+      "block_write_part": 2701209744,
+      "charger_shared": 2701217792,
+      "ST": 2701225984,
+      "BS": 2701225992,
+      "IMAGE": 2701226000,
+      "PLAT": 2701226008,
+      "GOP": 2701226016,
+      "SCREEN.0": 2701226024,
+      "SCREEN.1": 2701226032,
+      "SCREEN.2": 2701226040,
+      "SCREEN.3": 2701226048,
+      "log_len": 2701226568,
+      "log_buf": 2701226576,
+      "screen_quiet": 2701259344,
+      "s21_payload_claim": 2701259352,
+      "s21_maps": 2701259360,
+      "s21_resident_cfg": 2701521664,
+      "s21_frame_base": 2701521680,
+      "s21_frame_size": 2701521688,
+      "s21_frame_after_stage": 2701521696,
+      "s21_window_claim": 2701521704,
+      "win_size": 2701521712,
+      "win_base": 2701521720,
+      "hc_known": 2701521728,
+      "hc_uefi_lo": 2701521732,
+      "hc_uefi_hi": 2701521736,
+      "block_shared": 2701529088,
+      "s21_profile_cfg": 2701540096,
+      "ramfb_phone_screen.cfg": 2701540112,
+      "ramfb_phone_screen.dma": 2701540160,
+      "wdt_armed": 2701540224,
+      "smc_x3": 2701540232,
+      "parse_payload.profile_command": 2701540240,
+      "usb_start.set": 2701540336,
+      "USB": 2701540400,
+      "usb_rx_buf": 2701540408,
+      "usb_tx_buf": 2701540416,
+      "staged_len": 2701540424,
+      "hc_log_skips": 2701540432,
+      "out_buf": 2701540448,
+      "block_buffer": 2703642624,
+      "usb_connected": 2707836928,
+      "usb_wait.last_pet": 2707836936,
+      "running_live": 2707836944,
+      "usb_rx_queued": 2707836952,
+      "download_to_ramdisk": 2707836956,
+      "resident_rd_size": 2707836960,
+      "recording_data": 2707836968,
+      "recording_len": 2707836976,
+      "sound_data": 2707836984,
+      "sound_len": 2707836992,
+      "running_slide": 2707837000,
+      "print_memory_map.map_buf": 2707837008,
+      "run_kernel.map_buf": 2707902544,
+      "run_kernel.lab_platform": 2707968080,
+      "gamut_p3": 2707968160,
+      "block_write_requested": 2707968164,
+      "block_probe_requested": 2707968168,
+      "hc_requested": 2707968172,
+      "block_enabled": 2707968176,
+      "run_kernel.nvram_image": 2707968192,
+      "block_writes_refused": 2707976384,
+      "block_write_bytes": 2707976392,
+      "block_writes": 2707976400,
+      "charger_enabled": 2707976408,
+      "CHARGER_EX": 2707976416,
+      "QCOM_CHARGER": 2707976424,
+      "hc_area": 2707984384,
+      "ufs_buffer": 2708054016,
+      "block_start.units": 2709102592,
+      "block_bios": 2709103104,
+      "hc_refused_reads": 2709104384,
+      "block_io2_probe.tokens": 2709104400,
+      "other_cpu_start": 2709104576
+    },
+    "map_sha256": "65a6eabf894c963a869dc5d70fd792f3bd3a0461d114a4c64a15734ef16f0360",
+    "commands": [
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-DS21_RESIDENT_TEST=0",
+        "-c",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/loader.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/loader.obj"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-DS21_RESIDENT_TEST=0",
+        "-c",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_resources.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_resources.obj"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-DS21_RESIDENT_TEST=0",
+        "-c",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_memory.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_memory.obj"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-DS21_RESIDENT_TEST=0",
+        "-c",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_video.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_video.obj"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/lld-link",
+        "/subsystem:efi_application",
+        "/entry:efi_main",
+        "/nodefaultlib",
+        "/base:0xA1000000",
+        "/timestamp:0",
+        "/map:/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/loader.map",
+        "/out:/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/loader.efi",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/loader.obj",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_resources.obj",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_memory.obj",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/build/efi_video.obj"
+      ]
+    ],
+    "memory_test": 0,
+    "video_test": 0,
+    "resident_test": 0,
+    "patched_source_sha256": "a5e71bfebff24abae3b94a90a07d9d0c09f7e1a787d0e05cd6cf440f9cf0a137",
+    "efi_sha256": "5b063febcf86cf41a70a9bb2d7e535c0ae4896fa865e775103a9188692c80737",
+    "efi_bytes": 79872,
+    "clang_version": "Debian clang version 19.1.7 (3+b1)"
+  },
+  "command": [
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "--library-path",
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu:/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib",
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/bin/qemu-system-aarch64",
+    "-L",
+    "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/roms",
+    "-M",
+    "virt,gic-version=3",
+    "-cpu",
+    "cortex-a76",
+    "-smp",
+    "1",
+    "-m",
+    "7G",
+    "-accel",
+    "tcg,tb-size=384",
+    "-object",
+    "memory-backend-file,id=ram,size=7516192768,mem-path=/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/ram.img,share=off",
+    "-machine",
+    "memory-backend=ram",
+    "-global",
+    "virtio-mmio.force-legacy=false",
+    "-drive",
+    "if=pflash,format=raw,readonly=on,file=/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+    "-drive",
+    "if=pflash,format=raw,file=/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/vars.fd",
+    "-drive",
+    "file=fat:rw:/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/esp,format=raw,if=virtio",
+    "-device",
+    "loader,file=/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/payload.bin,addr=0xf0000000,force-raw=on",
+    "-device",
+    "ramfb",
+    "-device",
+    "virtio-tablet-device",
+    "-device",
+    "virtio-keyboard-device",
+    "-display",
+    "none",
+    "-serial",
+    "file:/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/serial.log",
+    "-monitor",
+    "none",
+    "-no-reboot",
+    "-nic",
+    "none",
+    "-S",
+    "-chardev",
+    "pipe,id=qmp,path=/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/qmp",
+    "-mon",
+    "chardev=qmp,mode=control",
+    "-gdb",
+    "stdio"
+  ],
+  "resident_memory": {
+    "guest_base": "0xfc000000",
+    "file_offset": "0xbc000000",
+    "bytes": 2548080640,
+    "file_size": 12884901888,
+    "guest_mapping": "private"
+  },
+  "raw_profile_hex": "533231554c4142000100000001000000beaadb6a000000000000000000000000",
+  "resident_descriptor_hex": "5332315244534b000100000000000000000000fc0000000000a0e09700000000",
+  "payload_sha256": "ee43207c14143152f2bb61de27eca8243c22816792187e670b6f09fdfa2adae2",
+  "own_sources_sha256": {
+    "lab/xnu/efi_resources.c": "0314216d9315eeebce08a8a44ec2e2cda6b9b19432b552a16aff47a218c3b980",
+    "lab/xnu/efi_resources.h": "b76490e36dba164628e3384efebc8ad7d2c6158adfe02566070831d6050b678f",
+    "lab/xnu/efi_lab.py": "021ee4da7edc52b5ba094022db83b5aad7a17cf2a5ea4f85c3bb35188c6e7469",
+    "lab/xnu/efi_memory_loader.inc": "ab1fa5102053cb73288600e6f22125dc08ecb7ea6d0ead09ccbff3405be3a047",
+    "lab/xnu/userland_profile.py": "d4d3a81572389ce75c6408b4b24e0120abfcd2651dd4931829c13033743347e9",
+    "lab/xnu/efi_memory.py": "9502f55d0cbc23ab11747e6ab239c5d0ad90aebab3fa3652a330ba48e798822b",
+    "lab/xnu/resident.py": "1258032ff675fe8a6e06adec39e7b1034a9901f6f1a1f5fb2cd832de5c22d64c",
+    "lab/xnu/video.py": "d530c9a6f8784a6d8992a42cce170a3c844e1aefb23396117b5f574b4cd48b71",
+    "scripts/run_guarded_userland.py": "7f862a58a4aebdbe8ec143efe35152c69a26f8370a11182def2e088fd2b7177b",
+    "scripts/run_hackios_userland.py": "83c82a547a592bf66766e878b458bdcb8d3ab61eded497485a9f7e2f3d6e9102"
+  },
+  "strict_resource_consumer": true,
+  "Samsung_tested": false,
+  "UI_visually_verified": false,
+  "contract": {
+    "verified": true,
+    "pc": "0xfffffff007453994",
+    "pstate": "0x600003c4",
+    "x0": "0xfffffff0a3e1c000",
+    "loader_actual_base": "0xa1000000",
+    "loader_relocation": 0,
+    "read_only_gdb_qmp": true,
+    "boot_args_sha256": "1139178ce9ff5d0b47e151e0414f761d3ea5d344e85521cc6102bcc26f3ef13e",
+    "tree_sha256": "3c6514b341380041b37a476efccf1132a04631ef4f5f0aa5f7b01a97674bb269",
+    "header_sha256": "5d954f5a49105bf9a649fe51384fd6abd5adcc1458726577f70614118b46299a",
+    "profile": {
+      "profile_consistent": true,
+      "hardware_ready": false,
+      "window": [
+        "0xf4000000",
+        "0x10a000000"
+      ],
+      "placements": {
+        "boot_args": [
+          "0x193e1c000",
+          "0x2e0"
+        ],
+        "Apple DT": [
+          "0x193e0c000",
+          "0x3a04"
+        ],
+        "__TEXT": [
+          "0xf7004000",
+          "0x1a0000"
+        ],
+        "__DATA_CONST": [
+          "0xf71a4000",
+          "0xe8000"
+        ],
+        "__TEXT_EXEC": [
+          "0xf728c000",
+          "0x854000"
+        ],
+        "__KLD": [
+          "0xf7ae0000",
+          "0x4000"
+        ],
+        "__LASTDATA_CONST": [
+          "0xf7ae4000",
+          "0x4000"
+        ],
+        "__KLDDATA": [
+          "0xf7ae8000",
+          "0x4000"
+        ],
+        "__DATA": [
+          "0xf7aec000",
+          "0x450000"
+        ],
+        "__BOOTDATA": [
+          "0xf7f3c000",
+          "0x4c000"
+        ],
+        "__LINKINFO": [
+          "0xf7f88000",
+          "0x90000"
+        ],
+        "__LINKEDIT": [
+          "0xf8018000",
+          "0x2ca390"
+        ],
+        "RAMDisk": [
+          "0xfc000000",
+          "0x97e0c000"
+        ],
+        "RAMDisk1": [
+          "0xf82e4000",
+          "0x400000"
+        ]
+      },
+      "gic": [
+        [
+          "0x8000000",
+          "0x10000"
+        ],
+        [
+          "0x80a0000",
+          "0x100000"
+        ]
+      ],
+      "cpus": [
+        "0x0"
+      ],
+      "psci_method": "hvc",
+      "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run.",
+      "video": {
+        "base": "0xef58b000",
+        "pixels_bytes": 10962000,
+        "allocation_bytes": 10964992,
+        "width": 1125,
+        "height": 2436,
+        "stride": 4500,
+        "format": "XR24"
+      },
+      "resident": {
+        "base": "0xfc000000",
+        "bytes": 2548080640,
+        "allocation_bytes": 2548088832,
+        "root": "RAMDisk/md0",
+        "small_disk": "RAMDisk1/md1"
+      }
+    },
+    "userland_limits": {
+      "verified": true,
+      "id": 1,
+      "epoch": 1792780990,
+      "seconds": 900,
+      "cpus": 1,
+      "virtio_input": 1,
+      "dynamic_tail_bytes": 1780350976,
+      "minimum_tail_bytes": 1073741824
+    },
+    "memory_audit": {
+      "verified": true,
+      "window": [
+        "0xf4000000",
+        "0x10a000000"
+      ],
+      "payload": [
+        "0xf0000000",
+        "0x4000000"
+      ],
+      "claims": {
+        "payload": {
+          "base": 4026531840,
+          "size": 67108864,
+          "status": 0,
+          "returned": 4026531840
+        },
+        "window": {
+          "base": 4093640704,
+          "size": 4462739456,
+          "status": 0,
+          "returned": 4093640704
+        }
+      },
+      "placements_checked": [
+        "boot_args",
+        "Apple DT",
+        "__TEXT",
+        "__DATA_CONST",
+        "__TEXT_EXEC",
+        "__KLD",
+        "__LASTDATA_CONST",
+        "__KLDDATA",
+        "__DATA",
+        "__BOOTDATA",
+        "__LINKINFO",
+        "__LINKEDIT",
+        "RAMDisk",
+        "RAMDisk1"
+      ],
+      "snapshots": {
+        "payload-free": {
+          "bytes": 3648,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x3dd",
+          "sha256": "6984adb2437e03d137e3961ad4c1fa0438e9a5dd06511a2b8eb291988d763557",
+          "descriptor_count": 76,
+          "descriptors": [
+            {
+              "type": 7,
+              "physical": "0x40000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x44000000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x44020000",
+              "size": "0x37ba000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x477da000",
+              "size": "0x21000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x477fb000",
+              "size": "0x38000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47833000",
+              "size": "0x6b1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x47ee4000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x47ef4000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47ef8000",
+              "size": "0x108000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x48000000",
+              "size": "0x59000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 1,
+              "physical": "0xa1000000",
+              "size": "0x79c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0xa179c000",
+              "size": "0x15cfc6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fe762000",
+              "size": "0x580000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fece2000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fece4000",
+              "size": "0x33000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed17000",
+              "size": "0x24000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed3b000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fed42000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed44000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed46000",
+              "size": "0x1b000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed61000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed65000",
+              "size": "0x3a000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed9f000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feda2000",
+              "size": "0xa000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedac000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fedb1000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedb2000",
+              "size": "0x28000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedda000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedde000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fede9000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedec000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedfe000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1fee00000",
+              "size": "0x80000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fee80000",
+              "size": "0x31000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feeb1000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feeb7000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feebb000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1feec0000",
+              "size": "0x170000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff030000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff080000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff084000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff08f000",
+              "size": "0x2c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0bb000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff0bc000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0c1000",
+              "size": "0x4f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 0,
+              "physical": "0x1ff110000",
+              "size": "0x300000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff410000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff430000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff480000",
+              "size": "0xa0000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff520000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff570000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5c0000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5c4000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5cb000",
+              "size": "0x1d000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5e8000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5ea000",
+              "size": "0xe000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5f8000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5fe000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff601000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff606000",
+              "size": "0x17000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff61d000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff620000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff624000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff62b000",
+              "size": "0x8000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff633000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff636000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff648000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff64b000",
+              "size": "0x18000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff663000",
+              "size": "0x7bd000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ffe20000",
+              "size": "0x90000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1ffeb0000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ffec0000",
+              "size": "0x120000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fffe0000",
+              "size": "0x1f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fffff000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 11,
+              "physical": "0x4000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            },
+            {
+              "type": 11,
+              "physical": "0x9010000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            }
+          ]
+        },
+        "window-free": {
+          "bytes": 3744,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x42c",
+          "sha256": "78cb59e1d3a9e5d30c31e912b42a17e923b8cdbf2e2048c2c1ef556152cdf47a",
+          "descriptor_count": 78,
+          "descriptors": [
+            {
+              "type": 7,
+              "physical": "0x40000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x44000000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x44020000",
+              "size": "0x37ba000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x477da000",
+              "size": "0x21000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x477fb000",
+              "size": "0x38000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47833000",
+              "size": "0x6b1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x47ee4000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x47ef4000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47ef8000",
+              "size": "0x108000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x48000000",
+              "size": "0x59000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 1,
+              "physical": "0xa1000000",
+              "size": "0x79c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0xa179c000",
+              "size": "0x4e864000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 2,
+              "physical": "0xf0000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0xf4000000",
+              "size": "0x10a762000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fe762000",
+              "size": "0x580000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fece2000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fece4000",
+              "size": "0x33000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed17000",
+              "size": "0x24000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed3b000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fed42000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed44000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed46000",
+              "size": "0x1b000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed61000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed65000",
+              "size": "0x3a000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed9f000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feda2000",
+              "size": "0xa000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedac000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fedb1000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedb2000",
+              "size": "0x28000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedda000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedde000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fede9000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedec000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedfe000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1fee00000",
+              "size": "0x80000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fee80000",
+              "size": "0x31000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feeb1000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feeb7000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feebb000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1feec0000",
+              "size": "0x170000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff030000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff080000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff084000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff08f000",
+              "size": "0x2c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0bb000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff0bc000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0c1000",
+              "size": "0x4f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 0,
+              "physical": "0x1ff110000",
+              "size": "0x300000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff410000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff430000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff480000",
+              "size": "0xa0000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff520000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff570000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5c0000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5c4000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5cb000",
+              "size": "0x1d000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5e8000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5ea000",
+              "size": "0xe000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5f8000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5fe000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff601000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff606000",
+              "size": "0x17000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff61d000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff620000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff624000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff62b000",
+              "size": "0x8000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff633000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff636000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff648000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff64b000",
+              "size": "0x18000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff663000",
+              "size": "0x7bd000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ffe20000",
+              "size": "0x90000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1ffeb0000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ffec0000",
+              "size": "0x120000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fffe0000",
+              "size": "0x1f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fffff000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 11,
+              "physical": "0x4000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            },
+            {
+              "type": 11,
+              "physical": "0x9010000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            }
+          ]
+        },
+        "before-copy": {
+          "bytes": 3744,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x602",
+          "sha256": "c6c73ae6ef65305909d2283729c8135b21e25f88712b1b17ed4e55a35adbc579",
+          "descriptor_count": 78,
+          "descriptors": [
+            {
+              "type": 7,
+              "physical": "0x40000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x44000000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x44020000",
+              "size": "0x37ba000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x477da000",
+              "size": "0x21000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x477fb000",
+              "size": "0x38000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47833000",
+              "size": "0x6b1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x47ee4000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x47ef4000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47ef8000",
+              "size": "0x108000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x48000000",
+              "size": "0x59000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 1,
+              "physical": "0xa1000000",
+              "size": "0x79c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0xa179c000",
+              "size": "0x4ddef000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 2,
+              "physical": "0xef58b000",
+              "size": "0x10ea75000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fe000000",
+              "size": "0x762000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fe762000",
+              "size": "0x580000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fece2000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fece4000",
+              "size": "0x33000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed17000",
+              "size": "0x24000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed3b000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fed42000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed44000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed46000",
+              "size": "0x1b000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed61000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed65000",
+              "size": "0x3a000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed9f000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feda2000",
+              "size": "0xa000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedac000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fedb1000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedb2000",
+              "size": "0x28000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedda000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedde000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fede9000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedec000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedfe000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1fee00000",
+              "size": "0x80000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fee80000",
+              "size": "0x31000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feeb1000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feeb7000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feebb000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1feec0000",
+              "size": "0x170000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff030000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff080000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff084000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff08f000",
+              "size": "0x2c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0bb000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff0bc000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0c1000",
+              "size": "0x4f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 0,
+              "physical": "0x1ff110000",
+              "size": "0x300000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff410000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff430000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff480000",
+              "size": "0xa0000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff520000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff570000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5c0000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5c4000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5cb000",
+              "size": "0x1d000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5e8000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5ea000",
+              "size": "0xe000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5f8000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5fe000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff601000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff606000",
+              "size": "0x17000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff61d000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff620000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff624000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff62b000",
+              "size": "0x8000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff633000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff636000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff648000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff64b000",
+              "size": "0x18000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff663000",
+              "size": "0x7bd000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ffe20000",
+              "size": "0x90000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1ffeb0000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ffec0000",
+              "size": "0x120000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fffe0000",
+              "size": "0x1f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fffff000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 11,
+              "physical": "0x4000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            },
+            {
+              "type": 11,
+              "physical": "0x9010000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            }
+          ]
+        },
+        "handoff": {
+          "bytes": 3744,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0xaa2",
+          "sha256": "c6c73ae6ef65305909d2283729c8135b21e25f88712b1b17ed4e55a35adbc579",
+          "descriptor_count": 78,
+          "descriptors": [
+            {
+              "type": 7,
+              "physical": "0x40000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x44000000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x44020000",
+              "size": "0x37ba000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x477da000",
+              "size": "0x21000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x477fb000",
+              "size": "0x38000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47833000",
+              "size": "0x6b1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x47ee4000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x47ef4000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x47ef8000",
+              "size": "0x108000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x48000000",
+              "size": "0x59000000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 1,
+              "physical": "0xa1000000",
+              "size": "0x79c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0xa179c000",
+              "size": "0x4ddef000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 2,
+              "physical": "0xef58b000",
+              "size": "0x10ea75000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fe000000",
+              "size": "0x762000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fe762000",
+              "size": "0x580000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fece2000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fece4000",
+              "size": "0x33000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed17000",
+              "size": "0x24000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed3b000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fed42000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed44000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed46000",
+              "size": "0x1b000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed61000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fed65000",
+              "size": "0x3a000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fed9f000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feda2000",
+              "size": "0xa000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedac000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 9,
+              "physical": "0x1fedb1000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedb2000",
+              "size": "0x28000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedda000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedde000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fede9000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fedec000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fedfe000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1fee00000",
+              "size": "0x80000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1fee80000",
+              "size": "0x31000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feeb1000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1feeb7000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1feebb000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1feec0000",
+              "size": "0x170000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff030000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff080000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff084000",
+              "size": "0xb000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff08f000",
+              "size": "0x2c000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0bb000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff0bc000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff0c1000",
+              "size": "0x4f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 0,
+              "physical": "0x1ff110000",
+              "size": "0x300000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff410000",
+              "size": "0x20000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff430000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff480000",
+              "size": "0xa0000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ff520000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ff570000",
+              "size": "0x50000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5c0000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5c4000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5cb000",
+              "size": "0x1d000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5e8000",
+              "size": "0x2000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5ea000",
+              "size": "0xe000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff5f8000",
+              "size": "0x6000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff5fe000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff601000",
+              "size": "0x5000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff606000",
+              "size": "0x17000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff61d000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff620000",
+              "size": "0x4000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff624000",
+              "size": "0x7000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff62b000",
+              "size": "0x8000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff633000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff636000",
+              "size": "0x12000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff648000",
+              "size": "0x3000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 3,
+              "physical": "0x1ff64b000",
+              "size": "0x18000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1ff663000",
+              "size": "0x7bd000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 5,
+              "physical": "0x1ffe20000",
+              "size": "0x90000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1ffeb0000",
+              "size": "0x10000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 6,
+              "physical": "0x1ffec0000",
+              "size": "0x120000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000008"
+            },
+            {
+              "type": 7,
+              "physical": "0x1fffe0000",
+              "size": "0x1f000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 4,
+              "physical": "0x1fffff000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8"
+            },
+            {
+              "type": 11,
+              "physical": "0x4000000",
+              "size": "0x4000000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            },
+            {
+              "type": 11,
+              "physical": "0x9010000",
+              "size": "0x1000",
+              "virtual": "0x0",
+              "attributes": "0x8000000000000001"
+            }
+          ]
+        }
+      },
+      "boot_services_resident": true,
+      "exit_boot_services_called": false,
+      "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+      "hardware_ready": false
+    },
+    "physical_reads": {
+      "s21_maps": {
+        "physical": "0xa101f260",
+        "bytes": 262304,
+        "sha256": "d273cecbf937dc38e5e62c0a3bd4d74b56700bc879c5edaa34cbc5dcef7b3a28"
+      },
+      "win_base": {
+        "physical": "0xa105f338",
+        "bytes": 8,
+        "sha256": "830560ae4745cc9668c602b4c03b26e174be771933d9a92bb36a35bd02a62b53"
+      },
+      "win_size": {
+        "physical": "0xa105f330",
+        "bytes": 8,
+        "sha256": "a995a2e9f050c4c22aaf3d3148540c0c40572b7be15ad079fc234700dd0e23e4"
+      },
+      "s21_payload_status": {
+        "physical": "0xa1013000",
+        "bytes": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      },
+      "s21_payload_claim": {
+        "physical": "0xa101f258",
+        "bytes": 8,
+        "sha256": "f9d13d5cea09d810e3ffbd16e0cfda2cceb5ef31c6beb1c1d57d847943fd7fdc"
+      },
+      "s21_window_status": {
+        "physical": "0xa1013008",
+        "bytes": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      },
+      "s21_window_claim": {
+        "physical": "0xa105f328",
+        "bytes": 8,
+        "sha256": "830560ae4745cc9668c602b4c03b26e174be771933d9a92bb36a35bd02a62b53"
+      },
+      "s21_frame_base": {
+        "physical": "0xa105f310",
+        "bytes": 8,
+        "sha256": "bf0eef2634cb8a10f4c2fa26e27539cc7ab8e3b6f1760a1b9891162d9f2717bb"
+      },
+      "s21_frame_size": {
+        "physical": "0xa105f318",
+        "bytes": 8,
+        "sha256": "6455b2da1b6aec31493662a31831c22298d655a936b91c05c4a68562af9e139d"
+      },
+      "s21_frame_after_stage": {
+        "physical": "0xa105f320",
+        "bytes": 8,
+        "sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8"
+      },
+      "s21_resident_cfg": {
+        "physical": "0xa105f300",
+        "bytes": 16,
+        "sha256": "64c81bde28c343bd00e1ed4942e217c52c6b07941fcf4139f1d41ff947229e57"
+      },
+      "s21_profile_cfg": {
+        "physical": "0xa1063b00",
+        "bytes": 16,
+        "sha256": "d98ebbd5dbc7b1e7850d386f593c5a3a5a65cb752132f26537b008c195cfdbb0"
+      }
+    },
+    "boot_args_cmdline": "debug=0x8 serial=3 rd=md0 cpus=1 loader_return_after=900 virtio_input=1 epoch=1792780990"
+  },
+  "actions": [
+    {
+      "host_epoch": 1792781453.3651547,
+      "action": {
+        "type": "capture",
+        "name": "checked-homescreen"
+      }
+    },
+    {
+      "host_epoch": 1792781453.5316133,
+      "action": {
+        "type": "wait",
+        "seconds": 20
+      }
+    },
+    {
+      "host_epoch": 1792781473.5318613,
+      "action": {
+        "type": "tap",
+        "x": 0.615,
+        "y": 0.71
+      }
+    },
+    {
+      "host_epoch": 1792781473.6206086,
+      "action": {
+        "type": "wait",
+        "seconds": 25
+      }
+    },
+    {
+      "host_epoch": 1792781498.6207302,
+      "action": {
+        "type": "capture",
+        "name": "checked-settings"
+      }
+    },
+    {
+      "host_epoch": 1792781513.9066799,
+      "action": {
+        "type": "tap",
+        "x": 0.5,
+        "y": 0.795
+      }
+    },
+    {
+      "host_epoch": 1792781513.9895864,
+      "action": {
+        "type": "wait",
+        "seconds": 10
+      }
+    },
+    {
+      "host_epoch": 1792781523.990244,
+      "action": {
+        "type": "capture",
+        "name": "checked-general"
+      }
+    },
+    {
+      "host_epoch": 1792781524.1330912,
+      "action": {
+        "type": "tap",
+        "x": 0.5,
+        "y": 0.18
+      }
+    },
+    {
+      "host_epoch": 1792781524.2152758,
+      "action": {
+        "type": "wait",
+        "seconds": 10
+      }
+    },
+    {
+      "host_epoch": 1792781534.2153888,
+      "action": {
+        "type": "capture",
+        "name": "checked-about"
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/arm-init.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781000.1244504
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0015.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781008.3686752
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0030.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781023.5265188
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0045.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781038.7091036
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0060.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781052.863361
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0075.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781068.0171566
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0090.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781083.164261
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0105.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781098.3379579
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0120.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781113.4886053
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0135.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781128.653655
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0150.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781142.8008163
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0165.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781157.9538794
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0180.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781173.1129706
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0195.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781188.2937665
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0210.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781203.462022
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0225.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781218.663675
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0240.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781232.823446
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0255.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781248.0402958
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0270.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781263.1919374
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0285.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781278.3618038
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0300.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781293.5492013
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0315.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781308.7115018
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0330.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781322.8673828
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0345.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781338.0413206
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0360.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781353.2053819
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0375.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781368.3694756
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0390.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781383.5352442
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0405.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792781398.6886063
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0420.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792781412.8458714
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0435.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        86.49489472723955,
+        90.26442036124794,
+        89.6785882138296
+      ],
+      "sha256": "3833840feb54ce60929c3cfa486573a2113bb02459b53ce40dbb784e9bda7149",
+      "host_epoch": 1792781428.0890589
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0450.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        86.49645064769203,
+        90.2659624156176,
+        89.68012442984856
+      ],
+      "sha256": "654f6046752abe6cfb09083f3df7321347cc7a49f808872421d82be2adba5a0b",
+      "host_epoch": 1792781443.3295536
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/checked-homescreen.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        86.49314212734902,
+        90.26260463419084,
+        89.67672979383325
+      ],
+      "sha256": "45abdca0d5978df49bbb1ecd54ebca6aac57cb6cec2711b81b8698c0bad965c0",
+      "host_epoch": 1792781453.5315962
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/checked-settings.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        240.5306542601715,
+        240.51743331508848,
+        244.03805655902207
+      ],
+      "sha256": "deae353ad25b409f0f7a35d42c0c0a818c666167f172f177c39c50678d5a7e81",
+      "host_epoch": 1792781498.7394435
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0507.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        240.5306542601715,
+        240.51743331508848,
+        244.03805655902207
+      ],
+      "sha256": "deae353ad25b409f0f7a35d42c0c0a818c666167f172f177c39c50678d5a7e81",
+      "host_epoch": 1792781499.8482475
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/checked-general.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        244.7148056923919,
+        244.83527823389892,
+        246.98798832329868
+      ],
+      "sha256": "b6502d4a65b473ceb6c49f7ce5c4dfb6366d73c3b4adb0d0e44bc7d6d398f82b",
+      "host_epoch": 1792781524.1330745
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/checked-about.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.11459441707717,
+        245.22402116402117,
+        247.15612005108557
+      ],
+      "sha256": "13ff4c9d4b4e11e59c3e4ce5586e8b335c621ff3f24cfc20455159359a4b4719",
+      "host_epoch": 1792781534.3654659
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0542.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.12037000547346,
+        245.22979675241743,
+        247.16189563948186
+      ],
+      "sha256": "abb4903919d138099c1d5b1297aa53948ea58ed2151ea50202d40b62cc4e9c0a",
+      "host_epoch": 1792781535.4837203
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0557.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.12037000547346,
+        245.22979675241743,
+        247.16189563948186
+      ],
+      "sha256": "abb4903919d138099c1d5b1297aa53948ea58ed2151ea50202d40b62cc4e9c0a",
+      "host_epoch": 1792781550.6430106
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0572.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34821018062397,
+        245.45763692756796,
+        247.38190220762635
+      ],
+      "sha256": "4245f759a6be1810e2f57b8a4eebca52d8a3daf6e6cbb283ae82f035dd810498",
+      "host_epoch": 1792781564.804473
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0587.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34821018062397,
+        245.45763692756796,
+        247.38190220762635
+      ],
+      "sha256": "4245f759a6be1810e2f57b8a4eebca52d8a3daf6e6cbb283ae82f035dd810498",
+      "host_epoch": 1792781579.9804907
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0602.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34685276409414,
+        245.45627951103813,
+        247.38052143769386
+      ],
+      "sha256": "0cfef0ec1c4acf0e065b5a23688d98b9c8ee55b6bfa57c0623ce413a4ab2b52e",
+      "host_epoch": 1792781595.1542249
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0617.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34685276409414,
+        245.45627951103813,
+        247.38052143769386
+      ],
+      "sha256": "0cfef0ec1c4acf0e065b5a23688d98b9c8ee55b6bfa57c0623ce413a4ab2b52e",
+      "host_epoch": 1792781610.3374343
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0632.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34685276409414,
+        245.45627951103813,
+        247.38052143769386
+      ],
+      "sha256": "0cfef0ec1c4acf0e065b5a23688d98b9c8ee55b6bfa57c0623ce413a4ab2b52e",
+      "host_epoch": 1792781625.518957
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0647.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34685276409414,
+        245.45627951103813,
+        247.38052143769386
+      ],
+      "sha256": "0cfef0ec1c4acf0e065b5a23688d98b9c8ee55b6bfa57c0623ce413a4ab2b52e",
+      "host_epoch": 1792781640.676127
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0662.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34645612114576,
+        245.45588286808976,
+        247.38011494252873
+      ],
+      "sha256": "3321bccbc746b607a5f013e1137cf88899fb7cad82ed63ac81f6af6e81824b21",
+      "host_epoch": 1792781654.8574283
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0677.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34645612114576,
+        245.45588286808976,
+        247.38011494252873
+      ],
+      "sha256": "3321bccbc746b607a5f013e1137cf88899fb7cad82ed63ac81f6af6e81824b21",
+      "host_epoch": 1792781670.0398486
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0692.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34645612114576,
+        245.45588286808976,
+        247.38011494252873
+      ],
+      "sha256": "3321bccbc746b607a5f013e1137cf88899fb7cad82ed63ac81f6af6e81824b21",
+      "host_epoch": 1792781685.2407112
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0707.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34645612114576,
+        245.45588286808976,
+        247.38011494252873
+      ],
+      "sha256": "3321bccbc746b607a5f013e1137cf88899fb7cad82ed63ac81f6af6e81824b21",
+      "host_epoch": 1792781700.402938
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0722.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34514249224594,
+        245.45456923918994,
+        247.37877686553549
+      ],
+      "sha256": "92deeaef3eef90cd9fe9b6aba5daf5871f4a4ad5f426db910e08de905d1ecbc1",
+      "host_epoch": 1792781715.5773246
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0737.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34514249224594,
+        245.45456923918994,
+        247.37877686553549
+      ],
+      "sha256": "92deeaef3eef90cd9fe9b6aba5daf5871f4a4ad5f426db910e08de905d1ecbc1",
+      "host_epoch": 1792781730.738418
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0752.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34514249224594,
+        245.45456923918994,
+        247.37877686553549
+      ],
+      "sha256": "92deeaef3eef90cd9fe9b6aba5daf5871f4a4ad5f426db910e08de905d1ecbc1",
+      "host_epoch": 1792781744.9516246
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0767.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.34514249224594,
+        245.45456923918994,
+        247.37877686553549
+      ],
+      "sha256": "92deeaef3eef90cd9fe9b6aba5daf5871f4a4ad5f426db910e08de905d1ecbc1",
+      "host_epoch": 1792781760.1304066
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0782.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3405177887247,
+        245.44994453566866,
+        247.37404962598066
+      ],
+      "sha256": "9c367eb8f32720c8a95333f8aa0b276182009a528fd4e31df8185f190532e7d0",
+      "host_epoch": 1792781775.2948759
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0797.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3405177887247,
+        245.44994453566866,
+        247.37404962598066
+      ],
+      "sha256": "9c367eb8f32720c8a95333f8aa0b276182009a528fd4e31df8185f190532e7d0",
+      "host_epoch": 1792781790.4728503
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0812.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3405177887247,
+        245.44994453566866,
+        247.37404962598066
+      ],
+      "sha256": "9c367eb8f32720c8a95333f8aa0b276182009a528fd4e31df8185f190532e7d0",
+      "host_epoch": 1792781805.6323698
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0827.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3405177887247,
+        245.44994453566866,
+        247.37404962598066
+      ],
+      "sha256": "9c367eb8f32720c8a95333f8aa0b276182009a528fd4e31df8185f190532e7d0",
+      "host_epoch": 1792781819.8006983
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0842.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.35586936690385,
+        245.46529611384784,
+        247.3897234081372
+      ],
+      "sha256": "9e6f5d31baefa6465b29dbe66e0330eaae869c13f52080c68b3427c7240ffb26",
+      "host_epoch": 1792781834.9708369
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0857.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.35586936690385,
+        245.46529611384784,
+        247.3897234081372
+      ],
+      "sha256": "9e6f5d31baefa6465b29dbe66e0330eaae869c13f52080c68b3427c7240ffb26",
+      "host_epoch": 1792781850.156333
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0872.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.35586936690385,
+        245.46529611384784,
+        247.3897234081372
+      ],
+      "sha256": "9e6f5d31baefa6465b29dbe66e0330eaae869c13f52080c68b3427c7240ffb26",
+      "host_epoch": 1792781865.3146915
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0887.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.35586936690385,
+        245.46529611384784,
+        247.3897234081372
+      ],
+      "sha256": "9e6f5d31baefa6465b29dbe66e0330eaae869c13f52080c68b3427c7240ffb26",
+      "host_epoch": 1792781880.4783309
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0902.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781895.6731377
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0917.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781909.8653138
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0932.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781925.034967
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0947.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781940.2566082
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0962.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781955.4539402
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0977.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781970.6878264
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-0992.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792781984.8666296
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-1007.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792782000.0589182
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/guarded-published-positive/auto-1022.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.33905199781063,
+        245.4484787447546,
+        247.3725593869732
+      ],
+      "sha256": "751a3eb7a3909e1fa8e8061c6007c02bf23343391d9c60313c14db1184026619",
+      "host_epoch": 1792782015.235914
+    }
+  ],
+  "error": null,
+  "returncode": 0,
+  "stopped_by_control": false,
+  "observation_grace_seconds": 300,
+  "observation_deadline_from": "arm_init_resume",
+  "elapsed_seconds": 1024.6,
+  "markers_seen": [
+    "Darwin Kernel Version",
+    "SpringBoard",
+    "backboardd",
+    "launchd.ios",
+    "systemShellDidFinishLaunching"
+  ],
+  "serial_sha256": "11d98e59550249c838795ba3204ca1beaaf52f112537fb03e88da31603dcc4f2",
+  "completed_native_return": true,
+  "passed": true
+}

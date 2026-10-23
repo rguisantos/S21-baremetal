@@ -130,6 +130,6 @@ launchd → backboardd → SpringBoard, com Ajustes/Geral/Sobre respondendo a
 toques e capturas nativas. Esse ensaio usa o ABI upstream da imagem de
 sistema residente; a [integração ao consumidor EFI restrito](xnu-resident-contract.md)
 agora cobre uma imagem residente de 4 MiB, reservas e recusas com init
-próprio. O perfil e a interface do userland completo nessa variante
-continuam pendentes. O port
+próprio. O [perfil de userland completo](xnu-guarded-userland.md) também foi
+executado, com mapas/boot_args conferidos e interação gráfica em uma CPU. O port
 Exynos e a escolha Android/XNU no telefone dependem dos marcos físicos.

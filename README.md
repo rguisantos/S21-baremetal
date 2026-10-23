@@ -16,9 +16,9 @@ As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no 
 
 O [defeito ramfb do prebuilt foi confirmado no QEMU](docs/xnu-ramfb-audit.md): o loader declara 800×600 após configurar 1125×2436. A correção na fonte passou seis controles, com captura real do padrão EFI, erro/timeout recusados e regressão XNU de 22 critérios. A fonte original recompilada com Clang 19 também funciona nesse teste; a falha não deve ser generalizada a toda compilação.
 
-O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O ensaio do consumidor restrito usa init próprio. Em uma execução separada do ABI de referência, o [SpringBoard apareceu localmente](docs/hackios-userland-qemu.md).
+O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O ensaio original do consumidor restrito usou init próprio. Em uma execução separada do ABI de referência, o [SpringBoard apareceu localmente](docs/hackios-userland-qemu.md).
 
-O [disco APFS residente do consumidor EFI](docs/xnu-resident-contract.md) agora tem descritor binário, reserva da janela e papéis md0/md1 conferidos. O ensaio usa init próprio e disco de 4 MiB: dois boots positivos (com/sem ramfb), quatro recusas e três regressões passaram, além de 62 testes de host. A interface iOS completa dessa variante é a próxima etapa.
+O [perfil iOS do consumidor EFI validado](docs/xnu-guarded-userland.md) já iniciou as imagens APFS identificadas: uma CPU, 7 GiB de RAM, reservas capturadas na entrada do kernel e navegação em SpringBoard/Ajustes/Geral/Sobre. O [ensaio anterior de disco residente](docs/xnu-resident-contract.md) usou init próprio e 4 MiB. O novo perfil concluiu o retorno nativo de 900 s e conferiu os quatro snapshots reemitidos; tem três recusas QEMU, 74 testes de host e quatro controles semânticos da captura.
 
 ## Módulos e validação
 
@@ -32,7 +32,7 @@ O [disco APFS residente do consumidor EFI](docs/xnu-resident-contract.md) agora 
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
 | Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
-| Laboratório XNU | XNU prebuilt + init próprio; referência HackiOS com userland iOS | Contrato restrito em uma CPU; referência gráfica em quatro CPUs, SpringBoard visível; sem teste Samsung |
+| Laboratório XNU | XNU prebuilt + init próprio; referência HackiOS com userland iOS | Consumidor validado com interface iOS em uma CPU e referência em quatro CPUs; sem teste Samsung |
 
 Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
@@ -100,6 +100,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
+- [iOS pelo consumidor EFI validado: perfil, auditoria e interface](docs/xnu-guarded-userland.md)
 - [Imagem APFS residente: descritor, reservas e raiz md0](docs/xnu-resident-contract.md)
 - [Userland iOS 16.5 no QEMU: entradas, checkpoint e capturas](docs/hackios-userland-qemu.md)
 - [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)

@@ -36,7 +36,7 @@ mas os adaptadores de entrada têm de continuar explícitos.
 | D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel prebuilt e variante EFI recompilada; não é iOS gráfico |
 | D1 — entrada Samsung observável | Diagnóstico mínimo no S21 e registro recuperado; região/coerência e percurso de carga demonstrados | Pendente; Marco A do roadmap principal |
 | D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial: codec, projeção e consumidor EFI executados no QEMU; memória/entrada Samsung e execução física dependem de D1 |
-| D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Parcial: SpringBoard/Ajustes/Geral/Sobre conferidos no QEMU de referência; integração ao consumidor restrito e execução Samsung pendentes |
+| D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Parcial: interface conferida no QEMU de referência e no perfil guardado de uma CPU; execução Samsung pendente |
 | D4 — escolha Android/XNU | Dois caminhos iniciam individualmente; seleção, retorno/recuperação e armazenamento têm testes próprios | Pendente |
 
 A implementação de D4 depende do caminho que a investigação Samsung

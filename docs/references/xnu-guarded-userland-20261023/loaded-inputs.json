@@ -1,0 +1,38 @@
+{
+  "payload_entries": {
+    "kernel": {
+      "bytes": 15623056,
+      "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+    },
+    "ramdisk": {
+      "bytes": 4194304,
+      "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065"
+    },
+    "adtres": {
+      "bytes": 908,
+      "sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead"
+    },
+    "cmdline": {
+      "bytes": 16,
+      "sha256": "9b641d99609e158317c2d3d77b41e9a3ec4900bf8e8ac541868e0c2fe8bac5d9",
+      "tag": "s21_userland_v1"
+    },
+    "resident": {
+      "bytes": 32,
+      "sha256": "d805dd21125ecec46fd9ed60f4f635fde6fd88ddf721d002d3d41b049988e60f",
+      "hex": "5332315244534b000100000000000000000000fc0000000000a0e09700000000"
+    },
+    "labprofile": {
+      "bytes": 32,
+      "sha256": "d557e4221a88113c8f60e28676fdae4324c06efe0f5902136933ab0d76036cd2",
+      "hex": "533231554c4142000100000001000000beaadb6a000000000000000000000000"
+    }
+  },
+  "actual_esp_sha256": "5b063febcf86cf41a70a9bb2d7e535c0ae4896fa865e775103a9188692c80737",
+  "resident_range": {
+    "file_offset": "0xbc000000",
+    "bytes": 2548080640,
+    "sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393"
+  },
+  "verified": true
+}

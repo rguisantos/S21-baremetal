@@ -1,0 +1,35 @@
+{
+  "verified": true,
+  "profile": {
+    "verified": true,
+    "id": 1,
+    "epoch": 1792780990,
+    "seconds": 900,
+    "cpus": 1,
+    "virtio_input": 1,
+    "dynamic_tail_bytes": 1780350976,
+    "minimum_tail_bytes": 1073741824
+  },
+  "window": [
+    "0xf4000000",
+    "0x10a000000"
+  ],
+  "root": [
+    "0xfc000000",
+    "0x97e0c000"
+  ],
+  "small_disk": [
+    "0xf82e4000",
+    "0x400000"
+  ],
+  "framebuffer": {
+    "base": "0xef58b000",
+    "pixels_bytes": 10962000,
+    "allocation_bytes": 10964992,
+    "width": 1125,
+    "height": 2436,
+    "stride": 4500,
+    "format": "XR24"
+  },
+  "scope": "Consistency of preserved boot and UEFI captures, not Samsung execution or automatic GUI proof"
+}

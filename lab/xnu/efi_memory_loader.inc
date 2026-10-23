@@ -17,6 +17,9 @@ struct s21_snapshot {
 static struct s21_snapshot s21_maps[4];
 static uint64_t s21_payload_status=UINT64_MAX, s21_payload_claim;
 static struct s21_resident s21_resident_cfg;
+static struct s21_profile s21_profile_cfg;
+_Static_assert(sizeof(struct s21_snapshot)==S21_MAP_CAPACITY+40,"snapshot capture ABI");
+_Static_assert(sizeof(struct s21_profile)==16 && offsetof(struct s21_profile,epoch)==8,"profile capture ABI");
 #ifndef S21_RESIDENT_TEST
 #define S21_RESIDENT_TEST 0
 #endif
@@ -27,7 +30,8 @@ static uint64_t s21_window_status=UINT64_MAX, s21_window_claim;
 #ifndef S21_VIDEO_TEST
 #define S21_VIDEO_TEST 0
 #endif
-static uint64_t s21_frame_base, s21_frame_size, s21_frame_after_stage;
+/* These exported capture cells must retain their declared memory representation. */
+static volatile uint64_t s21_frame_base, s21_frame_size, s21_frame_after_stage;
 static void s21_video_bind(uint64_t base, uint64_t bytes)
 {
     s21_frame_base=base; s21_frame_size=(bytes+4095)&~UINT64_C(4095);
@@ -110,6 +114,10 @@ s21_choose_window(void)
          size<=S21_RESIDENT_OFFSET+0x4000000 || s21_resident_cfg.size>size-S21_RESIDENT_OFFSET-0x4000000)) {
         print("S21 RESIDENT: REJECT window\n"); return 0;
     }
+    if (s21_profile_cfg.id && !s21_profile_headroom(&s21_profile_cfg,base,size,
+            s21_resident_cfg.base+((s21_resident_cfg.size+0x3fff)&~UINT64_C(0x3fff))+0x14000)) {
+        print("S21 USERLAND: REJECT headroom\n"); return 0;
+    }
     s21_window_claim=base;
     s21_window_status=BS->allocate_pages(AllocateAddress,EfiLoaderData,size>>12,&s21_window_claim);
     if (s21_window_status!=0 || s21_window_claim!=base) {
@@ -131,6 +139,8 @@ s21_prepare_resident(void)
         print("S21 XNU ADAPTER: REJECT payload\n"); return 0;
     }
     s21_resident_cfg=pi.resident;
+    s21_profile_cfg=pi.profile;
+    if (pi.profile.id) print("S21 USERLAND PROFILE %d epoch %d\n",(uint64_t)pi.profile.id,pi.profile.epoch);
     return !pi.resident.size || s21_choose_window();
 }
 static int

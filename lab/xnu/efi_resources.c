@@ -144,17 +144,53 @@ int s21_resident_apfs(const void *raw,uint64_t size)
     return p && size>=4096 && size<=S21_RESIDENT_LIMIT && size%4096==0 &&
         u32(p+32)==0x4253584e && u32(p+36)==4096 && u64(p+40)==size/4096;
 }
+/* Fixed userland experiment: no arbitrary flags, duration or CPU count. */
+static int profile_valid(const struct s21_profile *p)
+{ return p && p->id==1 && p->epoch>=1577836800 && p->epoch<4102444800ULL; }
+int s21_profile_decode(const void *raw,uint32_t size,struct s21_profile *out)
+{
+    const uint8_t *p=raw;
+    if (!p || !out || size!=32 || !named(p,8,"S21ULAB") || u32(p+8)!=1 ||
+        u32(p+12)!=1 || u64(p+24)) return 0;
+    struct s21_profile value={1,u64(p+16)};
+    if (!profile_valid(&value)) return 0;
+    *out=value; return 1;
+}
+int s21_profile_cmdline(const struct s21_profile *p,char *out,uint32_t capacity)
+{
+    static const char prefix[]="cpus=1 loader_return_after=900 virtio_input=1 epoch=";
+    char digits[20];uint32_t n=0;uint64_t value;
+    if (!profile_valid(p) || !out) return 0;
+    value=p->epoch;
+    do { digits[n++]=(char)('0'+value%10);value/=10; } while (value);
+    uint32_t k=sizeof(prefix)-1;
+    if (capacity<k+n+1) return 0;
+    for (uint32_t i=0;i<k;i++) out[i]=prefix[i];
+    for (uint32_t i=0;i<n;i++) out[k+i]=digits[n-i-1];
+    out[k+n]=0;return 1;
+}
+int s21_profile_headroom(const struct s21_profile *p,uint64_t base,uint64_t size,uint64_t top)
+{
+    if (!p) return 0;
+    if (!p->id) return !p->epoch;
+    return profile_valid(p) && span(base,size) && top>base && top<=base+size &&
+           base+size-top>=S21_USERLAND_TAIL;
+}
 int s21_payload_decode(const void *raw,uint32_t available,struct s21_payload *out)
 {
     const uint8_t *data=raw;
     if (!data || !out || available<32 || u32(data)!=0x50554e58) return 0;
-    uint32_t body=u32(data+4), at=8, seen=0;
+    uint32_t body=u32(data+4), at=8, seen=0, command_kind=0;
     if (body>available-8 || body>S21_PAYLOAD_LIMIT-8) return 0;
     uint32_t end=body+8; struct s21_payload result={0};
     while (at<=end && end-at>=24) {
         const uint8_t *p=data+at; at+=24;
         if (!p[0]) {
-            if (!zero(p,24) || at!=end || (seen!=15 && seen!=31) || !macho(result.kernel,result.kernel_size)) return 0;
+            if (!zero(p,24) || at!=end || (seen!=15 && seen!=31 && seen!=63) || !macho(result.kernel,result.kernel_size)) return 0;
+            if (seen==63) {
+                if (command_kind!=2 || result.profile.id!=1 || result.resident.size<=(UINT64_C(1)<<30) ||
+                    result.ramdisk_size>8U*1024*1024) return 0;
+            } else if (command_kind!=1) return 0;
             *out=result; return 1;
         }
         uint32_t size=u32(p+16), bit=0;
@@ -163,10 +199,16 @@ int s21_payload_decode(const void *raw,uint32_t available,struct s21_payload *ou
         else if (named(p,16,"ramdisk")) { bit=2; result.ramdisk=data+at; result.ramdisk_size=size; }
         else if (named(p,16,"cmdline")) {
             bit=4; result.cmdline=(const char *)data+at;
-            if (size>608 || !named(data+at,size,"cpus=1 loader_return_after=30")) return 0;
+            if (size>608) return 0;
+            if (named(data+at,size,"cpus=1 loader_return_after=30")) command_kind=1;
+            else if (named(data+at,size,"s21_userland_v1")) command_kind=2;
+            else return 0;
         } else if (named(p,16,"adtres")) { bit=8; result.resource=data+at; result.resource_size=size; }
         else if (named(p,16,"resident")) {
             bit=16; if (!s21_resident_decode(data+at,size,&result.resident)) return 0;
+        }
+        else if (named(p,16,"labprofile")) {
+            bit=32; if (!s21_profile_decode(data+at,size,&result.profile)) return 0;
         }
         else return 0;
         if (seen&bit) return 0;

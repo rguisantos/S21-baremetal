@@ -1,0 +1,2439 @@
+{
+  "verified": true,
+  "pc": "0xfffffff007453994",
+  "pstate": "0x600003c4",
+  "x0": "0xfffffff0a3e1c000",
+  "loader_actual_base": "0xa1000000",
+  "loader_relocation": 0,
+  "read_only_gdb_qmp": true,
+  "boot_args_sha256": "1139178ce9ff5d0b47e151e0414f761d3ea5d344e85521cc6102bcc26f3ef13e",
+  "tree_sha256": "3c6514b341380041b37a476efccf1132a04631ef4f5f0aa5f7b01a97674bb269",
+  "header_sha256": "5d954f5a49105bf9a649fe51384fd6abd5adcc1458726577f70614118b46299a",
+  "profile": {
+    "profile_consistent": true,
+    "hardware_ready": false,
+    "window": [
+      "0xf4000000",
+      "0x10a000000"
+    ],
+    "placements": {
+      "boot_args": [
+        "0x193e1c000",
+        "0x2e0"
+      ],
+      "Apple DT": [
+        "0x193e0c000",
+        "0x3a04"
+      ],
+      "__TEXT": [
+        "0xf7004000",
+        "0x1a0000"
+      ],
+      "__DATA_CONST": [
+        "0xf71a4000",
+        "0xe8000"
+      ],
+      "__TEXT_EXEC": [
+        "0xf728c000",
+        "0x854000"
+      ],
+      "__KLD": [
+        "0xf7ae0000",
+        "0x4000"
+      ],
+      "__LASTDATA_CONST": [
+        "0xf7ae4000",
+        "0x4000"
+      ],
+      "__KLDDATA": [
+        "0xf7ae8000",
+        "0x4000"
+      ],
+      "__DATA": [
+        "0xf7aec000",
+        "0x450000"
+      ],
+      "__BOOTDATA": [
+        "0xf7f3c000",
+        "0x4c000"
+      ],
+      "__LINKINFO": [
+        "0xf7f88000",
+        "0x90000"
+      ],
+      "__LINKEDIT": [
+        "0xf8018000",
+        "0x2ca390"
+      ],
+      "RAMDisk": [
+        "0xfc000000",
+        "0x97e0c000"
+      ],
+      "RAMDisk1": [
+        "0xf82e4000",
+        "0x400000"
+      ]
+    },
+    "gic": [
+      [
+        "0x8000000",
+        "0x10000"
+      ],
+      [
+        "0x80a0000",
+        "0x100000"
+      ]
+    ],
+    "cpus": [
+      "0x0"
+    ],
+    "psci_method": "hvc",
+    "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run.",
+    "video": {
+      "base": "0xef58b000",
+      "pixels_bytes": 10962000,
+      "allocation_bytes": 10964992,
+      "width": 1125,
+      "height": 2436,
+      "stride": 4500,
+      "format": "XR24"
+    },
+    "resident": {
+      "base": "0xfc000000",
+      "bytes": 2548080640,
+      "allocation_bytes": 2548088832,
+      "root": "RAMDisk/md0",
+      "small_disk": "RAMDisk1/md1"
+    }
+  },
+  "userland_limits": {
+    "verified": true,
+    "id": 1,
+    "epoch": 1792780990,
+    "seconds": 900,
+    "cpus": 1,
+    "virtio_input": 1,
+    "dynamic_tail_bytes": 1780350976,
+    "minimum_tail_bytes": 1073741824
+  },
+  "memory_audit": {
+    "verified": true,
+    "window": [
+      "0xf4000000",
+      "0x10a000000"
+    ],
+    "payload": [
+      "0xf0000000",
+      "0x4000000"
+    ],
+    "claims": {
+      "payload": {
+        "base": 4026531840,
+        "size": 67108864,
+        "status": 0,
+        "returned": 4026531840
+      },
+      "window": {
+        "base": 4093640704,
+        "size": 4462739456,
+        "status": 0,
+        "returned": 4093640704
+      }
+    },
+    "placements_checked": [
+      "boot_args",
+      "Apple DT",
+      "__TEXT",
+      "__DATA_CONST",
+      "__TEXT_EXEC",
+      "__KLD",
+      "__LASTDATA_CONST",
+      "__KLDDATA",
+      "__DATA",
+      "__BOOTDATA",
+      "__LINKINFO",
+      "__LINKEDIT",
+      "RAMDisk",
+      "RAMDisk1"
+    ],
+    "snapshots": {
+      "payload-free": {
+        "bytes": 3648,
+        "descriptor_size": 48,
+        "descriptor_version": 1,
+        "map_key": "0x3dd",
+        "sha256": "6984adb2437e03d137e3961ad4c1fa0438e9a5dd06511a2b8eb291988d763557",
+        "descriptor_count": 76,
+        "descriptors": [
+          {
+            "type": 7,
+            "physical": "0x40000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x44000000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x44020000",
+            "size": "0x37ba000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x477da000",
+            "size": "0x21000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x477fb000",
+            "size": "0x38000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47833000",
+            "size": "0x6b1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x47ee4000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x47ef4000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47ef8000",
+            "size": "0x108000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x48000000",
+            "size": "0x59000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 1,
+            "physical": "0xa1000000",
+            "size": "0x79c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0xa179c000",
+            "size": "0x15cfc6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fe762000",
+            "size": "0x580000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fece2000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fece4000",
+            "size": "0x33000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed17000",
+            "size": "0x24000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed3b000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fed42000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed44000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed46000",
+            "size": "0x1b000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed61000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed65000",
+            "size": "0x3a000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed9f000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feda2000",
+            "size": "0xa000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedac000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fedb1000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedb2000",
+            "size": "0x28000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedda000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedde000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fede9000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedec000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedfe000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1fee00000",
+            "size": "0x80000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fee80000",
+            "size": "0x31000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feeb1000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feeb7000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feebb000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1feec0000",
+            "size": "0x170000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff030000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff080000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff084000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff08f000",
+            "size": "0x2c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0bb000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff0bc000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0c1000",
+            "size": "0x4f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 0,
+            "physical": "0x1ff110000",
+            "size": "0x300000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff410000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff430000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff480000",
+            "size": "0xa0000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff520000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff570000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5c0000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5c4000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5cb000",
+            "size": "0x1d000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5e8000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5ea000",
+            "size": "0xe000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5f8000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5fe000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff601000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff606000",
+            "size": "0x17000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff61d000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff620000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff624000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff62b000",
+            "size": "0x8000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff633000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff636000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff648000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff64b000",
+            "size": "0x18000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff663000",
+            "size": "0x7bd000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ffe20000",
+            "size": "0x90000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1ffeb0000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ffec0000",
+            "size": "0x120000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fffe0000",
+            "size": "0x1f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fffff000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 11,
+            "physical": "0x4000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          },
+          {
+            "type": 11,
+            "physical": "0x9010000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          }
+        ]
+      },
+      "window-free": {
+        "bytes": 3744,
+        "descriptor_size": 48,
+        "descriptor_version": 1,
+        "map_key": "0x42c",
+        "sha256": "78cb59e1d3a9e5d30c31e912b42a17e923b8cdbf2e2048c2c1ef556152cdf47a",
+        "descriptor_count": 78,
+        "descriptors": [
+          {
+            "type": 7,
+            "physical": "0x40000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x44000000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x44020000",
+            "size": "0x37ba000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x477da000",
+            "size": "0x21000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x477fb000",
+            "size": "0x38000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47833000",
+            "size": "0x6b1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x47ee4000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x47ef4000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47ef8000",
+            "size": "0x108000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x48000000",
+            "size": "0x59000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 1,
+            "physical": "0xa1000000",
+            "size": "0x79c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0xa179c000",
+            "size": "0x4e864000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 2,
+            "physical": "0xf0000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0xf4000000",
+            "size": "0x10a762000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fe762000",
+            "size": "0x580000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fece2000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fece4000",
+            "size": "0x33000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed17000",
+            "size": "0x24000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed3b000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fed42000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed44000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed46000",
+            "size": "0x1b000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed61000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed65000",
+            "size": "0x3a000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed9f000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feda2000",
+            "size": "0xa000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedac000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fedb1000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedb2000",
+            "size": "0x28000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedda000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedde000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fede9000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedec000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedfe000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1fee00000",
+            "size": "0x80000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fee80000",
+            "size": "0x31000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feeb1000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feeb7000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feebb000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1feec0000",
+            "size": "0x170000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff030000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff080000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff084000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff08f000",
+            "size": "0x2c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0bb000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff0bc000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0c1000",
+            "size": "0x4f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 0,
+            "physical": "0x1ff110000",
+            "size": "0x300000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff410000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff430000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff480000",
+            "size": "0xa0000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff520000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff570000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5c0000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5c4000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5cb000",
+            "size": "0x1d000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5e8000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5ea000",
+            "size": "0xe000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5f8000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5fe000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff601000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff606000",
+            "size": "0x17000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff61d000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff620000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff624000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff62b000",
+            "size": "0x8000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff633000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff636000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff648000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff64b000",
+            "size": "0x18000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff663000",
+            "size": "0x7bd000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ffe20000",
+            "size": "0x90000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1ffeb0000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ffec0000",
+            "size": "0x120000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fffe0000",
+            "size": "0x1f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fffff000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 11,
+            "physical": "0x4000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          },
+          {
+            "type": 11,
+            "physical": "0x9010000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          }
+        ]
+      },
+      "before-copy": {
+        "bytes": 3744,
+        "descriptor_size": 48,
+        "descriptor_version": 1,
+        "map_key": "0x602",
+        "sha256": "c6c73ae6ef65305909d2283729c8135b21e25f88712b1b17ed4e55a35adbc579",
+        "descriptor_count": 78,
+        "descriptors": [
+          {
+            "type": 7,
+            "physical": "0x40000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x44000000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x44020000",
+            "size": "0x37ba000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x477da000",
+            "size": "0x21000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x477fb000",
+            "size": "0x38000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47833000",
+            "size": "0x6b1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x47ee4000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x47ef4000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47ef8000",
+            "size": "0x108000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x48000000",
+            "size": "0x59000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 1,
+            "physical": "0xa1000000",
+            "size": "0x79c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0xa179c000",
+            "size": "0x4ddef000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 2,
+            "physical": "0xef58b000",
+            "size": "0x10ea75000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fe000000",
+            "size": "0x762000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fe762000",
+            "size": "0x580000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fece2000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fece4000",
+            "size": "0x33000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed17000",
+            "size": "0x24000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed3b000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fed42000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed44000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed46000",
+            "size": "0x1b000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed61000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed65000",
+            "size": "0x3a000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed9f000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feda2000",
+            "size": "0xa000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedac000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fedb1000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedb2000",
+            "size": "0x28000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedda000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedde000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fede9000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedec000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedfe000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1fee00000",
+            "size": "0x80000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fee80000",
+            "size": "0x31000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feeb1000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feeb7000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feebb000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1feec0000",
+            "size": "0x170000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff030000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff080000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff084000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff08f000",
+            "size": "0x2c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0bb000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff0bc000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0c1000",
+            "size": "0x4f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 0,
+            "physical": "0x1ff110000",
+            "size": "0x300000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff410000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff430000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff480000",
+            "size": "0xa0000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff520000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff570000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5c0000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5c4000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5cb000",
+            "size": "0x1d000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5e8000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5ea000",
+            "size": "0xe000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5f8000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5fe000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff601000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff606000",
+            "size": "0x17000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff61d000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff620000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff624000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff62b000",
+            "size": "0x8000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff633000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff636000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff648000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff64b000",
+            "size": "0x18000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff663000",
+            "size": "0x7bd000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ffe20000",
+            "size": "0x90000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1ffeb0000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ffec0000",
+            "size": "0x120000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fffe0000",
+            "size": "0x1f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fffff000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 11,
+            "physical": "0x4000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          },
+          {
+            "type": 11,
+            "physical": "0x9010000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          }
+        ]
+      },
+      "handoff": {
+        "bytes": 3744,
+        "descriptor_size": 48,
+        "descriptor_version": 1,
+        "map_key": "0xaa2",
+        "sha256": "c6c73ae6ef65305909d2283729c8135b21e25f88712b1b17ed4e55a35adbc579",
+        "descriptor_count": 78,
+        "descriptors": [
+          {
+            "type": 7,
+            "physical": "0x40000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x44000000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x44020000",
+            "size": "0x37ba000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x477da000",
+            "size": "0x21000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x477fb000",
+            "size": "0x38000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47833000",
+            "size": "0x6b1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x47ee4000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x47ef4000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x47ef8000",
+            "size": "0x108000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x48000000",
+            "size": "0x59000000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 1,
+            "physical": "0xa1000000",
+            "size": "0x79c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0xa179c000",
+            "size": "0x4ddef000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 2,
+            "physical": "0xef58b000",
+            "size": "0x10ea75000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fe000000",
+            "size": "0x762000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fe762000",
+            "size": "0x580000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fece2000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fece4000",
+            "size": "0x33000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed17000",
+            "size": "0x24000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed3b000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fed42000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed44000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed46000",
+            "size": "0x1b000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed61000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fed65000",
+            "size": "0x3a000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fed9f000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feda2000",
+            "size": "0xa000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedac000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 9,
+            "physical": "0x1fedb1000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedb2000",
+            "size": "0x28000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedda000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedde000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fede9000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fedec000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fedfe000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1fee00000",
+            "size": "0x80000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1fee80000",
+            "size": "0x31000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feeb1000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1feeb7000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1feebb000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1feec0000",
+            "size": "0x170000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff030000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff080000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff084000",
+            "size": "0xb000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff08f000",
+            "size": "0x2c000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0bb000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff0bc000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff0c1000",
+            "size": "0x4f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 0,
+            "physical": "0x1ff110000",
+            "size": "0x300000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff410000",
+            "size": "0x20000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff430000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff480000",
+            "size": "0xa0000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ff520000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ff570000",
+            "size": "0x50000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5c0000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5c4000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5cb000",
+            "size": "0x1d000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5e8000",
+            "size": "0x2000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5ea000",
+            "size": "0xe000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff5f8000",
+            "size": "0x6000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff5fe000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff601000",
+            "size": "0x5000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff606000",
+            "size": "0x17000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff61d000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff620000",
+            "size": "0x4000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff624000",
+            "size": "0x7000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff62b000",
+            "size": "0x8000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff633000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff636000",
+            "size": "0x12000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff648000",
+            "size": "0x3000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 3,
+            "physical": "0x1ff64b000",
+            "size": "0x18000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1ff663000",
+            "size": "0x7bd000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 5,
+            "physical": "0x1ffe20000",
+            "size": "0x90000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1ffeb0000",
+            "size": "0x10000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 6,
+            "physical": "0x1ffec0000",
+            "size": "0x120000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000008"
+          },
+          {
+            "type": 7,
+            "physical": "0x1fffe0000",
+            "size": "0x1f000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 4,
+            "physical": "0x1fffff000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8"
+          },
+          {
+            "type": 11,
+            "physical": "0x4000000",
+            "size": "0x4000000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          },
+          {
+            "type": 11,
+            "physical": "0x9010000",
+            "size": "0x1000",
+            "virtual": "0x0",
+            "attributes": "0x8000000000000001"
+          }
+        ]
+      }
+    },
+    "boot_services_resident": true,
+    "exit_boot_services_called": false,
+    "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+    "hardware_ready": false
+  },
+  "physical_reads": {
+    "s21_maps": {
+      "physical": "0xa101f260",
+      "bytes": 262304,
+      "sha256": "d273cecbf937dc38e5e62c0a3bd4d74b56700bc879c5edaa34cbc5dcef7b3a28"
+    },
+    "win_base": {
+      "physical": "0xa105f338",
+      "bytes": 8,
+      "sha256": "830560ae4745cc9668c602b4c03b26e174be771933d9a92bb36a35bd02a62b53"
+    },
+    "win_size": {
+      "physical": "0xa105f330",
+      "bytes": 8,
+      "sha256": "a995a2e9f050c4c22aaf3d3148540c0c40572b7be15ad079fc234700dd0e23e4"
+    },
+    "s21_payload_status": {
+      "physical": "0xa1013000",
+      "bytes": 8,
+      "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    "s21_payload_claim": {
+      "physical": "0xa101f258",
+      "bytes": 8,
+      "sha256": "f9d13d5cea09d810e3ffbd16e0cfda2cceb5ef31c6beb1c1d57d847943fd7fdc"
+    },
+    "s21_window_status": {
+      "physical": "0xa1013008",
+      "bytes": 8,
+      "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    "s21_window_claim": {
+      "physical": "0xa105f328",
+      "bytes": 8,
+      "sha256": "830560ae4745cc9668c602b4c03b26e174be771933d9a92bb36a35bd02a62b53"
+    },
+    "s21_frame_base": {
+      "physical": "0xa105f310",
+      "bytes": 8,
+      "sha256": "bf0eef2634cb8a10f4c2fa26e27539cc7ab8e3b6f1760a1b9891162d9f2717bb"
+    },
+    "s21_frame_size": {
+      "physical": "0xa105f318",
+      "bytes": 8,
+      "sha256": "6455b2da1b6aec31493662a31831c22298d655a936b91c05c4a68562af9e139d"
+    },
+    "s21_frame_after_stage": {
+      "physical": "0xa105f320",
+      "bytes": 8,
+      "sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8"
+    },
+    "s21_resident_cfg": {
+      "physical": "0xa105f300",
+      "bytes": 16,
+      "sha256": "64c81bde28c343bd00e1ed4942e217c52c6b07941fcf4139f1d41ff947229e57"
+    },
+    "s21_profile_cfg": {
+      "physical": "0xa1063b00",
+      "bytes": 16,
+      "sha256": "d98ebbd5dbc7b1e7850d386f593c5a3a5a65cb752132f26537b008c195cfdbb0"
+    }
+  },
+  "boot_args_cmdline": "debug=0x8 serial=3 rd=md0 cpus=1 loader_return_after=900 virtio_input=1 epoch=1792780990"
+}

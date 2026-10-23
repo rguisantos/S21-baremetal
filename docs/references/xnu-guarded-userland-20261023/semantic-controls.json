@@ -1,0 +1,26 @@
+{
+  "source_run": "guarded-published-positive",
+  "entry_capture_only": true,
+  "controls": {
+    "cmdline": {
+      "rejected": true,
+      "reason": "captured command line differs from typed profile",
+      "checksums_updated": true
+    },
+    "root-role": {
+      "rejected": true,
+      "reason": "resident image is not the declared md0",
+      "checksums_updated": true
+    },
+    "headroom": {
+      "rejected": true,
+      "reason": "insufficient userland dynamic tail",
+      "checksums_updated": true
+    },
+    "ownership": {
+      "rejected": true,
+      "reason": "UEFI ownership missing at handoff",
+      "checksums_updated": true
+    }
+  }
+}

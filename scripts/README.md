@@ -13,6 +13,7 @@ Execute a partir da raiz do repositório. Os comandos de validação estão no [
 | Contrato de vídeo XNU | `run_xnu_video_lab.py`, `test_xnu_video.py` | Captura no kernel, reserva do framebuffer, 25 critérios gráficos, 22 sem vídeo e três recusas; [guia](../docs/xnu-video-contract.md) |
 | Display ramfb QEMU | `check_xnu_ramfb.py` | Seis controles prebuilt/rebuild/correção DMA; capturas PNG nativas e recusas de erro/timeout; [guia](../docs/xnu-ramfb-audit.md) |
 | Consumidor EFI XNU | `run_xnu_adapter_lab.py`, `test_xnu_efi_resources.py`, `test_xnu_efi_memory.py` | Build do loader, recursos e reservas UEFI; 22 critérios positivos, oito recusas, 22 testes de memória/evidência e 16 de recursos; [reprodução e mapas](../docs/xnu-uefi-memory.md) |
+| Userland no consumidor EFI | `run_guarded_userland.py`, `verify_guarded_userland.py`, `check_guarded_userland_capture.py`, `test_xnu_userland_profile.py` | Perfil fixo, auditoria física somente de leitura, replay independente, três recusas e retorno nativo; [guia](../docs/xnu-guarded-userland.md) |
 | Preparação HackiOS | `check_hackios_userland.py` | Reproduz colisão/modos dos jobs e falhas Bash com entradas sintéticas; gera patch sem alterar o checkout; [evidências](../docs/hackios-userland-host.md) |
 | Inspeção atual | `inspect_proton.py`, `inspect_sboot_hzc2.py` | ZIP Proton e relatório somente leitura do sboot HZC2 identificado por SHA-256 |
 | Forense legada | `parse_fdt.py`, `abl_triage.py` | Leitores ainda não auditados; não usar como única evidência |

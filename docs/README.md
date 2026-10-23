@@ -12,6 +12,9 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Memória UEFI no QEMU](xnu-uefi-memory.md): payload/janela reservados, quatro mapas completos, 22 critérios positivos, oito recusas e 22 testes de memória/evidência; 16 testes de recursos reexecutados.
 - [Vídeo entregue ao XNU](xnu-video-contract.md): contrato capturado em arm_init, framebuffer reservado, driver observado, controle headless e três recusas.
 - [ramfb do HackiOS](xnu-ramfb-audit.md): defeito do prebuilt confirmado por memória/desmontagem, correção na fonte, seis controles e capturas EFI reais.
+- [Userland pelo consumidor EFI validado](xnu-guarded-userland.md): perfil explícito em uma CPU, capturas UEFI/boot_args, interface e retorno nativo conferidos.
+- [Disco residente](xnu-resident-contract.md): descritor versionado, reservas e papéis md0/md1.
+- [Interface pelo loader de referência](hackios-userland-qemu.md): imagens preparadas, checkpoint e ensaio de quatro CPUs.
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 

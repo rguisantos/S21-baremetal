@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, a4ad0e4](https://github.com/rguisantos/S21-baremetal/commit/a4ad0e4df3ab31434b93ff6e566f67156f426603).
+[main anterior a esta entrega, 36dc6d0](https://github.com/rguisantos/S21-baremetal/commit/36dc6d05eb67ca90dc35ef1deade37c328277c20).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -29,16 +29,15 @@ não mudam o estado de validação no telefone.
 | XNU/Darwin no QEMU | **Init próprio e referência iOS gráfica executados** | SpringBoard, Ajustes e Geral conferidos em PNG nativo 1125×2436; quatro CPUs, kernel prebuilt e imagens APFS identificados; sem hardware Samsung |
 | Contrato/adaptador XNU | **X2 parcial; recursos e memória UEFI conferidos no QEMU** | Loader recompilado, payload/janela reservados, quatro mapas completos; 22 critérios positivos, oito recusas, 22 testes de memória/evidência e 16 de recursos; falta contrato físico Samsung |
 | Display ramfb QEMU | **Contrato e reserva executados com XNU** | 25 critérios gráficos, 22 sem display, três recusas e 62 testes de host; interface local reproduzida no ensaio de referência separado |
-| Disco residente no consumidor EFI | **Integrado e testado com init próprio** | [Descritor, reservas e md0/md1](xnu-resident-contract.md); seis casos QEMU, três regressões e 62 testes de host; falta perfil/execução do userland completo nessa variante |
+| Disco residente e userland no consumidor EFI | **Perfil gráfico executado no QEMU** | [iOS com perfil explícito](xnu-guarded-userland.md): uma CPU, 7 GiB, 1,66 GiB de folga, mapas/boot_args capturados e Ajustes/Geral/Sobre por toque; sem Samsung |
 | Preparação do userland HackiOS | **Imagens construídas e checkpoint restaurado** | Três DMGs com CRC/SHA-256, 407 plists 0644, 19 arquivos prebuilt conferidos; patch exato e fonte ramfb corrigida; [ensaio gráfico](hackios-userland-qemu.md) |
 | R10 físico, depois SMP/periféricos | **Etapas futuras** | Uma CPU primeiro; PSCI/SMP, SPIs, MCT e display após comprovar a base |
 
 As contagens acima pertencem a suítes diferentes e não devem ser somadas
-como uma porcentagem de prontidão. Nesta entrega, o consumidor restrito
-recebeu o descritor de disco residente: seis casos QEMU, três regressões e
-62 testes de host passaram. O boot usa init próprio e disco de 4 MiB; a
-interface iOS foi comprovada na entrega anterior pelo ABI de referência.
-As demais contagens são registros anteriores. O kernel continua prebuilt.
+como uma porcentagem de prontidão. Nesta entrega, o perfil validado iniciou
+as imagens iOS reais e respondeu a toques. Três recusas QEMU, 74 testes de
+host e quatro controles semânticos da captura passaram. As contagens das
+demais frentes são registros anteriores. O kernel continua prebuilt.
 
 ## Dois marcos físicos com requisitos diferentes
 
@@ -98,7 +97,7 @@ preparadas. Build XNU a partir dos fontes e execução física continuam pendent
 | X1 — XNU + programa mínimo no QEMU | Concluído com prebuilt externo: caso positivo, controle negativo e 13 testes de host; build dos fontes segue como validação separada |
 | X2 — contrato Samsung → XNU | Parcial: codec/projeção, consumidor EFI e reservas UEFI executados no QEMU; plano de memória e entrada Samsung verificáveis continuam pendentes, separados do ABI FDT do R10 |
 | X3 — XNU físico em uma CPU | Depende de carregamento, memória, entrada e observação demonstrados nos marcos físicos acima |
-| X4 — APFS/userland/interface | SpringBoard e navegação em Ajustes reproduzidos no QEMU pelo ABI upstream; checkpoint com restauração conferida. Disco residente de 4 MiB integrado ao consumidor restrito, com init próprio, reservas e recusas; próximo: perfil explícito e reprodução do userland completo nessa variante |
+| X4 — APFS/userland/interface | SpringBoard e navegação em Ajustes reproduzidos no QEMU pelo ABI upstream; checkpoint com restauração conferida. Userland completo das imagens preparadas executado no consumidor validado com perfil explícito, uma CPU e capturas de interação. Próximo: repetição fria automatizada e avanço dos contratos físicos P1/P2 |
 
 Essa frente não conclui P1–P6 ou os Marcos A/B. GICR, timer virtual/físico,
 USB/UEFI Qualcomm e Mali exigem adaptações próprias. Não é necessário

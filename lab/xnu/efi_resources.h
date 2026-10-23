@@ -16,11 +16,17 @@ struct s21_resources {
 struct s21_resident { uint64_t base, size; };
 int s21_resident_decode(const void *, uint32_t, struct s21_resident *);
 int s21_resident_apfs(const void *, uint64_t);
+#define S21_USERLAND_TAIL UINT64_C(0x40000000)
+struct s21_profile { uint32_t id; uint64_t epoch; };
+int s21_profile_decode(const void *, uint32_t, struct s21_profile *);
+int s21_profile_cmdline(const struct s21_profile *, char *, uint32_t);
+int s21_profile_headroom(const struct s21_profile *, uint64_t, uint64_t, uint64_t);
 struct s21_payload {
     const uint8_t *kernel, *ramdisk, *resource;
     const char *cmdline;
     uint32_t kernel_size, ramdisk_size, resource_size;
     struct s21_resident resident;
+    struct s21_profile profile;
 };
 int s21_resources_decode(const void *, uint32_t, struct s21_resources *);
 int s21_resources_qemu(const struct s21_resources *, uint64_t frequency, uint64_t mpidr);

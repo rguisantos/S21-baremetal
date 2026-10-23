@@ -1011,3 +1011,47 @@ Ver [contrato e reprodução](docs/xnu-resident-contract.md) e
 O userland iOS completo pelo consumidor restrito continua pendente de perfil
 explícito, memória e nova evidência de interface. Nenhum teste Samsung foi
 realizado nesta etapa.
+
+
+## 2026-10-23 — perfil iOS no consumidor EFI validado
+
+Perfil XNUP opcional de 32 bytes: versão/ID/epoch/reservado, tag restrita,
+residente maior que 1 GiB e até 3 GiB, imagem pequena de até 8 MiB. O C gera
+uma CPU, timer de retorno de 900 s e input virtio; nenhum argumento livre.
+7 GiB declarados, pelo menos 1 GiB de folga real após topOfKernelData.
+Recusa de 6 GiB antes de reservar a janela e ler o cabeçalho residente.
+
+Captura somente de leitura em arm_init: boot_args/árvore/header APFS via
+GDB e buffers UEFI/claims/perfil/framebuffer via QMP pmemsave. Mapa de
+símbolos e base efetiva identificam as células. O leitor independente
+recalcula reservas, discos md0/md1, folga e vídeo. Replay e quatro
+adulterações com checksums atualizados foram exercitados. 74 testes de
+host passaram; três recusas nativas com o mesmo EFI e compatibilidade
+residente gráfica (30 critérios) e embedded headless (22) preservados.
+
+A primeira tentativa revelou uma representação otimizada de frame_size:
+o compilador guardava booleano e reconstruía a constante no C. As células
+de observação passaram a volatile uint64_t. Outra tentativa mostrou a
+interface, mas o observador cortou a reimpressão após retorno do kernel;
+o prazo externo passou a ser 900+300 s após a retomada, mantendo o limite
+nativo de 900 s. Uma sessão posterior se perdeu entre turnos, sem relatório
+final. As três tentativas não contam como PASS completo.
+
+O runner passou a exigir retorno nativo razão zero e quatro snapshots
+reemitidos idênticos à captura inicial, além do contrato e processo zero.
+Esses são os mapas da preparação, não um mapa novo após o userland.
+O resultado final é registrado no manifesto e guia desta entrega.
+
+Execução final aceita: 1024,6 s totais, retorno nativo de orçamento observado,
+razão zero e QEMU zero. Os quatro mapas reemitidos coincidiram byte a byte,
+com stride/versão/chave/claims iguais aos capturados na entrada. Replay do
+pacote preservado e quatro controles semânticos passaram novamente.
+SpringBoard, Ajustes, Geral e Sobre foram inspecionados individualmente;
+Sobre exibe 16.5 e identidade iPhone X sintética. A confirmação humana fica
+separada do campo automático de GUI. EFI efetivo na ESP, payload e todos os
+bytes do backing residente conferidos contra os hashes identificados.
+
+README, roadmap, índices e ferramentas atualizados. UEFI permanece ativo,
+kernel prebuilt externo, sem rede/discos do host e sem teste Samsung.
+Não foi necessário novo arquivo do aparelho nesta etapa QEMU. P1/P2 físicos
+continuam pendentes; em consulta final, não há PR aberto no repositório.

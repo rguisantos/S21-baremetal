@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import struct
@@ -19,11 +20,12 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def qemu_fdt():
+def qemu_fdt(memory_gib=6):
     """Declared synthetic fixture, not a QEMU dump or Samsung memory map."""
+    adapter.require(memory_gib in (6,7), "only declared 6/7 GiB lab RAM is supported")
     tree = dt.fixture(qemu=True)
     tree[1]["#size-cells"] = dt.u32(2)
-    tree[2][0][1]["reg"] = dt.u64(0x40000000, 6 << 30)
+    tree[2][0][1]["reg"] = dt.u64(0x40000000, memory_gib << 30)
     tree[2][1][1]["#size-cells"] = dt.u32(2)
     tree[2][2][2][0][1]["enable-method"] = dt.text("psci")
     tree[2][3][1]["reg"] = dt.u64(0x08000000, 0x10000, 0x080a0000, 0x100000)
@@ -32,10 +34,11 @@ def qemu_fdt():
     return dt.encode(tree)
 
 
-def fragment(resource):
+def fragment(resource, ram_size=6<<30):
+    adapter.require(ram_size in (6<<30,7<<30), "unsupported lab RAM declaration")
     adapter.require(resource.cpus == [0] and resource.method == "hvc" and resource.frequency == 62500000
         and resource.gic == [c.Span(0x08000000,0x10000),c.Span(0x080a0000,0x100000)]
-        and resource.ram == [c.Span(0x40000000,6<<30)] and not resource.reserved
+        and resource.ram == [c.Span(0x40000000,ram_size)] and not resource.reserved
         and not resource.unresolved_reserved and not resource.initrd,
         "only the declared one-CPU QEMU fixture is supported")
     tree = resource.project()
@@ -46,14 +49,18 @@ def fragment(resource):
     return tree
 
 
-def pack(kernel, ramdisk, resource, resident=None):
+def pack(kernel, ramdisk, resource, resident=None, profile=None):
+    command=b"s21_userland_v1\0" if profile is not None else b"cpus=1 loader_return_after=30\0"
     body=bytearray()
     for name,data in (("kernel",kernel),("ramdisk",ramdisk),("adtres",resource),
-                      ("cmdline",b"cpus=1 loader_return_after=30\0")):
+                      ("cmdline",command)):
         body += struct.pack("<16sII",name.encode(),len(data),0)+data+b"\0"*(-len(data)%16)
     if resident is not None:
         adapter.require(len(resident)==32, "resident descriptor must have 32 bytes")
         body += struct.pack("<16sII",b"resident",32,0)+resident
+    if profile is not None:
+        adapter.require(len(profile)==32, "profile descriptor must have 32 bytes")
+        body += struct.pack("<16sII",b"labprofile",32,0)+profile
     body += b"\0"*24
     adapter.require(len(body)+8 <= 64*1024*1024, "payload exceeds 64 MiB")
     return struct.pack("<II",0x50554e58,len(body))+body
@@ -81,7 +88,12 @@ parse_payload(struct payload_info *pi, int verbose)
     pi->kernel = value.kernel;
     pi->ramdisk = value.ramdisk;
     pi->ramdisk_size = value.ramdisk_size;
+    static char profile_command[96];
     pi->cmdline = value.cmdline;
+    if (value.profile.id) {
+        if (!s21_profile_cmdline(&value.profile,profile_command,sizeof(profile_command))) return 0;
+        pi->cmdline=profile_command;
+    }
     pi->resource = value.resource;
     pi->resource_size = value.resource_size;
     pi->resident_rd = value.resident.size;
@@ -111,7 +123,8 @@ parse_payload(struct payload_info *pi, int verbose)
     edit('uint64_t gic_reg[4] = { plat->gic_dist - plat->io_base, 0x10000, plat->gic_redist - plat->io_base, 0x100000 };',
          'uint64_t gic_reg[4] = { plat->gic_dist - plat->io_base, adapter.dist_size, plat->gic_redist - plat->io_base, adapter.redist_size };')
     edit('\tba->deviceTreeLength = dt_len;\n', '''\tba->deviceTreeLength = dt_len;
-    if (!s21_resident_layout(&s21_resident_cfg, phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size, dt_pa, dt_len, ba_pa, top)) {
+    if (!s21_resident_layout(&s21_resident_cfg, phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size, dt_pa, dt_len, ba_pa, top) ||
+        !s21_profile_headroom(&s21_profile_cfg,phys_base,win_size,top)) {
         print("S21 XNU ADAPTER: REJECT layout\\n");
         return 0;
     }
@@ -129,7 +142,8 @@ choose_window(const struct payload_info *pi)
 }
 '''+source[end:]
     edit('\t/* --- load segments -------------------------------------------------- */', '''    if (!s21_resident_layout(&s21_resident_cfg, phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size,
-                          dt_pa, dt_max, ba_pa, top) || !s21_owned(2)) {
+                          dt_pa, dt_max, ba_pa, top) ||
+        !s21_profile_headroom(&s21_profile_cfg,phys_base,win_size,top) || !s21_owned(2)) {
         print("S21 UEFI: REJECT before copy\\n");
         return 0;
     }
@@ -217,11 +231,15 @@ def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0, resident_tes
                  "-c",str(out/(name+".c")),"-o",str(out/(name+".obj"))]
             subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45); commands.append(cmd)
         cmd=[str(link),"/subsystem:efi_application","/entry:efi_main","/nodefaultlib","/base:0xA1000000",
-             "/timestamp:0","/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj"),str(out/"efi_memory.obj"),str(out/"efi_video.obj")]
+             "/timestamp:0","/map:"+str(out/"loader.map"),"/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj"),str(out/"efi_memory.obj"),str(out/"efi_video.obj")]
         subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30); commands.append(cmd)
+    symbols={}
+    for line in (out/"loader.map").read_text().splitlines():
+        match=re.match(r"\s+[0-9a-f]+:[0-9a-f]+\s+(\S+)\s+([0-9a-f]{16})\s",line)
+        if match:symbols[match[1]]=int(match[2],16)
     binary=(out/"loader.efi").read_bytes(); pe=struct.unpack_from("<I",binary,60)[0]
     adapter.require(binary[pe:pe+4]==b"PE\0\0" and struct.unpack_from("<H",binary,pe+4)[0]==0xaa64
                     and struct.unpack_from("<H",binary,pe+24+68)[0]==10,"not an AArch64 EFI application")
-    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,"video_test":video_test,"resident_test":resident_test,
+    return {"upstream_revision":head,"upstream_sources":inputs,"symbols":symbols,"map_sha256":sha((out/"loader.map").read_bytes()),"commands":commands,"memory_test":memory_test,"video_test":video_test,"resident_test":resident_test,
             "patched_source_sha256":sha((out/"loader.c").read_bytes()),"efi_sha256":sha(binary),
             "efi_bytes":len(binary),"clang_version":subprocess.check_output([str(clang),"--version"],env=env,text=True).splitlines()[0]}

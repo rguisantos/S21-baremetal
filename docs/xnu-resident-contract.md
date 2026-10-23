@@ -147,9 +147,9 @@ python3 scripts/test_xnu_resident.py
 
 ## Continuação
 
-A próxima etapa é declarar um perfil explícito para o userland completo:
-duração e entrada virtio, memória suficiente para a imagem de 2,5 GB mais
-os serviços, e evidência de boot/interface usando esse consumidor. Não
-liberamos argumentos arbitrários, SMP ou serviços de hardware para passar
-o teste pequeno. O diagnóstico físico, o mapa Samsung e a escolha de boot
+A etapa seguinte foi [executada com perfil explícito](xnu-guarded-userland.md):
+imagem de 2,5 GB, uma CPU, entrada virtio e interface iOS com navegação em
+Ajustes/Geral/Sobre. O perfil gera seus argumentos, reserva ao menos 1 GiB
+depois dos dados estáticos e conserva as verificações deste consumidor.
+O ensaio de 4 MiB aqui documentado conserva seu escopo original. O diagnóstico físico, o mapa Samsung e a escolha de boot
 Android/XNU continuam pendentes no [roadmap](roadmap.md).

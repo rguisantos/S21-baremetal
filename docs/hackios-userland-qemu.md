@@ -171,9 +171,9 @@ retomar o ensaio sem repetir a extração caso o ambiente seja restaurado.
 
 Este ensaio usa o ABI upstream de imagem residente, separado do consumidor
 EFI restrito do S21-baremetal. A [extensão para disco residente](xnu-resident-contract.md) foi implementada
-e exercitada com uma imagem de 4 MiB, init próprio e recusas. Falta o perfil
-explícito e a execução do userland completo por essa variante; o ensaio
-gráfico aqui registrado continua usando o loader de referência.
+e exercitada com uma imagem de 4 MiB, init próprio e recusas. O [perfil explícito](xnu-guarded-userland.md) também executou essas imagens
+com uma CPU, reservas conferidas e interação em Ajustes/Geral/Sobre. O
+ensaio gráfico aqui registrado conserva o loader de referência e quatro CPUs.
 
 O resultado de interface e interação no QEMU fecha uma etapa do
 laboratório X4. O primeiro diagnóstico no telefone, entrada/cache, mapa de

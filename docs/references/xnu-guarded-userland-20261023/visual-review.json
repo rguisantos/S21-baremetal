@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-23",
+  "method": "Individual native PNG inspection by assistant, separate from automatic runner",
+  "verified": true,
+  "run": "guarded-published-positive",
+  "scope": "GUI navigation in one-CPU QEMU, not Samsung or all apps",
+  "captures": [
+    {
+      "file": "checked-homescreen.png",
+      "sha256": "45abdca0d5978df49bbb1ecd54ebca6aac57cb6cec2711b81b8698c0bad965c0",
+      "observed": "SpringBoard home, app icons and empty widgets",
+      "visually_verified": true
+    },
+    {
+      "file": "checked-settings.png",
+      "sha256": "deae353ad25b409f0f7a35d42c0c0a818c666167f172f177c39c50678d5a7e81",
+      "observed": "Settings application after touch",
+      "visually_verified": true
+    },
+    {
+      "file": "checked-general.png",
+      "sha256": "b6502d4a65b473ceb6c49f7ce5c4dfb6366d73c3b4adb0d0e44bc7d6d398f82b",
+      "observed": "Settings General page after touch",
+      "visually_verified": true
+    },
+    {
+      "file": "checked-about.png",
+      "sha256": "13ff4c9d4b4e11e59c3e4ce5586e8b335c621ff3f24cfc20455159359a4b4719",
+      "observed": "Settings About page showing iOS 16.5 and synthetic iPhone X identity",
+      "visually_verified": true
+    }
+  ]
+}

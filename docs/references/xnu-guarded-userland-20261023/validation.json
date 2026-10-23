@@ -1,0 +1,368 @@
+{
+  "date": "2026-10-23",
+  "scope": "Guarded one-CPU QEMU iOS userland, not Samsung",
+  "native_budget_return": true,
+  "post_return_snapshots_equal_entry": true,
+  "contract_replay": {
+    "verified": true,
+    "profile": {
+      "verified": true,
+      "id": 1,
+      "epoch": 1792780990,
+      "seconds": 900,
+      "cpus": 1,
+      "virtio_input": 1,
+      "dynamic_tail_bytes": 1780350976,
+      "minimum_tail_bytes": 1073741824
+    },
+    "window": [
+      "0xf4000000",
+      "0x10a000000"
+    ],
+    "root": [
+      "0xfc000000",
+      "0x97e0c000"
+    ],
+    "small_disk": [
+      "0xf82e4000",
+      "0x400000"
+    ],
+    "framebuffer": {
+      "base": "0xef58b000",
+      "pixels_bytes": 10962000,
+      "allocation_bytes": 10964992,
+      "width": 1125,
+      "height": 2436,
+      "stride": 4500,
+      "format": "XR24"
+    },
+    "scope": "Consistency of preserved boot and UEFI captures, not Samsung execution or automatic GUI proof"
+  },
+  "loaded_inputs_verified": true,
+  "negative": {
+    "headroom": {
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "specific_rejection": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_resident_read": true
+      },
+      "report": {
+        "file": "headroom.report.json.gz",
+        "bytes": 47535,
+        "sha256": "75a346b329dad0a9af3a3aff1c0e4a3c80b97c08fa04bffaba5fc85bdf25bdbd",
+        "gzip_sha256": "ec38145f4f4f73ec812bfce247c2524c0bd4ccce7804c3273b513e96977c4d98"
+      },
+      "serial": {
+        "file": "headroom.log.gz",
+        "bytes": 18668,
+        "sha256": "e26baa99fa9af2877f7da2a8aeadd3386d118e9f964f8bf90c3ff124d3dd7772",
+        "gzip_sha256": "723fd5fedd005cb501ce3a6557a92901e90bd48e9af759b94c9b1416bdf6e661"
+      }
+    },
+    "profile": {
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "specific_rejection": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_resident_read": true
+      },
+      "report": {
+        "file": "profile.report.json.gz",
+        "bytes": 47514,
+        "sha256": "84250d25327201209b01dfb3c99af4b5180de56f1edd311144771b6453a98923",
+        "gzip_sha256": "104d1ef6e75ab3081189c281c25d206c1e2e0a5a9bc35f0c62f04bbd2f08a9a4"
+      },
+      "serial": {
+        "file": "profile.log.gz",
+        "bytes": 9430,
+        "sha256": "3cf19cd7142022a1a14311d4347031e82a9ca2753a48fda7c56515d8435783b7",
+        "gzip_sha256": "dae56d9cf67edacea177ca87b62b5bb161bf39fb3adec40522098ae19ca45987"
+      }
+    },
+    "cmdline": {
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "specific_rejection": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_resident_read": true
+      },
+      "report": {
+        "file": "cmdline.report.json.gz",
+        "bytes": 47513,
+        "sha256": "a61049a521f5c049b06eeb18945ccaf510254d96a5ab19c7e47293fbad99b94d",
+        "gzip_sha256": "69fcc3db26df2be0de93aa5aa6fad6666ce3c52fa37da2bd54160ec7e0623d8e"
+      },
+      "serial": {
+        "file": "cmdline.log.gz",
+        "bytes": 9430,
+        "sha256": "3cf19cd7142022a1a14311d4347031e82a9ca2753a48fda7c56515d8435783b7",
+        "gzip_sha256": "dae56d9cf67edacea177ca87b62b5bb161bf39fb3adec40522098ae19ca45987"
+      }
+    }
+  },
+  "compatibility": {
+    "resident": {
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "missing_declaration": true,
+        "wrong_root_role": true,
+        "wrong_declared_size": true,
+        "resident_owned": true,
+        "actual_header_at_arm_init": true,
+        "invalid_small_ramdisk": true,
+        "resident_is_md0": true,
+        "embedded_is_md1": true,
+        "native_before_copy": true,
+        "native_handoff": true,
+        "no_resident_rejection": true,
+        "actual_esp_hash": true,
+        "framebuffer_with_resident": true
+      },
+      "report": {
+        "file": "compat-resident.report.json.gz",
+        "bytes": 160945,
+        "sha256": "1f6be4dc2cd21824f0c1666f20e9d2f175b2cf6a867d632b266669127a2b888f",
+        "gzip_sha256": "f2151d8af10068fd6f0e4bab9d0b9fd09ca49c26e6d974214918f8b698befe54"
+      },
+      "serial": {
+        "file": "compat-resident.log.gz",
+        "bytes": 59655,
+        "sha256": "c18dc1f56ec873dc6c5ed9c70af85e08f30e908aa0e00e64770fe828bc55b151",
+        "gzip_sha256": "bd940ad22856c4283aea37a69cfd97e87ddbce948c5816762125af866382be7a"
+      }
+    },
+    "embedded": {
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "native_resources": true,
+        "native_layout": true,
+        "no_native_rejection": true,
+        "native_memory_before_copy": true,
+        "uefi_maps_and_allocations": true
+      },
+      "report": {
+        "file": "compat-embedded.report.json.gz",
+        "bytes": 185448,
+        "sha256": "838d7fc1cb95bb92d95a0ca1a1b0cfe149e8f185aff0523e564d0c567b0d986f",
+        "gzip_sha256": "e8596eae40f94c253a2f471507569b5a0b2020d05edaa0e305c7c06bc80b31eb"
+      },
+      "serial": {
+        "file": "compat-embedded.log.gz",
+        "bytes": 61003,
+        "sha256": "eba3e57a3f2829cd62f07b1c97236f3571fcb8ebbc36e23de50bc0e612e87c2d",
+        "gzip_sha256": "ace951c120ad8f0cd6865423565f8f864e1878f695055bcdc36f618d00ecf28d"
+      }
+    }
+  },
+  "semantic_controls": {
+    "source_run": "guarded-published-positive",
+    "entry_capture_only": true,
+    "controls": {
+      "cmdline": {
+        "rejected": true,
+        "reason": "captured command line differs from typed profile",
+        "checksums_updated": true
+      },
+      "root-role": {
+        "rejected": true,
+        "reason": "resident image is not the declared md0",
+        "checksums_updated": true
+      },
+      "headroom": {
+        "rejected": true,
+        "reason": "insufficient userland dynamic tail",
+        "checksums_updated": true
+      },
+      "ownership": {
+        "rejected": true,
+        "reason": "UEFI ownership missing at handoff",
+        "checksums_updated": true
+      }
+    }
+  },
+  "host_tests": {
+    "resources": 16,
+    "memory": 22,
+    "video": 14,
+    "resident": 10,
+    "profile": 12,
+    "total": 74,
+    "passed": true,
+    "sha256": "6f0a4b3b59a850957561860e3fd2fb3ec7b4c2e40fe639aa7281c51f4a5c7339"
+  },
+  "shots": [
+    {
+      "file": "arm-init.png",
+      "source": "arm-init.png",
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781000.1244504
+    },
+    {
+      "file": "boot-logo.png",
+      "source": "auto-0075.png",
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781068.0171566
+    },
+    {
+      "file": "homescreen.png",
+      "source": "checked-homescreen.png",
+      "sha256": "45abdca0d5978df49bbb1ecd54ebca6aac57cb6cec2711b81b8698c0bad965c0",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781453.5315962
+    },
+    {
+      "file": "settings.png",
+      "source": "checked-settings.png",
+      "sha256": "deae353ad25b409f0f7a35d42c0c0a818c666167f172f177c39c50678d5a7e81",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781498.7394435
+    },
+    {
+      "file": "general.png",
+      "source": "checked-general.png",
+      "sha256": "b6502d4a65b473ceb6c49f7ce5c4dfb6366d73c3b4adb0d0e44bc7d6d398f82b",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781524.1330745
+    },
+    {
+      "file": "about.png",
+      "source": "checked-about.png",
+      "sha256": "13ff4c9d4b4e11e59c3e4ce5586e8b335c621ff3f24cfc20455159359a4b4719",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792781534.3654659
+    }
+  ],
+  "UI_visually_verified": true,
+  "visual_review": "visual-review.json",
+  "serial": {
+    "file": "serial.log.gz",
+    "bytes": 3248452,
+    "sha256": "11d98e59550249c838795ba3204ca1beaaf52f112537fb03e88da31603dcc4f2",
+    "gzip_sha256": "fa5129cd55271432de01fce0d51e69257e685fee3ca5f9e04228dfc65c7bc96f"
+  },
+  "earlier_attempts": {
+    "optimized-field": {
+      "counted_as_pass": false,
+      "error": "ContractError: framebuffer differs from successful ramfb allocation",
+      "returncode": null,
+      "observation_timeout": false,
+      "report": {
+        "file": "optimized-field.report.json.gz",
+        "bytes": 47852,
+        "sha256": "349a62f57b203ea9893dee45cc069f42b3624462cea5fd98a71b108feab9f502",
+        "gzip_sha256": "82331f1ce48f0a182d5ca8218de15ae354881dcfb35429b829ac1dcb0371e277"
+      },
+      "serial": {
+        "file": "optimized-field.log.gz",
+        "bytes": 1324,
+        "sha256": "a0e6ea0592eb3d4ddb981d0489b595010c3236ab58b32d64508d3d515cb221b5",
+        "gzip_sha256": "582c0ba27fa969613b216bc4cf3cfc5a256d78abc2bc5f21262544446d48e935"
+      }
+    },
+    "short-observer": {
+      "counted_as_pass": false,
+      "error": null,
+      "returncode": 0,
+      "observation_timeout": true,
+      "report": {
+        "file": "short-observer.report.json.gz",
+        "bytes": 144450,
+        "sha256": "453e3ea1a7c07119f18fab4fdd68b50d7fe80458ec53efe255adf6527693f02c",
+        "gzip_sha256": "cc2e3f6a55e4f755f1828d6b16e3539e3144616ed113d5074eb550eee1e8863c"
+      },
+      "serial": {
+        "file": "short-observer.log.gz",
+        "bytes": 2632975,
+        "sha256": "feb4028d9dd2f3f49d77dc6ed55e32d2be34073ac8ea10cdbd559af51921c38f",
+        "gzip_sha256": "36855850660c0bb34c689817aa611958580b651fc8b5eca3cbe955a1fb4e400e"
+      }
+    },
+    "runtime-interrupted": {
+      "counted_as_pass": false,
+      "record": {
+        "file": "runtime-interrupted.json.gz",
+        "bytes": 372,
+        "sha256": "812a048fe1e36730478b063f8aac6ef2d728662f3e95d828f6e94e9f614952e5",
+        "gzip_sha256": "8d6de7be6dc8c60cb59af79a388aa39d8b46dff67318f40e884df1b9074d9280"
+      },
+      "status": {
+        "file": "runtime-interrupted.status.json.gz",
+        "bytes": 139899,
+        "sha256": "82e7a436d0825a061b28dc8d6885cccf964af86a95e79e4b6d79fd273a1aeeba",
+        "gzip_sha256": "b848c96c96a5c2e2ac0674b108deab42c869750a705edc591d690756d29b1eef"
+      },
+      "serial": {
+        "file": "runtime-interrupted.log.gz",
+        "bytes": 969296,
+        "sha256": "116306df53de2b485d73567ab3d1967f97cd75b69194eaeb473b16950e997b3f",
+        "gzip_sha256": "bca8281c6b27d880a2a651444423542b22eef0d8e48a88f7ba9be1e846a88c16"
+      }
+    }
+  },
+  "full_iOS_image_unmodified": false,
+  "Samsung_tested": false
+}
