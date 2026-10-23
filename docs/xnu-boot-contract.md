@@ -131,11 +131,16 @@ segmentos e arquivos e converte seus endereços virtuais. Não é validação
 integral de um executável, de seu entry point, assinatura ou relocations.
 `memSizeActual` maior não autoriza uma janela fora dos bancos declarados.
 
-Na captura, declaramos somente a fixture QEMU de 6 GiB e protegemos o
+Na captura original desta página, declaramos somente a fixture QEMU de 6 GiB e protegemos o
 contêiner de entrada em `0xf0000000`. A lista de reservas é vazia e **não
 capturamos o mapa completo UEFI**. O relatório registra
 `trust_established: false`: o resultado PASS comprova consistência com
 essa fixture, sem demonstrar propriedade de toda a memória do firmware.
+
+A [etapa posterior de memória UEFI](xnu-uefi-memory.md) fecha essa lacuna
+no carregador de laboratório: quatro mapas completos, reservas exatas e
+contrato cruzado com o mapa observado. Essa evidência nova não altera o
+escopo histórico do relatório desta página nem demonstra memória Samsung.
 
 ## Validação e reprodução
 

@@ -861,3 +861,56 @@ transcrições; README, índices, estratégia e roadmap atualizados. Artefatos
 brutos e dependências fora do Git. P1/P2 físicos mantidos; sem operação no
 telefone, userland iOS ou SMP. Suítes R8/R9/R10 não reexecutadas; fontes
 de produção e temporários de toolchain preservados fora desta alteração.
+
+## 2026-10-22 (2026-10-23 UTC) — reservas e mapa completo UEFI no laboratório XNU
+
+Continuado o item de memória proposto ao usuário. Main de partida 729e7f0.
+Identificada lacuna concreta: o loader evitava o payload ao escolher a
+janela, mas não reservava sua memória. Variante agora exige os 64 MiB
+convencionais e faz AllocatePages/AllocateAddress/EfiLoaderData antes da
+leitura. Seleção da janela usa mapa validado e exige status/endereço exatos.
+
+Novo C freestanding limita GetMemoryMap a 64 KiB, 1024 descritores,
+versão 1 e stride 40..256 em múltiplos de oito. Confere overflow,
+alinhamento, sobreposição, cobertura integral e política de tipo/atributos.
+Não presume tamanho 40 para caminhar o mapa nem ordem dos descritores.
+ABI do prefixo conferido por static asserts. Mapas completos capturados
+antes da reserva do payload, antes da reserva da janela, antes da cópia
+e na preparação do salto. Falha de mapa/posse provoca recusa.
+
+Execução final: 80/82/82/82 descritores, stride 48. Payload
+[f0000000,f4000000), janela [f4000000,1be000000), duas reservas com status
+0. UEFI juntou ambas num descritor LoaderData; corrigida a exclusão da
+janela no percurso de cache para recortar ambos os lados de um descritor
+sobreposto. Nenhuma validação de cache Samsung inferida desse ensaio.
+
+Runner cruza os mapas reais com boot_args/árvore obtidos por GDB somente
+leitura. RAM/reservas para essa conferência vêm de GetMemoryMap, não da
+fixture FDT. Todos os segmentos, ramdisk, árvore e argumentos cobertos.
+Mapas emitidos sem filtros, byte a byte em hexadecimal, após retorno ou
+recusa; a última captura é usada na manutenção de cache, sem alocação ou
+emissão dos mapas entre ela e o salto. UEFI continua residente, sem EBS.
+
+Nove execuções finais PASS: positivo com 22 critérios; cinco recusas
+anteriores de recursos/payload; três falhas de memória via APIs UEFI reais
+em binários de teste separados (payload ocupado, página da janela tomada
+por BootServicesData e página do payload devolvida). Cada falha exige
+sucesso da API provocadora, recusa específica e ausência de cópia/salto/
+Darwin/init. Positivo retomou até PID1/APFS/timer/RB_HALT/retorno normal.
+
+22 testes novos de memória/evidência passaram, incluindo o mesmo C com
+ASan/UBSan e verificador Python independente. Reexecutados os 16 testes
+dos recursos, todos PASS. LeakSanitizer desativado pelo host instrumentado.
+EFI normal final: 75264 bytes, SHA256
+510b1dcb693a93db2de3ea2707884b18bac2533c1656cd7e7371a1f3d6b33430.
+Kernel continua prebuilt; loader recompilado e init próprio reaproveitado
+do baseline verificado.
+
+Publicados nove logs completos, manifesto com hashes/comandos e guia de
+reprodução; bytes dos mapas reconstruídos das transcrições e comparados
+aos binários da execução. README/índices/roadmap/estratégia atualizados.
+O registro é do mapa reportado pela UEFI naquele instante: não autentica
+imagens arbitrárias, não prova preservação anterior do payload nem memória,
+entrada, caches ou observação Samsung. P1/P2 físicos continuam abertos.
+Nenhum arquivo adicional solicitado, flash, interface iOS ou SMP.
+R8/R9/R10/shim e baseline anterior preservados; sem repetir essas suítes.

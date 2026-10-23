@@ -1,5 +1,10 @@
 # Adaptador consumido pela EFI no QEMU
 
+Esta página registra a integração inicial. A [continuação de memória UEFI](xnu-uefi-memory.md)
+reserva também o payload, captura quatro mapas completos e amplia o runner
+para **22 critérios positivos e oito recusas**, com 22 testes de memória/evidência
+e os 16 testes de recursos. Os números e manifestos abaixo são do primeiro marco.
+
 Marco de **2026-10-22, Campo Grande**. Compilamos uma variante do carregador
 EFI HackiOS que recebe o fragmento de recursos Apple pelo payload, valida
 seu conteúdo e o usa para construir a árvore entregue ao XNU. O caso
@@ -80,8 +85,9 @@ confere estrutura/bounds; não autentica assinatura ou oferece um loader
 geral de executáveis. A linha aceita não ativa os caminhos de periféricos
 do telefone existentes no fonte upstream.
 
-A reserva UEFI da janela é observada no laboratório. O mapa completo de
-reservas do firmware não foi capturado. A fixture declara memória; nenhum
+A reserva UEFI da janela foi observada nesse primeiro ensaio. O mapa completo de
+reservas do firmware ainda não havia sido capturado; isso foi feito na
+[etapa seguinte](xnu-uefi-memory.md). A fixture declara memória; nenhum
 resultado transfere sua propriedade ou permissões ao Samsung. Todos os
 relatórios conservam `hardware_ready: false`.
 
@@ -97,6 +103,7 @@ dependências dinâmicas restantes vêm do host documentado no manifesto.
 
 ```sh
 python3 scripts/test_xnu_efi_resources.py
+python3 scripts/test_xnu_efi_memory.py
 python3 scripts/run_xnu_adapter_lab.py \
   --lab-run /caminho/ensaio-positivo-anterior \
   --kernel-tree /caminho/hackios-xnu-kernel \
@@ -108,7 +115,9 @@ python3 scripts/run_xnu_adapter_lab.py \
 
 O runner exige baseline positivo, kernel/UEFI identificados e saída nova.
 Cada caso tem NVRAM/FAT próprios, rede desativada e prazo limitado. Os
-binários e árvores brutas ficam fora do Git. O
+binários e árvores brutas ficam fora do Git. Na versão atual, o runner
+executa também três falhas de memória; consulte a [validação UEFI](xnu-uefi-memory.md).
+O
 [manifesto da execução](references/xnu-efi-adapter-20261022.json) conserva
 hashes, critérios e seis transcrições completas em texto escapado.
 O [serial positivo](references/xnu-efi-positive-20261022.txt) registra o

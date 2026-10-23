@@ -1,0 +1,1347 @@
+{
+  "schema_version": 2,
+  "scope": "Rebuilt EFI consumer in one-CPU QEMU; UEFI allocation snapshots, synthetic resources, pinned XNU, own init",
+  "passed": true,
+  "build": {
+    "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+    "upstream_sources": {
+      "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+      "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+      "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+    },
+    "commands": [
+      [
+        "@LLVM@/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-c",
+        "@RUN@/build/loader.c",
+        "-o",
+        "@RUN@/build/loader.obj"
+      ],
+      [
+        "@LLVM@/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-c",
+        "@RUN@/build/efi_resources.c",
+        "-o",
+        "@RUN@/build/efi_resources.obj"
+      ],
+      [
+        "@LLVM@/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-c",
+        "@RUN@/build/efi_memory.c",
+        "-o",
+        "@RUN@/build/efi_memory.obj"
+      ],
+      [
+        "@LLVM@/usr/lib/llvm-19/bin/lld-link",
+        "/subsystem:efi_application",
+        "/entry:efi_main",
+        "/nodefaultlib",
+        "/base:0xA1000000",
+        "/timestamp:0",
+        "/out:@RUN@/build/loader.efi",
+        "@RUN@/build/loader.obj",
+        "@RUN@/build/efi_resources.obj",
+        "@RUN@/build/efi_memory.obj"
+      ]
+    ],
+    "memory_test": 0,
+    "patched_source_sha256": "0098167a19064f7aafec083691ae4c4218eba3f0a7dadb47ff35335793197f31",
+    "efi_sha256": "510b1dcb693a93db2de3ea2707884b18bac2533c1656cd7e7371a1f3d6b33430",
+    "efi_bytes": 75776,
+    "clang_version": "Debian clang version 19.1.7 (3+b1)"
+  },
+  "cases": {
+    "positive": {
+      "case": "positive",
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "native_resources": true,
+        "native_layout": true,
+        "no_native_rejection": true,
+        "native_memory_before_copy": true,
+        "uefi_maps_and_allocations": true
+      },
+      "capture": {
+        "pc": "0xfffffff007453994",
+        "x0_virtual": "0xfffffff0086f4000",
+        "pstate": "0x600003c4",
+        "boot_args_sha256": "8b37367b100df33c9a96f1f8e84671ed34ab4152c71c61b99022229256096c03",
+        "tree_sha256": "4dd2878b26976a170fe7b836a03c9b1e1f608778649fcd931977a79a17feec7e",
+        "tree_bytes": 14800,
+        "read_only_gdb": true,
+        "profile": {
+          "profile_consistent": true,
+          "hardware_ready": false,
+          "window": [
+            "0xf4000000",
+            "0xca000000"
+          ],
+          "placements": {
+            "boot_args": [
+              "0xf86f4000",
+              "0x2e0"
+            ],
+            "Apple DT": [
+              "0xf86e4000",
+              "0x39d0"
+            ],
+            "__TEXT": [
+              "0xf7004000",
+              "0x1a0000"
+            ],
+            "__DATA_CONST": [
+              "0xf71a4000",
+              "0xe8000"
+            ],
+            "__TEXT_EXEC": [
+              "0xf728c000",
+              "0x854000"
+            ],
+            "__KLD": [
+              "0xf7ae0000",
+              "0x4000"
+            ],
+            "__LASTDATA_CONST": [
+              "0xf7ae4000",
+              "0x4000"
+            ],
+            "__KLDDATA": [
+              "0xf7ae8000",
+              "0x4000"
+            ],
+            "__DATA": [
+              "0xf7aec000",
+              "0x450000"
+            ],
+            "__BOOTDATA": [
+              "0xf7f3c000",
+              "0x4c000"
+            ],
+            "__LINKINFO": [
+              "0xf7f88000",
+              "0x90000"
+            ],
+            "__LINKEDIT": [
+              "0xf8018000",
+              "0x2ca390"
+            ],
+            "RAMDisk": [
+              "0xf82e4000",
+              "0x400000"
+            ]
+          },
+          "gic": [
+            [
+              "0x8000000",
+              "0x10000"
+            ],
+            [
+              "0x80a0000",
+              "0x100000"
+            ]
+          ],
+          "cpus": [
+            "0x0"
+          ],
+          "psci_method": "hvc",
+          "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run."
+        },
+        "resource_fields_match": true
+      },
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/positive/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/positive/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/positive/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/positive/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-gdb",
+        "stdio"
+      ],
+      "serial_sha256": "a1890d085ac73c61b1b0fa8e5729030c2b69629b1452bdebfe72f02115a6d931",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": {
+        "verified": true,
+        "window": [
+          "0xf4000000",
+          "0xca000000"
+        ],
+        "payload": [
+          "0xf0000000",
+          "0x4000000"
+        ],
+        "claims": {
+          "payload": {
+            "base": 4026531840,
+            "size": 67108864,
+            "status": 0,
+            "returned": 4026531840
+          },
+          "window": {
+            "base": 4093640704,
+            "size": 3388997632,
+            "status": 0,
+            "returned": 4093640704
+          }
+        },
+        "placements_checked": [
+          "boot_args",
+          "Apple DT",
+          "__TEXT",
+          "__DATA_CONST",
+          "__TEXT_EXEC",
+          "__KLD",
+          "__LASTDATA_CONST",
+          "__KLDDATA",
+          "__DATA",
+          "__BOOTDATA",
+          "__LINKINFO",
+          "__LINKEDIT",
+          "RAMDisk"
+        ],
+        "snapshots": {
+          "payload-free": {
+            "bytes": 3840,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2ca",
+            "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+            "descriptor_count": 80
+          },
+          "window-free": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cb",
+            "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+            "descriptor_count": 82
+          },
+          "before-copy": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          },
+          "handoff": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          }
+        },
+        "boot_services_resident": true,
+        "exit_boot_services_called": false,
+        "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+        "hardware_ready": false
+      },
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        },
+        "window-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+          "descriptor_count": 82
+        },
+        "before-copy": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        },
+        "handoff": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-positive-20261023.txt",
+        "bytes": 60222,
+        "sha256": "15a5108d3ab8b59f866119c3d0ba3de2560815e6f6af79d9b1d91c6b525ebd27",
+        "raw_bytes": 60856,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "truncated": {
+      "case": "truncated",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/truncated/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/truncated/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/truncated/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/truncated/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "caadf1243893290423b72717f897abd20790ae665da924fc5048a4acf6613988",
+      "resource_sha256": "80f5d9fc2dcff188245e5481eeccab6ebc160888968df628d9d62cb7f71439d4",
+      "payload_sha256": "083011687ecabe3b48afef1db785c33a4bf743896e8c1109673f2fd044e172af",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-truncated-20261023.txt",
+        "bytes": 9859,
+        "sha256": "f7bfe3acb869c1b7550e4ecd77ea4d7b8efe9fde535c02a1003d754df3d1513e",
+        "raw_bytes": 9920,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "counter": {
+      "case": "counter",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/counter/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/counter/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/counter/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/counter/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "caadf1243893290423b72717f897abd20790ae665da924fc5048a4acf6613988",
+      "resource_sha256": "d9fe610dc22f531cd77055522cfd962810d403d8a11270652b75b10e726a5132",
+      "payload_sha256": "5b383c2256452e38bd418a411ea8996eaef651dbec98b569cb21713d09999abe",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-counter-20261023.txt",
+        "bytes": 9859,
+        "sha256": "f7bfe3acb869c1b7550e4ecd77ea4d7b8efe9fde535c02a1003d754df3d1513e",
+        "raw_bytes": 9920,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "gic": {
+      "case": "gic",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/gic/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/gic/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/gic/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/gic/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "caadf1243893290423b72717f897abd20790ae665da924fc5048a4acf6613988",
+      "resource_sha256": "243e4d70014c48581d7672dbb655bbad898c162c4e4c8f944147de2e70e054e5",
+      "payload_sha256": "207d0bdac8911d75e45b04afa2e2ec629197d864139c6ccbb3d6abcd2a37c384",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-gic-20261023.txt",
+        "bytes": 9859,
+        "sha256": "f7bfe3acb869c1b7550e4ecd77ea4d7b8efe9fde535c02a1003d754df3d1513e",
+        "raw_bytes": 9920,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "duplicate": {
+      "case": "duplicate",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/duplicate/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/duplicate/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/duplicate/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/duplicate/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "60a54007200119d2443f80b55c2a403eaf73170c92b0a426a748c12ced814cb4",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "fb7a73de4ecb41a4dc411abef6077d5493412543bc30bf2e4d7c6657b6e90888",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-duplicate-20261023.txt",
+        "bytes": 9857,
+        "sha256": "c5a25100d70949f5c293b27af236d90a09516a14f7458172f8b1b15f8cbd77f8",
+        "raw_bytes": 9918,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "kernel-bounds": {
+      "case": "kernel-bounds",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/kernel-bounds/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/kernel-bounds/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/kernel-bounds/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/kernel-bounds/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "60a54007200119d2443f80b55c2a403eaf73170c92b0a426a748c12ced814cb4",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "2ec9cdd5caa686b124afad973f0d3e5aa5c1ed5277ea4cf158dab56c0e36f031",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-kernel-bounds-20261023.txt",
+        "bytes": 9857,
+        "sha256": "c5a25100d70949f5c293b27af236d90a09516a14f7458172f8b1b15f8cbd77f8",
+        "raw_bytes": 9918,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "uefi-payload-busy": {
+      "case": "uefi-payload-busy",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true,
+        "fault_api_succeeded": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/uefi-payload-busy/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/uefi-payload-busy/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/uefi-payload-busy/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/uefi-payload-busy/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "b9f8a6a44f2fbe468e6d6d791fff08ca7a17a1b6223a76b1ad4dc8fe5265eea5",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "6425a5714ea57c2e2f0ff38f9c4b825da08c6d2f0839353349c58e1e0713bca0",
+          "descriptor_count": 82
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-uefi-payload-busy-20261023.txt",
+        "bytes": 10136,
+        "sha256": "c5bd99ac55219e5a7c4e5131337a2221607cef1dd55e14b30cfb8c3ac9299286",
+        "raw_bytes": 10200,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "uefi-window-busy": {
+      "case": "uefi-window-busy",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true,
+        "fault_api_succeeded": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/uefi-window-busy/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/uefi-window-busy/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/uefi-window-busy/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/uefi-window-busy/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "fada5081b7932be73c6f0feed50398c93722379ae242288580b48824bb90f0e9",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        },
+        "window-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+          "descriptor_count": 82
+        },
+        "before-copy": {
+          "bytes": 4032,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ce",
+          "sha256": "46d808c4e1a50649034c52651c42c9e18b65aa1526d12aa0542a6030ddf9103c",
+          "descriptor_count": 84
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-uefi-window-busy-20261023.txt",
+        "bytes": 29435,
+        "sha256": "ea29de3dfbdb36205769635b86b8c19eb85a83a680547b8f088878a19d8b3c1f",
+        "raw_bytes": 29671,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    },
+    "uefi-payload-released": {
+      "case": "uefi-payload-released",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_jump": true,
+        "no_kernel_copy": true,
+        "no_darwin": true,
+        "no_user_init": true,
+        "fault_api_succeeded": true
+      },
+      "capture": null,
+      "qemu_returncode": 0,
+      "command": [
+        "@TOOLS@/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@TOOLS@/usr/lib/x86_64-linux-gnu:@TOOLS@/usr/lib",
+        "@TOOLS@/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@TOOLS@/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@EFI@/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@RUN@/uefi-payload-released/vars.fd",
+        "-drive",
+        "file=fat:rw:@RUN@/uefi-payload-released/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@RUN@/uefi-payload-released/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@RUN@/uefi-payload-released/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "serial_sha256": "5f1f9e8c2c07171a2ab116054535da66c6d9460c7e5bd35a7e01b52d16a98265",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": null,
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        },
+        "window-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+          "descriptor_count": 82
+        },
+        "before-copy": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cd",
+          "sha256": "6e4cbe9b7bc72ded43858f29ec681a1bf924b9ef4613909ada96bf4e0a0bd488",
+          "descriptor_count": 82
+        }
+      },
+      "serial_transcript": {
+        "path": "docs/references/xnu-memory-uefi-payload-released-20261023.txt",
+        "bytes": 29209,
+        "sha256": "aa1f3819225b1a3eb1f4205a68aa7959f2bee8132513785a67ccf0181c9aab21",
+        "raw_bytes": 29443,
+        "encoding": "CRLF to LF; nonprintable/trailing bytes escaped; complete serial; UEFI hex records unchanged"
+      }
+    }
+  },
+  "memory_fault_builds": {
+    "uefi-payload-busy": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=1",
+          "-c",
+          "@RUN@/build-uefi-payload-busy/loader.c",
+          "-o",
+          "@RUN@/build-uefi-payload-busy/loader.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=1",
+          "-c",
+          "@RUN@/build-uefi-payload-busy/efi_resources.c",
+          "-o",
+          "@RUN@/build-uefi-payload-busy/efi_resources.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=1",
+          "-c",
+          "@RUN@/build-uefi-payload-busy/efi_memory.c",
+          "-o",
+          "@RUN@/build-uefi-payload-busy/efi_memory.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@RUN@/build-uefi-payload-busy/loader.efi",
+          "@RUN@/build-uefi-payload-busy/loader.obj",
+          "@RUN@/build-uefi-payload-busy/efi_resources.obj",
+          "@RUN@/build-uefi-payload-busy/efi_memory.obj"
+        ]
+      ],
+      "memory_test": 1,
+      "patched_source_sha256": "0098167a19064f7aafec083691ae4c4218eba3f0a7dadb47ff35335793197f31",
+      "efi_sha256": "d158548200416821a241425da5782a508c4beea44aaed0ad4d555fe7f9d6369d",
+      "efi_bytes": 76288,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "uefi-window-busy": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=2",
+          "-c",
+          "@RUN@/build-uefi-window-busy/loader.c",
+          "-o",
+          "@RUN@/build-uefi-window-busy/loader.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=2",
+          "-c",
+          "@RUN@/build-uefi-window-busy/efi_resources.c",
+          "-o",
+          "@RUN@/build-uefi-window-busy/efi_resources.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=2",
+          "-c",
+          "@RUN@/build-uefi-window-busy/efi_memory.c",
+          "-o",
+          "@RUN@/build-uefi-window-busy/efi_memory.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@RUN@/build-uefi-window-busy/loader.efi",
+          "@RUN@/build-uefi-window-busy/loader.obj",
+          "@RUN@/build-uefi-window-busy/efi_resources.obj",
+          "@RUN@/build-uefi-window-busy/efi_memory.obj"
+        ]
+      ],
+      "memory_test": 2,
+      "patched_source_sha256": "0098167a19064f7aafec083691ae4c4218eba3f0a7dadb47ff35335793197f31",
+      "efi_sha256": "ecfa21678a5edd85eeab61a7a247bf34e19739f3dfdda44a962ea268a734db42",
+      "efi_bytes": 76288,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "uefi-payload-released": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=3",
+          "-c",
+          "@RUN@/build-uefi-payload-released/loader.c",
+          "-o",
+          "@RUN@/build-uefi-payload-released/loader.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=3",
+          "-c",
+          "@RUN@/build-uefi-payload-released/efi_resources.c",
+          "-o",
+          "@RUN@/build-uefi-payload-released/efi_resources.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=3",
+          "-c",
+          "@RUN@/build-uefi-payload-released/efi_memory.c",
+          "-o",
+          "@RUN@/build-uefi-payload-released/efi_memory.obj"
+        ],
+        [
+          "@LLVM@/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@RUN@/build-uefi-payload-released/loader.efi",
+          "@RUN@/build-uefi-payload-released/loader.obj",
+          "@RUN@/build-uefi-payload-released/efi_resources.obj",
+          "@RUN@/build-uefi-payload-released/efi_memory.obj"
+        ]
+      ],
+      "memory_test": 3,
+      "patched_source_sha256": "0098167a19064f7aafec083691ae4c4218eba3f0a7dadb47ff35335793197f31",
+      "efi_sha256": "5c6293f862eef8fbf8bd97066043b15dca3f1e3a45a167b4ff6984e8e7f3df53",
+      "efi_bytes": 76288,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    }
+  },
+  "fixture": {
+    "source": {
+      "bytes": 864,
+      "sha256": "b1dc1762dbe1aa428e7f06887223d074d8e33ed8ab9361d7dfd44d250e374d05"
+    },
+    "resource_projection": true,
+    "ram": [
+      [
+        "0x40000000",
+        "0x180000000"
+      ]
+    ],
+    "reserved": [],
+    "unresolved_reserved": false,
+    "initrd": [],
+    "initrd_interpretation": "Linux end-exclusive declaration; no rounding or off-by-one correction",
+    "cpus": [
+      "0x0"
+    ],
+    "psci_method": "hvc",
+    "counter_frequency_from_fdt": 62500000,
+    "gic": [
+      [
+        "0x8000000",
+        "0x10000"
+      ],
+      [
+        "0x80a0000",
+        "0x100000"
+      ]
+    ],
+    "redist_stride_from_fdt": "0x0",
+    "timer": {
+      "node": "/timer",
+      "physical_intid": 30,
+      "virtual_intid": 27,
+      "virtual_flags_from_fdt": "0x4",
+      "linux_use_physical_timer": false
+    },
+    "provenance": {
+      "/chosen/psci-method": {
+        "node": "/psci",
+        "property": "method"
+      },
+      "/arm-io/gic/reg": {
+        "node": "/gic@8000000",
+        "property": "reg",
+        "parent_address_cells": 2,
+        "parent_size_cells": 2,
+        "endianness": "big to little"
+      },
+      "/cpus/*/reg": {
+        "nodes_in_order": [
+          "/cpus/cpu@0"
+        ],
+        "property": "reg",
+        "parent_address_cells": 2,
+        "endianness": "big to little, require u32"
+      },
+      "/cpus/*/timebase-frequency": {
+        "node": "/timer",
+        "property": "clock-frequency",
+        "interpretation": "nominal FDT value, not measured CNTFRQ"
+      }
+    },
+    "memory_description_blockers": [],
+    "memory_ownership_verified": false,
+    "load_plan_generated": false,
+    "hardware_ready": false,
+    "runtime_requirements": [
+      "owned RAM window and complete effective reservations",
+      "Samsung load path, entry state and cache coherence",
+      "ICC access, virtual timer permissions and effective CNTFRQ",
+      "redistributor discovery by affinity, not inferred stride",
+      "recoverable output channel"
+    ],
+    "scope": "Static resources from supplied FDT; frequency is nominal; no MMIO or SMC/HVC executed"
+  },
+  "kernel_sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c",
+  "ramdisk_sha256": "97bc2c81b9e2b7d8c14552b235fa534b0211a6efbde70ea5a4ae8775a759cea5",
+  "own_sources_sha256": {
+    "lab/xnu/efi_resources.c": "41043fcabceb8c9ae4104ec8b35fda1e67c8c411031ddc9b90c80728109fe2eb",
+    "lab/xnu/efi_resources.h": "573ad1abd8bca31299710a1a2bf8195c535c8b2c3faaef64f774b830c2b1db6b",
+    "lab/xnu/efi_lab.py": "04307787038254b02d7830e71776754f3c9ba6d7a084e025720c544d725a37ec",
+    "lab/xnu/efi_memory.c": "40d5a99360c0f004dbdf300143b430e49f63a8765363673c20d04dae54d44aac",
+    "lab/xnu/efi_memory.h": "2d768773d9df501a46ef40e4f258e7457bff058fe90c68f4ac96d885ab79f618",
+    "lab/xnu/efi_memory_loader.inc": "0f7a9a1ad899ec86f85a3abc5519c0710e6be29612cf7a1756285180669b770d",
+    "lab/xnu/efi_memory.py": "0ffe8dd6c938c8527f7e24fc8bc6796c96935b051afaaa4c969773d8ec172317",
+    "scripts/run_xnu_adapter_lab.py": "c7875d0386c8f8a8e0cb4bd0d0a4a78995fd8be037950fdc46cfe3ccb07f78f7",
+    "lab/xnu/fdt_adapter.py": "73bb6c940e9ee1b12f41e364b0aeb27021c72ee8242fe72767e6416f7a9e524e",
+    "lab/xnu/boot_contract.py": "1b78467af8ef2bc0c9ebb0230a867c004dde95d33ce8a6df6e5127b931231fe2",
+    "scripts/capture_xnu_contract.py": "35b3e37eeaa356b3833806f40abe6ad34b95f49d2dbeb32e4278a94c096e8b1c",
+    "scripts/run_xnu_lab.py": "9cdd003c59da300292fd18e9c508e410ee8eb26a55338098bfe27c89f78cdc15",
+    "scripts/test_fdt.py": "7a053feee69688b8743a4c42d95884e09373ef58dcb0aa02e456ae19b92b6d3b",
+    "lab/xnu/fdt_probe.c": "ed3be2dc3b28a06f3b313514479a0d9cda66fb2ad57b0d4371a70803a504131a",
+    "r8/r10_payload/fdt.c": "4adb9dece2adfda83e9948d15b404f5dc6492e0e76ec7215ee72019e7a5be389",
+    "r8/r10_payload/fdt.h": "854da5c2a5613fbccfe27d6c3993f14472eb8c12ab27cae44699b5ebc881dad2",
+    "scripts/inspect_proton.py": "cf3dcec34e9d1016f544a9e27ddcb87769ac917e9b7d83c3856bb6bcec3505da",
+    "tools/mkpayload.py": "1be75e482d23082613b55871d2444bc736de946a8d8a8564ef836142c9fef166"
+  },
+  "memory_scope": "Full GetMemoryMap snapshots before/after exact-address allocations, before copy and at handoff; UEFI remains resident; Samsung not tested",
+  "hardware_ready": false,
+  "iOS_gui_tested": false,
+  "Samsung_tested": false,
+  "recorded_local_date": "2026-10-22 America/Campo_Grande",
+  "recorded_utc_date": "2026-10-23",
+  "repository_parent": "729e7f030a5c8ebdbc3ec786d0711fbf23b94b14",
+  "toolchain_manifest": "docs/references/xnu-efi-toolchain-20261022.json",
+  "host_tests": [
+    {
+      "command": "python3 scripts/test_xnu_efi_memory.py",
+      "tests": 22,
+      "passed": true,
+      "sha256": "6146934c9fc0a9adcfef68452676d450cf7aaf0073869faa37e22a906128e659"
+    },
+    {
+      "command": "python3 scripts/test_xnu_efi_resources.py",
+      "tests": 16,
+      "passed": true,
+      "sha256": "8c29228bc3196b73f3d36294c2ee7d5a0c0a26e251f19fb2210e23ba0833259c"
+    }
+  ],
+  "raw_map_evidence": "Every byte of each snapshot is in the corresponding complete serial transcript, including descriptor padding/extensions; parse_serial reconstructs exact bytes.",
+  "sanitizers": {
+    "C_guards": [
+      "AddressSanitizer",
+      "UndefinedBehaviorSanitizer"
+    ],
+    "LeakSanitizer": false,
+    "reason": "traced host"
+  },
+  "host_test_fixture_sources_sha256": {
+    "scripts/test_xnu_contract.py": "ec10b1ed442f1c5f0d81d3599e21b23de5ee6e6901cd6f56258d30144695097c"
+  }
+}

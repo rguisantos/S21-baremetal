@@ -125,7 +125,9 @@ não mudaram.
 ## Continuação
 
 Essa integração já foi [executada numa variante EFI de laboratório](xnu-efi-adapter-lab.md),
-com um caso positivo e cinco recusas antes da cópia/salto. O caminho
+com um caso positivo e cinco recusas antes da cópia/salto. A
+[etapa de memória UEFI](xnu-uefi-memory.md) acrescentou as reservas reais,
+quatro capturas e três recusas de memória. O caminho
 físico continua condicionado a P1/P2 do [roadmap](roadmap.md): região sob
 posse demonstrada, FDT efetivo/reservas, entrada/coerência, acesso GIC/timer
 e resultado recuperável. Os arquivos já recebidos bastam para essa próxima

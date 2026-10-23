@@ -8,7 +8,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
 - [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.
-- [Integração EFI do adaptador](xnu-efi-adapter-lab.md): build do loader, execução positiva, cinco recusas no QEMU e 16 testes C no host.
+- [Integração EFI do adaptador](xnu-efi-adapter-lab.md): build do loader e primeira integração dos recursos.
+- [Memória UEFI no QEMU](xnu-uefi-memory.md): payload/janela reservados, quatro mapas completos, 22 critérios positivos, oito recusas e 22 testes de memória/evidência; 16 testes de recursos reexecutados.
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 

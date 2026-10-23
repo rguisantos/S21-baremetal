@@ -60,7 +60,7 @@ def patch_source(source):
         nonlocal source
         adapter.require(source.count(old)==1,"upstream anchor changed: "+old[:60])
         source=source.replace(old,new)
-    edit('#include "efi.h"', '#include "efi.h"\n#include "efi_resources.h"')
+    edit('#include "efi.h"', '#include "efi.h"\n#include "efi_resources.h"\n#include "efi_memory.h"')
     edit('struct payload_info {\n', 'struct payload_info {\n\tconst uint8_t *resource;\n\tuint32_t resource_size;\n')
     start=source.index('static int\nparse_payload(')
     end=source.index('\n/* ------------------------------------------------------------------------ */',start)
@@ -112,10 +112,66 @@ parse_payload(struct payload_info *pi, int verbose)
     }
     print("S21 XNU ADAPTER: layout PASS before jump\\n");
 ''')
+    edit('static char last_result[64] = "idle";',
+         'static char last_result[64] = "idle";\n#include "efi_memory_loader.inc"')
+    start=source.index('static int\nchoose_window(')
+    end=source.index('\n/*\n * Load and run the kernel',start)
+    source=source[:start]+'''static int
+choose_window(const struct payload_info *pi)
+{
+    (void)pi;
+    return s21_choose_window();
+}
+'''+source[end:]
+    edit('\t/* --- load segments -------------------------------------------------- */', '''    if (!s21_layout_check(phys_base, win_size, kern_lo, kern_hi, rd_pa, rd_size,
+                          dt_pa, dt_max, ba_pa, top) || !s21_owned(2)) {
+        print("S21 UEFI: REJECT before copy\\n");
+        return 0;
+    }
+    print("S21 UEFI: ownership PASS before copy\\n");
+\t/* --- load segments -------------------------------------------------- */''')
+    edit('''\t\tmap_size = sizeof(map_buf);
+\t\tif (!EFI_ERROR(BS->get_memory_map(&map_size, map_buf, &map_key, &desc_size, &desc_ver))) {''', '''        if (!s21_owned(3)) return 0;
+        map_size = s21_maps[3].size;
+        desc_size = s21_maps[3].stride;
+        memcpy(map_buf, s21_maps[3].bytes, map_size);
+        {''')
+    edit('''\t\t\t\tif (d->phys_start >= win_base && d->phys_start < win_base + win_size) {
+\t\t\t\t\tcontinue;
+\t\t\t\t}
+\t\t\t\tif ((d->type >= 1 && d->type <= 6) || d->type == 9 || d->type == 10) {
+\t\t\t\t\tclean_dcache(d->phys_start, d->phys_start + (d->pages << 12));
+\t\t\t\t}''', '''                if ((d->type >= 1 && d->type <= 6) || d->type == 9 || d->type == 10) {
+                    /* UEFI can merge the adjacent payload/window allocations.
+                     * Clip both sides instead of testing only the descriptor start. */
+                    uint64_t lo = d->phys_start, hi = lo + (d->pages << 12);
+                    uint64_t window_end = win_base + win_size;
+                    if (lo < win_base)
+                        clean_dcache(lo, hi < win_base ? hi : win_base);
+                    if (hi > window_end)
+                        clean_dcache(lo > window_end ? lo : window_end, hi);
+                }''')
+    edit('''\tuint64_t map_size, map_key, desc_size;
+\tuint32_t desc_ver;
+\tstruct payload_info pi;''', '''\tuint64_t map_size, desc_size;
+\tstruct payload_info pi;''')
+    edit('\tinstall_exception_hook();', '''    if (!s21_claim_payload()) {
+        s21_memory_dump();
+        reboot();
+        return 0;
+    }
+\tinstall_exception_hook();''')
+    edit('''\t\trun_kernel(0, 0);
+\t}
+\treboot();''', '''\t\trun_kernel(0, 0);
+\t}
+    s21_memory_dump();
+\treboot();''')
     return source
 
 
-def build(kernel_tree, llvm_root, out):
+def build(kernel_tree, llvm_root, out, memory_test=0):
+    adapter.require(memory_test in (0,1,2,3),"unsupported UEFI laboratory fault")
     reference=json.loads((ROOT/"docs/references/hackios-xnu-20261022.json").read_text())
     pinned=next(x for x in reference["sources"] if x["repository"].endswith("-kernel"))
     head=subprocess.check_output(["git","-C",str(kernel_tree),"rev-parse","HEAD"],text=True,timeout=10).strip()
@@ -131,24 +187,25 @@ def build(kernel_tree, llvm_root, out):
     identity=subprocess.check_output(["git","-C",str(kernel_tree),"show",REVISION+":xnuloader/identity.h"])
     (out/"identity.h").write_bytes(identity); inputs["identity.h"]=sha(identity)
     (out/"loader.c").write_text(patch_source((out/"loader.c").read_text()))
-    for name in ("efi_resources.c","efi_resources.h"):
+    for name in ("efi_resources.c","efi_resources.h","efi_memory.c","efi_memory.h","efi_memory_loader.inc"):
         shutil.copyfile(ROOT/"lab/xnu"/name,out/name)
     clang=llvm_root/"usr/lib/llvm-19/bin/clang"
     link=llvm_root/"usr/lib/llvm-19/bin/lld-link"
     env=dict(os.environ,LD_LIBRARY_PATH=str(llvm_root/"usr/lib/x86_64-linux-gnu")+":"+str(llvm_root/"usr/lib/llvm-19/lib"))
     commands=[]
     with (out/"build.log").open("wb") as log:
-        for name in ("loader","efi_resources"):
+        for name in ("loader","efi_resources","efi_memory"):
             cmd=[str(clang),"--target=aarch64-unknown-windows","-ffreestanding","-fno-builtin",
                  "-fno-stack-protector","-fshort-wchar","-mgeneral-regs-only","-O1","-Wall","-Wextra",
-                 "-Wno-unused-parameter","-c",str(out/(name+".c")),"-o",str(out/(name+".obj"))]
+                 "-Wno-unused-parameter","-DS21_MEMORY_TEST="+str(memory_test),
+                 "-c",str(out/(name+".c")),"-o",str(out/(name+".obj"))]
             subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45); commands.append(cmd)
         cmd=[str(link),"/subsystem:efi_application","/entry:efi_main","/nodefaultlib","/base:0xA1000000",
-             "/timestamp:0","/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj")]
+             "/timestamp:0","/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj"),str(out/"efi_memory.obj")]
         subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30); commands.append(cmd)
     binary=(out/"loader.efi").read_bytes(); pe=struct.unpack_from("<I",binary,60)[0]
     adapter.require(binary[pe:pe+4]==b"PE\0\0" and struct.unpack_from("<H",binary,pe+4)[0]==0xaa64
                     and struct.unpack_from("<H",binary,pe+24+68)[0]==10,"not an AArch64 EFI application")
-    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,
+    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,
             "patched_source_sha256":sha((out/"loader.c").read_bytes()),"efi_sha256":sha(binary),
             "efi_bytes":len(binary),"clang_version":subprocess.check_output([str(clang),"--version"],env=env,text=True).splitlines()[0]}

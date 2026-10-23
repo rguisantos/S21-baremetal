@@ -32,7 +32,7 @@ mas os adaptadores de entrada têm de continuar explícitos.
 
 | Marco | Critério | Estado |
 |---|---|---|
-| D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel/loader prebuilt; não é iOS gráfico |
+| D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel prebuilt e variante EFI recompilada; não é iOS gráfico |
 | D1 — entrada Samsung observável | Diagnóstico mínimo no S21 e registro recuperado; região/coerência e percurso de carga demonstrados | Pendente; Marco A do roadmap principal |
 | D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial: codec, projeção e consumidor EFI executados no QEMU; memória/entrada Samsung e execução física dependem de D1 |
 | D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Pendente |
@@ -50,12 +50,15 @@ armazenamento, energia e, posteriormente, GPU e comunicação.
 
 ## Próxima entrega
 
-Ampliar o consumidor de recursos do laboratório preservando as recusas.
-A [integração EFI](xnu-efi-adapter-lab.md) passou um caso positivo e cinco
-recusas; os validadores C passaram 16 testes. O codec/adaptador anteriores
-continuam com evidências próprias. A base HZC2 permanece recusada para
-memória por ausência de bancos RAM e reservas incompletas. Ainda não há
-plano físico ou adaptador executável Samsung.
+O marco seguinte à [integração EFI](xnu-efi-adapter-lab.md), a
+[validação das reservas UEFI](xnu-uefi-memory.md), foi executado: payload e
+janela reservados, quatro mapas capturados, 22 critérios positivos e oito
+recusas. Passaram 22 testes de memória/evidência e os 16 de recursos.
+O contrato agora usa o mapa UEFI observado para conferir os buffers.
+Os recursos periféricos continuam no perfil QEMU fixado; ampliar esse
+perfil exige origem e contraprovas próprias. A base HZC2 permanece recusada
+para memória por ausência de bancos RAM e reservas incompletas. Ainda não
+há plano físico ou adaptador executável Samsung.
 
 Em paralelo, P1/P2 do [roadmap principal](roadmap.md) seguem na cadeia de
 entrada, coerência, observação e memória Samsung. Não é necessário reenviar
