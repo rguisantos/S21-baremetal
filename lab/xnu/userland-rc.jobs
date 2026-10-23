@@ -1,0 +1,3 @@
+# Lightweight demo job for the QEMU userland reference session.
+/redwood/bin/hello_dyn S21-userland-reference
+/bin/ps -A
