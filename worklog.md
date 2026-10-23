@@ -1083,3 +1083,35 @@ helper: 29 PASS. Não repetida a emulação 352/352, sem mudança em R10/diagnó
 ou teste físico. README/roadmap/índices atualizados, inclusive um parágrafo
 antigo que ainda tratava a interface QEMU já concluída como etapa futura.
 Marco A ainda exige posse/coerência, carregamento e leitura dos 128 bytes.
+
+
+## 2026-10-23 — pedidos BL2 do monitor e mutações da lista LK
+
+Inspetor stdlib vinculado ao sboot HZC2 exato, sem executar serviço seguro.
+Wrappers 0x16500/0x36218 byte a byte iguais (52 bytes): X0=-0xe7,
+X2=0x40000, X3=0xe8000000; X1=0x1b61 para W0=0, 0x36c para W0=0x20,
+zero nos demais modos. Correlações com 0x36c000/0x36c200 e intervalo
+candidato de 0x40000 bytes não demonstram unidades, leitura, cópia ou
+decriptação. Chamador testa W0 e estaciona se não zero; retorno real aberto.
+Pedido posterior -0xe8 e palavras brutas do cabeçalho preservados sem
+atribuir papel runtime a X3 ou propriedade de memória aos literais.
+
+Busca ampliada de BL para B/BL encontrou inserção por salto de cauda em
+0x16f6e4 e remoção em 0x16f714, objeto 0x31e5c8/callback 0x16f018.
+Gate 0x170750 retorna zero; wrappers não alteram a lista e corpo do callback
+retorna cedo sob instruções inalteradas e chamada normal. Helpers de lista
+ligam/desligam campos 0/8 sem escrever callback +16. Sem prova geral de
+aliases, escritores indiretos, imutabilidade da tabela ou lista completa.
+Grafo histórico de 1834 palavras mantido com bindings explícitos.
+
+Consulta LK -0x12d usa buffer de 180 bytes e imprime informações do monitor;
+não é dump plaintext do handler -0x3ff. IDs -0xe7/-0xe8/-0x12d/-0x3ff
+separados. Nenhum serviço foi mockado como retorno real ou executado.
+
+14 testes novos + 15 regressões do grafo: 29 PASS. GNU objdump 2.44
+coincidiu nas 160 palavras e 31 destinos relativos dos blocos selecionados;
+dados de tabela/cabeçalho excluídos da contagem. Evidência JSON, linhas
+GNU e saída de testes versionadas, sem incluir firmware. README/roadmap e
+índices atualizados; nova nota detalha premissas e lacunas. Sem mudança em
+R10/diagnóstico e sem repetir ensaios QEMU ou coletas shell bloqueadas.
+Próximo: provedor seguro e escritores indiretos, observação física em paralelo.

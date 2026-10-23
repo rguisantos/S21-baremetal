@@ -1,0 +1,901 @@
+{
+  "mode": "independent_GNU_objdump_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_objdump_version": "2.44",
+  "method": "objcopy binary to elf64-littleaarch64, objdump -D; compare aligned words and direct B/BL/conditional destinations with inspector flow decoder; raw table/header excluded",
+  "total_words_matched": 160,
+  "total_relative_targets_matched": 31,
+  "blocks": {
+    "request_a": {
+      "words_matched": 13,
+      "relative_targets_matched": 2,
+      "instructions": [
+        {
+          "offset": "0x16500",
+          "word": "a9bf7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-16]!"
+        },
+        {
+          "offset": "0x16504",
+          "word": "d2836c21",
+          "gnu": "mov\tx1, #0x1b61"
+        },
+        {
+          "offset": "0x16508",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x1650c",
+          "word": "34000080",
+          "gnu": "cbz\tw0, 1651c <_binary_recovered_bl_sboot_bin_start+0x1651c>"
+        },
+        {
+          "offset": "0x16510",
+          "word": "7100801f",
+          "gnu": "cmp\tw0, #0x20"
+        },
+        {
+          "offset": "0x16514",
+          "word": "d2806d81",
+          "gnu": "mov\tx1, #0x36c"
+        },
+        {
+          "offset": "0x16518",
+          "word": "9a8113e1",
+          "gnu": "csel\tx1, xzr, x1, ne"
+        },
+        {
+          "offset": "0x1651c",
+          "word": "d2bd0003",
+          "gnu": "mov\tx3, #0xe8000000"
+        },
+        {
+          "offset": "0x16520",
+          "word": "d2a00082",
+          "gnu": "mov\tx2, #0x40000"
+        },
+        {
+          "offset": "0x16524",
+          "word": "92801cc0",
+          "gnu": "mov\tx0, #0xffffffffffffff19"
+        },
+        {
+          "offset": "0x16528",
+          "word": "97ffffbe",
+          "gnu": "bl\t16420 <_binary_recovered_bl_sboot_bin_start+0x16420>"
+        },
+        {
+          "offset": "0x1652c",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x16530",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "request_b": {
+      "words_matched": 13,
+      "relative_targets_matched": 2,
+      "instructions": [
+        {
+          "offset": "0x36218",
+          "word": "a9bf7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-16]!"
+        },
+        {
+          "offset": "0x3621c",
+          "word": "d2836c21",
+          "gnu": "mov\tx1, #0x1b61"
+        },
+        {
+          "offset": "0x36220",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x36224",
+          "word": "34000080",
+          "gnu": "cbz\tw0, 36234 <_binary_recovered_bl_sboot_bin_start+0x36234>"
+        },
+        {
+          "offset": "0x36228",
+          "word": "7100801f",
+          "gnu": "cmp\tw0, #0x20"
+        },
+        {
+          "offset": "0x3622c",
+          "word": "d2806d81",
+          "gnu": "mov\tx1, #0x36c"
+        },
+        {
+          "offset": "0x36230",
+          "word": "9a8113e1",
+          "gnu": "csel\tx1, xzr, x1, ne"
+        },
+        {
+          "offset": "0x36234",
+          "word": "d2bd0003",
+          "gnu": "mov\tx3, #0xe8000000"
+        },
+        {
+          "offset": "0x36238",
+          "word": "d2a00082",
+          "gnu": "mov\tx2, #0x40000"
+        },
+        {
+          "offset": "0x3623c",
+          "word": "92801cc0",
+          "gnu": "mov\tx0, #0xffffffffffffff19"
+        },
+        {
+          "offset": "0x36240",
+          "word": "97ffffbe",
+          "gnu": "bl\t36138 <_binary_recovered_bl_sboot_bin_start+0x36138>"
+        },
+        {
+          "offset": "0x36244",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x36248",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "request_caller": {
+      "words_matched": 31,
+      "relative_targets_matched": 12,
+      "instructions": [
+        {
+          "offset": "0x1cb04",
+          "word": "a9be7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-32]!"
+        },
+        {
+          "offset": "0x1cb08",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x1cb0c",
+          "word": "f9000bf3",
+          "gnu": "str\tx19, [sp, #16]"
+        },
+        {
+          "offset": "0x1cb10",
+          "word": "97ffe68f",
+          "gnu": "bl\t1654c <_binary_recovered_bl_sboot_bin_start+0x1654c>"
+        },
+        {
+          "offset": "0x1cb14",
+          "word": "531e0c01",
+          "gnu": "ubfiz\tw1, w0, #2, #4"
+        },
+        {
+          "offset": "0x1cb18",
+          "word": "1ac12400",
+          "gnu": "lsr\tw0, w0, w1"
+        },
+        {
+          "offset": "0x1cb1c",
+          "word": "12000c00",
+          "gnu": "and\tw0, w0, #0xf"
+        },
+        {
+          "offset": "0x1cb20",
+          "word": "51000400",
+          "gnu": "sub\tw0, w0, #0x1"
+        },
+        {
+          "offset": "0x1cb24",
+          "word": "7100281f",
+          "gnu": "cmp\tw0, #0xa"
+        },
+        {
+          "offset": "0x1cb28",
+          "word": "540000e8",
+          "gnu": "b.hi\t1cb44 <_binary_recovered_bl_sboot_bin_start+0x1cb44>"
+        },
+        {
+          "offset": "0x1cb2c",
+          "word": "f0000081",
+          "gnu": "adrp\tx1, 2f000 <_binary_recovered_bl_sboot_bin_start+0x2f000>"
+        },
+        {
+          "offset": "0x1cb30",
+          "word": "9137e021",
+          "gnu": "add\tx1, x1, #0xdf8"
+        },
+        {
+          "offset": "0x1cb34",
+          "word": "38604833",
+          "gnu": "ldrb\tw19, [x1, w0, uxtw]"
+        },
+        {
+          "offset": "0x1cb38",
+          "word": "7101027f",
+          "gnu": "cmp\tw19, #0x40"
+        },
+        {
+          "offset": "0x1cb3c",
+          "word": "540000a0",
+          "gnu": "b.eq\t1cb50 <_binary_recovered_bl_sboot_bin_start+0x1cb50>"
+        },
+        {
+          "offset": "0x1cb40",
+          "word": "14000002",
+          "gnu": "b\t1cb48 <_binary_recovered_bl_sboot_bin_start+0x1cb48>"
+        },
+        {
+          "offset": "0x1cb44",
+          "word": "52800013",
+          "gnu": "mov\tw19, #0x0"
+        },
+        {
+          "offset": "0x1cb48",
+          "word": "2a1303e0",
+          "gnu": "mov\tw0, w19"
+        },
+        {
+          "offset": "0x1cb4c",
+          "word": "97ffe65f",
+          "gnu": "bl\t164c8 <_binary_recovered_bl_sboot_bin_start+0x164c8>"
+        },
+        {
+          "offset": "0x1cb50",
+          "word": "2a1303e0",
+          "gnu": "mov\tw0, w19"
+        },
+        {
+          "offset": "0x1cb54",
+          "word": "97ffe63a",
+          "gnu": "bl\t1643c <_binary_recovered_bl_sboot_bin_start+0x1643c>"
+        },
+        {
+          "offset": "0x1cb58",
+          "word": "34000040",
+          "gnu": "cbz\tw0, 1cb60 <_binary_recovered_bl_sboot_bin_start+0x1cb60>"
+        },
+        {
+          "offset": "0x1cb5c",
+          "word": "14000000",
+          "gnu": "b\t1cb5c <_binary_recovered_bl_sboot_bin_start+0x1cb5c>"
+        },
+        {
+          "offset": "0x1cb60",
+          "word": "97ffffe5",
+          "gnu": "bl\t1caf4 <_binary_recovered_bl_sboot_bin_start+0x1caf4>"
+        },
+        {
+          "offset": "0x1cb64",
+          "word": "2a1303e0",
+          "gnu": "mov\tw0, w19"
+        },
+        {
+          "offset": "0x1cb68",
+          "word": "97ffe666",
+          "gnu": "bl\t16500 <_binary_recovered_bl_sboot_bin_start+0x16500>"
+        },
+        {
+          "offset": "0x1cb6c",
+          "word": "34000040",
+          "gnu": "cbz\tw0, 1cb74 <_binary_recovered_bl_sboot_bin_start+0x1cb74>"
+        },
+        {
+          "offset": "0x1cb70",
+          "word": "14000000",
+          "gnu": "b\t1cb70 <_binary_recovered_bl_sboot_bin_start+0x1cb70>"
+        },
+        {
+          "offset": "0x1cb74",
+          "word": "f9400bf3",
+          "gnu": "ldr\tx19, [sp, #16]"
+        },
+        {
+          "offset": "0x1cb78",
+          "word": "a8c27bfd",
+          "gnu": "ldp\tx29, x30, [sp], #32"
+        },
+        {
+          "offset": "0x1cb7c",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "handoff_request": {
+      "words_matched": 6,
+      "relative_targets_matched": 1,
+      "instructions": [
+        {
+          "offset": "0x16534",
+          "word": "d29e0003",
+          "gnu": "mov\tx3, #0xf000"
+        },
+        {
+          "offset": "0x16538",
+          "word": "d2800002",
+          "gnu": "mov\tx2, #0x0"
+        },
+        {
+          "offset": "0x1653c",
+          "word": "f2b7ffe3",
+          "gnu": "movk\tx3, #0xbfff, lsl #16"
+        },
+        {
+          "offset": "0x16540",
+          "word": "d2800001",
+          "gnu": "mov\tx1, #0x0"
+        },
+        {
+          "offset": "0x16544",
+          "word": "92801ce0",
+          "gnu": "mov\tx0, #0xffffffffffffff18"
+        },
+        {
+          "offset": "0x16548",
+          "word": "17ffffb6",
+          "gnu": "b\t16420 <_binary_recovered_bl_sboot_bin_start+0x16420>"
+        }
+      ]
+    },
+    "insert": {
+      "words_matched": 20,
+      "relative_targets_matched": 1,
+      "instructions": [
+        {
+          "offset": "0x20c578",
+          "word": "d53b4221",
+          "gnu": "mrs\tx1, daif"
+        },
+        {
+          "offset": "0x20c57c",
+          "word": "37380161",
+          "gnu": "tbnz\tw1, #7, 20c5a8 <_binary_recovered_bl_sboot_bin_start+0x20c5a8>"
+        },
+        {
+          "offset": "0x20c580",
+          "word": "d50342df",
+          "gnu": "msr\tdaifset, #0x2"
+        },
+        {
+          "offset": "0x20c584",
+          "word": "b00008a1",
+          "gnu": "adrp\tx1, 321000 <_binary_recovered_bl_sboot_bin_start+0x321000>"
+        },
+        {
+          "offset": "0x20c588",
+          "word": "91230021",
+          "gnu": "add\tx1, x1, #0x8c0"
+        },
+        {
+          "offset": "0x20c58c",
+          "word": "f9400422",
+          "gnu": "ldr\tx2, [x1, #8]"
+        },
+        {
+          "offset": "0x20c590",
+          "word": "a9000801",
+          "gnu": "stp\tx1, x2, [x0]"
+        },
+        {
+          "offset": "0x20c594",
+          "word": "f9400422",
+          "gnu": "ldr\tx2, [x1, #8]"
+        },
+        {
+          "offset": "0x20c598",
+          "word": "f9000040",
+          "gnu": "str\tx0, [x2]"
+        },
+        {
+          "offset": "0x20c59c",
+          "word": "f9000420",
+          "gnu": "str\tx0, [x1, #8]"
+        },
+        {
+          "offset": "0x20c5a0",
+          "word": "d50342ff",
+          "gnu": "msr\tdaifclr, #0x2"
+        },
+        {
+          "offset": "0x20c5a4",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        },
+        {
+          "offset": "0x20c5a8",
+          "word": "b00008a1",
+          "gnu": "adrp\tx1, 321000 <_binary_recovered_bl_sboot_bin_start+0x321000>"
+        },
+        {
+          "offset": "0x20c5ac",
+          "word": "91230021",
+          "gnu": "add\tx1, x1, #0x8c0"
+        },
+        {
+          "offset": "0x20c5b0",
+          "word": "f9400422",
+          "gnu": "ldr\tx2, [x1, #8]"
+        },
+        {
+          "offset": "0x20c5b4",
+          "word": "a9000801",
+          "gnu": "stp\tx1, x2, [x0]"
+        },
+        {
+          "offset": "0x20c5b8",
+          "word": "f9400422",
+          "gnu": "ldr\tx2, [x1, #8]"
+        },
+        {
+          "offset": "0x20c5bc",
+          "word": "f9000040",
+          "gnu": "str\tx0, [x2]"
+        },
+        {
+          "offset": "0x20c5c0",
+          "word": "f9000420",
+          "gnu": "str\tx0, [x1, #8]"
+        },
+        {
+          "offset": "0x20c5c4",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "remove": {
+      "words_matched": 16,
+      "relative_targets_matched": 1,
+      "instructions": [
+        {
+          "offset": "0x20c5c8",
+          "word": "d53b4221",
+          "gnu": "mrs\tx1, daif"
+        },
+        {
+          "offset": "0x20c5cc",
+          "word": "37380121",
+          "gnu": "tbnz\tw1, #7, 20c5f0 <_binary_recovered_bl_sboot_bin_start+0x20c5f0>"
+        },
+        {
+          "offset": "0x20c5d0",
+          "word": "d50342df",
+          "gnu": "msr\tdaifset, #0x2"
+        },
+        {
+          "offset": "0x20c5d4",
+          "word": "a9400402",
+          "gnu": "ldp\tx2, x1, [x0]"
+        },
+        {
+          "offset": "0x20c5d8",
+          "word": "f9000022",
+          "gnu": "str\tx2, [x1]"
+        },
+        {
+          "offset": "0x20c5dc",
+          "word": "f9400002",
+          "gnu": "ldr\tx2, [x0]"
+        },
+        {
+          "offset": "0x20c5e0",
+          "word": "f9000441",
+          "gnu": "str\tx1, [x2, #8]"
+        },
+        {
+          "offset": "0x20c5e4",
+          "word": "a9007c1f",
+          "gnu": "stp\txzr, xzr, [x0]"
+        },
+        {
+          "offset": "0x20c5e8",
+          "word": "d50342ff",
+          "gnu": "msr\tdaifclr, #0x2"
+        },
+        {
+          "offset": "0x20c5ec",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        },
+        {
+          "offset": "0x20c5f0",
+          "word": "a9400402",
+          "gnu": "ldp\tx2, x1, [x0]"
+        },
+        {
+          "offset": "0x20c5f4",
+          "word": "f9000022",
+          "gnu": "str\tx2, [x1]"
+        },
+        {
+          "offset": "0x20c5f8",
+          "word": "f9400002",
+          "gnu": "ldr\tx2, [x0]"
+        },
+        {
+          "offset": "0x20c5fc",
+          "word": "f9000441",
+          "gnu": "str\tx1, [x2, #8]"
+        },
+        {
+          "offset": "0x20c600",
+          "word": "a9007c1f",
+          "gnu": "stp\txzr, xzr, [x0]"
+        },
+        {
+          "offset": "0x20c604",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "conditional_insert": {
+      "words_matched": 12,
+      "relative_targets_matched": 3,
+      "instructions": [
+        {
+          "offset": "0x16f6b8",
+          "word": "a9bf7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-16]!"
+        },
+        {
+          "offset": "0x16f6bc",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x16f6c0",
+          "word": "94000424",
+          "gnu": "bl\t170750 <_binary_recovered_bl_sboot_bin_start+0x170750>"
+        },
+        {
+          "offset": "0x16f6c4",
+          "word": "53001c00",
+          "gnu": "uxtb\tw0, w0"
+        },
+        {
+          "offset": "0x16f6c8",
+          "word": "35000080",
+          "gnu": "cbnz\tw0, 16f6d8 <_binary_recovered_bl_sboot_bin_start+0x16f6d8>"
+        },
+        {
+          "offset": "0x16f6cc",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x16f6d0",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        },
+        {
+          "offset": "0x16f6d4",
+          "word": "d503201f",
+          "gnu": "nop"
+        },
+        {
+          "offset": "0x16f6d8",
+          "word": "f0000d60",
+          "gnu": "adrp\tx0, 31e000 <_binary_recovered_bl_sboot_bin_start+0x31e000>"
+        },
+        {
+          "offset": "0x16f6dc",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x16f6e0",
+          "word": "91172000",
+          "gnu": "add\tx0, x0, #0x5c8"
+        },
+        {
+          "offset": "0x16f6e4",
+          "word": "140273a5",
+          "gnu": "b\t20c578 <_binary_recovered_bl_sboot_bin_start+0x20c578>"
+        }
+      ]
+    },
+    "conditional_remove": {
+      "words_matched": 12,
+      "relative_targets_matched": 3,
+      "instructions": [
+        {
+          "offset": "0x16f6e8",
+          "word": "a9bf7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-16]!"
+        },
+        {
+          "offset": "0x16f6ec",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x16f6f0",
+          "word": "94000418",
+          "gnu": "bl\t170750 <_binary_recovered_bl_sboot_bin_start+0x170750>"
+        },
+        {
+          "offset": "0x16f6f4",
+          "word": "53001c00",
+          "gnu": "uxtb\tw0, w0"
+        },
+        {
+          "offset": "0x16f6f8",
+          "word": "35000080",
+          "gnu": "cbnz\tw0, 16f708 <_binary_recovered_bl_sboot_bin_start+0x16f708>"
+        },
+        {
+          "offset": "0x16f6fc",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x16f700",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        },
+        {
+          "offset": "0x16f704",
+          "word": "d503201f",
+          "gnu": "nop"
+        },
+        {
+          "offset": "0x16f708",
+          "word": "f0000d60",
+          "gnu": "adrp\tx0, 31e000 <_binary_recovered_bl_sboot_bin_start+0x31e000>"
+        },
+        {
+          "offset": "0x16f70c",
+          "word": "a8c17bfd",
+          "gnu": "ldp\tx29, x30, [sp], #16"
+        },
+        {
+          "offset": "0x16f710",
+          "word": "91172000",
+          "gnu": "add\tx0, x0, #0x5c8"
+        },
+        {
+          "offset": "0x16f714",
+          "word": "140273ad",
+          "gnu": "b\t20c5c8 <_binary_recovered_bl_sboot_bin_start+0x20c5c8>"
+        }
+      ]
+    },
+    "constant_gate": {
+      "words_matched": 2,
+      "relative_targets_matched": 0,
+      "instructions": [
+        {
+          "offset": "0x170750",
+          "word": "52800000",
+          "gnu": "mov\tw0, #0x0"
+        },
+        {
+          "offset": "0x170754",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "dormant_callback_gate": {
+      "words_matched": 9,
+      "relative_targets_matched": 2,
+      "instructions": [
+        {
+          "offset": "0x16f018",
+          "word": "a9bd7bfd",
+          "gnu": "stp\tx29, x30, [sp, #-48]!"
+        },
+        {
+          "offset": "0x16f01c",
+          "word": "910003fd",
+          "gnu": "mov\tx29, sp"
+        },
+        {
+          "offset": "0x16f020",
+          "word": "a9025bf5",
+          "gnu": "stp\tx21, x22, [sp, #32]"
+        },
+        {
+          "offset": "0x16f024",
+          "word": "a90153f3",
+          "gnu": "stp\tx19, x20, [sp, #16]"
+        },
+        {
+          "offset": "0x16f028",
+          "word": "aa0103f6",
+          "gnu": "mov\tx22, x1"
+        },
+        {
+          "offset": "0x16f02c",
+          "word": "aa0203f5",
+          "gnu": "mov\tx21, x2"
+        },
+        {
+          "offset": "0x16f030",
+          "word": "940005c8",
+          "gnu": "bl\t170750 <_binary_recovered_bl_sboot_bin_start+0x170750>"
+        },
+        {
+          "offset": "0x16f034",
+          "word": "53001c00",
+          "gnu": "uxtb\tw0, w0"
+        },
+        {
+          "offset": "0x16f038",
+          "word": "34000360",
+          "gnu": "cbz\tw0, 16f0a4 <_binary_recovered_bl_sboot_bin_start+0x16f0a4>"
+        }
+      ]
+    },
+    "dormant_callback_return": {
+      "words_matched": 5,
+      "relative_targets_matched": 0,
+      "instructions": [
+        {
+          "offset": "0x16f0a4",
+          "word": "a94153f3",
+          "gnu": "ldp\tx19, x20, [sp, #16]"
+        },
+        {
+          "offset": "0x16f0a8",
+          "word": "a9425bf5",
+          "gnu": "ldp\tx21, x22, [sp, #32]"
+        },
+        {
+          "offset": "0x16f0ac",
+          "word": "a8c37bfd",
+          "gnu": "ldp\tx29, x30, [sp], #48"
+        },
+        {
+          "offset": "0x16f0b0",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        },
+        {
+          "offset": "0x16f0b4",
+          "word": "d503201f",
+          "gnu": "nop"
+        }
+      ]
+    },
+    "secure_veneer_a": {
+      "words_matched": 2,
+      "relative_targets_matched": 0,
+      "instructions": [
+        {
+          "offset": "0x16420",
+          "word": "d4000003",
+          "gnu": "smc\t#0x0"
+        },
+        {
+          "offset": "0x16424",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "secure_veneer_b": {
+      "words_matched": 2,
+      "relative_targets_matched": 0,
+      "instructions": [
+        {
+          "offset": "0x36138",
+          "word": "d4000003",
+          "gnu": "smc\t#0x0"
+        },
+        {
+          "offset": "0x3613c",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "metadata_query_wrapper": {
+      "words_matched": 6,
+      "relative_targets_matched": 0,
+      "instructions": [
+        {
+          "offset": "0xf6178",
+          "word": "2a0103e2",
+          "gnu": "mov\tw2, w1"
+        },
+        {
+          "offset": "0xf617c",
+          "word": "d2800003",
+          "gnu": "mov\tx3, #0x0"
+        },
+        {
+          "offset": "0xf6180",
+          "word": "aa0003e1",
+          "gnu": "mov\tx1, x0"
+        },
+        {
+          "offset": "0xf6184",
+          "word": "92802580",
+          "gnu": "mov\tx0, #0xfffffffffffffed3"
+        },
+        {
+          "offset": "0xf6188",
+          "word": "d4000003",
+          "gnu": "smc\t#0x0"
+        },
+        {
+          "offset": "0xf618c",
+          "word": "d65f03c0",
+          "gnu": "ret"
+        }
+      ]
+    },
+    "metadata_query_caller": {
+      "words_matched": 11,
+      "relative_targets_matched": 4,
+      "instructions": [
+        {
+          "offset": "0xf9838",
+          "word": "94024096",
+          "gnu": "bl\t189a90 <_binary_recovered_bl_sboot_bin_start+0x189a90>"
+        },
+        {
+          "offset": "0xf983c",
+          "word": "52801681",
+          "gnu": "mov\tw1, #0xb4"
+        },
+        {
+          "offset": "0xf9840",
+          "word": "9100a3a0",
+          "gnu": "add\tx0, x29, #0x28"
+        },
+        {
+          "offset": "0xf9844",
+          "word": "97fff24d",
+          "gnu": "bl\tf6178 <_binary_recovered_bl_sboot_bin_start+0xf6178>"
+        },
+        {
+          "offset": "0xf9848",
+          "word": "f00008c0",
+          "gnu": "adrp\tx0, 214000 <_binary_recovered_bl_sboot_bin_start+0x214000>"
+        },
+        {
+          "offset": "0xf984c",
+          "word": "913ea000",
+          "gnu": "add\tx0, x0, #0xfa8"
+        },
+        {
+          "offset": "0xf9850",
+          "word": "9402df82",
+          "gnu": "bl\t1b1658 <_binary_recovered_bl_sboot_bin_start+0x1b1658>"
+        },
+        {
+          "offset": "0xf9854",
+          "word": "f00008c0",
+          "gnu": "adrp\tx0, 214000 <_binary_recovered_bl_sboot_bin_start+0x214000>"
+        },
+        {
+          "offset": "0xf9858",
+          "word": "9100a3a1",
+          "gnu": "add\tx1, x29, #0x28"
+        },
+        {
+          "offset": "0xf985c",
+          "word": "913f2000",
+          "gnu": "add\tx0, x0, #0xfc8"
+        },
+        {
+          "offset": "0xf9860",
+          "word": "9402df7e",
+          "gnu": "bl\t1b1658 <_binary_recovered_bl_sboot_bin_start+0x1b1658>"
+        }
+      ]
+    }
+  },
+  "secure_firmware_executed": false
+}

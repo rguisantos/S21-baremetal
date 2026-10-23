@@ -1,0 +1,34 @@
+test_census_includes_tail_branches_and_negative_relative_calls (test_monitor_preparation.Preparation.test_census_includes_tail_branches_and_negative_relative_calls) ... ok
+test_census_rejects_invalid_file_bounds (test_monitor_preparation.Preparation.test_census_rejects_invalid_file_bounds) ... ok
+test_gate_proof_rejects_nonzero_gate_or_unknown_condition (test_monitor_preparation.Preparation.test_gate_proof_rejects_nonzero_gate_or_unknown_condition) ... ok
+test_immediate_rejects_wrong_register_width_and_movk (test_monitor_preparation.Preparation.test_immediate_rejects_wrong_register_width_and_movk) ... ok
+test_immediates_decode_movz_shift_and_movn_64bit (test_monitor_preparation.Preparation.test_immediates_decode_movz_shift_and_movn_64bit) ... ok
+test_instruction_access_is_bounded_and_aligned (test_monitor_preparation.Preparation.test_instruction_access_is_bounded_and_aligned) ... ok
+test_mode_32_uses_alternative_and_other_w_modes_zero_x1 (test_monitor_preparation.Preparation.test_mode_32_uses_alternative_and_other_w_modes_zero_x1) ... ok
+test_mode_zero_reconstructs_sector_like_argument_without_assigning_units (test_monitor_preparation.Preparation.test_mode_zero_reconstructs_sector_like_argument_without_assigning_units) ... ok
+test_modes_require_explicit_unsigned_w_values (test_monitor_preparation.Preparation.test_modes_require_explicit_unsigned_w_values) ... ok
+test_request_cannot_skip_or_redirect_secure_veneer (test_monitor_preparation.Preparation.test_request_cannot_skip_or_redirect_secure_veneer) ... ok
+test_request_rejects_changed_selection_or_prologue (test_monitor_preparation.Preparation.test_request_rejects_changed_selection_or_prologue) ... ok
+test_wrong_firmware_cli_does_not_emit_evidence (test_monitor_preparation.Preparation.test_wrong_firmware_cli_does_not_emit_evidence) ... ok
+test_zero_gate_skips_conditional_insert_and_remove_branches (test_monitor_preparation.Preparation.test_zero_gate_skips_conditional_insert_and_remove_branches) ... ok
+test_zero_gate_takes_cbz_path_in_callback_body (test_monitor_preparation.Preparation.test_zero_gate_takes_cbz_path_in_callback_body) ... ok
+test_all_conditional_families_explore_both_paths (test_lk_final_edges.FinalEdges.test_all_conditional_families_explore_both_paths) ... ok
+test_call_includes_callee_and_return_continuation (test_lk_final_edges.FinalEdges.test_call_includes_callee_and_return_continuation) ... ok
+test_escape_and_unaligned_expansion_rejected (test_lk_final_edges.FinalEdges.test_escape_and_unaligned_expansion_rejected) ... ok
+test_handoff_boundary_stops_before_payload_and_requires_blr (test_lk_final_edges.FinalEdges.test_handoff_boundary_stops_before_payload_and_requires_blr) ... ok
+test_indirect_call_keeps_continuation_and_explicit_expansion (test_lk_final_edges.FinalEdges.test_indirect_call_keeps_continuation_and_explicit_expansion) ... ok
+test_loop_is_bounded_by_unique_pcs (test_lk_final_edges.FinalEdges.test_loop_is_bounded_by_unique_pcs) ... ok
+test_pc_budget_and_bad_code_bounds_rejected (test_lk_final_edges.FinalEdges.test_pc_budget_and_bad_code_bounds_rejected) ... ok
+test_secure_calls_recorded_without_assigning_a_handler (test_lk_final_edges.FinalEdges.test_secure_calls_recorded_without_assigning_a_handler) ... ok
+test_signed_immediates_use_instruction_pc (test_lk_final_edges.FinalEdges.test_signed_immediates_use_instruction_pc) ... ok
+test_signed_table_and_invalid_targets (test_lk_final_edges.FinalEdges.test_signed_table_and_invalid_targets) ... ok
+test_system_words_are_inventory_not_executed (test_lk_final_edges.FinalEdges.test_system_words_are_inventory_not_executed) ... ok
+test_tail_branch_does_not_fall_through (test_lk_final_edges.FinalEdges.test_tail_branch_does_not_fall_through) ... ok
+test_unknown_control_fails_closed (test_lk_final_edges.FinalEdges.test_unknown_control_fails_closed) ... ok
+test_unknown_indirect_branch_is_not_invented (test_lk_final_edges.FinalEdges.test_unknown_indirect_branch_is_not_invented) ... ok
+test_wrong_firmware_does_not_produce_an_evidence_report (test_lk_final_edges.FinalEdges.test_wrong_firmware_does_not_produce_an_evidence_report) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.067s
+
+OK

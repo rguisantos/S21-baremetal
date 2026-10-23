@@ -61,6 +61,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Splits do sboot HZC2 e entrada LK em EL1](sboot-layout-hzc2.md): validação do detector, inspeção reproduzível e revisão do relatório externo atualizado.
 
+- [Preparação do monitor e mutações da lista LK](monitor-preparation-hzc2.md): argumentos BL2 -0xe7, segundo objeto condicionado, saltos B/BL e consulta de metadados; serviços seguros e lista viva continuam abertos.
+
 - [Console LK e handoff final HZC2](lk-console-handoff.md): caminho de saída e pista de base 0x10540000.
 
 - [Cache/MMU e trecho final do LK](lk-cache-handoff.md): helper restrito ao EL atual, operandos set/way e argumentos finais condicionais; 352 cenários com acessos de sistema substituídos, sem coerência física comprovada.

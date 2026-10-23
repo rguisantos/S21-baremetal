@@ -59,3 +59,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `emulate_lk_cache_handoff.py`: Unicorn opcional; 352 cenários executam instruções originais até o BLR, parando num destino sintético. Acessos de sistema/DC/barreiras substituídos ou registrados, três chamadas externas omitidas. Não modela tradução/cache suja ou demonstra estado final no telefone.
 
 - `inspect_lk_final_edges.py` e `test_lk_final_edges.py`: inventário limitado das chamadas finais HZC2, expansão declarada do formatador/tabela/lista e operações de sistema. 15 testes novos mais 14 do helper; não executa firmware ou resolve o SMC. [Guia e limites](../docs/lk-final-edges.md).
+
+- `inspect_monitor_preparation.py` e `test_monitor_preparation.py`: argumentos dos wrappers BL2, censo B/BL dos helpers de lista e gates constantes no sboot HZC2 exato. 14 testes novos; não executa SMC ou demonstra lista/retornos reais. [Evidência e limites](../docs/monitor-preparation-hzc2.md).

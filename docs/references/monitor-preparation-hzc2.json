@@ -1,0 +1,271 @@
+{
+  "date": "2026-10-23",
+  "mode": "static_read_only_hzc2_monitor_request_and_callback_sites",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "blocks": {
+    "request_a": {
+      "start": "0x16500",
+      "end_exclusive": "0x16534",
+      "sha256": "8faf3cc87afcddc83046f87687866f2bbed442ae6cd17e583762fed4e0182a98"
+    },
+    "request_b": {
+      "start": "0x36218",
+      "end_exclusive": "0x3624c",
+      "sha256": "8faf3cc87afcddc83046f87687866f2bbed442ae6cd17e583762fed4e0182a98"
+    },
+    "request_caller": {
+      "start": "0x1cb04",
+      "end_exclusive": "0x1cb80",
+      "sha256": "c2e794ab9a4182a4e52c3182ff8a4d67756e41db86eca7ac6520298d1680981a"
+    },
+    "mode_table": {
+      "start": "0x2fdf8",
+      "end_exclusive": "0x2fe03",
+      "sha256": "197b88f4b09c36e9de82eb2f6288f829895065c96e36e9998be669ce89561f3a"
+    },
+    "handoff_request": {
+      "start": "0x16534",
+      "end_exclusive": "0x1654c",
+      "sha256": "74682d3c1fa36cd9607c51c905ba8782afce994bd1f833b72945295e44d10c7c"
+    },
+    "insert": {
+      "start": "0x20c578",
+      "end_exclusive": "0x20c5c8",
+      "sha256": "00b099cf6e8dd877b42a40217579174ccee5b98d74b46b48217d73730f7d1246"
+    },
+    "remove": {
+      "start": "0x20c5c8",
+      "end_exclusive": "0x20c608",
+      "sha256": "172aca072a922ff5087be2508d73fde5b20cefff0514116c7566237b01c17da9"
+    },
+    "conditional_insert": {
+      "start": "0x16f6b8",
+      "end_exclusive": "0x16f6e8",
+      "sha256": "164773c34465f3956e0927f83b0575add721b77a1ed3c5b82769be1b16efe3c4"
+    },
+    "conditional_remove": {
+      "start": "0x16f6e8",
+      "end_exclusive": "0x16f718",
+      "sha256": "7c7622ee1ec0cbc8526caf96e9073663b840424450c598ae0b2801065557a4cc"
+    },
+    "constant_gate": {
+      "start": "0x170750",
+      "end_exclusive": "0x170758",
+      "sha256": "2f6110664dbd16b514a0c2c7c8326932a36e85d2f15b91e57ca76efd2c7a625a"
+    },
+    "dormant_callback_gate": {
+      "start": "0x16f018",
+      "end_exclusive": "0x16f03c",
+      "sha256": "d2e4d5687e7bc1e2961fa1e6816a41284ab153571b2d0988bb7c82f5e08b561a"
+    },
+    "dormant_callback_return": {
+      "start": "0x16f0a4",
+      "end_exclusive": "0x16f0b8",
+      "sha256": "e5664f1f1ee99777675b41641d51e84bb3c44f643eb97a52da8f38a5a3365631"
+    },
+    "secure_veneer_a": {
+      "start": "0x16420",
+      "end_exclusive": "0x16428",
+      "sha256": "2ec8ec3d9bdcfc1b0d5fe3c5e59b5a2ea857eb4a0e60defc8dd1acb2edf5ca75"
+    },
+    "secure_veneer_b": {
+      "start": "0x36138",
+      "end_exclusive": "0x36140",
+      "sha256": "2ec8ec3d9bdcfc1b0d5fe3c5e59b5a2ea857eb4a0e60defc8dd1acb2edf5ca75"
+    },
+    "metadata_query_wrapper": {
+      "start": "0xf6178",
+      "end_exclusive": "0xf6190",
+      "sha256": "c75b2503e462ef01b58896d68ff18fd45fe9c3e8a1b4ab700150117f803f8e6b"
+    },
+    "metadata_query_caller": {
+      "start": "0xf9838",
+      "end_exclusive": "0xf9864",
+      "sha256": "ca8fd61a4bfaa6f0ae55d0f56a55eb7819f093cdb20b1687a9bbd335364d166b"
+    },
+    "monitor_header_words": {
+      "start": "0x36c300",
+      "end_exclusive": "0x36c324",
+      "sha256": "632ccbbf574cc4c3d3ea4cdda186200d65682f5ace35ed43d550eda82c6051bb"
+    }
+  },
+  "bl2_request": {
+    "wrappers_byte_identical": true,
+    "examples": [
+      {
+        "mode_w0": "0x0",
+        "x0": "0xffffffffffffff19",
+        "x1": "0x1b61",
+        "x2": "0x40000",
+        "x3": "0xe8000000",
+        "stopped_before_smc": true
+      },
+      {
+        "mode_w0": "0x20",
+        "x0": "0xffffffffffffff19",
+        "x1": "0x36c",
+        "x2": "0x40000",
+        "x3": "0xe8000000",
+        "stopped_before_smc": true
+      },
+      {
+        "mode_w0": "0x14",
+        "x0": "0xffffffffffffff19",
+        "x1": "0x0",
+        "x2": "0x40000",
+        "x3": "0xe8000000",
+        "stopped_before_smc": true
+      },
+      {
+        "mode_w0": "0x40",
+        "x0": "0xffffffffffffff19",
+        "x1": "0x0",
+        "x2": "0x40000",
+        "x3": "0xe8000000",
+        "stopped_before_smc": true
+      },
+      {
+        "mode_w0": "0xffffffff",
+        "x0": "0xffffffffffffff19",
+        "x1": "0x0",
+        "x2": "0x40000",
+        "x3": "0xe8000000",
+        "stopped_before_smc": true
+      }
+    ],
+    "wrapper_a_callers": [
+      {
+        "offset": "0x1cb68",
+        "kind": "bl"
+      }
+    ],
+    "wrapper_b_callers": [],
+    "caller_zero_test_word": "34000040",
+    "caller_nonzero_w0_self_loop": "0x1cb70",
+    "x1_units_verified": false,
+    "x3_role_verified": false,
+    "service_id": "-0xe7",
+    "secure_handler_executed": false,
+    "correlations_only": {
+      "0x36c_times_4096": "0x36c000",
+      "0x1b61_times_512": "0x36c200",
+      "candidate_monitor_container": [
+        "0x36c000",
+        "0x3ac000"
+      ]
+    },
+    "later_request": {
+      "tail_branch": "0x1612c",
+      "wrapper": "0x16534",
+      "service_id": "-0xe8",
+      "x1": "0x0",
+      "x2": "0x0",
+      "x3": "0xbffff000",
+      "semantics_verified": false
+    }
+  },
+  "monitor_header_raw_words": {
+    "0x36c310": "00010000",
+    "0x36c314": "bff80000",
+    "0x36c318": "bff80000",
+    "0x36c31c": "bff80500",
+    "0x36c320": "bff9aac0"
+  },
+  "monitor_metadata_query": {
+    "call": "0xf9844",
+    "wrapper": "0xf6178",
+    "smc": "0xf6188",
+    "service_id": "-0x12d",
+    "buffer_bytes": "0xb4",
+    "plaintext_handler_dump_proven": false
+  },
+  "callback_mutation": {
+    "scan_range_file_offsets": [
+      "0xec000",
+      "0x20c630"
+    ],
+    "insert_direct_candidates": [
+      {
+        "offset": "0xff948",
+        "kind": "bl"
+      },
+      {
+        "offset": "0x16f6e4",
+        "kind": "b"
+      }
+    ],
+    "remove_direct_candidates": [
+      {
+        "offset": "0x16f714",
+        "kind": "b"
+      }
+    ],
+    "gate_witnesses": [
+      {
+        "call": "0x16f6c0",
+        "gate": "0x170750",
+        "gate_w0": "0x0",
+        "branch": "0x16f6c8",
+        "branch_taken": false,
+        "next_pc": "0x16f6cc",
+        "assumption": "unmodified pinned instructions, normal call/return, no traps"
+      },
+      {
+        "call": "0x16f6f0",
+        "gate": "0x170750",
+        "gate_w0": "0x0",
+        "branch": "0x16f6f8",
+        "branch_taken": false,
+        "next_pc": "0x16f6fc",
+        "assumption": "unmodified pinned instructions, normal call/return, no traps"
+      },
+      {
+        "call": "0x16f030",
+        "gate": "0x170750",
+        "gate_w0": "0x0",
+        "branch": "0x16f038",
+        "branch_taken": true,
+        "next_pc": "0x16f0a4",
+        "assumption": "unmodified pinned instructions, normal call/return, no traps"
+      }
+    ],
+    "initial_objects": [
+      {
+        "object_file_offset": "0x2ef138",
+        "initial_callback_pointer": "0xe80136c8",
+        "callback_file_offset_under_lk_delta": "0xff6c8"
+      },
+      {
+        "object_file_offset": "0x31e5c8",
+        "initial_callback_pointer": "0xe8083018",
+        "callback_file_offset_under_lk_delta": "0x16f018"
+      }
+    ],
+    "insert_stores": {
+      "0x20c590": "E[0]=H; E[8]=old_H8",
+      "0x20c598": "old_H8[0]=E",
+      "0x20c59c": "H[8]=E"
+    },
+    "remove_stores": {
+      "0x20c5d8": "E8[0]=E0",
+      "0x20c5e0": "E0[8]=E8",
+      "0x20c5e4": "E[0]=0; E[8]=0"
+    },
+    "E_is_supplied_node": true,
+    "H_is_list_head_file_offset": "0x3218c0",
+    "dormant_object": "0x31e5c8",
+    "runtime_list_complete": false,
+    "operation_table_immutability_proven": false
+  },
+  "runtime_observed": false,
+  "smc_minus_3ff_semantics_verified": false,
+  "firmware_modified": false,
+  "Samsung_tested": false,
+  "limitations": [
+    "B/BL census scans aligned words in declared LK code; not all possible aliases or indirect calls",
+    "No whole-program pointer analysis or runtime code/table/list mutation bounds",
+    "Arguments identify a request, not read/verify/decrypt/copy semantics or actual storage units",
+    "Header literals, nominal LK delta and mode samples do not establish RAM ownership",
+    "No secure response supplied or executed; SMC -0x3ff remains a separate unresolved service"
+  ]
+}

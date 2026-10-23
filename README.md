@@ -22,6 +22,8 @@ O [perfil iOS do consumidor EFI validado](docs/xnu-guarded-userland.md) já inic
 
 A [auditoria do trecho final LK HZC2](docs/lk-final-edges.md) agora enumera as chamadas posteriores ao helper e os callbacks conhecidos: 1834 instruções conferidas com objdump e 29 testes de host. O recorte não escreve SCTLR, mas contém dependências de SCTLR_EL1 e polling sem timeout; o SMC anterior e o estado físico continuam abertos.
 
+A [preparação do monitor HZC2 e os escritores da lista LK](docs/monitor-preparation-hzc2.md) agora têm inspeção reproduzível: pedido BL2 -0xe7, um segundo objeto de callback desativado por gate constante e consulta de metadados -0x12d. Foram 29 testes de host e 160 instruções conferidas com objdump. A semântica segura de -0x3ff e o estado físico seguem abertos.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |
