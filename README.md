@@ -16,6 +16,8 @@ As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no 
 
 O [defeito ramfb do prebuilt foi confirmado no QEMU](docs/xnu-ramfb-audit.md): o loader declara 800×600 após configurar 1125×2436. A correção na fonte passou seis controles, com captura real do padrão EFI, erro/timeout recusados e regressão XNU de 22 critérios. A fonte original recompilada com Clang 19 também funciona nesse teste; a falha não deve ser generalizada a toda compilação.
 
+O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O init continua próprio; a interface iOS local é o próximo marco gráfico.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |
@@ -49,6 +51,7 @@ python3 scripts/test_xnu_contract.py
 python3 scripts/test_xnu_fdt_adapter.py
 python3 scripts/test_xnu_efi_resources.py
 python3 scripts/test_xnu_efi_memory.py
+python3 scripts/test_xnu_video.py
 bash scripts/test_pr_fixes.sh
 bash scripts/test_r10_stage.sh
 ```

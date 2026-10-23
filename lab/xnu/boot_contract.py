@@ -290,13 +290,21 @@ def kernel_segments(data, args):
 
 
 def validate_profile(args, tree, boot_args_pa, kernel, *, ram, reserved,
-                     protected, complete):
+                     protected, complete, framebuffer=None):
     """Check one declared linear window. Never establishes physical trust."""
     args.encode()
     if complete is not True or not ram:
         raise ContractError("RAM/reservations declaration is incomplete")
-    if any(args.video) or args.machine_type or args.boot_flags:
-        raise ContractError("only the pinned headless profile is supported")
+    if args.machine_type or args.boot_flags:
+        raise ContractError("unsupported machine/boot flags")
+    if any(args.video):
+        if framebuffer is None:
+            raise ContractError("explicit framebuffer declaration required")
+        from .video import decode
+        if framebuffer != decode(args.video).allocation:
+            raise ContractError("explicit framebuffer declaration required")
+    elif framebuffer is not None:
+        raise ContractError("framebuffer declaration with headless arguments")
     window = Span(args.phys_base, args.mem_size)
     if args.phys_base % BASE_ALIGNMENT or args.virt_base % BASE_ALIGNMENT or args.mem_size % PAGE:
         raise ContractError("linear window alignment")
@@ -306,6 +314,9 @@ def validate_profile(args, tree, boot_args_pa, kernel, *, ram, reserved,
     for i, bank in enumerate(ram):
         if any(bank.overlaps(other) for other in ram[i + 1:]):
             raise ContractError("overlapping RAM banks")
+    if framebuffer is not None and (window.overlaps(framebuffer) or
+            any(framebuffer.overlaps(item) for item in protected)):
+        raise ContractError("framebuffer overlaps window or protected input")
     if any(window.overlaps(item) for item in tuple(reserved) + tuple(protected)):
         raise ContractError("window overlaps reservations or protected input")
     if args.mem_size_actual < args.mem_size:

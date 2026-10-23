@@ -148,3 +148,5 @@ O marco de memória UEFI está concluído **neste laboratório**. P1/P2 e o
 diagnóstico mínimo físico continuam no [roadmap](roadmap.md). Para Samsung,
 a origem da RAM/reservas, o estado de entrada e o canal de recuperação
 precisam de evidência própria. Nenhum arquivo extra do usuário foi necessário.
+
+A [extensão explícita para vídeo QEMU](xnu-video-contract.md) acrescenta a reserva do framebuffer, sem mudar o padrão headless; seus resultados são registrados separadamente.

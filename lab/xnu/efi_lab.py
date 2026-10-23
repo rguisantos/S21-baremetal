@@ -61,7 +61,7 @@ def patch_source(source):
         nonlocal source
         adapter.require(source.count(old)==1,"upstream anchor changed: "+old[:60])
         source=source.replace(old,new)
-    edit('#include "efi.h"', '#include "efi.h"\n#include "efi_resources.h"\n#include "efi_memory.h"')
+    edit('#include "efi.h"', '#include "efi.h"\n#include "efi_resources.h"\n#include "efi_memory.h"\n#include "efi_video.h"')
     edit('struct payload_info {\n', 'struct payload_info {\n\tconst uint8_t *resource;\n\tuint32_t resource_size;\n')
     start=source.index('static int\nparse_payload(')
     end=source.index('\n/* ------------------------------------------------------------------------ */',start)
@@ -168,10 +168,16 @@ choose_window(const struct payload_info *pi)
 \t}
     s21_memory_dump();
 \treboot();''')
-    return ramfb.patch(source)
+    source = ramfb.patch(source)
+    edit('\tSCREEN.stride = PHONE_WIDTH * 4;\n\treturn 1;',
+        '\tSCREEN.stride = PHONE_WIDTH * 4;\n    s21_video_bind(fb, bytes);\n\treturn 1;')
+    edit('\t/*\n\t * No "-v" by default:',
+        '    if (!s21_video_boot(&ba->video)) return 0;\n\t/*\n\t * No "-v" by default:')
+    return source
 
 
-def build(kernel_tree, llvm_root, out, memory_test=0):
+def build(kernel_tree, llvm_root, out, memory_test=0, video_test=0):
+    adapter.require(video_test in (0,1,2,3),"unsupported video laboratory fault")
     adapter.require(memory_test in (0,1,2,3),"unsupported UEFI laboratory fault")
     reference=json.loads((ROOT/"docs/references/hackios-xnu-20261022.json").read_text())
     pinned=next(x for x in reference["sources"] if x["repository"].endswith("-kernel"))
@@ -188,25 +194,25 @@ def build(kernel_tree, llvm_root, out, memory_test=0):
     identity=subprocess.check_output(["git","-C",str(kernel_tree),"show",REVISION+":xnuloader/identity.h"])
     (out/"identity.h").write_bytes(identity); inputs["identity.h"]=sha(identity)
     (out/"loader.c").write_text(patch_source((out/"loader.c").read_text()))
-    for name in ("efi_resources.c","efi_resources.h","efi_memory.c","efi_memory.h","efi_memory_loader.inc"):
+    for name in ("efi_resources.c","efi_resources.h","efi_memory.c","efi_memory.h","efi_memory_loader.inc","efi_video.c","efi_video.h"):
         shutil.copyfile(ROOT/"lab/xnu"/name,out/name)
     clang=llvm_root/"usr/lib/llvm-19/bin/clang"
     link=llvm_root/"usr/lib/llvm-19/bin/lld-link"
     env=dict(os.environ,LD_LIBRARY_PATH=str(llvm_root/"usr/lib/x86_64-linux-gnu")+":"+str(llvm_root/"usr/lib/llvm-19/lib"))
     commands=[]
     with (out/"build.log").open("wb") as log:
-        for name in ("loader","efi_resources","efi_memory"):
+        for name in ("loader","efi_resources","efi_memory","efi_video"):
             cmd=[str(clang),"--target=aarch64-unknown-windows","-ffreestanding","-fno-builtin",
                  "-fno-stack-protector","-fshort-wchar","-mgeneral-regs-only","-O1","-Wall","-Wextra",
-                 "-Wno-unused-parameter","-DS21_MEMORY_TEST="+str(memory_test),
+                 "-Wno-unused-parameter","-DS21_MEMORY_TEST="+str(memory_test),"-DS21_VIDEO_TEST="+str(video_test),
                  "-c",str(out/(name+".c")),"-o",str(out/(name+".obj"))]
             subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45); commands.append(cmd)
         cmd=[str(link),"/subsystem:efi_application","/entry:efi_main","/nodefaultlib","/base:0xA1000000",
-             "/timestamp:0","/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj"),str(out/"efi_memory.obj")]
+             "/timestamp:0","/out:"+str(out/"loader.efi"),str(out/"loader.obj"),str(out/"efi_resources.obj"),str(out/"efi_memory.obj"),str(out/"efi_video.obj")]
         subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30); commands.append(cmd)
     binary=(out/"loader.efi").read_bytes(); pe=struct.unpack_from("<I",binary,60)[0]
     adapter.require(binary[pe:pe+4]==b"PE\0\0" and struct.unpack_from("<H",binary,pe+4)[0]==0xaa64
                     and struct.unpack_from("<H",binary,pe+24+68)[0]==10,"not an AArch64 EFI application")
-    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,
+    return {"upstream_revision":head,"upstream_sources":inputs,"commands":commands,"memory_test":memory_test,"video_test":video_test,
             "patched_source_sha256":sha((out/"loader.c").read_bytes()),"efi_sha256":sha(binary),
             "efi_bytes":len(binary),"clang_version":subprocess.check_output([str(clang),"--version"],env=env,text=True).splitlines()[0]}

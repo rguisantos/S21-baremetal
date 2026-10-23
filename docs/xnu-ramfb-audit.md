@@ -124,11 +124,11 @@ git -C /caminho/hackios-xnu-kernel apply --check \
 
 ## Próximo marco
 
-Antes de contabilizar interface iOS local, validar o contrato de vídeo
-`boot_args` e a reserva do framebuffer com o kernel em execução; depois
-repetir o fluxo de userland com revisões/diffs e imagens identificados,
-capturar SpringBoard e uma interação. O verificador atual de memória/ABI
-continua deliberadamente restrito ao perfil sem display; não foi relaxado.
+O [contrato de vídeo e a reserva do framebuffer foram posteriormente
+conferidos com o kernel em execução](xnu-video-contract.md), por um perfil
+explícito separado do padrão sem display. O próximo passo é repetir o fluxo
+de userland com revisões/diffs e imagens identificados, capturar SpringBoard
+e uma interação. Modos arbitrários continuam recusados.
 
 Para conferir a sessão externa do GLM, bastam os PNGs originais, o
 `hackios-boot-console.log` e o patch/diff usado, junto aos hashes das imagens

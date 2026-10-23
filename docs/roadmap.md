@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, 768adcc](https://github.com/rguisantos/S21-baremetal/commit/768adcc5593eb98ae4847b7041c610ceaca9d4a1).
+[main anterior a esta entrega, 034d93a](https://github.com/rguisantos/S21-baremetal/commit/034d93a53af8a8a8051af641d08d84f0ed8b0c98).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -28,7 +28,7 @@ não mudam o estado de validação no telefone.
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
 | XNU/Darwin no QEMU | **Kernel prebuilt + init próprio executados** | PID 1/UID 0, APFS, timer e retorno; arquivo com um byte alterado recusado; 13 testes de host; sem iOS gráfico ou hardware Samsung |
 | Contrato/adaptador XNU | **X2 parcial; recursos e memória UEFI conferidos no QEMU** | Loader recompilado, payload/janela reservados, quatro mapas completos; 22 critérios positivos, oito recusas, 22 testes de memória/evidência e 16 de recursos; falta contrato físico Samsung |
-| Display ramfb QEMU | **Prebuilt auditado e fonte corrigida** | Seis controles, PNG real de diagnóstico e regressão positiva 22/22; interface iOS local ainda pendente |
+| Display ramfb QEMU | **Contrato e reserva executados com XNU** | 25 critérios gráficos, 22 sem display, três recusas e 62 testes de host; interface iOS local ainda pendente |
 | Preparação do userland HackiOS | **Quatro falhas reproduzidas no host** | Seis fixtures de jobs e quatro controles Bash; patch conferido. Interface iOS do relato GLM ainda sem reprodução local |
 | R10 físico, depois SMP/periféricos | **Etapas futuras** | Uma CPU primeiro; PSCI/SMP, SPIs, MCT e display após comprovar a base |
 
@@ -96,7 +96,7 @@ fontes, serviços iOS e execução física continuam pendentes.
 | X1 — XNU + programa mínimo no QEMU | Concluído com prebuilt externo: caso positivo, controle negativo e 13 testes de host; build dos fontes segue como validação separada |
 | X2 — contrato Samsung → XNU | Parcial: codec/projeção, consumidor EFI e reservas UEFI executados no QEMU; plano de memória e entrada Samsung verificáveis continuam pendentes, separados do ABI FDT do R10 |
 | X3 — XNU físico em uma CPU | Depende de carregamento, memória, entrada e observação demonstrados nos marcos físicos acima |
-| X4 — APFS/userland/interface | Init/APFS próprio e ramfb EFI testados; interface iOS relatada pelo GLM. Próximo: contrato/reserva de vídeo com o kernel, depois reprodução local da interface |
+| X4 — APFS/userland/interface | Init/APFS próprio e ramfb EFI testados; interface iOS relatada pelo GLM. Contrato/reserva de vídeo conferidos com o kernel; próximo: reprodução local da interface |
 
 Essa frente não conclui P1–P6 ou os Marcos A/B. GICR, timer virtual/físico,
 USB/UEFI Qualcomm e Mali exigem adaptações próprias. Não é necessário
@@ -120,9 +120,9 @@ As falhas de preparação trazidas no relato GLM foram
 checkpoints gráficos agora constam como execução concluída no relato do GLM,
 com loader modificado; PNGs/log bruto ainda não recebidos aqui. O
 [defeito ramfb do prebuilt foi reproduzido localmente](xnu-ramfb-audit.md),
-com correção na fonte e seis controles. O próximo passo gráfico local é
-validar vídeo/reserva do framebuffer no contrato do kernel antes de integrar
-o userland. Isso não altera o estado de XNU físico, display Exynos ou escolha de boot.
+com correção na fonte e seis controles. O [contrato/reserva do framebuffer já foi conferido com o kernel](xnu-video-contract.md).
+O próximo passo gráfico local é preparar o userland identificado e reproduzir
+a interface e uma interação. Isso não altera o estado de XNU físico, display Exynos ou escolha de boot.
 
 ## Critérios para iniciar o Marco A
 

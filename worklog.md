@@ -946,3 +946,37 @@ Publicados manifesto, sete seriais completos, trecho de desmontagem,
 capturas reais e guia; README/índices/roadmap atualizados. Nenhum novo firmware
 necessário. Próximo gráfico: contrato/reserva do framebuffer com kernel,
 então userland/interface. P1/P2 físicos continuam abertos.
+
+
+## 2026-10-23 — contrato de vídeo no XNU e propriedade do framebuffer
+
+Novo perfil explícito XR24, 1125x2436/stride4500/depth32/display1.
+C ligado ao EFI confere geometria/overflow; binding guarda a alocação
+bem-sucedida do ramfb. Antes da cópia e no mapa final, exige LoaderData WB,
+sem atributos proibidos, separado do payload e da janela. boot_args também
+conferido; padrão headless do verificador permanece recusando vídeo não
+declarado. Python cruza os seis campos capturados com binding e os quatro
+mapas brutos, inclusive a última página arredondada.
+
+QEMU: captura somente leitura em arm_init EL1, 736 bytes/árvore completa
+reemitidos; PNG nativo1125x2436. Campo base1bdced000, 10962000 bytes pixels,
+reserva10964992 (a75000). Janela f4000000+ c8000000, sem sobreposição.
+Retomada confirma MiniIOMobileFramebuffer1125x2436 sobre painel1125x2436,
+PID1/APFS/timer/RB_HALT/retorno. 25/25 critérios com vídeo e 22/22 sem vídeo.
+
+Três builds negativos recusados antes da cópia/salto: stride+1, SCREENbase
+no payload e página do framebuffer ocupada via APIs UEFI reais com status0.
+Uma tentativa anterior terminou no banner UEFI e foi recusada por ausência
+da alocação; causa não estabelecida. Log incompleto preservado, sem contar
+como negativa bem-sucedida. Execuções finais em invocações individuais,
+sem retry automático: todos os cinco cenários passaram. Na conferência
+final, dois logs paralelos divergiram dos hashes registrados; descartados
+como evidência e reexecutados sequencialmente com arquivos íntegros.
+Não foi atribuída uma causa não demonstrada a essas divergências.
+
+12 testes novos do vídeo mais 28 de contrato e 22 de memória: 62/62.
+Publicados manifesto, cinco seriais completos, testes, argumentos/árvore
+binários capturados e PNG; README/roadmap/índices atualizados. Kernel ainda
+prebuilt, init próprio, UEFI residente. Sem SpringBoard/input/iOS local,
+SMP ou Samsung. Próximo gráfico é preparar/reproduzir o userland com
+revisões, imagens, patches e interação identificáveis. P1/P2 físicos abertos.

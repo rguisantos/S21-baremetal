@@ -1,0 +1,1 @@
+UEFI firmware (version 2025.02-8+deb13u1 built at 18:06:17 on Nov  8 2025)\x0d

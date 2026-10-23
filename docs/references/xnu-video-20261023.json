@@ -1,0 +1,1366 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "scope": "QEMU graphics boot contract; kernel prebuilt, own init, UEFI resident",
+  "passed": true,
+  "cases": {
+    "positive": {
+      "case": "positive",
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "framebuffer_owned": true,
+        "mode_matches_qemu": true,
+        "actual_esp_hash": true,
+        "no_video_rejection": true,
+        "native_resources": true,
+        "native_layout": true,
+        "native_video": true,
+        "kernel_framebuffer": true
+      },
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/cases/positive/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/cases/positive/positive/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/cases/positive/positive/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@run/cases/positive/positive/payload.bin,addr=0xF0000000,force-raw=on",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/cases/positive/positive/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-chardev",
+        "pipe,id=qmp,path=@run/cases/positive/positive/qmp",
+        "-mon",
+        "chardev=qmp,mode=control",
+        "-S",
+        "-gdb",
+        "stdio"
+      ],
+      "capture": {
+        "pc": "0xfffffff007453994",
+        "pstate": "0x600003c4",
+        "x0": "0xfffffff0086f4000",
+        "video": [
+          7479414784,
+          1,
+          4500,
+          1125,
+          2436,
+          32
+        ],
+        "boot_args_sha256": "ffcd020e59483f13e2b71a8ee4d8700c156b0a46aadb7fb877b54a7e3b368f87",
+        "apple_tree_sha256": "8151d44d92fa8b074203c78eeddd5482b36b22f56ba3e36eddbdb59b8eb06173",
+        "read_only_gdb": true,
+        "screenshot_sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+        "profile": {
+          "profile_consistent": true,
+          "hardware_ready": false,
+          "window": [
+            "0xf4000000",
+            "0xc8000000"
+          ],
+          "placements": {
+            "boot_args": [
+              "0xf86f4000",
+              "0x2e0"
+            ],
+            "Apple DT": [
+              "0xf86e4000",
+              "0x39d0"
+            ],
+            "__TEXT": [
+              "0xf7004000",
+              "0x1a0000"
+            ],
+            "__DATA_CONST": [
+              "0xf71a4000",
+              "0xe8000"
+            ],
+            "__TEXT_EXEC": [
+              "0xf728c000",
+              "0x854000"
+            ],
+            "__KLD": [
+              "0xf7ae0000",
+              "0x4000"
+            ],
+            "__LASTDATA_CONST": [
+              "0xf7ae4000",
+              "0x4000"
+            ],
+            "__KLDDATA": [
+              "0xf7ae8000",
+              "0x4000"
+            ],
+            "__DATA": [
+              "0xf7aec000",
+              "0x450000"
+            ],
+            "__BOOTDATA": [
+              "0xf7f3c000",
+              "0x4c000"
+            ],
+            "__LINKINFO": [
+              "0xf7f88000",
+              "0x90000"
+            ],
+            "__LINKEDIT": [
+              "0xf8018000",
+              "0x2ca390"
+            ],
+            "RAMDisk": [
+              "0xf82e4000",
+              "0x400000"
+            ]
+          },
+          "gic": [
+            [
+              "0x8000000",
+              "0x10000"
+            ],
+            [
+              "0x80a0000",
+              "0x100000"
+            ]
+          ],
+          "cpus": [
+            "0x0"
+          ],
+          "psci_method": "hvc",
+          "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run.",
+          "video": {
+            "base": "0x1bdced000",
+            "pixels_bytes": 10962000,
+            "allocation_bytes": 10964992,
+            "width": 1125,
+            "height": 2436,
+            "stride": 4500,
+            "format": "XR24"
+          }
+        },
+        "qemu_dimensions": [
+          1125,
+          2436
+        ]
+      },
+      "framebuffer_allocation": {
+        "base": 7479414784,
+        "size": 10964992
+      },
+      "memory_audit": {
+        "verified": true,
+        "window": [
+          "0xf4000000",
+          "0xc8000000"
+        ],
+        "payload": [
+          "0xf0000000",
+          "0x4000000"
+        ],
+        "claims": {
+          "payload": {
+            "base": 4026531840,
+            "size": 67108864,
+            "status": 0,
+            "returned": 4026531840
+          },
+          "window": {
+            "base": 4093640704,
+            "size": 3355443200,
+            "status": 0,
+            "returned": 4093640704
+          }
+        },
+        "placements_checked": [
+          "boot_args",
+          "Apple DT",
+          "__TEXT",
+          "__DATA_CONST",
+          "__TEXT_EXEC",
+          "__KLD",
+          "__LASTDATA_CONST",
+          "__KLDDATA",
+          "__DATA",
+          "__BOOTDATA",
+          "__LINKINFO",
+          "__LINKEDIT",
+          "RAMDisk"
+        ],
+        "snapshots": {
+          "payload-free": {
+            "bytes": 3696,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x442",
+            "sha256": "f5e9d7c964aca019048d0dee8cbfa406fbf27c025563392375215de6e060142a",
+            "descriptor_count": 77
+          },
+          "window-free": {
+            "bytes": 3792,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x54f",
+            "sha256": "75644471bc4116c5c120b73b8e7378e50109411b67ef825017e55b41d489449a",
+            "descriptor_count": 79
+          },
+          "before-copy": {
+            "bytes": 3792,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x5b4",
+            "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+            "descriptor_count": 79
+          },
+          "handoff": {
+            "bytes": 3792,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x8fc",
+            "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+            "descriptor_count": 79
+          }
+        },
+        "boot_services_resident": true,
+        "exit_boot_services_called": false,
+        "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+        "hardware_ready": false
+      },
+      "maps": {
+        "payload-free": {
+          "bytes": 3696,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x442",
+          "sha256": "f5e9d7c964aca019048d0dee8cbfa406fbf27c025563392375215de6e060142a",
+          "descriptor_count": 77
+        },
+        "window-free": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x54f",
+          "sha256": "75644471bc4116c5c120b73b8e7378e50109411b67ef825017e55b41d489449a",
+          "descriptor_count": 79
+        },
+        "before-copy": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x5b4",
+          "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+          "descriptor_count": 79
+        },
+        "handoff": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x8fc",
+          "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+          "descriptor_count": 79
+        }
+      },
+      "serial_sha256": "bbe3e477893cbc299bd10cf2b529a10506291393a9a027ae5ed957865c1cc884",
+      "loader_sha256": "4975bf56059a3ec1739e9585559ba6765117bca29866b2f48ec80fe549d4d767",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "qemu_returncode": 0,
+      "hardware_ready": false,
+      "iOS_GUI": false,
+      "serial_transcript": "docs/references/xnu-video-positive-20261023.txt",
+      "boot-args_artifact": "docs/references/xnu-video-boot-args-20261023.bin",
+      "apple-tree_artifact": "docs/references/xnu-video-apple-tree-20261023.bin",
+      "arm-init_artifact": "docs/references/xnu-video-arm-init-20261023.png"
+    },
+    "headless": {
+      "case": "positive",
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "native_resources": true,
+        "native_layout": true,
+        "no_native_rejection": true,
+        "native_memory_before_copy": true,
+        "uefi_maps_and_allocations": true
+      },
+      "capture": {
+        "pc": "0xfffffff007453994",
+        "x0_virtual": "0xfffffff0086f4000",
+        "pstate": "0x600003c4",
+        "boot_args_sha256": "8b37367b100df33c9a96f1f8e84671ed34ab4152c71c61b99022229256096c03",
+        "tree_sha256": "a234c6c0d147576c9eaa56893570cc8e94a8c48522b875f045c2a463d2d76823",
+        "tree_bytes": 14800,
+        "read_only_gdb": true,
+        "profile": {
+          "profile_consistent": true,
+          "hardware_ready": false,
+          "window": [
+            "0xf4000000",
+            "0xca000000"
+          ],
+          "placements": {
+            "boot_args": [
+              "0xf86f4000",
+              "0x2e0"
+            ],
+            "Apple DT": [
+              "0xf86e4000",
+              "0x39d0"
+            ],
+            "__TEXT": [
+              "0xf7004000",
+              "0x1a0000"
+            ],
+            "__DATA_CONST": [
+              "0xf71a4000",
+              "0xe8000"
+            ],
+            "__TEXT_EXEC": [
+              "0xf728c000",
+              "0x854000"
+            ],
+            "__KLD": [
+              "0xf7ae0000",
+              "0x4000"
+            ],
+            "__LASTDATA_CONST": [
+              "0xf7ae4000",
+              "0x4000"
+            ],
+            "__KLDDATA": [
+              "0xf7ae8000",
+              "0x4000"
+            ],
+            "__DATA": [
+              "0xf7aec000",
+              "0x450000"
+            ],
+            "__BOOTDATA": [
+              "0xf7f3c000",
+              "0x4c000"
+            ],
+            "__LINKINFO": [
+              "0xf7f88000",
+              "0x90000"
+            ],
+            "__LINKEDIT": [
+              "0xf8018000",
+              "0x2ca390"
+            ],
+            "RAMDisk": [
+              "0xf82e4000",
+              "0x400000"
+            ]
+          },
+          "gic": [
+            [
+              "0x8000000",
+              "0x10000"
+            ],
+            [
+              "0x80a0000",
+              "0x100000"
+            ]
+          ],
+          "cpus": [
+            "0x0"
+          ],
+          "psci_method": "hvc",
+          "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run."
+        },
+        "resource_fields_match": true
+      },
+      "qemu_returncode": 0,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@repo/tools/root/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/cases/headless/headless/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/cases/headless/headless/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@run/cases/headless/headless/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/cases/headless/headless/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-gdb",
+        "stdio"
+      ],
+      "serial_sha256": "c0cecfd66107ca774f1834dbee9d0085edd70220eb2e7bbff4bec5f8288d4161",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": {
+        "verified": true,
+        "window": [
+          "0xf4000000",
+          "0xca000000"
+        ],
+        "payload": [
+          "0xf0000000",
+          "0x4000000"
+        ],
+        "claims": {
+          "payload": {
+            "base": 4026531840,
+            "size": 67108864,
+            "status": 0,
+            "returned": 4026531840
+          },
+          "window": {
+            "base": 4093640704,
+            "size": 3388997632,
+            "status": 0,
+            "returned": 4093640704
+          }
+        },
+        "placements_checked": [
+          "boot_args",
+          "Apple DT",
+          "__TEXT",
+          "__DATA_CONST",
+          "__TEXT_EXEC",
+          "__KLD",
+          "__LASTDATA_CONST",
+          "__KLDDATA",
+          "__DATA",
+          "__BOOTDATA",
+          "__LINKINFO",
+          "__LINKEDIT",
+          "RAMDisk"
+        ],
+        "snapshots": {
+          "payload-free": {
+            "bytes": 3840,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2ca",
+            "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+            "descriptor_count": 80
+          },
+          "window-free": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cb",
+            "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+            "descriptor_count": 82
+          },
+          "before-copy": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          },
+          "handoff": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          }
+        },
+        "boot_services_resident": true,
+        "exit_boot_services_called": false,
+        "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+        "hardware_ready": false
+      },
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        },
+        "window-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+          "descriptor_count": 82
+        },
+        "before-copy": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        },
+        "handoff": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        }
+      },
+      "serial_transcript": "docs/references/xnu-video-headless-20261023.txt"
+    },
+    "stride": {
+      "case": "stride",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_init": true
+      },
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/cases/stride/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/cases/stride/stride/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/cases/stride/stride/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@run/cases/stride/stride/payload.bin,addr=0xF0000000,force-raw=on",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/cases/stride/stride/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-qmp",
+        "stdio"
+      ],
+      "capture": null,
+      "framebuffer_allocation": {
+        "base": 7479414784,
+        "size": 10964992
+      },
+      "memory_audit": null,
+      "maps": {
+        "payload-free": {
+          "bytes": 3696,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x442",
+          "sha256": "f5e9d7c964aca019048d0dee8cbfa406fbf27c025563392375215de6e060142a",
+          "descriptor_count": 77
+        },
+        "window-free": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x54f",
+          "sha256": "75644471bc4116c5c120b73b8e7378e50109411b67ef825017e55b41d489449a",
+          "descriptor_count": 79
+        },
+        "before-copy": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x5b4",
+          "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+          "descriptor_count": 79
+        }
+      },
+      "serial_sha256": "12edabf8f8e8e474a876ec981a2ed2101d5c7f4c2c0779224cbd722c8f84882e",
+      "loader_sha256": "3e2263aa5aa36dc3d5d912a36e9f0d6f951c2f7789cd6f7cf264b0856a5785bc",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "qemu_returncode": 0,
+      "hardware_ready": false,
+      "iOS_GUI": false,
+      "serial_transcript": "docs/references/xnu-video-stride-20261023.txt"
+    },
+    "input-overlap": {
+      "case": "input-overlap",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_init": true
+      },
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/verified-input-overlap/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/verified-input-overlap/input-overlap/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/verified-input-overlap/input-overlap/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@run/verified-input-overlap/input-overlap/payload.bin,addr=0xF0000000,force-raw=on",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/verified-input-overlap/input-overlap/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-qmp",
+        "stdio"
+      ],
+      "capture": null,
+      "framebuffer_allocation": {
+        "base": 7479414784,
+        "size": 10964992
+      },
+      "memory_audit": null,
+      "maps": {
+        "payload-free": {
+          "bytes": 3696,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x442",
+          "sha256": "f5e9d7c964aca019048d0dee8cbfa406fbf27c025563392375215de6e060142a",
+          "descriptor_count": 77
+        },
+        "window-free": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x54f",
+          "sha256": "75644471bc4116c5c120b73b8e7378e50109411b67ef825017e55b41d489449a",
+          "descriptor_count": 79
+        },
+        "before-copy": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x5b4",
+          "sha256": "d95f7e13cec0f39c8b3bca2663df0d92e9afba257c1244ebc96d7f63c809727f",
+          "descriptor_count": 79
+        }
+      },
+      "serial_sha256": "12edabf8f8e8e474a876ec981a2ed2101d5c7f4c2c0779224cbd722c8f84882e",
+      "loader_sha256": "8b4429b1aa751fb2c6318e666edbb05209c04a54e044e87a64400dc6559d4e74",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "qemu_returncode": 0,
+      "hardware_ready": false,
+      "iOS_GUI": false,
+      "serial_transcript": "docs/references/xnu-video-input-overlap-20261023.txt"
+    },
+    "page-busy": {
+      "case": "page-busy",
+      "passed": true,
+      "checks": {
+        "exit_zero": true,
+        "rejected": true,
+        "no_copy": true,
+        "no_jump": true,
+        "no_darwin": true,
+        "no_init": true,
+        "fault_api_succeeded": true
+      },
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/verified-page-busy/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/verified-page-busy/page-busy/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/verified-page-busy/page-busy/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@run/verified-page-busy/page-busy/payload.bin,addr=0xF0000000,force-raw=on",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/verified-page-busy/page-busy/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-qmp",
+        "stdio"
+      ],
+      "capture": null,
+      "framebuffer_allocation": {
+        "base": 7479414784,
+        "size": 10964992
+      },
+      "memory_audit": null,
+      "maps": {
+        "payload-free": {
+          "bytes": 3696,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x442",
+          "sha256": "f5e9d7c964aca019048d0dee8cbfa406fbf27c025563392375215de6e060142a",
+          "descriptor_count": 77
+        },
+        "window-free": {
+          "bytes": 3792,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x54f",
+          "sha256": "75644471bc4116c5c120b73b8e7378e50109411b67ef825017e55b41d489449a",
+          "descriptor_count": 79
+        },
+        "before-copy": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x5fa",
+          "sha256": "6ac844045e0342d6a942f6b542c2c561684125980291195f7f020fbcab31621a",
+          "descriptor_count": 80
+        }
+      },
+      "serial_sha256": "1a73705b0ea19e4ff062695bd3d6d19eab3b0910cdc04aba3d7c4bc69e9b453b",
+      "loader_sha256": "4ee2614414b13286f0df769d9a9993082fe8191776e227988c190663b7d92e34",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "qemu_returncode": 0,
+      "hardware_ready": false,
+      "iOS_GUI": false,
+      "serial_transcript": "docs/references/xnu-video-page-busy-20261023.txt"
+    }
+  },
+  "build": {
+    "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+    "upstream_sources": {
+      "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+      "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+      "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+    },
+    "commands": [
+      [
+        "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-c",
+        "@run/cases/positive/build/loader.c",
+        "-o",
+        "@run/cases/positive/build/loader.obj"
+      ],
+      [
+        "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-c",
+        "@run/cases/positive/build/efi_resources.c",
+        "-o",
+        "@run/cases/positive/build/efi_resources.obj"
+      ],
+      [
+        "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-c",
+        "@run/cases/positive/build/efi_memory.c",
+        "-o",
+        "@run/cases/positive/build/efi_memory.obj"
+      ],
+      [
+        "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-DS21_MEMORY_TEST=0",
+        "-DS21_VIDEO_TEST=0",
+        "-c",
+        "@run/cases/positive/build/efi_video.c",
+        "-o",
+        "@run/cases/positive/build/efi_video.obj"
+      ],
+      [
+        "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+        "/subsystem:efi_application",
+        "/entry:efi_main",
+        "/nodefaultlib",
+        "/base:0xA1000000",
+        "/timestamp:0",
+        "/out:@run/cases/positive/build/loader.efi",
+        "@run/cases/positive/build/loader.obj",
+        "@run/cases/positive/build/efi_resources.obj",
+        "@run/cases/positive/build/efi_memory.obj",
+        "@run/cases/positive/build/efi_video.obj"
+      ]
+    ],
+    "memory_test": 0,
+    "video_test": 0,
+    "patched_source_sha256": "3de88cae8b143b048c568321b1dc7ee2b526f2dde2ed6eee332e5616167a9177",
+    "efi_sha256": "4975bf56059a3ec1739e9585559ba6765117bca29866b2f48ec80fe549d4d767",
+    "efi_bytes": 76800,
+    "clang_version": "Debian clang version 19.1.7 (3+b1)"
+  },
+  "fault_builds": {
+    "stride": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=1",
+          "-c",
+          "@run/cases/stride/build-stride/loader.c",
+          "-o",
+          "@run/cases/stride/build-stride/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=1",
+          "-c",
+          "@run/cases/stride/build-stride/efi_resources.c",
+          "-o",
+          "@run/cases/stride/build-stride/efi_resources.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=1",
+          "-c",
+          "@run/cases/stride/build-stride/efi_memory.c",
+          "-o",
+          "@run/cases/stride/build-stride/efi_memory.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=1",
+          "-c",
+          "@run/cases/stride/build-stride/efi_video.c",
+          "-o",
+          "@run/cases/stride/build-stride/efi_video.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/cases/stride/build-stride/loader.efi",
+          "@run/cases/stride/build-stride/loader.obj",
+          "@run/cases/stride/build-stride/efi_resources.obj",
+          "@run/cases/stride/build-stride/efi_memory.obj",
+          "@run/cases/stride/build-stride/efi_video.obj"
+        ]
+      ],
+      "memory_test": 0,
+      "video_test": 1,
+      "patched_source_sha256": "3de88cae8b143b048c568321b1dc7ee2b526f2dde2ed6eee332e5616167a9177",
+      "efi_sha256": "3e2263aa5aa36dc3d5d912a36e9f0d6f951c2f7789cd6f7cf264b0856a5785bc",
+      "efi_bytes": 76800,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "input-overlap": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=2",
+          "-c",
+          "@run/verified-input-overlap/build-input-overlap/loader.c",
+          "-o",
+          "@run/verified-input-overlap/build-input-overlap/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=2",
+          "-c",
+          "@run/verified-input-overlap/build-input-overlap/efi_resources.c",
+          "-o",
+          "@run/verified-input-overlap/build-input-overlap/efi_resources.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=2",
+          "-c",
+          "@run/verified-input-overlap/build-input-overlap/efi_memory.c",
+          "-o",
+          "@run/verified-input-overlap/build-input-overlap/efi_memory.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=2",
+          "-c",
+          "@run/verified-input-overlap/build-input-overlap/efi_video.c",
+          "-o",
+          "@run/verified-input-overlap/build-input-overlap/efi_video.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/verified-input-overlap/build-input-overlap/loader.efi",
+          "@run/verified-input-overlap/build-input-overlap/loader.obj",
+          "@run/verified-input-overlap/build-input-overlap/efi_resources.obj",
+          "@run/verified-input-overlap/build-input-overlap/efi_memory.obj",
+          "@run/verified-input-overlap/build-input-overlap/efi_video.obj"
+        ]
+      ],
+      "memory_test": 0,
+      "video_test": 2,
+      "patched_source_sha256": "3de88cae8b143b048c568321b1dc7ee2b526f2dde2ed6eee332e5616167a9177",
+      "efi_sha256": "8b4429b1aa751fb2c6318e666edbb05209c04a54e044e87a64400dc6559d4e74",
+      "efi_bytes": 76800,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "page-busy": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=3",
+          "-c",
+          "@run/verified-page-busy/build-page-busy/loader.c",
+          "-o",
+          "@run/verified-page-busy/build-page-busy/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=3",
+          "-c",
+          "@run/verified-page-busy/build-page-busy/efi_resources.c",
+          "-o",
+          "@run/verified-page-busy/build-page-busy/efi_resources.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=3",
+          "-c",
+          "@run/verified-page-busy/build-page-busy/efi_memory.c",
+          "-o",
+          "@run/verified-page-busy/build-page-busy/efi_memory.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-DS21_VIDEO_TEST=3",
+          "-c",
+          "@run/verified-page-busy/build-page-busy/efi_video.c",
+          "-o",
+          "@run/verified-page-busy/build-page-busy/efi_video.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/verified-page-busy/build-page-busy/loader.efi",
+          "@run/verified-page-busy/build-page-busy/loader.obj",
+          "@run/verified-page-busy/build-page-busy/efi_resources.obj",
+          "@run/verified-page-busy/build-page-busy/efi_memory.obj",
+          "@run/verified-page-busy/build-page-busy/efi_video.obj"
+        ]
+      ],
+      "memory_test": 0,
+      "video_test": 3,
+      "patched_source_sha256": "3de88cae8b143b048c568321b1dc7ee2b526f2dde2ed6eee332e5616167a9177",
+      "efi_sha256": "4ee2614414b13286f0df769d9a9993082fe8191776e227988c190663b7d92e34",
+      "efi_bytes": 76800,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    }
+  },
+  "kernel_sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c",
+  "ramdisk_sha256": "97bc2c81b9e2b7d8c14552b235fa534b0211a6efbde70ea5a4ae8775a759cea5",
+  "own_sources_sha256": {
+    "lab/xnu/efi_lab.py": "0563123ad75af3107119bd2c7048c59a0554f9572a92665ec089dd2a4fdbb92e",
+    "lab/xnu/ramfb.py": "f18de7b5d7e83032f56deffebd2f8f291518a020c90923f9e434631414047c98",
+    "lab/xnu/efi_memory_loader.inc": "e6606411c155a102d8d0c0708991b64f78a444957b077defd432c005791578a7",
+    "lab/xnu/efi_memory.c": "40d5a99360c0f004dbdf300143b430e49f63a8765363673c20d04dae54d44aac",
+    "lab/xnu/efi_memory.h": "2d768773d9df501a46ef40e4f258e7457bff058fe90c68f4ac96d885ab79f618",
+    "lab/xnu/efi_memory.py": "ce9c96b242bb24642edb33bbf1fc21f15d9b98951ae5d496b9ff4b2b57511f84",
+    "lab/xnu/boot_contract.py": "975ec3c583903a386391375c5273313d161dc35dbc6fb3deaf6369ad99f7d47b",
+    "lab/xnu/video.py": "99cfe61ae5bc8934fa167a2027a010064dacd5cf205936c0d3b79b695b9cb51b",
+    "lab/xnu/efi_video.c": "9f6256de6ab6af7effd50bca300703cde056e4dc89fde6defe139220280af73f",
+    "lab/xnu/efi_video.h": "645fe813e0bbf39e761b39030206b9acf3d2b7be92381299f11e0beb26394a1f",
+    "scripts/run_xnu_video_lab.py": "9d863f3551deb17c158c3a9b7dbb7aaafd38a155d75f1cff47ceecbc33ce7b31",
+    "scripts/check_xnu_ramfb.py": "d5d2ef6998abe2a51c6da117fb19f71ef5e35abac3dace5168245ae91c991ec2",
+    "scripts/capture_xnu_contract.py": "35b3e37eeaa356b3833806f40abe6ad34b95f49d2dbeb32e4278a94c096e8b1c",
+    "scripts/test_xnu_video.py": "1551194f0df2be2c275fd5b827aa6eb00eefdfae74c782980cdceb7e164bba90",
+    "scripts/run_xnu_adapter_lab.py": "4f47da29874ffb91361fdd2c9988b95484c0bacb0322b3e9b4074379473b1ed1",
+    "lab/xnu/efi_resources.c": "41043fcabceb8c9ae4104ec8b35fda1e67c8c411031ddc9b90c80728109fe2eb",
+    "lab/xnu/efi_resources.h": "573ad1abd8bca31299710a1a2bf8195c535c8b2c3faaef64f774b830c2b1db6b",
+    "lab/xnu/fdt_adapter.py": "73bb6c940e9ee1b12f41e364b0aeb27021c72ee8242fe72767e6416f7a9e524e",
+    "scripts/test_fdt.py": "7a053feee69688b8743a4c42d95884e09373ef58dcb0aa02e456ae19b92b6d3b",
+    "lab/xnu/fdt_probe.c": "ed3be2dc3b28a06f3b313514479a0d9cda66fb2ad57b0d4371a70803a504131a",
+    "r8/r10_payload/fdt.c": "4adb9dece2adfda83e9948d15b404f5dc6492e0e76ec7215ee72019e7a5be389",
+    "r8/r10_payload/fdt.h": "854da5c2a5613fbccfe27d6c3993f14472eb8c12ab27cae44699b5ebc881dad2",
+    "scripts/run_xnu_lab.py": "9cdd003c59da300292fd18e9c508e410ee8eb26a55338098bfe27c89f78cdc15"
+  },
+  "iOS_GUI_tested": false,
+  "Samsung_tested": false,
+  "toolchain_reference": "docs/references/xnu-efi-toolchain-20261022.json",
+  "incomplete_attempt": {
+    "accepted": false,
+    "reason": "no framebuffer allocation / no EFI loader marker; process exited zero after UEFI banner",
+    "serial_sha256": "0142244a4cee80814b8c963638de86534d71d8603d471aed8c5ee1368722c3fa",
+    "transcript": "docs/references/xnu-video-incomplete-startup-20261023.txt",
+    "cause": "not established; validated final controls were separate single-case processes"
+  },
+  "host_tests": {
+    "checks": [
+      {
+        "command": [
+          "python3",
+          "scripts/test_xnu_video.py"
+        ],
+        "tests": 12,
+        "returncode": 0
+      },
+      {
+        "command": [
+          "python3",
+          "scripts/test_xnu_contract.py"
+        ],
+        "tests": 28,
+        "returncode": 0
+      },
+      {
+        "command": [
+          "python3",
+          "scripts/test_xnu_efi_memory.py"
+        ],
+        "tests": 22,
+        "returncode": 0
+      }
+    ],
+    "sha256": "33faa05dc5bcea31bb12677fa4c8fffc42c6330e297392a3449aa7e654f3a4a8",
+    "transcript": "docs/references/xnu-video-host-tests-20261023.txt"
+  },
+  "discarded_parallel_artifacts": [
+    {
+      "case": "input-overlap",
+      "accepted_as_published_evidence": false,
+      "recorded_sha256": "12edabf8f8e8e474a876ec981a2ed2101d5c7f4c2c0779224cbd722c8f84882e",
+      "observed_file_sha256": "94a52543a6c2f7dc159383c4506bace4675d8d24561583102b846432234ca79d",
+      "reason": "artifact changed or incomplete after parallel execution; cause unestablished"
+    },
+    {
+      "case": "page-busy",
+      "accepted_as_published_evidence": false,
+      "recorded_sha256": "1a73705b0ea19e4ff062695bd3d6d19eab3b0910cdc04aba3d7c4bc69e9b453b",
+      "observed_file_sha256": "d1fa11992dacc34dcc0b29550a10b604656f49d45605292db261a45bf7d0f335",
+      "reason": "artifact changed or incomplete after parallel execution; cause unestablished"
+    }
+  ]
+}

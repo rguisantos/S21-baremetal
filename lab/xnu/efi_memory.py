@@ -111,7 +111,7 @@ def parse_serial(serial):
     return snapshots, claims
 
 
-def verify(snapshots, claims, args, tree, boot_pa, kernel):
+def verify(snapshots, claims, args, tree, boot_pa, kernel, *, video_claim=None):
     require(set(snapshots) == set(range(4)) and set(claims) == {"payload", "window"},
             "all four UEFI stages and both allocation records are required")
     window = c.Span(args.phys_base, args.mem_size)
@@ -131,8 +131,17 @@ def verify(snapshots, claims, args, tree, boot_pa, kernel):
     before = snapshots[1]
     ram = [d.physical for d in before.descriptors if d.usable(7)]
     reserved = [d.physical for d in before.descriptors if not d.usable(7)]
+    frame = None
+    if video_claim is not None:
+        from .video import verify_maps
+        frame = verify_maps(args.video,snapshots,video_claim,window,PAYLOAD)
     profile = c.validate_profile(args, tree, boot_pa, kernel, ram=ram, reserved=reserved,
-                                 protected=[PAYLOAD], complete=True)
+                                 protected=[PAYLOAD], complete=True,
+                                 framebuffer=frame.allocation if frame else None)
+    if frame:
+        profile["video"] = {"base":hex(frame.allocation.base),"pixels_bytes":frame.pixels.size,
+                            "allocation_bytes":frame.allocation.size,"width":frame.width,
+                            "height":frame.height,"stride":frame.stride,"format":"XR24"}
     placements = {name: c.Span(*(int(x, 16) for x in values)) for name, values in profile["placements"].items()}
     for name, span in placements.items():
         require(all(snapshots[stage].covers(span, 2) for stage in (2, 3)),
