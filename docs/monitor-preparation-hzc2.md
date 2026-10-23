@@ -161,3 +161,5 @@ de operações/lista. O material recebido basta para continuar a investigação
 estática; não é necessário reenviar firmware. Carregamento Samsung, posse e
 coerência da Image, estado efetivo e leitura dos 128 bytes do diagnóstico
 continuam necessários para o Marco A. Não houve nova validação física.
+
+A [continuação da cadeia BL2](bl2-service-chain-hzc2.md) identifica a resposta X2 do getter -0xe9, o seletor W e os campos herdados no pedido anterior -0xe6. As correlações aritméticas acima continuam sem atribuição de unidades ou operação do provedor seguro.

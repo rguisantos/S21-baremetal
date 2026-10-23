@@ -24,6 +24,8 @@ A [auditoria do trecho final LK HZC2](docs/lk-final-edges.md) agora enumera as c
 
 A [preparação do monitor HZC2 e os escritores da lista LK](docs/monitor-preparation-hzc2.md) agora têm inspeção reproduzível: pedido BL2 -0xe7, um segundo objeto de callback desativado por gate constante e consulta de metadados -0x12d. Foram 29 testes de host e 160 instruções conferidas com objdump. A semântica segura de -0x3ff e o estado físico seguem abertos.
 
+A [origem do modo e o descritor BL2](docs/bl2-service-chain-hzc2.md) foram refinados: a resposta vem de X2 no SMC -0xe9, o seletor usa aritmética W e o pedido -0xe6 deixa campos herdados em dois modos. O novo modelo preserva esses desconhecidos; 38 testes de host passaram e 116 palavras/25 alvos foram conferidos com objdump. O provedor seguro permanece aberto.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

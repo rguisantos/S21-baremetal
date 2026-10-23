@@ -1115,3 +1115,34 @@ GNU e saída de testes versionadas, sem incluir firmware. README/roadmap e
 índices atualizados; nova nota detalha premissas e lacunas. Sem mudança em
 R10/diagnóstico e sem repetir ensaios QEMU ou coletas shell bloqueadas.
 Próximo: provedor seguro e escritores indiretos, observação física em paralelo.
+
+
+## 2026-10-23 — origem X2 do modo BL2 e campos herdados de -0xe6
+
+Getter -0xe9 ligado ao veneer que zera X2, faz DSB/SMC e move X2 para X0.
+Inicialização de X2 não é resposta medida. Seletor W confere truncamento,
+LSRV módulo 32, subtração/limite sem sinal e tabela de onze bytes; quatro
+modos possíveis (0, 0x14, 0x20, 0x40). Entrada X2 opcional sempre explícita
+e marcada como hipotética. Sequência -0xed opcional, -0xe6/teste W0, store
+MMIO intermediário e -0xe7/teste W0 preservada sem executar os serviços.
+
+Intérprete restrito do construtor original -0xe6, até o BL do veneer,
+reconstrói argumentos e stores em dicionário de 28 bytes. Modo 0x14 não
+escreve +0x18; 0x40 não escreve +0x10/+0x14/+0x18. Campos mantidos como
+null, sem inventar memória inicial ou contrato do provedor. Limite 64 PCs,
+recusa de loops/escapes, registradores desconhecidos e stores fora da janela;
+pilha/prologo abstraídos após conferência, sem memória física acessada.
+Correlações dos valores com intervalo LK não definem unidades ou operação.
+
+ADR EPBL para VBAR candidato 0xe800 conferido; primeira palavra 831dc011
+apresentada como indefinida pelo GNU, sem despacho seguro plaintext ligado.
+Não atribuir cifra/semântica por aparência. Busca ADRP+ADD limitada encontrou
+cinco referências selecionadas, inclusive célula stdout e tríade inicial
+com o mesmo ponteiro. Não é censo geral de escritores/aliases em execução.
+
+24 testes novos e 14 regressões: 38 PASS. GNU 2.44 coincidiu em 116 palavras
+e 25 destinos de código; vetor bruto excluído dessa contagem. Conferência
+GNU não é segunda execução independente do modelo. Relatórios e testes
+versionados, README/roadmap/índices atualizados. Sem alteração R10 ou nova
+execução QEMU/Samsung; serviços seguros, estado físico e leitura continuam
+abertos. Nenhum novo arquivo necessário para esta investigação estática.

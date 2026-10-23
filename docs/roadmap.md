@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, 9c704d9](https://github.com/rguisantos/S21-baremetal/commit/9c704d9c0ac1b6a5ae5a5098016a291f49f21f27).
+[main anterior a esta entrega, 22d376b](https://github.com/rguisantos/S21-baremetal/commit/22d376be7a08d3215a499449233d1c641764c484).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -23,7 +23,7 @@ não mudam o estado de validação no telefone.
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
 | Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
-| Preparação do monitor e lista LK | **Pedidos e gates identificados; provedor aberto** | [BL2 -0xe7 e segundo objeto condicionado](monitor-preparation-hzc2.md); 14 testes novos + 15 regressões, 160 instruções/31 alvos conferidos; sem operação segura ou lista viva comprovadas |
+| Preparação do monitor e lista LK | **Pedidos e gates identificados; provedor aberto** | [BL2 -0xe7/gates](monitor-preparation-hzc2.md) e [origem X2/descritor -0xe6](bl2-service-chain-hzc2.md); 24 testes novos + 14 regressões, 116 palavras/25 alvos conferidos nesta etapa; operação segura e lista viva abertas |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
@@ -38,8 +38,10 @@ As contagens acima pertencem a suítes diferentes e não devem ser somadas
 como uma porcentagem de prontidão. A etapa anterior do perfil iOS concluiu
 interface, retorno nativo de 900 s e conferência dos quatro mapas, com três
 recusas QEMU, 74 testes de host e quatro controles semânticos. Nesta entrega
-a análise estática avançou nos pedidos BL2 e gates da lista: 14 testes novos
-e 15 regressões passaram, com 160 instruções/31 alvos conferidos separadamente.
+a análise estática avançou na origem X2 do modo, no seletor W e nos campos
+herdados do descritor -0xe6: 24 testes novos e 14 regressões passaram, com
+116 palavras/25 alvos conferidos separadamente. Os gates da lista foram
+classificados na etapa anterior.
 Não houve novo ensaio QEMU ou físico; o kernel XNU continua prebuilt.
 
 ## Dois marcos físicos com requisitos diferentes
@@ -69,7 +71,7 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Helper/grafo e gates do segundo objeto conferidos; seguir a implementação dos serviços a partir dos pedidos BL2 e limitar escritores indiretos da tabela/lista, junto às garantias da imagem | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
+| **P1 — entrada e coerência** | Helper/grafo/gates conferidos; seguir preparação dos campos herdados de -0xe6 e transformação/despacho seguro a partir dos pedidos BL2, além dos escritores indiretos da tabela/lista | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
 | **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -77,13 +79,14 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica recomendada: seguir o provedor seguro a partir dos
-pedidos BL2 identificados e os escritores indiretos das tabelas/listas de saída**,
-mantendo observação e memória em paralelo. A [nova análise](monitor-preparation-hzc2.md)
-correlacionou argumentos de -0xe7 ao contêiner candidato do monitor e classificou
-um segundo callback como desativado pelos gates desta compilação. Não identificou
-a operação do serviço ou o handler distinto de -0x3ff, nem limitou a lista viva.
-O [inventário final](lk-final-edges.md) conserva suas hipóteses e contagens.
+**Próxima entrega técnica recomendada: seguir a preparação dos campos herdados
+do descritor BL2 e a transformação/despacho seguro onde houver bytes verificáveis**,
+com escritores indiretos, observação e memória em paralelo. A [nova análise](bl2-service-chain-hzc2.md)
+ligou o modo a X2 e preservou os campos não escritos de -0xe6; o vetor candidato
+EPBL ainda não foi validado como código plaintext. A [etapa anterior](monitor-preparation-hzc2.md)
+classificou -0xe7 e um segundo callback desativado pelos gates. O handler distinto
+de -0x3ff e a lista viva continuam abertos. O [inventário final](lk-final-edges.md)
+conserva suas hipóteses e contagens.
 Repetir a matriz de cache ou fornecer respostas simuladas ao SMC não fecha
 o estado físico, a coerência ou o canal de leitura.
 
