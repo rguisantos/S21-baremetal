@@ -147,7 +147,7 @@ def run(args):
             "memory_fault_builds":fault_builds,
             "fixture":resource.report(),"kernel_sha256":efi.sha(kernel),"ramdisk_sha256":efi.sha(ramdisk),
             "own_sources_sha256":{p:lab.sha256(ROOT/p) for p in ("lab/xnu/efi_resources.c","lab/xnu/efi_resources.h",
-                "lab/xnu/efi_lab.py","lab/xnu/efi_memory.c","lab/xnu/efi_memory.h","lab/xnu/efi_memory_loader.inc",
+                "lab/xnu/efi_lab.py","lab/xnu/ramfb.py","lab/xnu/efi_memory.c","lab/xnu/efi_memory.h","lab/xnu/efi_memory_loader.inc",
                 "lab/xnu/efi_memory.py","scripts/run_xnu_adapter_lab.py","lab/xnu/fdt_adapter.py",
                 "lab/xnu/boot_contract.py","scripts/capture_xnu_contract.py","scripts/run_xnu_lab.py","scripts/test_fdt.py",
                 "lab/xnu/fdt_probe.c","r8/r10_payload/fdt.c","r8/r10_payload/fdt.h","scripts/inspect_proton.py","tools/mkpayload.py")},

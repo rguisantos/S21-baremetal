@@ -1,0 +1,38 @@
+Published loader SHA256: 9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1
+.text extracted at image base 0xa1000000 + RVA 0x1000.
+GNU aarch64-linux-gnu-objdump -D -b binary -m aarch64 --adjust-vma=0xa1001000 prebuilt-text.bin
+DMA descriptor: 0xa101c278; config: 0xa101c258; error string: 0xa100e7f0.
+After MMIO store at 0xa1002860: unconditional print; no descriptor reload.
+
+    a1002804:	d2aca08a 	mov	x10, #0x65040000            	// #1694760960
+    a1002808:	f94003e8 	ldr	x8, [sp]
+    a100280c:	d00000c9 	adrp	x9, 0xa101c000
+    a1002810:	91096129 	add	x9, x9, #0x258
+    a1002814:	f2f0812a 	movk	x10, #0x8409, lsl #48
+    a1002818:	52b2822b 	mov	w11, #0x94110000            	// #-1810825216
+    a100281c:	f900092a 	str	x10, [x9, #16]
+    a1002820:	5286468a 	mov	w10, #0x3234                	// #12852
+    a1002824:	dac00d08 	rev	x8, x8
+    a1002828:	72ab0a4a 	movk	w10, #0x5852, lsl #16
+    a100282c:	b900192b 	str	w11, [x9, #24]
+    a1002830:	5ac00b6b 	rev	w11, w27
+    a1002834:	a9002928 	stp	x8, x10, [x9]
+    a1002838:	d00000c8 	adrp	x8, 0xa101c000
+    a100283c:	9109e108 	add	x8, x8, #0x278
+    a1002840:	52a3800a 	mov	w10, #0x1c000000            	// #469762048
+    a1002844:	dac00d29 	rev	x9, x9
+    a1002848:	2a1b03e1 	mov	w1, w27
+    a100284c:	2900290b 	stp	w11, w10, [x8]
+    a1002850:	90000060 	adrp	x0, 0xa100e000
+    a1002854:	911fc000 	add	x0, x0, #0x7f0
+    a1002858:	f9000509 	str	x9, [x8, #8]
+    a100285c:	dac00d08 	rev	x8, x8
+    a1002860:	f9000708 	str	x8, [x24, #8]
+    a1002864:	94000008 	bl	0xa1002884
+    a1002868:	f9401663 	ldr	x3, [x19, #40]
+    a100286c:	b9403aa2 	ldr	w2, [x21, #56]
+    a1002870:	90000060 	adrp	x0, 0xa100e000
+    a1002874:	91184000 	add	x0, x0, #0x610
+    a1002878:	b9403281 	ldr	w1, [x20, #48]
+    a100287c:	94000002 	bl	0xa1002884
+    a1002880:	17fffeb9 	b	0xa1002364

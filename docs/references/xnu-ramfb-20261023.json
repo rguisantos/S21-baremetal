@@ -1,0 +1,1267 @@
+{
+  "scope": "QEMU published EFI and instrumented source probes; no iOS userland",
+  "date": "2026-10-23",
+  "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+  "inputs": {
+    "loader.c": {
+      "path": "@upstream/kernel/xnuloader/loader.c",
+      "bytes": 150273,
+      "sha256": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6"
+    },
+    "efi.h": {
+      "path": "@upstream/kernel/xnuloader/efi.h",
+      "bytes": 11221,
+      "sha256": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22"
+    },
+    "identity.h": {
+      "path": "@upstream/kernel/xnuloader/identity.h",
+      "bytes": 8271,
+      "sha256": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+    },
+    "prebuilt": {
+      "path": "@upstream/kernel/prebuilt/loader.efi",
+      "bytes": 68096,
+      "sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1"
+    },
+    "efi_code": {
+      "path": "@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+      "bytes": 67108864,
+      "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+    },
+    "efi_vars": {
+      "path": "@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_VARS.fd",
+      "bytes": 67108864,
+      "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+    },
+    "payload": {
+      "path": "@tools-and-baseline/baseline/payload.bin",
+      "bytes": 19817496,
+      "sha256": "2a1549161080bbb2d44edee56cb3f5b3b202e802ce81cd41e0b5e73eddb80e1f"
+    }
+  },
+  "builds": {
+    "rebuilt-original": {
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@run/build-rebuilt-original/loader.c",
+          "-o",
+          "@run/build-rebuilt-original/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-S",
+          "@run/build-rebuilt-original/loader.c",
+          "-o",
+          "@run/build-rebuilt-original/loader.s"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/build-rebuilt-original/loader.efi",
+          "@run/build-rebuilt-original/loader.obj"
+        ]
+      ],
+      "sources_sha256": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "loader_sha256": "a1eaf2dae1ba279a65a3f70ec464bd8c714c5231efe1d7746b56a443a0bce8f7",
+      "assembly_sha256": "4b9bc2cb9501712bbe7f9b40d20c4df5b36a06ea816bb8b2da4abde71f5e92b3"
+    },
+    "original-probe": {
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@run/build-original-probe/loader.c",
+          "-o",
+          "@run/build-original-probe/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-S",
+          "@run/build-original-probe/loader.c",
+          "-o",
+          "@run/build-original-probe/loader.s"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/build-original-probe/loader.efi",
+          "@run/build-original-probe/loader.obj"
+        ]
+      ],
+      "sources_sha256": {
+        "loader.c": "70e2d33a7745d5484d02d2421721b3555dd0ccec0476b7ed99a44900ffc0b2f3",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "loader_sha256": "92ee52c53a3d84c67def95fc3c32e40e86c3e93ffd83a1b2212aa2fe02efb0c4",
+      "assembly_sha256": "7b5bda79cdce74f18be834064ab683b804120da049d9330dee58e194c1f661e7"
+    },
+    "fixed-probe": {
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@run/build-fixed-probe/loader.c",
+          "-o",
+          "@run/build-fixed-probe/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-S",
+          "@run/build-fixed-probe/loader.c",
+          "-o",
+          "@run/build-fixed-probe/loader.s"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/build-fixed-probe/loader.efi",
+          "@run/build-fixed-probe/loader.obj"
+        ]
+      ],
+      "sources_sha256": {
+        "loader.c": "7b3470f14d99736cfe602aa386dd6a4aba595fec0c9f300b4ce4e06756b14a20",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "loader_sha256": "e619162ab0881fb0f7c7491a0f312101a6dfc94ef559212bc715d985929568ed",
+      "assembly_sha256": "3873dade7486f8c20f85ae5d9a26c84c7c747548724320b947823b5695d0a15d"
+    },
+    "dma-error": {
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@run/build-dma-error/loader.c",
+          "-o",
+          "@run/build-dma-error/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-S",
+          "@run/build-dma-error/loader.c",
+          "-o",
+          "@run/build-dma-error/loader.s"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/build-dma-error/loader.efi",
+          "@run/build-dma-error/loader.obj"
+        ]
+      ],
+      "sources_sha256": {
+        "loader.c": "5a64f085807d9249f02c527d8e7bd76a8c1b29a9f28cb287722263f80d895c95",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "loader_sha256": "e87b0b31ddd132bfc7688162262989f700a4c343dee80eb47aaea968d9f43cb4",
+      "assembly_sha256": "7bec0f4dcefb4274b5b5603e4654329f806569e077ef187308e2def7cd10ff03"
+    },
+    "dma-timeout": {
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-c",
+          "@run/build-dma-timeout/loader.c",
+          "-o",
+          "@run/build-dma-timeout/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-S",
+          "@run/build-dma-timeout/loader.c",
+          "-o",
+          "@run/build-dma-timeout/loader.s"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@run/build-dma-timeout/loader.efi",
+          "@run/build-dma-timeout/loader.obj"
+        ]
+      ],
+      "sources_sha256": {
+        "loader.c": "e8906addb87ec65278d6d2cc8e59f820f035c42ee429716a39f1c59b10c0949b",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "loader_sha256": "7879cfc0dc2e4003e664893262d933ef023aa56a431dec0ad8a0a2220fabfafe",
+      "assembly_sha256": "2fe59b02811ca088c7125fbd4f06f81b23a8a1714d1c029a526e64f7e2a384cc"
+    }
+  },
+  "cases": {
+    "published": {
+      "case": "published",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "mismatch_reproduced": true,
+        "stale_status_reported": true,
+        "device_completed_in_memory": true,
+        "configured_mode_matches_qemu": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/published/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/published/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/published/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-device",
+        "loader,file=@tools-and-baseline/baseline/payload.bin,addr=0xF0000000,force-raw=on"
+      ],
+      "loader_sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1",
+      "esp_loader_sha256": "9749fa6ccaba925a585e72d586a4086150d39c67129d44bce8ae9badb2c895d1",
+      "dma_completion": {
+        "physical_address": "0xa101c278",
+        "control": 0,
+        "length": 28,
+        "configuration_address": "0xa101c258",
+        "framebuffer": "0x1bdced000",
+        "dimensions": [
+          1125,
+          2436
+        ],
+        "stride": 4500,
+        "fourcc": "0x34325258",
+        "flags": 0,
+        "memory_sha256": "6c8d48ba04a87d7d7310a1745bba6b595f25f9acec0a97727f827be5c1a26cde",
+        "read_only_qmp": true,
+        "raw_hex": "00000001bdced000343252580000000000000465000009840000119400000000000000000000001c00000000a101c258"
+      },
+      "declared_dimensions": [
+        800,
+        600
+      ],
+      "qemu_dimensions": [
+        1125,
+        2436
+      ],
+      "sampled_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "6eb0281cb935e22fd3f5916ef8000e2a9be47eb84f942f25830e01a9111c9168",
+        "screen.png": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058"
+      },
+      "payload_sha256": "2a1549161080bbb2d44edee56cb3f5b3b202e802ce81cd41e0b5e73eddb80e1f",
+      "serial_transcript": "docs/references/xnu-ramfb-published-20261023.txt",
+      "screenshot": "docs/references/xnu-ramfb-published-20261023.png"
+    },
+    "rebuilt-original": {
+      "case": "rebuilt-original",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "mode_matches": true,
+        "no_dma_failure": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/rebuilt-original/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/rebuilt-original/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/rebuilt-original/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-device",
+        "loader,file=@tools-and-baseline/baseline/payload.bin,addr=0xF0000000,force-raw=on"
+      ],
+      "loader_sha256": "a1eaf2dae1ba279a65a3f70ec464bd8c714c5231efe1d7746b56a443a0bce8f7",
+      "esp_loader_sha256": "a1eaf2dae1ba279a65a3f70ec464bd8c714c5231efe1d7746b56a443a0bce8f7",
+      "dma_completion": null,
+      "declared_dimensions": [
+        1125,
+        2436
+      ],
+      "qemu_dimensions": [
+        1125,
+        2436
+      ],
+      "sampled_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "0cbbc40010f9006b0f8d0f58be6ec9317553a35a1586079c6907cfaf942e857e",
+        "screen.png": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058"
+      },
+      "payload_sha256": "2a1549161080bbb2d44edee56cb3f5b3b202e802ce81cd41e0b5e73eddb80e1f",
+      "serial_transcript": "docs/references/xnu-ramfb-rebuilt-original-20261023.txt"
+    },
+    "original-probe": {
+      "case": "original-probe",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "mode_matches": true,
+        "no_dma_failure": true,
+        "visible_pattern": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/original-probe/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/original-probe/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/original-probe/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "loader_sha256": "92ee52c53a3d84c67def95fc3c32e40e86c3e93ffd83a1b2212aa2fe02efb0c4",
+      "esp_loader_sha256": "92ee52c53a3d84c67def95fc3c32e40e86c3e93ffd83a1b2212aa2fe02efb0c4",
+      "dma_completion": null,
+      "declared_dimensions": [
+        1125,
+        2436
+      ],
+      "qemu_dimensions": [
+        1125,
+        2436
+      ],
+      "sampled_rgb": [
+        [
+          255,
+          0,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          0,
+          255
+        ],
+        [
+          255,
+          255,
+          0
+        ],
+        [
+          255,
+          255,
+          255
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "1d14a4ee3bab457bb62f711a466bb1241f757a437e44a7b905ba24e5ed44be5b",
+        "screen.png": "1e24d2738b5bb3cdd5fe03b10fc0fff3771b3b2b9b9ab83f0ece7f505614c0fb"
+      },
+      "payload_sha256": null,
+      "serial_transcript": "docs/references/xnu-ramfb-original-probe-20261023.txt"
+    },
+    "fixed-probe": {
+      "case": "fixed-probe",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "mode_matches": true,
+        "no_dma_failure": true,
+        "visible_pattern": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/fixed-probe/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/fixed-probe/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/fixed-probe/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "loader_sha256": "e619162ab0881fb0f7c7491a0f312101a6dfc94ef559212bc715d985929568ed",
+      "esp_loader_sha256": "e619162ab0881fb0f7c7491a0f312101a6dfc94ef559212bc715d985929568ed",
+      "dma_completion": null,
+      "declared_dimensions": [
+        1125,
+        2436
+      ],
+      "qemu_dimensions": [
+        1125,
+        2436
+      ],
+      "sampled_rgb": [
+        [
+          255,
+          0,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          0,
+          255
+        ],
+        [
+          255,
+          255,
+          0
+        ],
+        [
+          255,
+          255,
+          255
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "1d14a4ee3bab457bb62f711a466bb1241f757a437e44a7b905ba24e5ed44be5b",
+        "screen.png": "1e24d2738b5bb3cdd5fe03b10fc0fff3771b3b2b9b9ab83f0ece7f505614c0fb"
+      },
+      "payload_sha256": null,
+      "serial_transcript": "docs/references/xnu-ramfb-fixed-probe-20261023.txt",
+      "screenshot": "docs/references/xnu-ramfb-fixed-probe-20261023.png"
+    },
+    "dma-error": {
+      "case": "dma-error",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "rejected": true,
+        "no_pattern": true,
+        "no_handoff": true,
+        "no_display_claim": true,
+        "device_error_bit": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/dma-error/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/dma-error/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/dma-error/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "loader_sha256": "e87b0b31ddd132bfc7688162262989f700a4c343dee80eb47aaea968d9f43cb4",
+      "esp_loader_sha256": "e87b0b31ddd132bfc7688162262989f700a4c343dee80eb47aaea968d9f43cb4",
+      "dma_completion": null,
+      "declared_dimensions": null,
+      "qemu_dimensions": [
+        800,
+        600
+      ],
+      "sampled_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "f881c3f6f0bc0bba976445c1dcfc2e5e7fd89d2fee2b4859375ac46c360ad9ac",
+        "screen.png": "21c5aa9d90f8fdff93c474dc653eb71948796fe00f4c6a5799febe1c57364020"
+      },
+      "payload_sha256": null,
+      "serial_transcript": "docs/references/xnu-ramfb-dma-error-20261023.txt"
+    },
+    "dma-timeout": {
+      "case": "dma-timeout",
+      "checks": {
+        "actual_esp_hash_matches": true,
+        "rejected": true,
+        "no_pattern": true,
+        "no_handoff": true,
+        "no_display_claim": true,
+        "pending_not_error": true
+      },
+      "passed": true,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@run/roms",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@run/dma-timeout/vars.fd",
+        "-drive",
+        "file=fat:rw:@run/dma-timeout/esp,format=raw,if=virtio",
+        "-device",
+        "ramfb",
+        "-display",
+        "none",
+        "-serial",
+        "file:@run/dma-timeout/serial.log",
+        "-qmp",
+        "stdio",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none"
+      ],
+      "loader_sha256": "7879cfc0dc2e4003e664893262d933ef023aa56a431dec0ad8a0a2220fabfafe",
+      "esp_loader_sha256": "7879cfc0dc2e4003e664893262d933ef023aa56a431dec0ad8a0a2220fabfafe",
+      "dma_completion": null,
+      "declared_dimensions": null,
+      "qemu_dimensions": [
+        800,
+        600
+      ],
+      "sampled_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "artifacts_sha256": {
+        "serial.log": "f1c597cec5c8e31fe170950d41633db5e717d69983aff4dfe187db1e8c2ad966",
+        "screen.png": "dbe1ea575b18f507bdbbf4b65c28b8a6ef453ba2ac73e2cb9fc6b7f5357a27c7"
+      },
+      "payload_sha256": null,
+      "serial_transcript": "docs/references/xnu-ramfb-dma-timeout-20261023.txt"
+    }
+  },
+  "qemu_version": "QEMU emulator version 10.0.13 (Debian 1:10.0.13+ds-0+deb13u1)",
+  "own_sources_sha256": {
+    "scripts/check_xnu_ramfb.py": "d5d2ef6998abe2a51c6da117fb19f71ef5e35abac3dace5168245ae91c991ec2",
+    "lab/xnu/ramfb.py": "f18de7b5d7e83032f56deffebd2f8f291518a020c90923f9e434631414047c98"
+  },
+  "passed": true,
+  "iOS_gui_tested": false,
+  "Samsung_tested": false,
+  "headless_regression": {
+    "build": {
+      "upstream_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+      "upstream_sources": {
+        "loader.c": "95ce0c52edb90d95c972a6cd865203e2b1d037289f5093c59196e6eb993578c6",
+        "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+        "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+      },
+      "commands": [
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-c",
+          "@headless/build/loader.c",
+          "-o",
+          "@headless/build/loader.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-c",
+          "@headless/build/efi_resources.c",
+          "-o",
+          "@headless/build/efi_resources.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/clang",
+          "--target=aarch64-unknown-windows",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fshort-wchar",
+          "-mgeneral-regs-only",
+          "-O1",
+          "-Wall",
+          "-Wextra",
+          "-Wno-unused-parameter",
+          "-DS21_MEMORY_TEST=0",
+          "-c",
+          "@headless/build/efi_memory.c",
+          "-o",
+          "@headless/build/efi_memory.obj"
+        ],
+        [
+          "@tools-and-baseline/llvm/usr/lib/llvm-19/bin/lld-link",
+          "/subsystem:efi_application",
+          "/entry:efi_main",
+          "/nodefaultlib",
+          "/base:0xA1000000",
+          "/timestamp:0",
+          "/out:@headless/build/loader.efi",
+          "@headless/build/loader.obj",
+          "@headless/build/efi_resources.obj",
+          "@headless/build/efi_memory.obj"
+        ]
+      ],
+      "memory_test": 0,
+      "patched_source_sha256": "6658c51a780af63743046e5d7272d5bc7dff78bbcdc5aeb3b7fe790a44716a90",
+      "efi_sha256": "d305db178f208f521bef73dc05e90734120280f5f9ace78bf98ecc84646a2942",
+      "efi_bytes": 75776,
+      "clang_version": "Debian clang version 19.1.7 (3+b1)"
+    },
+    "positive": {
+      "case": "positive",
+      "passed": true,
+      "checks": {
+        "qemu_exit_zero": true,
+        "no_timeout": true,
+        "darwin_kernel": true,
+        "gic_virtual_timer": true,
+        "apfs_root": true,
+        "user_pid1_uid0": true,
+        "user_apfs_fixture": true,
+        "user_sleep_and_clock": true,
+        "user_all_pass": true,
+        "ordered_user_checks": true,
+        "cpu_halted": true,
+        "loader_returned_normally": true,
+        "complete_return_log": true,
+        "no_failure_marker": true,
+        "no_panic": true,
+        "no_user_trap": true,
+        "no_early_exception": true,
+        "native_resources": true,
+        "native_layout": true,
+        "no_native_rejection": true,
+        "native_memory_before_copy": true,
+        "uefi_maps_and_allocations": true
+      },
+      "capture": {
+        "pc": "0xfffffff007453994",
+        "x0_virtual": "0xfffffff0086f4000",
+        "pstate": "0x600003c4",
+        "boot_args_sha256": "8b37367b100df33c9a96f1f8e84671ed34ab4152c71c61b99022229256096c03",
+        "tree_sha256": "dddc57dde3d904a8cd49dae14e98a71b457602988134bb83e4a43a116a2d0e65",
+        "tree_bytes": 14800,
+        "read_only_gdb": true,
+        "profile": {
+          "profile_consistent": true,
+          "hardware_ready": false,
+          "window": [
+            "0xf4000000",
+            "0xca000000"
+          ],
+          "placements": {
+            "boot_args": [
+              "0xf86f4000",
+              "0x2e0"
+            ],
+            "Apple DT": [
+              "0xf86e4000",
+              "0x39d0"
+            ],
+            "__TEXT": [
+              "0xf7004000",
+              "0x1a0000"
+            ],
+            "__DATA_CONST": [
+              "0xf71a4000",
+              "0xe8000"
+            ],
+            "__TEXT_EXEC": [
+              "0xf728c000",
+              "0x854000"
+            ],
+            "__KLD": [
+              "0xf7ae0000",
+              "0x4000"
+            ],
+            "__LASTDATA_CONST": [
+              "0xf7ae4000",
+              "0x4000"
+            ],
+            "__KLDDATA": [
+              "0xf7ae8000",
+              "0x4000"
+            ],
+            "__DATA": [
+              "0xf7aec000",
+              "0x450000"
+            ],
+            "__BOOTDATA": [
+              "0xf7f3c000",
+              "0x4c000"
+            ],
+            "__LINKINFO": [
+              "0xf7f88000",
+              "0x90000"
+            ],
+            "__LINKEDIT": [
+              "0xf8018000",
+              "0x2ca390"
+            ],
+            "RAMDisk": [
+              "0xf82e4000",
+              "0x400000"
+            ]
+          },
+          "gic": [
+            [
+              "0x8000000",
+              "0x10000"
+            ],
+            [
+              "0x80a0000",
+              "0x100000"
+            ]
+          ],
+          "cpus": [
+            "0x0"
+          ],
+          "psci_method": "hvc",
+          "note": "Consistent with complete UEFI snapshots and successful exact-address allocations in this QEMU run."
+        },
+        "resource_fields_match": true
+      },
+      "qemu_returncode": 0,
+      "command": [
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "--library-path",
+        "@repo/tools/root/usr/lib/x86_64-linux-gnu:@repo/tools/root/usr/lib",
+        "@repo/tools/root/usr/bin/qemu-system-aarch64",
+        "-L",
+        "@repo/tools/root/usr/share/qemu",
+        "-M",
+        "virt,gic-version=3",
+        "-cpu",
+        "cortex-a76",
+        "-smp",
+        "1",
+        "-m",
+        "6G",
+        "-accel",
+        "tcg,tb-size=128",
+        "-drive",
+        "if=pflash,format=raw,readonly=on,file=@tools-and-baseline/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+        "-drive",
+        "if=pflash,format=raw,file=@headless/positive/vars.fd",
+        "-drive",
+        "file=fat:rw:@headless/positive/esp,format=raw,if=virtio",
+        "-device",
+        "loader,file=@headless/positive/payload.bin,addr=0xF0000000,force-raw=on",
+        "-display",
+        "none",
+        "-serial",
+        "file:@headless/positive/serial.log",
+        "-monitor",
+        "none",
+        "-no-reboot",
+        "-nic",
+        "none",
+        "-S",
+        "-gdb",
+        "stdio"
+      ],
+      "serial_sha256": "e2a482960a8e06765a2c4d6852fc0001db7b1eddd40856b1b1241b3e441554a2",
+      "resource_sha256": "c44cb5b01d552a23dca5a4f4c655fde11b5cec021ac83223148f48d17b836ead",
+      "payload_sha256": "197bfe0eead944627fb823ba1502282d97b76d5847afb7f91be5e24c976e314f",
+      "hardware_ready": false,
+      "memory_audit": {
+        "verified": true,
+        "window": [
+          "0xf4000000",
+          "0xca000000"
+        ],
+        "payload": [
+          "0xf0000000",
+          "0x4000000"
+        ],
+        "claims": {
+          "payload": {
+            "base": 4026531840,
+            "size": 67108864,
+            "status": 0,
+            "returned": 4026531840
+          },
+          "window": {
+            "base": 4093640704,
+            "size": 3388997632,
+            "status": 0,
+            "returned": 4093640704
+          }
+        },
+        "placements_checked": [
+          "boot_args",
+          "Apple DT",
+          "__TEXT",
+          "__DATA_CONST",
+          "__TEXT_EXEC",
+          "__KLD",
+          "__LASTDATA_CONST",
+          "__KLDDATA",
+          "__DATA",
+          "__BOOTDATA",
+          "__LINKINFO",
+          "__LINKEDIT",
+          "RAMDisk"
+        ],
+        "snapshots": {
+          "payload-free": {
+            "bytes": 3840,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2ca",
+            "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+            "descriptor_count": 80
+          },
+          "window-free": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cb",
+            "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+            "descriptor_count": 82
+          },
+          "before-copy": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          },
+          "handoff": {
+            "bytes": 3936,
+            "descriptor_size": 48,
+            "descriptor_version": 1,
+            "map_key": "0x2cc",
+            "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+            "descriptor_count": 82
+          }
+        },
+        "boot_services_resident": true,
+        "exit_boot_services_called": false,
+        "scope": "UEFI-reported map and allocations during this QEMU execution; not Samsung RAM or CPU permissions",
+        "hardware_ready": false
+      },
+      "memory_snapshots": {
+        "payload-free": {
+          "bytes": 3840,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2ca",
+          "sha256": "138f20ac724ece0890c2f9d229b7c4f63e3636d659120f8d85666be3ae517a68",
+          "descriptor_count": 80
+        },
+        "window-free": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cb",
+          "sha256": "e6decaf5463305c642508cb297b791fef3183b1e9ca8031b1bf436139cbc74d3",
+          "descriptor_count": 82
+        },
+        "before-copy": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        },
+        "handoff": {
+          "bytes": 3936,
+          "descriptor_size": 48,
+          "descriptor_version": 1,
+          "map_key": "0x2cc",
+          "sha256": "5dd922cf12991914c39645c2bcc27af1aea9261459ed644def5b86ee9ae7c6e5",
+          "descriptor_count": 82
+        }
+      }
+    },
+    "sources_sha256": {
+      "lab/xnu/efi_lab.py": "9a9325191aaa0cb30b10b3001750d7fd327f42146fe187c8befd8fdb65eb34f4",
+      "lab/xnu/ramfb.py": "f18de7b5d7e83032f56deffebd2f8f291518a020c90923f9e434631414047c98",
+      "scripts/run_xnu_adapter_lab.py": "f74029ebf7783d03639ecab7a3281a05cc7b68202fe0431d693fa2221eeeafa9"
+    },
+    "serial_transcript": "docs/references/xnu-ramfb-headless-20261023.txt"
+  },
+  "baseline_recovery": {
+    "passed": true,
+    "criteria": 17,
+    "scope": "existing init/APFS/timer laboratory rerun after workspace restore"
+  },
+  "toolchain_reference": "docs/references/xnu-efi-toolchain-20261022.json",
+  "protocol_reference": "https://www.qemu.org/docs/master/specs/fw_cfg.html",
+  "glm_report": {
+    "patched_GUI": "reported by user; PNGs/raw log not received here",
+    "original_workflow": "follow-up reported incomplete",
+    "local_iOS_GUI": false
+  },
+  "disassembly_reference": "docs/references/xnu-ramfb-prebuilt-disassembly-20261023.txt"
+}

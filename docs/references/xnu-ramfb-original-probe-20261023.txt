@@ -1,0 +1,8 @@
+UEFI firmware (version 2025.02-8+deb13u1 built at 18:06:17 on Nov  8 2025)\x0d
+\x1b[2J\x1b[01;01H\x1b[=3h\x1b[2J\x1b[01;01H\x1b[2J\x1b[01;01H\x1b[=3h\x1b[2J\x1b[01;01HBdsDxe: loading Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x1,0x0)\x0d
+BdsDxe: starting Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x1,0x0)\x0d
+== XNULOADER v3 ==\x0d
+CurrentEL=1 MIDR=414fd0b1 MMFR0=101122 CNTFRQ=62500000 image=a1000000\x0d
+display 1125 x 2436 at 1bdced000\x0d
+platform qemu-virt\x0d
+S21 RAMFB PROBE: drawn 1125 x 2436 base 1bdced000 stride 4500\x0d

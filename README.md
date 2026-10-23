@@ -2,17 +2,19 @@
 
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-**Estado em 2026-10-22 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
+**Estado em 2026-10-23 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
-A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. O ensaio inicial usou kernel/loader prebuilt identificados; a variante EFI abaixo recompila o loader. Não houve execução do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
+A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. O ensaio inicial usou kernel/loader prebuilt identificados; a variante EFI abaixo recompila o loader. Não houve execução local do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
 O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layout C conferido e captura QEMU de 736/14800 bytes reemitidos sem alteração. O [adaptador FDT → recursos Apple](docs/xnu-fdt-adapter.md) passou 29 testes e traduziu CPUs/GIC/PSCI/timer do HZC2 para um fragmento de 1944 bytes. X2 segue parcial no telefone: a base HZC2 continua sem bancos RAM e com reservas incompletas.
 
 A [integração EFI no laboratório](docs/xnu-efi-adapter-lab.md) agora tem [reservas e quatro mapas UEFI capturados](docs/xnu-uefi-memory.md): payload reservado, janela inteira conferida antes da cópia/salto e buffers cruzados com o contrato observado. Foram **22 critérios positivos**, **oito recusas**, **22 testes de memória/evidência** e **16 testes de recursos**. O kernel continua prebuilt; memória e carregamento físicos do S21 permanecem pendentes.
 
-As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no host](docs/hackios-userland-host.md): colisão dos jobs, permissões, drawable_test opcional e fallback de timezone. Há patch conferido e controles sintéticos; a interface iOS do relato ainda não foi reproduzida aqui.
+As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no host](docs/hackios-userland-host.md): colisão dos jobs, permissões, drawable_test opcional e fallback de timezone. Há patch conferido e controles sintéticos. O novo relato do GLM informa interface iOS funcionando com loader modificado; essa sessão ainda não foi reproduzida aqui.
+
+O [defeito ramfb do prebuilt foi confirmado no QEMU](docs/xnu-ramfb-audit.md): o loader declara 800×600 após configurar 1125×2436. A correção na fonte passou seis controles, com captura real do padrão EFI, erro/timeout recusados e regressão XNU de 22 critérios. A fonte original recompilada com Clang 19 também funciona nesse teste; a falha não deve ser generalizada a toda compilação.
 
 ## Módulos e validação
 

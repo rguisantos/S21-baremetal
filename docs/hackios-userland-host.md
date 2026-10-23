@@ -1,7 +1,8 @@
 # HackiOS: falhas de preparação relatadas e reproduzidas
 
 Em **2026-10-22**, o usuário trouxe um relato GLM-5.3 de preparação do
-userland iOS no QEMU, ainda em andamento. Reproduzimos quatro problemas
+userland iOS no QEMU, então em andamento. Em 2026-10-23, trouxe um novo
+relato de interface funcionando com loader modificado. Reproduzimos quatro problemas
 de preparação com arquivos sintéticos e fornecemos um patch para a versão
 auditada. A correção foi conferida por seis fixtures de jobs, quatro
 fragmentos Bash e `git apply --check`; o build completo não foi executado.
@@ -85,11 +86,23 @@ foi enviado como alteração ou comentário ao projeto upstream.
 
 ## Estado da interface e continuação do relato
 
-O relato recebido cita backboardd, IOSurfaces, muitos processos e registro
-do SpringBoard. São marcos intermediários de uma execução que o usuário
-informou ainda estar em andamento. O material trazido não inclui o print
-final ou o log bruto completo dessa sessão. Não contamos essa execução
-como uma reprodução local de interface iOS.
+O novo relato informa tela de bloqueio, SpringBoard, Ajustes, Lembretes e
+alternador de apps no QEMU, usando um patch que evita a reprogramação do
+ramfb e mantém o GOP 800×600. Os PNGs e o console bruto foram salvos no
+ambiente do GLM, mas não recebidos aqui. Registramos como execução externa
+relatada com alterações, sem afirmar uma reprodução local da interface.
+
+A tentativa posterior de seguir o fluxo publicado sem alterações ainda
+termina durante preparação/reextração. Guardas de build, timezone, jobs e
+imagens reconstruídas precisam constar do relatório; não se deve presumir
+identidade do conteúdo por classificá-las como adaptações do ambiente.
+
+[Confirmamos localmente o defeito do prebuilt ramfb](xnu-ramfb-audit.md),
+incluindo status zero na memória apesar do erro impresso. A fonte original
+recompilada com Clang 19 teve outro resultado: configura o display. Nossa
+correção usa conclusão DMA observável e conserva 1125×2436, sem o bypass
+binário descrito pelo GLM. Seis controles e 22 critérios do laboratório
+sem display passaram; o padrão EFI capturado não é interface iOS.
 
 Para registrar o próximo marco visual, conservar o screendump real do
 framebuffer QEMU junto ao serial da mesma sessão, hashes das imagens,

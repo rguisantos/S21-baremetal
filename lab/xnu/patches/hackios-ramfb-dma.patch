@@ -1,0 +1,72 @@
+--- a/xnuloader/loader.c
++++ b/xnuloader/loader.c
+@@ -3865,17 +3865,17 @@
+ 	}
+ }
+ 
+-static void
++static int
+ ramfb_phone_screen(void)
+ {
+ 	static struct {
+ 		uint64_t addr;
+ 		uint32_t fourcc, flags, width, height, stride;
+ 	} __attribute__((packed)) cfg;
+-	static struct {
++	static volatile struct {
+ 		uint32_t control, length;
+ 		uint64_t address;
+-	} dma;
++	} __attribute__((aligned(64))) dma;
+ 	struct {
+ 		uint32_t size;
+ 		uint16_t select, reserved;
+@@ -3894,7 +3894,7 @@
+ 		}
+ 	}
+ 	if (select == 0 || EFI_ERROR(BS->allocate_pages(AllocateAnyPages, EfiLoaderData, (bytes + 0xFFF) >> 12, &fb))) {
+-		return;
++		return 1;
+ 	}
+ 	memset((void *)(uintptr_t)fb, 0, (size_t)bytes);
+ 	cfg.addr = __builtin_bswap64(fb);
+@@ -3906,15 +3906,25 @@
+ 	dma.control = be32(select << 16 | FW_CFG_DMA_SELECT | FW_CFG_DMA_WRITE);
+ 	dma.length = be32(sizeof(cfg));
+ 	dma.address = __builtin_bswap64((uint64_t)(uintptr_t)&cfg);
+-	*(volatile uint64_t *)(FW_CFG_BASE + 16) = __builtin_bswap64((uint64_t)(uintptr_t)&dma);
+-	if (dma.control != 0) {
+-		print("ramfb: control %x after the request\n", (uint64_t)be32(dma.control));
+-		return;
+-	}
++    /* Publish cfg and descriptor before triggering coherent QEMU DMA. */
++    __asm__ volatile("dsb sy" ::: "memory");
++    *(volatile uint64_t *)(FW_CFG_BASE + 16) = __builtin_bswap64((uint64_t)(uintptr_t)&dma);
++    uint32_t status = ~0U;
++    for (uint32_t attempt = 0; attempt < 1000000; ++attempt) {
++        status = be32(dma.control);
++        if (status == 0 || (status & 1)) break;
++        __asm__ volatile("yield" ::: "memory");
++    }
++    if (status != 0) {
++        print("S21 RAMFB: REJECT DMA status %x\n", (uint64_t)status);
++        return 0; /* Do not hand off a stale GOP buffer after a failed DMA. */
++    }
++    __asm__ volatile("dmb oshld" ::: "memory");
+ 	SCREEN.base = fb;
+ 	SCREEN.width = PHONE_WIDTH;
+ 	SCREEN.height = PHONE_HEIGHT;
+ 	SCREEN.stride = PHONE_WIDTH * 4;
++	return 1;
+ }
+ 
+ efi_status EFIAPI
+@@ -3945,7 +3955,7 @@
+ 			if (platforms[i]->fb_base == SCREEN.base)
+ 				PLAT = platforms[i];
+ 		if (PLAT == &platform_qemu_virt)
+-			ramfb_phone_screen();
++			if (!ramfb_phone_screen()) return (efi_status)((1ULL << 63) | 7);
+ 		print("display %d x %d at %x\n", (uint64_t)SCREEN.width, (uint64_t)SCREEN.height, SCREEN.base);
+ 	}
+ 	print("platform %s\n", PLAT->name);

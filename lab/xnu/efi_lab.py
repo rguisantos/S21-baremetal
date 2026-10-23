@@ -8,6 +8,7 @@ import struct
 import subprocess
 from . import boot_contract as c
 from . import fdt_adapter as adapter
+from . import ramfb
 from scripts import test_fdt as dt
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -167,7 +168,7 @@ choose_window(const struct payload_info *pi)
 \t}
     s21_memory_dump();
 \treboot();''')
-    return source
+    return ramfb.patch(source)
 
 
 def build(kernel_tree, llvm_root, out, memory_test=0):

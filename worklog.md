@@ -914,3 +914,35 @@ imagens arbitrárias, não prova preservação anterior do payload nem memória,
 entrada, caches ou observação Samsung. P1/P2 físicos continuam abertos.
 Nenhum arquivo adicional solicitado, flash, interface iOS ou SMP.
 R8/R9/R10/shim e baseline anterior preservados; sem repetir essas suítes.
+
+
+## 2026-10-23 — ramfb: prebuilt confirmado, correção e capturas reais
+
+Novo relato GLM informa interface iOS funcional com bypass do ramfb no
+loader. Prints/log bruto daquela sessão não recebidos; teste subsequente
+do fluxo original ainda incompleto. Atualizado o estado externo sem
+convertê-lo em reprodução local de iOS ou evidência Samsung.
+
+Workspace restaurado com checkout anterior; main recuperada por fast-forward.
+Fontes e toolchain recuperados pelos hashes publicados. Baseline XNU com
+init próprio repetido: 17/17. O prebuilt original SHA9749fa6c... declara
+800x600 após mudar o ramfb a 1125x2436. Desmontagem confirma print sem
+releitura após gatilho; QMP somente leitura encontra control=0 em RAM.
+A fonte original recompilada com Clang19/O1 funciona: falha demonstrada
+por versão do binário, não generalizada a qualquer compilação.
+
+Correção fonte: volatile, barreiras, leitura limitada da conclusão,
+EFI_DEVICE_ERROR em erro/timeout; SCREEN só atualizado no sucesso.
+Seis casos QEMU: prebuilt, rebuild original sem instrumentação, original
+com padrão, corrigido com padrão, erro real por seletor somente leitura e
+timeout por gatilho omitido. Todos com critérios satisfeitos. Captura PNG
+nativa; PPM do QEMU tinha padding de linha e foi abandonado como formato
+de captura para evitar diagonais artificiais no leitor de imagens.
+
+Builder EFI do S21-baremetal aplica a correção; consumidor com mapas UEFI
+retomou XNU/init/APFS/timer/RB_HALT com 22/22 critérios. Sem relaxar perfil
+headless do verificador. Patch independente conferido com git apply --check.
+Publicados manifesto, sete seriais completos, trecho de desmontagem,
+capturas reais e guia; README/índices/roadmap atualizados. Nenhum novo firmware
+necessário. Próximo gráfico: contrato/reserva do framebuffer com kernel,
+então userland/interface. P1/P2 físicos continuam abertos.

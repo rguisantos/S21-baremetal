@@ -10,6 +10,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.
 - [Integração EFI do adaptador](xnu-efi-adapter-lab.md): build do loader e primeira integração dos recursos.
 - [Memória UEFI no QEMU](xnu-uefi-memory.md): payload/janela reservados, quatro mapas completos, 22 critérios positivos, oito recusas e 22 testes de memória/evidência; 16 testes de recursos reexecutados.
+- [ramfb do HackiOS](xnu-ramfb-audit.md): defeito do prebuilt confirmado por memória/desmontagem, correção na fonte, seis controles e capturas EFI reais.
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
 
