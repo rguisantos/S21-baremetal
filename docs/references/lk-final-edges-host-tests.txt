@@ -1,0 +1,34 @@
+test_all_conditional_families_explore_both_paths (test_lk_final_edges.FinalEdges.test_all_conditional_families_explore_both_paths) ... ok
+test_call_includes_callee_and_return_continuation (test_lk_final_edges.FinalEdges.test_call_includes_callee_and_return_continuation) ... ok
+test_escape_and_unaligned_expansion_rejected (test_lk_final_edges.FinalEdges.test_escape_and_unaligned_expansion_rejected) ... ok
+test_handoff_boundary_stops_before_payload_and_requires_blr (test_lk_final_edges.FinalEdges.test_handoff_boundary_stops_before_payload_and_requires_blr) ... ok
+test_indirect_call_keeps_continuation_and_explicit_expansion (test_lk_final_edges.FinalEdges.test_indirect_call_keeps_continuation_and_explicit_expansion) ... ok
+test_loop_is_bounded_by_unique_pcs (test_lk_final_edges.FinalEdges.test_loop_is_bounded_by_unique_pcs) ... ok
+test_pc_budget_and_bad_code_bounds_rejected (test_lk_final_edges.FinalEdges.test_pc_budget_and_bad_code_bounds_rejected) ... ok
+test_secure_calls_recorded_without_assigning_a_handler (test_lk_final_edges.FinalEdges.test_secure_calls_recorded_without_assigning_a_handler) ... ok
+test_signed_immediates_use_instruction_pc (test_lk_final_edges.FinalEdges.test_signed_immediates_use_instruction_pc) ... ok
+test_signed_table_and_invalid_targets (test_lk_final_edges.FinalEdges.test_signed_table_and_invalid_targets) ... ok
+test_system_words_are_inventory_not_executed (test_lk_final_edges.FinalEdges.test_system_words_are_inventory_not_executed) ... ok
+test_tail_branch_does_not_fall_through (test_lk_final_edges.FinalEdges.test_tail_branch_does_not_fall_through) ... ok
+test_unknown_control_fails_closed (test_lk_final_edges.FinalEdges.test_unknown_control_fails_closed) ... ok
+test_unknown_indirect_branch_is_not_invented (test_lk_final_edges.FinalEdges.test_unknown_indirect_branch_is_not_invented) ... ok
+test_wrong_firmware_does_not_produce_an_evidence_report (test_lk_final_edges.FinalEdges.test_wrong_firmware_does_not_produce_an_evidence_report) ... ok
+test_data_set_way_sequence_descends_sets_then_ways (test_lk_cache_handoff.CacheGateTests.test_data_set_way_sequence_descends_sets_then_ways) ... ok
+test_final_arguments_are_conditional_and_not_a_hardware_observation (test_lk_cache_handoff.CacheGateTests.test_final_arguments_are_conditional_and_not_a_hardware_observation) ... ok
+test_instruction_only_levels_are_skipped_and_direct_mapped_clz_zero_works (test_lk_cache_handoff.CacheGateTests.test_instruction_only_levels_are_skipped_and_direct_mapped_clz_zero_works) ... ok
+test_irq_is_masked_and_other_daif_bits_preserved (test_lk_cache_handoff.CacheGateTests.test_irq_is_masked_and_other_daif_bits_preserved) ... ok
+test_m_zero_c_one_is_not_disabled (test_lk_cache_handoff.CacheGateTests.test_m_zero_c_one_is_not_disabled) ... ok
+test_model_rejects_unresolved_or_excessive_cache_walks (test_lk_cache_handoff.CacheGateTests.test_model_rejects_unresolved_or_excessive_cache_walks) ... ok
+test_no_cache_levels_still_resets_selector_and_has_completion_barriers (test_lk_cache_handoff.CacheGateTests.test_no_cache_levels_still_resets_selector_and_has_completion_barriers) ... ok
+test_only_active_el_is_changed_and_i_is_preserved (test_lk_cache_handoff.CacheGateTests.test_only_active_el_is_changed_and_i_is_preserved) ... ok
+test_other_sctlr_bits_survive_the_mc_clear (test_lk_cache_handoff.CacheGateTests.test_other_sctlr_bits_survive_the_mc_clear) ... ok
+test_all_fields_and_canonical_cache_level_keys_are_required (test_lk_cache_handoff.InputBoundaryTests.test_all_fields_and_canonical_cache_level_keys_are_required) ... ok
+test_emulation_rejects_wrong_image_before_optional_dependency (test_lk_cache_handoff.InputBoundaryTests.test_emulation_rejects_wrong_image_before_optional_dependency) ... ok
+test_json_literals_duplicates_and_nesting (test_lk_cache_handoff.InputBoundaryTests.test_json_literals_duplicates_and_nesting) ... ok
+test_scenario_read_is_bounded_before_json_parsing (test_lk_cache_handoff.InputBoundaryTests.test_scenario_read_is_bounded_before_json_parsing) ... ok
+test_wrong_firmware_cli_produces_no_evidence (test_lk_cache_handoff.InputBoundaryTests.test_wrong_firmware_cli_produces_no_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.089s
+
+OK

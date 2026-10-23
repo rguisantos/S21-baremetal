@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-23",
+  "tool": "GNU aarch64 objdump (Debian Binutils) 2.44",
+  "input_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_graph_comparison": {
+    "direct_only": {
+      "valid_a64_words_matched": 421,
+      "relative_control_targets_matched": 50,
+      "passed": true
+    },
+    "expanded_known_templates": {
+      "valid_a64_words_matched": 1834,
+      "relative_control_targets_matched": 395,
+      "passed": true
+    },
+    "irq_call_before_cache": {
+      "valid_a64_words_matched": 66,
+      "relative_control_targets_matched": 16,
+      "passed": true
+    }
+  },
+  "expanded_system_disassembly": [
+    {
+      "offset": "0x111c40",
+      "decoded": "mrs\tx0, cntpct_el0"
+    },
+    {
+      "offset": "0x12cee0",
+      "decoded": "mrs\tx3, sctlr_el1"
+    },
+    {
+      "offset": "0x12cee8",
+      "decoded": "sevl"
+    },
+    {
+      "offset": "0x12cef0",
+      "decoded": "wfe"
+    },
+    {
+      "offset": "0x12cf1c",
+      "decoded": "mrs\tx3, sctlr_el1"
+    },
+    {
+      "offset": "0x1af608",
+      "decoded": "mrs\tx3, sctlr_el1"
+    },
+    {
+      "offset": "0x1af664",
+      "decoded": "dc\tzva, x7"
+    },
+    {
+      "offset": "0x1b05c4",
+      "decoded": "mrs\tx0, mpidr_el1"
+    },
+    {
+      "offset": "0x20c4a8",
+      "decoded": "mrs\tx1, daif"
+    },
+    {
+      "offset": "0x20c4b0",
+      "decoded": "msr\tdaifset, #0x2"
+    },
+    {
+      "offset": "0x20c4f0",
+      "decoded": "msr\tdaifclr, #0x2"
+    }
+  ],
+  "host_tests": {
+    "new": 15,
+    "cache_gate_regression": 14,
+    "total": 29,
+    "passed": true
+  },
+  "firmware_executed": false,
+  "Samsung_tested": false,
+  "scope": "Independent instruction/relative-target check; not runtime graph or cache/MMIO proof",
+  "sources_sha256": {
+    "scripts/inspect_lk_final_edges.py": "4895be69b9066cc234ae9911909435f03bd6b2bfe1823d799a06bf2cef6ef33d",
+    "scripts/test_lk_final_edges.py": "6817d88213482d35051ec28c4be2bfb529b3d87c5bd602426954a53afd19e974"
+  },
+  "evidence_sha256": "9106f1b87f8b56af6ca4998f124518e7db3c345f2f9ae55aa8030116b9bffe0d",
+  "test_log_sha256": "f88bb84d7cf6eb012077ca239364cb143ff47f40259ef27a6b4632137aff7566",
+  "source_archive_sha256": "5b48c27798b103ec906112fc4baad1aacd8d39c970dae6c478d3bd559e2cf31f"
+}

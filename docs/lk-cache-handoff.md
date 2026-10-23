@@ -147,3 +147,12 @@ e [relatório Unicorn](references/lk-cache-handoff-unicorn-hzc2.json) foram
 versionados. O exemplo EL2/M=0/C=1 conserva C e deixa SCTLR_EL1 inalterado;
 não é um estado observado no S21. Sem mudança no payload ou suas exigências,
 sem nova regressão R8/R9/R10, coleta bloqueada ou teste físico.
+
+## Continuação 2026-10-23
+
+O [inventário das chamadas finais](lk-final-edges.md) cobre os corpos diretos
+e uma expansão explícita dos callbacks conhecidos. Confirma testes posteriores
+de SCTLR_EL1.M em locks/preenchimento, DC ZVA condicional e UART sem timeout.
+Não há MSR na forma de registrador ou ERET/SMC/HVC nos nós expandidos; isso
+não limita mutações da tabela/lista ou efeitos do serviço anterior. O estado
+físico final continua pendente. Relatórios e 29 testes de host no novo guia.

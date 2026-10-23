@@ -20,6 +20,8 @@ O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-vide
 
 O [perfil iOS do consumidor EFI validado](docs/xnu-guarded-userland.md) já iniciou as imagens APFS identificadas: uma CPU, 7 GiB de RAM, reservas capturadas na entrada do kernel e navegação em SpringBoard/Ajustes/Geral/Sobre. O [ensaio anterior de disco residente](docs/xnu-resident-contract.md) usou init próprio e 4 MiB. O novo perfil concluiu o retorno nativo de 900 s e conferiu os quatro snapshots reemitidos; tem três recusas QEMU, 74 testes de host e quatro controles semânticos da captura.
 
+A [auditoria do trecho final LK HZC2](docs/lk-final-edges.md) agora enumera as chamadas posteriores ao helper e os callbacks conhecidos: 1834 instruções conferidas com objdump e 29 testes de host. O recorte não escreve SCTLR, mas contém dependências de SCTLR_EL1 e polling sem timeout; o SMC anterior e o estado físico continuam abertos.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

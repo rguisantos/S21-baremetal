@@ -1,0 +1,863 @@
+{
+  "mode": "static_read_only_hzc2_selected_final_edges",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "roots_after_cache": [
+    "0xfbde0"
+  ],
+  "stop_before_payload": "0xfbe14",
+  "direct_only": {
+    "instruction_count": 421,
+    "instruction_index_sha256": "d60ff5f540a8fff379c09be63cf8f841b777430935252bf49d9f117d05adf133",
+    "file_ranges": [
+      [
+        "0xf29a0",
+        "0xf2a5c"
+      ],
+      [
+        "0xf2a60",
+        "0xf2a98"
+      ],
+      [
+        "0xfbde0",
+        "0xfbe18"
+      ],
+      [
+        "0xff5f0",
+        "0xff604"
+      ],
+      [
+        "0xff608",
+        "0xff618"
+      ],
+      [
+        "0x1118f8",
+        "0x11195c"
+      ],
+      [
+        "0x111c40",
+        "0x111c58"
+      ],
+      [
+        "0x12ced8",
+        "0x12cf4c"
+      ],
+      [
+        "0x12d280",
+        "0x12d284"
+      ],
+      [
+        "0x12d288",
+        "0x12d290"
+      ],
+      [
+        "0x1b04e8",
+        "0x1b055c"
+      ],
+      [
+        "0x1b0560",
+        "0x1b067c"
+      ],
+      [
+        "0x1b0680",
+        "0x1b0704"
+      ],
+      [
+        "0x1b0708",
+        "0x1b0718"
+      ],
+      [
+        "0x1b10e8",
+        "0x1b115c"
+      ],
+      [
+        "0x1b1160",
+        "0x1b11d4"
+      ],
+      [
+        "0x1b1658",
+        "0x1b1714"
+      ],
+      [
+        "0x1b1718",
+        "0x1b1798"
+      ]
+    ],
+    "direct_calls": {
+      "0xf29dc": "0x1b1160",
+      "0xf29ec": "0x1b1658",
+      "0xf29fc": "0x1b1658",
+      "0xf2a0c": "0x1b1658",
+      "0xf2a1c": "0x1b1658",
+      "0xf2a34": "0x1b1658",
+      "0xf2a3c": "0xff5f0",
+      "0xf2a6c": "0x1b1658",
+      "0xf2a74": "0xff5f0",
+      "0xfbde4": "0xf29a0",
+      "0xfbdf0": "0x1b1658",
+      "0x1b058c": "0x111c40",
+      "0x1b05e8": "0x1b1160",
+      "0x1b1128": "0x1b04e8",
+      "0x1b11c8": "0x1b10e8",
+      "0x1b16fc": "0x1b04e8",
+      "0x1b1724": "0x12d280",
+      "0x1b1778": "0x1b04e8",
+      "0x1b1784": "0x12d288"
+    },
+    "indirect_edges": {
+      "0x1b05f8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b0620": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b0650": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b068c": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b06d8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b06f4": {
+        "kind": "blr",
+        "register": 19,
+        "targets": []
+      },
+      "0x1b0714": {
+        "kind": "br",
+        "register": 0,
+        "targets": []
+      }
+    },
+    "system_words": {
+      "0x111c40": "d53be020",
+      "0x12cee0": "d5381003",
+      "0x12cee8": "d50320bf",
+      "0x12cef0": "d503205f",
+      "0x12cf1c": "d5381003",
+      "0x1b05c4": "d53800a0"
+    },
+    "register_write_sites": [],
+    "exits": {
+      "0xfbe14": {
+        "kind": "handoff_boundary",
+        "register": 4
+      }
+    }
+  },
+  "expanded_known_templates": {
+    "instruction_count": 1834,
+    "instruction_index_sha256": "baf1635f164037d1174b68f3bab009f30c3031c4d808cc05bed688582215f2b1",
+    "file_ranges": [
+      [
+        "0xef098",
+        "0xef09c"
+      ],
+      [
+        "0xef4c0",
+        "0xef4f4"
+      ],
+      [
+        "0xf29a0",
+        "0xf2a5c"
+      ],
+      [
+        "0xf2a60",
+        "0xf2a98"
+      ],
+      [
+        "0xfbde0",
+        "0xfbe18"
+      ],
+      [
+        "0xff5f0",
+        "0xff604"
+      ],
+      [
+        "0xff608",
+        "0xff618"
+      ],
+      [
+        "0xff6c8",
+        "0xff784"
+      ],
+      [
+        "0x1118f8",
+        "0x11195c"
+      ],
+      [
+        "0x111c40",
+        "0x111c58"
+      ],
+      [
+        "0x12ced8",
+        "0x12cf4c"
+      ],
+      [
+        "0x12d280",
+        "0x12d284"
+      ],
+      [
+        "0x12d288",
+        "0x12d290"
+      ],
+      [
+        "0x1af3c0",
+        "0x1af48c"
+      ],
+      [
+        "0x1af4c0",
+        "0x1af51c"
+      ],
+      [
+        "0x1af540",
+        "0x1af5d0"
+      ],
+      [
+        "0x1af600",
+        "0x1af684"
+      ],
+      [
+        "0x1afcb0",
+        "0x1afcf4"
+      ],
+      [
+        "0x1afcf8",
+        "0x1afd9c"
+      ],
+      [
+        "0x1afda0",
+        "0x1afe2c"
+      ],
+      [
+        "0x1afe30",
+        "0x1afebc"
+      ],
+      [
+        "0x1afec0",
+        "0x1aff14"
+      ],
+      [
+        "0x1aff18",
+        "0x1b014c"
+      ],
+      [
+        "0x1b0150",
+        "0x1b018c"
+      ],
+      [
+        "0x1b0190",
+        "0x1b031c"
+      ],
+      [
+        "0x1b0320",
+        "0x1b0354"
+      ],
+      [
+        "0x1b0358",
+        "0x1b036c"
+      ],
+      [
+        "0x1b0370",
+        "0x1b039c"
+      ],
+      [
+        "0x1b03a0",
+        "0x1b03cc"
+      ],
+      [
+        "0x1b03d0",
+        "0x1b042c"
+      ],
+      [
+        "0x1b0430",
+        "0x1b045c"
+      ],
+      [
+        "0x1b0460",
+        "0x1b048c"
+      ],
+      [
+        "0x1b0490",
+        "0x1b04ac"
+      ],
+      [
+        "0x1b04b0",
+        "0x1b055c"
+      ],
+      [
+        "0x1b0560",
+        "0x1b067c"
+      ],
+      [
+        "0x1b0680",
+        "0x1b0704"
+      ],
+      [
+        "0x1b0708",
+        "0x1b085c"
+      ],
+      [
+        "0x1b0860",
+        "0x1b0e1c"
+      ],
+      [
+        "0x1b0e20",
+        "0x1b0e9c"
+      ],
+      [
+        "0x1b0ea0",
+        "0x1b115c"
+      ],
+      [
+        "0x1b1160",
+        "0x1b11d4"
+      ],
+      [
+        "0x1b14e0",
+        "0x1b1504"
+      ],
+      [
+        "0x1b1658",
+        "0x1b1714"
+      ],
+      [
+        "0x1b1718",
+        "0x1b1798"
+      ],
+      [
+        "0x1b2660",
+        "0x1b2688"
+      ],
+      [
+        "0x20c478",
+        "0x20c534"
+      ],
+      [
+        "0x20c538",
+        "0x20c540"
+      ],
+      [
+        "0x20c618",
+        "0x20c630"
+      ]
+    ],
+    "direct_calls": {
+      "0xf29dc": "0x1b1160",
+      "0xf29ec": "0x1b1658",
+      "0xf29fc": "0x1b1658",
+      "0xf2a0c": "0x1b1658",
+      "0xf2a1c": "0x1b1658",
+      "0xf2a34": "0x1b1658",
+      "0xf2a3c": "0xff5f0",
+      "0xf2a6c": "0x1b1658",
+      "0xf2a74": "0xff5f0",
+      "0xfbde4": "0xf29a0",
+      "0xfbdf0": "0x1b1658",
+      "0xff738": "0x1af3c0",
+      "0xff764": "0x1af540",
+      "0x1affc0": "0x1afdb0",
+      "0x1b028c": "0x1afcf8",
+      "0x1b058c": "0x111c40",
+      "0x1b05e8": "0x1b1160",
+      "0x1b076c": "0x1b0150",
+      "0x1b077c": "0x1b2660",
+      "0x1b081c": "0x1b0190",
+      "0x1b0850": "0x1afe60",
+      "0x1b09cc": "0x1afcf8",
+      "0x1b0a10": "0x1b0190",
+      "0x1b1128": "0x1b04e8",
+      "0x1b11c8": "0x1b10e8",
+      "0x1b14f8": "0x20c618",
+      "0x1b16fc": "0x1b04e8",
+      "0x1b1724": "0x12d280",
+      "0x1b1778": "0x1b04e8",
+      "0x1b1784": "0x12d288",
+      "0x20c510": "0xef098"
+    },
+    "indirect_edges": {
+      "0x1b05f8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0620": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0650": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b068c": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b06d8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b06f4": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0714": {
+        "kind": "br",
+        "register": 0,
+        "targets": [
+          "0x1b06c0",
+          "0x1b0718",
+          "0x1b071c",
+          "0x1b07f4",
+          "0x1b07f8",
+          "0x1b0828",
+          "0x1b082c",
+          "0x1b0928",
+          "0x1b0930",
+          "0x1b0958",
+          "0x1b0960",
+          "0x1b0968",
+          "0x1b0970",
+          "0x1b0988",
+          "0x1b0990",
+          "0x1b09d8",
+          "0x1b0a1c",
+          "0x1b0a34",
+          "0x1b0a3c",
+          "0x1b0a4c",
+          "0x1b0a7c",
+          "0x1b0a88",
+          "0x1b0ab4",
+          "0x1b0abc",
+          "0x1b0ae8",
+          "0x1b0af0"
+        ],
+        "basis": "91 signed halfwords, 26 distinct targets"
+      },
+      "0x1b07e8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b088c": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b08a8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b08d8": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0914": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0948": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0b40": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0b70": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x1b0b94": {
+        "kind": "blr",
+        "register": 19,
+        "targets": [
+          "0x1b14e0",
+          "0x1afcb0"
+        ],
+        "basis": "fixed callback producers in printf and bounded-buffer formatter; context union"
+      },
+      "0x20c4dc": {
+        "kind": "blr",
+        "register": 3,
+        "targets": [
+          "0xff6c8"
+        ],
+        "basis": "one known registered object; mutable list, not exhaustive"
+      },
+      "0x20c624": {
+        "kind": "br",
+        "register": 3,
+        "targets": [
+          "0x20c478"
+        ],
+        "basis": "initial file-backed operation table; mutable at runtime"
+      }
+    },
+    "system_words": {
+      "0x111c40": "d53be020",
+      "0x12cee0": "d5381003",
+      "0x12cee8": "d50320bf",
+      "0x12cef0": "d503205f",
+      "0x12cf1c": "d5381003",
+      "0x1af608": "d5381003",
+      "0x1af664": "d50b7427",
+      "0x1b05c4": "d53800a0",
+      "0x20c4a8": "d53b4221",
+      "0x20c4b0": "d50342df",
+      "0x20c4f0": "d50342ff"
+    },
+    "register_write_sites": [],
+    "exits": {
+      "0xfbe14": {
+        "kind": "handoff_boundary",
+        "register": 4
+      }
+    }
+  },
+  "irq_call_before_cache": {
+    "instruction_count": 66,
+    "instruction_index_sha256": "72f10f4044ac926530c747b5926a07a88c396db8a4ccaf7cc68e8f989d7377a7",
+    "file_ranges": [
+      [
+        "0xee658",
+        "0xee660"
+      ],
+      [
+        "0x100df0",
+        "0x100e44"
+      ],
+      [
+        "0x100e48",
+        "0x100e94"
+      ],
+      [
+        "0x100e98",
+        "0x100ec4"
+      ],
+      [
+        "0x100ec8",
+        "0x100ed0"
+      ],
+      [
+        "0x101228",
+        "0x10124c"
+      ],
+      [
+        "0x101250",
+        "0x101258"
+      ]
+    ],
+    "direct_calls": {
+      "0x10123c": "0x100df0"
+    },
+    "indirect_edges": {},
+    "system_words": {},
+    "register_write_sites": [],
+    "exits": {}
+  },
+  "initial_console_pointers": [
+    {
+      "location": "0x31fff0",
+      "initial_pointer": "0xe82358b0",
+      "file_offset": "0x3218b0"
+    },
+    {
+      "location": "0x3218b8",
+      "initial_pointer": "0xe81a46f8",
+      "file_offset": "0x2906f8"
+    },
+    {
+      "location": "0x2906f8",
+      "initial_pointer": "0xe8120478",
+      "file_offset": "0x20c478"
+    },
+    {
+      "location": "0x2ef148",
+      "initial_pointer": "0xe80136c8",
+      "file_offset": "0xff6c8"
+    }
+  ],
+  "formatter_table": {
+    "offset": "0x26219c",
+    "entries": 91,
+    "signed_halfwords": true,
+    "target_base": "0x1b0718",
+    "targets": [
+      "0x1b0928",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b0988",
+      "0x1b06c0",
+      "0x1b0930",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b0958",
+      "0x1b06c0",
+      "0x1b0960",
+      "0x1b0968",
+      "0x1b06c0",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b0970",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b0828",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b07f4",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b0718",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b082c",
+      "0x1b06c0",
+      "0x1b0af0",
+      "0x1b0990",
+      "0x1b06c0",
+      "0x1b07f8",
+      "0x1b09d8",
+      "0x1b0a1c",
+      "0x1b0990",
+      "0x1b0a34",
+      "0x1b06c0",
+      "0x1b0a3c",
+      "0x1b06c0",
+      "0x1b0a4c",
+      "0x1b06c0",
+      "0x1b0a7c",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b0a88",
+      "0x1b0ab4",
+      "0x1b0abc",
+      "0x1b06c0",
+      "0x1b06c0",
+      "0x1b071c",
+      "0x1b06c0",
+      "0x1b0ae8"
+    ]
+  },
+  "blocks": {
+    "smc_caller": {
+      "start": "0xfbdc0",
+      "end_exclusive": "0xfbdd4",
+      "sha256": "4220ad0cd12812bd5040997d7e90d213abe9c1119334da7a9e8e5c2bd2a5d78f"
+    },
+    "smc_wrapper": {
+      "start": "0xf6088",
+      "end_exclusive": "0xf6090",
+      "sha256": "2ec8ec3d9bdcfc1b0d5fe3c5e59b5a2ea857eb4a0e60defc8dd1acb2edf5ca75"
+    },
+    "formatter_table": {
+      "start": "0x26219c",
+      "end_exclusive": "0x262252",
+      "sha256": "02b4809ca177e3d48ca631de65648b30907acf9620cdefe2e3b3deecfa36b13d"
+    },
+    "el1_lock_wait": {
+      "start": "0x12ced8",
+      "end_exclusive": "0x12cf4c",
+      "sha256": "38600f029e1e79d0b52d00fbe82b12c3b90b046848fc6d74661b84064ad0a5e1"
+    },
+    "zero_fill": {
+      "start": "0x1af540",
+      "end_exclusive": "0x1af684",
+      "sha256": "b4cbbab6d0a338cbadb699b0dd7f4a14b3d4068ea74a13a8ab83f6794033ff1d"
+    },
+    "uart_poll": {
+      "start": "0xef4c0",
+      "end_exclusive": "0xef4f4",
+      "sha256": "e97820e54bd75eeaa6779f4254043f4b6c5cbffa2a3ff67b3fc4a06ad690984e"
+    },
+    "monitor_entry": {
+      "start": "0x36c020",
+      "end_exclusive": "0x36c0b4",
+      "sha256": "1ddb850bfb9341d0d602e875d18aabae647f59121c2c2dc57d661f959b559988"
+    },
+    "monitor_entry_helper_bytes": {
+      "start": "0x3813e4",
+      "end_exclusive": "0x381430",
+      "sha256": "0d92ab679bdf7ac8e9eb386c2e218a71e11015d61a6b4057df739a224bcfd70a"
+    },
+    "monitor_vector_bytes": {
+      "start": "0x385000",
+      "end_exclusive": "0x385080",
+      "sha256": "08aa5873d22230526f0c4dcf8882400cc81bac49817b26b7ddf39ed55f48b595"
+    }
+  },
+  "smc_before_cache": {
+    "call": "0xfbdd0",
+    "wrapper": "0xf6088",
+    "words": [
+      "d4000003",
+      "d65f03c0"
+    ],
+    "x0": "0xfffffffffffffc01",
+    "x1_x2_x3": 0,
+    "result_not_tested_by_caller": true,
+    "service_semantics_verified": false,
+    "monitor_handler_located": false
+  },
+  "monitor_unresolved": {
+    "entry_call": "0x36c038",
+    "target": "0x3813e4",
+    "target_words": [
+      "cbd452f0",
+      "37888b01",
+      "194f6e77",
+      "f0270d88"
+    ],
+    "vbar_adr": "0x36c044",
+    "vector_file_offset": "0x385000",
+    "vector_words": [
+      "87cabf93",
+      "08138c9d",
+      "00ab03ce",
+      "f7e2a7bb"
+    ],
+    "plaintext_code_verified": false,
+    "encryption_proven_by_this_audit": false
+  },
+  "observations": {
+    "el1_m_reads": [
+      "0x12cee0",
+      "0x12cf1c",
+      "0x1af608"
+    ],
+    "conditional_zero_by_dc_zva": "0x1af664",
+    "irq_mask_restore": [
+      "0x20c4b0",
+      "0x20c4f0"
+    ],
+    "uart_poll_without_timeout": "0xef4d4",
+    "no_msr_register_form_writes_in_expanded_nodes": true
+  },
+  "runtime_observed": false,
+  "physical_coherency_verified": false,
+  "final_state_verified": false,
+  "runtime_graph_complete": false,
+  "limitations": [
+    "Both conditional paths explored, without argument/path feasibility analysis",
+    "Known formatter callbacks are a context union, not arbitrary indirect targets",
+    "Initial operation table and registered callback do not bound runtime mutations",
+    "No secure handler execution or plaintext recovery; entropy alone is not encryption proof",
+    "No traps, cache/MMU effects, MMIO responses, callback termination or physical entry verified"
+  ]
+}

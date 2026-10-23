@@ -1055,3 +1055,31 @@ README, roadmap, índices e ferramentas atualizados. UEFI permanece ativo,
 kernel prebuilt externo, sem rede/discos do host e sem teste Samsung.
 Não foi necessário novo arquivo do aparelho nesta etapa QEMU. P1/P2 físicos
 continuam pendentes; em consulta final, não há PR aberto no repositório.
+
+
+## 2026-10-23 — grafo estático das chamadas finais LK HZC2
+
+BL recebido recuperado e conferido pelo SHA-256 original; sboot exato 4 MiB.
+Inspetor stdlib vinculado por hash, limite 8192 PCs, decodificador restrito de
+controle e parada antes do BLR do payload. Grafo direto: 421 palavras; expansão
+dos templates conhecidos: 1834 palavras/31 BL/18 saídas indiretas. Tabela de
+91 halfwords com sinal e 26 destinos, 15 BLR do formatador e duas fronteiras
+mutáveis (operações/lista) preservadas como hipóteses, sem completude runtime.
+
+MRS SCTLR_EL1 em dois helpers de sincronização e preenchimento; DC ZVA
+condicional, SEVL/WFE, máscara IRQ condicional e UART em polling sem timeout.
+Nenhum MSR na forma de registrador ou ERET/SMC/HVC nos nós expandidos. Isso
+não prova progresso nem preservação por callbacks não limitados, traps/MMIO
+ou serviço seguro. Em EL2, SCTLR_EL1 pode divergir do SCTLR limpo pelo helper.
+
+SMC anterior ligado ao wrapper SMC #0/RET, sem resultado testado pelo chamador.
+Despacho de -0x3ff não localizado. Veneer do monitor aponta a helper/vetor que
+não foram validados como plaintext nos bytes recebidos; hashes/palavras no
+relatório, sem atribuir cifra por entropia ou executar código seguro.
+
+GNU objdump 2.44 coincidiu em todas as 1834 palavras e 395 destinos relativos;
+recortes direto e IRQ também conferidos. 15 testes novos e 14 regressões do
+helper: 29 PASS. Não repetida a emulação 352/352, sem mudança em R10/diagnóstico
+ou teste físico. README/roadmap/índices atualizados, inclusive um parágrafo
+antigo que ainda tratava a interface QEMU já concluída como etapa futura.
+Marco A ainda exige posse/coerência, carregamento e leitura dos 128 bytes.

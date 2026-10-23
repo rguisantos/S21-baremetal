@@ -57,3 +57,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 
 - `check_lk_cache_handoff.py` e `test_lk_cache_handoff.py`: evidência HZC2 e modelo do gate de cache, seleção SCTLR por EL e operandos legados set/way; nove entradas explícitas, JSON limitado e 14 testes novos. [Escopo](../docs/lk-cache-handoff.md).
 - `emulate_lk_cache_handoff.py`: Unicorn opcional; 352 cenários executam instruções originais até o BLR, parando num destino sintético. Acessos de sistema/DC/barreiras substituídos ou registrados, três chamadas externas omitidas. Não modela tradução/cache suja ou demonstra estado final no telefone.
+
+- `inspect_lk_final_edges.py` e `test_lk_final_edges.py`: inventário limitado das chamadas finais HZC2, expansão declarada do formatador/tabela/lista e operações de sistema. 15 testes novos mais 14 do helper; não executa firmware ou resolve o SMC. [Guia e limites](../docs/lk-final-edges.md).
