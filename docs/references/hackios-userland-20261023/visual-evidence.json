@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "scope": "QEMU reference HackiOS userland, not Samsung or strict S21 EFI consumer",
+  "UI_visually_verified": true,
+  "method": "Native QMP PNGs opened and inspected; input actions matched to before/after app pages",
+  "automated_report_UI_flag": false,
+  "shots": [
+    {
+      "file": "boot-logo.png",
+      "observation": "Logo Apple, ainda sem interface",
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773470.3502057,
+      "source_capture": "auto-0060.png"
+    },
+    {
+      "file": "homescreen-first.png",
+      "observation": "Tela inicial SpringBoard",
+      "sha256": "58c51b353593ebc05617b2f11869f4217fb1b2b64ffa51c4c0e916062ef1d8ea",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773784.6046298,
+      "source_capture": "auto-0375.png"
+    },
+    {
+      "file": "homescreen.png",
+      "observation": "Tela inicial antes do toque em Ajustes",
+      "sha256": "408a3f07a88607cdc2bf189436a5b6e367445c447ec43a2c94d67d1bcf5426b9",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773817.2524853,
+      "source_capture": "homescreen-before-touch.png"
+    },
+    {
+      "file": "settings.png",
+      "observation": "Ajustes aberto ap\u00f3s toque",
+      "sha256": "334af346b6610bb257ee682901830a6f35b35a879d2f1b6c9d314ddea3233742",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773847.480945,
+      "source_capture": "settings-after-touch-30s.png"
+    },
+    {
+      "file": "general.png",
+      "observation": "Geral ap\u00f3s segundo toque",
+      "sha256": "429632af79f163fb1e627f1953f898ebc4f37e9adcf3a57efbdd6ff3ce68290d",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773883.9510434,
+      "source_capture": "settings-general.png"
+    },
+    {
+      "file": "about.png",
+      "observation": "Sobre, vers\u00e3o exibida 16.5 e identidade emulada",
+      "sha256": "90208b47852a0666fc62169ccc3fd469109724f6eb0c74e13f1f8868278ffe21",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "host_epoch": 1792773916.4566393,
+      "source_capture": "settings-about.png"
+    }
+  ],
+  "serial": {
+    "bytes": 1822451,
+    "sha256": "4a03d53adc86926f5f53692d55a398bdeede6dd32bff3f757979433268e34f06",
+    "gzip_sha256": "a9e6132395153ede60c55ca4b6b0550f891806760ceb20a2bd68af5708b9730e"
+  },
+  "host_limits": {
+    "cgroup_memory_bytes": 8589934592,
+    "cpu_quota": 800000,
+    "cpu_period": 100000
+  },
+  "checks": {
+    "returncode_zero": true,
+    "exact_audited_patch": true,
+    "actual_loaded_input_hashes": true,
+    "checkpoint_restored_sha256": true,
+    "corrupt_checkpoint_rejected": true,
+    "host_userland_fixtures_and_shell_controls": "passed"
+  },
+  "limitations": [
+    "Selected Apple binaries plus HackiOS adaptations; kernel prebuilt",
+    "Reference resident-image ABI, separate from strict resource consumer",
+    "Initial home background white and widgets without content",
+    "No phone, network, audio QEMU, Bluetooth or full app/service validation",
+    "About identity comes from HackiOS emulation, not physical iPhone hardware"
+  ]
+}

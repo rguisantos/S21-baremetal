@@ -7,7 +7,8 @@ no aparelho ainda não existe.** O primeiro avanço dessa frente é o
 [XNU no QEMU com programa próprio](xnu-qemu-lab.md). O
 [contrato binário](xnu-boot-contract.md) já tem codec, layout conferido e
 captura validada no laboratório. O [adaptador de recursos](xnu-fdt-adapter.md)
-já projeta CPU/GIC/PSCI/timer do FDT; a adaptação física continua aberta.
+já projeta CPU/GIC/PSCI/timer do FDT. A [interface iOS 16.5](hackios-userland-qemu.md)
+foi reproduzida no QEMU com navegação em Ajustes; a adaptação física continua aberta.
 
 ## Contratos dos dois caminhos
 
@@ -35,7 +36,7 @@ mas os adaptadores de entrada têm de continuar explícitos.
 | D0 — base de laboratório | XNU inicia, executa programa próprio e entrega resultado; controle negativo recusado | **Concluído no QEMU**, com kernel prebuilt e variante EFI recompilada; não é iOS gráfico |
 | D1 — entrada Samsung observável | Diagnóstico mínimo no S21 e registro recuperado; região/coerência e percurso de carga demonstrados | Pendente; Marco A do roadmap principal |
 | D2 — adaptação XNU | boot_args/árvore Apple/memória gerados e conferidos; XNU em uma CPU no S21 com log recuperado | Parcial: codec, projeção e consumidor EFI executados no QEMU; memória/entrada Samsung e execução física dependem de D1 |
-| D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Pendente |
+| D3 — userland e interface | Serviços e APFS primeiro no laboratório; depois framebuffer/CPU no S21 e periféricos próprios | Parcial: SpringBoard/Ajustes/Geral/Sobre conferidos no QEMU de referência; integração ao consumidor restrito e execução Samsung pendentes |
 | D4 — escolha Android/XNU | Dois caminhos iniciam individualmente; seleção, retorno/recuperação e armazenamento têm testes próprios | Pendente |
 
 A implementação de D4 depende do caminho que a investigação Samsung

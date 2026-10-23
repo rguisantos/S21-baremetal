@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "date_client": "2026-10-23",
+  "scope": "Prepared images and loaded inputs for reference userland QEMU run; GUI evidence recorded separately",
+  "kernel_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+  "userland_revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+  "downloads": {
+    "ipsw_url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-85130/6AB0D10A-8AF9-4F6C-8CF5-A1B315CABE88/iPhone10,3,iPhone10,6_16.5_20F66_Restore.ipsw",
+    "ipsw_bytes": 6165698198,
+    "files": [
+      {
+        "file": "rootfs.dmg",
+        "member": "096-04088-077.dmg",
+        "bytes": 4728546953,
+        "sha256": "64354ba3475d3c34d6fc531f75585a7b24af0fdb7a3a8a2bdf95c7f351a3f290",
+        "zip_crc32": "028fc181",
+        "zip_crc_matches": true
+      },
+      {
+        "file": "cryptex-os.dmg",
+        "member": "096-04666-078.dmg",
+        "bytes": 2726297600,
+        "sha256": "2279bf443856fcb6a3f00b1fa06a32ba02a66fdf6ab6b12019462c7498aafdd3",
+        "zip_crc32": "1ddd2ad5",
+        "zip_crc_matches": true
+      },
+      {
+        "file": "cryptex-app.dmg",
+        "member": "096-03536-083.dmg",
+        "bytes": 10485760,
+        "sha256": "6b9d1f09e9b181cd4524df4cebe33be33000cb14bfd06ab4deb50590507a04e5",
+        "zip_crc32": "27c0c027",
+        "zip_crc_matches": true
+      }
+    ]
+  },
+  "preparation": {
+    "plist_count": 407,
+    "all_plists_0644": true,
+    "distinct_labels": 406,
+    "duplicate_labels": {
+      "com.apple.sysdiagnose": [
+        "com.apple.sysdiagnose.plist",
+        "com.apple.sysdiagnose.darwinos.plist"
+      ]
+    },
+    "rest_collision_absent": true,
+    "prebuilt_userland": [
+      {
+        "path": "prebuilt/userland/RedwoodAudio",
+        "bytes": 68496,
+        "git_blob": "31bf108050283e4ef5a7bd8ae77d6c903623f934",
+        "sha256": "40a44d0c39a9d768b5acf39b78b36f68bf33aa998cacb429655d54dab6616eae"
+      },
+      {
+        "path": "prebuilt/userland/SHA256SUMS",
+        "bytes": 1788,
+        "git_blob": "1b4e5dfd08c87f6c645772237a82f8f219370e95",
+        "sha256": "3f561c06a08cefd3ca060e63314517185814a1e09798f7b7329147954a3b51d1"
+      },
+      {
+        "path": "prebuilt/userland/child",
+        "bytes": 34496,
+        "git_blob": "d9ccc16c347641ddf78fda77edc37270aa79b723",
+        "sha256": "cab0c58744bd9e4490ef4b9aabfe25758838a35279d1384d382e60e8653c91c3"
+      },
+      {
+        "path": "prebuilt/userland/cpu_test",
+        "bytes": 66576,
+        "git_blob": "d478cb4d0e1294906ea591b989bf7b80d19c17e4",
+        "sha256": "1a413befd511384052e1962c1394adce20f718e1f2657ce63ab09828ebc4bd1b"
+      },
+      {
+        "path": "prebuilt/userland/hello",
+        "bytes": 16480,
+        "git_blob": "ff1d5c2c31b2faf5bd2ab948ea5f706495211985",
+        "sha256": "db564073effc31e7ab1679a7ffe0631ec22c3030ad347c927028f3e53c8583c3"
+      },
+      {
+        "path": "prebuilt/userland/hello_dyn",
+        "bytes": 66128,
+        "git_blob": "59a27fd489e10373f09d72c76ad12cee43b6f064",
+        "sha256": "a8baa9ab38333280369b0824aafaf92c7aa6a85851ff0b2551a4c711dbe59cfd"
+      },
+      {
+        "path": "prebuilt/userland/init",
+        "bytes": 52256,
+        "git_blob": "4337dd0a72223cd2026a99b96f33faf3576296be",
+        "sha256": "0e2e63e737049a6b17e47f0edd55a8ef5bfe2d9881f4d0966bd2fd5b0c943185"
+      },
+      {
+        "path": "prebuilt/userland/libredwood-app.dylib",
+        "bytes": 68248,
+        "git_blob": "9ff9225f353009ab27e1cf7d614754b34922f386",
+        "sha256": "5ebffd6d90a36ab8ecf4d9f48cf1b2f1dbd5b33661546d913d83147c9c86710d"
+      },
+      {
+        "path": "prebuilt/userland/libredwood-media.dylib",
+        "bytes": 128536,
+        "git_blob": "fe8b184dd0474f335b53ef3877bf7e6fcb6f6406",
+        "sha256": "8df90a3426f2802cc063db2ad3548d85237140a678699c742bc1ba31552cd0d9"
+      },
+      {
+        "path": "prebuilt/userland/libredwood-sb.dylib",
+        "bytes": 88768,
+        "git_blob": "6665cd9f35041154357965a948efb8273553b56c",
+        "sha256": "120b8da2663d1e405a7117d1776363ff1faf090bf9b9f8fe262153de587bf26a"
+      },
+      {
+        "path": "prebuilt/userland/libredwood-tweaks.dylib",
+        "bytes": 67976,
+        "git_blob": "b01a86e40aef63cd5fb9a47890988a01bb88c1bc",
+        "sha256": "1ad5f448b3790a42a246ec97d2db19ab79c08650eba7357f83b66e694f4427ef"
+      },
+      {
+        "path": "prebuilt/userland/libredwood.dylib",
+        "bytes": 73712,
+        "git_blob": "75f4fcad27cbe78caeab3b7b2f1a9ee1317eb5c1",
+        "sha256": "e527b3425eeb56ab4e10ff503776758e89904af336984892fde46d5f0dc4f73d"
+      },
+      {
+        "path": "prebuilt/userland/mg_test",
+        "bytes": 66400,
+        "git_blob": "51dfebbc59ef463133fb47c5d02dbcd86efc01ab",
+        "sha256": "07642c790f9a9d12274f11471a33e16cb5d81232052efa37c8069b64f16aa10a"
+      },
+      {
+        "path": "prebuilt/userland/net_test",
+        "bytes": 71488,
+        "git_blob": "0a8d37514b7f1972e16c5617e3c57d4e9a4e75a5",
+        "sha256": "a753963432c090491e4dced4229f0d2bda76c8938f0c8579c779987fffe3e5f3"
+      },
+      {
+        "path": "prebuilt/userland/rwtouch",
+        "bytes": 66728,
+        "git_blob": "fa78a02fb33abfd66dc7fee2bf9be16cc5adbf5e",
+        "sha256": "2bcbda7590caa1c12cfdc165a99f4f2e427a8d4fa4f0b40fceea87ba8365e3bc"
+      },
+      {
+        "path": "prebuilt/userland/sound_test",
+        "bytes": 69216,
+        "git_blob": "9f9a998e881ab2496ca584cad78a06b1527f0a1c",
+        "sha256": "a7bd8279e8e0effd4094ab8369556a51899401d8e32a9fd3aefc451db445e0b6"
+      },
+      {
+        "path": "prebuilt/userland/stage0",
+        "bytes": 34536,
+        "git_blob": "71d46f6320fc06dc927548908efa4189ba911a0c",
+        "sha256": "02629167d9126f59d8f7ac86b30617e175a321819d3cf9fa7a89414656579a57"
+      },
+      {
+        "path": "prebuilt/userland/surf_test",
+        "bytes": 69672,
+        "git_blob": "574f4a06af9e5cce62a946fdcc479e1a43bedce3",
+        "sha256": "143a06695cf54273b39a74a979c690715b7ba171dd408400084eac3ca78db3da"
+      },
+      {
+        "path": "prebuilt/userland/svc_test",
+        "bytes": 83688,
+        "git_blob": "b0b29d085f97cc792e55fec0833328912f23262a",
+        "sha256": "879d6d554758905cdd17795e7049267bc516452cb6264c20ef11f680d25de5dd"
+      }
+    ],
+    "rc_jobs_sha256": "2bbc9516e1d9fa25774dfe7de79981ac8fdfdf8f7c89501463ff72636dc93c14"
+  },
+  "images": {
+    "root": {
+      "bytes": 4194304,
+      "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065",
+      "file_name": "s21-ios165-root.apfs"
+    },
+    "system": {
+      "bytes": 2548080640,
+      "sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393",
+      "parts": [
+        {
+          "file_name": "s21-ios165-system.part001",
+          "bytes": 402653184,
+          "sha256": "6ea3b998c90881e16113d30fdf11013351886fabe2e39a90a1f1cdc259c8c834"
+        },
+        {
+          "file_name": "s21-ios165-system.part002",
+          "bytes": 402653184,
+          "sha256": "0968723a7fa93f86802e2dc4e8bd5237740663b9f95a606f2941dbf2115996aa"
+        },
+        {
+          "file_name": "s21-ios165-system.part003",
+          "bytes": 402653184,
+          "sha256": "fa47a84bd8b1ff900b34ade4a8ba24ce5a801058a67380ed809c2b10705ccfa4"
+        },
+        {
+          "file_name": "s21-ios165-system.part004",
+          "bytes": 402653184,
+          "sha256": "896692aa032d36013021dc1851065b73531810c390317d0e868c1462a41590ad"
+        },
+        {
+          "file_name": "s21-ios165-system.part005",
+          "bytes": 402653184,
+          "sha256": "e734a1d0503ccef26723eb4c58f5b43c56366ff305e4ef194b70a2d35b944083"
+        },
+        {
+          "file_name": "s21-ios165-system.part006",
+          "bytes": 402653184,
+          "sha256": "2c69a64c3480e7d0a3bece044d61538e6be8b20f9dac7dbff7afbf09a5d677f6"
+        },
+        {
+          "file_name": "s21-ios165-system.part007",
+          "bytes": 132161536,
+          "sha256": "734cdcbedaecbc9c9c23a51d017cef6495120b26989cde59fd2759b8415a421d"
+        }
+      ]
+    }
+  },
+  "checkpoint_roundtrip": {
+    "verified": true,
+    "images": {
+      "root": {
+        "bytes": 4194304,
+        "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065",
+        "path": "hackios/restored/root.apfs"
+      },
+      "system": {
+        "bytes": 2548080640,
+        "sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393",
+        "path": "hackios/restored/system.apfs"
+      }
+    }
+  },
+  "checkpoint_corruption_rejected": true,
+  "loaded_inputs": {
+    "payload_sha256": "5b09b2e5199cbc34768a71cd57d49731089be8de3bdc9e14e046459504ceea29",
+    "payload_entries": {
+      "kernel": {
+        "bytes": 15623056,
+        "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+      },
+      "ramdisk": {
+        "bytes": 4194304,
+        "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065"
+      },
+      "cmdline": {
+        "bytes": 64,
+        "sha256": "f8a8cb336a65e81b3ec6bfe943dbdef46e936e2389e3e4de9a298b046d9c4960",
+        "value": "loader_return_after=1800 epoch=1792773409 virtio_input=1 cpus=4"
+      },
+      "rdres": {
+        "bytes": 9,
+        "sha256": "94fd68b76607b2e9e56fddd907b3f827801179149584990bb6bbeb36c051d2d3",
+        "value": "97e0a000"
+      }
+    },
+    "loaded_esp_sha256": "25cfe5093931befaba5a0d6cce411f1f15f042e30e8e1851b0850d70edab832a",
+    "resident_image_sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393",
+    "all_sources_match": true,
+    "kernel_tracked_diff": ""
+  },
+  "patch_proof": {
+    "only_audited_patch": true,
+    "files": {
+      "userland/mkjobs.py": "468cd688fd0f937dfe199427d39992141fed8a7c75aca3635a00ee34b2917027",
+      "userland/build.sh": "3035f1550922a3095b34226ac6c487087cfa7aef3cc223a7206b938ac140df77"
+    }
+  },
+  "build_environment": {
+    "PREBUILT": "1",
+    "REST": "1",
+    "SHARE": "1",
+    "RC_JOBS": "lab/xnu/userland-rc.jobs",
+    "systemd_required": false
+  },
+  "sevenzip": {
+    "index_sha256": "7778d3e3f303b7ddb8ce0fe7c8d57473a076c6bf2e8f241f75421d2396352498",
+    "package": {
+      "Package": "7zip",
+      "Version": "25.01+dfsg-1~deb13u2",
+      "Installed-Size": "7038",
+      "Maintainer": "YOKOTA Hiroshi <yokota.hgml@gmail.com>",
+      "Architecture": "amd64",
+      "Replaces": "p7zip (<< 16.02+transitional.1), p7zip-full (<< 16.02+transitional.1)",
+      "Provides": "p7zip, p7zip-full",
+      "Depends": "libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)",
+      "Suggests": "7zip-standalone, 7zip-rar",
+      "Breaks": "p7zip (<< 16.02+transitional.1), p7zip-full (<< 16.02+transitional.1)",
+      "Description": "7-Zip file archiver with a high compression ratio",
+      "Homepage": "https://www.7-zip.org/",
+      "Description-md5": "391063b95a84a6bdd7463a9ac8f12500",
+      "Tag": "implemented-in::c++, interface::commandline, role::program,",
+      "Section": "utils",
+      "Priority": "optional",
+      "Filename": "pool/main/7/7zip/7zip_25.01+dfsg-1~deb13u2_amd64.deb",
+      "Size": "1573700",
+      "MD5sum": "40cfd78a6af6b664542d91eaa88186eb",
+      "SHA256": "b2cb210bee3be6a10230b38b8645d71846d19364b157f44fd08e1a54cae1652f",
+      "url": "https://deb.debian.org/debian/pool/main/7/7zip/7zip_25.01+dfsg-1~deb13u2_amd64.deb"
+    }
+  }
+}

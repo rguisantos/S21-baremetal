@@ -1,0 +1,777 @@
+{
+  "schema_version": 1,
+  "scope": "QEMU reference userland run; upstream resident-image ABI, ramfb-fixed reference EFI",
+  "kernel_revision": "8e61187098f2c26c5daee8f9f72b6416aa64b9ab",
+  "userland_revision": "906425b75e02b4f99eb5d7bb1ef7c9583472d772",
+  "inputs": {
+    "loader": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.efi",
+      "bytes": 68096,
+      "sha256": "25cfe5093931befaba5a0d6cce411f1f15f042e30e8e1851b0850d70edab832a"
+    },
+    "efi_code": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+      "bytes": 67108864,
+      "sha256": "5d3147294c56ce8cb636c57c181776a89bc7ba254274c35698dc5795758052d3"
+    },
+    "efi_vars": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_VARS.fd",
+      "bytes": 67108864,
+      "sha256": "b3b855c5a80310168051164986855692d1bdb06e67619856177965cd87c6774f"
+    },
+    "kernel": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/kernel/prebuilt/mach.development.bcm2837",
+      "bytes": 15623056,
+      "sha256": "9239d4adb7a2c433d7ed5729b47b63acc5281af73d8a81640ef3c678c8afd26c"
+    },
+    "root": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/restored/root.apfs",
+      "bytes": 4194304,
+      "sha256": "f6b5d240ffc94be4215d373eea4fcdff00f2dcddb46695db5db4c2fce3118065"
+    },
+    "system": {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/restored/system.apfs",
+      "bytes": 2548080640,
+      "sha256": "5aec779ffb75f3adffa1582540a2f3d57bdf0edd6d0c78335ee8c03f6e663393"
+    }
+  },
+  "loader_build": {
+    "commands": [
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-c",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.obj"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/clang",
+        "--target=aarch64-unknown-windows",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fshort-wchar",
+        "-mgeneral-regs-only",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-S",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.c",
+        "-o",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.s"
+      ],
+      [
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/tools/llvm/usr/lib/llvm-19/bin/lld-link",
+        "/subsystem:efi_application",
+        "/entry:efi_main",
+        "/nodefaultlib",
+        "/base:0xA1000000",
+        "/timestamp:0",
+        "/out:/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.efi",
+        "/workspace/scratch/c0ab1a5cfe9c/hackios/lab/build/loader.obj"
+      ]
+    ],
+    "sources_sha256": {
+      "loader.c": "8bed32d299f90da53790c1b8a261585337678c11ede1404241e66a2b52f4785d",
+      "efi.h": "4d5023e673cd8ae62b53424ad8c6bf665097990bd0d500e763959a1a1d3a8b22",
+      "identity.h": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010"
+    },
+    "loader_sha256": "25cfe5093931befaba5a0d6cce411f1f15f042e30e8e1851b0850d70edab832a",
+    "assembly_sha256": "3f2cec8c5999c94a3c6a9ee0d059acf2e4b4de809c89e238223bbe16dfa89a88"
+  },
+  "resident": {
+    "guest_base": "0xfc000000",
+    "file_offset": "0xbc000000",
+    "bytes": 2548080640,
+    "file_size": 12884901888,
+    "guest_mapping": "private"
+  },
+  "userland_patch_sha256": "ed081188655465678fbfb0417fd7f9f016b9d21f2577c863e9b1989389d6de47",
+  "cmdline": "loader_return_after=1800 epoch=1792773409 virtio_input=1 cpus=4",
+  "command": [
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "--library-path",
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu:/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/lib",
+    "/workspace/scratch/c0ab1a5cfe9c/S21-baremetal/tools/root/usr/bin/qemu-system-aarch64",
+    "-L",
+    "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/roms",
+    "-M",
+    "virt,gic-version=3",
+    "-cpu",
+    "cortex-a76",
+    "-smp",
+    "4",
+    "-m",
+    "7G",
+    "-accel",
+    "tcg,tb-size=384",
+    "-object",
+    "memory-backend-file,id=ram,size=7516192768,mem-path=/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/ram.img,share=off",
+    "-machine",
+    "memory-backend=ram",
+    "-global",
+    "virtio-mmio.force-legacy=false",
+    "-drive",
+    "if=pflash,format=raw,readonly=on,file=/workspace/scratch/c0ab1a5cfe9c/hackios/tools/efi/usr/share/AAVMF/AAVMF_CODE.no-secboot.fd",
+    "-drive",
+    "if=pflash,format=raw,file=/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/vars.fd",
+    "-drive",
+    "file=fat:rw:/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/esp,format=raw,if=virtio",
+    "-device",
+    "loader,file=/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/payload.bin,addr=0xf0000000,force-raw=on",
+    "-device",
+    "ramfb",
+    "-device",
+    "virtio-tablet-device",
+    "-device",
+    "virtio-keyboard-device",
+    "-display",
+    "none",
+    "-serial",
+    "file:/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/serial.log",
+    "-monitor",
+    "none",
+    "-qmp",
+    "stdio",
+    "-nic",
+    "none",
+    "-no-reboot",
+    "-S"
+  ],
+  "own_runner_sha256": "83c82a547a592bf66766e878b458bdcb8d3ab61eded497485a9f7e2f3d6e9102",
+  "captures": [
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0015.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792773424.8298378
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0030.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792773440.0662756
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0045.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773455.1973755
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0060.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773470.3502057
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0075.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773484.4946272
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0090.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773499.6489224
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0105.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773514.7784393
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0120.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773529.9031816
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0135.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773545.0425715
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0150.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773560.1868613
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0165.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773575.3390124
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0180.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773589.4789598
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0195.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773604.611876
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0210.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773619.7522545
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0225.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773634.893844
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0240.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773650.0353029
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0255.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773665.160767
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0270.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773680.293078
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0285.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792773695.4387124
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0300.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792773709.582175
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0315.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sha256": "65428abf7cd1aee72d585cc812dab75326557b945d021831eefb0900d12d1058",
+      "host_epoch": 1792773724.7408426
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0330.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        2.6963338806787083,
+        2.6963338806787083,
+        2.6963338806787083
+      ],
+      "sha256": "f53db4fbe00c423270a7d3c6a31ba76c3f90f101d88ea6acc82f54e9c8d0537f",
+      "host_epoch": 1792773739.8849227
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0345.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        223.06805801860975,
+        226.8375522714833,
+        226.25171501550813
+      ],
+      "sha256": "6bd9b3bf1423922f2a065118fb1c33f6f646082565cdc4371aa1d239032998a5",
+      "host_epoch": 1792773755.1117752
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0360.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        223.0786517058931,
+        226.84816748768472,
+        226.26233096150338
+      ],
+      "sha256": "a63023e8d85d97c1840378165e085ad843bf3b3f2307a258f71162f292ec2b53",
+      "host_epoch": 1792773770.3088298
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0375.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        223.0690031016238,
+        226.8384586754242,
+        226.25257215836527
+      ],
+      "sha256": "58c51b353593ebc05617b2f11869f4217fb1b2b64ffa51c4c0e916062ef1d8ea",
+      "host_epoch": 1792773784.6046298
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0390.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        223.06905199781062,
+        226.83855062944718,
+        226.25269731800768
+      ],
+      "sha256": "77d0dcdc138b22cc652f164ee770355ea49a660eca5301878b2dec7015db37a9",
+      "host_epoch": 1792773799.797429
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0405.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        223.06818244845832,
+        226.8376774311257,
+        226.25183324210911
+      ],
+      "sha256": "e713ac6e4298da89f6354590ffd32874494dbfab88537b93ffe12bd18b80184a",
+      "host_epoch": 1792773815.0283213
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/homescreen-before-touch.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        225.66594636015327,
+        229.43543513957306,
+        228.84957671957673
+      ],
+      "sha256": "408a3f07a88607cdc2bf189436a5b6e367445c447ec43a2c94d67d1bcf5426b9",
+      "host_epoch": 1792773817.2524853
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/settings-after-touch-30s.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        240.48857142857142,
+        240.47535048348843,
+        243.99718007662835
+      ],
+      "sha256": "334af346b6610bb257ee682901830a6f35b35a879d2f1b6c9d314ddea3233742",
+      "host_epoch": 1792773847.480945
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0439.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        240.48857142857142,
+        240.47535048348843,
+        243.99718007662835
+      ],
+      "sha256": "334af346b6610bb257ee682901830a6f35b35a879d2f1b6c9d314ddea3233742",
+      "host_epoch": 1792773848.6089718
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0454.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        240.4881558109834,
+        240.4749348659004,
+        243.9967553366174
+      ],
+      "sha256": "df64802d1f8ac8c6d76787d43c3908ebd7a002800e659dc6878e559ae75ff25f",
+      "host_epoch": 1792773863.7433023
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/settings-general.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.19804451742382,
+        245.31851705893087,
+        247.22637584382412
+      ],
+      "sha256": "429632af79f163fb1e627f1953f898ebc4f37e9adcf3a57efbdd6ff3ce68290d",
+      "host_epoch": 1792773883.9510434
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0475.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.19804451742382,
+        245.31851705893087,
+        247.22637584382412
+      ],
+      "sha256": "429632af79f163fb1e627f1953f898ebc4f37e9adcf3a57efbdd6ff3ce68290d",
+      "host_epoch": 1792773885.0727217
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0490.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.19804451742382,
+        245.31851705893087,
+        247.22637584382412
+      ],
+      "sha256": "429632af79f163fb1e627f1953f898ebc4f37e9adcf3a57efbdd6ff3ce68290d",
+      "host_epoch": 1792773900.234502
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/settings-about.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3564455391352,
+        245.4658722860792,
+        247.39009523809523
+      ],
+      "sha256": "90208b47852a0666fc62169ccc3fd469109724f6eb0c74e13f1f8868278ffe21",
+      "host_epoch": 1792773916.4566393
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0508.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3564455391352,
+        245.4658722860792,
+        247.39009523809523
+      ],
+      "sha256": "90208b47852a0666fc62169ccc3fd469109724f6eb0c74e13f1f8868278ffe21",
+      "host_epoch": 1792773917.5890703
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0523.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3564455391352,
+        245.4658722860792,
+        247.39009523809523
+      ],
+      "sha256": "90208b47852a0666fc62169ccc3fd469109724f6eb0c74e13f1f8868278ffe21",
+      "host_epoch": 1792773932.7344327
+    },
+    {
+      "path": "/workspace/scratch/c0ab1a5cfe9c/hackios/userland-run/auto-0538.png",
+      "dimensions": [
+        1125,
+        2436
+      ],
+      "mean_rgb": [
+        245.3564455391352,
+        245.4658722860792,
+        247.39009523809523
+      ],
+      "sha256": "90208b47852a0666fc62169ccc3fd469109724f6eb0c74e13f1f8868278ffe21",
+      "host_epoch": 1792773947.8911045
+    }
+  ],
+  "actions": [
+    {
+      "host_epoch": 1792773817.0321686,
+      "action": {
+        "type": "capture",
+        "name": "homescreen-before-touch"
+      }
+    },
+    {
+      "host_epoch": 1792773817.2531202,
+      "action": {
+        "type": "tap",
+        "x": 0.615,
+        "y": 0.71
+      }
+    },
+    {
+      "host_epoch": 1792773817.33578,
+      "action": {
+        "type": "wait",
+        "seconds": 30
+      }
+    },
+    {
+      "host_epoch": 1792773847.335895,
+      "action": {
+        "type": "capture",
+        "name": "settings-after-touch-30s"
+      }
+    },
+    {
+      "host_epoch": 1792773873.757661,
+      "action": {
+        "type": "tap",
+        "x": 0.5,
+        "y": 0.795
+      }
+    },
+    {
+      "host_epoch": 1792773873.8407738,
+      "action": {
+        "type": "wait",
+        "seconds": 10
+      }
+    },
+    {
+      "host_epoch": 1792773883.8408816,
+      "action": {
+        "type": "capture",
+        "name": "settings-general"
+      }
+    },
+    {
+      "host_epoch": 1792773906.2452486,
+      "action": {
+        "type": "tap",
+        "x": 0.5,
+        "y": 0.18
+      }
+    },
+    {
+      "host_epoch": 1792773906.3272955,
+      "action": {
+        "type": "wait",
+        "seconds": 10
+      }
+    },
+    {
+      "host_epoch": 1792773916.3274066,
+      "action": {
+        "type": "capture",
+        "name": "settings-about"
+      }
+    }
+  ],
+  "Samsung_tested": false,
+  "strict_resource_consumer": false,
+  "UI_visually_verified": false,
+  "stopped_by_control": true,
+  "elapsed_seconds": 544.69,
+  "markers_seen": [
+    "Darwin Kernel Version",
+    "SpringBoard",
+    "backboardd",
+    "launchd.ios",
+    "systemShellDidFinishLaunching"
+  ],
+  "returncode": 0,
+  "error": null,
+  "serial_sha256": "4a03d53adc86926f5f53692d55a398bdeede6dd32bff3f757979433268e34f06"
+}

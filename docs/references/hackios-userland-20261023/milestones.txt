@@ -1,0 +1,8 @@
+display 1125 x 2436 at 1fdced000
+resident image at pa fc000000 size 97e0c000: it is the root (md0), the payload ramdisk is md1
+skip attaching fsw to lo0 using legacy TX modelGenericARMPE: 4 of 4 processors are running
+MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1125x2436 (4500 bytes per row)
+BSD root: md0, major 1, minor 0
+com.apple.xpc.launchd|2026-10-23 16:36:55.205348 (user/501/com.apple.SpringBoard [7]) <Notice>: Successfully spawned SpringBoard[7] because system support
+com.apple.xpc.launchd|2026-10-23 16:36:57.756363 (user/501/com.apple.backboardd [12]) <Notice>: Successfully spawned backboardd[12] because speculative
+2026-10-23 16:42:19.250091+0000 backboardd[12:1687] [BootUI] systemShellDidFinishLaunching: - bundleIdentifier: com.apple.springboard; bundlePath: /System/Library/CoreServices/SpringBoard.app; jobLabel: com.apple.SpringBoard; pid: 7; systemIdleSleepInterval: 3.00; watchdogType: shell

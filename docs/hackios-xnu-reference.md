@@ -16,6 +16,11 @@ entrada Samsung, memória e observação. O hardware de referência do HackiOS
 é o POCO X5 Pro/redwood, Snapdragon 778G; o segundo alvo é QEMU virt. Os
 perfis e a seleção de plataformas examinados não incluem p3s/Exynos 2100.
 
+**Atualização de 2026-10-23:** a [execução local do userland](hackios-userland-qemu.md)
+reproduziu SpringBoard e navegação em Ajustes no QEMU, com imagens
+identificadas, loader corrigido na fonte e capturas nativas. Essa evidência
+complementa a revisão inicial e não altera o estado do port físico.
+
 ## O que existe e qual evidência temos
 
 O kernel usa XNU **xnu-8796.121.2**; `xnu/apply.sh` verifica o commit Apple

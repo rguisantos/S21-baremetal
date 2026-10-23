@@ -125,8 +125,9 @@ for scenario in positive headless stride input-overlap page-busy; do
 done
 ```
 
-O próximo marco gráfico é preparar imagens de userland identificadas e
-reproduzir launchd → backboardd → SpringBoard no laboratório, conservando
-revisões, patches, hashes, serial e capturas de uma interação. O relato
-externo do GLM continua separado da execução local. O port Exynos e a
-escolha Android/XNU no telefone continuam dependentes dos marcos físicos.
+O marco gráfico seguinte foi [reproduzido no laboratório de referência](hackios-userland-qemu.md):
+launchd → backboardd → SpringBoard, com Ajustes/Geral/Sobre respondendo a
+toques e capturas nativas. Esse ensaio usa o ABI upstream da imagem de
+sistema residente; a integração ao consumidor EFI restrito deste contrato
+ainda precisa de janela, descritores, reservas e recusas próprias. O port
+Exynos e a escolha Android/XNU no telefone dependem dos marcos físicos.

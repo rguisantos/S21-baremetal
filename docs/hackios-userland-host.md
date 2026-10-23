@@ -2,7 +2,10 @@
 
 Em **2026-10-22**, o usuário trouxe um relato GLM-5.3 de preparação do
 userland iOS no QEMU, então em andamento. Em 2026-10-23, trouxe um novo
-relato de interface funcionando com loader modificado. Reproduzimos quatro problemas
+relato de interface funcionando com loader modificado. A etapa posterior
+[reproduziu a interface localmente](hackios-userland-qemu.md), com imagens
+reais, loader corrigido na fonte e interação conferida. Nesta auditoria
+inicial, reproduzimos quatro problemas
 de preparação com arquivos sintéticos e fornecemos um patch para a versão
 auditada. A correção foi conferida por seis fixtures de jobs, quatro
 fragmentos Bash e `git apply --check`; o build completo não foi executado.
@@ -85,6 +88,11 @@ de spool, RAM compartilhada, imagem de sistema ou lista de daemons. Não
 foi enviado como alteração ou comentário ao projeto upstream.
 
 ## Estado da interface e continuação do relato
+
+**Atualização local de 2026-10-23:** a [execução completa de referência](hackios-userland-qemu.md)
+construiu as imagens reais e reproduziu SpringBoard, Ajustes e Geral com
+interação e capturas nativas. Os ensaios sintéticos abaixo conservam seu
+escopo original; as afirmações sobre falta de execução descrevem aquela etapa.
 
 O novo relato informa tela de bloqueio, SpringBoard, Ajustes, Lembretes e
 alternador de apps no QEMU, usando um patch que evita a reprogramação do

@@ -6,7 +6,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
-A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. O ensaio inicial usou kernel/loader prebuilt identificados; a variante EFI abaixo recompila o loader. Não houve execução local do userland iOS ou no S21. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
+A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. O ensaio inicial usou kernel/loader prebuilt identificados; a variante EFI abaixo recompila o loader. A [interface iOS 16.5 foi reproduzida localmente no QEMU](docs/hackios-userland-qemu.md), com SpringBoard, Ajustes/Geral/Sobre respondendo a toques, o workspace de referência identificado e imagens APFS verificadas. A execução no S21 continua pendente. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
 O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layout C conferido e captura QEMU de 736/14800 bytes reemitidos sem alteração. O [adaptador FDT → recursos Apple](docs/xnu-fdt-adapter.md) passou 29 testes e traduziu CPUs/GIC/PSCI/timer do HZC2 para um fragmento de 1944 bytes. X2 segue parcial no telefone: a base HZC2 continua sem bancos RAM e com reservas incompletas.
 
@@ -16,7 +16,7 @@ As falhas de preparação HackiOS trazidas no relato GLM foram [reproduzidas no 
 
 O [defeito ramfb do prebuilt foi confirmado no QEMU](docs/xnu-ramfb-audit.md): o loader declara 800×600 após configurar 1125×2436. A correção na fonte passou seis controles, com captura real do padrão EFI, erro/timeout recusados e regressão XNU de 22 critérios. A fonte original recompilada com Clang 19 também funciona nesse teste; a falha não deve ser generalizada a toda compilação.
 
-O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O init continua próprio; a interface iOS local é o próximo marco gráfico.
+O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-video-contract.md): ramfb 1125×2436/32 bits, reserva conferida em quatro mapas UEFI, captura em arm_init e driver framebuffer observado. Foram **25 critérios com vídeo**, **22 sem display**, **três recusas** e **62 testes de host**. O ensaio do consumidor restrito usa init próprio. Em uma execução separada do ABI de referência, o [SpringBoard apareceu localmente](docs/hackios-userland-qemu.md).
 
 ## Módulos e validação
 
@@ -30,7 +30,7 @@ O [contrato de vídeo XNU foi validado com o kernel em execução](docs/xnu-vide
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
 | Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
-| Laboratório XNU | UEFI/loader → XNU prebuilt → init Darwin próprio | QEMU em uma CPU; caso positivo e arquivo corrompido recusado; sem userland iOS |
+| Laboratório XNU | XNU prebuilt + init próprio; referência HackiOS com userland iOS | Contrato restrito em uma CPU; referência gráfica em quatro CPUs, SpringBoard visível; sem teste Samsung |
 
 Há dois testes R10: o estágio anterior substitui a função C principal; o novo carregador EL2 materializa o contêiner e inicia também a main de produção, trocando apenas o backend UART por PL011 QEMU. A memória é conferida antes do salto e as IRQs depois dele. Isso não emula o Exynos, Harx, USI nem o bootloader Samsung.
 
@@ -98,6 +98,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [ZIP Proton publicado: hashes, Linux/EFI e DTB real](docs/proton-binary.md)
 - [Proton+ v6.1.0: kernel, Mali r38p1 e recursos GPU](docs/proton-reference.md)
 - [Referência TWRP indicada: DTB e configuração de recovery](docs/twrp-reference.md)
+- [Userland iOS 16.5 no QEMU: entradas, checkpoint e capturas](docs/hackios-userland-qemu.md)
 - [HackiOS/XNU: código aproveitável, exercício HZC2 e etapas de um port](docs/hackios-xnu-reference.md)
 - [XNU no QEMU com programa próprio: execução e contraprova](docs/xnu-qemu-lab.md)
 - [Contrato XNU: layout, captura de argumentos/árvore e política de memória](docs/xnu-boot-contract.md)
