@@ -1,0 +1,214 @@
+{
+  "mode": "static_newtime_error_debug",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instructions": {
+    "words": 662,
+    "index_sha256": "d11bd7a714e20dca8ab1bd1a2d51618d36f78152132a44f0e0fa98aaed1651c2",
+    "intervals": [
+      [
+        "0x1fdb8",
+        "0x1fe2c"
+      ],
+      [
+        "0x20958",
+        "0x209f8"
+      ],
+      [
+        "0x204d4",
+        "0x20724"
+      ],
+      [
+        "0x20200",
+        "0x204d4"
+      ],
+      [
+        "0x1ffbc",
+        "0x20200"
+      ],
+      [
+        "0x21574",
+        "0x21608"
+      ],
+      [
+        "0x1ff18",
+        "0x1ff50"
+      ],
+      [
+        "0x1d430",
+        "0x1d46c"
+      ],
+      [
+        "0x1d4c8",
+        "0x1d59c"
+      ]
+    ]
+  },
+  "bindings": {
+    "context": "0x307e0",
+    "live_context_cell": "0x31998",
+    "initial_console": "0x30b50",
+    "console_puts": "0x1d560",
+    "console_formatter": "0x1d430",
+    "puts_character": "0x1d4dc",
+    "tx_poll": "0x1d4c8",
+    "tx_status": "0x10540010 bit1",
+    "tx_word_store": "0x10540020",
+    "optional_log_buffer_pointer_cell": "0x31c20",
+    "runtime_bindings_observed": false
+  },
+  "helper": {
+    "entry": "0x1fdb8",
+    "console_null_successor": "0x1fdfc",
+    "calls_when_console_present": [
+      "0x21574",
+      "0x20958",
+      "0x204d4",
+      "0x20200"
+    ],
+    "metadata_printer_only_prefix_selected": [
+      "0x21574",
+      "0x21608"
+    ],
+    "readiness_string": "0x2fea9",
+    "wfi": "0x1fe1c",
+    "epilogue": [
+      "0x1fe20",
+      "0x1fe2c"
+    ],
+    "unconditional_nonreturn_proved": false
+  },
+  "wrapper": {
+    "0": {
+      "returned_w0": 4294967293,
+      "returns_directly": true
+    },
+    "1": {
+      "tail_target": "0x1fdb8",
+      "w0_argument": 27,
+      "returns_directly": false
+    },
+    "2": {
+      "tail_target": "0x1fdb8",
+      "w0_argument": 5,
+      "returns_directly": false
+    },
+    "3": {
+      "tail_target": "0x1fdb8",
+      "w0_argument": 27,
+      "returns_directly": false
+    },
+    "4": {
+      "tail_target": "0x1fdb8",
+      "w0_argument": 27,
+      "returns_directly": false
+    },
+    "5": {
+      "returned_w0": 2,
+      "returns_directly": true
+    }
+  },
+  "flags": {
+    "helper": "0x20958",
+    "load": "0x20970",
+    "store": "0x20978",
+    "address": "0x02073624",
+    "record_offset_if_R_is_02073600": "0x24",
+    "formula": "before_u32 | (1 << (argument_u32 & 31))",
+    "wrapper_code_1_3_4_mask": "0x8000000",
+    "wrapper_code_2_mask": "0x20",
+    "read_modify_write_atomic": false
+  },
+  "dump": {
+    "entry": "0x204d4",
+    "load": "0x20654",
+    "address_argument": "0x02073600",
+    "size_argument": "0x1a0",
+    "selected_call_plan": {
+      "base": 34027008,
+      "loop_limit": 416,
+      "finite": true,
+      "word_count": 104,
+      "cycle_word_count": null,
+      "first_read": 34027008,
+      "last_read": 34027420,
+      "read_end": 34027424
+    },
+    "descriptor_region_start_if_R_is_02073600": "0x020737a0",
+    "source_stores_in_selected_dumper": false,
+    "output_uses_mutable_callbacks": true,
+    "source_preservation_requires_disjoint_output_and_stack": true
+  },
+  "debug": {
+    "entry": "0x20200",
+    "first_hardware_read": [
+      "0x20220",
+      "0x10000000"
+    ],
+    "header_scan": [
+      "0x020736d0",
+      "0x020736e0"
+    ],
+    "indirect_callback_table": "0x31408",
+    "first_slot_offset": 120,
+    "loop": "0x20344",
+    "back_edges": [
+      "0x204ac",
+      "0x204bc"
+    ],
+    "flag_byte": "0x319f8",
+    "null_console_exit": "0x204c0",
+    "additional_dump_helper": "0x1ffbc",
+    "output_callback_at": "0x1ff3c",
+    "complete_transitive_effects_verified": false
+  },
+  "strings": [
+    {
+      "file": "0x2fea9",
+      "text": "\nREADY TO DEBUG! \n",
+      "sha256": "f259b9b7b8c7664704d9d0d8f680e21644e65daccd9a6fa628c4369d7027cc8a"
+    },
+    {
+      "file": "0x2fec4",
+      "text": "\n",
+      "sha256": "102b51b9765a56a3e899f7cf0ee38e5251f9c503b357b330a49183eb7b155604"
+    },
+    {
+      "file": "0x2ff2b",
+      "text": "          |          0x0|          0x4|          0x8|          0xC|\n",
+      "sha256": "092d9f2b1fd289d834c6fdf004d91ed913befdc3e4e6e31715a31b9d494a1b72"
+    },
+    {
+      "file": "0x2ff70",
+      "text": "-------------------------------------------------------------------\n",
+      "sha256": "35c4413880597c7b476a402e60c702031f24e906c77abf22bda6f9c060094a7b"
+    },
+    {
+      "file": "0x2ffb5",
+      "text": "  ",
+      "sha256": "4eb504a64a3c90e705a81ecfbf13c36365b68977160e554694f32e0ce2e94e61"
+    },
+    {
+      "file": "0x2ffb8",
+      "text": "|",
+      "sha256": "d34e9cd20975de76f07459cd78e5f80eea529cccfc79996b3a9361478ad544f2"
+    },
+    {
+      "file": "0x2ffba",
+      "text": "     ",
+      "sha256": "9b867a93b5695802705874589eeb48530b3feeb93863b6f9caf32ce31d846f4e"
+    },
+    {
+      "file": "0x2ffc0",
+      "text": "        ",
+      "sha256": "93d43ba40f1f1a89deff77a93eafeef83233d1569c60a341bd923f3d001b2ad9"
+    },
+    {
+      "file": "0x304c2",
+      "text": "0123456789ABCDEF",
+      "sha256": "15035c2b8a71a2cf05f146d7e149a0d0399298833e1394702fbaf2aaa822c08e"
+    }
+  ],
+  "firmware_executed": false,
+  "hardware_or_record_observed": false,
+  "first_u64_preserved_through_complete_error_path_proved": false
+}

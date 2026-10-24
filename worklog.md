@@ -1850,3 +1850,49 @@ py_compile,295 links locais e diff --check passaram. Documentação,
 físico, valores do gate/registro, RAM ou FDT final. Próximo: helper1fdb8,
 chamadores e origem da geometria que substitui o marcador; corroborar
 aliases e bindings ACPM.
+
+
+## 2026-10-24 — flags, dump e depuração após erro NEWTIME
+
+Continuação da main7723fbd, PR19 revisado/mergeado. Revisão automática
+conferida completed sem achados no head d5db0ba. Quatro temporários de
+restauração encontrados na toolchain foram preservados fora do repositório
+com SHA-256 antes do checkout feat/newtime-error-debug; nenhum adicionado.
+
+Helper1fdb8: sob console não nulo chama21574,20958,204d4,20200. O prefixo
+de21574 foi selecionado, sem atribuir efeitos ao restante. 20958 atualiza
+AP02073624 por OR u32 com1<<(W0&31), não atômico; argumentos27/5 vindos
+do wrapper produzem08000000/20. SeR=02073600, campo+24hex, não primeiro
+u64. Dump204d4 recebe endereço fixo02073600 e tamanho1a0, sem ler R de30520.
+104 LDRs até0207379c, antes do diretório. Não contém store na fonte.
+
+Contexto nominal307e0 aponta a30b50; +8puts1d560, +24conversor1d430.
+Puts acrescenta CR antes de LF e usa1d4dc: espera bit1 de10540010, grava
+word10540020 e pode escrever em buffer de log derivado de31c20. Sem
+bindings, buffer disjunto ou canalUART físico observados. Não estendida
+a preservação do primeiro u64 ao tratamento transitivo inteiro.
+
+20200 lê10000000 e quatro words de020736d0..e0, chama slots indiretos,
+pode entrar no laço20344 e usa outro dump1ffbc/saída via1ff18 callback
+1ff3c. O helper externo tem WFI seguido por epílogo/RET, não branch para
+si. Não presumidos alcance do WFI, despertar ou retorno ao chamador.
+Restante de21574, efeitos dos callbacks e rotina física permanecem abertos.
+
+Dumper: base alinhada a16, limiteW soma nibble+tamanho com wrap, LDRs
+u32 mesmo quando exibidos como espaços antes de início desalinhado.
+Pedidos curtos leem palavra inteira; zero desalinhado pode ler. LimitesW
+fffffffd..ffffffff não terminam pelo wrap do contador em passos4, sob
+retornos/acessos estáveis; modelados no host, sem varredura enormeQEMU.
+Esses extremos não são os argumentos da chamada selecionada.
+
+QEMU:26 dumps com conversor original e slot de saída substituído por RET
+em RAM, GDBobserva strings/LDRs;14 fragmentos originais LSL/LDR/ORR/STR
+2096c..2097c comX3 fornecido pelo harness para campo+24 em RAM. Dois deltas
+40000000/40200000; fonte inteira2400, guardas, ABI/SP, código, strings e
+contexto conferidos. Sem UART, MMIO, helper completo ou telefone executados.
+GNU2.44:662 palavras/92alvos/34operandos,3ponteiros/9strings. Nove testes
+novos e92 anteriores passaram; nove recusasCLI curta/longa/alterada com
+exit2 sem JSON antes deQEMU. Relatórios estático/GNU reproduzidos byte a
+byte, Python compilado e links locais conferidos. Índices, catálogo,
+roadmap e integração19 atualizados. Próximo: origem da geometria após o
+marcador, bindings das recargas e aliases ACPM, sem RAM/FDT físico final.

@@ -1,5 +1,12 @@
 # Catálogo de scripts
 
+- `inspect_newtime_error_hzc2.py`, `check_newtime_error_gnu.py`,
+  `emulate_newtime_error_qemu.py` e `test_newtime_error_hzc2.py`: helper de
+  erro, flags +0x24, dump e depuração HZC2. GNU de 662 palavras; 26 dumps no QEMU
+  com conversor original/saída em RAM e 14 fragmentos de flags com X3
+  fornecido pelo harness. Sem UART/MMIO ou helper completo executados.
+  [Escopo e reprodução](../docs/newtime-error-hzc2.md).
+
 - `inspect_newtime_record_hzc2.py`, `check_newtime_record_gnu.py`,
   `emulate_newtime_record_qemu.py` e `test_newtime_record_hzc2.py`: layout,
   alocador, sequência de gates, erros parciais e wrapper NEWTIME HZC2.
