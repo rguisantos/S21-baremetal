@@ -89,3 +89,13 @@ Merge normal do head revisado em
 `2f31df480b2e6731db38a002ab26ca4bc270a3d9`, sem contornar regras do GitHub.
 Main local sincronizada e limpa. Na retomada desta continuação, a revisão
 automática seguia pendente e não havia apontamentos ou threads adicionais.
+
+## PR #8 — ligação ioctl e confirmação da revisão automática
+
+Head `fd78916670c71263cb3e1d46f351c028dcb313cc`, revisão própria registrada,
+30 testes e GNU conferidos. Merge normal em
+`cd8b5124f19c68a1e040d3564f08d8c9d95044fd`, main sincronizada e limpa.
+Na integração, a revisão automática ainda estava pendente. Na retomada
+desta continuação, foi confirmada como completed, has_any_findings=false
+e has_unresolved_findings=false, para o mesmo head. Sem threads pendentes.
+A revisão automática do PR #7 ainda informava running nesta conferência.

@@ -1,0 +1,20 @@
+test_AES_width_guards_run_before_backend (test_tzsw_bien.BienTests.test_AES_width_guards_run_before_backend) ... ok
+test_SoC_profiles_require_one_literal_dictionary (test_tzsw_bien.BienTests.test_SoC_profiles_require_one_literal_dictionary) ... ok
+test_candidate_length_must_equal_original (test_tzsw_bien.BienTests.test_candidate_length_must_equal_original) ... ok
+test_changed_reference_is_rejected_before_crypto (test_tzsw_bien.BienTests.test_changed_reference_is_rejected_before_crypto) ... ok
+test_changes_outside_region_refused_even_with_matching_digest (test_tzsw_bien.BienTests.test_changes_outside_region_refused_even_with_matching_digest) ... ok
+test_envelope_uses_original_little_endian_bounds (test_tzsw_bien.BienTests.test_envelope_uses_original_little_endian_bounds) ... ok
+test_extent_truncation_order_and_block_width_refused (test_tzsw_bien.BienTests.test_extent_truncation_order_and_block_width_refused) ... ok
+test_magic_tag_and_minimum_size_refused (test_tzsw_bien.BienTests.test_magic_tag_and_minimum_size_refused) ... ok
+test_payload_corruption_refuses_acceptance (test_tzsw_bien.BienTests.test_payload_corruption_refuses_acceptance) ... ok
+test_public_constants_reject_calls_aliases_widths_and_duplicates (test_tzsw_bien.BienTests.test_public_constants_reject_calls_aliases_widths_and_duplicates) ... ok
+test_public_literals_are_read_without_running_source (test_tzsw_bien.BienTests.test_public_literals_are_read_without_running_source) ... ok
+test_replacement_candidate_digest_is_not_trusted (test_tzsw_bien.BienTests.test_replacement_candidate_digest_is_not_trusted) ... ok
+test_synthetic_candidate_acceptance_is_digest_correspondence_only (test_tzsw_bien.BienTests.test_synthetic_candidate_acceptance_is_digest_correspondence_only) ... ok
+test_unknown_words_are_not_promoted_to_format_requirements (test_tzsw_bien.BienTests.test_unknown_words_are_not_promoted_to_format_requirements) ... ok
+test_wrong_firmware_CLI_emits_no_partial_report (test_tzsw_bien.BienTests.test_wrong_firmware_CLI_emits_no_partial_report) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.116s
+
+OK

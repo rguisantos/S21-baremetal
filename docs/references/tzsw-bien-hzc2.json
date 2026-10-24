@@ -1,0 +1,131 @@
+{
+  "mode": "static_BiEn_envelope_and_candidate_gate",
+  "input": {
+    "size": 1572864,
+    "sha256": "83eedef172714cc2e24624a12e77ab7e7a2e04891fe98366f653b3e3a6c533c0"
+  },
+  "envelope": {
+    "magic_offset": "0x10",
+    "magic": "BiEn",
+    "version_bytes": "19091920",
+    "image_tag": "teegris",
+    "raw_u32": {
+      "0x20": "0x1",
+      "0x24": "0x834",
+      "0x28": "0x1000",
+      "0x2c": "0x9d8f0",
+      "0x30": "0x9c8f0",
+      "0x34": "0x9c8f0",
+      "0x38": "0x0",
+      "0x3c": "0x0"
+    },
+    "candidate_region": [
+      "0x1000",
+      "0x9d8f0"
+    ],
+    "candidate_size": 641264,
+    "declared_extent_words_match": true,
+    "header_bundle_region": [
+      "0x40",
+      "0x70"
+    ],
+    "stored_digest_region": [
+      "0x70",
+      "0x90"
+    ],
+    "stored_digest": "b24b95f1cc9b7a3df61844c886c6310facb7e37d53817e188dffb8f7f53cfd66",
+    "raw_region_sha256": "e7854e8566fd12fcd8f887f6ba10709cc3f74f68a3af9441b202aa1c86637099",
+    "raw_region_matches_stored_digest": false,
+    "layout_source_scope": "Exynos9830 reference; HZC2 loader binding not established"
+  },
+  "original_reference_marker_present": false,
+  "Samsung_signature_verified": false,
+  "syscall_handler_identified": false,
+  "firmware_executed": false,
+  "plaintext_written": false,
+  "original_modified": false,
+  "reference_probe": {
+    "sources": {
+      "tzsw_crypt_tool.py": {
+        "repository": "Creeeeger/CreckerROM",
+        "commit": "bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3",
+        "path": "scripts/samsung_signing/tzsw_crypt_tool.py",
+        "sha256": "656d8ba1070e6bdf0a07529eed3748ca963fe81ea9e68ecf612738ed06cc09a4",
+        "git_blob_sha": "54a974f39fc46949e8645d165fc14382db0a1b53",
+        "url": "https://github.com/Creeeeger/CreckerROM/blob/bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3/scripts/samsung_signing/tzsw_crypt_tool.py",
+        "reference_is_HZC2_hardware_specification": false
+      },
+      "aes_cbc.py": {
+        "repository": "Creeeeger/CreckerROM",
+        "commit": "bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3",
+        "path": "scripts/samsung_signing/aes_cbc.py",
+        "sha256": "634afa3493c33eb661ac93ca509e1cefc7bf571f7bf9cbf3ca2878bc4b4f5c4c",
+        "git_blob_sha": "af8e23239168be42ec38fefd54442cc164ea8077",
+        "url": "https://github.com/Creeeeger/CreckerROM/blob/bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3/scripts/samsung_signing/aes_cbc.py",
+        "reference_is_HZC2_hardware_specification": false
+      },
+      "binary_io.py": {
+        "repository": "Creeeeger/CreckerROM",
+        "commit": "bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3",
+        "path": "scripts/samsung_signing/binary_io.py",
+        "sha256": "56406a41244b7d276941052266d71bca6ef83bfe0974e0695eca73f15c55cf6e",
+        "git_blob_sha": "fd9aee77fdfa1aed1dd184b26887295c59732581",
+        "url": "https://github.com/Creeeeger/CreckerROM/blob/bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3/scripts/samsung_signing/binary_io.py",
+        "reference_is_HZC2_hardware_specification": false
+      },
+      "soc_data.py": {
+        "repository": "Creeeeger/CreckerROM",
+        "commit": "bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3",
+        "path": "scripts/samsung_signing/soc_data.py",
+        "sha256": "306980d4b1d2e782ecdc0230205e142b2eec8f6ed3e92091b503311f7c192e54",
+        "git_blob_sha": "edbdfbc39c3b020bb819f36087d8745f9efba3b8",
+        "url": "https://github.com/Creeeeger/CreckerROM/blob/bc9aa7039a6cd5f8cfcfd803ac74f37161fe94a3/scripts/samsung_signing/soc_data.py",
+        "reference_is_HZC2_hardware_specification": false
+      }
+    },
+    "reference_declared_target": "Exynos9830",
+    "reference_soc_profiles": [
+      "Exynos7580\u0000",
+      "Exynos9810\u0000",
+      "Exynos9820\u0000",
+      "Exynos9830\u0000",
+      "SEC S5PC210 Test B/D"
+    ],
+    "reference_declares_Exynos2100": false,
+    "transform_hypothesis": "AES256-CBC header bundle [0x40,0x70), then payload using its 32+16 bytes",
+    "backend_names": [
+      "cryptography",
+      "openssl enc"
+    ],
+    "backend_region_sha256": [
+      "e5440865f72d323677fbd2ce691596053390afc55936c25a42b1e95b896178ee",
+      "e5440865f72d323677fbd2ce691596053390afc55936c25a42b1e95b896178ee"
+    ],
+    "backend_versions": [
+      "50.0.2",
+      "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)"
+    ],
+    "backend_bundle_bytes_identical": true,
+    "backend_bytes_identical": true,
+    "result": {
+      "accepted": false,
+      "outside_region_identical": true,
+      "matches_original_stored_SHA256": false,
+      "candidate_region_sha256": "e5440865f72d323677fbd2ce691596053390afc55936c25a42b1e95b896178ee",
+      "reference_marker_present": false,
+      "acceptance_scope": "stored-digest correspondence only; Samsung signature/runtime not verified"
+    },
+    "reference_source_executed": false,
+    "plaintext_written": false,
+    "derived_keys_emitted": false,
+    "HZC2_algorithm_or_key_proven": false
+  },
+  "supplied_candidate": {
+    "accepted": false,
+    "outside_region_identical": true,
+    "matches_original_stored_SHA256": false,
+    "candidate_region_sha256": "e7854e8566fd12fcd8f887f6ba10709cc3f74f68a3af9441b202aa1c86637099",
+    "reference_marker_present": false,
+    "acceptance_scope": "stored-digest correspondence only; Samsung signature/runtime not verified"
+  }
+}

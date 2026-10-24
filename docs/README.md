@@ -116,3 +116,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Arquivo TZAR e fronteira criptográfica HZC2](tzar-crypto-hzc2.md): 44 registros descomprimidos e identificados, tradução de seletores e percursos EVP/dispositivo separados. Quinze testes e conferência GNU de 15 símbolos/127 instruções/34 destinos; não identifica o modo EPBL `0x19`.
 
 - [Ligação ioctl e fronteira SVC do TEEGRIS](teegris-ioctl-boundary-hzc2.md): calls/PLT/GOT/relocação e versão requerida conferidos até libtzsl; X7=15/SVC #0, limites de erro e retorno. Trinta testes, metadados GNU e 24 instruções/quatro destinos; handler e dispositivo ainda pendentes.
+
+- [Envelope BiEn e candidatos TZSW HZC2](tzsw-bien-hzc2.md): região candidata de 641264 bytes, quatro fontes fixadas e um ensaio negativo reproduzido por duas implementações AES. Quinze testes; candidato inválido retorna exit 1, sem salvar firmware/plaintext ou aceitar digest substituído.
