@@ -1,0 +1,13 @@
+{
+  "mode": "GNU_text_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 1095,
+  "relative_targets_matched": 114,
+  "mmio_addresses_widths_operations_matched": 177,
+  "instruction_index_sha256": "10662e44c3533ad0f760b3c369d2a6fda3a5e31f80939bf4305b35b44a550a5b",
+  "independent_mmio_method": "Parse GNU mov/movk/load/store text with control-flow cuts; no binary address decoder reused",
+  "stack_dataflow_independently_executed": false,
+  "firmware_executed": false,
+  "physical_device_tested": false
+}

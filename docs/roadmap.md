@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, 61c74ad](https://github.com/rguisantos/S21-baremetal/commit/61c74ad7ced68c3046ec59001cf8ee29f6c0dbcb).
+[main anterior a esta entrega, ff90d419](https://github.com/rguisantos/S21-baremetal/commit/ff90d419a0c352c875d676a7a956525664742d50).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -23,7 +23,7 @@ não mudam o estado de validação no telefone.
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
 | Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
-| Preparação do monitor e lista LK | **Pedidos e gates identificados; provedor aberto** | [Grafo EPBL](epbl-frontier-hzc2.md): 1182 instruções/138 alvos, 13 saídas pendentes e dois produtores VBAR; 18 testes novos + 18 regressões; referência SSS delimitada, entrada vetorial/transformação/inicialização abertas |
+| Preparação do monitor e lista LK | **Buffers e MMIO rastreados; provedor aberto** | [Protocolo EPBL](epbl-protocol-hzc2.md): primeira saída 48 → material 32/IV 16, comparação 32, entrada DMA candidata; 69 testes, 1095 instruções/114 alvos/177 acessos MMIO conferidos. Vetores, transformação e conteúdo real seguem abertos; [grafo anterior](epbl-frontier-hzc2.md) conserva 13 saídas pendentes |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
@@ -37,12 +37,13 @@ não mudam o estado de validação no telefone.
 As contagens acima pertencem a suítes diferentes e não devem ser somadas
 como uma porcentagem de prontidão. A etapa anterior do perfil iOS concluiu
 interface, retorno nativo de 900 s e conferência dos quatro mapas, com três
-recusas QEMU, 74 testes de host e quatro controles semânticos. Nesta entrega
-a análise estática delimitou o prefixo EPBL em 1182 instruções/138 alvos e
-13 saídas pendentes, com 18 testes novos e 18 regressões. Dois produtores
-de VBAR corroboram o delta nominal; isso não mede runtime. O dispatcher
-parcial/pedido in-place e as etapas BL2 anteriores mantêm suas contagens
-próprias. A entrada vetorial e o conteúdo runtime das tabelas seguem abertos.
+recusas QEMU, 74 testes de host e quatro controles semânticos. A análise
+anterior delimitou 13 saídas pendentes e dois produtores VBAR. Nesta entrega,
+o protocolo EPBL liga buffers e configurações em 1095 instruções/114 alvos,
+com 177 acessos MMIO conferidos e 33 testes novos/36 regressões. A entrada
+DMA é candidata; seus dados, a transformação e os vetores seguem abertos.
+O dispatcher parcial/pedido in-place e as etapas BL2 anteriores mantêm suas
+contagens próprias. A entrada vetorial e o conteúdo runtime das tabelas seguem abertos.
 Não houve novo ensaio QEMU ou físico; o kernel XNU continua prebuilt.
 
 ## Dois marcos físicos com requisitos diferentes
@@ -72,7 +73,7 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Prefixo EPBL/fronteiras e dois produtores VBAR conferidos; obter preparação/transformação correspondente e ligação vetorial verificáveis antes dos handlers; campos herdados de -0xe6 e escritores indiretos seguem abertos | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
+| **P1 — entrada e coerência** | Protocolo EPBL rastreado; confirmar binding/conteúdo da entrada DMA candidata `[0x1fc00,0x1fffc)`, semântica de `0x19` ou saída real de 48 bytes; depois validar transformação/vetores. Campos herdados de -0xe6 e escritores indiretos seguem abertos | Implementação correspondente ou observação verificável; contrato por condição, sem tratar hipótese de algoritmo/layout como estado efetivo |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
 | **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -80,10 +81,16 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica recomendada: obter preparação/transformação
-correspondente e ligação vetorial verificáveis antes de atribuir handlers**,
-por implementação identificada ou observação autorizada, mantendo memória
-e recuperação do diagnóstico em paralelo. O [grafo atual](epbl-frontier-hzc2.md)
+**Próxima entrega técnica recomendada: confirmar a entrada/saída ainda
+desconhecida da preparação EPBL**, por implementação correspondente ou
+observação verificável, mantendo memória e recuperação do diagnóstico em
+paralelo. O [rastreio novo](epbl-protocol-hzc2.md) liga 48 bytes ao material
+32/IV 16, localiza a comparação de 32 bytes e distingue palavras brutas do
+layout DMA candidato `[0x1fc00,0x1fffc)`. A semântica de `0x19` e os bytes
+reais continuam abertos; a inferência AES-256-CBC não os fornece. São 69
+testes de host e conferência GNU de 1095 instruções/114 destinos/177 acessos,
+sem execução do firmware. A transformação e ligação vetorial continuam
+necessárias antes dos handlers. O [grafo anterior](epbl-frontier-hzc2.md)
 registra 13 saídas pendentes; repetir o recorte ou inventar respostas MMIO
 não fecha essas fronteiras. Os dois produtores de VBAR corroboram o delta,
 sem medir runtime. A referência SSS consultada lista variantes antigas e
@@ -186,6 +193,6 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A main foi conferida na preparação deste roadmap; a consulta retornou
-**zero PRs abertos**. O [worklog](../worklog.md) conserva a sequência histórica
+Esta revisão parte da main `ff90d419`; a entrega de protocolo está em branch
+próprio para revisão. O [worklog](../worklog.md) conserva a sequência histórica
 das descobertas; esta página organiza prioridades e critérios atuais.

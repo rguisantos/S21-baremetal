@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "repository": "Exynos-2100/android_kernel_samsung_universal2100",
+      "commit": "37c14d86996a49edbea8953f2523b202546b8958",
+      "path": "drivers/crypto/s5p-sss.c",
+      "git_blob_sha": "86a13b738c2deb168edf749b3268e57131bca22e",
+      "sha256": "2a26fbf365346b751576f386e50821e3de1ba92968a672b26451cfc0a922bb98",
+      "url": "https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/drivers/crypto/s5p-sss.c",
+      "HZC2_binding_verified": false
+    },
+    {
+      "repository": "halal-beef/Exynos9830-Firmware-Decryptor",
+      "commit": "404785e78056a3b69bac1f96a9c7ca96427d1099",
+      "path": "decrypt-epbl.py",
+      "git_blob_sha": "2ab5cb4d561c75c4d5b47fd0ad88b11b294ce984",
+      "sha256": "a27d9d7c269070db4ac1a801d93d1f0c80af0e38736b91ff72a7e42e24bd5008",
+      "url": "https://github.com/halal-beef/Exynos9830-Firmware-Decryptor/blob/404785e78056a3b69bac1f96a9c7ca96427d1099/decrypt-epbl.py",
+      "HZC2_binding_verified": false
+    }
+  ],
+  "source_scope": "Pinned primary implementations; neither establishes the HZC2 MMIO hash protocol",
+  "source_directory_scope": "drivers/crypto in pinned Exynos-2100 tree lists s5p-sss.c; not a global proof of source absence",
+  "exynos9830_key_trial": {
+    "method": "One AES-256-CBC trial using the unchanged public reference key/IV on the candidate HZC2 interval",
+    "candidate_range": [
+      "0x4700",
+      "0xfde0"
+    ],
+    "ciphertext_sha256": "42ef1c917322ecfe37d132a6c006a930aa72f7e1984ebc20b77dee6d00f22eb6",
+    "candidate_plaintext_sha256": "56f7b345144c5a8f6640d3a50663abe6f7120df060c993c32f74c105b5b92416",
+    "expected_record_bytes": "e8ad3d09b717bdc3fe9f36b78c02fb2b1eb5294be30df5072d618cdade9335bf",
+    "sha256_matches_record": false,
+    "sha256_is_itself_a_HZC2_hypothesis": true,
+    "reference_key_sha256": "ad2894ee37680a3d485703002e582dee3aa4e5ebb57d82dfaae23c4fde9b00e0",
+    "reference_iv_sha256": "36b968a3e1eff9ab33dd43f432474f54b2adec132d86e0dbf174942402878fcc",
+    "firmware_modified": false,
+    "plaintext_published": false,
+    "conclusion": "No verified plaintext from this reference trial; not evidence about all possible algorithms or hardware keys"
+  }
+}

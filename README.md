@@ -28,6 +28,8 @@ A [origem do modo e o descritor BL2](docs/bl2-service-chain-hzc2.md) foram refin
 
 O [prefixo EPBL e dispatcher SMC parcial](docs/epbl-preparation-hzc2.md) têm agora um [grafo de fronteiras](docs/epbl-frontier-hzc2.md): 1182 instruções, 13 arestas para a região pendente e dois produtores de VBAR coerentes com o mesmo delta nominal. Foram 36 testes de host e 138 destinos relativos conferidos com objdump. A referência SSS pública foi fixada por commit e não fornece o protocolo EPBL completo. Entrada vetorial, transformação e conteúdo runtime das tabelas continuam sem comprovação.
 
+O [rastreio de buffers e MMIO EPBL](docs/epbl-protocol-hzc2.md) liga a primeira saída de 48 bytes ao material de 32 bytes e IV de 16 bytes da operação seguinte, seguida de comparação de 32 bytes. Foram 69 testes de host e conferência GNU de 1095 instruções/114 destinos/177 acessos MMIO. O padrão alto/baixo/tamanho indica uma entrada DMA candidata em `[0x1fc00,0x1fffc)`, sem binding ou conteúdo medidos. AES-256-CBC é uma inferência corroborada pela fonte SSS; algoritmo HASH, plaintext e ligação dos handlers continuam abertos.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

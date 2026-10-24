@@ -63,6 +63,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Fronteira do prefixo EPBL](epbl-frontier-hzc2.md): grafo de 1182 instruções, 13 saídas pendentes, segundo produtor de VBAR e referência SSS delimitada; 36 testes de host, sem ligação runtime dos vetores.
 
+- [Buffers e protocolo MMIO EPBL](epbl-protocol-hzc2.md): 48 bytes → material 32/IV 16, resultado comparado de 32 bytes, entrada DMA candidata e status/polling; 69 testes e conferência GNU de 177 acessos. Sem plaintext ou ligação dos handlers.
+
 - [Preparação EPBL e dispatcher parcial](epbl-preparation-hzc2.md): pedido in-place/MMIO, normalização dos IDs, guarda e duas tabelas; entrada vetorial/handlers ainda abertos; 34 testes de host.
 
 - [Estado anterior do descritor BL2](descriptor-provenance-hzc2.md): sete cópias fixas sem interseção, duplicata com campos ainda desconhecidos e distinção do limite LK; 40 testes, sem inicialização demonstrada.
