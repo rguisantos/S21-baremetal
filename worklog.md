@@ -1578,3 +1578,36 @@ README/índice/roadmap/integração atualizados. Nenhum novo QEMU, execução de
 firmware/MMIO/serviço, dump físico ou blob no Git. Próximo rastreio:
 produtores da primeira palavra e gates de preservação/substituição. Ainda
 faltam bytes reais, demais slots, bindings, respostas, limite LK e FDT final.
+
+## 2026-10-24 — referência pública xfwdrev/rebased-11
+
+Pedido do usuário para examinar android_kernel_samsung_ex2100/rebased-11.
+Base local: main 69940c8 após PR #13 revisado/mergeado. Fixado commit
+756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0 (2026-10-19 UTC), árvore
+3cb6380ea1348c26fc4eeea0d4562dedba88e0e0. Quinze arquivos selecionados,
+com tamanhos, SHA-256 e identidade de blob Git no relatório; READMEs anexos
+relidos, sem modificá-los.
+
+Linux 5.4.304-openela, nome ChicletKernel e config p3s por fragmento.
+build.sh descreve LLVM/Clang r614150, boot/vendor_boot v3 e metadados
+Android 16; nenhum build completo executado ou compatibilidade inferida.
+build_kernel.sh ainda chama defconfig t2sxxx ausente na lista consultada.
+Config base desativa KEXEC/KEXEC_FILE/CRASH_DUMP/DEVMEM/UH e declara
+console Samsung, PSTORE/RAM e DEBUG_SNAPSHOT_BUILT_IN. Isso não mede o
+estado de Harx/EL2 nem comprova leitura/persistência de logs.
+
+Hashes comparados com a evidência Samsung anterior: UART e overlay
+UNIVERSAL2100 rev11 idênticos; Makefile, GIC, MCT e base DTS diferentes.
+Base pública já corrige as três listas de CPUs. DTC/libfdt 1.7.2 extraídos
+fora do checkout: três DTS compilados sem edição, alinhamento quatro, e
+dois overlays aplicados. Parser FDT existente aceitou os cinco resultados.
+Base 393452 bytes/2292 nós, diferente da base HZC2 comprovada. Genérico
+aplicado: UART0 okay/UART1 disabled; p3s r22: ambas okay. Todos sem nós
+RAM, com chosen initrd antigo; avisos de bindings preservados por categoria.
+
+Documentação, índices, roadmap e integração atualizados. Candidata futura:
+instrumentar um kernel Linux para observar FDT/reservas após validar build
+e percurso físico de instalação/recuperação. Sem mudança no payload ou
+nos decodificadores BL2, sem nova execução QEMU/telefone/serviços seguros.
+Produtor do registro BL2, memória final e primeiro diagnóstico continuam
+pendentes. Fontes externas, ferramentas e DTBs gerados não entraram no Git.

@@ -6,6 +6,8 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
+A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
+
 A frente Darwin agora [inicia XNU no QEMU com um programa próprio](docs/xnu-qemu-lab.md): PID 1/UID 0, arquivo APFS, timer e retorno ao carregador, com controle negativo recusado. O ensaio inicial usou kernel/loader prebuilt identificados; a variante EFI abaixo recompila o loader. A [interface iOS 16.5 foi reproduzida localmente no QEMU](docs/hackios-userland-qemu.md), com SpringBoard, Ajustes/Geral/Sobre respondendo a toques, o workspace de referência identificado e imagens APFS verificadas. A execução no S21 continua pendente. A [estratégia de escolha Android/XNU](docs/dual-boot-strategy.md) registra esse objetivo futuro e seus marcos. A [revisão HackiOS](docs/hackios-xnu-reference.md) conserva as diferenças de plataforma.
 
 O [contrato binário XNU](docs/xnu-boot-contract.md) tem 28 testes de host, layout C conferido e captura QEMU de 736/14800 bytes reemitidos sem alteração. O [adaptador FDT → recursos Apple](docs/xnu-fdt-adapter.md) passou 29 testes e traduziu CPUs/GIC/PSCI/timer do HZC2 para um fragmento de 1944 bytes. X2 segue parcial no telefone: a base HZC2 continua sem bancos RAM e com reservas incompletas.
@@ -117,6 +119,7 @@ Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arqu
 - [Construtor LK de bancos RAM: argumentos conferidos em 268 cenários](docs/lk-memory-bank-constructor.md)
 - [Cache/MMU no LK: EL ativo, percurso set/way e limites do salto final](docs/lk-cache-handoff.md)
 - [Pacote Samsung: base, delta e drivers consultados](docs/samsung-reference.md)
+- [Kernel público xfwdrev/rebased-11: comparação, DTS e limites do diagnóstico](docs/xfwdrev-kernel-reference.md)
 - [Parser FDT, política de memória e contrato do carregador](docs/fdt-resources.md)
 - [Entrada/GIC/timer/exceções e cobertura em uma CPU](docs/r10-single-cpu.md)
 - [Carregamento Samsung e instalador Proton: contrato e lacunas](docs/loader-contract.md)

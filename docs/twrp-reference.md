@@ -26,3 +26,8 @@ Foi baixado somente `p3s/prebuilt/dtb`: **391.332 bytes**, SHA-256 `1cfc38ff4166
 O parser C de produção aceitou o FDT separado e a política de boot retornou **R10_FDT_NO_RAM (-4)**. A comparação confirma recursos estáticos, mas não resolve o mapa final de memória. Não foi estabelecida correspondência desse binário de recovery com o build HZC2; as imagens originais enviadas continuam sendo a evidência mais próxima do firmware em uso.
 
 Para DTS/DTSI e implementação de drivers, o próprio README aponta para [android_kernel_samsung_ex2100](https://github.com/xfwdrev/android_kernel_samsung_ex2100). Nesta revisão, os drivers usados para conferência continuam sendo os do pacote Samsung já recebido, com hashes em [samsung-reference.md](samsung-reference.md).
+
+Atualização em 2026-10-24: a [branch kernel rebased-11 foi consultada](xfwdrev-kernel-reference.md)
+no commit 756951a, com comparação por hashes e compilações DTS/overlays no
+host. Isso não estabelece correspondência entre essa fonte atual e o DTB
+TWRP prebuilt acima, nem altera os limites físicos da referência.
