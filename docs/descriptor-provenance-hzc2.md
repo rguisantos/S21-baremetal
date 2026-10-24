@@ -122,3 +122,5 @@ transformação/despacho seguro onde existam bytes verificáveis. Em paralelo,
 o [primeiro diagnóstico físico](roadmap.md) continua dependendo de posse e
 coerência da imagem, carregamento Samsung e leitura do registro. Nenhum
 arquivo extra foi necessário nesta etapa; não houve novo ensaio QEMU/S21.
+
+A [continuação no EPBL](epbl-preparation-hzc2.md) identificou um dispatcher comum parcial e a preparação in-place dependente de MMIO. Isso não fornece os valores anteriores do descritor ou prova a passagem de uma chamada pela entrada vetorial.

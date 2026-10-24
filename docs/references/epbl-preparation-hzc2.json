@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-23",
+  "mode": "static_EPBL_preparation_and_common_dispatch",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "nominal_mapping": {
+    "delta": "0x2024000",
+    "candidate_entry_address": "0x2027020",
+    "version_pointer_slot": "0xfdf8",
+    "version_file_offset": "0x4540",
+    "corroborating_records": [
+      {
+        "slot": "0xfe18",
+        "pointer": "0x20286e4",
+        "file_offset": "0x46e4",
+        "marker": "EBRS"
+      },
+      {
+        "slot": "0xfe30",
+        "pointer": "0x20286bc",
+        "file_offset": "0x46bc",
+        "marker": "EBHS"
+      }
+    ],
+    "runtime_mapping_verified": false
+  },
+  "in_place_request": {
+    "source_pointer_slot": "0xfe78",
+    "end_pointer_slot": "0xfea8",
+    "source_nominal": "0x2028700",
+    "destination_nominal": "0x2028700",
+    "bytes": 46816,
+    "candidate_file_range": [
+      "0x4700",
+      "0xfde0"
+    ],
+    "call": "0x3878",
+    "wrapper": "0x4248",
+    "consumer": "0x3ad4",
+    "plaintext_recovered": false,
+    "algorithm_verified": false,
+    "hardware_request_executed": false
+  },
+  "preparation_gates": {
+    "entry_call": "0x3044",
+    "entry_flag_address": "0x15860990",
+    "skips_call_if_flag_nonzero": true,
+    "marker_comparison": "0x3160-0x31b8",
+    "marker_success_bytes": "SUCC",
+    "existing_marker_skips_preparation": true,
+    "preparing_marker_bytes": "STAR",
+    "failure_marker_bytes": "FAIL",
+    "state_or_execution_observed": false
+  },
+  "hardware_dependency": {
+    "mmio_base": "0x18330000",
+    "status_read_offsets": [
+      "0x18c",
+      "0x1010"
+    ],
+    "output_reads": [
+      "0x11c0",
+      "0x11ec"
+    ],
+    "first_poll_failure_value": "0x1106",
+    "second_poll_failure_value": "0x1107",
+    "values_are_internal_preparation_status_not_SMC_returns": true,
+    "verified_response_or_key_available": false
+  },
+  "dispatcher": {
+    "common_block": "0x4424",
+    "guarded_entry": "0x43d8",
+    "prefix_mask": "0xffff0000",
+    "legacy_base": "0x82000000",
+    "examples": [
+      {
+        "input_w0": "0xffffff1a",
+        "common_normalized_w0": "0x820000e6",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xffffff19",
+        "common_normalized_w0": "0x820000e7",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xffffff18",
+        "common_normalized_w0": "0x820000e8",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xffffff17",
+        "common_normalized_w0": "0x820000e9",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xffffff13",
+        "common_normalized_w0": "0x820000ed",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xfffffc01",
+        "common_normalized_w0": "0x820003ff",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0xfffffb00",
+        "common_normalized_w0": "0x82000500",
+        "legacy_prefix_matched": true,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": true,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      },
+      {
+        "input_w0": "0x82002011",
+        "common_normalized_w0": "0x82002011",
+        "legacy_prefix_matched": false,
+        "owner_index": 66,
+        "rejects_if_entered_at_0x43d8": false,
+        "actual_entry_verified": false,
+        "handler_resolved": false
+      }
+    ],
+    "classification_pointer": "0x2034280",
+    "candidate_classification_file_offset": "0x102c2",
+    "raw_file_classification_byte": 0,
+    "runtime_classification_known": false,
+    "table_file_range": [
+      "0xe410",
+      "0xf410"
+    ],
+    "entry_stride": 32,
+    "table_inside_candidate_transform_region": true,
+    "target_pointer_initial_bytes_sha256": "51804be2b52dc45d00c2aabff68e9d216a028037442d39b1888177045ca30014",
+    "class_bit7_rejects": true,
+    "actual_handler_linked": false
+  },
+  "blocks": {
+    "entry_to_preparation": {
+      "start": "0x3020",
+      "end_exclusive": "0x3070",
+      "sha256": "648bf068863311a2e19e5fbc1fd58a823abdb0d99b4394b6c0273a943e5a638e"
+    },
+    "marker_and_seed": {
+      "start": "0x312c",
+      "end_exclusive": "0x31f0",
+      "sha256": "ed949c2c8c56177e5f0265429788324951dbb9601f423fd2fa86c1384eef98e2"
+    },
+    "first_mmio_poll": {
+      "start": "0x350c",
+      "end_exclusive": "0x3574",
+      "sha256": "4997bb670619e3866d18b285558b22286de869a7137ca170fc9321a140e5bf85"
+    },
+    "second_poll_failure": {
+      "start": "0x37bc",
+      "end_exclusive": "0x37ec",
+      "sha256": "9844f58a129df3854320201b07d5cb8b6631948fe5e0ff3176e686a260189a32"
+    },
+    "in_place_request": {
+      "start": "0x37f0",
+      "end_exclusive": "0x387c",
+      "sha256": "5ffbbc332c7d5e926e9e04e4e5bb85ada0dcbf208df0c1390d54889c4be2e48d"
+    },
+    "preparation_result": {
+      "start": "0x39e8",
+      "end_exclusive": "0x3a8c",
+      "sha256": "7ba96bf559aa9ee4bff172a9ea9eeb76d99ff8f7ed4341c8e9f77b6efb2e9650"
+    },
+    "transform_wrapper": {
+      "start": "0x4248",
+      "end_exclusive": "0x4294",
+      "sha256": "3c15e53c206657717c98631718219d485c857263ccf8be632d05080b78a7bb60"
+    },
+    "common_dispatcher": {
+      "start": "0x43d8",
+      "end_exclusive": "0x44b0",
+      "sha256": "6e648455642318ab9447dee9d5c0d1e34732d4e333e93683abd1bd1b77a2d169"
+    },
+    "request_consumer": {
+      "start": "0x3ad4",
+      "end_exclusive": "0x3b30",
+      "sha256": "3486d9cf5247519a8a4c627d6d1a4c6df177e6e2704f55ae285486efbafe7443"
+    },
+    "mmio_words": {
+      "start": "0x3d38",
+      "end_exclusive": "0x3db8",
+      "sha256": "98bd4caf451a52d4c9bab658ce861acb81d3af448b29738e5a6578d558158362"
+    }
+  },
+  "secure_service_executed": false,
+  "firmware_modified": false,
+  "physical_device_tested": false,
+  "limitations": [
+    "Common-block normalization does not establish vector selection or passage of the bit-30 entry guard",
+    "Nominal delta is an explicit mapping hypothesis, not RAM ownership or runtime relocation proof",
+    "In-place request and self-decryption strings do not supply an algorithm, key, hardware response or verified plaintext",
+    "Raw classification byte and table bytes are not authenticated runtime bindings",
+    "SMC -0xe6/-0xe7/-0x3ff/-0x500 remain distinct unresolved handlers"
+  ]
+}

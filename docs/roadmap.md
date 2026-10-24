@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, 66ea975](https://github.com/rguisantos/S21-baremetal/commit/66ea9753a281172226f4b1768fb0a36b37b3efc5).
+[main anterior a esta entrega, 37b5ecd](https://github.com/rguisantos/S21-baremetal/commit/37b5ecd83cb0a1023f18417430187428dcfb3b0a).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -23,7 +23,7 @@ não mudam o estado de validação no telefone.
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
 | Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
-| Preparação do monitor e lista LK | **Pedidos e gates identificados; provedor aberto** | [Origem X2/descritor -0xe6](bl2-service-chain-hzc2.md) e [sete cópias/duplicata](descriptor-provenance-hzc2.md); 16 testes novos + 24 regressões, 165 palavras/23 alvos e 21 literais conferidos; inicializador, operação segura e lista viva abertos |
+| Preparação do monitor e lista LK | **Pedidos e gates identificados; provedor aberto** | [Dispatcher EPBL parcial](epbl-preparation-hzc2.md), pedido in-place/MMIO e tabelas; 18 testes novos + 16 regressões, 311 instruções/46 alvos conferidos; entrada vetorial, transformação, inicializador e lista viva abertos |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
@@ -38,11 +38,11 @@ As contagens acima pertencem a suítes diferentes e não devem ser somadas
 como uma porcentagem de prontidão. A etapa anterior do perfil iOS concluiu
 interface, retorno nativo de 900 s e conferência dos quatro mapas, com três
 recusas QEMU, 74 testes de host e quatro controles semânticos. Nesta entrega
-a análise estática examinou o estado anterior do descritor -0xe6: sete
-cópias fixas sem interseção e um limite LK distinto não explicam seus campos
-herdados. Passaram 16 testes novos e 24 regressões, com 165 palavras/23 alvos
-e 21 literais conferidos separadamente. Origem X2, seletor W e gates da
-lista foram classificados nas etapas anteriores.
+a análise estática identificou o dispatcher comum parcial do EPBL e seu
+pedido in-place dependente de MMIO. Passaram 18 testes novos e 16 regressões,
+com 311 instruções/46 alvos conferidos separadamente. A entrada vetorial e
+o conteúdo runtime das tabelas não foram demonstrados. Sete cópias fixas,
+origem X2, seletor W e gates da lista foram classificados nas etapas anteriores.
 Não houve novo ensaio QEMU ou físico; o kernel XNU continua prebuilt.
 
 ## Dois marcos físicos com requisitos diferentes
@@ -72,7 +72,7 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Helper/grafo/gates conferidos; seguir preparação dos campos herdados de -0xe6 e transformação/despacho seguro a partir dos pedidos BL2, além dos escritores indiretos da tabela/lista | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
+| **P1 — entrada e coerência** | Helper/grafo/gates e bloco comum EPBL conferidos; ligar entrada vetorial, transformação e inicialização da classificação/slots antes dos handlers; campos herdados de -0xe6 e escritores indiretos seguem abertos | Contrato documentado com evidência para cada condição; distinguir comportamento condicional de estado efetivo |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
 | **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -80,12 +80,13 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica recomendada: seguir a preparação anterior/externa
-aos corpos examinados e a transformação/despacho seguro onde houver bytes verificáveis**,
-com escritores indiretos, observação e memória em paralelo. A [nova análise](descriptor-provenance-hzc2.md)
-excluiu sete cópias fixas e distinguiu um limite LK; não identificou o inicializador.
-A [origem X2 e os campos não escritos de -0xe6](bl2-service-chain-hzc2.md)
-continuam condicionais; o vetor candidato EPBL não foi validado como plaintext. A [etapa anterior](monitor-preparation-hzc2.md)
+**Próxima entrega técnica recomendada: ligar a entrada vetorial e verificar
+a transformação/preparação das tabelas antes de atribuir handlers**, com
+escritores indiretos, observação e memória em paralelo. A [nova análise](epbl-preparation-hzc2.md)
+identificou normalização comum, uma guarda que recusaria os IDs negativos
+nessa entrada e slots dentro da região candidata in-place. Não recuperou
+plaintext ou ligou o vetor ao serviço. A [busca de inicialização](descriptor-provenance-hzc2.md)
+e a [origem X2/campos herdados](bl2-service-chain-hzc2.md) conservam suas lacunas. A [etapa anterior](monitor-preparation-hzc2.md)
 classificou -0xe7 e um segundo callback desativado pelos gates. O handler distinto
 de -0x3ff e a lista viva continuam abertos. O [inventário final](lk-final-edges.md)
 conserva suas hipóteses e contagens.

@@ -1175,3 +1175,39 @@ Relatórios, saída de testes e nota com intervalos publicados; README, índices
 e roadmap atualizados. O resultado é delimitação de hipóteses, sem preencher
 campos desconhecidos ou aumentar prontidão física. Nenhum ensaio QEMU/Samsung
 repetido. Serviços seguros, posse/coerência e recuperação do registro abertos.
+
+
+## 2026-10-23 — preparação EPBL e dispatcher comum parcial
+
+Prefixo legível liga chamada condicional 0x3044 à preparação 0x312c,
+antes do candidato VBAR 0xe800. Flag externo e marcador SUCC podem pular
+a preparação; STAR/FAIL e ramo de falha preservados sem execução.
+Pedido 0x3878 -> 0x4248 -> 0x3ad4 usa origem=destino 0x02028700,
+extensão 0xb6e0. MMIO na base 0x18330000 alimenta buffers; status
+internos 0x1106/0x1107 não foram atribuídos aos retornos dos SMC.
+
+Hipótese nominal de delta 0x02024000 consistente com ponteiro/version
+em 0x4540 e registros EBRS/EBHS; mapeia o pedido para [0x4700,0xfde0).
+Não é endereço físico medido ou reserva. Um ensaio exploratório de
+SHA384/SHA512 + AES-CBC, com variantes de comprimento/byte order, não
+produziu correspondência ao registro comparado sob hipótese SHA256.
+Nenhum plaintext verificado foi recuperado; essas tentativas não foram
+usadas para declarar algoritmo, chave, falha do firmware ou PASS.
+
+Dispatcher comum 0x4424 normaliza prefixo FFFF por complemento+1 W e
+OR 0x82000000. IDs -0xe6/-0xe7/-0x3ff/-0x500 continuam comandos
+distintos, owner 66 nos exemplos. Guarda 0x43d8 testa bit 30 e recusaria
+negativos se a chamada entrasse por ela; vetor/entrada efetivos não ligados.
+Classificação via byte em ponteiro nominal 0x02034280, zero no arquivo
+não é valor runtime. Bit 7 recusa; demais classes selecionam ponteiro
+em slot de 32 bytes baseado em 0xe410, BLR X15 em 0x4494. A janela
+conservadora [0xe410,0xf410) fica dentro da região candidata in-place.
+Sem interpretar seus bytes como bindings runtime ou inventar handlers.
+
+18 testes novos + 16 regressões: 34 PASS. GNU objdump 2.44 coincide em
+311 palavras e 46 destinos relativos dos dez blocos prefixos; região
+candidata/tabelas excluídas da contagem de código validado. Inspetor
+stdlib, relatórios, testes, README/roadmap/índices atualizados. Nenhum
+serviço seguro/MMIO executado, sem alteração de firmware/R10 ou teste
+QEMU/Samsung. Próximo limite: entrada vetorial e transformação/preparação
+verificável antes de resolver handlers; observação física segue em paralelo.

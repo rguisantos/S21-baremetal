@@ -61,6 +61,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Splits do sboot HZC2 e entrada LK em EL1](sboot-layout-hzc2.md): validação do detector, inspeção reproduzível e revisão do relatório externo atualizado.
 
+- [Preparação EPBL e dispatcher parcial](epbl-preparation-hzc2.md): pedido in-place/MMIO, normalização dos IDs, guarda e duas tabelas; entrada vetorial/handlers ainda abertos; 34 testes de host.
+
 - [Estado anterior do descritor BL2](descriptor-provenance-hzc2.md): sete cópias fixas sem interseção, duplicata com campos ainda desconhecidos e distinção do limite LK; 40 testes, sem inicialização demonstrada.
 
 - [Origem do modo e descritor BL2](bl2-service-chain-hzc2.md): retorno X2, seletor W, campos herdados do pedido -0xe6 e referências iniciais das tabelas; 38 testes de host, sem serviço seguro executado.

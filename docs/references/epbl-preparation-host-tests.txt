@@ -1,0 +1,39 @@
+test_adrp_ldr_loads_u64_from_decoded_slot (test_epbl_preparation.EPBL.test_adrp_ldr_loads_u64_from_decoded_slot) ... ok
+test_adrp_negative_page_displacement (test_epbl_preparation.EPBL.test_adrp_negative_page_displacement) ... ok
+test_classification_bit7_refuses_pointer_selection (test_epbl_preparation.EPBL.test_classification_bit7_refuses_pointer_selection) ... ok
+test_classification_does_not_implicitly_truncate (test_epbl_preparation.EPBL.test_classification_does_not_implicitly_truncate) ... ok
+test_classification_stride_and_maximum_slot (test_epbl_preparation.EPBL.test_classification_stride_and_maximum_slot) ... ok
+test_guarded_entry_would_reject_legacy_negative_values (test_epbl_preparation.EPBL.test_guarded_entry_would_reject_legacy_negative_values) ... ok
+test_high_x0_half_does_not_change_common_w_id (test_epbl_preparation.EPBL.test_high_x0_half_does_not_change_common_w_id) ... ok
+test_minus_one_and_prefix_boundary_wrap_in_w_registers (test_epbl_preparation.EPBL.test_minus_one_and_prefix_boundary_wrap_in_w_registers) ... ok
+test_native_32bit_id_is_not_rewritten (test_epbl_preparation.EPBL.test_native_32bit_id_is_not_rewritten) ... ok
+test_negative_legacy_ids_have_distinct_common_commands (test_epbl_preparation.EPBL.test_negative_legacy_ids_have_distinct_common_commands) ... ok
+test_nominal_translation_checks_whole_width (test_epbl_preparation.EPBL.test_nominal_translation_checks_whole_width) ... ok
+test_owner_index_includes_fast_bit_but_not_call_width_bit (test_epbl_preparation.EPBL.test_owner_index_includes_fast_bit_but_not_call_width_bit) ... ok
+test_pointer_witness_rejects_wrong_width_base_or_outside_slot (test_epbl_preparation.EPBL.test_pointer_witness_rejects_wrong_width_base_or_outside_slot) ... ok
+test_pointer_witness_requires_aligned_instruction_bytes (test_epbl_preparation.EPBL.test_pointer_witness_requires_aligned_instruction_bytes) ... ok
+test_prefix_test_is_not_a_general_signed_absolute_value (test_epbl_preparation.EPBL.test_prefix_test_is_not_a_general_signed_absolute_value) ... ok
+test_service_input_requires_unsigned_64bit_integer (test_epbl_preparation.EPBL.test_service_input_requires_unsigned_64bit_integer) ... ok
+test_translation_rejects_external_or_invalid_ranges (test_epbl_preparation.EPBL.test_translation_rejects_external_or_invalid_ranges) ... ok
+test_wrong_firmware_cli_emits_no_report (test_epbl_preparation.EPBL.test_wrong_firmware_cli_emits_no_report) ... ok
+test_adjacent_wide_address_distinguishes_descriptor_from_lk_limit (test_descriptor_provenance.Provenance.test_adjacent_wide_address_distinguishes_descriptor_from_lk_limit) ... ok
+test_changed_copy_body_branch_barrier_or_return_is_rejected (test_descriptor_provenance.Provenance.test_changed_copy_body_branch_barrier_or_return_is_rejected) ... ok
+test_clobbered_base_call_or_unknown_gap_is_not_a_witness (test_descriptor_provenance.Provenance.test_clobbered_base_call_or_unknown_gap_is_not_a_witness) ... ok
+test_copy_overlap_is_not_mistaken_for_initialization (test_descriptor_provenance.Provenance.test_copy_overlap_is_not_mistaken_for_initialization) ... ok
+test_fixed_pair_copy_extent_and_iterations (test_descriptor_provenance.Provenance.test_fixed_pair_copy_extent_and_iterations) ... ok
+test_half_open_touching_and_one_byte_overlap (test_descriptor_provenance.Provenance.test_half_open_touching_and_one_byte_overlap) ... ok
+test_negative_literal_displacement_resolves_correctly (test_descriptor_provenance.Provenance.test_negative_literal_displacement_resolves_correctly) ... ok
+test_safe_intervening_prologue_and_other_register_move (test_descriptor_provenance.Provenance.test_safe_intervening_prologue_and_other_register_move) ... ok
+test_scan_bounds_exclude_unaligned_or_partial_words (test_descriptor_provenance.Provenance.test_scan_bounds_exclude_unaligned_or_partial_words) ... ok
+test_signed_bound_or_destination_outside_supported_domain_rejected (test_descriptor_provenance.Provenance.test_signed_bound_or_destination_outside_supported_domain_rejected) ... ok
+test_span_width_and_final_register_are_limited (test_descriptor_provenance.Provenance.test_span_width_and_final_register_are_limited) ... ok
+test_unsupported_stride_or_truncated_copy_rejected (test_descriptor_provenance.Provenance.test_unsupported_stride_or_truncated_copy_rejected) ... ok
+test_w_copy_uses_four_byte_iteration (test_descriptor_provenance.Provenance.test_w_copy_uses_four_byte_iteration) ... ok
+test_wrong_firmware_cli_emits_no_report (test_descriptor_provenance.Provenance.test_wrong_firmware_cli_emits_no_report) ... ok
+test_wrong_literal_width_register_or_alignment_is_rejected (test_descriptor_provenance.Provenance.test_wrong_literal_width_register_or_alignment_is_rejected) ... ok
+test_zero_reversed_or_partial_extent_is_rejected (test_descriptor_provenance.Provenance.test_zero_reversed_or_partial_extent_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.061s
+
+OK

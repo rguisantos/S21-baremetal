@@ -180,3 +180,5 @@ Os requisitos físicos do [roadmap](roadmap.md) e o canal para ler o primeiro
 registro continuam pendentes.
 
 A [busca do estado anterior](descriptor-provenance-hzc2.md) conferiu sete cópias fixas e a duplicata do construtor; nenhuma fecha os campos herdados. Também separou o limite LK `0xe7fffe00` do descritor `0xe7ffe000`. Os campos desconhecidos desta análise permanecem desconhecidos.
+
+A [análise posterior do EPBL](epbl-preparation-hzc2.md) localiza o dispatcher comum e sua normalização, com uma guarda de entrada que impede tratar o bloco como rota já comprovada para os IDs negativos. A tabela de alvos está na região candidata ao pedido in-place; handlers e resultados reais continuam abertos.
