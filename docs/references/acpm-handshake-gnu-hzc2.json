@@ -1,0 +1,17 @@
+{
+  "mode": "GNU_AArch64_Thumb_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "dts_sha256": "a92a3c3a2dcba40460d51343a23590d5f48c0ad3330ba33864e77aa446859f4e",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "a64_words_matched": 100,
+  "a64_relative_targets_matched": 10,
+  "thumb_instructions_matched": 141,
+  "thumb_halfwords_matched": 168,
+  "thumb_relative_targets_matched": 14,
+  "thumb_literal_xrefs_matched": 15,
+  "selected_operands_matched": 34,
+  "literal_spans_matched": 22,
+  "thumb_instruction_index_sha256": "605376aaba0dbca02bb741e8492fd76db65343a9363becaa6d6e325f42ce9c82",
+  "firmware_executed": false,
+  "hardware_alias_or_handshake_verified": false
+}

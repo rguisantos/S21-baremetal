@@ -1686,3 +1686,54 @@ e critério aritmético de alias conferidos. Documentação, índices, catálogo
 roadmap e integração organizados; sem novo QEMU/MMIO/serviço/telefone.
 Próximo: origem/valor15900108, bindings/preservação e registro real, mantendo
 demais escritores, slots, RAM/reservas e FDT final abertos.
+
+## 2026-10-24 — publicação ACPM e destino condicional NEWTIME
+
+Continuação sobre main 83fad63, PR #16 revisado/mergeado, revisão automática
+completed sem achados no head 0791538. Um temporário de restauração não
+rastreado foi preservado fora do checkout com SHA-256 conferido, antes de
+abrir feat/acpm-handshake-provenance. Sem outras alterações alheias.
+
+DTS público fixado no commit756951a, exynos2100.dts 501932 bytes, SHA
+a92a3c3a2dcba40460d51343a23590d5f48c0ad3330ba33864e77aa446859f4e:
+acpm_ipc declara IPC15900000/1000, SRAM02039000/41000 e initdata8000.
+Coincide com registrador/base BL2; não comprova alias de porta ou runtime.
+Os novos comandos exigem tamanho/SHA exatos dos dois arquivos e campos
+do nó, sem parâmetros opcionais de valores de registrador/tabela.
+
+Loops16228/16250 copiam nominalmente file38000..3d000 para0203d000 e
+file3d000..67000 para02048800. Sob alias SRAM, locais4000..9000 e
+f800..39800. Vetor SPf800/reset4261 e resetfile38260→main38c90 corroboram
+o primeiro mapeamento; colocação/cópia/reset não executados. GNU ARM do
+cross-binutils existente permite Thumb, sem dependência nova instalada.
+
+Inicialização39b48 configura descritores locais7150/13; helper3998c
+configura callback29601 no descritor7 (stride48), nominalfile56e00.
+O laço38e6a testa byte+32, carrega callback+4 e BLX38e90. Descritor
+inicial7 tem flag1; 56e1e chama56ee0. O caminho contém outras chamadas,
+sem prova de preservação, alcance completo ou execução física.
+
+56eee/56ef0 leem literais56fd8=a5900108 e56fdc=38e00. STR56ef2 publica
+u32; poll56ef6/56efa espera zero. Depois guarda38e00 em célula2fbf4 e
+38e00+1800=3a600 em2fd98. BL2call17eb0→17974 zera15900108 em179a8,
+poll179e4 espera não zero; NOVA leitura179f8 pode diferir. SomaW com
+02039000, storeX17a0c em31a48 e clear17a50. PonteiroNEWTIME30520
+atualizado17fe8 com31a48+1800: publicação38e00 satisfaz destino02073600.
+Aliases a5900108↔15900108 e localzero↔02039000, leitura/publicação,
+execução e preservação continuam condicionais. Não é handshake executado.
+
+ConsumidorThumb3f558 lê locais3a600/3a604 em dois W e compara assinatura
+0001000860000110, igual ao BL2/devfreq. Sob aliasSRAM, endereçoAP02073600;
+local3a600 fica além da segunda cópia, não é byte de arquivo nem valor
+observado ou amostra atômica comprovada. Lookup/linhaNEWTIME e frame+136
+seguem abertos; demais escritores, slots e mapaRAM/FDT não resolvidos.
+
+Relatórios estático/GNU reproduzidos byte a byte: 100 palavras AArch64,
+141 instruções Thumb/168halfwords, 10+14 alvos, 15 xrefs a literais,
+34 operandos selecionados e22 spans de dados. 70 regressõesBL2 passaram;
+12 recusasCLI (sboot/DTS curtos,longos,alterados, dois comandos) exit2
+sem JSON parcial. py_compile, 278 links locais e diff --check passaram.
+Documentação, índices, catálogo, roadmap e integração do PR16 atualizados.
+Sem novoQEMU, kernel completo, firmware executado ou operação no telefone.
+Próximo: lookup/linhaNEWTIME e preservação do frame/ponteiro; corroborar
+aliases por fonte correspondente ou observação verificável.

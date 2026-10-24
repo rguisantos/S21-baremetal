@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #15, 9cf76c2](https://github.com/rguisantos/S21-baremetal/commit/9cf76c2f1b998b058dfb1493c467ae6b3fc731c8).
+[main após revisão/merge do PR #16, 83fad63](https://github.com/rguisantos/S21-baremetal/commit/83fad63f4034366d771435c6ebf2005fd7ec8f04).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -104,7 +104,13 @@ medir esse valor; bootstat oferece outra pista de parâmetros de tempo.
 O [callback NEWTIME](boot-metadata-hzc2.md) foi resolvido nominalmente,
 com store u64 por ponteiro atualizado a partir de 0x15900108. O destino
 seria 0x02073600 sob a cadeia preservada se o registrador fosse 0x38e00;
-seu valor real continua desconhecido. Os argumentos bootstat no LK também
+o [produtor ACPM](acpm-handshake-hzc2.md) publica exatamente 0x38e00 em
+local 0xa5900108 e espera zero. Seu inicializador e um consumidor Thumb da
+assinatura DRAM foram ligados nominalmente; DTS nomeia IPC/SRAM AP.
+GNU conferiu 100 palavras AArch64 e 141 instruções Thumb. Alias de hardware,
+amostra recebida e preservação seguem condicionais. Próximo: lookup/linha
+NEWTIME e preservação do frame/ponteiro, além de corroborar os aliases.
+Os argumentos bootstat no LK também
 foram ligados: BL1 recebe literal 100; nomes não comprovam durações.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica
 recargas de 64 bits para o primeiro slot, com nibble 4–7 copiado a um byte
