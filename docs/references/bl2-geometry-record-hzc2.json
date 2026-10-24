@@ -1,0 +1,383 @@
+{
+  "mode": "static_geometry_record_provenance",
+  "input": {
+    "size": 4194304,
+    "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+  },
+  "record": {
+    "address": "0x2073600",
+    "first_word_width_bits": 64,
+    "contents_observed": false,
+    "file_mapping_verified": false,
+    "other_geometry_slots_verified": false,
+    "reloads": [
+      {
+        "source_address": "0x2073600",
+        "source_load": "0x2d378",
+        "source_width_bits": 64,
+        "state_base": "0x31688",
+        "geometry_store": "0x2d37c",
+        "geometry_cell": "0x31978",
+        "geometry_value": "unknown_record_u64",
+        "mode_store": "0x2d388",
+        "mode_cell": "0x31939",
+        "mode_source_bits": [
+          4,
+          7
+        ],
+        "mode_width_bits": 8
+      },
+      {
+        "source_address": "0x2073600",
+        "source_load": "0x2d7e0",
+        "source_width_bits": 64,
+        "state_base": "0x31688",
+        "geometry_store": "0x2d7e4",
+        "geometry_cell": "0x31978",
+        "geometry_value": "unknown_record_u64",
+        "mode_store": "0x2d7fc",
+        "mode_cell": "0x31939",
+        "mode_source_bits": [
+          4,
+          7
+        ],
+        "mode_width_bits": 8
+      }
+    ],
+    "context_assumptions": [
+      "0x2d568 path carries page X6 from 0x2d5ac to X19 at 0x2d6d0",
+      "Selected reloads only; surrounding setup/callbacks are not executed"
+    ]
+  },
+  "nominal_callbacks": {
+    "delta": "0x20ea000",
+    "bindings": [
+      {
+        "cell": "0x31580",
+        "pointer": "0x2117364",
+        "target": "0x2d364",
+        "role": "registered_reload; caller_not_resolved"
+      },
+      {
+        "cell": "0x314c8",
+        "pointer": "0x2117568",
+        "target": "0x2d568",
+        "role": "reload_with_parameter_setup"
+      },
+      {
+        "cell": "0x31510",
+        "pointer": "0x21196c0",
+        "target": "0x2f6c0",
+        "role": "callback_after_marker"
+      }
+    ],
+    "runtime_binding_verified": false,
+    "phase_context": "X19/X20 retain 0x31000 pages; X25=0x31408 in selected caller"
+  },
+  "marker": {
+    "value": "0xcafe",
+    "store": "0x1e2c4",
+    "geometry_cell": "0x31978",
+    "width_bits": 64,
+    "callback_after_store": "0x1e2d0",
+    "reload_callback": "0x1e2e0",
+    "reload_arguments_w0_w1": [
+      12,
+      12
+    ],
+    "execution_observed": false,
+    "role": "literal intermediate state; not a measured geometry word or RAM capacity"
+  },
+  "selected_copies": [
+    {
+      "start": "0x161d8",
+      "end_exclusive": "0x16200",
+      "literal_offsets": [
+        "0x16350",
+        "0x16358",
+        "0x16360"
+      ],
+      "source": [
+        "0x203d000",
+        "0x207a000"
+      ],
+      "destination": [
+        "0x2175000",
+        "0x21b2000"
+      ],
+      "stride": 4,
+      "iterations": 62464,
+      "bytes": 249856,
+      "loop_execution_observed": false,
+      "code_sha256": "4bfce62cbd3f88872c31133cb0c91d2642cd9c44ea3b5ca274e9ee4803abae3c"
+    },
+    {
+      "start": "0x16200",
+      "end_exclusive": "0x16228",
+      "literal_offsets": [
+        "0x16360",
+        "0x16368",
+        "0x16318"
+      ],
+      "source": [
+        "0x2175000",
+        "0x21b2000"
+      ],
+      "destination": [
+        "0x90014000",
+        "0x90051000"
+      ],
+      "stride": 4,
+      "iterations": 62464,
+      "bytes": 249856,
+      "loop_execution_observed": false,
+      "code_sha256": "47d9aaf95038f06ecd82e9f5909e09a30a2eb7105ef595e7e8ef5c95d7c63c20"
+    }
+  ],
+  "conditional_record_locations": [
+    {
+      "source": "0x2073600",
+      "destination": "0x21ab600",
+      "bytes": 8,
+      "execution_observed": false,
+      "source_bytes_observed": false
+    },
+    {
+      "source": "0x21ab600",
+      "destination": "0x9004a600",
+      "bytes": 8,
+      "execution_observed": false,
+      "source_bytes_observed": false
+    }
+  ],
+  "conditional_clear": {
+    "call": "0x2f788",
+    "helper": "0x1f9e8",
+    "destination": "0x2073600",
+    "value_byte": 0,
+    "bytes": 44,
+    "if_previous_w0_zero_at": "0x2f744",
+    "previous_call": "0x2f740 -> 0x2e4fc",
+    "return_observed": false,
+    "post_function_record_contents_verified": false
+  },
+  "conditional_field_restore": {
+    "gate": "0x2f7fc",
+    "skip_if_state_byte_bit0_set": "0x31966",
+    "fields": [
+      {
+        "load_pc": "0x2f808",
+        "store_pc": "0x2f814",
+        "source": "0x21ab628",
+        "destination": "0x2073628",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      },
+      {
+        "load_pc": "0x2f820",
+        "store_pc": "0x2f82c",
+        "source": "0x21ab64c",
+        "destination": "0x207364c",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      },
+      {
+        "load_pc": "0x2f838",
+        "store_pc": "0x2f844",
+        "source": "0x21ab634",
+        "destination": "0x2073634",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      },
+      {
+        "load_pc": "0x2f850",
+        "store_pc": "0x2f85c",
+        "source": "0x21ab650",
+        "destination": "0x2073650",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      },
+      {
+        "load_pc": "0x2f868",
+        "store_pc": "0x2f874",
+        "source": "0x21ab66c",
+        "destination": "0x207366c",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      },
+      {
+        "load_pc": "0x2f880",
+        "store_pc": "0x2f88c",
+        "source": "0x21ab6a0",
+        "destination": "0x20736a0",
+        "width_bits": 32,
+        "touches_first_record_u64": false
+      }
+    ],
+    "touches_first_record_u64": false,
+    "execution_observed": false
+  },
+  "words": {
+    "0x161d8": "58000bc0",
+    "0x161dc": "58000be1",
+    "0x161e0": "58000c02",
+    "0x161e4": "b8404403",
+    "0x161e8": "b8004443",
+    "0x161ec": "eb01001f",
+    "0x161f0": "54ffffab",
+    "0x161f4": "d5033f9f",
+    "0x161f8": "d5033fdf",
+    "0x161fc": "d65f03c0",
+    "0x16200": "58000b00",
+    "0x16204": "58000b21",
+    "0x16208": "58000882",
+    "0x1620c": "b8404403",
+    "0x16210": "b8004443",
+    "0x16214": "eb01001f",
+    "0x16218": "54ffffab",
+    "0x1621c": "d5033f9f",
+    "0x16220": "d5033fdf",
+    "0x16224": "d65f03c0",
+    "0x1dc94": "900000b3",
+    "0x1dee4": "900000b4",
+    "0x1e2a4": "91102299",
+    "0x1e2a8": "911a2275",
+    "0x1e2ac": "11000400",
+    "0x1e2b0": "b90c2ac0",
+    "0x1e2b4": "52800182",
+    "0x1e2b8": "f9408723",
+    "0x1e2bc": "b9000020",
+    "0x1e2c0": "d2995fc0",
+    "0x1e2c4": "f9017aa0",
+    "0x1e2c8": "2a0203e1",
+    "0x1e2cc": "f9417aa0",
+    "0x1e2d0": "d63f0060",
+    "0x1e2d4": "52800181",
+    "0x1e2d8": "f9406322",
+    "0x1e2dc": "2a0103e0",
+    "0x1e2e0": "d63f0040",
+    "0x1f9e8": "53001c21",
+    "0x1f9ec": "d2800003",
+    "0x1f9f0": "4b030044",
+    "0x1f9f4": "6b1f009f",
+    "0x1f9f8": "5400008d",
+    "0x1f9fc": "38236801",
+    "0x1fa00": "91000463",
+    "0x1fa04": "17fffffb",
+    "0x1fa08": "d65f03c0",
+    "0x2d364": "d286c001",
+    "0x2d368": "90000022",
+    "0x2d36c": "f2a040e1",
+    "0x2d370": "f81f0ffe",
+    "0x2d374": "911a2042",
+    "0x2d378": "f9400021",
+    "0x2d37c": "f9017841",
+    "0x2d380": "f9417843",
+    "0x2d384": "d3441c63",
+    "0x2d388": "390ac443",
+    "0x2d38c": "53001c61",
+    "0x2d390": "b4000040",
+    "0x2d394": "f9018840",
+    "0x2d398": "90000020",
+    "0x2d39c": "f941dc02",
+    "0x2d3a0": "52800080",
+    "0x2d3a4": "d63f0040",
+    "0x2d3a8": "90000020",
+    "0x2d3ac": "f84107fe",
+    "0x2d3b0": "f9428c01",
+    "0x2d3b4": "d2800020",
+    "0x2d3b8": "d61f0020",
+    "0x2d5ac": "90000026",
+    "0x2d6d0": "911a20d3",
+    "0x2d7d0": "d286c000",
+    "0x2d7d4": "f2a040e0",
+    "0x2d7d8": "8b35c075",
+    "0x2d7dc": "1b017e81",
+    "0x2d7e0": "f9400000",
+    "0x2d7e4": "f9017a60",
+    "0x2d7e8": "8b21c061",
+    "0x2d7ec": "f9000664",
+    "0x2d7f0": "f9417a60",
+    "0x2d7f4": "f9013a75",
+    "0x2d7f8": "d3441c00",
+    "0x2d7fc": "390ac660",
+    "0x2f724": "d0000000",
+    "0x2f728": "a9bd53f3",
+    "0x2f72c": "d0000013",
+    "0x2f730": "f9424c00",
+    "0x2f734": "a9027bf7",
+    "0x2f738": "a9015bf5",
+    "0x2f73c": "d63f0000",
+    "0x2f740": "97fffb6f",
+    "0x2f744": "340000a0",
+    "0x2f748": "911a2260",
+    "0x2f74c": "52800021",
+    "0x2f750": "390b8c01",
+    "0x2f754": "14000028",
+    "0x2f758": "911a2260",
+    "0x2f75c": "52800582",
+    "0x2f760": "52800001",
+    "0x2f764": "d0000014",
+    "0x2f768": "d286da15",
+    "0x2f76c": "528e0017",
+    "0x2f770": "390b8c1f",
+    "0x2f774": "d286c000",
+    "0x2f778": "f2a040e0",
+    "0x2f77c": "d286dc16",
+    "0x2f780": "91242294",
+    "0x2f784": "f2a040f5",
+    "0x2f788": "97ffc098",
+    "0x2f7f4": "911a2273",
+    "0x2f7f8": "394b7a60",
+    "0x2f7fc": "370004a0",
+    "0x2f800": "d296c500",
+    "0x2f804": "f2a04340",
+    "0x2f808": "b9400001",
+    "0x2f80c": "d286c500",
+    "0x2f810": "f2a040e0",
+    "0x2f814": "b9000001",
+    "0x2f818": "d296c980",
+    "0x2f81c": "f2a04340",
+    "0x2f820": "b9400001",
+    "0x2f824": "d286c980",
+    "0x2f828": "f2a040e0",
+    "0x2f82c": "b9000001",
+    "0x2f830": "d296c680",
+    "0x2f834": "f2a04340",
+    "0x2f838": "b9400001",
+    "0x2f83c": "d286c680",
+    "0x2f840": "f2a040e0",
+    "0x2f844": "b9000001",
+    "0x2f848": "d296ca00",
+    "0x2f84c": "f2a04340",
+    "0x2f850": "b9400001",
+    "0x2f854": "d286ca00",
+    "0x2f858": "f2a040e0",
+    "0x2f85c": "b9000001",
+    "0x2f860": "d296cd80",
+    "0x2f864": "f2a04340",
+    "0x2f868": "b9400001",
+    "0x2f86c": "d286cd80",
+    "0x2f870": "f2a040e0",
+    "0x2f874": "b9000001",
+    "0x2f878": "d296d400",
+    "0x2f87c": "f2a04340",
+    "0x2f880": "b9400001",
+    "0x2f884": "d286d400",
+    "0x2f888": "f2a040e0",
+    "0x2f88c": "b9000001"
+  },
+  "firmware_executed": false,
+  "geometry_runtime_observed": false,
+  "complete_writer_census": false,
+  "memory_map_verified": false,
+  "free_memory_verified": false,
+  "limits": [
+    "Record address and copies do not recover original or runtime record bytes",
+    "Registered reload at 0x2d364 has no caller resolved here; a table pointer is not reachability",
+    "Prefix effects do not establish post-callback state, final geometry or execution order",
+    "Selected clear and six restored fields do not determine the first u64 after the whole function",
+    "Only the first geometry slot is traced; remaining slots and real responses are unobserved",
+    "Literal markers and unobserved record contents do not identify physical RAM capacity"
+  ]
+}

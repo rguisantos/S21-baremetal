@@ -44,6 +44,8 @@ A [consulta que alimenta a geometria](docs/bl2-geometry-query-hzc2.md) foi segui
 
 Um [escritor condicional dessas bases](docs/bl2-query-base-rewrite-hzc2.md) agora demonstra que o BL2 pode trocar as cinco entradas terminadas em `0x6000` por `0xf000`, conforme um nibble de `0x10000010`. O outro ramo preserva o estado anterior. Foram **58 testes** e reconstrução independente GNU de cinco stores; a configuração ativa e as respostas físicas continuam desconhecidas.
 
+O [registro anterior da geometria](docs/bl2-geometry-record-hzc2.md) agora liga duas recargas da primeira palavra a `0x02073600`. O marcador `0xcafe` e seis restaurações parciais foram delimitados; estas não incluem o primeiro u64. Foram **70 testes** e GNU de **148 palavras**, sem recuperar bytes do aparelho ou deduzir sua capacidade.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

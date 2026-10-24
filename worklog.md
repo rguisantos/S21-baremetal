@@ -1537,3 +1537,44 @@ README, índice, roadmap e integração organizados. Nenhum novo QEMU,
 firmware/MMIO/serviço executado ou blob adicionado. Próximo rastreio:
 estado anterior/recargas da geometria, demais escritores e bindings; ainda
 faltam respostas reais, eventual limite LK e mapa final.
+
+
+## 2026-10-24 — registro anterior e recargas da geometria BL2
+
+Continuação sobre main 4d4fd72, PR #12 revisado/mergeado com revisão própria
+e automática sem achados no head 33ae7df. READMEs anexos novamente
+conferidos: instruções de build, sem valores runtime do registro BL2.
+
+Dois caminhos recarregam u64 de 02073600 para o primeiro slot relativo
+31978 e extraem bits 4..7 para o byte 31939. Prefixo de 2d364, registrado
+na célula 31580 -> 02117364, sem chamador resolvido nesta entrega; segundo
+trecho em 2d568, com contexto de X6/X19 explicitado, load 2d7e0 e store
+2d7e4. Nenhum conteúdo do registro, mapeamento de arquivo ou valor dos
+três slots restantes foi recuperado.
+
+1e2c0/1e2c4 produzem/gravam u64 cafe no mesmo slot antes dos calls
+1e2d0 e 1e2e0. Células derivadas do chamador 31510 -> 021196c0/2f6c0 e
+314c8 -> 02117568/2d568; segundo call passa W0=W1=12. Delta e preservação
+de registradores são hipóteses nominais. Não se presumiu que chamadas,
+ramos de erro ou callbacks retornem normalmente ou conservem estado.
+
+Cópias 161d8 e 16200, já conferidas em etapa anterior, incluem a palavra:
+02073600 -> 021ab600 -> 9004a600, sob seus literais. Sem execução/ordem ou
+bytes observados. Ramo 2f744 pode chamar preenchimento de 44 bytes zero em
+02073600; helper de nove instruções conferido para esse pedido. Outro gate
+em 2f7fc controla seis transferências W de 021ab600+offset para
+02073600+offset, nos offsets 28/4c/34/50/6c/a0. Nenhuma toca os primeiros
+oito bytes. Isso não determina o estado após a função/cadeia inteira.
+
+Novo inspetor somente estático: tamanho/SHA exatos, prefixos conferidos,
+endereços por MOVZ/MOVK, larguras/registradores e spans com limites. Origem
+conservada como unknown_record_u64; sem novos cenários de respostas ou
+cálculo de RAM. 70 testes BL2 passaram (12 novos + 58 regressões), incluindo
+recusas de imagem exit 2/sem JSON parcial. GNU 2.44: 148 palavras, dez
+alvos, 18 operandos, quatro produtores, seis cópias de campos e nove
+ponteiros/literais, conferidos por texto e hexdump independentes.
+
+README/índice/roadmap/integração atualizados. Nenhum novo QEMU, execução de
+firmware/MMIO/serviço, dump físico ou blob no Git. Próximo rastreio:
+produtores da primeira palavra e gates de preservação/substituição. Ainda
+faltam bytes reais, demais slots, bindings, respostas, limite LK e FDT final.
