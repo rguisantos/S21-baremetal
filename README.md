@@ -40,6 +40,8 @@ O [envelope BiEn do TZSW HZC2](docs/tzsw-bien-hzc2.md) agora tem leitura e valid
 
 O [produtor BL2 do tamanho de RAM](docs/bl2-ram-size-hzc2.md) agora liga a escrita em `0x02038848` a uma folha candidata de geometria. As 44 instruções originais passaram **66 execuções QEMU** com entradas sintéticas em duas posições; **34 testes de host** e GNU de **300 palavras/23 destinos** também passaram. Geometria real, callbacks, eventual limite LK e bancos/reservas finais permanecem pendentes.
 
+A [consulta que alimenta a geometria](docs/bl2-geometry-query-hzc2.md) foi seguida nominalmente até MMIO: campos de dois/sete bits, disparo e leitura de resposta de 32 bits, com cinco bases literais. Foram **48 testes** e GNU de **82 palavras/12 ponteiros**, sem executar hardware ou fornecer respostas simuladas. A preparação dos controladores e os bindings reais permanecem abertos.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

@@ -1,0 +1,202 @@
+{
+  "mode": "static_geometry_query_provenance",
+  "input": {
+    "size": 4194304,
+    "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+  },
+  "nominal_callbacks": {
+    "delta": "0x20ea000",
+    "bindings": [
+      {
+        "cell": "0x30f20",
+        "pointer": "0x2112480",
+        "nominal_target": "0x28480"
+      },
+      {
+        "cell": "0x31040",
+        "pointer": "0x211424c",
+        "nominal_target": "0x2a24c"
+      }
+    ],
+    "runtime_binding_verified": false
+  },
+  "query": {
+    "start": "0x28480",
+    "end_exclusive": "0x284e4",
+    "instruction_count": 25,
+    "sha256": "eb47bc8f1e3911f01205ed8796f0c809dfc6452ab8b15c8e850c6e5801317548",
+    "table_offset": "0x30f98",
+    "bases": [
+      "0x1c036000",
+      "0x1c136000",
+      "0x1c236000",
+      "0x1c336000",
+      "0x1a346000"
+    ],
+    "term_field": {
+      "destination": 3,
+      "source": 1,
+      "lsb": 28,
+      "width": 2,
+      "mask": 805306368
+    },
+    "selector_field": {
+      "destination": 3,
+      "source": 2,
+      "lsb": 20,
+      "width": 7,
+      "mask": 133169152
+    },
+    "control_preserve_mask": "0xc80fffff",
+    "write_control_offset": 0,
+    "trigger_offset": 4,
+    "trigger_value": 1,
+    "response_offset": 12,
+    "response_width_bits": 32,
+    "slot4_initial_read_uses_slot0": true,
+    "invalid_slot_return_x0": "0xffffffff",
+    "polling_or_barrier_in_body": false
+  },
+  "preparation": {
+    "start": "0x2a24c",
+    "end_exclusive": "0x2a2a8",
+    "instruction_count": 23,
+    "sha256": "16bc91f896cc8918b947ff08d87eb6aa0c664e8617c9d34b39199f9ded16ec44",
+    "table_offset": "0x30fc0",
+    "bases": [
+      "0x1c040000",
+      "0x1c140000",
+      "0x1c240000",
+      "0x1c340000",
+      "0x1a350000"
+    ],
+    "control_offset": 80,
+    "set_then_clear_bit": 24,
+    "slot4_initial_read_uses_slot0": true,
+    "valid_return_x0": 0,
+    "invalid_slot_return_x0": "0xffffffff",
+    "polling_or_barrier_in_body": false
+  },
+  "caller": {
+    "packing_candidate": "0x2f130",
+    "query_calls": [
+      "0x2f1d4",
+      "0x2f21c",
+      "0x2f244",
+      "0x2f268"
+    ],
+    "selectors_w2": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "slots_w0": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "terms_w1": [
+      1,
+      2
+    ],
+    "selectors_6_7_8_require_nonzero_selector5": true
+  },
+  "words": {
+    "0x28480": "71000c1f",
+    "0x28484": "53001c42",
+    "0x28488": "540000c8",
+    "0x2848c": "90000043",
+    "0x28490": "913e6063",
+    "0x28494": "f8605863",
+    "0x28498": "b9400063",
+    "0x2849c": "14000007",
+    "0x284a0": "7100101f",
+    "0x284a4": "12800003",
+    "0x284a8": "540001a1",
+    "0x284ac": "90000043",
+    "0x284b0": "f947cc63",
+    "0x284b4": "b9400063",
+    "0x284b8": "33040423",
+    "0x284bc": "90000041",
+    "0x284c0": "913e6021",
+    "0x284c4": "330c1843",
+    "0x284c8": "f8605820",
+    "0x284cc": "52800021",
+    "0x284d0": "b9000003",
+    "0x284d4": "b9000401",
+    "0x284d8": "b9400c03",
+    "0x284dc": "2a0303e0",
+    "0x284e0": "d65f03c0",
+    "0x2a24c": "71000c1f",
+    "0x2a250": "540000c8",
+    "0x2a254": "d0000021",
+    "0x2a258": "913f0021",
+    "0x2a25c": "f8605821",
+    "0x2a260": "b9405021",
+    "0x2a264": "14000007",
+    "0x2a268": "7100101f",
+    "0x2a26c": "12800001",
+    "0x2a270": "54000181",
+    "0x2a274": "d0000021",
+    "0x2a278": "f947e021",
+    "0x2a27c": "b9405021",
+    "0x2a280": "d0000022",
+    "0x2a284": "32080021",
+    "0x2a288": "913f0042",
+    "0x2a28c": "f8605840",
+    "0x2a290": "b9005001",
+    "0x2a294": "12077821",
+    "0x2a298": "b9005001",
+    "0x2a29c": "52800001",
+    "0x2a2a0": "2a0103e0",
+    "0x2a2a4": "d65f03c0",
+    "0x2f194": "b0000000",
+    "0x2f198": "913fa019",
+    "0x2f19c": "b82a7b5f",
+    "0x2f1a0": "b8297b5f",
+    "0x2f1a4": "2a1303e0",
+    "0x2f1a8": "b8377b5f",
+    "0x2f1ac": "f9402f21",
+    "0x2f1b0": "b83b7b5f",
+    "0x2f1b4": "a9072be9",
+    "0x2f1b8": "d63f0020",
+    "0x2f1bc": "b0000000",
+    "0x2f1c0": "528000a2",
+    "0x2f1c4": "9139401c",
+    "0x2f1c8": "2a1403e1",
+    "0x2f1cc": "2a1303e0",
+    "0x2f1d0": "f9406b8b",
+    "0x2f1d4": "d63f0160",
+    "0x2f1d8": "a9472be9",
+    "0x2f1dc": "b82a7b40",
+    "0x2f20c": "f9406b8a",
+    "0x2f210": "528000c2",
+    "0x2f214": "2a1403e1",
+    "0x2f218": "2a1303e0",
+    "0x2f21c": "d63f0140",
+    "0x2f234": "f9406b89",
+    "0x2f238": "528000e2",
+    "0x2f23c": "2a1403e1",
+    "0x2f240": "2a1303e0",
+    "0x2f244": "d63f0120",
+    "0x2f258": "f9406b86",
+    "0x2f25c": "52800102",
+    "0x2f260": "2a1403e1",
+    "0x2f264": "2a1303e0",
+    "0x2f268": "d63f00c0"
+  },
+  "firmware_executed": false,
+  "hardware_response_observed": false,
+  "geometry_runtime_observed": false,
+  "memory_map_verified": false,
+  "free_memory_verified": false,
+  "limits": [
+    "Nominal code/table binding only; mutable tables and physical placement unobserved",
+    "Literal base values are not evidence of their live mapping, clocks or register semantics",
+    "No responses, DRAM initialization, register access or synthetic hardware execution",
+    "Slot-four asymmetry is instruction behavior; no broadcast semantics or defect inferred",
+    "No wait in these two bodies does not establish completion or behavior of surrounding calls"
+  ]
+}
