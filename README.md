@@ -38,6 +38,8 @@ A [ligação ioctl do TEEGRIS](docs/teegris-ioctl-boundary-hzc2.md) agora confer
 
 O [envelope BiEn do TZSW HZC2](docs/tzsw-bien-hzc2.md) agora tem leitura e validação de candidatos contra o original. O ensaio com a referência Exynos9830 foi reproduzido por OpenSSL/cryptography e recusado por divergência de digest; nenhum plaintext foi aceito. Quinze testes passaram. Esta ramificação do SVC depende de código correspondente em claro, mantendo diagnóstico físico e memória como frentes paralelas.
 
+O [produtor BL2 do tamanho de RAM](docs/bl2-ram-size-hzc2.md) agora liga a escrita em `0x02038848` a uma folha candidata de geometria. As 44 instruções originais passaram **66 execuções QEMU** com entradas sintéticas em duas posições; **34 testes de host** e GNU de **300 palavras/23 destinos** também passaram. Geometria real, callbacks, eventual limite LK e bancos/reservas finais permanecem pendentes.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

@@ -1408,3 +1408,48 @@ guarda hashes, fontes, versões dos backends e limites; sem binários no Git.
 Índices/roadmap/integração atualizados. Esta ramificação SVC depende de
 código correspondente em claro; diagnóstico/entrada/observação e memória
 seguem em paralelo. Sem novo QEMU/S21 ou execução de firmware/serviços.
+
+
+## 2026-10-24 — produtor BL2 do total de RAM e folha de geometria
+
+Continuação sobre main 169d704. PR #9 revisado/mergeado, revisão automática
+completed sem achados no head 383656d, sem threads pendentes. A rota SVC
+continua dependente de código em claro validado; investigação avançou na
+frente de memória, sem repetir a hipótese criptográfica recusada.
+
+Novo produtor: os calls 160bc/16128 levam ao inicializador 17e14, que chama
+1dc90 em 18000 e publica X0 com STR de 64 bits em 02038848 no retorno.
+O getter/cache/limite LK já era conhecido; corrigida a linha desatualizada
+do construtor que dizia não ter recuperado o getter. Nenhum valor real
+foi atribuído ao total do aparelho.
+
+Caminho selecionado: helper 1d830 retorna em 1e85c, resultado é armazenado
+na célula relativa 31940 e recarregado na cauda 1f9cc. Chamadas intermediárias
+e possíveis escritores indiretos permanecem abertos. Três ponteiros brutos
+em 31500/31558/31358 apontam nominalmente a 2f130/2fa98/2caec com delta
+020ea000. Tradução e binding runtime explicitamente não comprovados.
+
+Folha 2caec–2cb9c: quatro u64 em 31978..31990, tabela de sete u16 em 30080,
+gate por byte, um/dois termos escolhidos pelo nibble da palavra zero,
+índice >6 contribui zero, seletor 1 duplica, soma em MiB deslocada 20 bits.
+Empacotamento candidato 2f130 liga os seletores 5/8 aos campos usados;
+callback da consulta vem de 30f20, com retornos e resolução ainda abertos.
+
+Inspetor exige tamanho/SHA-256 exatos; geometria é array explícito de quatro
+u64, sem default e com leitura limitada a 4096 bytes. Dez testes novos
+cobrem os ramos críticos, parser, overflow e recusa de imagem; 24 regressões
+BL2 passaram (34 no conjunto), além de 73 regressões LK. CLI: cenário
+sintético 12 GiB e quatro recusas exit 2/sem JSON conferidos. GNU 2.44 confere 300 palavras, 23 destinos e
+12 operandos, incluindo construção do destino e acessos da folha.
+
+No QEMU virt/EL1, somente as 44 instruções e 14 bytes de tabela originais
+foram injetados. Image de diagnóstico é veículo, parando antes da execução.
+33 cenários sintéticos × duas posições = 66/66 coincidiram, preservando
+SP inválido, X19–X30, código/tabela/entradas/guardas. Inclui todos os índices,
+modo global, gates, fator 1/2, bits altos e seed determinística 2caec.
+Sem inicialização DRAM, callbacks, SMC/MMIO, escrita em 02038848 ou FDT.
+Nenhum novo teste físico, R8/R9/R10 ou firmware proprietário adicionado.
+
+README, índice, roadmap e referências de memória atualizados. Próxima
+investigação: preparação/binding das consultas de geometria e célula 30f20;
+seguem pendentes valores reais, limite LK, respostas seguras e mapa final.

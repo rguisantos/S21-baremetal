@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #8, cd8b512](https://github.com/rguisantos/S21-baremetal/commit/cd8b5124f19c68a1e040d3564f08d8c9d95044fd).
+[main após revisão/merge do PR #9, 169d704](https://github.com/rguisantos/S21-baremetal/commit/169d704ba19af808c0295b1d4048e20c6899d498).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -21,7 +21,7 @@ não mudam o estado de validação no telefone.
 | R10 em uma CPU | **Validado no laboratório; pendente no S21** | Main real com carregador EL2 sintético, timer IRQ e cinco recusas; faltam contrato Samsung, memória e acessos reais |
 | Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
-| Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
+| Construção de RAM no LK / produtor BL2 | **Aritmética conferida; geometria real pendente** | [BL2](bl2-ram-size-hzc2.md): escrita em 0x02038848, folha original em 66 execuções QEMU, 34 testes e GNU 300 palavras/23 alvos; bindings e valores reais abertos. Construtor LK: 268 cenários anteriores, sem FDT final |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
 | Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
@@ -44,7 +44,10 @@ com 177 acessos MMIO conferidos e 33 testes novos/36 regressões. A entrada
 DMA é candidata; seus dados, a transformação e os vetores seguem abertos.
 O dispatcher parcial/pedido in-place e as etapas BL2 anteriores mantêm suas
 contagens próprias. A entrada vetorial e o conteúdo runtime das tabelas seguem abertos.
-Não houve novo ensaio QEMU ou físico; o kernel XNU continua prebuilt.
+Esses ensaios EPBL não executaram firmware. A continuação de memória
+executou somente a folha BL2 de 44 instruções no QEMU, em 66 casos
+sintéticos; não executou inicialização Samsung nem alterou o estado físico.
+O kernel XNU continua prebuilt.
 
 ## Dois marcos físicos com requisitos diferentes
 
@@ -75,59 +78,38 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 |---|---|---|
 | **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
-| **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
+| **P2 — memória dinâmica, em paralelo** | Produtor BL2 localizado; resolver callbacks de preparação/consulta, incluindo célula 0x30f20, e origem da geometria. Continuar soc_info/SEC_PGTBL/Harx e ajustes FDT | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
 | **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica recomendada: confirmar a entrada/saída ainda
-desconhecida da preparação EPBL**, por implementação correspondente ou
-observação verificável, mantendo memória e recuperação do diagnóstico em
-paralelo. O [rastreio novo](epbl-protocol-hzc2.md) liga 48 bytes ao material
-32/IV 16, localiza a comparação de 32 bytes e distingue palavras brutas do
-layout DMA candidato `[0x1fc00,0x1fffc)`. A semântica de `0x19` e os bytes
-reais continuam abertos; a inferência AES-256-CBC não os fornece. São 69
-testes de host e conferência GNU de 1095 instruções/114 destinos/177 acessos,
-sem execução do firmware. A transformação e ligação vetorial continuam
-necessárias antes dos handlers. A [comparação de fontes HASH](epbl-hash-provenance-hzc2.md)
-confere dez offsets e o arranjo DMA, mas demonstra a falta de 0x19 no
-emulador Exynos9830 e a ambiguidade dos nomes legados. A ordem dos contadores
-foi corrigida e o conjunto atual passou em 83 testes. O [grafo anterior](epbl-frontier-hzc2.md)
-registra 13 saídas pendentes; repetir o recorte ou inventar respostas MMIO
-não fecha essas fronteiras. Os dois produtores de VBAR corroboram o delta,
-sem medir runtime. A referência SSS consultada lista variantes antigas e
-não demonstrou o protocolo completo do EPBL. A [busca de inicialização](descriptor-provenance-hzc2.md)
-e a [origem X2/campos herdados](bl2-service-chain-hzc2.md) conservam suas lacunas. A [etapa anterior](monitor-preparation-hzc2.md)
-classificou -0xe7 e um segundo callback desativado pelos gates. O handler distinto
-de -0x3ff e a lista viva continuam abertos. O [inventário final](lk-final-edges.md)
-conserva suas hipóteses e contagens.
-Repetir a matriz de cache ou fornecer respostas simuladas ao SMC não fecha
-o estado físico, a coerência ou o canal de leitura.
+**Próxima entrega técnica na frente de memória: seguir o callback que
+fornece os campos de geometria ao BL2**, incluindo a célula relativa
+`0x30f20`, a preparação anterior e os bindings mutáveis. O
+[novo rastreio](bl2-ram-size-hzc2.md) identifica a publicação de 64 bits em
+`0x02038848`, lida pelo LK/Harx, e uma folha candidata que soma quatro
+palavras usando sete densidades. As 66 execuções originais QEMU validam a
+fórmula sob entradas sintéticas; não recuperam capacidade, reservas ou
+valores reais. A tradução nominal de ponteiros ainda requer comprovação.
 
-A [investigação no próprio TZAR HZC2](tzar-crypto-hzc2.md) descomprime e
-inventaria 44 registros. Localiza a fronteira EVP/`/dev/crypto`, incluindo
-a tradução dos três seletores de digest, com 15 testes e GNU conferindo
-15 símbolos/127 instruções/34 destinos. A próxima busca nesse percurso é
-a implementação do dispositivo que consome os códigos; eles não identificam
-o modo MMIO `0x19`, os bytes DMA ou a saída EPBL. A cauda do contêiner
-permanece contabilizada sem análise completa. Nenhum marco físico mudou.
+A prioridade física continua fechar entrada/coerência e um canal de leitura
+para o diagnóstico mínimo. As duas frentes podem avançar com evidências
+independentes. O total BL2 também pode sofrer limite no cache LK e não
+substitui as respostas soc_info/SEC_PGTBL/Harx ou o resultado do editor FDT.
 
-A [ligação ioctl do TEEGRIS](teegris-ioctl-boundary-hzc2.md) agora cruza
-PLT/GOT, relocação e versões até libtzsl.so. O wrapper prepara X7=15 e
-SVC #0; a conversão de erro e a largura do retorno estão delimitadas.
-Trinta testes e conferência GNU de metadados/24 instruções/quatro destinos.
-O próximo limite é o handler SVC e seu despacho para o dispositivo; a
-resolução em execução e o modo EPBL 0x19 continuam sem evidência física.
+Na preparação EPBL, a [comparação de fontes HASH](epbl-hash-provenance-hzc2.md)
+corrobora dez offsets e o layout DMA, mas o modo `0x19`, os dados reais e a
+transformação continuam abertos. O [rastreio de buffers](epbl-protocol-hzc2.md)
+e o [grafo](epbl-frontier-hzc2.md) delimitam as fronteiras; repetir respostas
+MMIO simuladas não demonstra sua resolução no HZC2.
 
-A [etapa BiEn/TZSW](tzsw-bien-hzc2.md) delimitou o envelope e acrescentou
-uma validação de candidatos contra o original. Um ensaio com referência
-Exynos9830, conferido por OpenSSL e cryptography, divergiu do digest HZC2.
-Quinze testes passaram; nenhum plaintext foi aceito ou salvo. Esta rota
-do SVC depende de código em claro com correspondência verificável, sem
-transformar essa dependência em pré-requisito universal do diagnóstico.
-As frentes de observação/entrada e memória permanecem prioritárias; não
-repetir a hipótese recusada ou substituir o handler por respostas simuladas.
+O [TZAR](tzar-crypto-hzc2.md) e a [ligação ioctl](teegris-ioctl-boundary-hzc2.md)
+levam ao wrapper X7=15/SVC #0. A [etapa BiEn/TZSW](tzsw-bien-hzc2.md)
+recusou a hipótese Exynos9830 em duas implementações AES, sem plaintext
+aceito. Esta rota depende de código em claro correspondente; não repetir a
+hipótese recusada nem transformar esse bloqueio em requisito universal do
+diagnóstico. Os READMEs de build anexos não fornecem o consumidor SVC.
 
 ## Frente XNU/Darwin em laboratório
 

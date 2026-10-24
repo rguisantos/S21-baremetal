@@ -1,0 +1,12 @@
+{
+  "mode": "GNU_text_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 300,
+  "relative_targets_matched": 23,
+  "selected_operands_matched": 12,
+  "instruction_index_sha256": "242b550019b8a1c94e0961d9e1e32e399214ea777c3c1990fe19204ce96d1eee",
+  "firmware_executed": false,
+  "physical_device_tested": false,
+  "limit": "Selected witnesses only; nominal pointer binding and live geometry unverified"
+}

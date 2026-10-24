@@ -109,7 +109,11 @@ localizado, mas não se observou seu valor ou execução. Não se deve fixar
 x25 em 12 GiB apenas pelo modelo comercial do aparelho.
 
 O endereço no código não é uma solicitação de leitura MMIO pelo Android.
-Seu contrato completo com estágios anteriores permanece aberto. Um tamanho
+O [produtor anterior no BL2](bl2-ram-size-hzc2.md), identificado em
+2026-10-24, grava X0 nesse endereço após a chamada `0x1dc90`. A folha
+candidata de cálculo usa quatro palavras de geometria; suas 44 instruções
+passaram 66 execuções QEMU com entradas sintéticas. A execução do caminho, os callbacks, a
+geometria e conteúdo efetivos ainda não foram observados. Um tamanho
 total também não determina bancos/furos: a construção depende de retornos
 SMC e ramos descritos em [bootloader-hzc2.md](bootloader-hzc2.md#ram-e-reservas-dependem-do-estado-de-boot).
 
