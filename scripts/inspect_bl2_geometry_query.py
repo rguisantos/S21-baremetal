@@ -133,6 +133,8 @@ def inspect(path):
         query=dict(start=hex(QUERY), end_exclusive=hex(QUERY_END), instruction_count=25,
                    sha256=hashlib.sha256(data[QUERY:QUERY_END]).hexdigest(),
                    table_offset=hex(d['query_table_offset']), bases=[hex(v) for v in d['query_bases']],
+                   bases_scope='initial file bytes; known conditional writer 0x2d270 may replace them',
+                   runtime_table_contents_verified=False,
                    term_field=d['term_field'], selector_field=d['selector_field'],
                    control_preserve_mask=hex(0xffffffff ^ (d['term_field']['mask'] | d['selector_field']['mask'])),
                    write_control_offset=0, trigger_offset=4, trigger_value=1, response_offset=12,
@@ -150,6 +152,7 @@ def inspect(path):
         firmware_executed=False, hardware_response_observed=False, geometry_runtime_observed=False,
         memory_map_verified=False, free_memory_verified=False,
         limits=['Nominal code/table binding only; mutable tables and physical placement unobserved',
+                'Query bases have a known conditional writer at 0x2d270; file values do not establish live table contents',
                 'Literal base values are not evidence of their live mapping, clocks or register semantics',
                 'No responses, DRAM initialization, register access or synthetic hardware execution',
                 'Slot-four asymmetry is instruction behavior; no broadcast semantics or defect inferred',
@@ -172,6 +175,7 @@ def main():
             result['supplied_plan'] = query_plan(dict(query_bases=[int(v, 16) for v in q['bases']],
                                                        term_field=q['term_field'], selector_field=q['selector_field']),
                                                  *supplied)
+            result['supplied_plan']['base_state_assumption'] = 'initial file table; conditional rewrite not applied'
     except (OSError, ValueError, struct.error) as error:
         print(f'error: {error}', file=sys.stderr)
         return 2

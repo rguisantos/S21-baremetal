@@ -1493,3 +1493,47 @@ o leitor binário. Nenhum novo QEMU, hardware ou blob no Git.
 README/índice/roadmap e integração atualizados. Próximo rastreio:
 preparação dos controladores e escritores das tabelas 30e50/30fe8. Ainda
 faltam bindings e respostas reais, eventual limite LK e mapa FDT final.
+
+
+## 2026-10-24 — reescrita condicional das bases da consulta BL2
+
+Continuação sobre main 5bccfd4, PR #11 revisado/mergeado com revisão
+própria e automática sem achados no head b210c7f. Investigação de escritores
+identificou um produtor positivo da tabela de bases 30f98, distinto de
+escritores dos ponteiros de código 30e50/30fe8.
+
+Corpo 2d270: callback da célula 31458, ponteiro 021183d0, alvo nominal
+2e3d0. Getter constrói 10000010, lê W0, extrai bits 20..23 e retorna.
+CMP W0,1/B.NE seleciona 15 instruções de construtor em 2d288..2d2c4.
+Cinco STR X gravam 1c03f000/1c13f000/1c23f000/1c33f000/1a34f000 nas
+células 30f98..30fb8, substituindo sob essa condição os valores iniciais
+terminados em 6000. Ramo diferente de 1 não escreve/restaura; conserva
+estado herdado. Sem valor de nibble ou configuração ativa inferidos.
+
+Ligação selecionada: página X20 em 1dee4, ADD408/LDR32 em 1e0dc/e0 e
+BLR em 1e0e4; célula nominal 31428 contém 02118ff0 -> 2eff0. Wrapper
+chama diretamente 2d270 em 2effc, antes da fase de geometria no caminho
+selecionado. Preservação de X20 pelas chamadas e bindings mutáveis não
+comprovados fisicamente. O construtor não escreve a tabela 30fc0 ou
+ponteiros de código; não há prova global de imutabilidade.
+
+Intérprete de host restrito a ADRP, MOVZ/MOVK X, ADD X imediato com
+LSL12 e STR X, até 16 instruções. Recusa unknowns, memória lida, calls,
+branches, pilha, stores de outra largura/fora das cinco células e
+duplicidade/incompletude. Cenário exige palavra u32 explícita e identifica
+a tabela inicial do arquivo como hipótese. Consulta integrada continua
+com controle e resposta desconhecidos. Inspetor anterior sinaliza que
+não aplica reescrita e que seus valores são apenas iniciais do arquivo.
+
+58 testes BL2 passaram (dez novos + 48 regressões); inclui 16 nibbles,
+persistência no skip, larguras e recusas do construtor/CLI. CLI: três
+planos condicionais e quatro recusas exit 2/sem JSON. GNU 2.44: 39 palavras,
+dois destinos, sete operandos, cinco stores e sete ponteiros. Valores e
+destinos dos stores reconstruídos independentemente pelo texto GNU.
+Relatório GNU anterior da consulta reproduzido sem alteração; evidência
+estática atualizada somente para explicitar o escopo das bases.
+
+README, índice, roadmap e integração organizados. Nenhum novo QEMU,
+firmware/MMIO/serviço executado ou blob adicionado. Próximo rastreio:
+estado anterior/recargas da geometria, demais escritores e bindings; ainda
+faltam respostas reais, eventual limite LK e mapa final.

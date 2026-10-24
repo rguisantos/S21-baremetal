@@ -39,6 +39,13 @@ mapeamento vivo, clock, permissões ou o nome dos blocos/registradores no
 SoC. Os nomes “comando”, “disparo” e “resposta” abaixo descrevem seu uso no
 código, sem atribuir semântica de uma especificação do controlador.
 
+**Continuação:** um [escritor condicional das cinco bases de consulta](bl2-query-base-rewrite-hzc2.md)
+foi identificado em `0x2d270`. Se o callback nominal retornar 1 a partir dos
+bits 20–23 de `0x10000010`, grava bases terminadas em `0xf000` na tabela
+`0x30f98`. Caso contrário, conserva seu conteúdo anterior, sem restaurar o
+arquivo. A tabela acima descreve os bytes iniciais; nenhuma das configurações
+foi observada como ativa no S21. O corpo não reescreve a tabela `0x30fc0`.
+
 Para slots 0–3, a consulta lê W3 de `base+0`, insere campos e faz:
 
 1. `0x284d0`: escreve a palavra de comando de 32 bits em `base+0`.
@@ -89,6 +96,9 @@ O inspetor exige tamanho/SHA-256 exatos. Confere os dois corpos completos,
 deriva células/tabelas dos endereços e extrai os BFI. O plano opcional exige
 os três u32 explícitos. Emite operações **simbólicas**: a palavra inicial e
 a resposta permanecem desconhecidas, sem injetar retornos ou calcular RAM.
+Suas bases vêm somente da tabela inicial do arquivo, sem aplicar a
+reescrita; o inspetor da continuação aceita uma palavra explícita para esse
+cenário condicional.
 Erros de entrada retornam 2, sem JSON parcial.
 
 **48 testes passaram**: 14 novos controles de campos, slots, entradas,
@@ -104,8 +114,9 @@ Não houve novo QEMU, execução de firmware/serviço/MMIO ou ensaio físico;
 as 66 execuções anteriores pertencem somente à folha aritmética. Nenhum
 blob foi adicionado. README, índice, roadmap e worklog foram atualizados.
 
-A próxima investigação é a preparação dos controladores e os escritores
-das tabelas que vinculam esses callbacks. Para fechar o total real, ainda
+A continuação identificou um [escritor das bases de acesso](bl2-query-base-rewrite-hzc2.md).
+A próxima investigação mantém os demais escritores/configurações e os
+bindings dos callbacks abertos. Para fechar o total real, ainda
 faltam bindings comprovados e respostas/estado observados. O total pode
 sofrer limite no LK e continua insuficiente para determinar bancos, reservas
 ou RAM livre sem as demais entradas e o FDT efetivo.

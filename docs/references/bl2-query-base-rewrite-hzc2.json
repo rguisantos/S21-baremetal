@@ -1,0 +1,138 @@
+{
+  "mode": "static_query_base_rewrite",
+  "input": {
+    "size": 4194304,
+    "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+  },
+  "nominal_callbacks": {
+    "delta": "0x20ea000",
+    "bindings": [
+      {
+        "cell": "0x31428",
+        "pointer": "0x2118ff0",
+        "target": "0x2eff0"
+      },
+      {
+        "cell": "0x31458",
+        "pointer": "0x21183d0",
+        "target": "0x2e3d0"
+      }
+    ],
+    "runtime_binding_verified": false,
+    "caller_base_assumption": "X20 retains the 0x31000 page from 0x1dee4 across intervening calls"
+  },
+  "calls": {
+    "initializer_indirect": "0x1e0e4",
+    "writer_direct": "0x2effc",
+    "writer": "0x2d270",
+    "later_geometry_call": "0x1e85c",
+    "reachability_observed": false
+  },
+  "gate": {
+    "getter": "0x2e3d0",
+    "register_address": "0x10000010",
+    "read_width_bits": 32,
+    "field_lsb": 20,
+    "field_width": 4,
+    "rewrite_when_equal": 1,
+    "nonmatching_action": "no table writes; retain prior contents, not restore file values",
+    "register_runtime_observed": false
+  },
+  "table": {
+    "offset": "0x30f98",
+    "initial_file_bases": [
+      "0x1c036000",
+      "0x1c136000",
+      "0x1c236000",
+      "0x1c336000",
+      "0x1a346000"
+    ],
+    "conditional_stores": [
+      {
+        "pc": "0x2d298",
+        "destination": "0x30f98",
+        "value": "0x1c03f000",
+        "width_bits": 64
+      },
+      {
+        "pc": "0x2d2a4",
+        "destination": "0x30fa0",
+        "value": "0x1c13f000",
+        "width_bits": 64
+      },
+      {
+        "pc": "0x2d2ac",
+        "destination": "0x30fa8",
+        "value": "0x1c23f000",
+        "width_bits": 64
+      },
+      {
+        "pc": "0x2d2b4",
+        "destination": "0x30fb0",
+        "value": "0x1c33f000",
+        "width_bits": 64
+      },
+      {
+        "pc": "0x2d2c0",
+        "destination": "0x30fb8",
+        "value": "0x1a34f000",
+        "width_bits": 64
+      }
+    ],
+    "initial_values_verified_at_runtime": false,
+    "code_callback_tables_modified_by_this_body": false,
+    "preparation_base_table_modified_by_this_body": false
+  },
+  "constructor_sha256": "066d249affa05b40e9ebac3855065a7d88f7bd7b5135a916324b7968b58a9405",
+  "words": {
+    "0x1dee4": "900000b4",
+    "0x1e0dc": "91102280",
+    "0x1e0e0": "f9401000",
+    "0x1e0e4": "d63f0000",
+    "0x2eff0": "a9be53f3",
+    "0x2eff4": "f0000013",
+    "0x2eff8": "f9000bfe",
+    "0x2effc": "97fff89d",
+    "0x2f000": "91102260",
+    "0x2f004": "f9404000",
+    "0x2f008": "d63f0000",
+    "0x2d270": "90000020",
+    "0x2d274": "f81f0ffe",
+    "0x2d278": "f9422c00",
+    "0x2d27c": "d63f0000",
+    "0x2d280": "7100041f",
+    "0x2d284": "54000201",
+    "0x2d288": "f0000001",
+    "0x2d28c": "d29e0002",
+    "0x2d290": "913e6020",
+    "0x2d294": "f2a38062",
+    "0x2d298": "f907cc22",
+    "0x2d29c": "d29e0001",
+    "0x2d2a0": "f2a38261",
+    "0x2d2a4": "f9000401",
+    "0x2d2a8": "91440021",
+    "0x2d2ac": "f9000801",
+    "0x2d2b0": "91440021",
+    "0x2d2b4": "f9000c01",
+    "0x2d2b8": "d29e0001",
+    "0x2d2bc": "f2a34681",
+    "0x2d2c0": "f9001001",
+    "0x2d2c4": "f84107fe",
+    "0x2d2c8": "d65f03c0",
+    "0x2e3d0": "d2800200",
+    "0x2e3d4": "f2a20000",
+    "0x2e3d8": "b9400000",
+    "0x2e3dc": "d3545c00",
+    "0x2e3e0": "d65f03c0"
+  },
+  "firmware_executed": false,
+  "complete_writer_census": false,
+  "memory_map_verified": false,
+  "limits": [
+    "Positive conditional table writer, not all writers or a measured initialization sequence",
+    "Callback placement and preservation of X20 across calls remain nominal assumptions",
+    "The register address/field is decoded; no silicon identity or live nibble inferred",
+    "Skip retains prior state; a supplied scenario must name its prior-table assumption",
+    "No MMIO, callback, hardware response or FDT execution; no RAM capacity inferred"
+  ]
+}

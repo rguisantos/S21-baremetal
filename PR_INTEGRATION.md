@@ -118,3 +118,13 @@ coincidem com a árvore validada; 34 testes BL2, 73 regressões LK, GNU e
 `b3f8340c3a1d3d1bd9e0b321c1ae62532697cc14`, main sincronizada/limpa antes
 da continuação da consulta de geometria. Binding nominal e valores reais
 permanecem pendentes; a integração não declara RAM livre ou FDT final.
+
+## PR #11 — consulta de geometria até MMIO
+
+Head `b210c7ffd10cb6b14163a922a649d9f409d41a14`, revisão própria e automática
+concluídas sem achados e sem threads pendentes. Os 12 blobs publicados
+coincidem com a árvore validada; 48 testes, GNU e planos simbólicos da CLI
+conferidos, sem CI configurado. Merge normal em
+`5bccfd4192552f2e25070bb53f1a94939d560e55`, main local sincronizada antes
+da continuação sobre a reescrita das bases. Os valores iniciais das tabelas
+não foram promovidos a estado físico observado.
