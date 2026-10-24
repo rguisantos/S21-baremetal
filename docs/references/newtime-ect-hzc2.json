@@ -1,0 +1,268 @@
+{
+  "mode": "static_newtime_embedded_selection",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "ect": {
+    "copy": {
+      "start": "0x16278",
+      "end_exclusive": "0x162a0",
+      "literal_offsets": [
+        "0x16388",
+        "0x16390",
+        "0x16398"
+      ],
+      "source": [
+        "0x2153000",
+        "0x2167000"
+      ],
+      "destination": [
+        "0x90000000",
+        "0x90014000"
+      ],
+      "stride": 16,
+      "iterations": 5120,
+      "bytes": 81920,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "ce6436c72704c89a33dddf42d6449540d23595dcb7c105808f443a7230c4d7d9"
+    },
+    "nominal_parser_source": "0x2153000",
+    "source_file": "0x69000",
+    "header_total_size": 69828,
+    "directory": [
+      {
+        "name": "GEN",
+        "offset": "0x94"
+      },
+      {
+        "name": "ASV",
+        "offset": "0x4b18"
+      },
+      {
+        "name": "NEWTIME",
+        "offset": "0x7404"
+      },
+      {
+        "name": "THERMAL",
+        "offset": "0xe994"
+      },
+      {
+        "name": "PIDTM",
+        "offset": "0xebb4"
+      },
+      {
+        "name": "DVFS",
+        "offset": "0xee14"
+      },
+      {
+        "name": "PLL",
+        "offset": "0x10a6c"
+      },
+      {
+        "name": "MINLOCK",
+        "offset": "0x10da0"
+      },
+      {
+        "name": "MARGIN",
+        "offset": "0x10f54"
+      }
+    ],
+    "live_source_and_parser_initialization_verified": false
+  },
+  "registry": {
+    "file": "0x309d0",
+    "count": 12,
+    "stride": 32,
+    "names": [
+      "THERMAL",
+      "ASV",
+      "DVFS",
+      "MARGIN",
+      "MR4",
+      "PLL",
+      "RCC",
+      "TIMING",
+      "MINLOCK",
+      "GEN",
+      "BIN",
+      "NEWTIME"
+    ],
+    "entry": "0x30b30",
+    "parser_nominal": "0x1c3dc",
+    "initial_handle": "0x0",
+    "name_lookup": "0x1c55c",
+    "key_lookup": "0x1c83c",
+    "parsed_entry_stride": 32
+  },
+  "newtime": {
+    "file_interval": [
+      "0x70404",
+      "0x77994"
+    ],
+    "sha256": "e921df4523fbe4fe6ae71003d6d3015c93ed482b27816007d792625f79d7cc86",
+    "parser_version": 1,
+    "version": "0.81",
+    "table_count": 57,
+    "table_keys": [
+      "0x11111111",
+      "0x108",
+      "0x10b",
+      "0x118",
+      "0x11b",
+      "0x128",
+      "0x12b",
+      "0x138",
+      "0x13b",
+      "0x148",
+      "0x14b",
+      "0x158",
+      "0x15b",
+      "0x2048",
+      "0x204b",
+      "0x2028",
+      "0x202b",
+      "0x3048",
+      "0x304b",
+      "0x3028",
+      "0x302b",
+      "0x314b",
+      "0x324b",
+      "0x4048",
+      "0x404b",
+      "0x4028",
+      "0x402b",
+      "0x414b",
+      "0x424b",
+      "0x434b",
+      "0x5048",
+      "0x504b",
+      "0x5028",
+      "0x502b",
+      "0x514b",
+      "0x524b",
+      "0x534b",
+      "0x614",
+      "0x612",
+      "0x624",
+      "0x622",
+      "0x634",
+      "0x632",
+      "0x644",
+      "0x642",
+      "0x71",
+      "0x72",
+      "0x73",
+      "0x74",
+      "0x75",
+      "0x76",
+      "0x81",
+      "0x82",
+      "0x83",
+      "0x91",
+      "0xa1",
+      "0xb1"
+    ],
+    "special": {
+      "key": "0x11111111",
+      "mode": 2,
+      "columns": 17,
+      "rows": 22,
+      "body_file": "0x706bc",
+      "data_file": "0x706c8",
+      "selectors": [
+        "0xcafe",
+        "0x740400130",
+        "0x750500130",
+        "0x740510130",
+        "0x860000110",
+        "0x860600130",
+        "0x55000ff10",
+        "0x64040ff30",
+        "0x55050ff30",
+        "0x10640400630",
+        "0x1000860000110",
+        "0x401000860000110",
+        "0x1000860600130",
+        "0x101000860600130",
+        "0x1000740400130",
+        "0x1000850500130",
+        "0x1000850000110",
+        "0x1010640400630",
+        "0x1000750500630",
+        "0x100055000ff10",
+        "0x100064040ff30",
+        "0x100055050ff30"
+      ],
+      "row_zero": {
+        "selector": "0xcafe",
+        "tail_keys": [
+          "0x10b",
+          "0x204b",
+          "0x202b",
+          "0x304b",
+          "0x302b",
+          "0x404b",
+          "0x402b",
+          "0x504b",
+          "0x502b",
+          "0x614",
+          "0x612",
+          "0x72",
+          "0x81",
+          "0x91",
+          "0xa1",
+          "0xb1"
+        ]
+      },
+      "row_ten": {
+        "selector": "0x1000860000110",
+        "tail_keys": [
+          "0x12b",
+          "0x204b",
+          "0x202b",
+          "0x304b",
+          "0x302b",
+          "0x404b",
+          "0x402b",
+          "0x504b",
+          "0x502b",
+          "0x644",
+          "0x642",
+          "0x71",
+          "0x81",
+          "0x91",
+          "0xa1",
+          "0xb1"
+        ]
+      },
+      "selected_row_on_phone_observed": false
+    }
+  },
+  "first_store": {
+    "prefix": [
+      "0x193fc",
+      "0x19698"
+    ],
+    "pc": "0x19694",
+    "input_save": "0x19418: frame+136",
+    "comparison_key": "input_low32_if_bit63_set_else_input_u64",
+    "comparison_spill": "frame+152",
+    "row_copy": "16 u64 cells after a matching first column for this table",
+    "scratch_bytes": 144,
+    "original_input_reloaded": "0x19690",
+    "destination_pointer_cell": "0x30520",
+    "error_codes": {
+      "name_missing": 3,
+      "key_missing": 2,
+      "row_miss": 1
+    },
+    "zero_row_or_corrupt_table_behavior_modelled": false,
+    "arbitrary_runtime_aliases_and_callees_verified": false,
+    "later_callback_effects_modelled": false
+  },
+  "instructions": {
+    "words": 353,
+    "index_sha256": "72f162c20138f76ddd61cbe79c0e8bd6f7bd16dcbe1525767aaf9c2e7ff58ce3"
+  },
+  "firmware_executed": false,
+  "phone_record_or_memory_map_verified": false
+}

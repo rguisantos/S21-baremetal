@@ -1,0 +1,633 @@
+{
+  "mode": "original_newtime_parser_and_prefix_qemu_virt",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "72f162c20138f76ddd61cbe79c0e8bd6f7bd16dcbe1525767aaf9c2e7ff58ce3",
+  "parser_runs": [
+    {
+      "laboratory_delta": "0x40000000",
+      "entry_count": 57,
+      "all_fields_and_data_pointers_matched": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "entry_count": 57,
+      "all_fields_and_data_pointers_matched": true
+    }
+  ],
+  "case_count": 56,
+  "cases": [
+    {
+      "case": "embedded_row_0",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0xcafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "embedded_row_1",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x740400130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 1,
+      "comparison_key": "0x740400130",
+      "first_u64_written": "0x740400130",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_2",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x750500130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 2,
+      "comparison_key": "0x750500130",
+      "first_u64_written": "0x750500130",
+      "tail_sha256": "bd5ea5ecdaeae084fa206ed97908399522110508aaaf7d99ffdfd13db353adcf"
+    },
+    {
+      "case": "embedded_row_3",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x740510130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 3,
+      "comparison_key": "0x740510130",
+      "first_u64_written": "0x740510130",
+      "tail_sha256": "211d24af5034b725190f17178e400a2cf31f2ab74f669e5b50b9ed292308e2bd"
+    },
+    {
+      "case": "embedded_row_4",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 4,
+      "comparison_key": "0x860000110",
+      "first_u64_written": "0x860000110",
+      "tail_sha256": "49814e126b69bb86b5e5a96de1b85116e95368a2981c83bc03a3c72af3e7967c"
+    },
+    {
+      "case": "embedded_row_5",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 5,
+      "comparison_key": "0x860600130",
+      "first_u64_written": "0x860600130",
+      "tail_sha256": "bce4f6b1c0ae8a7a9919a9f040d829413a125cc24e1ac1ac91ee24617d4ce241"
+    },
+    {
+      "case": "embedded_row_6",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x55000ff10",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 6,
+      "comparison_key": "0x55000ff10",
+      "first_u64_written": "0x55000ff10",
+      "tail_sha256": "6c706124ba0afb2be1b9f88e8250ceebbf32be5c1137a14819e1fb5f75231efe"
+    },
+    {
+      "case": "embedded_row_7",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x64040ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 7,
+      "comparison_key": "0x64040ff30",
+      "first_u64_written": "0x64040ff30",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_8",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x55050ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 8,
+      "comparison_key": "0x55050ff30",
+      "first_u64_written": "0x55050ff30",
+      "tail_sha256": "bd5ea5ecdaeae084fa206ed97908399522110508aaaf7d99ffdfd13db353adcf"
+    },
+    {
+      "case": "embedded_row_9",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x10640400630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 9,
+      "comparison_key": "0x10640400630",
+      "first_u64_written": "0x10640400630",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_10",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 10,
+      "comparison_key": "0x1000860000110",
+      "first_u64_written": "0x1000860000110",
+      "tail_sha256": "49814e126b69bb86b5e5a96de1b85116e95368a2981c83bc03a3c72af3e7967c"
+    },
+    {
+      "case": "embedded_row_11",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x401000860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 11,
+      "comparison_key": "0x401000860000110",
+      "first_u64_written": "0x401000860000110",
+      "tail_sha256": "1e2ecea76251ce4ff40f698104cb596d1dfcc717b5084e4e13df264755fe8468"
+    },
+    {
+      "case": "embedded_row_12",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 12,
+      "comparison_key": "0x1000860600130",
+      "first_u64_written": "0x1000860600130",
+      "tail_sha256": "6885def13b8e2fe96a06fe58b43d3765efbf90bdaa4dafb6dbbce23a997731d2"
+    },
+    {
+      "case": "embedded_row_13",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x101000860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 13,
+      "comparison_key": "0x101000860600130",
+      "first_u64_written": "0x101000860600130",
+      "tail_sha256": "cc22cb21b5e7fea93315cc5a165c0ff90e33fd5639edbaf72b9e7da3b9a39459"
+    },
+    {
+      "case": "embedded_row_14",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000740400130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 14,
+      "comparison_key": "0x1000740400130",
+      "first_u64_written": "0x1000740400130",
+      "tail_sha256": "e05f105bece52500079f1aef08a4a334e1f492dfeeb03e94fde89f3c1b143b7c"
+    },
+    {
+      "case": "embedded_row_15",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000850500130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 15,
+      "comparison_key": "0x1000850500130",
+      "first_u64_written": "0x1000850500130",
+      "tail_sha256": "4babe48cfe30897cb4abd13291161cc8f947c59d2653f01c2d91810e4dfabfb4"
+    },
+    {
+      "case": "embedded_row_16",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000850000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 16,
+      "comparison_key": "0x1000850000110",
+      "first_u64_written": "0x1000850000110",
+      "tail_sha256": "2426c89e2cd4bb911d820f7810133a68bd3f4275da6c7430a5b37b594d769d67"
+    },
+    {
+      "case": "embedded_row_17",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1010640400630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 17,
+      "comparison_key": "0x1010640400630",
+      "first_u64_written": "0x1010640400630",
+      "tail_sha256": "fa3afad35a0d56c531589a180bdbbd7ce277a7fd12e3dd4cc0905ce00f605bc7"
+    },
+    {
+      "case": "embedded_row_18",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x1000750500630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 18,
+      "comparison_key": "0x1000750500630",
+      "first_u64_written": "0x1000750500630",
+      "tail_sha256": "396677869f7cbec0e222cee644c475ec16bc37add8d3a3fbec26a9c2416b2498"
+    },
+    {
+      "case": "embedded_row_19",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x100055000ff10",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 19,
+      "comparison_key": "0x100055000ff10",
+      "first_u64_written": "0x100055000ff10",
+      "tail_sha256": "0e72d80acbe6d40165c8e46d37ab4bb5f8077c8841c1e7e7fdfdf00d111be3f1"
+    },
+    {
+      "case": "embedded_row_20",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x100064040ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 20,
+      "comparison_key": "0x100064040ff30",
+      "first_u64_written": "0x100064040ff30",
+      "tail_sha256": "fa3afad35a0d56c531589a180bdbbd7ce277a7fd12e3dd4cc0905ce00f605bc7"
+    },
+    {
+      "case": "embedded_row_21",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x100055050ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 21,
+      "comparison_key": "0x100055050ff30",
+      "first_u64_written": "0x100055050ff30",
+      "tail_sha256": "5c5684f8df32ea477fb9311601cb1ec6d39c03b911b4b5bcbc37cdef79d1208a"
+    },
+    {
+      "case": "negative_bit63_low32_cafe",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x800000000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0x800000000000cafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "negative_high_bits_low32_cafe",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0xffff00000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0xffff00000000cafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "row_miss",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0xdeadbeef",
+      "frame_input_preserved": true,
+      "control": null,
+      "error_code_before_epilogue": 1,
+      "record_untouched": true
+    },
+    {
+      "case": "positive_high_bits_do_not_truncate",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0x100000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "error_code_before_epilogue": 1,
+      "record_untouched": true
+    },
+    {
+      "case": "missing_name",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": "name",
+      "error_code_before_epilogue": 3,
+      "record_untouched": true
+    },
+    {
+      "case": "missing_key",
+      "laboratory_delta": "0x40000000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": "key",
+      "error_code_before_epilogue": 2,
+      "record_untouched": true
+    },
+    {
+      "case": "embedded_row_0",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0xcafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "embedded_row_1",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x740400130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 1,
+      "comparison_key": "0x740400130",
+      "first_u64_written": "0x740400130",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_2",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x750500130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 2,
+      "comparison_key": "0x750500130",
+      "first_u64_written": "0x750500130",
+      "tail_sha256": "bd5ea5ecdaeae084fa206ed97908399522110508aaaf7d99ffdfd13db353adcf"
+    },
+    {
+      "case": "embedded_row_3",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x740510130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 3,
+      "comparison_key": "0x740510130",
+      "first_u64_written": "0x740510130",
+      "tail_sha256": "211d24af5034b725190f17178e400a2cf31f2ab74f669e5b50b9ed292308e2bd"
+    },
+    {
+      "case": "embedded_row_4",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 4,
+      "comparison_key": "0x860000110",
+      "first_u64_written": "0x860000110",
+      "tail_sha256": "49814e126b69bb86b5e5a96de1b85116e95368a2981c83bc03a3c72af3e7967c"
+    },
+    {
+      "case": "embedded_row_5",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 5,
+      "comparison_key": "0x860600130",
+      "first_u64_written": "0x860600130",
+      "tail_sha256": "bce4f6b1c0ae8a7a9919a9f040d829413a125cc24e1ac1ac91ee24617d4ce241"
+    },
+    {
+      "case": "embedded_row_6",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x55000ff10",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 6,
+      "comparison_key": "0x55000ff10",
+      "first_u64_written": "0x55000ff10",
+      "tail_sha256": "6c706124ba0afb2be1b9f88e8250ceebbf32be5c1137a14819e1fb5f75231efe"
+    },
+    {
+      "case": "embedded_row_7",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x64040ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 7,
+      "comparison_key": "0x64040ff30",
+      "first_u64_written": "0x64040ff30",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_8",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x55050ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 8,
+      "comparison_key": "0x55050ff30",
+      "first_u64_written": "0x55050ff30",
+      "tail_sha256": "bd5ea5ecdaeae084fa206ed97908399522110508aaaf7d99ffdfd13db353adcf"
+    },
+    {
+      "case": "embedded_row_9",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x10640400630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 9,
+      "comparison_key": "0x10640400630",
+      "first_u64_written": "0x10640400630",
+      "tail_sha256": "a7565ab7c8f6ce09b69b3d02f1ff6680e921f309e09d907784c27b3cd44c1a0c"
+    },
+    {
+      "case": "embedded_row_10",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 10,
+      "comparison_key": "0x1000860000110",
+      "first_u64_written": "0x1000860000110",
+      "tail_sha256": "49814e126b69bb86b5e5a96de1b85116e95368a2981c83bc03a3c72af3e7967c"
+    },
+    {
+      "case": "embedded_row_11",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x401000860000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 11,
+      "comparison_key": "0x401000860000110",
+      "first_u64_written": "0x401000860000110",
+      "tail_sha256": "1e2ecea76251ce4ff40f698104cb596d1dfcc717b5084e4e13df264755fe8468"
+    },
+    {
+      "case": "embedded_row_12",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 12,
+      "comparison_key": "0x1000860600130",
+      "first_u64_written": "0x1000860600130",
+      "tail_sha256": "6885def13b8e2fe96a06fe58b43d3765efbf90bdaa4dafb6dbbce23a997731d2"
+    },
+    {
+      "case": "embedded_row_13",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x101000860600130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 13,
+      "comparison_key": "0x101000860600130",
+      "first_u64_written": "0x101000860600130",
+      "tail_sha256": "cc22cb21b5e7fea93315cc5a165c0ff90e33fd5639edbaf72b9e7da3b9a39459"
+    },
+    {
+      "case": "embedded_row_14",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000740400130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 14,
+      "comparison_key": "0x1000740400130",
+      "first_u64_written": "0x1000740400130",
+      "tail_sha256": "e05f105bece52500079f1aef08a4a334e1f492dfeeb03e94fde89f3c1b143b7c"
+    },
+    {
+      "case": "embedded_row_15",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000850500130",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 15,
+      "comparison_key": "0x1000850500130",
+      "first_u64_written": "0x1000850500130",
+      "tail_sha256": "4babe48cfe30897cb4abd13291161cc8f947c59d2653f01c2d91810e4dfabfb4"
+    },
+    {
+      "case": "embedded_row_16",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000850000110",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 16,
+      "comparison_key": "0x1000850000110",
+      "first_u64_written": "0x1000850000110",
+      "tail_sha256": "2426c89e2cd4bb911d820f7810133a68bd3f4275da6c7430a5b37b594d769d67"
+    },
+    {
+      "case": "embedded_row_17",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1010640400630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 17,
+      "comparison_key": "0x1010640400630",
+      "first_u64_written": "0x1010640400630",
+      "tail_sha256": "fa3afad35a0d56c531589a180bdbbd7ce277a7fd12e3dd4cc0905ce00f605bc7"
+    },
+    {
+      "case": "embedded_row_18",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x1000750500630",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 18,
+      "comparison_key": "0x1000750500630",
+      "first_u64_written": "0x1000750500630",
+      "tail_sha256": "396677869f7cbec0e222cee644c475ec16bc37add8d3a3fbec26a9c2416b2498"
+    },
+    {
+      "case": "embedded_row_19",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x100055000ff10",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 19,
+      "comparison_key": "0x100055000ff10",
+      "first_u64_written": "0x100055000ff10",
+      "tail_sha256": "0e72d80acbe6d40165c8e46d37ab4bb5f8077c8841c1e7e7fdfdf00d111be3f1"
+    },
+    {
+      "case": "embedded_row_20",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x100064040ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 20,
+      "comparison_key": "0x100064040ff30",
+      "first_u64_written": "0x100064040ff30",
+      "tail_sha256": "fa3afad35a0d56c531589a180bdbbd7ce277a7fd12e3dd4cc0905ce00f605bc7"
+    },
+    {
+      "case": "embedded_row_21",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x100055050ff30",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 21,
+      "comparison_key": "0x100055050ff30",
+      "first_u64_written": "0x100055050ff30",
+      "tail_sha256": "5c5684f8df32ea477fb9311601cb1ec6d39c03b911b4b5bcbc37cdef79d1208a"
+    },
+    {
+      "case": "negative_bit63_low32_cafe",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x800000000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0x800000000000cafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "negative_high_bits_low32_cafe",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0xffff00000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "selected_row": 0,
+      "comparison_key": "0xcafe",
+      "first_u64_written": "0xffff00000000cafe",
+      "tail_sha256": "1c76b738279e87add15628598733e02276871e054a3a646a69cd66e1d1dbecbe"
+    },
+    {
+      "case": "row_miss",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0xdeadbeef",
+      "frame_input_preserved": true,
+      "control": null,
+      "error_code_before_epilogue": 1,
+      "record_untouched": true
+    },
+    {
+      "case": "positive_high_bits_do_not_truncate",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0x100000000cafe",
+      "frame_input_preserved": true,
+      "control": null,
+      "error_code_before_epilogue": 1,
+      "record_untouched": true
+    },
+    {
+      "case": "missing_name",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": "name",
+      "error_code_before_epilogue": 3,
+      "record_untouched": true
+    },
+    {
+      "case": "missing_key",
+      "laboratory_delta": "0x40200000",
+      "supplied_input": "0xcafe",
+      "frame_input_preserved": true,
+      "control": "key",
+      "error_code_before_epilogue": 2,
+      "record_untouched": true
+    }
+  ],
+  "code_and_source_block_unchanged": true,
+  "record_and_stack_guards_unchanged": true,
+  "original_code_executed": true,
+  "samsung_firmware_boot_executed": false,
+  "later_callback_body_executed": false,
+  "mmio_or_smc_executed": false,
+  "phone_record_or_memory_map_verified": false,
+  "limits": [
+    "Two QEMU RAM placements; original instructions, relocated absolute registry data",
+    "Heap, stack, destination and all input/negative controls are laboratory bindings",
+    "Stop after first u64 store or before error epilogue; no later MMIO/table copies",
+    "Does not prove physical aliases, live metadata, preservation outside this prefix or final RAM/FDT"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "mode": "GNU_newtime_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 353,
+  "relative_targets_matched": 50,
+  "selected_operands_matched": 24,
+  "data_spans_matched": 8,
+  "complete_newtime_bytes_matched": 30096,
+  "instruction_index_sha256": "72f162c20138f76ddd61cbe79c0e8bd6f7bd16dcbe1525767aaf9c2e7ff58ce3",
+  "firmware_executed": false,
+  "phone_record_or_memory_map_verified": false
+}

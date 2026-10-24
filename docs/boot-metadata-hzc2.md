@@ -29,6 +29,11 @@ não foram provados. As recusas selecionadas retornam 3 se a primeira
 consulta retorna NULL e 2 se a segunda retorna NULL. Os dados retornados
 e a linha escolhida não foram recuperados do aparelho.
 
+A [continuação ECT/NEWTIME](newtime-ect-hzc2.md) recuperou a tabela
+embutida e executou o parser e o prefixo até 0x19694 no QEMU. O frame+136
+e as 16 células da linha foram conferidos em bindings de laboratório;
+isso não comprova preservação pelo corpo posterior ou execução no aparelho.
+
 O slot de entrada pode conter o marcador temporário 0xcafe da
 [etapa anterior](bl2-geometry-record-hzc2.md); não convertê-lo em geometria
 real. Passagem pelo callback, binding e retorno normal são condicionais.

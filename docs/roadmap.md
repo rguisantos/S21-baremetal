@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #16, 83fad63](https://github.com/rguisantos/S21-baremetal/commit/83fad63f4034366d771435c6ebf2005fd7ec8f04).
+[main após revisão/merge do PR #17, be47018](https://github.com/rguisantos/S21-baremetal/commit/be47018c54773836d493f21e761a12bd8faef237).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -108,8 +108,13 @@ o [produtor ACPM](acpm-handshake-hzc2.md) publica exatamente 0x38e00 em
 local 0xa5900108 e espera zero. Seu inicializador e um consumidor Thumb da
 assinatura DRAM foram ligados nominalmente; DTS nomeia IPC/SRAM AP.
 GNU conferiu 100 palavras AArch64 e 141 instruções Thumb. Alias de hardware,
-amostra recebida e preservação seguem condicionais. Próximo: lookup/linha
-NEWTIME e preservação do frame/ponteiro, além de corroborar os aliases.
+amostra recebida e preservação seguem condicionais. A
+[tabela ECT/NEWTIME](newtime-ect-hzc2.md) agora está ligada ao lookup:
+57 descritores, 22 seletores especiais incluindo 0xcafe, parser original
+e prefixo até o primeiro store em 56 casos QEMU. O argumento/frame e as
+16 células selecionadas foram conferidos sob bindings de laboratório;
+80 testes de host e GNU de 353 palavras passaram. Próximo: alocador, gates e
+escritas posteriores, além de corroborar aliases/bindings físicos.
 Os argumentos bootstat no LK também
 foram ligados: BL1 recebe literal 100; nomes não comprovam durações.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica

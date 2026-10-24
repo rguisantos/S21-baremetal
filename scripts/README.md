@@ -1,5 +1,12 @@
 # Catálogo de scripts
 
+- `inspect_newtime_hzc2.py`, `check_newtime_gnu.py`,
+  `emulate_newtime_qemu.py` e `test_newtime_hzc2.py`: sboot HZC2 exato,
+  leitor ECT/NEWTIME com limites, 353 palavras GNU, parser original e
+  prefixo até a primeira escrita em 56 casos QEMU. Bindings de laboratório;
+  sem executar a inicialização Samsung ou o restante do callback.
+  [Escopo e reprodução](../docs/newtime-ect-hzc2.md).
+
 - `inspect_acpm_handshake_hzc2.py` e `check_acpm_handshake_gnu.py`: exigem
   sboot HZC2 e DTS público fixados por tamanho/SHA. Produtor Thumb de
   0x38e00, consumidor BL2 e critério NEWTIME; GNU de 100 palavras AArch64
