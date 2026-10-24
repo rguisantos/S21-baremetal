@@ -1,0 +1,429 @@
+{
+  "mode": "pinned_public_kernel_reference_host_audit",
+  "date": "2026-10-24",
+  "repository": "xfwdrev/android_kernel_samsung_ex2100",
+  "branch": "rebased-11",
+  "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+  "commit_date_utc": "2026-10-19T00:26:07Z",
+  "tree": "3cb6380ea1348c26fc4eeea0d4562dedba88e0e0",
+  "linux_version_from_makefile": "5.4.304-openela",
+  "source_inputs": {
+    ".gitmodules": {
+      "size": 241,
+      "sha256": "2ba9072df338ab00e6e2d6eb24eaa042bd73fd77718332807f6a02ab6e2c001a",
+      "git_blob_sha1": "bda9a5f2c12241ec36c27f4fabd6a06889da0c2c"
+    },
+    "Makefile": {
+      "size": 66573,
+      "sha256": "1d236c2b7e2e4636ba5da394e421473daa6772e619fbdbde5dfe8eacfef3da7c",
+      "git_blob_sha1": "0e163e883aaa8cb3aa1827341ee80e5ed579e7a1"
+    },
+    "arch/arm64/boot/dts/exynos/exynos2100-universal2100_rev11.dts": {
+      "size": 234843,
+      "sha256": "e623b6edfe35d7714546f108cdd4ba6cea69d030bc087b7f9b2a32ea63afe43a",
+      "git_blob_sha1": "1beef353906d772eb55f8ece45940b5cd1c638a5"
+    },
+    "arch/arm64/boot/dts/exynos/exynos2100.dts": {
+      "size": 501932,
+      "sha256": "a92a3c3a2dcba40460d51343a23590d5f48c0ad3330ba33864e77aa446859f4e",
+      "git_blob_sha1": "277d01d3145517ab0cfe0ecfa0a1a4f0e4c198fb"
+    },
+    "arch/arm64/boot/dts/samsung/p3s/p3s_eur_openx_w01_r22.dts": {
+      "size": 377184,
+      "sha256": "bf1bae4106381bb11d2a29519c9a2499e76d8f86c71dd5bf0b4fca6e0ee843b7",
+      "git_blob_sha1": "dee27db875da39d7b060b3b6ca50bc482700be22"
+    },
+    "arch/arm64/configs/exynos2100_defconfig": {
+      "size": 200668,
+      "sha256": "ca14207ade8900d3c346c8a058ab65e6e621cbb61339c1508824dbb8f3f16a55",
+      "git_blob_sha1": "a57355e6e3284bff507b38c39803773502f2b42d"
+    },
+    "arch/arm64/configs/p3s.config": {
+      "size": 3147,
+      "sha256": "61dd8103fdd8bb8e3411761bbc4945516cd0b8bc56d9422351e7325962dbe586",
+      "git_blob_sha1": "f58ca83dac4b5cd85b832f074069acdbee142dbe"
+    },
+    "arch/arm64/configs/recovery.config": {
+      "size": 2059,
+      "sha256": "945decbf36c2f82fbc6ccf651adeec345af98e2793fee877c14dbf29d823e66e",
+      "git_blob_sha1": "4e861d5cf2ef6268d14e0afd3df9da77716ae9cc"
+    },
+    "build/dtconfigs/exynos2100.cfg": {
+      "size": 57,
+      "sha256": "a3d42f4bdbfcd23a3ddb0879fd4c8eea017feda1ed223957cbcd73ebfe773ed6",
+      "git_blob_sha1": "5924355342a86e4bfa47e788dc6407eae48a98ef"
+    },
+    "build/dtconfigs/p3s.cfg": {
+      "size": 1207,
+      "sha256": "5b0b5210646c76e1c3075182e43186d88b392e2210c76e31c8630e2d22801429",
+      "git_blob_sha1": "4348d43f453d59e2f6cb60c062e9aba9cd964386"
+    },
+    "build.sh": {
+      "size": 14733,
+      "sha256": "8647a438aed13b9cfeb818f517504fcdc664b0c0d72c596586bb2581f59279f4",
+      "git_blob_sha1": "b8a984d3349d823ef5fb21daf1b7ca29badc303e"
+    },
+    "build_kernel.sh": {
+      "size": 196,
+      "sha256": "41b1e8d4736a0b9118c86aed086d40716d2a214f2f08040cc12b7a5e37e84d1d",
+      "git_blob_sha1": "435d82e574d515d5ea680fc6d05e5bae22b6f6cb"
+    },
+    "drivers/clocksource/exynos_mct.c": {
+      "size": 17189,
+      "sha256": "c9050539c73f3b92aefb9fa8e141e1254edaf5b365de1c6aec7858f961befdd0",
+      "git_blob_sha1": "596879635e748bef2b75a1f7919cd670e15ddf95"
+    },
+    "drivers/irqchip/irq-gic-v3.c": {
+      "size": 53486,
+      "sha256": "50d4baf8ff8ba87d2dab78d31ec0cbc73e91f43da048df5cef0b86b0c1b50401",
+      "git_blob_sha1": "ae3d0f1dae23e7888037293bdada5859e08216dd"
+    },
+    "drivers/tty/serial/exynos_tty.c": {
+      "size": 93632,
+      "sha256": "f8e0f52ca9cd2a29e65096749f3498eeef19856fd250c3a272bcf0fb6182b267",
+      "git_blob_sha1": "06618883772d442005dea2c0425d9a1dfddb5717"
+    }
+  },
+  "comparison_to_received_samsung": {
+    "Makefile": {
+      "received_sha256": "9021bc5a2bf11176af99ec6979e87729aa6084272c38e1c7f6215794661b2ab3",
+      "byte_identical": false
+    },
+    "drivers/tty/serial/exynos_tty.c": {
+      "received_sha256": "f8e0f52ca9cd2a29e65096749f3498eeef19856fd250c3a272bcf0fb6182b267",
+      "byte_identical": true
+    },
+    "drivers/irqchip/irq-gic-v3.c": {
+      "received_sha256": "b7c4a3305f12c4a7dbdf634075bf8cfee85c6b7456c32e33a995ca3bc150fd81",
+      "byte_identical": false
+    },
+    "drivers/clocksource/exynos_mct.c": {
+      "received_sha256": "672999b9f93351d31c4fa2c24738b56ee8e291c98ea31c07069d203992063c15",
+      "byte_identical": false
+    },
+    "arch/arm64/boot/dts/exynos/exynos2100.dts": {
+      "received_sha256": "586ca56987bbaacce0a38ddaee8a852721caaaeb9096ada6bfde8bc8c0d88ca8",
+      "byte_identical": false
+    },
+    "arch/arm64/boot/dts/exynos/exynos2100-universal2100_rev11.dts": {
+      "received_sha256": "e623b6edfe35d7714546f108cdd4ba6cea69d030bc087b7f9b2a32ea63afe43a",
+      "byte_identical": true
+    }
+  },
+  "comparison_basis": "Previously pinned received-source hashes in samsung-reference.md and dts-source-roundtrip.md; original TAR not reloaded in this audit",
+  "selected_base_config": {
+    "LOCALVERSION": {
+      "line": 26,
+      "declaration": "CONFIG_LOCALVERSION=\"-ChicletKernel\""
+    },
+    "KEXEC": {
+      "line": 405,
+      "declaration": "# CONFIG_KEXEC is not set"
+    },
+    "KEXEC_FILE": {
+      "line": 406,
+      "declaration": "# CONFIG_KEXEC_FILE is not set"
+    },
+    "CRASH_DUMP": {
+      "line": 407,
+      "declaration": "# CONFIG_CRASH_DUMP is not set"
+    },
+    "DEVMEM": {
+      "line": 2391,
+      "declaration": "# CONFIG_DEVMEM is not set"
+    },
+    "UH": {
+      "line": 478,
+      "declaration": "# CONFIG_UH is not set"
+    },
+    "SERIAL_SAMSUNG": {
+      "line": 2406,
+      "declaration": "CONFIG_SERIAL_SAMSUNG=y"
+    },
+    "SERIAL_SAMSUNG_CONSOLE": {
+      "line": 2409,
+      "declaration": "CONFIG_SERIAL_SAMSUNG_CONSOLE=y"
+    },
+    "PSTORE": {
+      "line": 6762,
+      "declaration": "CONFIG_PSTORE=y"
+    },
+    "PSTORE_RAM": {
+      "line": 6774,
+      "declaration": "CONFIG_PSTORE_RAM=y"
+    },
+    "DEBUG_SNAPSHOT": {
+      "line": 5420,
+      "declaration": "CONFIG_DEBUG_SNAPSHOT=m"
+    },
+    "DEBUG_SNAPSHOT_BUILT_IN": {
+      "line": 5423,
+      "declaration": "CONFIG_DEBUG_SNAPSHOT_BUILT_IN=y"
+    },
+    "TZDEV": {
+      "line": 1792,
+      "declaration": "CONFIG_TZDEV=m"
+    }
+  },
+  "configuration_scope": "Source declarations only; no generated .config or booted image verified",
+  "compiler": {
+    "name": "DTC",
+    "version": "1.7.2",
+    "alignment": 4,
+    "overlay_applier": "fdtoverlay 1.7.2",
+    "parser": "scripts/inspect_proton.py:fdt_nodes",
+    "source_edits": false
+  },
+  "host_fdt_results": {
+    "base": {
+      "exit": 0,
+      "warning_counts": {
+        "unit_address_vs_reg": 209,
+        "unit_address_format": 70,
+        "avoid_unnecessary_addr_size": 1,
+        "unique_unit_address": 108,
+        "clocks_property": 359,
+        "cooling_device_property": 27,
+        "dmas_property": 34,
+        "iommus_property": 78,
+        "phys_property": 9,
+        "power_domains_property": 71,
+        "thermal_sensors_property": 7,
+        "gpios_property": 4,
+        "interrupt_provider": 1,
+        "interrupt_map": 1
+      },
+      "size": 393452,
+      "sha256": "15ee3a4771ede368d9b5aee1ab40f587f59c413ddfd41e70247f5f2801eb37c1",
+      "nodes": 2292,
+      "properties": 14782,
+      "memory_nodes": []
+    },
+    "generic": {
+      "exit": 0,
+      "warning_counts": {
+        "unit_address_vs_reg": 44,
+        "unit_address_format": 3,
+        "avoid_unnecessary_addr_size": 1,
+        "unique_unit_address": 1,
+        "clocks_property": 2,
+        "sound_dai_property": 120,
+        "gpios_property": 114,
+        "interrupts_property": 22
+      },
+      "size": 188468,
+      "sha256": "5f454ee5e168186a438c92848149e0bf84b1e6b2e81bdd7df125617a4d2c2f77",
+      "nodes": 1280,
+      "properties": 4902,
+      "memory_nodes": []
+    },
+    "p3s-r22": {
+      "exit": 0,
+      "warning_counts": {
+        "reg_format": 9,
+        "unit_address_vs_reg": 114,
+        "unit_address_format": 19,
+        "pci_device_reg": 1,
+        "pci_device_bus_num": 1,
+        "simple_bus_reg": 1,
+        "i2c_bus_reg": 1,
+        "spi_bus_reg": 1,
+        "avoid_default_addr_size": 54,
+        "avoid_unnecessary_addr_size": 1,
+        "unique_unit_address": 1,
+        "clocks_property": 6,
+        "io_channels_property": 13,
+        "sound_dai_property": 120,
+        "gpios_property": 186,
+        "interrupts_property": 30
+      },
+      "size": 298996,
+      "sha256": "d5eec17978082b3d821726ff13f79d72c377e0a31c6f6b5712cbf8f87f9bea64",
+      "nodes": 1999,
+      "properties": 7860,
+      "memory_nodes": []
+    },
+    "merged-generic": {
+      "exit": 0,
+      "stderr": "",
+      "size": 545541,
+      "sha256": "9ad204843ea8407eb013b504e821da9cf1b270e4d0d1820967371dd6b6587467",
+      "nodes": 3354,
+      "memory_nodes": [],
+      "selected_nodes": {
+        "/uart@10540000": {
+          "compatible": "73616d73756e672c6578796e6f732d7561727400",
+          "samsung,separate-uart-clk": "",
+          "reg": "000000001054000000000100",
+          "samsung,fifo-size": "00000100",
+          "interrupts": "00000000000001fc00000004",
+          "pinctrl-names": "64656661756c7400",
+          "pinctrl-0": "000000b3",
+          "samsung,usi-serial-v2": "",
+          "clocks": "0000000d000006da0000000d000006f6",
+          "clock-names": "676174655f756172745f636c6b30006970636c6b5f756172743000",
+          "samsung,usi-phandle": "0000004d",
+          "samsung,usi-offset": "00000000",
+          "samsung,dbg-uart-ch": "",
+          "samsung,dbg-uart-baud": "0001c200",
+          "samsung,dbg-word-len": "00000008",
+          "status": "6f6b617900",
+          "phandle": "0000029a"
+        },
+        "/uart@10840000": {
+          "compatible": "73616d73756e672c6578796e6f732d7561727400",
+          "samsung,separate-uart-clk": "",
+          "reg": "000000001084000000000100",
+          "samsung,fifo-size": "00000100",
+          "interrupts": "000000000000021500000004",
+          "pinctrl-names": "64656661756c74007274730074785f64617400",
+          "pinctrl-0": "000000b4",
+          "pinctrl-1": "000000b5000000b6",
+          "pinctrl-2": "000000b7",
+          "samsung,usi-serial-v2": "",
+          "clocks": "0000000d0000073e0000000d00000752",
+          "clock-names": "676174655f756172745f636c6b31006970636c6b5f756172743100",
+          "samsung,usi-phandle": "00000070",
+          "samsung,usi-offset": "00000000",
+          "status": "64697361626c656400",
+          "phandle": "0000029b"
+        },
+        "/interrupt-controller@10200000": {
+          "compatible": "61726d2c6769632d763300",
+          "#interrupt-cells": "00000003",
+          "interrupt-controller": "",
+          "reg": "000000001020000000010000000000001024000000200000",
+          "interrupts": "000000010000000900000004",
+          "class0-cpus": "302d3300",
+          "class1-cpus": "342d3700",
+          "phandle": "00000001"
+        },
+        "/timer": {
+          "compatible": "61726d2c61726d76382d74696d657200",
+          "interrupts": "000000010000000d0000ff08000000010000000e0000ff08000000010000000b0000ff08000000010000000a0000ff08",
+          "clock-frequency": "018cba80",
+          "use-physical-timer": ""
+        },
+        "/psci": {
+          "compatible": "61726d2c707363692d312e3000",
+          "method": "736d6300"
+        },
+        "/chosen": {
+          "bootargs_ext": "636f6e736f6c653d72616d20616e64726f6964626f6f742e626f6f745f646576696365733d31333130303030302e75667320706d69635f696e666f3d30783320636369635f696e666f3d30783100",
+          "bootargs": "636c6f636b736f757263653d617263685f7379735f636f756e746572206669726d776172655f636c6173732e706174683d2f76656e646f722f6669726d77617265206e725f637075733d3820616e64726f6964626f6f742e68617264776172653d6578796e6f7332313030206c6f675f6275665f6c656e3d3235364b20697271616666696e6974793d30206c6f6f702e6d61785f706172743d372072637570646174652e7263755f6578706564697465643d3120733363323431305f7764742e746d725f6174626f6f743d3120733363323431305f7764742e746d725f6d617267696e3d3830207072696e746b2e6465766b6d73673d6f6e206367726f75702e6d656d6f72793d6e6f6b6d656d207377696f746c623d6e6f666f72636500",
+          "linux,initrd-start": "84000000",
+          "linux,initrd-end": "841fffff",
+          "phandle": "00000335"
+        },
+        "/ems/pe-list/list@0": {
+          "cpus": "302d3300342d36003700"
+        },
+        "/ems/pe-list/list@1": {
+          "cpus": "342d36003700302d3300"
+        },
+        "/ems/pe-list/list@2": {
+          "cpus": "3700342d3600302d3300"
+        }
+      }
+    },
+    "merged-p3s-r22": {
+      "exit": 0,
+      "stderr": "",
+      "size": 637728,
+      "sha256": "23e5aa4abd605811576f6ea36e46e3ed794ff6363c8ae61ea19c115232773916",
+      "nodes": 3830,
+      "memory_nodes": [],
+      "selected_nodes": {
+        "/uart@10540000": {
+          "compatible": "73616d73756e672c6578796e6f732d7561727400",
+          "samsung,separate-uart-clk": "",
+          "reg": "000000001054000000000100",
+          "samsung,fifo-size": "00000100",
+          "interrupts": "00000000000001fc00000004",
+          "pinctrl-names": "64656661756c7400",
+          "pinctrl-0": "000000b3",
+          "samsung,usi-serial-v2": "",
+          "clocks": "0000000d000006da0000000d000006f6",
+          "clock-names": "676174655f756172745f636c6b30006970636c6b5f756172743000",
+          "samsung,usi-phandle": "0000004d",
+          "samsung,usi-offset": "00000000",
+          "samsung,dbg-uart-ch": "",
+          "samsung,dbg-uart-baud": "0001c200",
+          "samsung,dbg-word-len": "00000008",
+          "status": "6f6b617900",
+          "phandle": "0000029a"
+        },
+        "/uart@10840000": {
+          "samsung,uart-panic-log": "",
+          "samsung,uart-logging": "",
+          "samsung,rts-gpio-control": "",
+          "samsung,rts-trig-level": "00000001",
+          "compatible": "73616d73756e672c6578796e6f732d7561727400",
+          "samsung,separate-uart-clk": "",
+          "reg": "000000001084000000000100",
+          "samsung,fifo-size": "00000100",
+          "interrupts": "000000000000021500000004",
+          "pinctrl-names": "64656661756c74007274730074785f64617400",
+          "pinctrl-0": "000000b4",
+          "pinctrl-1": "000000b5000000b6",
+          "pinctrl-2": "000000b7",
+          "samsung,usi-serial-v2": "",
+          "clocks": "0000000d0000073e0000000d00000752",
+          "clock-names": "676174655f756172745f636c6b31006970636c6b5f756172743100",
+          "samsung,usi-phandle": "00000070",
+          "samsung,usi-offset": "00000000",
+          "status": "6f6b617900",
+          "phandle": "0000029b"
+        },
+        "/interrupt-controller@10200000": {
+          "compatible": "61726d2c6769632d763300",
+          "#interrupt-cells": "00000003",
+          "interrupt-controller": "",
+          "reg": "000000001020000000010000000000001024000000200000",
+          "interrupts": "000000010000000900000004",
+          "class0-cpus": "302d3300",
+          "class1-cpus": "342d3700",
+          "phandle": "00000001"
+        },
+        "/timer": {
+          "compatible": "61726d2c61726d76382d74696d657200",
+          "interrupts": "000000010000000d0000ff08000000010000000e0000ff08000000010000000b0000ff08000000010000000a0000ff08",
+          "clock-frequency": "018cba80",
+          "use-physical-timer": ""
+        },
+        "/psci": {
+          "compatible": "61726d2c707363692d312e3000",
+          "method": "736d6300"
+        },
+        "/chosen": {
+          "bootargs_ext": "616e64726f6964626f6f742e626f6f745f646576696365733d31333130303030302e75667320636f686572656e745f706f6f6c3d384d00",
+          "bootargs": "636c6f636b736f757263653d617263685f7379735f636f756e746572206669726d776172655f636c6173732e706174683d2f76656e646f722f6669726d77617265206e725f637075733d3820616e64726f6964626f6f742e68617264776172653d6578796e6f7332313030206c6f675f6275665f6c656e3d3235364b20697271616666696e6974793d30206c6f6f702e6d61785f706172743d372072637570646174652e7263755f6578706564697465643d3120733363323431305f7764742e746d725f6174626f6f743d3120733363323431305f7764742e746d725f6d617267696e3d3830207072696e746b2e6465766b6d73673d6f6e206367726f75702e6d656d6f72793d6e6f6b6d656d207377696f746c623d6e6f666f72636500",
+          "linux,initrd-start": "84000000",
+          "linux,initrd-end": "841fffff",
+          "phandle": "00000335"
+        },
+        "/ems/pe-list/list@0": {
+          "cpus": "302d3300342d36003700"
+        },
+        "/ems/pe-list/list@1": {
+          "cpus": "342d36003700302d3300"
+        },
+        "/ems/pe-list/list@2": {
+          "cpus": "3700342d3600302d3300"
+        }
+      }
+    }
+  },
+  "runtime_observed": false,
+  "full_kernel_built": false,
+  "physical_execution": false,
+  "limits": [
+    "The modified public base does not reproduce the pinned stock HZC2 base",
+    "Host overlays do not establish the phone board revision or LK final FDT",
+    "No memory nodes were produced; reserved-memory declarations are not free RAM",
+    "Kernel build scripts were read, not executed",
+    "Disabled UH in a Linux configuration does not establish firmware EL2 ownership or secure state",
+    "UART okay and pstore enabled are declarations, not a verified recovery channel",
+    "No BL2 record producer or secure SVC handler was recovered"
+  ]
+}

@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #12, 4d4fd72](https://github.com/rguisantos/S21-baremetal/commit/4d4fd72f4fffb2a184d72d6a493df8e791009154).
+[main após revisão/merge do PR #13, 69940c8](https://github.com/rguisantos/S21-baremetal/commit/69940c8e594fc490e1008533aefaab33bda1307c).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -73,6 +73,15 @@ Recuperar o código DRM em claro também não é requisito universal para o
 diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 ## Próximas entregas, em ordem de prioridade
+
+A [branch pública rebased-11](xfwdrev-kernel-reference.md), fixada em
+756951a, fornece outra referência de drivers/config p3s e uma candidata
+para instrumentação Linux. Três compilações DTS e duas aplicações de
+overlay passaram no host, sem bancos RAM; o driver UART é idêntico ao já
+recebido. Kexec e /dev/mem estão desativados na configuração consultada.
+Antes de usar essa alternativa para observar o FDT recebido e as reservas,
+é necessário validar o build e um caminho físico de instalação/leitura.
+Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|

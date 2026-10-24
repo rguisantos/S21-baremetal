@@ -138,3 +138,13 @@ conferidos. Merge normal em `4d4fd72f4fffb2a184d72d6a493df8e791009154`,
 main local sincronizada antes da continuação sobre o registro de geometria.
 Não foi presumido valor do nibble ou configuração ativa do S21; o ramo
 sem escrita preserva o estado anterior, sem restaurar os bytes do arquivo.
+
+## PR #13 — recargas e ciclo parcial do registro de geometria
+
+Head `35d80a1820b2db8e795fb902b104fb33516d3350`, revisão própria e automática
+concluídas sem achados, sem threads ou falhas CI reportadas. Os 13 blobs
+publicados coincidem com a árvore validada; 70 testes BL2 e GNU de 148
+palavras conferidos. Merge normal em
+`69940c8e594fc490e1008533aefaab33bda1307c`, main sincronizada antes da
+consulta à branch pública do kernel. A integração não identifica os bytes
+reais de 0x02073600, os três slots restantes ou o mapa final de RAM.
