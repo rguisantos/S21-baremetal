@@ -164,3 +164,5 @@ ou obter uma implementação correspondente verificável, antes de interpretar
 as tabelas como funções. Os arquivos atuais bastaram para esta investigação;
 não foi necessário reenviá-los. Memória física, coerência, carregamento Samsung
 e recuperação do primeiro registro continuam pendentes no [roadmap](roadmap.md).
+
+A [continuação sobre a fronteira do prefixo](epbl-frontier-hzc2.md) confere 1182 instruções e 13 saídas para a região pendente. A segunda escrita de VBAR corrobora o delta nominal, mas contém uma chamada pendente antes dela. A ausência do dispatcher no grafo direto não é prova de ausência de entrada por exceção.

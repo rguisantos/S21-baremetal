@@ -1,0 +1,12 @@
+{
+  "mode": "independent_GNU_objdump_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_objdump_version": "2.44",
+  "words_matched": 1182,
+  "relative_targets_matched": 138,
+  "instruction_index_sha256": "a87c2dac6b1e0c193a90d4a7f2154a52e8410a044bf5f97efeeb64d92ee4e9bd",
+  "method": "GNU lines for every PC in declared file_ranges; compare words/direct targets and sorted PC+word SHA256; pending targets not disassembled as verified code",
+  "pending_edges_checked": 13,
+  "secure_service_executed": false,
+  "exception_vector_linked": false
+}

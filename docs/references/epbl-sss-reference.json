@@ -1,0 +1,36 @@
+{
+  "repository": "Exynos-2100/android_kernel_samsung_universal2100",
+  "commit": "37c14d86996a49edbea8953f2523b202546b8958",
+  "path": "drivers/crypto/s5p-sss.c",
+  "blob_sha": "86a13b738c2deb168edf749b3268e57131bca22e",
+  "source_sha256": "2a26fbf365346b751576f386e50821e3de1ba92968a672b26451cfc0a922bb98",
+  "source_url": "https://github.com/Exynos-2100/android_kernel_samsung_universal2100/blob/37c14d86996a49edbea8953f2523b202546b8958/drivers/crypto/s5p-sss.c",
+  "compatibles": [
+    "samsung,s5pv210-secss",
+    "samsung,exynos4210-secss",
+    "samsung,exynos5433-slim-sss"
+  ],
+  "variant_offsets": {
+    "s5p_aes_data": {
+      "aes_offset": "0x4000",
+      "hash_offset": "0x6000"
+    },
+    "exynos_aes_data": {
+      "aes_offset": "0x200",
+      "hash_offset": "0x400"
+    },
+    "exynos5433_slim_aes_data": {
+      "aes_offset": "0x400",
+      "hash_offset": "0x800"
+    }
+  },
+  "defined_hash_engine_names": [
+    "SHA1",
+    "MD5",
+    "SHA256"
+  ],
+  "reference_is_HZC2_hardware_spec": false,
+  "reference_binds_EPBL_mmio": false,
+  "algorithm_or_key_derived": false,
+  "scope": "Primary source comparison only; variant differences prevent importing a complete EPBL protocol from this driver"
+}

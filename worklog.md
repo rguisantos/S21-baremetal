@@ -1211,3 +1211,35 @@ stdlib, relatórios, testes, README/roadmap/índices atualizados. Nenhum
 serviço seguro/MMIO executado, sem alteração de firmware/R10 ou teste
 QEMU/Samsung. Próximo limite: entrada vetorial e transformação/preparação
 verificável antes de resolver handlers; observação física segue em paralelo.
+
+
+## 2026-10-23 — fronteira do prefixo EPBL e segundo produtor VBAR
+
+Veneer ADR X30/B/RET confere continuação 0x3028. Grafo estático restrito
+a [0x3000,0x4540), orçamento de 2048 PCs e cortes em [0x4700,0xfde0).
+1182 instruções, 13 arestas diretas à região pendente; passos após BL
+sob hipótese de retorno normal, ambas alternativas condicionais. Uma tabela
+de quatro bytes 03 00 00 02 expande BR X9 a três destinos. BR X0 mantém
+fronteira conservadora; helper MOV X0,XZR/RET não foi propagado para podar
+condicional. Sem prova de viabilidade ou progresso. Dispatcher não visitado
+por esse grafo direto não significa inalcançável por exceções, que são omitidas.
+
+Segunda escrita VBAR em 0x4358, literal 0x02032800 em 0x43c0, concorda
+com ADR relativo ao candidato 0xe800: delta 0x02024000. Caminho contém
+BL 0xc9ec antes do writer e é parcialmente pendente. Janela de 16 vetores
+[0xe800,0xf000) inteiramente na região pendente; entradas não vinculadas.
+Janela conservadora dos slots não prova 128 descritores válidos alocados.
+
+Referência primária s5p-sss.c do repositório Exynos-2100 fixada no commit
+37c14d86996a49edbea8953f2523b202546b8958, blob recalculado
+86a13b738c2deb168edf749b3268e57131bca22e. Compatibles s5pv210/exynos4210/
+exynos5433-slim, offsets HASH distintos e definições antigas; não basta
+para importar protocolo/algoritmo/chave do EPBL. Fonte não prova binding
+no HZC2. Metadados e diferenças publicados, sem copiar o driver inteiro.
+
+18 testes novos + 18 regressões: 36 PASS. GNU objdump 2.44 confere todas
+as 1182 palavras/138 destinos e SHA do índice PC/palavra. Relatório guarda
+intervalos e todas as saídas pendentes. README/roadmap/índices atualizados.
+Nenhuma transformação, execução MMIO/firmware ou novo teste QEMU/S21.
+Avanço seguinte depende de preparação/ligação verificáveis ou observação,
+não de repetir modelos com respostas seguras inventadas.

@@ -1,0 +1,229 @@
+{
+  "date": "2026-10-23",
+  "mode": "static_EPBL_prefix_frontier",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "continuation": "0x3028",
+  "prefix_bounds": [
+    "0x3000",
+    "0x4540"
+  ],
+  "pending_bounds": [
+    "0x4700",
+    "0xfde0"
+  ],
+  "prefix_graph": {
+    "instruction_count": 1182,
+    "instruction_index_sha256": "a87c2dac6b1e0c193a90d4a7f2154a52e8410a044bf5f97efeeb64d92ee4e9bd",
+    "file_ranges": [
+      [
+        "0x3028",
+        "0x3108"
+      ],
+      [
+        "0x312c",
+        "0x3a8c"
+      ],
+      [
+        "0x3ad4",
+        "0x4228"
+      ],
+      [
+        "0x422c",
+        "0x4294"
+      ],
+      [
+        "0x42cc",
+        "0x42dc"
+      ],
+      [
+        "0x431c",
+        "0x4368"
+      ],
+      [
+        "0x4520",
+        "0x4540"
+      ]
+    ],
+    "pending_edges": {
+      "0x3070": {
+        "kind": "bl",
+        "target": "0xbaa8",
+        "target_executed": false
+      },
+      "0x3088": {
+        "kind": "bl",
+        "target": "0xb98c",
+        "target_executed": false
+      },
+      "0x30b4": {
+        "kind": "bl",
+        "target": "0xba1c",
+        "target_executed": false
+      },
+      "0x30bc": {
+        "kind": "bl",
+        "target": "0xbe04",
+        "target_executed": false
+      },
+      "0x30cc": {
+        "kind": "bl",
+        "target": "0xb7f8",
+        "target_executed": false
+      },
+      "0x30d4": {
+        "kind": "bl",
+        "target": "0xba68",
+        "target_executed": false
+      },
+      "0x30f8": {
+        "kind": "bl",
+        "target": "0x47dc",
+        "target_executed": false
+      },
+      "0x30fc": {
+        "kind": "bl",
+        "target": "0x4838",
+        "target_executed": false
+      },
+      "0x3100": {
+        "kind": "bl",
+        "target": "0x9964",
+        "target_executed": false
+      },
+      "0x3104": {
+        "kind": "b",
+        "target": "0xb964",
+        "target_executed": false
+      },
+      "0x3a40": {
+        "kind": "bl",
+        "target": "0x8100",
+        "target_executed": false
+      },
+      "0x3a74": {
+        "kind": "bl",
+        "target": "0x8100",
+        "target_executed": false
+      },
+      "0x4350": {
+        "kind": "bl",
+        "target": "0xc9ec",
+        "target_executed": false
+      }
+    },
+    "indirect_edges": {
+      "0x3060": {
+        "kind": "br",
+        "register": 0,
+        "declared_targets": []
+      },
+      "0x3c30": {
+        "kind": "br",
+        "register": 9,
+        "declared_targets": [
+          "0x3c34",
+          "0x3c3c",
+          "0x3c40"
+        ]
+      }
+    },
+    "exits": {
+      "0x3a88": "ret",
+      "0x4224": "ret",
+      "0x4244": "ret",
+      "0x4290": "ret",
+      "0x42d8": "ret",
+      "0x4320": "ret",
+      "0x4340": "ret",
+      "0x4360": "ret",
+      "0x4364": "ret",
+      "0x453c": "ret"
+    },
+    "vbar_el3_write_sites": [
+      "0x3068",
+      "0x4358"
+    ],
+    "common_dispatcher_nodes_reached": false,
+    "call_fallthrough_assumes_normal_return": true,
+    "exception_edges_modelled": false,
+    "path_feasibility_proven": false,
+    "runtime_execution_observed": false
+  },
+  "table_expansion": {
+    "branch": "0x3c30",
+    "table": "0x4228",
+    "signed_bytes": [
+      3,
+      0,
+      0,
+      2
+    ],
+    "target_base": "0x3c34",
+    "targets": [
+      "0x3c34",
+      "0x3c3c",
+      "0x3c40"
+    ],
+    "bound_cmp": "0x3bcc: CMP W8,#3"
+  },
+  "vector_corroboration": {
+    "relative_writer": "0x3068",
+    "relative_target_file_offset": "0xe800",
+    "literal_writer": "0x4358",
+    "literal_slot": "0x43c0",
+    "literal_value": "0x2032800",
+    "matching_candidate_delta": "0x2024000",
+    "pending_call_before_second_writer": "0x4350 -> 0xc9ec",
+    "physical_mapping_verified": false,
+    "vector_entries_verified": false
+  },
+  "vector_window": {
+    "candidate_file_range": [
+      "0xe800",
+      "0xf000"
+    ],
+    "entirely_inside_pending_region": true,
+    "entries": 16,
+    "stride": 128,
+    "sha256": "102780f58ffaf221f6728dad61e209fad77bb881cb0a4488b65538035f9b626c",
+    "decoded_as_runtime_code": false
+  },
+  "classification_table_initialization_linked": false,
+  "actual_handler_linked": false,
+  "blocks": {
+    "entry_veneer": {
+      "start": "0x3020",
+      "end_exclusive": "0x3028",
+      "sha256": "682ace0b3c68fcdc8524363e8f40a471a9e5aca6dbdc5b394794be2973aea984"
+    },
+    "entry_return": {
+      "start": "0x3128",
+      "end_exclusive": "0x312c",
+      "sha256": "110f46b5b35c069160560c6ad6786f647dd44e8760a52a46fc22dbbcd7630b91"
+    },
+    "vbar_relative": {
+      "start": "0x3064",
+      "end_exclusive": "0x3070",
+      "sha256": "fdd2ddbfd2e677c94b8036f113bab00160f653063b00d1777177e7aef463bdd7"
+    },
+    "vbar_literal_path": {
+      "start": "0x4344",
+      "end_exclusive": "0x4364",
+      "sha256": "abb3e4df3d992799d04be105994c94e9f5d7c91aa574c07b80e9921afa5e2da2"
+    },
+    "zero_return_helper": {
+      "start": "0x431c",
+      "end_exclusive": "0x4324",
+      "sha256": "ed86e0b2911b6a4e9edfa1a48e9544ba115299466a1992e2370619d8ce8e29fc"
+    }
+  },
+  "firmware_executed": false,
+  "physical_device_tested": false,
+  "limitations": [
+    "Graph omits exception entry and does not prove the dispatcher unreachable at runtime",
+    "Conditional paths may be infeasible; pending calls are not executed, return is assumed for their continuation",
+    "Only one fixed four-byte jump table is expanded; BR X0 remains a conservative frontier",
+    "Second VBAR path contains a pending call; matched nominal targets are not physical state",
+    "Pending bytes, classification contents and hardware transformation remain unverified"
+  ]
+}

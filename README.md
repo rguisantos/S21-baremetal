@@ -26,7 +26,7 @@ A [preparação do monitor HZC2 e os escritores da lista LK](docs/monitor-prepar
 
 A [origem do modo e o descritor BL2](docs/bl2-service-chain-hzc2.md) foram refinados: a resposta vem de X2 no SMC -0xe9, o seletor usa aritmética W e o pedido -0xe6 deixa campos herdados em dois modos. O modelo preserva esses desconhecidos. A [busca do estado anterior](docs/descriptor-provenance-hzc2.md) conferiu sete cópias que não alcançam a janela e distinguiu o limite LK `0xe7fffe00`; 40 testes de host passaram, com 165 palavras/23 alvos e 21 literais conferidos com objdump. O inicializador e o provedor seguro permanecem abertos.
 
-O [prefixo EPBL e dispatcher SMC parcial](docs/epbl-preparation-hzc2.md) agora estão rastreados: normalização condicional dos IDs, guarda de entrada e pedido in-place de 46816 bytes dependente de MMIO. A tabela de slots fica dentro dessa região candidata; seu conteúdo runtime e a entrada vetorial continuam sem comprovação. Foram 34 testes de host e 311 instruções/46 alvos conferidos com objdump, sem recuperar plaintext ou executar serviço seguro.
+O [prefixo EPBL e dispatcher SMC parcial](docs/epbl-preparation-hzc2.md) têm agora um [grafo de fronteiras](docs/epbl-frontier-hzc2.md): 1182 instruções, 13 arestas para a região pendente e dois produtores de VBAR coerentes com o mesmo delta nominal. Foram 36 testes de host e 138 destinos relativos conferidos com objdump. A referência SSS pública foi fixada por commit e não fornece o protocolo EPBL completo. Entrada vetorial, transformação e conteúdo runtime das tabelas continuam sem comprovação.
 
 ## Módulos e validação
 

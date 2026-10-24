@@ -67,3 +67,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_descriptor_provenance.py` e `test_descriptor_provenance.py`: sete loops fixos de cópia, duplicatas do construtor e testemunhos MOVZ/MOVK; não provam inicialização ou censo geral de escritores. 16 testes novos e 24 regressões. [Escopo e fronteiras](../docs/descriptor-provenance-hzc2.md).
 
 - `inspect_epbl_preparation.py` e `test_epbl_preparation.py`: prefixo EPBL, pedido in-place, hipótese nominal de ponteiros e aritmética do dispatcher comum com guarda separada. 18 testes novos; não decifra, executa MMIO ou resolve handlers. [Guia e limites](../docs/epbl-preparation-hzc2.md).
+
+- `inspect_epbl_frontier.py` e `test_epbl_frontier.py`: grafo do prefixo EPBL com cortes antes dos bytes pendentes, expansão de uma tabela fixa e corroboração dos dois produtores de VBAR. 18 testes novos; retorno normal e viabilidade são hipóteses, sem arestas de exceção. [Escopo](../docs/epbl-frontier-hzc2.md).

@@ -1,0 +1,41 @@
+test_adr_targets_are_signed_and_register_bound (test_epbl_frontier.Frontier.test_adr_targets_are_signed_and_register_bound) ... ok
+test_adrp_or_unaligned_instruction_is_not_accepted_as_adr (test_epbl_frontier.Frontier.test_adrp_or_unaligned_instruction_is_not_accepted_as_adr) ... ok
+test_binding_cannot_cross_into_pending_or_unaligned_bytes (test_epbl_frontier.Frontier.test_binding_cannot_cross_into_pending_or_unaligned_bytes) ... ok
+test_binding_does_not_silently_override_a_direct_branch (test_epbl_frontier.Frontier.test_binding_does_not_silently_override_a_direct_branch) ... ok
+test_branch_to_unclassified_gap_is_refused (test_epbl_frontier.Frontier.test_branch_to_unclassified_gap_is_refused) ... ok
+test_call_to_pending_region_records_edge_and_assumes_return (test_epbl_frontier.Frontier.test_call_to_pending_region_records_edge_and_assumes_return) ... ok
+test_conditional_explores_both_paths_without_feasibility_claim (test_epbl_frontier.Frontier.test_conditional_explores_both_paths_without_feasibility_claim) ... ok
+test_declared_br_table_expands_only_explicit_targets (test_epbl_frontier.Frontier.test_declared_br_table_expands_only_explicit_targets) ... ok
+test_exception_and_eret_are_terminal_not_executed (test_epbl_frontier.Frontier.test_exception_and_eret_are_terminal_not_executed) ... ok
+test_invalid_ranges_or_budget_are_refused (test_epbl_frontier.Frontier.test_invalid_ranges_or_budget_are_refused) ... ok
+test_linear_nodes_stop_at_ret_including_ret_x29 (test_epbl_frontier.Frontier.test_linear_nodes_stop_at_ret_including_ret_x29) ... ok
+test_loops_have_finite_unique_pc_inventory (test_epbl_frontier.Frontier.test_loops_have_finite_unique_pc_inventory) ... ok
+test_pc_budget_is_enforced (test_epbl_frontier.Frontier.test_pc_budget_is_enforced) ... ok
+test_root_must_be_nonempty_aligned_and_inside_prefix (test_epbl_frontier.Frontier.test_root_must_be_nonempty_aligned_and_inside_prefix) ... ok
+test_tail_branch_to_pending_region_does_not_fall_through (test_epbl_frontier.Frontier.test_tail_branch_to_pending_region_does_not_fall_through) ... ok
+test_udf_or_unsupported_branch_encoding_is_refused (test_epbl_frontier.Frontier.test_udf_or_unsupported_branch_encoding_is_refused) ... ok
+test_unresolved_br_is_a_frontier_without_fallthrough (test_epbl_frontier.Frontier.test_unresolved_br_is_a_frontier_without_fallthrough) ... ok
+test_wrong_firmware_cli_emits_no_report (test_epbl_frontier.Frontier.test_wrong_firmware_cli_emits_no_report) ... ok
+test_adrp_ldr_loads_u64_from_decoded_slot (test_epbl_preparation.EPBL.test_adrp_ldr_loads_u64_from_decoded_slot) ... ok
+test_adrp_negative_page_displacement (test_epbl_preparation.EPBL.test_adrp_negative_page_displacement) ... ok
+test_classification_bit7_refuses_pointer_selection (test_epbl_preparation.EPBL.test_classification_bit7_refuses_pointer_selection) ... ok
+test_classification_does_not_implicitly_truncate (test_epbl_preparation.EPBL.test_classification_does_not_implicitly_truncate) ... ok
+test_classification_stride_and_maximum_slot (test_epbl_preparation.EPBL.test_classification_stride_and_maximum_slot) ... ok
+test_guarded_entry_would_reject_legacy_negative_values (test_epbl_preparation.EPBL.test_guarded_entry_would_reject_legacy_negative_values) ... ok
+test_high_x0_half_does_not_change_common_w_id (test_epbl_preparation.EPBL.test_high_x0_half_does_not_change_common_w_id) ... ok
+test_minus_one_and_prefix_boundary_wrap_in_w_registers (test_epbl_preparation.EPBL.test_minus_one_and_prefix_boundary_wrap_in_w_registers) ... ok
+test_native_32bit_id_is_not_rewritten (test_epbl_preparation.EPBL.test_native_32bit_id_is_not_rewritten) ... ok
+test_negative_legacy_ids_have_distinct_common_commands (test_epbl_preparation.EPBL.test_negative_legacy_ids_have_distinct_common_commands) ... ok
+test_nominal_translation_checks_whole_width (test_epbl_preparation.EPBL.test_nominal_translation_checks_whole_width) ... ok
+test_owner_index_includes_fast_bit_but_not_call_width_bit (test_epbl_preparation.EPBL.test_owner_index_includes_fast_bit_but_not_call_width_bit) ... ok
+test_pointer_witness_rejects_wrong_width_base_or_outside_slot (test_epbl_preparation.EPBL.test_pointer_witness_rejects_wrong_width_base_or_outside_slot) ... ok
+test_pointer_witness_requires_aligned_instruction_bytes (test_epbl_preparation.EPBL.test_pointer_witness_requires_aligned_instruction_bytes) ... ok
+test_prefix_test_is_not_a_general_signed_absolute_value (test_epbl_preparation.EPBL.test_prefix_test_is_not_a_general_signed_absolute_value) ... ok
+test_service_input_requires_unsigned_64bit_integer (test_epbl_preparation.EPBL.test_service_input_requires_unsigned_64bit_integer) ... ok
+test_translation_rejects_external_or_invalid_ranges (test_epbl_preparation.EPBL.test_translation_rejects_external_or_invalid_ranges) ... ok
+test_wrong_firmware_cli_emits_no_report (test_epbl_preparation.EPBL.test_wrong_firmware_cli_emits_no_report) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.085s
+
+OK
