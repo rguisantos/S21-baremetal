@@ -65,6 +65,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Buffers e protocolo MMIO EPBL](epbl-protocol-hzc2.md): 48 bytes → material 32/IV 16, resultado comparado de 32 bytes, entrada DMA candidata e status/polling; 69 testes e conferência GNU de 177 acessos. Sem plaintext ou ligação dos handlers.
 
+- [Proveniência HASH e diferenças entre referências](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace corroborados, contador baixo/alto corrigido e modo 0x19 não implementado no emulador Exynos9830; 83 testes, sem atribuir algoritmo HZC2.
+
 - [Preparação EPBL e dispatcher parcial](epbl-preparation-hzc2.md): pedido in-place/MMIO, normalização dos IDs, guarda e duas tabelas; entrada vetorial/handlers ainda abertos; 34 testes de host.
 
 - [Estado anterior do descritor BL2](descriptor-provenance-hzc2.md): sete cópias fixas sem interseção, duplicata com campos ainda desconhecidos e distinção do limite LK; 40 testes, sem inicialização demonstrada.

@@ -99,8 +99,10 @@ pelo helper. Neste chamador, contadores zero evitam lê-los como estado
 HASH herdado. O argumento original de saída passa em X2 ao consumidor,
 selecionando o ramo final.
 
-Nesse ramo, `0xb6e0` vai a MMIO `+0x1020`, contador alto a `+0x1030` e baixo
-a `+0x1034`. Com ambos zero, o controle HASH preparado é `0x14`, sem
+Nesse ramo, `0xb6e0` vai a MMIO `+0x1020`, contexto `+0x44` a `+0x1030`
+e contexto `+0x40` a `+0x1034`. A continuação com fonte ACE identifica a
+ordem baixa/alta nessa referência; a descrição anterior os nomeava ao
+contrário, sem alterar as instruções ou a execução. Com ambos zero, o controle HASH preparado é `0x14`, sem
 restaurar os oito words de estado do contexto.
 
 Depois dos polls, **oito** leituras `+0x11c0…+0x11dc` vão ao buffer do
@@ -166,7 +168,7 @@ numa mesma execução. Dados não resolvidos continuam desconhecidos; branches
 cortam o rastreio de literais. Um salto que possa pular o construtor de
 endereço impede sua reutilização.
 
-**33 testes novos + 36 regressões = 69 PASS.** Cobrem limites, larguras X/W,
+**Na entrega inicial: 33 testes novos + 36 regressões = 69 PASS.** Cobrem limites, larguras X/W,
 endereço alto/baixo, desconhecidos, saltos no meio de builders, polling
 inclusivo, seletores e recusa de firmware errado.
 
@@ -175,6 +177,11 @@ e nos **177 endereços/larguras/operações MMIO**: 38 leituras e 139 escritas.
 O conferidor MMIO independente interpreta texto GNU de MOV/MOVK/load/store,
 sem reutilizar o decodificador binário de endereços. Não executa o fluxo de
 buffers, nem valida respostas ou memória no aparelho.
+
+A [continuação de proveniência HASH](epbl-hash-provenance-hzc2.md) acrescenta
+dois testes de ligação dos contadores e 12 de fontes: 83 no conjunto atual.
+Os 69 anteriores continuam preservados como evidência histórica; o relatório
+de protocolo foi reemitido com os dois vínculos de contador explícitos.
 
 - [Relatório de protocolo](references/epbl-protocol-hzc2.json)
 - [Conferência GNU](references/epbl-protocol-validation.json) e [linhas do recorte](references/epbl-protocol-gnu.txt)

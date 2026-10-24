@@ -2181,6 +2181,20 @@
       "0x44"
     ],
     "wrapper_initializes_only_counters": true,
+    "hash_counter_upload": [
+      {
+        "context_offset": "0x44",
+        "mmio_offset": "0x1030",
+        "load_pc": "0x3ebc",
+        "store_pc": "0x3ec0"
+      },
+      {
+        "context_offset": "0x40",
+        "mmio_offset": "0x1034",
+        "load_pc": "0x3ecc",
+        "store_pc": "0x3ed0"
+      }
+    ],
     "local_material_and_iv_clear_bytes": [
       32,
       16

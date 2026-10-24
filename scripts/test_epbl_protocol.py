@@ -6,7 +6,7 @@ import sys
 import tempfile
 import unittest
 
-from inspect_epbl_protocol import (MMIO, bounded_poll, constant_before, join_dma_pair,
+from inspect_epbl_protocol import (MMIO, bounded_poll, constant_before, join_dma_pair, hash_counter_upload,
     download_words, logical_immediate, mmio_inventory, request_control,
     unsigned_access, upload_words)
 from check_epbl_protocol_gnu import direct_target, parse_lines, text_mmio
@@ -120,6 +120,19 @@ class Protocol(unittest.TestCase):
         for args in ((True, 0, 0), (-1, 0, 0), (0, 1 << 32, 1), (0xffffffff, 0xffffffff, 2)):
             with self.assertRaises(ValueError):
                 join_dma_pair(*args)
+
+    def test_hash_counter_words_are_bound_to_the_correct_registers(self):
+        data = code(0xd2820604, 0xf2a30664, 0xb9404428, 0xb9000088,
+                    0xd2820684, 0xf2a30664, 0xb9404028, 0xb9000088)
+        result = hash_counter_upload(data, 0)
+        self.assertEqual([(r['context_offset'], r['mmio_offset']) for r in result],
+                         [('0x44', '0x1030'), ('0x40', '0x1034')])
+
+    def test_hash_counter_swapped_loads_are_rejected(self):
+        data = code(0xd2820604, 0xf2a30664, 0xb9404028, 0xb9000088,
+                    0xd2820684, 0xf2a30664, 0xb9404428, 0xb9000088)
+        with self.assertRaises(ValueError):
+            hash_counter_upload(data, 0)
 
     def test_selector_inputs_are_explicit_unsigned_values(self):
         for args in ((True, 1, 1), (15, 1, 1), (32, -1, 1), (32, 4, 1), (32, 1, True)):

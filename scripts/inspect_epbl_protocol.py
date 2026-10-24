@@ -185,6 +185,18 @@ def join_dma_pair(high, low, size):
     return address, address + size
 
 
+def hash_counter_upload(data, start=0x3eb4):
+    """Bind context words to MMIO; these are not measured counter values."""
+    result = []
+    for i, (context, offset) in enumerate(((0x44, 0x1030), (0x40, 0x1034))):
+        pc = start + 16 * i
+        expect(data, pc, 0xd2800004 | offset << 5, 0xf2a30664,
+               0xb9400028 | (context // 4) << 10, 0xb9000088)
+        result.append(dict(context_offset=hex(context), mmio_offset=hex(offset),
+                           load_pc=hex(pc + 8), store_pc=hex(pc + 12)))
+    return result
+
+
 def bounded_poll(data, compare_pc, branch_pc, counter_offset, status):
     """Decode CMP Wn,#imm / B.LS, without supplying a status or elapsed time."""
     w = word(data, compare_pc)
@@ -343,6 +355,7 @@ def evidence(path):
             dma_length_fields=[dict(request_offset='0x60', register='0x28'),
                                dict(request_offset='0x70', register='0x158')],
             wrapper_context_counter_offsets=['0x40', '0x44'], wrapper_initializes_only_counters=True,
+            hash_counter_upload=hash_counter_upload(data),
             local_material_and_iv_clear_bytes=[32, 16], hardware_material_registers_cleared_after_second_stage=False,
             final_output_pointer_is_wrapper_argument=True, final_output=final_output, final_output_bytes=32,
             final_hash_configuration='0x14 when context counters are zero',
