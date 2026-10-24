@@ -1347,3 +1347,32 @@ Consumidor no driver, bytes DMA e saída real continuam pendentes.
 destinos relativos. Aviso sh_info de libteesl preservado na evidência, sem
 divergência nos recortes. README/índices/roadmap e integração atualizados.
 Sem nova tentativa de chave, firmware/SMC/MMIO executado ou QEMU/S21.
+
+## 2026-10-24 — ligação ioctl e fronteira SVC TEEGRIS
+
+Continuação sobre main 2f31df4. PR #7 integrado após revisão própria;
+revisão automática ainda pendente, sem apontamentos/threads retornados.
+Nenhuma aprovação automática presumida. O mesmo TZAR HZC2 fornece libteesl
+e libtzsl, com identidades já presentes no inventário de 44 entradas.
+
+Novo leitor liga os dois calls de ioctl a PLT 9760, GOT 61698 e relocação
+JUMP_SLOT do símbolo 67. VERNEED requer TEEGRIS_4/libtzsl.so, índice local 4;
+a provedora tem SONAME correspondente e símbolo 98/ioctl em 8654, 72 bytes,
+versão local 2 com o mesmo nome. Contrato declarado, sem resolução em execução
+ou exclusão de interposição. Gramáticas restritas e testes de corrupção
+para DYNAMIC, versões e RELA, com recusa de elos/slots ambíguos.
+
+Wrapper completo de 18 instruções: estende W0/W1, preserva X2 até o trap,
+prepara X7=15 e executa SVC #0 em 866c. Handler/consumidor após a exceção
+não identificado. CMN/B.LS converte somente X0 entre -4095 e -1 para errno
+positivo e W0 ffffffff; -4096 não entra nesse ramo. Fora dele, retorno
+trunca a 32 bits e errno não é escrito no recorte. Modelo aceita u64 explícito;
+nenhuma resposta de dispositivo foi injetada.
+
+30 testes passaram (15 novos + 15 TZAR). GNU 2.44 confere índices/nomes de
+versão, biblioteca requerida, SONAME, relocação, exportação e 24 palavras/
+quatro destinos. Relatórios anteriores do TZAR reproduzidos byte a byte.
+Leitor ELF compartilhado recusa sobreposição mesmo se só um segmento for
+executável; checker compartilha apenas o runner GNU, mantendo o parse textual
+independente da leitura binária. Índices/roadmap/integração atualizados.
+Sem ELF/firmware/syscall/SMC/MMIO executado e sem novo QEMU/S21.

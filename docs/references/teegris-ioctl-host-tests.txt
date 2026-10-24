@@ -1,0 +1,35 @@
+test_PLT_bounds_are_explicit (test_teegris_ioctl.IoctlTests.test_PLT_bounds_are_explicit) ... ok
+test_PLT_registers_offsets_and_signed_ADRP (test_teegris_ioctl.IoctlTests.test_PLT_registers_offsets_and_signed_ADRP) ... ok
+test_dynamic_needed_soname_and_NULL (test_teegris_ioctl.IoctlTests.test_dynamic_needed_soname_and_NULL) ... ok
+test_dynamic_table_and_link_limits (test_teegris_ioctl.IoctlTests.test_dynamic_table_and_link_limits) ... ok
+test_jump_slot_unique_symbol_type_addend_and_bounds (test_teegris_ioctl.IoctlTests.test_jump_slot_unique_symbol_type_addend_and_bounds) ... ok
+test_need_and_definition_match_by_label_not_local_index (test_teegris_ioctl.IoctlTests.test_need_and_definition_match_by_label_not_local_index) ... ok
+test_return_error_interval_and_excluded_boundary (test_teegris_ioctl.IoctlTests.test_return_error_interval_and_excluded_boundary) ... ok
+test_return_truncation_and_explicit_input_requirement (test_teegris_ioctl.IoctlTests.test_return_truncation_and_explicit_input_requirement) ... ok
+test_string_offsets_termination_and_length_are_checked (test_teegris_ioctl.IoctlTests.test_string_offsets_termination_and_length_are_checked) ... ok
+test_verdef_parent_auxiliary_does_not_create_another_definition (test_teegris_ioctl.IoctlTests.test_verdef_parent_auxiliary_does_not_create_another_definition) ... ok
+test_version_chain_malformed_headers_and_offsets (test_teegris_ioctl.IoctlTests.test_version_chain_malformed_headers_and_offsets) ... ok
+test_version_need_duplicates_and_backwards_auxiliary_are_rejected (test_teegris_ioctl.IoctlTests.test_version_need_duplicates_and_backwards_auxiliary_are_rejected) ... ok
+test_version_sections_and_string_links_are_unambiguous (test_teegris_ioctl.IoctlTests.test_version_sections_and_string_links_are_unambiguous) ... ok
+test_version_symbol_index_and_hidden_flag (test_teegris_ioctl.IoctlTests.test_version_symbol_index_and_hidden_flag) ... ok
+test_wrong_firmware_CLI_emits_no_partial_report (test_teegris_ioctl.IoctlTests.test_wrong_firmware_CLI_emits_no_partial_report) ... ok
+test_ELF_mapping_refuses_BSS_nonexecutables_and_overlap (test_tzar_hzc2.TzarTests.test_ELF_mapping_refuses_BSS_nonexecutables_and_overlap) ... ok
+test_ELF_rejects_bad_symbol_link_size_and_name (test_tzar_hzc2.TzarTests.test_ELF_rejects_bad_symbol_link_size_and_name) ... ok
+test_ELF_rejects_load_past_file_and_memory_overflow (test_tzar_hzc2.TzarTests.test_ELF_rejects_load_past_file_and_memory_overflow) ... ok
+test_ELF_rejects_wrong_class_machine_and_table_bounds (test_tzar_hzc2.TzarTests.test_ELF_rejects_wrong_class_machine_and_table_bounds) ... ok
+test_ELF_symbol_and_executable_mapping (test_tzar_hzc2.TzarTests.test_ELF_symbol_and_executable_mapping) ... ok
+test_archive_size_count_and_magic_are_checked (test_tzar_hzc2.TzarTests.test_archive_size_count_and_magic_are_checked) ... ok
+test_duplicate_and_noncanonical_names_refused (test_tzar_hzc2.TzarTests.test_duplicate_and_noncanonical_names_refused) ... ok
+test_legacy_limits_and_invalid_block_refused (test_tzar_hzc2.TzarTests.test_legacy_limits_and_invalid_block_refused) ... ok
+test_legacy_literal_block_and_tail_boundary (test_tzar_hzc2.TzarTests.test_legacy_literal_block_and_tail_boundary) ... ok
+test_name_terminator_required (test_tzar_hzc2.TzarTests.test_name_terminator_required) ... ok
+test_span_refuses_negative_and_truncated_ranges (test_tzar_hzc2.TzarTests.test_span_refuses_negative_and_truncated_ranges) ... ok
+test_truncated_and_trailing_records_refused (test_tzar_hzc2.TzarTests.test_truncated_and_trailing_records_refused) ... ok
+test_unaligned_archive_entry_and_empty_file_are_preserved (test_tzar_hzc2.TzarTests.test_unaligned_archive_entry_and_empty_file_are_preserved) ... ok
+test_witness_ranges_refuse_unaligned_or_empty (test_tzar_hzc2.TzarTests.test_witness_ranges_refuse_unaligned_or_empty) ... ok
+test_wrong_firmware_CLI_emits_no_JSON (test_tzar_hzc2.TzarTests.test_wrong_firmware_CLI_emits_no_JSON) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.145s
+
+OK

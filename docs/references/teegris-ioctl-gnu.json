@@ -1,0 +1,59 @@
+{
+  "input_sha256": "791c8818555e64d0e060c406e68748e869c7d53fbc9c9bbc893a1dd4f65a2077",
+  "GNU_readelf": "GNU readelf (GNU Binutils for Debian) 2.44",
+  "GNU_objdump": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "libraries": {
+    "caller": {
+      "path": "/lib64/libteesl.so",
+      "instruction_count": 6,
+      "relative_target_count": 2,
+      "symbol_version_index": 4,
+      "symbol_index": 67,
+      "instruction_lines": [
+        "2a894:\t97ff7bb3 \tbl\t9760 <ioctl@plt>",
+        "2c860:\t97ff73c0 \tbl\t9760 <ioctl@plt>",
+        "9760:\t900002d0 \tadrp\tx16, 61000 <NilUuid@@TEEGRIS_4+0x1af30>",
+        "9764:\tf9434e11 \tldr\tx17, [x16, #1688]",
+        "9768:\t911a6210 \tadd\tx16, x16, #0x698",
+        "976c:\td61f0220 \tbr\tx17"
+      ],
+      "instruction_index_sha256": "f139dc43efe888fff73971d7e4fc34296b814ea222a1107c566fae7a976441aa",
+      "warnings": []
+    },
+    "provider": {
+      "path": "/lib64/libtzsl.so",
+      "instruction_count": 18,
+      "relative_target_count": 2,
+      "symbol_version_index": 2,
+      "symbol_index": 98,
+      "instruction_lines": [
+        "8654:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!",
+        "8658:\t93407c00 \tsxtw\tx0, w0",
+        "865c:\t93407c21 \tsxtw\tx1, w1",
+        "8660:\td28001e7 \tmov\tx7, #0xf                   \t// #15",
+        "8664:\t910003fd \tmov\tx29, sp",
+        "8668:\tf9000bf3 \tstr\tx19, [sp, #16]",
+        "866c:\td4000001 \tsvc\t#0x0",
+        "8670:\taa0003f3 \tmov\tx19, x0",
+        "8674:\tb140041f \tcmn\tx0, #0x1, lsl #12",
+        "8678:\t540000a9 \tb.ls\t868c <ioctl@@TEEGRIS_4+0x38>  // b.plast",
+        "867c:\t4b1303f3 \tneg\tw19, w19",
+        "8680:\t97fff39c \tbl\t54f0 <get_errno_addr@plt>",
+        "8684:\tb9000013 \tstr\tw19, [x0]",
+        "8688:\t92800013 \tmov\tx19, #0xffffffffffffffff    \t// #-1",
+        "868c:\t2a1303e0 \tmov\tw0, w19",
+        "8690:\tf9400bf3 \tldr\tx19, [sp, #16]",
+        "8694:\ta8c27bfd \tldp\tx29, x30, [sp], #32",
+        "8698:\td65f03c0 \tret"
+      ],
+      "instruction_index_sha256": "8beeff1523325fd37653485a474152db48cee8ffa97852248d893c9c24e66a96",
+      "warnings": []
+    }
+  },
+  "version_need_library_line": "0x0040: Version: 1  File: libtzsl.so  Cnt: 1",
+  "version_need_line": "0x0050:   Name: TEEGRIS_4  Flags: none  Version: 4",
+  "relocation_line": "0000000000061698  0000004300000402 R_AARCH64_JUMP_SLOT    0000000000000000 ioctl@TEEGRIS_4 + 0",
+  "provider_symbol_line": "98: 0000000000008654    72 FUNC    GLOBAL DEFAULT   10 ioctl@@TEEGRIS_4",
+  "firmware_executed": false,
+  "limit": "Static link metadata and selected instruction words/targets; no runtime resolution or SVC execution"
+}

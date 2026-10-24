@@ -34,6 +34,8 @@ A [proveniência do layout HASH](docs/epbl-hash-provenance-hzc2.md) agora cruza 
 
 O [arquivo TZAR e as bibliotecas HZC2](docs/tzar-crypto-hzc2.md) agora têm inventário reproduzível de 44 registros, hashes e tradução dos três seletores de digest para pedidos de `/dev/crypto`. Foram 15 testes e conferência GNU de 15 símbolos/127 instruções/34 destinos. A fronteira EVP/dispositivo foi localizada; a implementação do driver e sua relação com o modo EPBL `0x19` continuam abertas. PR #6 revisado e integrado em `65040a6`.
 
+A [ligação ioctl do TEEGRIS](docs/teegris-ioctl-boundary-hzc2.md) agora confere calls, PLT/GOT, relocação e versão requerida até `libtzsl.so`: o wrapper prepara X7=15 e executa SVC #0. Foram 30 testes e conferência GNU de 24 instruções/quatro destinos, além dos metadados de ligação. A conversão de erros foi delimitada; handler SVC, consumidor do dispositivo e modo EPBL `0x19` seguem abertos.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

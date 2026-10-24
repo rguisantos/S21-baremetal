@@ -131,3 +131,7 @@ conteúdo verificável de `[0x1fc00,0x1fffc)`, implementação HZC2 de `0x19` ou
 saída observada de 48 bytes. Não houve nova tentativa de chave, plaintext
 validado ou execução física/QEMU nesta entrega. Entrada, coerência e leitura
 do diagnóstico no telefone permanecem no [roadmap](roadmap.md).
+
+Continuação de 2026-10-24: a [ligação ioctl até SVC](teegris-ioctl-boundary-hzc2.md)
+confere o contrato versionado com libtzsl.so, a PLT/GOT, os argumentos e o
+intervalo de conversão de erro. O consumidor após o SVC continua pendente.
