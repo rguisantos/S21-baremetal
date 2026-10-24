@@ -33,6 +33,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Menções BL2 e consumidores no kernel](bl2-kernel-consumers-hzc2.md): registro DRAM em 0x02073600, constante comum ao BL2, bootstat e gate CHIPID; sem valores runtime.
 - [NEWTIME e argumentos bootstat](boot-metadata-hzc2.md): callback nominal, ponteiro mutável/alias condicional do registro DRAM e literal 100 no campo BL1; GNU de 156 palavras, sem medições físicas.
 - [Publicação ACPM e NEWTIME](acpm-handshake-hzc2.md): produtor Thumb de 0x38e00, confirmação zero e comparação DRAM no payload; DTS fixado, GNU AArch64/Thumb e aliases/preservação condicionais.
+- [ECT/NEWTIME e primeira escrita](newtime-ect-hzc2.md): 57 descritores, 22 seletores incluindo 0xcafe, parser/prefixo originais em 56 casos QEMU; 80 testes e GNU de 353 palavras, sem estado físico.
 - [DTS enviados e recompilação HZC2](dts-source-roundtrip.md): patch de três listas de CPUs, identidade binária da base stock e limites dos overlays genérico/P3S.
 - [Proton: fonte](proton-reference.md), [binários](proton-binary.md) e [contrato do carregador Samsung](loader-contract.md).
 - [Referência TWRP](twrp-reference.md) e [limites da coleta Shizuku](runtime-collection.md).

@@ -184,3 +184,14 @@ CLI. Revisão automática completed sem achados ou pendências no mesmo
 head; zero threads, statuses e check-runs. Merge normal em
 `83fad63f4034366d771435c6ebf2005fd7ec8f04`, main sincronizada.
 Sem valores físicos, execução de firmware ou contrato de RAM final.
+
+## PR #17 — publicação ACPM e destino NEWTIME condicional
+
+Head `46dbd460dc54ca5fa4df50466389968b165e791c`, revisão própria
+5640034407 concluída sem bloqueadores. Treze blobs/árvore conferidos;
+GNU100 palavras AArch64/141 instruções Thumb, 70 regressões BL2 e 12
+recusas CLI. Zero threads ou falhas CI reportadas. A revisão automática
+estava running no merge; nesta continuação foi conferida completed, sem
+achados ou pendências nesse mesmo head. Merge normal em
+`be47018c54773836d493f21e761a12bd8faef237`, main local sincronizada.
+Aliases/preservação condicionais; sem handshake ou registro físico observado.

@@ -126,3 +126,8 @@ destino; corroborar os aliases por uma fonte correspondente ou observação
 verificável. Demais escritores/slots, registros reais, RAM/reservas/FDT e
 contrato de entrada permanecem abertos. Sem novo QEMU, kernel completo,
 execução de firmware ou operação no telefone.
+
+A [continuação ECT/NEWTIME](newtime-ect-hzc2.md) resolveu o lookup da
+tabela embutida e executou seu parser/prefixo em 56 casos QEMU. A
+preservação até a primeira escrita foi conferida nesses bindings; corpo
+posterior, aliases e valores físicos permanecem abertos.

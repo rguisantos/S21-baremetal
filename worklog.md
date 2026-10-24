@@ -1737,3 +1737,59 @@ Documentação, índices, catálogo, roadmap e integração do PR16 atualizados.
 Sem novoQEMU, kernel completo, firmware executado ou operação no telefone.
 Próximo: lookup/linhaNEWTIME e preservação do frame/ponteiro; corroborar
 aliases por fonte correspondente ou observação verificável.
+
+## 2026-10-24 — ECT/NEWTIME e prefixo da primeira escrita no QEMU
+
+Retomada da main be47018, PR #17 revisado/mergeado. A revisão automática
+agora informa completed, sem achados ou pendências no head 46dbd46. Árvore
+de entrada limpa; branch feat/newtime-ect-selection. Os READMEs anexos de
+build foram relidos nos caminhos locais e não fornecem dados NEWTIME.
+
+O loop 16278 tem origem nominal 02153000..02167000, arquivo69000..7d000,
+e destino90000000. O caminho1ca68 guarda a própria origem02153000 em
+31c10 e segue ao parserECT1c87c, sob gates anteriores não executados.
+Bloco PARA007n com total_size110c4 e nove nomes/offsets. NEWTIME está em
+70404..77994, 30096 bytes, versão0.81, 57 descritores. Registro309d0 tem
+12 entradas de32; última30b30 contém nomeNEWTIME, comprimento7, callback
+nominal1c3dc e handle inicialzero. Dispatcher1c9c4 chama parser de bloco;
+1c3dc instala handle em entrada+24. Lookup1c55c por nome,1c83c por chave.
+
+Chave11111111 tem corpo706bc, dados706c8, mode2/17colunas/22linhas u64.
+Linha0 tem seletor0xcafe; linha10 tem0001000860000110, a assinatura já
+comparada em BL2/Thumb/devfreq. Demais56 descritores usam mode1. Fontes
+ECT .c/.h fixados no commit756951a, hashes e blobs no manifesto, corroboram
+nomes, enum, campos e lookup. Não se presume identidade entre builds.
+
+Prefixo193fc..19694 guarda entrada em frame+136; para comparação usa
+low32 quando bit63 está ativo, senão u64 inteiro em frame+152. Helper
+1c540 combina dois W. Linha encontrada copia16 células u64 para área de
+pilha com144 bytes; store19694 recarrega entrada original de frame+136
+e escreve pelo ponteiro de30520. Erros selecionados preparam3/2/1 para
+nome/chave/linha ausentes. Formas vazias/corrompidas não são modeladas;
+checagens de limites do novo leitor de host não são atribuídas ao BL2.
+
+QEMU virt EL1, deltas40000000/40200000. Nenhuma instrução foi alterada;
+ponteiros absolutos do registro foram relocados como dados. Heap, pilha,
+destino e entradas fornecidos pelo laboratório. Parser original1c3dc e
+helpers reconstruíram57 descritores em cada colocação; todos os campos
+e ponteiros de dados conferidos. Não executado parserECT completo/gates.
+
+56 casos de prefixo: 22 seletores embutidos e duas entradas bit63/low32cafe
+por colocação, total48 primeiras escritas. Seleção,16células copiadas,
+frame+136 e valor original de64bits no destino conferidos. Quatro controles
+por colocação (linha ausente, positivo com bits altos, nome ausente, chave
+ausente) deram1/1/3/2 antes do epílogo, total8, sem tocar destino. Positivos
+param antes do STR19694, executam uma instrução e param19698; negativos
+param199fc. Código, bloco fonte e sentinelas de pilha/destino intactos.
+Sem stubs, respostas MMIO/SMC ou execução do corpo posterior, que contém
+outras consultas/cópias/alocador e leitura158609bc[31]. Preservação
+conferida só nesse prefixo/bindings, não na função inteira ou no telefone.
+
+GNU2.44:353 palavras/50alvos/24operandos/8spans, inclusive30096 bytes
+NEWTIME. Relatórios estático/GNU reproduzidos byte a byte; 10 testes novos
+de limites/modos/seleção e70 regressões BL2 passaram. Nove recusasCLI dos
+três comandos cobrem imagem curta/longa/alterada, exit2 sem JSON e antes
+do QEMU. py_compile,291 links locais e diff --check passaram. Documentação,
+índices, catálogo, roadmap e integração do PR17 organizados. Sem execução
+física, observação DRAM, capacidadeRAM ou FDT final. Próximo: alocador,
+gates e escritas posteriores; corroborar bindings/aliases ACPM.

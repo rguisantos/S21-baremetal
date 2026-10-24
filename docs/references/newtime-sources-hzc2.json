@@ -1,0 +1,29 @@
+{
+  "repository": "xfwdrev/android_kernel_samsung_ex2100",
+  "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+  "sources": [
+    {
+      "path": "include/soc/samsung/ect_parser.h",
+      "size": 10936,
+      "sha256": "4e7498e02c5885b74348b70daab4e1019ffe4ff48ae114f330870ccc64ee042d",
+      "git_blob_sha1": "99415a09af2e089841a227622bf40e06e064e862",
+      "selected_symbols": [
+        "e_new_timing_parameter_mode",
+        "ect_new_timing_param_size",
+        "ect_new_timing_param_header"
+      ]
+    },
+    {
+      "path": "drivers/soc/samsung/ect_parser.c",
+      "size": 72087,
+      "sha256": "efbc8aa3ba283d97c2169fe8d41367c14db36d7878a0d94c85bd58d16ade8bfc",
+      "git_blob_sha1": "d580634950be4805f59a916fe2d0794a7f42a781",
+      "selected_symbols": [
+        "ect_parse_new_timing_param_size",
+        "ect_parse_new_timing_param_header",
+        "ect_new_timing_param_get_key"
+      ]
+    }
+  ],
+  "source_firmware_build_identity_verified": false
+}
