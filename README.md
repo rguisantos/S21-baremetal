@@ -42,6 +42,8 @@ O [produtor BL2 do tamanho de RAM](docs/bl2-ram-size-hzc2.md) agora liga a escri
 
 A [consulta que alimenta a geometria](docs/bl2-geometry-query-hzc2.md) foi seguida nominalmente até MMIO: campos de dois/sete bits, disparo e leitura de resposta de 32 bits, com cinco bases literais. Foram **48 testes** e GNU de **82 palavras/12 ponteiros**, sem executar hardware ou fornecer respostas simuladas. A preparação dos controladores e os bindings reais permanecem abertos.
 
+Um [escritor condicional dessas bases](docs/bl2-query-base-rewrite-hzc2.md) agora demonstra que o BL2 pode trocar as cinco entradas terminadas em `0x6000` por `0xf000`, conforme um nibble de `0x10000010`. O outro ramo preserva o estado anterior. Foram **58 testes** e reconstrução independente GNU de cinco stores; a configuração ativa e as respostas físicas continuam desconhecidas.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

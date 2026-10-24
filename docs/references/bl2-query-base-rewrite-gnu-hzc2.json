@@ -1,0 +1,14 @@
+{
+  "mode": "GNU_text_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 39,
+  "relative_targets_matched": 2,
+  "selected_operands_matched": 7,
+  "constructor_stores_matched": 5,
+  "initial_and_callback_pointers_matched": 7,
+  "instruction_index_sha256": "0b69b635a61458e5f13ebe49e1d862751b1fc3791a5a728ff5ffa98db22dbee2",
+  "method": "GNU ADRP/MOV/MOVK/ADD/STR text; pointer hexdump; no binary constructor reused",
+  "firmware_executed": false,
+  "register_runtime_observed": false
+}

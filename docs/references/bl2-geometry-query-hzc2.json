@@ -33,6 +33,8 @@
       "0x1c336000",
       "0x1a346000"
     ],
+    "bases_scope": "initial file bytes; known conditional writer 0x2d270 may replace them",
+    "runtime_table_contents_verified": false,
     "term_field": {
       "destination": 3,
       "source": 1,
@@ -194,6 +196,7 @@
   "free_memory_verified": false,
   "limits": [
     "Nominal code/table binding only; mutable tables and physical placement unobserved",
+    "Query bases have a known conditional writer at 0x2d270; file values do not establish live table contents",
     "Literal base values are not evidence of their live mapping, clocks or register semantics",
     "No responses, DRAM initialization, register access or synthetic hardware execution",
     "Slot-four asymmetry is instruction behavior; no broadcast semantics or defect inferred",
