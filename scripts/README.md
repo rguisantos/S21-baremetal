@@ -1,5 +1,12 @@
 # Catálogo de scripts
 
+- `inspect_newtime_record_hzc2.py`, `check_newtime_record_gnu.py`,
+  `emulate_newtime_record_qemu.py` e `test_newtime_record_hzc2.py`: layout,
+  alocador, sequência de gates, erros parciais e wrapper NEWTIME HZC2.
+  Modelo de 11264 combinações; QEMU executa blocos originais com despacho
+  explícito dos ramos, sem executar o gate MMIO. GNU de 623 palavras.
+  [Escopo e reprodução](../docs/newtime-record-hzc2.md).
+
 - `inspect_newtime_hzc2.py`, `check_newtime_gnu.py`,
   `emulate_newtime_qemu.py` e `test_newtime_hzc2.py`: sboot HZC2 exato,
   leitor ECT/NEWTIME com limites, 353 palavras GNU, parser original e

@@ -195,3 +195,14 @@ estava running no merge; nesta continuação foi conferida completed, sem
 achados ou pendências nesse mesmo head. Merge normal em
 `be47018c54773836d493f21e761a12bd8faef237`, main local sincronizada.
 Aliases/preservação condicionais; sem handshake ou registro físico observado.
+
+## PR #18 — tabela ECT/NEWTIME e prefixo original no QEMU
+
+Head `a7c19d09fc1948d38b707fffd7565ecadd291bb2`, revisão própria
+5640103451 concluída sem bloqueadores. Dezoito blobs e árvore conferidos;
+56 casos QEMU, GNU353 palavras/50 alvos/24 operandos, 80 testes de host
+e nove recusas CLI passaram. Sem threads ou falhas CI reportadas.
+A revisão automática estava running no merge; a consulta posterior
+confirmou completed sem achados ou pendências no mesmo head. Merge normal
+em `e9a8344a9a4975a63c6970bf964bb74198196b5c`, main sincronizada.
+Bindings de laboratório; sem execução física, registro real ou FDT final.

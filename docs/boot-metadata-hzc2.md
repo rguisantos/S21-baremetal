@@ -34,6 +34,11 @@ embutida e executou o parser e o prefixo até 0x19694 no QEMU. O frame+136
 e as 16 células da linha foram conferidos em bindings de laboratório;
 isso não comprova preservação pelo corpo posterior ou execução no aparelho.
 
+O [rastreio posterior do registro](newtime-record-hzc2.md) conferiu o
+primeiro u64 no retorno direto do callback em blocos originais com ramos
+do gate fornecidos pelo harness. O wrapper encaminha códigos de erro a
+outro helper; seus efeitos e a preservação física permanecem pendentes.
+
 O slot de entrada pode conter o marcador temporário 0xcafe da
 [etapa anterior](bl2-geometry-record-hzc2.md); não convertê-lo em geometria
 real. Passagem pelo callback, binding e retorno normal são condicionais.

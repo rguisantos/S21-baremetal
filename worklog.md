@@ -1793,3 +1793,60 @@ do QEMU. py_compile,291 links locais e diff --check passaram. Documentação,
 índices, catálogo, roadmap e integração do PR17 organizados. Sem execução
 física, observação DRAM, capacidadeRAM ou FDT final. Próximo: alocador,
 gates e escritas posteriores; corroborar bindings/aliases ACPM.
+
+## 2026-10-24 — construção condicional do registro NEWTIME
+
+Continuação da main e9a8344, PR #18 revisado/mergeado; revisão automática
+posterior completed sem achados no head a7c19d0. Checkout inicial limpo;
+branch feat/newtime-record-lifecycle. Mantido o sboot HZC2 exato e os
+limites entre fonte, modelo, execução de laboratório e estado físico.
+
+Sufixo19698..19a24: versões ECT/NEWTIME em R+8/+12, diretório em R+1a0,
+16 descritores de16 bytes até R+2a0; dados a partir de R+2a0. O cálculo W
+para n=16 dá capacidade2160 e fim R+2400. Campo de tamanho usado em R+16
+só é publicado no sucesso. Lacunas não são zeradas. R é o ponteiro ativo
+de30520; hipótese de base estável e regiões disjuntas mantida explícita.
+
+Folha18068 recebe pedido signed W, arredonda o próximo cursor a4, grava
+31a50 antes da comparação unsigned com31a58, retorna ponteiro antigo sem
+realinhá-lo e estaciona em18090 se exceder. Não retorna NULL nem desfaz
+escritas. Pedidos das tabelas reais são positivos e pequenos; não se
+atribuiu robustez geral ao alocador.
+
+Gate158609bc[31] relido em19774 a cada iteração. Para índices0..8, ramo
+ativo ajusta chave em+3 se nibble8, senão−3 em u64. Índices9..15 ignoram
+a transformação. Foram enumeradas22 linhas×512 sequências efetivas:
+8512 caminhos completos e2752 retornos4 por chave ausente, zero parques
+do alocador nesses dados. Tamanho usado nos completos1da0..22dc, folga
+mínima292 bytes. As contagens não são probabilidades ou amostras físicas.
+
+Nove chaves ausentes:3128,312b,3148,3248,4248,4348,5148,5248,5348.
+Linha3 não completa nenhum dos512 ramos no bloco embutido, sem presumir
+que seja selecionada no telefone. Erro4 ocorre após escritas anteriores
+e não publica o tamanho final; registro pode estar parcialmente gravado.
+Sob base/intervalos preservados, as escritas posteriores do callback não
+tocam seu primeiro u64. Wrapper2f6c0 encaminha status1/3/4 a1fdb8 com27,
+status2 com5; outros retornam W0−3, inclusive0→fffffffd. Não executado
+o helper1fdb8; seus efeitos permanecem fora da preservação conferida.
+
+Novo ensaio QEMU materializa metadados no host e executa prefixo, blocos
+originais, helpers e epílogo. Para em19770 antes do endereço/LDR/teste do
+gate e escolhe explicitamente PC19788 ou19810: não há leitura MMIO,
+resposta de registrador injetada ou execução do gate. Dois deltas de RAM,
+40000000/40200000, com bindings de laboratório e nenhuma instrução
+alterada. 96 combinações representativas e duas entradas bit63/low32cafe
+por colocação:196 casos,142 retornos0 e54 retornos4. Registro completo
+de2400 bytes comparado byte a byte, incluindo lacunas e erros parciais;
+primeiro u64 preservado após retorno, ABI/SP e guardas conferidos. Código,
+fonte ECT e metadados intactos. Seis execuções extras da folha18068
+conferem encaixe, arredondamento e parque com cursor já avançado.
+
+GNU2.44 conferiu270 palavras novas/24 alvos/37 operandos, além das353
+palavras anteriores, total623. Relatórios estático/GNU reproduzidos byte
+a byte; 12 testes novos e80 existentes passaram. Nove recusasCLI dos
+três comandos (curta/longa/alterada) exit2 sem JSON antes do QEMU;
+py_compile,295 links locais e diff --check passaram. Documentação,
+índices, catálogo, roadmap e integração do PR18 organizados. Sem callback
+físico, valores do gate/registro, RAM ou FDT final. Próximo: helper1fdb8,
+chamadores e origem da geometria que substitui o marcador; corroborar
+aliases e bindings ACPM.
