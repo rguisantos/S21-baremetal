@@ -69,3 +69,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_epbl_preparation.py` e `test_epbl_preparation.py`: prefixo EPBL, pedido in-place, hipótese nominal de ponteiros e aritmética do dispatcher comum com guarda separada. 18 testes novos; não decifra, executa MMIO ou resolve handlers. [Guia e limites](../docs/epbl-preparation-hzc2.md).
 
 - `inspect_epbl_frontier.py` e `test_epbl_frontier.py`: grafo do prefixo EPBL com cortes antes dos bytes pendentes, expansão de uma tabela fixa e corroboração dos dois produtores de VBAR. 18 testes novos; retorno normal e viabilidade são hipóteses, sem arestas de exceção. [Escopo](../docs/epbl-frontier-hzc2.md).
+
+- `inspect_epbl_protocol.py`, `check_epbl_protocol_gnu.py` e `test_epbl_protocol.py`: buffers/transferências, 177 acessos MMIO, seletores e polling do EPBL HZC2. 33 testes novos; conferência independente de endereços pelo texto GNU. Relatório exige firmware exato, preserva desconhecidos e não executa MMIO, decifra ou liga handlers. [Protocolo e hipóteses](../docs/epbl-protocol-hzc2.md).

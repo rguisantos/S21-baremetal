@@ -1243,3 +1243,48 @@ intervalos e todas as saídas pendentes. README/roadmap/índices atualizados.
 Nenhuma transformação, execução MMIO/firmware ou novo teste QEMU/S21.
 Avanço seguinte depende de preparação/ligação verificáveis ou observação,
 não de repetir modelos com respostas seguras inventadas.
+
+## 2026-10-23 — protocolo EPBL: buffers, palavras DMA e resultados
+
+Passo 1 solicitado após revisão da main ff90d419. BL original recuperado,
+SHA-256 do pacote e sboot conferidos; nenhuma alteração de firmware.
+Novo inspetor stdlib e conferidor GNU, com recortes/hash obrigatórios.
+
+Rastreio liga seed de 32 bytes (candidato 0x469a) ao scratch de 128 bytes,
+32 words enviados ao MMIO e 12 words lidos: primeira saída de 48 bytes.
+Os primeiros 32 viram material da operação seguinte; os 16 restantes vão
+ao campo IV. Request origem=destino 0x02028700, extensão 0xb6e0, modo 1,
+direção 1, controle 0xfab. AES-256-CBC é inferência corroborada pelos bits
+SSS publicados; não binding HZC2 ou material real recuperado.
+
+Pares origem/destino do consumidor demonstram ordem alto32/baixo32/tamanho.
+Aplicá-la às palavras 0/0x1fc00/0x3fc da primeira etapa indica candidato
+[0x1fc00,0x1fffc), 1020 bytes. Essa interpretação corrige a leitura inicial
+exploratória de endereço zero/tamanho 0x1fc00. Palavras brutas e inferência
+ficam separadas; não se declarou ROM, fusíveis, RAM ou conteúdo conhecido.
+
+Wrapper zera somente contadores do contexto; neste percurso eles evitam
+ler estado não inicializado. O ramo final lê oito words/32 bytes e os
+compara ao candidato EBHS+4. Status internos e cinco polls limitados foram
+conferidos; DMA tem releitura após o limite. Nenhuma duração física inferida.
+
+Fontes primárias SSS/Exynos9830 fixadas por commit/blob. Um ensaio com a
+chave/IV públicos Exynos9830 não coincidiu com o registro sob hipótese
+SHA-256; não gerou plaintext verificado ou binário publicado. Fonte HASH
+correspondente, dados da entrada e saída real de 48 bytes continuam abertos.
+
+33 testes novos + 36 regressões: 69 PASS. GNU 2.44 coincide em 1095 palavras,
+114 destinos e 177 endereços/larguras/operações MMIO (38 leituras/139 escritas).
+Conferidor independente interpreta texto GNU para endereços; não executa
+fluxo de buffers ou hardware. Documentação/índices/roadmap atualizados.
+Sem novo QEMU/S21, sem mudança R10/shim, sem ligação vetorial/SMC. Próxima
+lacuna: binding/conteúdo da entrada candidata, semântica de 0x19 ou saída
+observada, antes de validar transformação e handlers. Observação física
+segue como frente separada; não repetidas coletas shell bloqueadas.
+
+## 2026-10-23 — orientação permanente de commits e organização
+
+Usuário determinou: sempre fazer commit e organizar o repositório. Orientação
+registrada em AGENTS.md, com organização por módulo, atualização dos índices,
+preservação de evidências e validação proporcional às mudanças. Entrega EPBL
+mantida em branch próprio com código, relatório, referências e testes.
