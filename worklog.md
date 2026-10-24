@@ -1146,3 +1146,32 @@ GNU não é segunda execução independente do modelo. Relatórios e testes
 versionados, README/roadmap/índices atualizados. Sem alteração R10 ou nova
 execução QEMU/Samsung; serviços seguros, estado físico e leitura continuam
 abertos. Nenhum novo arquivo necessário para esta investigação estática.
+
+
+## 2026-10-23 — estado anterior do descritor: cópias fixas e limite LK
+
+Checkout restaurado do GitHub após manutenção do ambiente; pacote BL original
+recuperado e conferido pelo SHA-256 5b48c27798b103ec906112fc4baad1aacd8d39c970dae6c478d3bd559e2cf31f.
+sboot descomprimido com tamanho/hash originais, sem alteração de firmware.
+
+Inspetor vinculado por hash confere sete helpers BL2: três LDR X literais,
+corpo de cópia W/pares X, CMP/B.LT e DSB/ISB/RET exatos. Intervalos positivos
+divisíveis pelo passo, sem tocar memória física. Nenhum destino alcança
+[0xe7ffe000,0xe7ffe01c). Isso exclui esses corpos/literais, não stores
+arbitrários, preparação anterior ou efeitos seguros. Inicializador não localizado.
+
+Construtores 0x1643c e 0x36154 têm os mesmos 140 bytes; modelo anterior
+reproduz argumentos/campos e as mesmas lacunas nos quatro modos. Censo B/BL
+alinhado encontra uma chamada direta ao primeiro e nenhuma ao segundo; não
+prova duplicata inalcançável. Scan restrito MOVZ/MOVK encontra quatro
+testemunhos para o descritor e quatro LK para 0xe7fffe00, valor distinto
+0x1e00 acima, usado em limites SUB/CMP/branches e não em stores nesse recorte.
+Nenhum dos dois valores aparece como literal LE contíguo de quatro/oito bytes;
+não é prova contra outros encodings, aliases ou ponteiros externos.
+
+16 testes novos + 24 regressões: 40 PASS. GNU objdump 2.44 coincide em 165
+palavras/23 destinos relativos e 21 endereços de literais dos helpers.
+Relatórios, saída de testes e nota com intervalos publicados; README, índices
+e roadmap atualizados. O resultado é delimitação de hipóteses, sem preencher
+campos desconhecidos ou aumentar prontidão física. Nenhum ensaio QEMU/Samsung
+repetido. Serviços seguros, posse/coerência e recuperação do registro abertos.

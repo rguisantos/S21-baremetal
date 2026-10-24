@@ -63,3 +63,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_monitor_preparation.py` e `test_monitor_preparation.py`: argumentos dos wrappers BL2, censo B/BL dos helpers de lista e gates constantes no sboot HZC2 exato. 14 testes novos; não executa SMC ou demonstra lista/retornos reais. [Evidência e limites](../docs/monitor-preparation-hzc2.md).
 
 - `inspect_bl2_service_chain.py` e `test_bl2_service_chain.py`: seletor BL2 a partir de X2 explícito, intérprete restrito dos stores do pedido -0xe6 e referências ADRP/pointer iniciais. Campos não escritos ficam desconhecidos; 24 testes novos, sem SMC/MMIO ou escrita física. [Contrato e limites](../docs/bl2-service-chain-hzc2.md).
+
+- `inspect_descriptor_provenance.py` e `test_descriptor_provenance.py`: sete loops fixos de cópia, duplicatas do construtor e testemunhos MOVZ/MOVK; não provam inicialização ou censo geral de escritores. 16 testes novos e 24 regressões. [Escopo e fronteiras](../docs/descriptor-provenance-hzc2.md).

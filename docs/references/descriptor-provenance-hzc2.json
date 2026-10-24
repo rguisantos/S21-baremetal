@@ -1,0 +1,324 @@
+{
+  "date": "2026-10-23",
+  "mode": "static_descriptor_prior_state_audit",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "descriptor_window": [
+    "0xe7ffe000",
+    "0xe7ffe01c"
+  ],
+  "copies_byte_identical": true,
+  "duplicate_constructor_checks": [
+    {
+      "mode": "0x0",
+      "registers_equal": true,
+      "fields_equal": true,
+      "unknown_offsets": []
+    },
+    {
+      "mode": "0x14",
+      "registers_equal": true,
+      "fields_equal": true,
+      "unknown_offsets": [
+        "0x18"
+      ]
+    },
+    {
+      "mode": "0x20",
+      "registers_equal": true,
+      "fields_equal": true,
+      "unknown_offsets": []
+    },
+    {
+      "mode": "0x40",
+      "registers_equal": true,
+      "fields_equal": true,
+      "unknown_offsets": [
+        "0x10",
+        "0x14",
+        "0x18"
+      ]
+    }
+  ],
+  "direct_branch_candidates": {
+    "0x1643c": [
+      {
+        "offset": "0x1cb54",
+        "kind": "bl"
+      }
+    ],
+    "0x36154": []
+  },
+  "literal_byte_matches": {
+    "0xe7ffe000": {
+      "4": [],
+      "8": []
+    },
+    "0xe7fffe00": {
+      "4": [],
+      "8": []
+    }
+  },
+  "wide_address_candidates": [
+    {
+      "movz": "0x1643c",
+      "movk": "0x16448",
+      "register": "x2",
+      "address": "0xe7ffe000"
+    },
+    {
+      "movz": "0x164a8",
+      "movk": "0x164b4",
+      "register": "x2",
+      "address": "0xe7ffe000"
+    },
+    {
+      "movz": "0x36154",
+      "movk": "0x36160",
+      "register": "x2",
+      "address": "0xe7ffe000"
+    },
+    {
+      "movz": "0x361c0",
+      "movk": "0x361cc",
+      "register": "x2",
+      "address": "0xe7ffe000"
+    },
+    {
+      "movz": "0x12e220",
+      "movk": "0x12e224",
+      "register": "x1",
+      "address": "0xe7fffe00"
+    },
+    {
+      "movz": "0x12e2a0",
+      "movk": "0x12e2a4",
+      "register": "x1",
+      "address": "0xe7fffe00"
+    },
+    {
+      "movz": "0x12e6d8",
+      "movk": "0x12e6dc",
+      "register": "x0",
+      "address": "0xe7fffe00"
+    },
+    {
+      "movz": "0x12e93c",
+      "movk": "0x12e940",
+      "register": "x1",
+      "address": "0xe7fffe00"
+    }
+  ],
+  "fixed_copy_loops": [
+    {
+      "start": "0x161b0",
+      "end_exclusive": "0x161d8",
+      "literal_offsets": [
+        "0x16338",
+        "0x16340",
+        "0x16348"
+      ],
+      "source": [
+        "0x2120000",
+        "0x2122000"
+      ],
+      "destination": [
+        "0x2036000",
+        "0x2038000"
+      ],
+      "stride": 16,
+      "iterations": 512,
+      "bytes": 8192,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "538d91ad622e34739165f2ca9b45fa4f71d3127a364c02498898f2afb99fb8c2"
+    },
+    {
+      "start": "0x161d8",
+      "end_exclusive": "0x16200",
+      "literal_offsets": [
+        "0x16350",
+        "0x16358",
+        "0x16360"
+      ],
+      "source": [
+        "0x203d000",
+        "0x207a000"
+      ],
+      "destination": [
+        "0x2175000",
+        "0x21b2000"
+      ],
+      "stride": 4,
+      "iterations": 62464,
+      "bytes": 249856,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "4bfce62cbd3f88872c31133cb0c91d2642cd9c44ea3b5ca274e9ee4803abae3c"
+    },
+    {
+      "start": "0x16200",
+      "end_exclusive": "0x16228",
+      "literal_offsets": [
+        "0x16360",
+        "0x16368",
+        "0x16318"
+      ],
+      "source": [
+        "0x2175000",
+        "0x21b2000"
+      ],
+      "destination": [
+        "0x90014000",
+        "0x90051000"
+      ],
+      "stride": 4,
+      "iterations": 62464,
+      "bytes": 249856,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "47d9aaf95038f06ecd82e9f5909e09a30a2eb7105ef595e7e8ef5c95d7c63c20"
+    },
+    {
+      "start": "0x16228",
+      "end_exclusive": "0x16250",
+      "literal_offsets": [
+        "0x16340",
+        "0x16370",
+        "0x16350"
+      ],
+      "source": [
+        "0x2122000",
+        "0x2127000"
+      ],
+      "destination": [
+        "0x203d000",
+        "0x2042000"
+      ],
+      "stride": 16,
+      "iterations": 1280,
+      "bytes": 20480,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "c04859f1001dd534f33fb50c9333597ef2ab3a6c6fe61716de33eadcd779f086"
+    },
+    {
+      "start": "0x16250",
+      "end_exclusive": "0x16278",
+      "literal_offsets": [
+        "0x16370",
+        "0x16378",
+        "0x16380"
+      ],
+      "source": [
+        "0x2127000",
+        "0x2151000"
+      ],
+      "destination": [
+        "0x2048800",
+        "0x2072800"
+      ],
+      "stride": 16,
+      "iterations": 10752,
+      "bytes": 172032,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "c9a2d7b1b01e3491528883aebedda30b1c156f262c8ad63e6f9146e306e167d8"
+    },
+    {
+      "start": "0x16278",
+      "end_exclusive": "0x162a0",
+      "literal_offsets": [
+        "0x16388",
+        "0x16390",
+        "0x16398"
+      ],
+      "source": [
+        "0x2153000",
+        "0x2167000"
+      ],
+      "destination": [
+        "0x90000000",
+        "0x90014000"
+      ],
+      "stride": 16,
+      "iterations": 5120,
+      "bytes": 81920,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "ce6436c72704c89a33dddf42d6449540d23595dcb7c105808f443a7230c4d7d9"
+    },
+    {
+      "start": "0x162b4",
+      "end_exclusive": "0x162dc",
+      "literal_offsets": [
+        "0x16390",
+        "0x16360",
+        "0x163a0"
+      ],
+      "source": [
+        "0x2167000",
+        "0x2175000"
+      ],
+      "destination": [
+        "0x15b00000",
+        "0x15b0e000"
+      ],
+      "stride": 16,
+      "iterations": 3584,
+      "bytes": 57344,
+      "destination_overlaps_descriptor": false,
+      "loop_execution_observed": false,
+      "code_sha256": "56a58a7f4381b33efe61e497b96ef344f73902650e9fb0e2e0a0788976524cc9"
+    }
+  ],
+  "lk_limit": {
+    "value": "0xe7fffe00",
+    "distance_above_descriptor": "0x1e00",
+    "use": "SUB / CMP / conditional branch, not a descriptor store",
+    "memory_ownership_proven": false
+  },
+  "blocks": {
+    "constructor_a": {
+      "start": "0x1643c",
+      "end_exclusive": "0x164c8",
+      "sha256": "9cfa09172cc3cf54801df36b1052fbf88dbc531a81d0dff6bd94dd29496c179e"
+    },
+    "constructor_b": {
+      "start": "0x36154",
+      "end_exclusive": "0x361e0",
+      "sha256": "9cfa09172cc3cf54801df36b1052fbf88dbc531a81d0dff6bd94dd29496c179e"
+    },
+    "lk_limit_0": {
+      "start": "0x12e220",
+      "end_exclusive": "0x12e240",
+      "sha256": "410df6cf164020d85618bd8a351072b70f2fefe82fc29cba3eebbd75a6ea1190"
+    },
+    "lk_limit_1": {
+      "start": "0x12e2a0",
+      "end_exclusive": "0x12e2b8",
+      "sha256": "78ff436c4c744e52f9c197a006e1a36338690e272db7ae0fbabb77ca53e77bcc"
+    },
+    "lk_limit_2": {
+      "start": "0x12e6d8",
+      "end_exclusive": "0x12e6ec",
+      "sha256": "a08480e75fb7990abb23a8a6c99ee52e2f6a2870f38e4b59bcd6f14421e798df"
+    },
+    "lk_limit_3": {
+      "start": "0x12e93c",
+      "end_exclusive": "0x12e954",
+      "sha256": "a441c5747678a3fff3182aee9427284a30311074eb13fec601c6fb31d42c83f9"
+    }
+  },
+  "initializer_identified": false,
+  "prior_field_values_known": false,
+  "complete_writer_census": false,
+  "firmware_executed": false,
+  "physical_device_tested": false,
+  "limitations": [
+    "Only seven fixed copy bodies and declared MOVZ/MOVK/LDR literal forms are matched",
+    "Aligned word candidates do not prove code reachability or exclude other encodings/aliases",
+    "No direct B/BL to a copy does not prove that copy unreachable after relocation or via pointers",
+    "Non-overlap of selected loops does not exclude arbitrary writes, secure service effects or earlier stages",
+    "LK comparison limit is not RAM ownership, free memory or a descriptor initialization guarantee"
+  ]
+}

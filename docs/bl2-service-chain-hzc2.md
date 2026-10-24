@@ -178,3 +178,5 @@ onde houver bytes verificáveis; se a implementação não estiver legível no
 material em disco, registrar essa fronteira em vez de atribuir-lhe um mock.
 Os requisitos físicos do [roadmap](roadmap.md) e o canal para ler o primeiro
 registro continuam pendentes.
+
+A [busca do estado anterior](descriptor-provenance-hzc2.md) conferiu sete cópias fixas e a duplicata do construtor; nenhuma fecha os campos herdados. Também separou o limite LK `0xe7fffe00` do descritor `0xe7ffe000`. Os campos desconhecidos desta análise permanecem desconhecidos.

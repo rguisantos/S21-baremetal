@@ -101,3 +101,5 @@ python3 scripts/inspect_sboot_hzc2.py /caminho/sboot.bin > hzc2-report.json
 Validação: imagem HZC2 aceita; arquivo de quatro bytes, arquivo alterado mantendo tamanho e arquivo com byte extra recusados com saída JSON vazia; SHA do original preservado. O BL positivo da entrada e o BL negativo de 0x1efcd0 foram comparados com a desassemblagem Capstone 5.0.7. O detector externo foi executado somente após leitura do código, com a imagem original e sem extração.
 
 A verificação não altera os resultados anteriores R8/R9/QEMU, não foi uma nova regressão do kernel e não prova SMP ou hardware. O próximo passo útil é conferir o caminho completo LK→kernel e preparar diagnóstico com entrada EL1/EL2 observável; não ampliar para SMP/DECON antes de resolver esse contrato.
+
+Atualização de 2026-10-23: a [auditoria das sete cópias fixas BL2](descriptor-provenance-hzc2.md) registra origem, destino, extensão e passos dos corpos selecionados. Seus destinos não intersectam a janela do descritor -0xe6; isso não é mapa de RAM livre ou validação da sequência física.
