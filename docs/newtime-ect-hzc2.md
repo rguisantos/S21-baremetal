@@ -137,3 +137,8 @@ Próximo: seguir alocador, gates e escritas posteriores ao primeiro store,
 e corroborar bindings/aliases ACPM. O critério condicional do destino AP
 **0x02073600** permanece; nenhum diagnóstico físico, conteúdo real do
 registro, capacidade RAM ou FDT final foi obtido nesta etapa.
+
+A [continuação do registro](newtime-record-hzc2.md) delimita o restante
+do callback sob ramos explícitos: layout, alocação, cópias, tamanho final
+e erros sem rollback. O gate MMIO continua sem amostra e não executa no
+novo ensaio; os efeitos do helper de erro fora do callback seguem abertos.

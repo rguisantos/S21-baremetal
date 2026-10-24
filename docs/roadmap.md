@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #17, be47018](https://github.com/rguisantos/S21-baremetal/commit/be47018c54773836d493f21e761a12bd8faef237).
+[main após revisão/merge do PR #18, e9a8344](https://github.com/rguisantos/S21-baremetal/commit/e9a8344a9a4975a63c6970bf964bb74198196b5c).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -21,7 +21,7 @@ não mudam o estado de validação no telefone.
 | R10 em uma CPU | **Validado no laboratório; pendente no S21** | Main real com carregador EL2 sintético, timer IRQ e cinco recusas; faltam contrato Samsung, memória e acessos reais |
 | Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
-| Construção de RAM no LK / produtor BL2 | **Aritmética conferida; geometria real pendente** | [BL2](bl2-ram-size-hzc2.md): escrita em 0x02038848 e folha original em 66 execuções QEMU. [Registro anterior](bl2-geometry-record-hzc2.md): duas recargas de 0x02073600, marcador/cópias/restaurações condicionais; 70 testes e GNU 148 palavras. Consulta MMIO e reescrita de bases delimitadas; bytes, bindings e respostas reais abertos. Construtor LK: 268 cenários anteriores, sem FDT final |
+| Construção de RAM no LK / produtor BL2 | **Aritmética e registro condicionais conferidos; geometria real pendente** | Folha BL2 original em 66 execuções QEMU. [Registro NEWTIME](newtime-record-hzc2.md): layout de 0x2400, 196 casos QEMU com ramos explícitos, seis da folha do alocador e 92 testes de host. Gate, aliases/bindings, tratamento externo dos erros e slots reais abertos. Construtor LK: 268 cenários anteriores, sem FDT final |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
 | Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
@@ -87,14 +87,14 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 |---|---|---|
 | **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
-| **P2 — memória dinâmica, em paralelo** | Recargas de 0x02073600 identificadas; seguir quem produz seu primeiro u64 e os gates que o preservam/substituem. Manter demais slots, escritores/bindings, soc_info/SEC_PGTBL/Harx e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
+| **P2 — memória dinâmica, em paralelo** | Construção NEWTIME delimitada sob ramos explícitos; seguir os efeitos do helper de erro e a origem da geometria que substitui o marcador. Corroborar aliases/bindings; manter demais slots, soc_info/SEC_PGTBL/Harx e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
 | **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica na frente de memória: seguir os produtores da
-primeira palavra do registro em `0x02073600` e seus gates de preservação.**
+**Próxima entrega técnica na frente de memória: seguir o tratamento dos
+retornos NEWTIME e a origem da geometria que substitui o marcador.**
 O [consumidor Linux](bl2-kernel-consumers-hzc2.md) lê essa palavra como
 `dram_type`, imprime `DEVFREQ : dram:` e compara uma constante também
 presente no BL2 HZC2. Buscar observação correspondente em logs já
@@ -113,8 +113,13 @@ amostra recebida e preservação seguem condicionais. A
 57 descritores, 22 seletores especiais incluindo 0xcafe, parser original
 e prefixo até o primeiro store em 56 casos QEMU. O argumento/frame e as
 16 células selecionadas foram conferidos sob bindings de laboratório;
-80 testes de host e GNU de 353 palavras passaram. Próximo: alocador, gates e
-escritas posteriores, além de corroborar aliases/bindings físicos.
+80 testes de host e GNU de 353 palavras passaram. A
+[continuação do registro](newtime-record-hzc2.md) delimita layout de 0x2400,
+alocador, cópias e erros sem rollback: 11264 combinações no modelo, 196
+casos QEMU com ramos fornecidos, seis casos da folha e 92 testes de host.
+O gate é reamostrado e segue sem valores reais; o primeiro u64 foi
+conferido no retorno direto nesses bindings. Próximo: efeitos de 0x1fdb8,
+chamadores e aliases/bindings físicos, com o FDT final ainda aberto.
 Os argumentos bootstat no LK também
 foram ligados: BL1 recebe literal 100; nomes não comprovam durações.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica

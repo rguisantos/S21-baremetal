@@ -1,0 +1,401 @@
+{
+  "mode": "conditional_newtime_record_lifecycle",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "prefix_instruction_index_sha256": "72f162c20138f76ddd61cbe79c0e8bd6f7bd16dcbe1525767aaf9c2e7ff58ce3",
+  "layout": {
+    "record_base": "unknown_live_pointer_at_0x30520",
+    "original_input_u64_offset": 0,
+    "ect_version_bytes": [
+      8,
+      12
+    ],
+    "newtime_version_bytes": [
+      12,
+      16
+    ],
+    "final_used_u32_offset": 16,
+    "directory_pointer_u64_offset": 32,
+    "directory_offset": "0x1a0",
+    "descriptor_count": 16,
+    "descriptor_stride": 16,
+    "descriptor_fields": [
+      "key_low32",
+      "payload_offset_low32",
+      "columns_u32",
+      "rows_u32"
+    ],
+    "data_start_offset": "0x2a0",
+    "data_capacity": "0x2160",
+    "record_end_offset": "0x2400",
+    "reserved_gaps_zeroed": false
+  },
+  "gates": {
+    "register": "0x158609bc",
+    "bit": 31,
+    "read": "0x19774",
+    "resampled_each_iteration": true,
+    "sample_sequence_observed": false,
+    "effective_index_interval_inclusive": [
+      0,
+      8
+    ],
+    "transformation": "if selected and index<=8: low_nibble_8 ? key+3 : key-3 (u64)",
+    "branch_choices_not_register_values": true
+  },
+  "allocator": {
+    "setup": "0x18054",
+    "leaf": "0x18068",
+    "cursor_cell": "0x31a50",
+    "limit_cell": "0x31a58",
+    "signed_request_bits": 32,
+    "alignment_bytes": 4,
+    "cursor_written_before_check": true,
+    "exhaustion": "park_at_0x18090; no_NULL_return_or_rollback"
+  },
+  "survey": {
+    "effective_branch_sequences": 512,
+    "row_count": 22,
+    "scenarios": 11264,
+    "counts": {
+      "complete": 8512,
+      "missing_key": 2752
+    },
+    "per_row": [
+      {
+        "row": 0,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 1,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 2,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 3,
+        "counts": {
+          "missing_key": 512
+        },
+        "min_complete_used_bytes": null,
+        "max_complete_used_bytes": null
+      },
+      {
+        "row": 4,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7756,
+        "max_complete_used_bytes": 8924
+      },
+      {
+        "row": 5,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 6,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 7,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 8,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 9,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 10,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7756,
+        "max_complete_used_bytes": 8924
+      },
+      {
+        "row": 11,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7688,
+        "max_complete_used_bytes": 8856
+      },
+      {
+        "row": 12,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7752,
+        "max_complete_used_bytes": 8920
+      },
+      {
+        "row": 13,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7640,
+        "max_complete_used_bytes": 8808
+      },
+      {
+        "row": 14,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7584,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 15,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7744,
+        "max_complete_used_bytes": 8912
+      },
+      {
+        "row": 16,
+        "counts": {
+          "complete": 512
+        },
+        "min_complete_used_bytes": 7624,
+        "max_complete_used_bytes": 8792
+      },
+      {
+        "row": 17,
+        "counts": {
+          "complete": 64,
+          "missing_key": 448
+        },
+        "min_complete_used_bytes": 7636,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 18,
+        "counts": {
+          "complete": 64,
+          "missing_key": 448
+        },
+        "min_complete_used_bytes": 7636,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 19,
+        "counts": {
+          "complete": 64,
+          "missing_key": 448
+        },
+        "min_complete_used_bytes": 7636,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 20,
+        "counts": {
+          "complete": 64,
+          "missing_key": 448
+        },
+        "min_complete_used_bytes": 7636,
+        "max_complete_used_bytes": 8752
+      },
+      {
+        "row": 21,
+        "counts": {
+          "complete": 64,
+          "missing_key": 448
+        },
+        "min_complete_used_bytes": 7636,
+        "max_complete_used_bytes": 8752
+      }
+    ],
+    "missing_keys": [
+      {
+        "key": "0x3128",
+        "scenarios": 128,
+        "witness": {
+          "row": 3,
+          "branch_mask": 16,
+          "failed_index": 4,
+          "descriptors_committed": 4,
+          "cursor_before_error": "0xffc"
+        }
+      },
+      {
+        "key": "0x312b",
+        "scenarios": 128,
+        "witness": {
+          "row": 3,
+          "branch_mask": 0,
+          "failed_index": 4,
+          "descriptors_committed": 4,
+          "cursor_before_error": "0xffc"
+        }
+      },
+      {
+        "key": "0x3148",
+        "scenarios": 256,
+        "witness": {
+          "row": 3,
+          "branch_mask": 8,
+          "failed_index": 3,
+          "descriptors_committed": 3,
+          "cursor_before_error": "0x7dc"
+        }
+      },
+      {
+        "key": "0x3248",
+        "scenarios": 1280,
+        "witness": {
+          "row": 17,
+          "branch_mask": 8,
+          "failed_index": 3,
+          "descriptors_committed": 3,
+          "cursor_before_error": "0x7dc"
+        }
+      },
+      {
+        "key": "0x4248",
+        "scenarios": 128,
+        "witness": {
+          "row": 19,
+          "branch_mask": 32,
+          "failed_index": 5,
+          "descriptors_committed": 5,
+          "cursor_before_error": "0x145c"
+        }
+      },
+      {
+        "key": "0x4348",
+        "scenarios": 512,
+        "witness": {
+          "row": 17,
+          "branch_mask": 32,
+          "failed_index": 5,
+          "descriptors_committed": 5,
+          "cursor_before_error": "0x145c"
+        }
+      },
+      {
+        "key": "0x5148",
+        "scenarios": 64,
+        "witness": {
+          "row": 19,
+          "branch_mask": 128,
+          "failed_index": 7,
+          "descriptors_committed": 7,
+          "cursor_before_error": "0x19fc"
+        }
+      },
+      {
+        "key": "0x5248",
+        "scenarios": 64,
+        "witness": {
+          "row": 21,
+          "branch_mask": 128,
+          "failed_index": 7,
+          "descriptors_committed": 7,
+          "cursor_before_error": "0x19fc"
+        }
+      },
+      {
+        "key": "0x5348",
+        "scenarios": 192,
+        "witness": {
+          "row": 17,
+          "branch_mask": 128,
+          "failed_index": 7,
+          "descriptors_committed": 7,
+          "cursor_before_error": "0x19fc"
+        }
+      }
+    ]
+  },
+  "first_u64_preservation": {
+    "later_direct_record_fields_start_at": 8,
+    "descriptor_and_payload_regions_disjoint_from_first_u64": true,
+    "conditional_on_stable_base_and_nonoverlapping_memory": true,
+    "physical_preservation_verified": false
+  },
+  "errors": {
+    "missing_key_code": 4,
+    "prior_stores_rolled_back": false,
+    "final_used_field_written_on_code4": false,
+    "error_implies_untouched_record": false
+  },
+  "wrapper": {
+    "file": "0x2f6c0",
+    "callback_status_mapping": {
+      "0": {
+        "returned_w0": 4294967293,
+        "returns_directly": true
+      },
+      "1": {
+        "tail_target": "0x1fdb8",
+        "w0_argument": 27,
+        "returns_directly": false
+      },
+      "2": {
+        "tail_target": "0x1fdb8",
+        "w0_argument": 5,
+        "returns_directly": false
+      },
+      "3": {
+        "tail_target": "0x1fdb8",
+        "w0_argument": 27,
+        "returns_directly": false
+      },
+      "4": {
+        "tail_target": "0x1fdb8",
+        "w0_argument": 27,
+        "returns_directly": false
+      },
+      "5": {
+        "returned_w0": 2,
+        "returns_directly": true
+      }
+    },
+    "handler_effects_on_record_verified": false
+  },
+  "instructions": {
+    "new_words": 270,
+    "suffix_index_sha256": "9e14f887b84aad2ea581978fef2e1dc52dc6126debd27d117a7b4ffb9739194f"
+  },
+  "firmware_executed": false,
+  "hardware_gate_or_record_observed": false,
+  "final_ram_or_fdt_verified": false
+}
