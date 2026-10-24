@@ -15,6 +15,11 @@ bruto `0x021183d0` corresponde nominalmente a `0x2e3d0`, com o delta
 não se atribuiu nome de registrador, identidade de silício ou valor real
 ao nibble.
 
+Continuação por fontes: o [driver CHIPID Exynos 2100](bl2-kernel-consumers-hzc2.md)
+corrobora 0x10000010[23:20] como `main_rev`. Sob o binding nominal acima,
+o gate é `main_rev == 1`; a revisão efetiva e a tabela ativa permanecem
+sem observação. Essa identificação não muda a evidência binária anterior.
+
 `CMP W0,1` / `B.NE 0x2d2c4` seleciona o trecho de 15 instruções em
 `0x2d288–0x2d2c4`. Ele reconstrói valores com ADRP, MOVZ/MOVK e ADD,
 incluindo ADD com `LSL #12`, e escreve **cinco u64**:

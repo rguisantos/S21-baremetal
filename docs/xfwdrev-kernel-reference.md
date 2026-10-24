@@ -7,6 +7,12 @@ Revisão fixada **756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0**, de
 Foram lidos 15 arquivos selecionados, sem executar os scripts de build.
 [Hashes, configurações e resultados do host](references/xfwdrev-rebased-11-20261024.json).
 
+Após o usuário esclarecer o interesse nas menções a BL2, foi feita uma
+[investigação específica dos consumidores anteriores ao kernel](bl2-kernel-consumers-hzc2.md).
+Ela encontrou a leitura DRAM de 0x02073600, constante comum ao BL2 HZC2,
+parâmetros bootstat e a identidade do campo de revisão principal. Esses
+achados complementam o recorte de build/DTS abaixo.
+
 ## O que esta branch oferece
 
 O [Makefile fixado](https://github.com/xfwdrev/android_kernel_samsung_ex2100/blob/756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0/Makefile)

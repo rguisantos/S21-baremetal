@@ -6,6 +6,12 @@ A primeira palavra de geometria tem dois caminhos de recarga a partir de
 **`0x02073600`**. O endereço de origem foi recuperado, mas seus bytes no
 aparelho e sua correspondência a bytes do arquivo continuam desconhecidos.
 
+Continuação: um [consumidor Linux do mesmo registro](bl2-kernel-consumers-hzc2.md)
+lê os primeiros oito bytes como `dram_type` e os imprime em `DEVFREQ : dram:`.
+A constante 0x0001000860000110 também é comparada com o primeiro slot no
+BL2 HZC2. Isso fornece uma pista de observação, mantendo o produtor e os
+valores runtime desconhecidos.
+
 Complementa o [produtor do total](bl2-ram-size-hzc2.md), a
 [consulta](bl2-geometry-query-hzc2.md) e a
 [reescrita das bases](bl2-query-base-rewrite-hzc2.md). O novo inspetor é
