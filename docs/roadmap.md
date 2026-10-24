@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #13, 69940c8](https://github.com/rguisantos/S21-baremetal/commit/69940c8e594fc490e1008533aefaab33bda1307c).
+[main após revisão própria/merge do PR #14, 51a8828](https://github.com/rguisantos/S21-baremetal/commit/51a88288dfdedcb90918b502abb05a64f60942bc).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -95,6 +95,12 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 
 **Próxima entrega técnica na frente de memória: seguir os produtores da
 primeira palavra do registro em `0x02073600` e seus gates de preservação.**
+O [consumidor Linux](bl2-kernel-consumers-hzc2.md) lê essa palavra como
+`dram_type`, imprime `DEVFREQ : dram:` e compara uma constante também
+presente no BL2 HZC2. Buscar observação correspondente em logs já
+disponíveis, preservando a distinção entre a fonte pública e o binário
+em execução. CHIPID corrobora o gate das bases como `main_rev == 1`, sem
+medir esse valor; bootstat oferece outra pista de parâmetros de tempo.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica
 recargas de 64 bits para o primeiro slot, com nibble 4–7 copiado a um byte
 de estado. O literal intermediário `0xcafe` e a chamada nominal da função

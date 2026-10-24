@@ -1,0 +1,277 @@
+{
+  "mode": "kernel_bl2_consumers_source_and_firmware_cross_reference",
+  "date": "2026-10-24",
+  "repository": "xfwdrev/android_kernel_samsung_ex2100",
+  "branch": "rebased-11",
+  "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+  "source_inputs": {
+    "drivers/samsung/sec_bootstat.c": {
+      "size": 14417,
+      "sha256": "3c5cfd1dc20dbc00fb7e03206252651041743b16efdd18d2ce9e5aefaa78d8a7",
+      "git_blob_sha1": "4ec45242cc372a33e944f94c25fedab0fb2ecbfa"
+    },
+    "drivers/samsung/sec_bootstat.h": {
+      "size": 1241,
+      "sha256": "cfb4ae9fb6cf61358bf2056c58bd86d810d775fcfac93d788165e2969b9930a3",
+      "git_blob_sha1": "55a35885d6218e773ef7879846170da39e37b9b0"
+    },
+    "drivers/gpu/arm/exynos/include/gpex_clock.h": {
+      "size": 6902,
+      "sha256": "e24e78e38ba3a59171f8ed48184742ff6dbdf2f7e3d65ce078a7c9660a0d6aed",
+      "git_blob_sha1": "e0f74f3f65384d970cdb83f051f8c9453fca3acf"
+    },
+    "drivers/gpu/arm/exynos/frontend/gpex_clock.c": {
+      "size": 16660,
+      "sha256": "8d0edb9693e259f8d6a004c39d020811cf1288711274be5a226bbc7ae3e7509f",
+      "git_blob_sha1": "6d06ec3d439af24cea3e0acba651d11caabd8a04"
+    },
+    "drivers/gpu/arm/exynos/backend/gpexbe_clock.c": {
+      "size": 2818,
+      "sha256": "7b4067a99af680a99e3ebb35f7c1da6c501d055a4acdf1293c2be0c718cb608e",
+      "git_blob_sha1": "a463ea0e9e24edcfdb0986f13260436f443d4449"
+    },
+    "drivers/soc/samsung/cal-if/cal-if.c": {
+      "size": 12217,
+      "sha256": "b89ce12bfb02d5209e2e9b24dc206b7831e6696fd760540f2002760f2dd78b60",
+      "git_blob_sha1": "b675229fbfe56b010f906781f55c9cbc21ace059"
+    },
+    "drivers/soc/samsung/cal-if/vclk.c": {
+      "size": 14792,
+      "sha256": "eb8a452d55fa5c89e2743ec7c17a11740038d877540cfb452b9a74102098371c",
+      "git_blob_sha1": "78057e0a873f1e4f7f161eccfadf62f87794b583"
+    },
+    "drivers/devfreq/exynos/exynos-devfreq.c": {
+      "size": 83172,
+      "sha256": "1133eb69f70fed266d34a8dd1718ba5b879119057ca4eb6fc293341fe0b2f7f6",
+      "git_blob_sha1": "d831423304e66047331272eb791f66d30a878e66"
+    },
+    "drivers/soc/samsung/exynos-chipid_v2.c": {
+      "size": 11649,
+      "sha256": "8737bdd3ee19733268f00bd23c42fbb75b0d6f89e8ab2d2473670c6a844aaf30",
+      "git_blob_sha1": "58b9cef2f76baabeb7e4329a06cb9b93db9e0558"
+    },
+    "include/linux/soc/samsung/exynos-soc.h": {
+      "size": 1888,
+      "sha256": "91614a18349948279943b6a3fad34d64b5c1d8087fb5e4d1092057bbe19dd1c6",
+      "git_blob_sha1": "ed3e15029f04bf7e0751d048c99cec26f5f8e1b8"
+    },
+    "include/dt-bindings/soc/samsung,sysmmu-v8.h": {
+      "size": 1242,
+      "sha256": "54471e654a054f4dfbb6a5228080385d191d5c422ca83d0b5bca3f68be654432",
+      "git_blob_sha1": "2d422e05dae1e9866eb0bfcbf408fc7f684182e6"
+    },
+    "include/linux/bio.h": {
+      "size": 21429,
+      "sha256": "945b58115b4400d6533249b725264cde038852295d420531672aeedaf3bbc35f",
+      "git_blob_sha1": "b7ef53b42786966e2ace73fa37039d56ca3a77be"
+    }
+  },
+  "search": {
+    "provider": "GitHub code search",
+    "default_branch_verified": "rebased-11",
+    "query": "bl2 (also BL2, case-insensitive indexed results)",
+    "returned_file_count": 75,
+    "returned_paths": [
+      "include/linux/bio.h",
+      "drivers/samsung/sec_bootstat.c",
+      "arch/arm/boot/dts/tegra30-cardhu-a04.dts",
+      "include/dt-bindings/soc/samsung,sysmmu-v8.h",
+      "include/linux/mfd/aat2870.h",
+      "drivers/mfd/aat2870-core.c",
+      "drivers/isdn/hardware/mISDN/hfc_multi.h",
+      "drivers/gpu/arm/exynos/include/gpex_clock.h",
+      "include/acpi/actbl2.h",
+      "lib/raid6/recov_neon_inner.c",
+      "drivers/watchdog/max77620_wdt.c",
+      "drivers/misc/cardreader/rts5229.c",
+      "arch/x86/pci/common.c",
+      "drivers/soc/samsung/cal-if/pmucal_system.h",
+      "drivers/net/ethernet/netronome/nfp/nfp_main.h",
+      "drivers/soc/samsung/exynos-pm.c",
+      "drivers/net/ethernet/netronome/nfp/nfp_net_main.c",
+      "include/soc/samsung/exynos-pm.h",
+      "drivers/net/ethernet/netronome/nfp/nfp_net_sriov.c",
+      "arch/m68k/ifpsp060/MISC",
+      "drivers/scsi/mvsas/mv_94xx.h",
+      "drivers/net/wireless/mediatek/mt76/mt7603/regs.h",
+      "drivers/gpu/drm/gma500/accel_2d.c",
+      "arch/m68k/include/asm/mcfwdebug.h",
+      "drivers/net/ethernet/atheros/alx/reg.h",
+      "include/acpi/actbl.h",
+      "drivers/block/swim.c",
+      "lib/mpi/longlong.h",
+      "drivers/video/fbdev/ocfb.c",
+      "drivers/soc/samsung/cal-if/exynos9820/flexpmu_cal_define_exynos9820.h",
+      "drivers/media/pci/ttpci/dvb_filter.h",
+      "include/linux/mfd/max77620.h",
+      "drivers/usb/host/xhci.h",
+      "drivers/platform/x86/fujitsu-laptop.c",
+      "drivers/soc/samsung/cal-if/exynos9820/cal_data.c",
+      "drivers/net/wireless/mediatek/mt76/mt7603/mac.c",
+      "drivers/mfd/db8500-prcmu.c",
+      "drivers/gpu/drm/sun4i/sun4i_tcon.h",
+      "drivers/staging/most/usb/usb.c",
+      "include/linux/mfd/dbx500-prcmu.h",
+      "drivers/gpu/drm/gma500/psb_reg.h",
+      "arch/powerpc/xmon/ppc-opc.c",
+      "drivers/media/platform/exynos/smfc/smfc.h",
+      "drivers/net/ethernet/marvell/mvpp2/mvpp2_cls.c",
+      "drivers/gpu/drm/sun4i/sun4i_tcon.c",
+      "drivers/net/ethernet/marvell/mvpp2/mvpp2.h",
+      "drivers/media/pci/ttpci/av7110_av.c",
+      "drivers/net/ethernet/atheros/alx/main.c",
+      "arch/powerpc/include/asm/reg_booke.h",
+      "drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c",
+      "drivers/pinctrl/stm32/pinctrl-stm32f429.c",
+      "drivers/pinctrl/stm32/pinctrl-stm32f469.c",
+      "drivers/pinctrl/stm32/pinctrl-stm32f746.c",
+      "drivers/pinctrl/stm32/pinctrl-stm32f769.c",
+      "drivers/pinctrl/stm32/pinctrl-stm32h743.c",
+      "drivers/media/platform/exynos/smfc/smfc-dev.c",
+      "drivers/media/platform/exynos/smfc/smfc-v4l2-ioctls.c",
+      "drivers/net/ethernet/broadcom/bnx2x/bnx2x_ethtool.c",
+      "drivers/gpu/drm/amd/include/asic_reg/gca/gfx_7_2_enum.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble1_a3_s0_panel.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble2_a3_s0_panel.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble3_a3_s0_panel.h",
+      "drivers/gpu/ipu-v3/ipu-ic-csc.c",
+      "include/linux/power/max17042_battery.h",
+      "drivers/scsi/FlashPoint.c",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble1_a3_s0_panel_hmd_dimming.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble3_a3_s0_panel_hmd_dimming.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble2_a3_s0_panel_hmd_dimming.h",
+      "drivers/power/supply/max17042_battery.c",
+      "drivers/staging/rtl8188eu/core/rtw_wlan_util.c",
+      "drivers/staging/rtl8723bs/core/rtw_wlan_util.c",
+      "drivers/net/wireless/broadcom/brcm80211/brcmsmac/phy/phytbl_n.c",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble1_a3_s0_panel_dimming.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble2_a3_s0_panel_dimming.h",
+      "drivers/video/fbdev/exynos/panel/s6e3hab/s6e3hab_hubble3_a3_s0_panel_dimming.h"
+    ],
+    "complete_source_census": false
+  },
+  "dram_record_consumer": {
+    "address": "0x02073600",
+    "source_file": "drivers/devfreq/exynos/exynos-devfreq.c",
+    "function": "exynos_init_freq_table",
+    "gate": "data->devfreq_type == DEVFREQ_MIF",
+    "ioremap_size_bytes": 1024,
+    "read_order": [
+      {
+        "address": "0x02073604",
+        "width_bits": 32,
+        "destination_bits": "32..63"
+      },
+      {
+        "address": "0x02073600",
+        "width_bits": 32,
+        "destination_bits": "0..31"
+      }
+    ],
+    "atomic_u64_sample_proved": false,
+    "map_line": 1983,
+    "print_line": 1988,
+    "print_format": "DEVFREQ : dram: %llx",
+    "comparison_value": "0x1000860000110",
+    "comparison_line": 1989,
+    "matching_branch_label": "MIF dram d1z, disable frequency",
+    "disabled_opp_arguments": [
+      2288000,
+      2535000,
+      2730000
+    ],
+    "writes_first_record_word": false
+  },
+  "firmware_cross_reference": {
+    "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+    "selected_prefix_start": "0x2f4d8",
+    "selected_prefix_instruction_count": 14,
+    "constant_producers": [
+      "0x2f4e0",
+      "0x2f4f0",
+      "0x2f4f8",
+      "0x2f500"
+    ],
+    "constant": "0x1000860000110",
+    "state_base": "0x31688",
+    "geometry_cell": "0x31978",
+    "geometry_load_offset": "0x2f4fc",
+    "compare_offset": "0x2f504",
+    "equal_branch_offset": "0x2f50c",
+    "equal_branch_target": "0x2f548",
+    "record_to_geometry_reload_report": "bl2-geometry-record-hzc2.json",
+    "placement_and_live_binding_verified": false
+  },
+  "bootstat": {
+    "source_file": "drivers/samsung/sec_bootstat.c",
+    "parameter": "boot_time_bl2",
+    "mode": "0440",
+    "parameter_line": 307,
+    "enhanced_proc": "/proc/enhanced_boot_stat",
+    "enhanced_proc_registration_line": 417,
+    "mct_label_uses_literal_zeroes": true,
+    "sboot_format_strings": [
+      {
+        "file_offset": "0x23b200",
+        "text": "sec_bootstat.boot_time_bl1=%d",
+        "xref_and_runtime_value_verified": false
+      },
+      {
+        "file_offset": "0x23b220",
+        "text": "sec_bootstat.boot_time_bl2=%d",
+        "xref_and_runtime_value_verified": false
+      },
+      {
+        "file_offset": "0x23b240",
+        "text": "sec_bootstat.boot_time_bl3=%d",
+        "xref_and_runtime_value_verified": false
+      }
+    ],
+    "source_config": "CONFIG_SEC_BOOTSTAT=m",
+    "module_loaded_and_parameters_observed": false
+  },
+  "gpu_limit": {
+    "source_comment": "gpex_clock_get_max_clock_limit: from cal-if (from bl2)",
+    "selected_chain": [
+      "frontend gpex_clock_get_max_clock_limit -> cached gpu_max_clock_limit",
+      "backend gpexbe_clock_get_max_freq -> cached max_clock_limit",
+      "backend initialization -> cal_dfs_get_max_freq(cal_id)",
+      "cal_dfs_get_max_freq -> vclk_get_max_freq",
+      "vclk_get_max_freq -> vclk->max_freq if node and LUT exist"
+    ],
+    "source_producers": [
+      "vclk_get_dfs_info reads ECT DVFS max_frequency and optional GEN minmax",
+      "vclk ASV path also assigns max_freq"
+    ],
+    "backend_can_raise_limit_to_dt_gpu_max_clock": true,
+    "source_comment_alone_proves_bl2_writer": false,
+    "full_configuration_and_runtime_binding_verified": false
+  },
+  "query_gate_identity": {
+    "source_file": "drivers/soc/samsung/exynos-chipid_v2.c",
+    "variant": "drv_data_exynos2100",
+    "dts_base": "0x10000000",
+    "revision_register_offset": "0x10",
+    "absolute_address": "0x10000010",
+    "main_revision_shift": 20,
+    "mask": "0xf",
+    "source_matches_bl2_getter_field": true,
+    "interpretation": "BL2 selected gate corresponds to main_rev == 1, conditional on the nominal callback binding",
+    "actual_main_revision_verified": false
+  },
+  "false_positive_examples": {
+    "include/dt-bindings/soc/samsung,sysmmu-v8.h": "BL2 encodes fetch size in TLB_CFG; not a boot stage",
+    "include/linux/bio.h": "bl2 is a second bio_list pointer; not a boot stage"
+  },
+  "previous_reports": {
+    "bl2-geometry-record-hzc2.json": "unchanged_static_report_reproduced",
+    "bl2-query-base-rewrite-hzc2.json": "unchanged_static_report_reproduced"
+  },
+  "limits": [
+    "No original BL2 source or first-record-word producer recovered",
+    "No live DRAM word, RAM capacity or final FDT observed",
+    "Source identity is the pinned modified public kernel, not a proved HZC2 binary match",
+    "Source log availability does not establish permission, persistence or presence on the phone",
+    "No new QEMU, kernel build, firmware execution, MMIO read or phone operation"
+  ]
+}

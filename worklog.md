@@ -1611,3 +1611,38 @@ e percurso físico de instalação/recuperação. Sem mudança no payload ou
 nos decodificadores BL2, sem nova execução QEMU/telefone/serviços seguros.
 Produtor do registro BL2, memória final e primeiro diagnóstico continuam
 pendentes. Fontes externas, ferramentas e DTBs gerados não entraram no Git.
+
+## 2026-10-24 — menções BL2 no kernel e consumidor do registro DRAM
+
+Usuário esclareceu que a indicação do repositório visava suas menções a
+BL2. Corrigido o foco da investigação anterior de build/DTS. Base main
+51a8828, PR #14 com revisão própria concluída, automática ainda running.
+Busca indexada bl2/BL2 retornou 75 caminhos no commit externo 756951a;
+não é censo completo. Seguidas referências diretas Samsung e endereços
+conhecidos, com 12 arquivos adicionais fixados por tamanho/SHA-256/blob.
+
+exynos-devfreq.c, exynos_init_freq_table/DEVFREQ_MIF: ioremap de 1024 bytes
+em 02073600, lê W alto em +4 e W baixo em +0, reconstrói u64 e imprime
+DEVFREQ : dram: %llx. Comparação com 0001000860000110 rotulada dram d1z,
+seguida de três OPP disables. Não é produtor nem amostra u64 atômica
+comprovada. No BL2 HZC2, 14 palavras de 2f4d8 conferidas por prefixo e
+helpers existentes: a mesma constante construída por quatro MOVZ/MOVK,
+comparada em 2f504 com o slot 31978, recarregado do registro na etapa
+anterior. Sem assumir execução, preservação ou conteúdo real.
+
+CHIPID: variante Exynos 2100 rev_reg=10/main_rev_bit=20/sub_rev_bit=16,
+mask=f e DTS chipid@10000000 corroboram o campo 10000010[23:20] como
+main_rev. Gate BL2 nominal corresponde a main_rev==1, sem medir revisão
+ou escolher bases ativas. Bootstat declara parâmetros BL1/BL2/BL3 0440 e
+proc enhanced_boot_stat; sboot contém formatos correspondentes em
+23b200/23b220/23b240. Xrefs/argumentos/runtime não seguidos nesta entrega.
+
+Comentário GPU from BL2 seguido por frontend/backend/CAL/vclk: dados
+em cache, atribuições ECT DVFS/GEN e ASV, e possível elevação pelo DT.
+Comentário não prova escritor BL2 único. Separados exemplos de homônimos
+em sysmmu e bio. Dois relatórios estáticos anteriores reproduzidos sem
+alteração; fontes, palavras selecionadas, strings, campo CHIPID e links
+conferidos. Documentação, índices, roadmap e integração organizados.
+Nenhuma leitura MMIO, nova execução QEMU, kernel completo ou operação no
+telefone. Próximo: obter observação verificável da palavra se houver log
+disponível e seguir seus produtores; FDT/memória final continuam abertos.

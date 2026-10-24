@@ -148,3 +148,15 @@ palavras conferidos. Merge normal em
 `69940c8e594fc490e1008533aefaab33bda1307c`, main sincronizada antes da
 consulta à branch pública do kernel. A integração não identifica os bytes
 reais de 0x02073600, os três slots restantes ou o mapa final de RAM.
+
+## PR #14 — referência pública xfwdrev/rebased-11
+
+Head `36708d5f5bbee452e77b55636e235812d7005820`, revisão própria concluída
+sem bloqueadores. Oito blobs e árvore publicados coincidem com os
+validados; 15 manifestos de fontes, três compilações DTS e duas aplicações
+de overlay conferidos. Sem threads ou falhas CI reportadas. A revisão
+automática ainda informava running no merge e na retomada; não foi
+registrada como aprovação externa.
+Merge normal em `51a88288dfdedcb90918b502abb05a64f60942bc`, main local
+sincronizada antes da continuação específica das referências BL2. Não
+houve build de kernel completo ou execução física.
