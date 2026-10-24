@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão própria/merge do PR #14, 51a8828](https://github.com/rguisantos/S21-baremetal/commit/51a88288dfdedcb90918b502abb05a64f60942bc).
+[main após revisão/merge do PR #15, 9cf76c2](https://github.com/rguisantos/S21-baremetal/commit/9cf76c2f1b998b058dfb1493c467ae6b3fc731c8).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -101,6 +101,11 @@ presente no BL2 HZC2. Buscar observação correspondente em logs já
 disponíveis, preservando a distinção entre a fonte pública e o binário
 em execução. CHIPID corrobora o gate das bases como `main_rev == 1`, sem
 medir esse valor; bootstat oferece outra pista de parâmetros de tempo.
+O [callback NEWTIME](boot-metadata-hzc2.md) foi resolvido nominalmente,
+com store u64 por ponteiro atualizado a partir de 0x15900108. O destino
+seria 0x02073600 sob a cadeia preservada se o registrador fosse 0x38e00;
+seu valor real continua desconhecido. Os argumentos bootstat no LK também
+foram ligados: BL1 recebe literal 100; nomes não comprovam durações.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica
 recargas de 64 bits para o primeiro slot, com nibble 4–7 copiado a um byte
 de estado. O literal intermediário `0xcafe` e a chamada nominal da função

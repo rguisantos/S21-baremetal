@@ -160,3 +160,17 @@ registrada como aprovação externa.
 Merge normal em `51a88288dfdedcb90918b502abb05a64f60942bc`, main local
 sincronizada antes da continuação específica das referências BL2. Não
 houve build de kernel completo ou execução física.
+
+## PR #15 — consumidores BL2 e correlação do registro DRAM
+
+Head `026f80957bac42c082beced690ed958cde299364`, revisão própria concluída
+antes do merge. Dez blobs e árvore conferidos; 12 manifestos de fontes,
+14 palavras selecionadas, três formatos bootstat, campo CHIPID e dois
+relatórios anteriores reproduzidos sem alteração. Sem threads ou falhas
+CI reportadas. Merge normal em
+`9cf76c2f1b998b058dfb1493c467ae6b3fc731c8`, main sincronizada.
+
+A revisão automática estava running no merge; nesta continuação foi
+conferida como completed, sem achados nem achados pendentes no mesmo head.
+A revisão automática do PR #14 ainda informava running. A correlação
+kernel/BL2 não observou o registro físico ou o FDT final.

@@ -1646,3 +1646,43 @@ conferidos. Documentação, índices, roadmap e integração organizados.
 Nenhuma leitura MMIO, nova execução QEMU, kernel completo ou operação no
 telefone. Próximo: obter observação verificável da palavra se houver log
 disponível e seguir seus produtores; FDT/memória final continuam abertos.
+
+## 2026-10-24 — callback NEWTIME e argumentos bootstat HZC2
+
+Continuação sobre main 9cf76c2, PR #15 revisado/mergeado. Revisão automática
+do #15 conferida completed sem achados no head 026f809; #14 ainda running.
+Sem mudanças alheias no checkout de entrada. Não foi repetida a coleta
+shell/Shizuku bloqueada ou qualquer ensaio físico.
+
+Contexto X3 nominal 307e0 passado em 18000 a 1dc90; store condicionado em
+31998. Wrapper 2f6c0 lê o slot 31978, contexto+40 e chama ponteiro inicial
+da célula 30808, 021033fc -> 193fc. O callback consulta NEWTIME e chave
+11111111. Em 19694 escreve u64 do frame+136 pelo ponteiro lido de 30520;
+o frame recebe X0 na entrada, mas preservação e efeito líquido da função
+completa não são declarados. Dados e linha escolhida continuam abertos.
+
+30520 inicia como 02075600, mas 17fe8 atualiza a célula com 31a48+1800.
+Escritor selecionado 17a0c recebe W de 15900108, soma 02039000 em W e
+estende para X. Sob preservação da cadeia, destino02073600 exige word
+38e00; é critério derivado, não medição ou cenário fornecido. Alias e
+primeira escrita física no registro permanecem sem comprovação. A busca
+exploratória local de constantes em blocos não foi tratada como censo.
+
+Bootstat: três ADRP/ADD ligam formatos 23b200/220/240 aos índices 0/1/2 do
+getter149848 e ao helper144618. Setter149830 usa tabela relativa cd3568,
+stride8, valor W1 zero-extend armazenado em X; sem bounds nesses corpos.
+Inventário BL no intervalo LK tem quatro calls: ee6ac(index0,literal100),
+ee6e4(index1), eec30/eed50(index2). Os três últimos usam retorno111c40,
+entrada0 e UMULH/shifts; 111c40 lê CNTPCT_EL0 e segue a1118f8. Unidades,
+resultado, caminhos executados e entrega final ao kernel não verificados.
+Os nomes BL1/2/3 não comprovam durações medidas dos três estágios.
+
+Novo inspetor hash-bound e conferência GNU reproduzível: 156 palavras,
+26 alvos, 39 operandos, três produtores e seis ponteiros/strings. Dumps de
+strings pedidos em spans múltiplos de quatro, preservando o parser GNU
+estrito compartilhado. 70 regressões BL2 passaram; seis recusas CLI de
+imagem curta/longa/alterada, exit2 sem JSON parcial; py_compile, relatórios
+e critério aritmético de alias conferidos. Documentação, índices, catálogo,
+roadmap e integração organizados; sem novo QEMU/MMIO/serviço/telefone.
+Próximo: origem/valor15900108, bindings/preservação e registro real, mantendo
+demais escritores, slots, RAM/reservas e FDT final abertos.

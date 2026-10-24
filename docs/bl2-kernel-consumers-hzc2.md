@@ -94,6 +94,10 @@ No sboot HZC2 existem estas strings exatas:
 
 São compatíveis com o contrato dos parâmetros; as referências às strings,
 seus argumentos e o valor runtime não foram rastreados nesta entrega.
+Na [continuação de proveniência](boot-metadata-hzc2.md), referências e
+argumentos foram ligados à tabela relativa 0xcd3568: BL1 recebe literal
+100; os demais vêm de cálculos do contador no LK. Valor runtime e entrega
+final ao kernel seguem sem observação.
 A linha que diz MCT inicializado em BL2 usa zeros literais no relatório
 do kernel: o texto sozinho não é medição da execução BL2. O valor
 `mct_start` é obtido separadamente de `exynos_get_mct_start`.
@@ -119,6 +123,12 @@ Priorizar uma observação verificável do primeiro u64, se houver log
 correspondente disponível, e seguir seus produtores no BL2. Em paralelo,
 seguir xrefs das três strings de bootstat para seus argumentos. Nenhuma
 dessas pistas substitui bancos/reservas finais ou a entrada do diagnóstico.
+
+Atualização: os [xrefs e argumentos bootstat foram delimitados](boot-metadata-hzc2.md).
+O callback anterior à recarga DRAM consulta NEWTIME e escreve por ponteiro
+mutável; o alias com 0x02073600 depende de estado e de uma leitura de
+0x15900108 ainda desconhecida. Seguir seus produtores e gates, preservando
+as condições de cada testemunho.
 
 Para repetir as buscas em um checkout externo na revisão fixada:
 
