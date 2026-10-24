@@ -12,6 +12,12 @@ A constante 0x0001000860000110 também é comparada com o primeiro slot no
 BL2 HZC2. Isso fornece uma pista de observação, mantendo o produtor e os
 valores runtime desconhecidos.
 
+O [callback de preparação seguinte](boot-metadata-hzc2.md) foi ligado
+nominalmente a 0x193fc por contexto+40. Consulta NEWTIME e escreve u64 por
+0x30520, cuja atualização depende de 0x15900108. O literal inicial
+0x02075600 não resolve o destino ativo; a escrita em 0x02073600 permanece
+condicional, sem conteúdo físico recuperado.
+
 Complementa o [produtor do total](bl2-ram-size-hzc2.md), a
 [consulta](bl2-geometry-query-hzc2.md) e a
 [reescrita das bases](bl2-query-base-rewrite-hzc2.md). O novo inspetor é

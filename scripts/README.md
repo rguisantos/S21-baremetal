@@ -1,5 +1,11 @@
 # Catálogo de scripts
 
+- `inspect_boot_metadata_hzc2.py` e `check_boot_metadata_gnu.py`: somente
+  sboot HZC2 exato; callback NEWTIME, ponteiro mutável/alias condicional do
+  registro DRAM e argumentos bootstat. GNU: 156 palavras/26 alvos/39
+  operandos. Sem valores de registrador opcionais ou firmware executado.
+  [Escopo e reprodução](../docs/boot-metadata-hzc2.md).
+
 Execute a partir da raiz do repositório. Os comandos de validação estão no [README principal](../README.md).
 
 | Grupo | Arquivos | Uso |
