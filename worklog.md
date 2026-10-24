@@ -1281,3 +1281,10 @@ Sem novo QEMU/S21, sem mudança R10/shim, sem ligação vetorial/SMC. Próxima
 lacuna: binding/conteúdo da entrada candidata, semântica de 0x19 ou saída
 observada, antes de validar transformação e handlers. Observação física
 segue como frente separada; não repetidas coletas shell bloqueadas.
+
+## 2026-10-23 — orientação permanente de commits e organização
+
+Usuário determinou: sempre fazer commit e organizar o repositório. Orientação
+registrada em AGENTS.md, com organização por módulo, atualização dos índices,
+preservação de evidências e validação proporcional às mudanças. Entrega EPBL
+mantida em branch próprio com código, relatório, referências e testes.
