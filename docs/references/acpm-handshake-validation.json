@@ -1,0 +1,97 @@
+{
+  "reports_reproduced_byte_for_byte": true,
+  "cli_refusals": [
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "sboot",
+      "kind": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "sboot",
+      "kind": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "sboot",
+      "kind": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "sboot",
+      "kind": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "sboot",
+      "kind": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "sboot",
+      "kind": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "dts",
+      "kind": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "dts",
+      "kind": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "dts",
+      "kind": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "dts",
+      "kind": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_acpm_handshake_hzc2.py",
+      "input": "dts",
+      "kind": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_acpm_handshake_gnu.py",
+      "input": "dts",
+      "kind": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "firmware_executed": false,
+  "regression": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_bl2*.py' -v",
+    "tests": 70,
+    "passed": true
+  },
+  "python_compile_passed": true,
+  "local_markdown_links_checked": 278
+}

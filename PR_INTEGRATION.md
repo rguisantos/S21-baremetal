@@ -174,3 +174,13 @@ A revisão automática estava running no merge; nesta continuação foi
 conferida como completed, sem achados nem achados pendentes no mesmo head.
 A revisão automática do PR #14 ainda informava running. A correlação
 kernel/BL2 não observou o registro físico ou o FDT final.
+
+## PR #16 — callback NEWTIME e argumentos bootstat
+
+Head `07915387ae527b129ad616bb16136ba89db3e471`, revisão própria
+5639681447 concluída sem bloqueadores. Treze blobs e árvore conferidos;
+GNU de 156 palavras/26 alvos/39 operandos, 70 regressões BL2 e seis recusas
+CLI. Revisão automática completed sem achados ou pendências no mesmo
+head; zero threads, statuses e check-runs. Merge normal em
+`83fad63f4034366d771435c6ebf2005fd7ec8f04`, main sincronizada.
+Sem valores físicos, execução de firmware ou contrato de RAM final.

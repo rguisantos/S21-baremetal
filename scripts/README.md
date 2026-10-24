@@ -1,5 +1,11 @@
 # Catálogo de scripts
 
+- `inspect_acpm_handshake_hzc2.py` e `check_acpm_handshake_gnu.py`: exigem
+  sboot HZC2 e DTS público fixados por tamanho/SHA. Produtor Thumb de
+  0x38e00, consumidor BL2 e critério NEWTIME; GNU de 100 palavras AArch64
+  e 141 instruções Thumb. Sem executar firmware ou confirmar aliases.
+  [Escopo e reprodução](../docs/acpm-handshake-hzc2.md).
+
 - `inspect_boot_metadata_hzc2.py` e `check_boot_metadata_gnu.py`: somente
   sboot HZC2 exato; callback NEWTIME, ponteiro mutável/alias condicional do
   registro DRAM e argumentos bootstat. GNU: 156 palavras/26 alvos/39

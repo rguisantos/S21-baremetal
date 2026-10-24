@@ -59,6 +59,11 @@ O avanço é a fronteira explícita: contexto, store u64, ponteiro mutável,
 escritor do ponteiro e entrada de registrador. Origem/valor desse
 registrador, bindings e conteúdo real continuam pendentes.
 
+A [continuação ACPM](acpm-handshake-hzc2.md) encontrou um produtor Thumb
+de **0x38e00** no endereço local **0xa5900108**, com espera pela confirmação
+zero. O critério acima agora tem um produtor estático correspondente;
+alias com AP 0x15900108, execução/preservação e valor real seguem abertos.
+
 ## Bootstat: rótulos e argumentos fornecidos pelo LK
 
 | Formato | Índice no getter 0x149848 | Call do getter | Call do helper de formatação |
