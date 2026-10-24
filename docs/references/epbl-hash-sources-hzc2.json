@@ -1,0 +1,229 @@
+{
+  "mode": "pinned_source_dialect_comparison",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "sources": {
+    "ace": {
+      "repository": "meizuosc/m462",
+      "commit": "a2a3737c06577015d8d3f6c6aa36e53c90d57d5b",
+      "path": "drivers/crypto/ace_sfr.h",
+      "sha256": "0e388e8f0c81118c6f2a66ac761966da97f4a82e53de3a90eabdb2448f3b7b47",
+      "git_blob_sha": "2e0a915dcc41e599e08bbcc29923f32dddc3f16e",
+      "url": "https://github.com/meizuosc/m462/blob/a2a3737c06577015d8d3f6c6aa36e53c90d57d5b/drivers/crypto/ace_sfr.h",
+      "reference_is_HZC2_hardware_specification": false
+    },
+    "internal": {
+      "repository": "Creeeeger/fireplace",
+      "commit": "262ff996ee411f0975cdbdfe059d67b4060bb7d7",
+      "path": "emulator/soc/sss/sss_internal.h",
+      "sha256": "d2f10d230dbbe97e97e6ea69dbd8019441ccdd11b1e756bfa2cb50bb6ec13e6e",
+      "git_blob_sha": "1e002f738c57db1b5aa198914053cc6f36820848",
+      "url": "https://github.com/Creeeeger/fireplace/blob/262ff996ee411f0975cdbdfe059d67b4060bb7d7/emulator/soc/sss/sss_internal.h",
+      "reference_is_HZC2_hardware_specification": false
+    },
+    "public": {
+      "repository": "Creeeeger/fireplace",
+      "commit": "262ff996ee411f0975cdbdfe059d67b4060bb7d7",
+      "path": "include/fireplace/soc/sss/sss.h",
+      "sha256": "4654a4185da68c9d14c71d5cd259d9c6027f12b67fb437e6cce1b759c687a140",
+      "git_blob_sha": "16388a0e3fd6044c41fe2bec65ccebe708a7eceb",
+      "url": "https://github.com/Creeeeger/fireplace/blob/262ff996ee411f0975cdbdfe059d67b4060bb7d7/include/fireplace/soc/sss/sss.h",
+      "reference_is_HZC2_hardware_specification": false
+    },
+    "hash": {
+      "repository": "Creeeeger/fireplace",
+      "commit": "262ff996ee411f0975cdbdfe059d67b4060bb7d7",
+      "path": "emulator/soc/sss/sss_hash.c",
+      "sha256": "57bc72b01e3aa7b4c3db1fcd968f7a97ab30a3643aedcbcfca095c1769e6ecbc",
+      "git_blob_sha": "ef5072ea3f3e10945c728eb8c2f29d19a1a72dd5",
+      "url": "https://github.com/Creeeeger/fireplace/blob/262ff996ee411f0975cdbdfe059d67b4060bb7d7/emulator/soc/sss/sss_hash.c",
+      "reference_is_HZC2_hardware_specification": false
+    },
+    "readme": {
+      "repository": "Creeeeger/fireplace",
+      "commit": "262ff996ee411f0975cdbdfe059d67b4060bb7d7",
+      "path": "README.md",
+      "sha256": "52723eee95d75166591fe1348c335d027a96d2ed4010e625bdc4ae9b4dc0e8ca",
+      "git_blob_sha": "6fee9ae2416a54a6c68376219ed2df527d3065cf",
+      "url": "https://github.com/Creeeeger/fireplace/blob/262ff996ee411f0975cdbdfe059d67b4060bb7d7/README.md",
+      "reference_is_HZC2_hardware_specification": false
+    }
+  },
+  "ace_profile": "CONFIG_ACE_USE_SSS_VER_6",
+  "ace_base": "0x11100000",
+  "emulator_target": "experimental Exynos9830 / SM-G986B",
+  "emulator_base": "0x1a520000",
+  "HZC2_code_base": "0x18330000",
+  "matching_hash_fields": [
+    {
+      "field": "HASH mode",
+      "ace_macro": "ACE_HASH_CONTROL",
+      "emulator_macro": "SSS_HASH_MODE",
+      "matching_offset": "0x1000",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH FIFO/control",
+      "ace_macro": "ACE_HASH_FIFO_MODE",
+      "emulator_macro": "SSS_HASH_CONTROL",
+      "matching_offset": "0x1008",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH status",
+      "ace_macro": "ACE_HASH_STATUS",
+      "emulator_macro": "SSS_HASH_STATUS",
+      "matching_offset": "0x1010",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH size low",
+      "ace_macro": "ACE_HASH_MSGSIZE_LOW",
+      "emulator_macro": "SSS_HASH_LEN",
+      "matching_offset": "0x1020",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH size high",
+      "ace_macro": "ACE_HASH_MSGSIZE_HIGH",
+      "emulator_macro": "SSS_HASH_LEN_HI",
+      "matching_offset": "0x1024",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH previous low",
+      "ace_macro": "ACE_HASH_PRELEN_LOW",
+      "emulator_macro": "SSS_HASH_PRE_LEN",
+      "matching_offset": "0x1030",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH previous high",
+      "ace_macro": "ACE_HASH_PRELEN_HIGH",
+      "emulator_macro": "SSS_HASH_PRE_LEN_HI",
+      "matching_offset": "0x1034",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH material start",
+      "ace_macro": "ACE_HASH_HMAC_KEY_IN1",
+      "emulator_macro": "SSS_HASH_KEY",
+      "matching_offset": "0x1100",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH IV start",
+      "ace_macro": "ACE_HASH_IV1",
+      "emulator_macro": "SSS_HASH_IV",
+      "matching_offset": "0x1180",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    },
+    {
+      "field": "HASH output start",
+      "ace_macro": "ACE_HASH_RESULT1",
+      "emulator_macro": "SSS_HASH_DIGEST",
+      "matching_offset": "0x11c0",
+      "HZC2_access_present": true,
+      "physical_binding_verified": false
+    }
+  ],
+  "reference_dma_words": {
+    "SSS_SRC_ADDR_HI": "0x40",
+    "SSS_SRC_ADDR_LO": "0x44",
+    "SSS_SRC_LEN": "0x48"
+  },
+  "first_stage": {
+    "mode": "0x19",
+    "emulator_implements_mode": false,
+    "emulator_algorithm": null,
+    "legacy_reference_names": [
+      "ACE_HASH_ENGSEL_SHA1HMACOUT"
+    ],
+    "candidate_DMA_address": "0x1fc00",
+    "candidate_DMA_size": "0x3fc",
+    "algorithm_identified": false,
+    "data_source_identified": false
+  },
+  "emulator_modes": {
+    "0x10": {
+      "algorithm": "sha1",
+      "hmac": false
+    },
+    "0x11": {
+      "algorithm": "sha1",
+      "hmac": true
+    },
+    "0x14": {
+      "algorithm": "sha256",
+      "hmac": false
+    },
+    "0x15": {
+      "algorithm": "sha256",
+      "hmac": true
+    },
+    "0x1a": {
+      "algorithm": "sha512",
+      "hmac": false
+    },
+    "0x1b": {
+      "algorithm": "sha512",
+      "hmac": true
+    },
+    "0x34": {
+      "algorithm": "sha256",
+      "hmac": false
+    }
+  },
+  "second_stage": {
+    "mode": "0x14",
+    "emulator_definition": {
+      "algorithm": "sha256",
+      "hmac": false
+    },
+    "context_word_to_MMIO": [
+      {
+        "context_offset": "0x44",
+        "mmio_offset": "0x1030",
+        "load_pc": "0x3ebc",
+        "store_pc": "0x3ec0"
+      },
+      {
+        "context_offset": "0x40",
+        "mmio_offset": "0x1034",
+        "load_pc": "0x3ecc",
+        "store_pc": "0x3ed0"
+      }
+    ],
+    "low_context_offset": "0x44",
+    "high_context_offset": "0x40",
+    "HZC2_hardware_semantics_verified": false
+  },
+  "reference_coverage": {
+    "ace_explicit_HMAC_words": 16,
+    "HZC2_uploaded_words": 32,
+    "ace_explicit_result_words": 8,
+    "HZC2_first_result_words": 12,
+    "complete_first_stage_layout_documented": false
+  },
+  "conclusions": [
+    "Ten HASH offsets and the high/low/size DMA dialect agree across these references",
+    "Fireplace explicitly rejects 0x19; its supported SHA512 modes are 0x1a and 0x1b",
+    "Legacy ACE names 0x19 as SHA1HMACOUT+START; this cannot be transferred to HZC2",
+    "Neither matching offsets nor a 48-byte read identifies the HZC2 first-stage algorithm",
+    "The Exynos9830 BootROM is not substituted for an HZC2 data source"
+  ],
+  "source_code_executed": false,
+  "ACE_header_preprocessed_only": true,
+  "emulator_executed": false,
+  "firmware_executed": false,
+  "MMIO_responses_injected": false,
+  "physical_device_tested": false
+}

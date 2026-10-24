@@ -1288,3 +1288,35 @@ Usuário determinou: sempre fazer commit e organizar o repositório. Orientaçã
 registrada em AGENTS.md, com organização por módulo, atualização dos índices,
 preservação de evidências e validação proporcional às mudanças. Entrega EPBL
 mantida em branch próprio com código, relatório, referências e testes.
+
+
+## 2026-10-23 — revisão/merge PR #5 e proveniência HASH
+
+Usuário determinou concluir revisão e merge das entregas, além de commits e
+organização. AGENTS.md atualizado. PR #5: head636c56a, revisão automática
+sem achados/threads pendentes e conferência própria registrada. Merge
+2df91f32 executado; main local sincronizada antes da continuação.
+
+Nova referência Samsung GPL ace_sfr.h, perfil SSS v6, fornece os offsets HASH
+que faltavam na comparação s5p-sss. Comparação executada com cinco fontes
+por commit/SHA-256/blob: header ACE e quatro arquivos Fireplace Exynos9830.
+Dez offsets HASH e palavras DMA alto/baixo/tamanho concordam. Bases distintas
+11100000/1a520000/18330000 e cobertura parcial da primeira etapa preservadas.
+Não se declarou binding físico ou entrada candidata identificada no S21.
+
+Switch do emulador implementa 0x1a/0x1b como SHA512/HMAC-SHA512 e rejeita
+0x19. Header legado dá outro nome ao nibble9. Nenhuma dessas definições
+foi transferida para atribuir algoritmo HZC2 ou fabricar saída. BootROM de
+outro SoC não foi usado como substituto da entrada HZC2.
+
+Corrigida documentação que nomeava alto/baixo ao contrário: contexto+44
+vai a MMIO+1030 e contexto+40 a+1034. Instruções originais intactas; dois
+testes novos conferem a ligação e recusam a troca. Relatório reemitido.
+
+12 testes novos de fontes +2 de contador +69 anteriores: 83 PASS. Comparação
+real dos arquivos passou; conferência GNU reproduz a evidência anterior de
+1095 palavras/114 destinos/177 acessos sem diferença. Header somente
+pré-processado, sem execução C/emulador/firmware/MMIO. Fontes completas e
+binários externos permanecem fora do Git. README/índices/roadmap atualizados.
+Próximo bloqueio: implementação 0x19 correspondente, entrada verificável ou
+saída real de48 bytes; vetores/SMC-3ff e diagnóstico físico continuam abertos.

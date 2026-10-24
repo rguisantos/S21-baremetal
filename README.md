@@ -30,6 +30,8 @@ O [prefixo EPBL e dispatcher SMC parcial](docs/epbl-preparation-hzc2.md) têm ag
 
 O [rastreio de buffers e MMIO EPBL](docs/epbl-protocol-hzc2.md) liga a primeira saída de 48 bytes ao material de 32 bytes e IV de 16 bytes da operação seguinte, seguida de comparação de 32 bytes. Foram 69 testes de host e conferência GNU de 1095 instruções/114 destinos/177 acessos MMIO. O padrão alto/baixo/tamanho indica uma entrada DMA candidata em `[0x1fc00,0x1fffc)`, sem binding ou conteúdo medidos. AES-256-CBC é uma inferência corroborada pela fonte SSS; algoritmo HASH, plaintext e ligação dos handlers continuam abertos.
 
+A [proveniência do layout HASH](docs/epbl-hash-provenance-hzc2.md) agora cruza dez offsets com o perfil ACE Samsung v6 e com o emulador experimental Fireplace/Exynos9830. Corrige a nomenclatura alto/baixo dos contadores e demonstra que o modo `0x19` não é implementado nessa referência de emulação. Foram 83 testes; o algoritmo HZC2 e os dados da entrada candidata seguem desconhecidos. PR #5 revisado e integrado à main.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |

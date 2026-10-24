@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main anterior a esta entrega, ff90d419](https://github.com/rguisantos/S21-baremetal/commit/ff90d419a0c352c875d676a7a956525664742d50).
+[main após revisão/merge do PR #5, 2df91f32](https://github.com/rguisantos/S21-baremetal/commit/2df91f32fba86b6b8cb115146463da13661da4a4).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -23,7 +23,7 @@ não mudam o estado de validação no telefone.
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
 | Construção de RAM no LK | **Lógica conferida; valores reais pendentes** | 268 cenários Unicorn e 44 testes de host; entradas fornecidas, sem executar editor FDT ou provedor seguro |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
-| Preparação do monitor e lista LK | **Buffers e MMIO rastreados; provedor aberto** | [Protocolo EPBL](epbl-protocol-hzc2.md): primeira saída 48 → material 32/IV 16, comparação 32, entrada DMA candidata; 69 testes, 1095 instruções/114 alvos/177 acessos MMIO conferidos. Vetores, transformação e conteúdo real seguem abertos; [grafo anterior](epbl-frontier-hzc2.md) conserva 13 saídas pendentes |
+| Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
 | UART e recuperação de logs | **Rastreio estático avançado; canal físico pendente** | UART0/pinmux/clock nominal/gates documentados; frequência e roteamento efetivos não medidos; coleta shell bloqueada |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
@@ -73,7 +73,7 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Protocolo EPBL rastreado; confirmar binding/conteúdo da entrada DMA candidata `[0x1fc00,0x1fffc)`, semântica de `0x19` ou saída real de 48 bytes; depois validar transformação/vetores. Campos herdados de -0xe6 e escritores indiretos seguem abertos | Implementação correspondente ou observação verificável; contrato por condição, sem tratar hipótese de algoritmo/layout como estado efetivo |
+| **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
 | **P2 — memória dinâmica, em paralelo** | Seguir produtores do total de RAM e soc_info; delimitar SEC_PGTBL/Harx e os ajustes do FDT | Vincular valores à sua origem e obter/verificar bancos e reservas efetivos; mais respostas simuladas não resolvem essa lacuna |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -90,7 +90,10 @@ layout DMA candidato `[0x1fc00,0x1fffc)`. A semântica de `0x19` e os bytes
 reais continuam abertos; a inferência AES-256-CBC não os fornece. São 69
 testes de host e conferência GNU de 1095 instruções/114 destinos/177 acessos,
 sem execução do firmware. A transformação e ligação vetorial continuam
-necessárias antes dos handlers. O [grafo anterior](epbl-frontier-hzc2.md)
+necessárias antes dos handlers. A [comparação de fontes HASH](epbl-hash-provenance-hzc2.md)
+confere dez offsets e o arranjo DMA, mas demonstra a falta de 0x19 no
+emulador Exynos9830 e a ambiguidade dos nomes legados. A ordem dos contadores
+foi corrigida e o conjunto atual passou em 83 testes. O [grafo anterior](epbl-frontier-hzc2.md)
 registra 13 saídas pendentes; repetir o recorte ou inventar respostas MMIO
 não fecha essas fronteiras. Os dois produtores de VBAR corroboram o delta,
 sem medir runtime. A referência SSS consultada lista variantes antigas e
@@ -193,6 +196,6 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-Esta revisão parte da main `ff90d419`; a entrega de protocolo está em branch
-próprio para revisão. O [worklog](../worklog.md) conserva a sequência histórica
+O PR #5 foi revisado e mergeado em `2df91f32`. Esta continuação parte dessa
+main e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
 das descobertas; esta página organiza prioridades e critérios atuais.

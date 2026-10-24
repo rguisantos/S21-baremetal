@@ -55,3 +55,16 @@ flash/chainload e não executa nenhuma operação no telefone.
 ## PR #4 — substituído, não mergeado
 
 Em 2026-10-21 UTC, revisado head 9dca3969cc6e6ff571cbfd1cc440f7b27ac93143. O packer/validador antigo e as afirmações sobre Proton já têm substitutos corrigidos na main. PR encerrado com justificativa, preservando o branch e evitando regressão. Evidências em [branch-packer-review](docs/branch-packer-review.md) e [continuação BL](docs/bootloader-hzc2.md).
+
+## PR #5 — revisão e merge do protocolo EPBL
+
+Revisado o head `636c56a4dc36f029afe966de4404aa8b7659c2d1`: revisão automática
+concluída sem achados e sem threads pendentes; conferência do diff, dos
+limites dos decodificadores e das evidências de 69 testes/GNU. Revisão registrada
+no PR. Merge autorizado pelo usuário e executado em
+`2df91f32fba86b6b8cb115146463da13661da4a4`; main local sincronizada.
+
+A orientação permanente inclui concluir revisão, corrigir bloqueadores e
+fazer o merge do head revisado, conforme [AGENTS.md](AGENTS.md). Não encerrar
+uma entrega concluída apenas com PR aberto. A continuação técnica e a correção
+dos nomes dos contadores estão em [proveniência HASH](docs/epbl-hash-provenance-hzc2.md).
