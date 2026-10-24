@@ -1,0 +1,12 @@
+{
+  "mode": "GNU_newtime_error_debug_crosscheck",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "d11bd7a714e20dca8ab1bd1a2d51618d36f78152132a44f0e0fa98aaed1651c2",
+  "words_matched": 662,
+  "relative_targets_matched": 92,
+  "selected_operands_matched": 34,
+  "nominal_console_pointers_matched": 3,
+  "strings_matched": 9,
+  "firmware_executed": false
+}

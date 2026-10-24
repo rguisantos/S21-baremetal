@@ -206,3 +206,15 @@ A revisão automática estava running no merge; a consulta posterior
 confirmou completed sem achados ou pendências no mesmo head. Merge normal
 em `e9a8344a9a4975a63c6970bf964bb74198196b5c`, main sincronizada.
 Bindings de laboratório; sem execução física, registro real ou FDT final.
+
+
+## PR #19 — ciclo condicional e erros parciais NEWTIME
+
+Head `d5db0ba996ceec113aaefafe1f2da087babb66af`, revisão própria
+5640215333 concluída sem bloqueadores. Dezessete blobs e árvore conferidos;
+196 casos QEMU com ramos explícitos, seis da folha do alocador, GNU de 623
+palavras e 92 testes de host passaram. Zero threads ou falhas CI reportadas.
+A revisão automática estava running no merge; nesta continuação foi
+conferida completed sem achados ou pendências nesse mesmo head. Merge
+normal em `7723fbdbe00a819b7f0239900e7990555102264a`, main sincronizada.
+Não executou gate MMIO ou helper externo completo, nem observou estado físico.

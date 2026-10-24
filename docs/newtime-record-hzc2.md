@@ -90,9 +90,10 @@ O wrapper **0x2f6c0** interpreta o retorno do callback:
 | 2 | Tail branch a 0x1fdb8 com W0=5 |
 | Outros | Retorna (W0−3) mod 2^32; para zero, retorna 0xfffffffd |
 
-O helper **0x1fdb8** contém outras chamadas e callbacks, não executados
-neste ensaio. Portanto a preservação conferida no retorno direto do
-callback não se estende automaticamente ao tratamento feito pelo wrapper.
+A [continuação do helper **0x1fdb8**](newtime-error-hzc2.md) delimita flags,
+dump e console nominal. Essas chamadas não executam neste ensaio.
+Portanto a preservação conferida no retorno direto do callback não se
+estende automaticamente ao tratamento feito pelo wrapper.
 
 ## Execução condicional de blocos originais no QEMU
 
@@ -137,7 +138,8 @@ a byte. **12 testes novos e 80 existentes passaram**. Nove recusas CLI de
 imagem curta/longa/alterada, exit 2 sem JSON parcial e antes de QEMU;
 [validação](references/newtime-record-validation-hzc2.json).
 
-Próximo: seguir os efeitos de 0x1fdb8 e os chamadores, além de corroborar
-aliases/bindings e origem da geometria que substitui o marcador. Não foram
+A continuação delimita os efeitos selecionados de 0x1fdb8. Próximo: seguir
+a origem da geometria que substitui o marcador e corroborar aliases/bindings,
+com efeitos transitivos do tratamento de erro ainda abertos. Não foram
 medidos gate, registro físico, RAM ou FDT final; o destino AP 0x02073600
 continua dependente da cadeia ACPM e de preservação fora deste escopo.
