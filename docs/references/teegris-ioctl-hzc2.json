@@ -1,0 +1,253 @@
+{
+  "mode": "static_declared_ELF_link_and_SVC_boundary",
+  "tzar_sha256": "791c8818555e64d0e060c406e68748e869c7d53fbc9c9bbc893a1dd4f65a2077",
+  "libraries": {
+    "/lib64/libteesl.so": {
+      "size": 345744,
+      "sha256": "354d68d5936e11258f8c6a27828a4f7389045da57bdfa9bfc255603a46f77895"
+    },
+    "/lib64/libtzsl.so": {
+      "size": 136760,
+      "sha256": "9a4054c545be3bc4d8042ad6940ea4d0bf4e70e3d8082639765c674c029498bc"
+    }
+  },
+  "declared_link": {
+    "caller": "/lib64/libteesl.so",
+    "provider": "/lib64/libtzsl.so",
+    "caller_needed": [
+      "libtzsl.so",
+      "libpthread.so",
+      "libsecobj.so",
+      "libscrypto.so"
+    ],
+    "provider_soname": "libtzsl.so",
+    "symbol": "ioctl",
+    "version": "TEEGRIS_4",
+    "required_version_index": 4,
+    "provided_version_index": 2,
+    "requirement_hidden": false,
+    "definition_hidden": false,
+    "relocation_type": "R_AARCH64_JUMP_SLOT",
+    "relocation_symbol_index": 67,
+    "provider_symbol_index": 98,
+    "relocation_slot": "0x61698",
+    "calls": [
+      {
+        "call_address": "0x2a894",
+        "file_offset": "0x2a894",
+        "plt_address": "0x9760",
+        "slot": "0x61698"
+      },
+      {
+        "call_address": "0x2c860",
+        "file_offset": "0x2c860",
+        "plt_address": "0x9760",
+        "slot": "0x61698"
+      }
+    ],
+    "runtime_symbol_resolution_observed": false
+  },
+  "caller_witnesses": [
+    {
+      "elf_address": "0x2a894",
+      "file_offset": "0x2a894",
+      "word": "97ff7bb3",
+      "relative_target": "0x9760"
+    },
+    {
+      "elf_address": "0x2c860",
+      "file_offset": "0x2c860",
+      "word": "97ff73c0",
+      "relative_target": "0x9760"
+    },
+    {
+      "elf_address": "0x9760",
+      "file_offset": "0x9760",
+      "word": "900002d0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x9764",
+      "file_offset": "0x9764",
+      "word": "f9434e11",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x9768",
+      "file_offset": "0x9768",
+      "word": "911a6210",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x976c",
+      "file_offset": "0x976c",
+      "word": "d61f0220",
+      "relative_target": null
+    }
+  ],
+  "provider_witnesses": [
+    {
+      "elf_address": "0x8654",
+      "file_offset": "0x8654",
+      "word": "a9be7bfd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8658",
+      "file_offset": "0x8658",
+      "word": "93407c00",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x865c",
+      "file_offset": "0x865c",
+      "word": "93407c21",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8660",
+      "file_offset": "0x8660",
+      "word": "d28001e7",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8664",
+      "file_offset": "0x8664",
+      "word": "910003fd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8668",
+      "file_offset": "0x8668",
+      "word": "f9000bf3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x866c",
+      "file_offset": "0x866c",
+      "word": "d4000001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8670",
+      "file_offset": "0x8670",
+      "word": "aa0003f3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8674",
+      "file_offset": "0x8674",
+      "word": "b140041f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8678",
+      "file_offset": "0x8678",
+      "word": "540000a9",
+      "relative_target": "0x868c"
+    },
+    {
+      "elf_address": "0x867c",
+      "file_offset": "0x867c",
+      "word": "4b1303f3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8680",
+      "file_offset": "0x8680",
+      "word": "97fff39c",
+      "relative_target": "0x54f0"
+    },
+    {
+      "elf_address": "0x8684",
+      "file_offset": "0x8684",
+      "word": "b9000013",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8688",
+      "file_offset": "0x8688",
+      "word": "92800013",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x868c",
+      "file_offset": "0x868c",
+      "word": "2a1303e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8690",
+      "file_offset": "0x8690",
+      "word": "f9400bf3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8694",
+      "file_offset": "0x8694",
+      "word": "a8c27bfd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x8698",
+      "file_offset": "0x8698",
+      "word": "d65f03c0",
+      "relative_target": null
+    }
+  ],
+  "boundary": {
+    "svc_address": "0x866c",
+    "instruction": "svc #0",
+    "selector_register": "X7",
+    "selector_value": 15,
+    "x0": "sign-extended W0 file descriptor",
+    "x1": "sign-extended W1 ioctl request",
+    "x2": "caller argument pointer passed through; pointed bytes not read by this wrapper",
+    "svc_handler_identified": false,
+    "device_consumer_identified": false
+  },
+  "return_normalization": {
+    "error_signed_X0_range": [
+      -4095,
+      -1
+    ],
+    "excluded_boundary": -4096,
+    "return_width_bits": 32,
+    "error_return_W0": "0xffffffff",
+    "errno_store_width_bits": 32,
+    "errno_address_observed": false,
+    "examples": {
+      "0": {
+        "return_w0": 0,
+        "errno_word": null
+      },
+      "1": {
+        "return_w0": 1,
+        "errno_word": null
+      },
+      "-1": {
+        "return_w0": 4294967295,
+        "errno_word": 1
+      },
+      "-4095": {
+        "return_w0": 4294967295,
+        "errno_word": 4095
+      },
+      "-4096": {
+        "return_w0": 4294963200,
+        "errno_word": null
+      },
+      "4294967297": {
+        "return_w0": 1,
+        "errno_word": null
+      }
+    }
+  },
+  "limits": [
+    "Version requirements identify a declared provider; runtime interposition/loading was not observed",
+    "SVC handler, driver dispatch, device state and EPBL MMIO 0x19 remain unresolved"
+  ],
+  "firmware_executed": false,
+  "syscall_executed": false,
+  "physical_device_tested": false
+}

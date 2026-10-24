@@ -96,10 +96,10 @@ def elf64(data):
         raise ValueError('ELF has no file-backed load segments')
     sections = [struct.unpack('<IIQQQQIIQQ', span(data, sh + i * shsize, shsize)) for i in range(shnum)]
     symbols = {}
-    tables = [s for s in sections if s[1] == 11]
+    tables = [(i, s) for i, s in enumerate(sections) if s[1] == 11]
     if len(tables) != 1:
         raise ValueError('expected one dynamic symbol table')
-    s = tables[0]
+    dynsym_index, s = tables[0]
     if s[9] != 24 or s[5] % 24 or s[5] // 24 > 65536 or not 0 <= s[6] < shnum:
         raise ValueError('invalid dynamic symbol table')
     strings_section = sections[s[6]]
@@ -118,13 +118,16 @@ def elf64(data):
         if text:
             if text in symbols:
                 raise ValueError('ambiguous dynamic symbol name')
-            symbols[text] = dict(address=address, size=size, section=index, type=info & 15)
-    return dict(entry=entry, loads=loads, symbols=symbols, data=data)
+            symbols[text] = dict(address=address, size=size, section=index, type=info & 15, index=at // 24)
+    return dict(entry=entry, loads=loads, symbols=symbols, data=data, sections=sections,
+                dynsym_section_index=dynsym_index, dynsym_count=s[5] // 24)
 
 
 def at_address(elf, address, size, *, executable=False):
-    candidates = [p for p in elf['loads'] if p['address'] <= address and address + size <= p['address'] + p['size'] and (not executable or p['flags'] & 1)]
-    if len(candidates) != 1 or size <= 0:
+    if type(address) is not int or type(size) is not int or address < 0 or size <= 0 or address + size > 1 << 64:
+        raise ValueError('invalid ELF address/size')
+    candidates = [p for p in elf['loads'] if p['address'] <= address and address + size <= p['address'] + p['size']]
+    if len(candidates) != 1 or (executable and not candidates[0]['flags'] & 1):
         raise ValueError('ambiguous/non-file-backed ELF address')
     p = candidates[0]
     offset = p['offset'] + address - p['address']

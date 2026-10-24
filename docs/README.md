@@ -114,3 +114,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Gates e QCH UART0](uart-gates.md): sincronizador de reset, IPCLK/PCLK, campos CAL e limites da busca estática.
 
 - [Arquivo TZAR e fronteira criptográfica HZC2](tzar-crypto-hzc2.md): 44 registros descomprimidos e identificados, tradução de seletores e percursos EVP/dispositivo separados. Quinze testes e conferência GNU de 15 símbolos/127 instruções/34 destinos; não identifica o modo EPBL `0x19`.
+
+- [Ligação ioctl e fronteira SVC do TEEGRIS](teegris-ioctl-boundary-hzc2.md): calls/PLT/GOT/relocação e versão requerida conferidos até libtzsl; X7=15/SVC #0, limites de erro e retorno. Trinta testes, metadados GNU e 24 instruções/quatro destinos; handler e dispositivo ainda pendentes.

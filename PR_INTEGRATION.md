@@ -78,3 +78,14 @@ status CI configurado foi reportado. Merge em
 `65040a6017280cb8c2bb4fac9808119f1bda0540`, main sincronizada antes da
 continuação TZAR. Esta é revisão própria; não declara aprovação automática
 externa do PR #6.
+
+## PR #7 — revisão própria e merge do TZAR
+
+Head `afec5aba6e4cf4b56064e226ace7bddc761ac116` conferido por revisão
+própria registrada: 15 testes, GNU e os 14 blobs publicados coincidem com
+a árvore validada. Sem threads ou status de falha reportados. A revisão
+automática ainda informava running e não foi considerada aprovada.
+Merge normal do head revisado em
+`2f31df480b2e6731db38a002ab26ca4bc270a3d9`, sem contornar regras do GitHub.
+Main local sincronizada e limpa. Na retomada desta continuação, a revisão
+automática seguia pendente e não havia apontamentos ou threads adicionais.

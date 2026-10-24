@@ -124,6 +124,9 @@ class TzarTests(unittest.TestCase):
         parsed['loads'].append(dict(parsed['loads'][0]))
         with self.assertRaises(ValueError):
             at_address(parsed, 0x100, 4)
+        parsed['loads'][1]['flags'] = 5
+        with self.assertRaises(ValueError):
+            at_address(parsed, 0x100, 4, executable=True)
 
     def test_witness_ranges_refuse_unaligned_or_empty(self):
         for bounds in ((1, 4), (4, 4), (8, 4)):
