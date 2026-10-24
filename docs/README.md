@@ -112,3 +112,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Clocks UART0 entre BL2 e LK](uart-clock-stages.md): tabelas PERIC0, wrapper principal e divisor.
 
 - [Gates e QCH UART0](uart-gates.md): sincronizador de reset, IPCLK/PCLK, campos CAL e limites da busca estática.
+
+- [Arquivo TZAR e fronteira criptográfica HZC2](tzar-crypto-hzc2.md): 44 registros descomprimidos e identificados, tradução de seletores e percursos EVP/dispositivo separados. Quinze testes e conferência GNU de 15 símbolos/127 instruções/34 destinos; não identifica o modo EPBL `0x19`.

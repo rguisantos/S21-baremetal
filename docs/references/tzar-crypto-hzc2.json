@@ -1,0 +1,1249 @@
+{
+  "mode": "static_read_only_TZAR_inventory",
+  "input": {
+    "size": 7340816,
+    "sha256": "791c8818555e64d0e060c406e68748e869c7d53fbc9c9bbc893a1dd4f65a2077"
+  },
+  "envelope": {
+    "declared_decoded_size": 6159648,
+    "compressed_block_offset": "0xc",
+    "compressed_block_size": 2837968,
+    "compressed_end": "0x2b4ddc",
+    "inner_sha256": "5b98e0ad1d493cf5e9d792ca607e8c05a0f4dbc019b9263806fe68541edbd97d",
+    "tail_offset": "0x2b4ddc",
+    "tail_size": 4502836,
+    "tail_sha256": "fcea9f41db1b6f0caee96984d8ef320feee38f0474b97a44ffb735304ace67ac",
+    "tail_interpreted": false
+  },
+  "archive": {
+    "entry_count": 44,
+    "all_bytes_consumed": true,
+    "entries": [
+      {
+        "path": "/lib32/libtzld.so",
+        "record_offset": "0x10",
+        "data_offset": "0x2a",
+        "size": 70836,
+        "sha256": "d157d169e5a799ccb36fd145bff77d33ba33f3eafb5c23cb40a4b02359cd946d",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib64/libtzld.so",
+        "record_offset": "0x114de",
+        "data_offset": "0x114f8",
+        "size": 83576,
+        "sha256": "20d42d4e7a6c80b365ab92828f25168184c30d1df1502dd20cb58bb493830f91",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib32/libtzsl.so",
+        "record_offset": "0x25b70",
+        "data_offset": "0x25b8a",
+        "size": 115932,
+        "sha256": "ac66bf911e6ce7bd6ef77ca3d4b57678a13ccb17fc0bd093828da3ebc623faf9",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libteesl.so",
+        "record_offset": "0x42066",
+        "data_offset": "0x42081",
+        "size": 378136,
+        "sha256": "40b3569ab68c452932ec7c5df05435d97bf1bf2515cf7e7aa395c8ae68009ec9",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libmath.so",
+        "record_offset": "0x9e599",
+        "data_offset": "0x9e5b3",
+        "size": 42064,
+        "sha256": "ce932510e3c90bba91d59fdc5d984dcdee11527aca0b8fe97bd680138c137ee3",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libpthread.so",
+        "record_offset": "0xa8a03",
+        "data_offset": "0xa8a20",
+        "size": 17532,
+        "sha256": "9bfcfe7f422441d7a15e30baae705315ff2532d6229529e66e7041bd9d4fe51c",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libc++.so",
+        "record_offset": "0xace9c",
+        "data_offset": "0xaceb5",
+        "size": 317704,
+        "sha256": "d64139ea0a50a3eb9771e0348afc486fbc7c320d3b7b420ebd2543702e849fe3",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libscrypto.so",
+        "record_offset": "0xfa7bd",
+        "data_offset": "0xfa7da",
+        "size": 1081864,
+        "sha256": "9f148111c474f8109e91e8c99d8fb85289c258bb3cf9c0cbd21c3d5064c03775",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libioctx.so",
+        "record_offset": "0x2029e2",
+        "data_offset": "0x2029fd",
+        "size": 33928,
+        "sha256": "7a4b2957883108bce03a1b2a9dd9df75713a97f2f897aa9a93c9289f75d39248",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libtimer.so",
+        "record_offset": "0x20ae85",
+        "data_offset": "0x20aea0",
+        "size": 9248,
+        "sha256": "f0295684259664ecfe2eb2036379d6fee79ab69f82ddda66bf13f5d1f512a9b8",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libdriver.so",
+        "record_offset": "0x20d2c0",
+        "data_offset": "0x20d2dc",
+        "size": 17540,
+        "sha256": "a157c429e815a8f3dfceaf7de0c8a535ba460182d040923eabaf3ebabeb74b99",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libsecobj.so",
+        "record_offset": "0x211760",
+        "data_offset": "0x21177c",
+        "size": 13344,
+        "sha256": "ad88aee5da3ab2d8c41e079950cf54bd765329242f91f9e3da0f095bf92269c2",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libtee_debugsl.so",
+        "record_offset": "0x214b9c",
+        "data_offset": "0x214bbd",
+        "size": 9292,
+        "sha256": "54d69ad2a1fdcd0204f1e77a320b0683666935547fae36f9a6fe510c0a3de42c",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libdlmsl.so",
+        "record_offset": "0x217009",
+        "data_offset": "0x217024",
+        "size": 17432,
+        "sha256": "5d5ece90ce86ea2dbfee05f77e19f91d63f6d3afa9a4f88cbc8d6444ba5f086d",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libringbuf.so",
+        "record_offset": "0x21b43c",
+        "data_offset": "0x21b459",
+        "size": 9196,
+        "sha256": "0200c1175b112d965b13c63c97ee3d9bf1467f2ea36cfa938bdf15889689a278",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib32/libaudit_aux.so",
+        "record_offset": "0x21d845",
+        "data_offset": "0x21d864",
+        "size": 9148,
+        "sha256": "88f532e7b325644e8491521127764e0fea78efdfa10aa7d9b18dcd53d36a2462",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib64/libtzsl.so",
+        "record_offset": "0x21fc20",
+        "data_offset": "0x21fc3a",
+        "size": 136760,
+        "sha256": "9a4054c545be3bc4d8042ad6940ea4d0bf4e70e3d8082639765c674c029498bc",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libteesl.so",
+        "record_offset": "0x241272",
+        "data_offset": "0x24128d",
+        "size": 345744,
+        "sha256": "354d68d5936e11258f8c6a27828a4f7389045da57bdfa9bfc255603a46f77895",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libmath.so",
+        "record_offset": "0x29591d",
+        "data_offset": "0x295937",
+        "size": 46512,
+        "sha256": "67b1754cb48777fedd49333d13ccc4d58907c6eff3fe49d01e0e887a70066e10",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libpthread.so",
+        "record_offset": "0x2a0ee7",
+        "data_offset": "0x2a0f04",
+        "size": 17912,
+        "sha256": "a012f14f2ce02593cb770bb98b9c4ade89de2498d39235c1d0174f03f50bd3bb",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libc++.so",
+        "record_offset": "0x2a54fc",
+        "data_offset": "0x2a5515",
+        "size": 339792,
+        "sha256": "8111957c30de337549724d972c4de1cb0cbd74ebc86898381ed04d992ca44d1e",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libscrypto.so",
+        "record_offset": "0x2f8465",
+        "data_offset": "0x2f8482",
+        "size": 1184808,
+        "sha256": "53a65d95d602cadfd690be31f9181af5128b240a11e9a4a3007bfe01504317cc",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libioctx.so",
+        "record_offset": "0x4198aa",
+        "data_offset": "0x4198c5",
+        "size": 34232,
+        "sha256": "f30c3e6c75bc9888b741e78800ec2f2730d6d332d6b8b949e479d8d0e6db1c03",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libtimer.so",
+        "record_offset": "0x421e7d",
+        "data_offset": "0x421e98",
+        "size": 9576,
+        "sha256": "8a800a20954cf4219fe85551a8f45b86f0de65803cd2794e13e1c727d289980e",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libdriver.so",
+        "record_offset": "0x424400",
+        "data_offset": "0x42441c",
+        "size": 17920,
+        "sha256": "3ade07837ba1e85a68dfc83328862f6cb1136417b976b8ac713d69221eeb4f4f",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libsecobj.so",
+        "record_offset": "0x428a1c",
+        "data_offset": "0x428a38",
+        "size": 17768,
+        "sha256": "5e56e2da0efe9be490fd149924203a347c9334717d94fb0d8df8d6a557551104",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libtee_debugsl.so",
+        "record_offset": "0x42cfa0",
+        "data_offset": "0x42cfc1",
+        "size": 9648,
+        "sha256": "2f35354e5c369bf55f5bae415bd7f7acc64bdaf0e6963af2e787cc681cafa578",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libdlmsl.so",
+        "record_offset": "0x42f571",
+        "data_offset": "0x42f58c",
+        "size": 17760,
+        "sha256": "f33fd19dc6a4ad2514a2e2f79d8a73562a68c90b402615d440fc02351d0afe67",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libringbuf.so",
+        "record_offset": "0x433aec",
+        "data_offset": "0x433b09",
+        "size": 9496,
+        "sha256": "8ac6882a50b51fc0133978942205ca1c7744ca09898f17dc7fc594e983ea931b",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib64/libaudit_aux.so",
+        "record_offset": "0x436021",
+        "data_offset": "0x436040",
+        "size": 9424,
+        "sha256": "0474e32e954e498fef110b796e6037216c2719156e635554cd04b0223e5bbf4c",
+        "ELF_class": 2
+      },
+      {
+        "path": "/lib32/libtui.so",
+        "record_offset": "0x438510",
+        "data_offset": "0x438529",
+        "size": 656620,
+        "sha256": "2e725748273ce88b93cacab33c3dc0d5c363444aa2dfa526109adbf002f50e14",
+        "ELF_class": 1
+      },
+      {
+        "path": "/lib64/libtui.so",
+        "record_offset": "0x4d8a15",
+        "data_offset": "0x4d8a2e",
+        "size": 665160,
+        "sha256": "fa409ca71419ef1dff024a3d76beaaa969658a0ad685d87e94720d33df7372dc",
+        "ELF_class": 2
+      },
+      {
+        "path": "/tzinitd",
+        "record_offset": "0x57b076",
+        "data_offset": "0x57b087",
+        "size": 194184,
+        "sha256": "465b6b38c985db53561391fc5a51d6714fc3693757b68260d46df6c3d65ac879",
+        "ELF_class": 2
+      },
+      {
+        "path": "/etc/tzinitd/init.tzrc",
+        "record_offset": "0x5aa70f",
+        "data_offset": "0x5aa72e",
+        "size": 819,
+        "sha256": "8f120fffce01012d2b0416ea39c69bd5562ebd816d1ca7fddcef369e2a811ca5",
+        "ELF_class": null
+      },
+      {
+        "path": "/etc/tzinitd/init.release.tzrc",
+        "record_offset": "0x5aaa61",
+        "data_offset": "0x5aaa88",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ELF_class": null
+      },
+      {
+        "path": "/etc/tzinitd/crypto.tzrc",
+        "record_offset": "0x5aaa88",
+        "data_offset": "0x5aaaa9",
+        "size": 681,
+        "sha256": "ca4b5a98ff12f1a303c1bc3a3ce5da984921ad006f79c32b3c5587d1f2cf4ff2",
+        "ELF_class": null
+      },
+      {
+        "path": "/etc/tzinitd/tmf.tzrc",
+        "record_offset": "0x5aad52",
+        "data_offset": "0x5aad70",
+        "size": 266,
+        "sha256": "fa676a0e7353b32c662b4f0c6f8abfbe36e6b7feb214e7474fc537b93057321d",
+        "ELF_class": null
+      },
+      {
+        "path": "/etc/tzinitd/tmf_stub.tzrc",
+        "record_offset": "0x5aae7a",
+        "data_offset": "0x5aae9d",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ELF_class": null
+      },
+      {
+        "path": "/etc/tzinitd/propd.tzrc",
+        "record_offset": "0x5aae9d",
+        "data_offset": "0x5aaebd",
+        "size": 202,
+        "sha256": "d47b644aa6cb08187f9a65783feb19515d864f6c0bd38d02dee75fbc40b83322",
+        "ELF_class": null
+      },
+      {
+        "path": "/sbin/root_task",
+        "record_offset": "0x5aaf87",
+        "data_offset": "0x5aaf9f",
+        "size": 95808,
+        "sha256": "e4f2caeef6aaf98003776cddd4128210f8cdf094261c145753a4ea7412f03c6e",
+        "ELF_class": 2
+      },
+      {
+        "path": "/bin/00000007-0007-0007-0707-070707070707",
+        "record_offset": "0x5c25df",
+        "data_offset": "0x5c2611",
+        "size": 54928,
+        "sha256": "676d6739815df11faf3414232318e14a33f417f9661611aab791dbc262e8a77c",
+        "ELF_class": 2
+      },
+      {
+        "path": "/bin/00000005-0005-0005-0505-050505050505",
+        "record_offset": "0x5cfca1",
+        "data_offset": "0x5cfcd3",
+        "size": 22408,
+        "sha256": "30207f0693b6431d24aa0c8f711acd92cbd9eaa33b006e0839ac79628259cb5d",
+        "ELF_class": 2
+      },
+      {
+        "path": "/sbin/propd",
+        "record_offset": "0x5d545b",
+        "data_offset": "0x5d546f",
+        "size": 42568,
+        "sha256": "7eb32e97b210e0d1d1132768744bfa7d8bdd8672f88b274dcab268b50f5db769",
+        "ELF_class": 2
+      },
+      {
+        "path": "/etc/propd/build_sl.prop",
+        "record_offset": "0x5dfab7",
+        "data_offset": "0x5dfad8",
+        "size": 584,
+        "sha256": "5344ff7451ce1ea401f7460d99a914b7f5699ad5bfdc22640beb4598b7946773",
+        "ELF_class": null
+      }
+    ]
+  },
+  "selected_dynamic_symbols": {
+    "scrypto64": {
+      "SHA384_Init": {
+        "address": "0xa7a0c",
+        "size": 68,
+        "defined": true
+      },
+      "SHA384_Update": {
+        "address": "0xa7a94",
+        "size": 24,
+        "defined": true
+      },
+      "SHA384_Final": {
+        "address": "0xa7aac",
+        "size": 4,
+        "defined": true
+      },
+      "SHA512_Update": {
+        "address": "0xa7ab0",
+        "size": 252,
+        "defined": true
+      },
+      "SHA512_Final": {
+        "address": "0xa7bac",
+        "size": 484,
+        "defined": true
+      },
+      "HMAC": {
+        "address": "0x9eb04",
+        "size": 224,
+        "defined": true
+      },
+      "ioctl": {
+        "address": "0x0",
+        "size": 0,
+        "defined": false
+      }
+    },
+    "teesl64": {
+      "TEE_AllocateOperation": {
+        "address": "0x29bb8",
+        "size": 4620,
+        "defined": true
+      },
+      "TEE_DigestUpdate": {
+        "address": "0x2c6e0",
+        "size": 620,
+        "defined": true
+      },
+      "TEE_DigestDoFinal": {
+        "address": "0x2c94c",
+        "size": 1120,
+        "defined": true
+      },
+      "TEE_MACInit": {
+        "address": "0x2ee24",
+        "size": 460,
+        "defined": true
+      },
+      "TEE_MACUpdate": {
+        "address": "0x2eff0",
+        "size": 1080,
+        "defined": true
+      },
+      "TEE_MACComputeFinal": {
+        "address": "0x2f428",
+        "size": 1984,
+        "defined": true
+      },
+      "ioctl": {
+        "address": "0x0",
+        "size": 0,
+        "defined": false
+      },
+      "EVP_DigestUpdate": {
+        "address": "0x0",
+        "size": 0,
+        "defined": false
+      }
+    }
+  },
+  "scrypto_SHA384_delegation": [
+    {
+      "elf_address": "0xa7a94",
+      "file_offset": "0xa7a94",
+      "word": "a9bf7bfd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0xa7a98",
+      "file_offset": "0xa7a98",
+      "word": "910003fd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0xa7a9c",
+      "file_offset": "0xa7a9c",
+      "word": "94000005",
+      "relative_target": "0xa7ab0"
+    },
+    {
+      "elf_address": "0xa7aa0",
+      "file_offset": "0xa7aa0",
+      "word": "320003e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0xa7aa4",
+      "file_offset": "0xa7aa4",
+      "word": "a8c17bfd",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0xa7aa8",
+      "file_offset": "0xa7aa8",
+      "word": "d65f03c0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0xa7aac",
+      "file_offset": "0xa7aac",
+      "word": "14000040",
+      "relative_target": "0xa7bac"
+    }
+  ],
+  "teesl_crypto_boundary": [
+    {
+      "elf_address": "0x281f8",
+      "file_offset": "0x281f8",
+      "word": "52801a42",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x281fc",
+      "file_offset": "0x281fc",
+      "word": "72a60002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28200",
+      "file_offset": "0x28200",
+      "word": "6b02001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28204",
+      "file_offset": "0x28204",
+      "word": "540006e0",
+      "relative_target": "0x282e0"
+    },
+    {
+      "elf_address": "0x28208",
+      "file_offset": "0x28208",
+      "word": "540002a8",
+      "relative_target": "0x2825c"
+    },
+    {
+      "elf_address": "0x2820c",
+      "file_offset": "0x2820c",
+      "word": "52803a02",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28210",
+      "file_offset": "0x28210",
+      "word": "72a20002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28214",
+      "file_offset": "0x28214",
+      "word": "6b02001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28218",
+      "file_offset": "0x28218",
+      "word": "540005c0",
+      "relative_target": "0x282d0"
+    },
+    {
+      "elf_address": "0x2821c",
+      "file_offset": "0x2821c",
+      "word": "540000e8",
+      "relative_target": "0x28238"
+    },
+    {
+      "elf_address": "0x28220",
+      "file_offset": "0x28220",
+      "word": "52801a02",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28224",
+      "file_offset": "0x28224",
+      "word": "72a20002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28228",
+      "file_offset": "0x28228",
+      "word": "6b02001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2822c",
+      "file_offset": "0x2822c",
+      "word": "540004c0",
+      "relative_target": "0x282c4"
+    },
+    {
+      "elf_address": "0x28230",
+      "file_offset": "0x28230",
+      "word": "52800002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28234",
+      "file_offset": "0x28234",
+      "word": "14000019",
+      "relative_target": "0x28298"
+    },
+    {
+      "elf_address": "0x28238",
+      "file_offset": "0x28238",
+      "word": "52805a02",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2823c",
+      "file_offset": "0x2823c",
+      "word": "72a20002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28240",
+      "file_offset": "0x28240",
+      "word": "6b02001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28244",
+      "file_offset": "0x28244",
+      "word": "540004a0",
+      "relative_target": "0x282d8"
+    },
+    {
+      "elf_address": "0x28248",
+      "file_offset": "0x28248",
+      "word": "11040042",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2824c",
+      "file_offset": "0x2824c",
+      "word": "6b02001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28250",
+      "file_offset": "0x28250",
+      "word": "54ffff01",
+      "relative_target": "0x28230"
+    },
+    {
+      "elf_address": "0x28254",
+      "file_offset": "0x28254",
+      "word": "52880002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28258",
+      "file_offset": "0x28258",
+      "word": "1400001c",
+      "relative_target": "0x282c8"
+    },
+    {
+      "elf_address": "0x2825c",
+      "file_offset": "0x2825c",
+      "word": "52801a43",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28260",
+      "file_offset": "0x28260",
+      "word": "52a04022",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28264",
+      "file_offset": "0x28264",
+      "word": "72aa0003",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28268",
+      "file_offset": "0x28268",
+      "word": "6b03001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2826c",
+      "file_offset": "0x2826c",
+      "word": "54000160",
+      "relative_target": "0x28298"
+    },
+    {
+      "elf_address": "0x28270",
+      "file_offset": "0x28270",
+      "word": "540001c8",
+      "relative_target": "0x282a8"
+    },
+    {
+      "elf_address": "0x28274",
+      "file_offset": "0x28274",
+      "word": "52801a83",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28278",
+      "file_offset": "0x28278",
+      "word": "52a06062",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2827c",
+      "file_offset": "0x2827c",
+      "word": "72a60003",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28280",
+      "file_offset": "0x28280",
+      "word": "6b03001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28284",
+      "file_offset": "0x28284",
+      "word": "540000a0",
+      "relative_target": "0x28298"
+    },
+    {
+      "elf_address": "0x28288",
+      "file_offset": "0x28288",
+      "word": "52a06082",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2828c",
+      "file_offset": "0x2828c",
+      "word": "11000863",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28290",
+      "file_offset": "0x28290",
+      "word": "6b03001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x28294",
+      "file_offset": "0x28294",
+      "word": "54fffce1",
+      "relative_target": "0x28230"
+    },
+    {
+      "elf_address": "0x28298",
+      "file_offset": "0x28298",
+      "word": "7100043f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2829c",
+      "file_offset": "0x2829c",
+      "word": "1a9f17e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282a0",
+      "file_offset": "0x282a0",
+      "word": "2a020000",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282a4",
+      "file_offset": "0x282a4",
+      "word": "d65f03c0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282a8",
+      "file_offset": "0x282a8",
+      "word": "52801a83",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282ac",
+      "file_offset": "0x282ac",
+      "word": "52a04062",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282b0",
+      "file_offset": "0x282b0",
+      "word": "72aa0003",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282b4",
+      "file_offset": "0x282b4",
+      "word": "6b03001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282b8",
+      "file_offset": "0x282b8",
+      "word": "54ffff00",
+      "relative_target": "0x28298"
+    },
+    {
+      "elf_address": "0x282bc",
+      "file_offset": "0x282bc",
+      "word": "52a04082",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282c0",
+      "file_offset": "0x282c0",
+      "word": "17fffff3",
+      "relative_target": "0x2828c"
+    },
+    {
+      "elf_address": "0x282c4",
+      "file_offset": "0x282c4",
+      "word": "52820002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282c8",
+      "file_offset": "0x282c8",
+      "word": "72a02062",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282cc",
+      "file_offset": "0x282cc",
+      "word": "17fffff3",
+      "relative_target": "0x28298"
+    },
+    {
+      "elf_address": "0x282d0",
+      "file_offset": "0x282d0",
+      "word": "52840002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282d4",
+      "file_offset": "0x282d4",
+      "word": "17fffffd",
+      "relative_target": "0x282c8"
+    },
+    {
+      "elf_address": "0x282d8",
+      "file_offset": "0x282d8",
+      "word": "52860002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x282dc",
+      "file_offset": "0x282dc",
+      "word": "17fffffb",
+      "relative_target": "0x282c8"
+    },
+    {
+      "elf_address": "0x282e0",
+      "file_offset": "0x282e0",
+      "word": "52a06022",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a7fc",
+      "file_offset": "0x2a7fc",
+      "word": "52800002",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a800",
+      "file_offset": "0x2a800",
+      "word": "52800021",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a804",
+      "file_offset": "0x2a804",
+      "word": "b00000c0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a808",
+      "file_offset": "0x2a808",
+      "word": "9119c000",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a80c",
+      "file_offset": "0x2a80c",
+      "word": "97ff7f4d",
+      "relative_target": "0xa540"
+    },
+    {
+      "elf_address": "0x2a810",
+      "file_offset": "0x2a810",
+      "word": "b9003a80",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a814",
+      "file_offset": "0x2a814",
+      "word": "2a0003f5",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a850",
+      "file_offset": "0x2a850",
+      "word": "9101e3b3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a854",
+      "file_offset": "0x2a854",
+      "word": "d2800d82",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a858",
+      "file_offset": "0x2a858",
+      "word": "52800001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a85c",
+      "file_offset": "0x2a85c",
+      "word": "aa1303e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a860",
+      "file_offset": "0x2a860",
+      "word": "97ff7e6c",
+      "relative_target": "0xa210"
+    },
+    {
+      "elf_address": "0x2a864",
+      "file_offset": "0x2a864",
+      "word": "b9400a81",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a868",
+      "file_offset": "0x2a868",
+      "word": "b9400280",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a86c",
+      "file_offset": "0x2a86c",
+      "word": "97fff663",
+      "relative_target": "0x281f8"
+    },
+    {
+      "elf_address": "0x2a870",
+      "file_offset": "0x2a870",
+      "word": "b9007ba0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a874",
+      "file_offset": "0x2a874",
+      "word": "b9401280",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a878",
+      "file_offset": "0x2a878",
+      "word": "aa1303e2",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a87c",
+      "file_offset": "0x2a87c",
+      "word": "528000e1",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a880",
+      "file_offset": "0x2a880",
+      "word": "d2800013",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a884",
+      "file_offset": "0x2a884",
+      "word": "11001c00",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a888",
+      "file_offset": "0x2a888",
+      "word": "53037c00",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a88c",
+      "file_offset": "0x2a88c",
+      "word": "b9007fa0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a890",
+      "file_offset": "0x2a890",
+      "word": "2a1503e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2a894",
+      "file_offset": "0x2a894",
+      "word": "97ff7bb3",
+      "relative_target": "0x9760"
+    },
+    {
+      "elf_address": "0x2a898",
+      "file_offset": "0x2a898",
+      "word": "2a0003f5",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7cc",
+      "file_offset": "0x2c7cc",
+      "word": "b94002c0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7d0",
+      "file_offset": "0x2c7d0",
+      "word": "52801a41",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7d4",
+      "file_offset": "0x2c7d4",
+      "word": "72aa0001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7d8",
+      "file_offset": "0x2c7d8",
+      "word": "6b01001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7dc",
+      "file_offset": "0x2c7dc",
+      "word": "540002e0",
+      "relative_target": "0x2c838"
+    },
+    {
+      "elf_address": "0x2c7e0",
+      "file_offset": "0x2c7e0",
+      "word": "540001e8",
+      "relative_target": "0x2c81c"
+    },
+    {
+      "elf_address": "0x2c7e4",
+      "file_offset": "0x2c7e4",
+      "word": "12aa0001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7e8",
+      "file_offset": "0x2c7e8",
+      "word": "0b010000",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7ec",
+      "file_offset": "0x2c7ec",
+      "word": "7100141f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c7f0",
+      "file_offset": "0x2c7f0",
+      "word": "54000569",
+      "relative_target": "0x2c89c"
+    },
+    {
+      "elf_address": "0x2c81c",
+      "file_offset": "0x2c81c",
+      "word": "52801a81",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c820",
+      "file_offset": "0x2c820",
+      "word": "72aa0001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c824",
+      "file_offset": "0x2c824",
+      "word": "6b01001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c828",
+      "file_offset": "0x2c828",
+      "word": "54000080",
+      "relative_target": "0x2c838"
+    },
+    {
+      "elf_address": "0x2c82c",
+      "file_offset": "0x2c82c",
+      "word": "11000821",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c830",
+      "file_offset": "0x2c830",
+      "word": "6b01001f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c834",
+      "file_offset": "0x2c834",
+      "word": "54fffe01",
+      "relative_target": "0x2c7f4"
+    },
+    {
+      "elf_address": "0x2c838",
+      "file_offset": "0x2c838",
+      "word": "910143b3",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c83c",
+      "file_offset": "0x2c83c",
+      "word": "d2800502",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c840",
+      "file_offset": "0x2c840",
+      "word": "52800001",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c844",
+      "file_offset": "0x2c844",
+      "word": "aa1303e0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c848",
+      "file_offset": "0x2c848",
+      "word": "97ff7672",
+      "relative_target": "0xa210"
+    },
+    {
+      "elf_address": "0x2c84c",
+      "file_offset": "0x2c84c",
+      "word": "f9002fb8",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c850",
+      "file_offset": "0x2c850",
+      "word": "b9403ac0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c854",
+      "file_offset": "0x2c854",
+      "word": "aa1303e2",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c858",
+      "file_offset": "0x2c858",
+      "word": "52800021",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c85c",
+      "file_offset": "0x2c85c",
+      "word": "b90063b7",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c860",
+      "file_offset": "0x2c860",
+      "word": "97ff73c0",
+      "relative_target": "0x9760"
+    },
+    {
+      "elf_address": "0x2c864",
+      "file_offset": "0x2c864",
+      "word": "34fffc80",
+      "relative_target": "0x2c7f4"
+    },
+    {
+      "elf_address": "0x2c89c",
+      "file_offset": "0x2c89c",
+      "word": "f94022c0",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c8a0",
+      "file_offset": "0x2c8a0",
+      "word": "2a1703e2",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c8a4",
+      "file_offset": "0x2c8a4",
+      "word": "aa1803e1",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c8a8",
+      "file_offset": "0x2c8a8",
+      "word": "97ff7692",
+      "relative_target": "0xa2f0"
+    },
+    {
+      "elf_address": "0x2c8ac",
+      "file_offset": "0x2c8ac",
+      "word": "7100041f",
+      "relative_target": null
+    },
+    {
+      "elf_address": "0x2c8b0",
+      "file_offset": "0x2c8b0",
+      "word": "54fffa20",
+      "relative_target": "0x2c7f4"
+    }
+  ],
+  "interpretation": {
+    "crypto_device": "/dev/crypto",
+    "allocation_ioctl_request": 7,
+    "update_ioctl_request": 1,
+    "device_digest_selectors": [
+      "0x500000d2",
+      "0x500000d4",
+      "0x500000d6"
+    ],
+    "static_helper_translation": {
+      "0x500000d2": "0x02010000",
+      "0x500000d4": "0x02030000",
+      "0x500000d6": "0x02040000"
+    },
+    "helper_low_bit": "OR 1 exactly when its W1 argument equals 1; actual argument not observed",
+    "separate_EVP_digest_selectors": [
+      "0x50000001..0x50000006"
+    ],
+    "device_driver_implementation_resolved": false,
+    "EPBL_mode_0x19_identified": false,
+    "EPBL_DMA_input_identified": false,
+    "limit": "Library API selectors and ioctl requests are not EPBL MMIO selector values"
+  },
+  "archive_paths_extracted": false,
+  "firmware_executed": false,
+  "physical_device_tested": false
+}

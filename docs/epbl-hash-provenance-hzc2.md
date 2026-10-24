@@ -120,3 +120,7 @@ emulador com offsets semelhantes continua sem esse contrato. Vetores e
 handler `-0x3ff` permanecem pendentes; recuperação do diagnóstico no S21
 segue em paralelo conforme o [roadmap](roadmap.md). Não houve ensaio físico
 ou novo QEMU nesta entrega.
+
+Continuação de 2026-10-24: o [TZAR do próprio HZC2](tzar-crypto-hzc2.md)
+foi descomprimido e inventariado. A fronteira EVP/dispositivo e a tradução
+de seletores agora estão localizadas, ainda sem binding ao modo EPBL `0x19`.

@@ -1,0 +1,20 @@
+test_ELF_mapping_refuses_BSS_nonexecutables_and_overlap (test_tzar_hzc2.TzarTests.test_ELF_mapping_refuses_BSS_nonexecutables_and_overlap) ... ok
+test_ELF_rejects_bad_symbol_link_size_and_name (test_tzar_hzc2.TzarTests.test_ELF_rejects_bad_symbol_link_size_and_name) ... ok
+test_ELF_rejects_load_past_file_and_memory_overflow (test_tzar_hzc2.TzarTests.test_ELF_rejects_load_past_file_and_memory_overflow) ... ok
+test_ELF_rejects_wrong_class_machine_and_table_bounds (test_tzar_hzc2.TzarTests.test_ELF_rejects_wrong_class_machine_and_table_bounds) ... ok
+test_ELF_symbol_and_executable_mapping (test_tzar_hzc2.TzarTests.test_ELF_symbol_and_executable_mapping) ... ok
+test_archive_size_count_and_magic_are_checked (test_tzar_hzc2.TzarTests.test_archive_size_count_and_magic_are_checked) ... ok
+test_duplicate_and_noncanonical_names_refused (test_tzar_hzc2.TzarTests.test_duplicate_and_noncanonical_names_refused) ... ok
+test_legacy_limits_and_invalid_block_refused (test_tzar_hzc2.TzarTests.test_legacy_limits_and_invalid_block_refused) ... ok
+test_legacy_literal_block_and_tail_boundary (test_tzar_hzc2.TzarTests.test_legacy_literal_block_and_tail_boundary) ... ok
+test_name_terminator_required (test_tzar_hzc2.TzarTests.test_name_terminator_required) ... ok
+test_span_refuses_negative_and_truncated_ranges (test_tzar_hzc2.TzarTests.test_span_refuses_negative_and_truncated_ranges) ... ok
+test_truncated_and_trailing_records_refused (test_tzar_hzc2.TzarTests.test_truncated_and_trailing_records_refused) ... ok
+test_unaligned_archive_entry_and_empty_file_are_preserved (test_tzar_hzc2.TzarTests.test_unaligned_archive_entry_and_empty_file_are_preserved) ... ok
+test_witness_ranges_refuse_unaligned_or_empty (test_tzar_hzc2.TzarTests.test_witness_ranges_refuse_unaligned_or_empty) ... ok
+test_wrong_firmware_CLI_emits_no_JSON (test_tzar_hzc2.TzarTests.test_wrong_firmware_CLI_emits_no_JSON) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.044s
+
+OK

@@ -68,3 +68,13 @@ A orientação permanente inclui concluir revisão, corrigir bloqueadores e
 fazer o merge do head revisado, conforme [AGENTS.md](AGENTS.md). Não encerrar
 uma entrega concluída apenas com PR aberto. A continuação técnica e a correção
 dos nomes dos contadores estão em [proveniência HASH](docs/epbl-hash-provenance-hzc2.md).
+
+## PR #6 — revisão e merge da proveniência HASH
+
+Revisão própria registrada no head `c8f41e03781bf9aca19bf4f9684e5160f9f45bb1`,
+com diff, limites das referências, 83 testes e evidência GNU conferidos. Sem
+achados bloqueadores ou discussões pendentes no momento do merge. Nenhum
+status CI configurado foi reportado. Merge em
+`65040a6017280cb8c2bb4fac9808119f1bda0540`, main sincronizada antes da
+continuação TZAR. Esta é revisão própria; não declara aprovação automática
+externa do PR #6.
