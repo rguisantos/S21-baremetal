@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
-Atualizado em **2026-10-23 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #5, 2df91f32](https://github.com/rguisantos/S21-baremetal/commit/2df91f32fba86b6b8cb115146463da13661da4a4).
+Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge do PR #6, 65040a6](https://github.com/rguisantos/S21-baremetal/commit/65040a6017280cb8c2bb4fac9808119f1bda0540).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -105,6 +105,14 @@ conserva suas hipóteses e contagens.
 Repetir a matriz de cache ou fornecer respostas simuladas ao SMC não fecha
 o estado físico, a coerência ou o canal de leitura.
 
+A [investigação no próprio TZAR HZC2](tzar-crypto-hzc2.md) descomprime e
+inventaria 44 registros. Localiza a fronteira EVP/`/dev/crypto`, incluindo
+a tradução dos três seletores de digest, com 15 testes e GNU conferindo
+15 símbolos/127 instruções/34 destinos. A próxima busca nesse percurso é
+a implementação do dispositivo que consome os códigos; eles não identificam
+o modo MMIO `0x19`, os bytes DMA ou a saída EPBL. A cauda do contêiner
+permanece contabilizada sem análise completa. Nenhum marco físico mudou.
+
 ## Frente XNU/Darwin em laboratório
 
 Os dois projetos [HackiOS examinados por commit](hackios-xnu-reference.md)
@@ -196,6 +204,6 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-O PR #5 foi revisado e mergeado em `2df91f32`. Esta continuação parte dessa
-main e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
+Os PRs #5 e #6 foram revisados e mergeados; esta continuação parte da
+main `65040a6` e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
 das descobertas; esta página organiza prioridades e critérios atuais.

@@ -1320,3 +1320,30 @@ pré-processado, sem execução C/emulador/firmware/MMIO. Fontes completas e
 binários externos permanecem fora do Git. README/índices/roadmap atualizados.
 Próximo bloqueio: implementação 0x19 correspondente, entrada verificável ou
 saída real de48 bytes; vetores/SMC-3ff e diagnóstico físico continuam abertos.
+
+## 2026-10-24 — TZAR HZC2 e fronteira criptográfica
+
+Continuação sobre main 65040a6, PR #6 revisado/mergeado. BL e componente
+tzar.img identificados pelos mesmos hashes já inventariados. Descompressão
+do primeiro bloco interno LZ4, 6159648 bytes: arquivo de 44 registros
+consumido integralmente, nomes/tamanhos/hashes publicados. Cauda de 4502836
+bytes contabilizada por hash, sem interpretação completa. Nenhum binário
+ou fonte proprietária integral adicionado ao Git.
+
+Leitor restrito em memória usa liblz4 e ELF64 AArch64; offsets do contêiner
+não precisam estar alinhados, e endereços ELF são traduzidos pelos segmentos.
+Recusas para nomes duplicados/não canônicos, comprimentos, truncamento,
+tabelas ELF, BSS e mapeamento ambíguo. Checker GNU usa duas cópias temporárias
+com nomes controlados, removidas ao final. Nenhuma biblioteca executada.
+
+libscrypto64 delega SHA384_Update/Final a SHA512_Update/Final. libteesl64
+separa atualização EVP dos três seletores 500000d2/d4/d6 encaminhados ao
+dispositivo /dev/crypto. Helper 281f8 produz 02010000/02030000/02040000 e
+OR 1 quando W1=1; chamador prepara buffer 6c e ioctl 7. Atualização usa ioctl 1.
+São códigos de API/pedido, sem equivalência demonstrada ao MMIO EPBL19.
+Consumidor no driver, bytes DMA e saída real continuam pendentes.
+
+15 testes passaram; GNU 2.44 confere 15 símbolos dinâmicos, 127 palavras e 34
+destinos relativos. Aviso sh_info de libteesl preservado na evidência, sem
+divergência nos recortes. README/índices/roadmap e integração atualizados.
+Sem nova tentativa de chave, firmware/SMC/MMIO executado ou QEMU/S21.
