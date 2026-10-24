@@ -17,7 +17,7 @@ Todos os offsets são de arquivo, sem atribuir uma base física ao sboot.
 
 | Entrada | Chamada/uso no LK | Tratamento observado |
 |---|---|---|
-| Total de RAM | `0xfad84 → 0x11b758` | X0 passa a X25; conteúdo do getter não recuperado |
+| Total de RAM | `0xfad84 → 0x11b758` | X0 passa a X25; getter lê/cacheia `0x02038848`, com possível limite de configuração; valor real desconhecido |
 | Versão soc_info | SMC legado `-0x12e`, índice 0 | W0 deve ser `0x66001000`; senão estaciona em `0xfadc4` |
 | Base soc_info | Mesmo serviço, índice 2 | X0 igual a `0xffffffffffffffff` estaciona em `0xfb66c` |
 | Quantidade soc_info | Mesmo serviço, índice 1 | W0 igual a `0xffffffff` estaciona em `0xfb65c`; metade alta ignorada na soma |
@@ -28,6 +28,12 @@ O cursor inicial é `base_soc + zero_extend(quantidade_soc[31:0])`, com soma
 de 64 bits. Os nomes das mensagens LK não demonstram equivalência entre esse
 serviço legado e a interface positiva `0x8200012e` usada pelo Harx. Nenhum
 valor foi deduzido da capacidade comercial de 12 GiB ou de um heap no DTS.
+
+Continuação de 2026-10-24: o [produtor BL2 do total](bl2-ram-size-hzc2.md)
+foi ligado à escrita em `0x02038848`. Uma folha candidata soma quatro
+palavras de geometria e passou 66 execuções isoladas QEMU. A resolução dos
+callbacks, as palavras reais e o valor efetivamente consumido pelo LK
+continuam abertos; isso não substitui as nove entradas do modelo abaixo.
 
 ## Ordem das solicitações ao escritor
 

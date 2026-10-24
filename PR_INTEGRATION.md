@@ -99,3 +99,12 @@ Na integração, a revisão automática ainda estava pendente. Na retomada
 desta continuação, foi confirmada como completed, has_any_findings=false
 e has_unresolved_findings=false, para o mesmo head. Sem threads pendentes.
 A revisão automática do PR #7 ainda informava running nesta conferência.
+
+## PR #9 — BiEn/TZSW e validação de candidatos
+
+Head `383656d88452c5c5467d3e0064b78ef72d0dad53`, revisão própria e automática
+concluídas sem achados ou threads pendentes, com 15 testes e o ensaio AES
+negativo conferidos. Merge normal em
+`169d704ba19af808c0295b1d4048e20c6899d498`; main local sincronizada e limpa
+antes da continuação sobre o produtor de RAM no BL2. O ensaio não aceitou
+plaintext HZC2 e a integração não declara o handler SVC recuperado.

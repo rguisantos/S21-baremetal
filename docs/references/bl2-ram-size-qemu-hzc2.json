@@ -1,0 +1,842 @@
+{
+  "mode": "isolated_original_leaf_qemu_virt",
+  "input": {
+    "size": 4194304,
+    "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+  },
+  "leaf": {
+    "start": "0x2caec",
+    "end_exclusive": "0x2cb9c",
+    "instruction_count": 44,
+    "sha256": "a3a150619164a8e55e0eb80c119e4e9352ff15274c630b6b25d8806fbd06bcc9",
+    "density_table_offset": "0x30080",
+    "density_table_mib": [
+      256,
+      384,
+      512,
+      768,
+      1024,
+      1536,
+      2048
+    ],
+    "geometry_offsets": [
+      "0x31978",
+      "0x31980",
+      "0x31988",
+      "0x31990"
+    ],
+    "packed_geometry_candidate": "0x2f130",
+    "formula": "four gated slots; 1 or 2 terms from slot0[7:4]; sum MiB << 20"
+  },
+  "case_count": 66,
+  "cases": [
+    {
+      "case": "disabled",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x61610030",
+        "0x61610030",
+        "0x61610030",
+        "0x61610030"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "one_term_8gib",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60000100",
+        "0x60000100",
+        "0x60000100",
+        "0x60000100"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "two_terms_12gib",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60400130",
+        "0x60400130",
+        "0x60400130",
+        "0x60400130"
+      ],
+      "result_bytes": 12884901888,
+      "matched": true
+    },
+    {
+      "case": "maximum_32gib",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x61610130",
+        "0x61610130",
+        "0x61610130",
+        "0x61610130"
+      ],
+      "result_bytes": 34359738368,
+      "matched": true
+    },
+    {
+      "case": "mode_only_from_slot0",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60000100",
+        "0x61610130",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 6442450944,
+      "matched": true
+    },
+    {
+      "case": "two_terms_mixed_modes",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60000130",
+        "0x61610100",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 11005853696,
+      "matched": true
+    },
+    {
+      "case": "gate_high_bit",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60008000",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 2147483648,
+      "matched": true
+    },
+    {
+      "case": "factor_two_is_not_double",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x62000100",
+        "0x62000100",
+        "0x62000100",
+        "0x62000100"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "upper_bits_ignored",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xffffffff61610130",
+        "0xffffffff61610130",
+        "0xffffffff61610130",
+        "0xffffffff61610130"
+      ],
+      "result_bytes": 34359738368,
+      "matched": true
+    },
+    {
+      "case": "index_0",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x130",
+        "0x130",
+        "0x130",
+        "0x130"
+      ],
+      "result_bytes": 2147483648,
+      "matched": true
+    },
+    {
+      "case": "index_1",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x10100130",
+        "0x10100130",
+        "0x10100130",
+        "0x10100130"
+      ],
+      "result_bytes": 3221225472,
+      "matched": true
+    },
+    {
+      "case": "index_2",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x20200130",
+        "0x20200130",
+        "0x20200130",
+        "0x20200130"
+      ],
+      "result_bytes": 4294967296,
+      "matched": true
+    },
+    {
+      "case": "index_3",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x30300130",
+        "0x30300130",
+        "0x30300130",
+        "0x30300130"
+      ],
+      "result_bytes": 6442450944,
+      "matched": true
+    },
+    {
+      "case": "index_4",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x40400130",
+        "0x40400130",
+        "0x40400130",
+        "0x40400130"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "index_5",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x50500130",
+        "0x50500130",
+        "0x50500130",
+        "0x50500130"
+      ],
+      "result_bytes": 12884901888,
+      "matched": true
+    },
+    {
+      "case": "index_6",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x60600130",
+        "0x60600130",
+        "0x60600130",
+        "0x60600130"
+      ],
+      "result_bytes": 17179869184,
+      "matched": true
+    },
+    {
+      "case": "index_7",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x70700130",
+        "0x70700130",
+        "0x70700130",
+        "0x70700130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_8",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x80800130",
+        "0x80800130",
+        "0x80800130",
+        "0x80800130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_9",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x90900130",
+        "0x90900130",
+        "0x90900130",
+        "0x90900130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_10",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xa0a00130",
+        "0xa0a00130",
+        "0xa0a00130",
+        "0xa0a00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_11",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xb0b00130",
+        "0xb0b00130",
+        "0xb0b00130",
+        "0xb0b00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_12",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xc0c00130",
+        "0xc0c00130",
+        "0xc0c00130",
+        "0xc0c00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_13",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xd0d00130",
+        "0xd0d00130",
+        "0xd0d00130",
+        "0xd0d00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_14",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xe0e00130",
+        "0xe0e00130",
+        "0xe0e00130",
+        "0xe0e00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_15",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xf0f00130",
+        "0xf0f00130",
+        "0xf0f00130",
+        "0xf0f00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "seeded_0",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x7678c14d170fe7cd",
+        "0x61391c2f5286ecd8",
+        "0x167d50ca1a7ffd46",
+        "0x349c441bb0d2b8a0"
+      ],
+      "result_bytes": 2415919104,
+      "matched": true
+    },
+    {
+      "case": "seeded_1",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x65209c5753fe5919",
+        "0x47272792543300c1",
+        "0xae99cdc11a53db06",
+        "0x8caed6f2773ccda5"
+      ],
+      "result_bytes": 2013265920,
+      "matched": true
+    },
+    {
+      "case": "seeded_2",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x71db80e12a7fddc",
+        "0x4f6ffe0db6e309b5",
+        "0xa36feee2e9d2ce93",
+        "0x3cfb3a983122d87a"
+      ],
+      "result_bytes": 2013265920,
+      "matched": true
+    },
+    {
+      "case": "seeded_3",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xebe9bf7833ebc1c1",
+        "0x7b7d6ccd61c0f970",
+        "0x514098cfee14303d",
+        "0xb7cdfa2f3ac2034e"
+      ],
+      "result_bytes": 5905580032,
+      "matched": true
+    },
+    {
+      "case": "seeded_4",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x82597ad04a15aa3a",
+        "0xacd8e2e5fb236da4",
+        "0x285b01917d84dd7e",
+        "0xc9a06c4b0caad2ec"
+      ],
+      "result_bytes": 2281701376,
+      "matched": true
+    },
+    {
+      "case": "seeded_5",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x73ed58fd4a905251",
+        "0x2e4b8f5e4b591baf",
+        "0x40b8242f0207d205",
+        "0x412a0e3c03b9bc1b"
+      ],
+      "result_bytes": 2684354560,
+      "matched": true
+    },
+    {
+      "case": "seeded_6",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0xd3cfac1726d68839",
+        "0x63d0c844e6f99bec",
+        "0x7fe28a57349026e1",
+        "0x55ab1c0472c5f1e7"
+      ],
+      "result_bytes": 1342177280,
+      "matched": true
+    },
+    {
+      "case": "seeded_7",
+      "laboratory_delta": "0x40000000",
+      "slots": [
+        "0x15de9ecbffe6bdbe",
+        "0x68d94027d75ee609",
+        "0x6494494c66673ce6",
+        "0x6d9241f452e7bbca"
+      ],
+      "result_bytes": 3758096384,
+      "matched": true
+    },
+    {
+      "case": "disabled",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x61610030",
+        "0x61610030",
+        "0x61610030",
+        "0x61610030"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "one_term_8gib",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60000100",
+        "0x60000100",
+        "0x60000100",
+        "0x60000100"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "two_terms_12gib",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60400130",
+        "0x60400130",
+        "0x60400130",
+        "0x60400130"
+      ],
+      "result_bytes": 12884901888,
+      "matched": true
+    },
+    {
+      "case": "maximum_32gib",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x61610130",
+        "0x61610130",
+        "0x61610130",
+        "0x61610130"
+      ],
+      "result_bytes": 34359738368,
+      "matched": true
+    },
+    {
+      "case": "mode_only_from_slot0",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60000100",
+        "0x61610130",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 6442450944,
+      "matched": true
+    },
+    {
+      "case": "two_terms_mixed_modes",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60000130",
+        "0x61610100",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 11005853696,
+      "matched": true
+    },
+    {
+      "case": "gate_high_bit",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60008000",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "result_bytes": 2147483648,
+      "matched": true
+    },
+    {
+      "case": "factor_two_is_not_double",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x62000100",
+        "0x62000100",
+        "0x62000100",
+        "0x62000100"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "upper_bits_ignored",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xffffffff61610130",
+        "0xffffffff61610130",
+        "0xffffffff61610130",
+        "0xffffffff61610130"
+      ],
+      "result_bytes": 34359738368,
+      "matched": true
+    },
+    {
+      "case": "index_0",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x130",
+        "0x130",
+        "0x130",
+        "0x130"
+      ],
+      "result_bytes": 2147483648,
+      "matched": true
+    },
+    {
+      "case": "index_1",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x10100130",
+        "0x10100130",
+        "0x10100130",
+        "0x10100130"
+      ],
+      "result_bytes": 3221225472,
+      "matched": true
+    },
+    {
+      "case": "index_2",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x20200130",
+        "0x20200130",
+        "0x20200130",
+        "0x20200130"
+      ],
+      "result_bytes": 4294967296,
+      "matched": true
+    },
+    {
+      "case": "index_3",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x30300130",
+        "0x30300130",
+        "0x30300130",
+        "0x30300130"
+      ],
+      "result_bytes": 6442450944,
+      "matched": true
+    },
+    {
+      "case": "index_4",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x40400130",
+        "0x40400130",
+        "0x40400130",
+        "0x40400130"
+      ],
+      "result_bytes": 8589934592,
+      "matched": true
+    },
+    {
+      "case": "index_5",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x50500130",
+        "0x50500130",
+        "0x50500130",
+        "0x50500130"
+      ],
+      "result_bytes": 12884901888,
+      "matched": true
+    },
+    {
+      "case": "index_6",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x60600130",
+        "0x60600130",
+        "0x60600130",
+        "0x60600130"
+      ],
+      "result_bytes": 17179869184,
+      "matched": true
+    },
+    {
+      "case": "index_7",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x70700130",
+        "0x70700130",
+        "0x70700130",
+        "0x70700130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_8",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x80800130",
+        "0x80800130",
+        "0x80800130",
+        "0x80800130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_9",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x90900130",
+        "0x90900130",
+        "0x90900130",
+        "0x90900130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_10",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xa0a00130",
+        "0xa0a00130",
+        "0xa0a00130",
+        "0xa0a00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_11",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xb0b00130",
+        "0xb0b00130",
+        "0xb0b00130",
+        "0xb0b00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_12",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xc0c00130",
+        "0xc0c00130",
+        "0xc0c00130",
+        "0xc0c00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_13",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xd0d00130",
+        "0xd0d00130",
+        "0xd0d00130",
+        "0xd0d00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_14",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xe0e00130",
+        "0xe0e00130",
+        "0xe0e00130",
+        "0xe0e00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "index_15",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xf0f00130",
+        "0xf0f00130",
+        "0xf0f00130",
+        "0xf0f00130"
+      ],
+      "result_bytes": 0,
+      "matched": true
+    },
+    {
+      "case": "seeded_0",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x7678c14d170fe7cd",
+        "0x61391c2f5286ecd8",
+        "0x167d50ca1a7ffd46",
+        "0x349c441bb0d2b8a0"
+      ],
+      "result_bytes": 2415919104,
+      "matched": true
+    },
+    {
+      "case": "seeded_1",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x65209c5753fe5919",
+        "0x47272792543300c1",
+        "0xae99cdc11a53db06",
+        "0x8caed6f2773ccda5"
+      ],
+      "result_bytes": 2013265920,
+      "matched": true
+    },
+    {
+      "case": "seeded_2",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x71db80e12a7fddc",
+        "0x4f6ffe0db6e309b5",
+        "0xa36feee2e9d2ce93",
+        "0x3cfb3a983122d87a"
+      ],
+      "result_bytes": 2013265920,
+      "matched": true
+    },
+    {
+      "case": "seeded_3",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xebe9bf7833ebc1c1",
+        "0x7b7d6ccd61c0f970",
+        "0x514098cfee14303d",
+        "0xb7cdfa2f3ac2034e"
+      ],
+      "result_bytes": 5905580032,
+      "matched": true
+    },
+    {
+      "case": "seeded_4",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x82597ad04a15aa3a",
+        "0xacd8e2e5fb236da4",
+        "0x285b01917d84dd7e",
+        "0xc9a06c4b0caad2ec"
+      ],
+      "result_bytes": 2281701376,
+      "matched": true
+    },
+    {
+      "case": "seeded_5",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x73ed58fd4a905251",
+        "0x2e4b8f5e4b591baf",
+        "0x40b8242f0207d205",
+        "0x412a0e3c03b9bc1b"
+      ],
+      "result_bytes": 2684354560,
+      "matched": true
+    },
+    {
+      "case": "seeded_6",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0xd3cfac1726d68839",
+        "0x63d0c844e6f99bec",
+        "0x7fe28a57349026e1",
+        "0x55ab1c0472c5f1e7"
+      ],
+      "result_bytes": 1342177280,
+      "matched": true
+    },
+    {
+      "case": "seeded_7",
+      "laboratory_delta": "0x40200000",
+      "slots": [
+        "0x15de9ecbffe6bdbe",
+        "0x68d94027d75ee609",
+        "0x6494494c66673ce6",
+        "0x6d9241f452e7bbca"
+      ],
+      "result_bytes": 3758096384,
+      "matched": true
+    }
+  ],
+  "table_sha256": "d6d7486e8d87f72533a727769aaed287ed00c1383cef413be405b7539cd29197",
+  "seed": "0x2caec",
+  "stack_unchanged": true,
+  "callee_saved_unchanged": true,
+  "code_table_inputs_and_guards_unchanged": true,
+  "physical_execution_verified": false,
+  "geometry_runtime_observed": false,
+  "initializer_executed": false,
+  "callbacks_executed": false,
+  "destination_0x02038848_written": false,
+  "memory_map_verified": false,
+  "limits": [
+    "Two page-aligned laboratory placements, not Samsung physical addresses",
+    "Synthetic geometry only; no DRAM initialization, MMIO, SMC or FDT edits",
+    "Validates the selected leaf, not callback resolution or reachability"
+  ]
+}
