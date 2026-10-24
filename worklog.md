@@ -1376,3 +1376,35 @@ Leitor ELF compartilhado recusa sobreposição mesmo se só um segmento for
 executável; checker compartilha apenas o runner GNU, mantendo o parse textual
 independente da leitura binária. Índices/roadmap/integração atualizados.
 Sem ELF/firmware/syscall/SMC/MMIO executado e sem novo QEMU/S21.
+
+## 2026-10-24 — BiEn TZSW e validação de candidatos
+
+Continuação sobre main cd8b512. Revisão automática do PR #8 confirmada
+concluída sem achados no head fd78916; PR #7 ainda running, sem apontamentos.
+READMEs anexos conferidos: instruções de build, sem implementação do consumidor
+SVC. Firmware TZSW HZC2 permanece com tamanho/SHA-256 do inventário original.
+
+Envelope BiEn em 0x10 e tag teegris; palavras LE 0x28/0x2c delimitam candidato
+[0x1000,0x9d8f0), 641264 bytes, corroborado por palavras de extensão iguais.
+Referência primária CreckerROM bc9aa70: quatro arquivos identificados por
+SHA-256/blob. Utilitário declara Exynos9830, sem perfil Exynos2100. Fontes
+somente lidas; AST lê constantes e perfil literal, sem importar/executar código.
+
+Um conjunto público de parâmetros foi avaliado em memória. cryptography
+50.0.2 e OpenSSL 3.0.13 coincidem no bundle e payload. SHA-256 e5440865...
+difere do campo b24b95f1...; marcador de userboot ausente. Resultado negativo
+sob essa hipótese, sem plaintext aceito, desassemblado ou salvo. Não exclui
+algoritmo/layout/material diferente do HZC2. Nenhuma chave derivada emitida.
+
+Novo inspetor valida futuros candidatos pelo tamanho, igualdade fora da
+região e digest do original; digest substituído é recusado. Candidato
+inválido: JSON de recusa e exit 1. Erros de entrada/referência: exit 2 sem
+JSON parcial. Inspeção/ensaio negativo concluídos usam exit 0, sem declarar
+sucesso criptográfico. Arquivo bruto real também recusado como candidato.
+
+15 testes passaram, incluindo positivo sintético e controles de corrupção,
+metadados, AST e referências. Identidade do original preservada. Relatório
+guarda hashes, fontes, versões dos backends e limites; sem binários no Git.
+Índices/roadmap/integração atualizados. Esta ramificação SVC depende de
+código correspondente em claro; diagnóstico/entrada/observação e memória
+seguem em paralelo. Sem novo QEMU/S21 ou execução de firmware/serviços.

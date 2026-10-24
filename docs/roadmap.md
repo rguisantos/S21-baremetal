@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #7, 2f31df4](https://github.com/rguisantos/S21-baremetal/commit/2f31df480b2e6731db38a002ab26ca4bc270a3d9).
+[main após revisão/merge do PR #8, cd8b512](https://github.com/rguisantos/S21-baremetal/commit/cd8b5124f19c68a1e040d3564f08d8c9d95044fd).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -120,6 +120,15 @@ Trinta testes e conferência GNU de metadados/24 instruções/quatro destinos.
 O próximo limite é o handler SVC e seu despacho para o dispositivo; a
 resolução em execução e o modo EPBL 0x19 continuam sem evidência física.
 
+A [etapa BiEn/TZSW](tzsw-bien-hzc2.md) delimitou o envelope e acrescentou
+uma validação de candidatos contra o original. Um ensaio com referência
+Exynos9830, conferido por OpenSSL e cryptography, divergiu do digest HZC2.
+Quinze testes passaram; nenhum plaintext foi aceito ou salvo. Esta rota
+do SVC depende de código em claro com correspondência verificável, sem
+transformar essa dependência em pré-requisito universal do diagnóstico.
+As frentes de observação/entrada e memória permanecem prioritárias; não
+repetir a hipótese recusada ou substituir o handler por respostas simuladas.
+
 ## Frente XNU/Darwin em laboratório
 
 Os dois projetos [HackiOS examinados por commit](hackios-xnu-reference.md)
@@ -211,6 +220,6 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-Os PRs #5, #6 e #7 foram revisados e mergeados; esta continuação parte da
-main `2f31df4` e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
+Os PRs #5 a #8 foram revisados e mergeados; esta continuação parte da
+main `cd8b512` e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
 das descobertas; esta página organiza prioridades e critérios atuais.

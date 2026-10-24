@@ -122,3 +122,7 @@ Nenhum ELF, syscall, SMC, MMIO ou firmware foi executado. A próxima evidência
 o dispositivo. Para o EPBL continuam abertas a implementação de `0x19`,
 a entrada DMA e a saída real de 48 bytes. Carregamento e observação do
 diagnóstico no S21 seguem no [roadmap](roadmap.md).
+
+Continuação: o [envelope BiEn do TZSW HZC2](tzsw-bien-hzc2.md) foi delimitado.
+A hipótese Exynos9830 falhou no digest nas duas implementações AES; nenhum
+código em claro foi aceito para ligar o handler SVC.

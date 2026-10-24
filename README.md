@@ -36,6 +36,8 @@ O [arquivo TZAR e as bibliotecas HZC2](docs/tzar-crypto-hzc2.md) agora têm inve
 
 A [ligação ioctl do TEEGRIS](docs/teegris-ioctl-boundary-hzc2.md) agora confere calls, PLT/GOT, relocação e versão requerida até `libtzsl.so`: o wrapper prepara X7=15 e executa SVC #0. Foram 30 testes e conferência GNU de 24 instruções/quatro destinos, além dos metadados de ligação. A conversão de erros foi delimitada; handler SVC, consumidor do dispositivo e modo EPBL `0x19` seguem abertos.
 
+O [envelope BiEn do TZSW HZC2](docs/tzsw-bien-hzc2.md) agora tem leitura e validação de candidatos contra o original. O ensaio com a referência Exynos9830 foi reproduzido por OpenSSL/cryptography e recusado por divergência de digest; nenhum plaintext foi aceito. Quinze testes passaram. Esta ramificação do SVC depende de código correspondente em claro, mantendo diagnóstico físico e memória como frentes paralelas.
+
 ## Módulos e validação
 
 | Módulo | Conteúdo | Evidência atual |
