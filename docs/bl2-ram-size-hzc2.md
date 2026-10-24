@@ -141,3 +141,9 @@ das tabelas, mantendo desconhecidas as respostas reais. Permanecem
 pendentes geometria real, conteúdo publicado, eventual limite aplicado
 pelo LK, respostas soc_info/SEC_PGTBL/Harx e resultado das edições do FDT.
 Um total calculado não estabelece bancos, reservas ou RAM livre.
+
+Continuação: a [origem anterior da primeira palavra](bl2-geometry-record-hzc2.md)
+foi ligada a duas recargas de `0x02073600`, ao literal intermediário
+`0xcafe` e a cópias/restaurações condicionais do registro. Os seis campos
+restaurados não incluem seu primeiro u64. São 70 testes e GNU de 148
+palavras; o conteúdo real do registro e os demais slots continuam abertos.

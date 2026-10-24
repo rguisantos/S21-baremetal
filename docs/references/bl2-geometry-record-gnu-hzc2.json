@@ -1,0 +1,15 @@
+{
+  "mode": "GNU_text_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 148,
+  "relative_targets_matched": 10,
+  "selected_operands_matched": 18,
+  "record_marker_clear_producers_matched": 4,
+  "field_copies_matched": 6,
+  "callback_and_copy_literals_matched": 9,
+  "instruction_index_sha256": "5df026f270ecba553407aa2074c8b5127124b07b6be61cb4860b530d6978c99f",
+  "method": "GNU MOV/MOVK/load/store text and hexdump; no binary record address decoder reused",
+  "firmware_executed": false,
+  "record_bytes_observed": false
+}

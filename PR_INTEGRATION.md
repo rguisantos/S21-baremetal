@@ -128,3 +128,13 @@ conferidos, sem CI configurado. Merge normal em
 `5bccfd4192552f2e25070bb53f1a94939d560e55`, main local sincronizada antes
 da continuação sobre a reescrita das bases. Os valores iniciais das tabelas
 não foram promovidos a estado físico observado.
+
+## PR #12 — reescrita condicional das bases de consulta
+
+Head `33ae7df49dc9aaa013dc7f9604ca1335da415be1`, revisão própria e automática
+concluídas sem achados, sem threads ou falhas CI. Os 14 blobs publicados
+coincidem com a árvore validada; 58 testes BL2, GNU e planos condicionais
+conferidos. Merge normal em `4d4fd72f4fffb2a184d72d6a493df8e791009154`,
+main local sincronizada antes da continuação sobre o registro de geometria.
+Não foi presumido valor do nibble ou configuração ativa do S21; o ramo
+sem escrita preserva o estado anterior, sem restaurar os bytes do arquivo.

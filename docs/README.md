@@ -101,6 +101,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Reescrita das bases da consulta BL2](bl2-query-base-rewrite-hzc2.md): cinco u64 condicionados a um nibble de registrador, com preservação do estado no ramo sem escrita; 58 testes e reconstrução GNU de cinco stores, sem configuração ativa presumida.
 
+- [Registro anterior da geometria BL2](bl2-geometry-record-hzc2.md): duas recargas de `0x02073600`, marcador e cópias/restaurações condicionais; 70 testes e GNU de 148 palavras, mantendo desconhecidos os bytes e os demais slots.
+
 - [uH earlymem e Harx soc_info](el2-earlymem-hzc2.md): handler do HVC ligado ao LK, efeitos de alocação e relatório offline vinculado aos três hashes HZC2.
 
 - [Intervalos LK → uH](lk-uh-range-registration.md): percurso dos nós memory do FDT, primeira tupla de reg, comando 2 e checagem offline dos argumentos.

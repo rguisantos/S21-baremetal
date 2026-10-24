@@ -93,7 +93,9 @@ decodificador binário do construtor. Evidências
 [GNU](references/bl2-query-base-rewrite-gnu-hzc2.json).
 
 Nenhum novo QEMU, MMIO, serviço ou ensaio físico; nenhum blob adicionado.
-A próxima investigação segue os escritores/configuração restantes e a
-origem do estado anterior à consulta, sem fixar uma das bases como ativa.
+A [continuação do estado anterior](bl2-geometry-record-hzc2.md) identificou
+duas recargas da primeira palavra a partir de `0x02073600`, sem recuperar
+seu valor. A próxima investigação segue os produtores dessa palavra e os
+escritores/configuração restantes, sem fixar uma das bases como ativa.
 Bindings, nibble, respostas reais, limite LK e mapa FDT final permanecem
 pendentes. Essa reescrita não estabelece capacidade ou RAM livre.
