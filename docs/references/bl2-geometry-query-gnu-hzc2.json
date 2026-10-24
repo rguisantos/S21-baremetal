@@ -1,0 +1,15 @@
+{
+  "mode": "GNU_text_crosscheck",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "words_matched": 82,
+  "relative_targets_matched": 6,
+  "selected_operands_matched": 17,
+  "bfi_fields_matched": 2,
+  "pointers_matched": 12,
+  "instruction_index_sha256": "8b462e0ffca0afd23b2707888008c3ed0a5968008b2d389227ae79cc57e0fbd5",
+  "pointer_method": "GNU hex dump bytes; no binary pointer reader reused",
+  "firmware_executed": false,
+  "hardware_response_observed": false,
+  "limit": "Static correspondence only; nominal binding and live registers remain unverified"
+}

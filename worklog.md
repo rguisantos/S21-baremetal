@@ -1453,3 +1453,43 @@ Nenhum novo teste físico, R8/R9/R10 ou firmware proprietário adicionado.
 README, índice, roadmap e referências de memória atualizados. Próxima
 investigação: preparação/binding das consultas de geometria e célula 30f20;
 seguem pendentes valores reais, limite LK, respostas seguras e mapa final.
+
+
+## 2026-10-24 — callback da geometria BL2 seguido até MMIO
+
+Continuação sobre main b3f8340. PR #10 integrado após revisão própria e
+automática sem achados no head 84b5692; main limpa/sincronizada. READMEs
+anexos conferidos: build de kernel Android 11 e módulos de plataforma
+Android 15, sem implementação dessa consulta de bootloader.
+
+Célula 30f20 contém 02112480, alvo nominal 28480; célula 31040 contém
+0211424c, alvo nominal 2a24c. Células derivadas dos ADRP/ADD/loads do
+chamador 2f130; delta 020ea000 permanece nominal, sem binding físico
+ou exclusão de escritores das tabelas. Firmware continua tamanho/SHA
+fixados, sem executar callbacks, serviços ou acessos físicos.
+
+Consulta: 25 instruções. Slots 0..3 leem controle da própria base, inserem
+W1[1:0] em 28..29 e W2[6:0] em 20..26, escrevem controle e literal 1 em
++4, leem 32 bits de +c e retornam em W0 (X0 zero-extended). Máscara
+preservada c80fffff. Cinco u64 em 30f98: 1c036000/1c136000/1c236000/
+1c336000/1a346000. Slot 4 lê controle inicial do slot 0 e usa slot 4 nos
+acessos seguintes. W0 unsigned >4 retorna X0 00000000ffffffff, sem MMIO.
+Não se atribuiu broadcast ou defeito a essa assimetria.
+
+Preparação: 23 instruções, cinco bases em 30fc0: 1c040000/1c140000/
+1c240000/1c340000/1a350000. Lê +50, escreve com bit 24 ligado e depois
+limpo, preservando os demais; mesma assimetria do slot 4. Não restaura
+bit 24 anterior. Nenhum polling/barreira ou serviço nos dois corpos;
+conclusão do dispositivo e chamadas externas continuam desconhecidas.
+
+Inspetor confere corpos completos e deriva tabelas/BFI; plano opcional
+exige três u32 explícitos e conserva controle/resposta como desconhecidos,
+sem calcular RAM ou injetar retorno. 14 novos testes + 34 regressões BL2
+passaram (48). CLI: três planos simbólicos slots 0/4/5 e quatro recusas
+exit 2 sem JSON. GNU 2.44: 82 palavras, seis destinos, 17 operandos,
+dois BFI e 12 ponteiros; ponteiros extraídos do hexdump GNU, sem reutilizar
+o leitor binário. Nenhum novo QEMU, hardware ou blob no Git.
+
+README/índice/roadmap e integração atualizados. Próximo rastreio:
+preparação dos controladores e escritores das tabelas 30e50/30fe8. Ainda
+faltam bindings e respostas reais, eventual limite LK e mapa FDT final.

@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #9, 169d704](https://github.com/rguisantos/S21-baremetal/commit/169d704ba19af808c0295b1d4048e20c6899d498).
+[main após revisão/merge do PR #10, b3f8340](https://github.com/rguisantos/S21-baremetal/commit/b3f8340c3a1d3d1bd9e0b321c1ae62532697cc14).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -21,7 +21,7 @@ não mudam o estado de validação no telefone.
 | R10 em uma CPU | **Validado no laboratório; pendente no S21** | Main real com carregador EL2 sintético, timer IRQ e cinco recusas; faltam contrato Samsung, memória e acessos reais |
 | Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
-| Construção de RAM no LK / produtor BL2 | **Aritmética conferida; geometria real pendente** | [BL2](bl2-ram-size-hzc2.md): escrita em 0x02038848, folha original em 66 execuções QEMU, 34 testes e GNU 300 palavras/23 alvos; bindings e valores reais abertos. Construtor LK: 268 cenários anteriores, sem FDT final |
+| Construção de RAM no LK / produtor BL2 | **Aritmética conferida; geometria real pendente** | [BL2](bl2-ram-size-hzc2.md): escrita em 0x02038848 e folha original em 66 execuções QEMU. [Consulta](bl2-geometry-query-hzc2.md): callbacks nominais até MMIO, 48 testes e GNU 82 palavras/12 ponteiros; bindings e respostas reais abertos. Construtor LK: 268 cenários anteriores, sem FDT final |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
 | Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
@@ -78,20 +78,25 @@ diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 |---|---|---|
 | **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
 | **P1 — observação, em paralelo** | Fechar um canal para recuperar o registro: UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
-| **P2 — memória dinâmica, em paralelo** | Produtor BL2 localizado; resolver callbacks de preparação/consulta, incluindo célula 0x30f20, e origem da geometria. Continuar soc_info/SEC_PGTBL/Harx e ajustes FDT | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
+| **P2 — memória dinâmica, em paralelo** | Consulta BL2 ligada nominalmente ao MMIO; seguir preparação dos controladores e escritores das tabelas 0x30e50/0x30fe8. Continuar soc_info/SEC_PGTBL/Harx e ajustes FDT | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
 | **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica na frente de memória: seguir o callback que
-fornece os campos de geometria ao BL2**, incluindo a célula relativa
-`0x30f20`, a preparação anterior e os bindings mutáveis. O
-[novo rastreio](bl2-ram-size-hzc2.md) identifica a publicação de 64 bits em
-`0x02038848`, lida pelo LK/Harx, e uma folha candidata que soma quatro
-palavras usando sete densidades. As 66 execuções originais QEMU validam a
-fórmula sob entradas sintéticas; não recuperam capacidade, reservas ou
-valores reais. A tradução nominal de ponteiros ainda requer comprovação.
+**Próxima entrega técnica na frente de memória: seguir a preparação dos
+controladores e os escritores das tabelas de callbacks.** A
+[consulta de geometria](bl2-geometry-query-hzc2.md) liga nominalmente a
+célula `0x30f20` ao corpo `0x28480`: comando com campos de dois/sete bits,
+disparo e resposta de 32 bits em cinco bases literais. O callback anterior
+`0x2a24c` alterna o bit 24 em outro grupo de bases. Foram 48 testes e GNU
+de 82 palavras, seis destinos e 12 ponteiros; sem executar hardware.
+
+A fronteira está agora nos bindings mutáveis, na configuração e nas
+respostas reais. A [folha aritmética anterior](bl2-ram-size-hzc2.md) passou
+66 execuções isoladas QEMU, mas isso não transforma bases/retornos
+simbólicos em geometria observada. Não repetir respostas simuladas ou
+atribuir capacidade do SKU ao total sem evidência.
 
 A prioridade física continua fechar entrada/coerência e um canal de leitura
 para o diagnóstico mínimo. As duas frentes podem avançar com evidências

@@ -87,6 +87,13 @@ duplicação. O primeiro termo vai para os nibbles 28/24 e o segundo, 20/16.
 Isso identifica produtores candidatos dos campos usados na fórmula, mas
 não fornece os retornos reais nem comprova a associação nominal da tabela.
 
+Continuação: a [consulta e preparação candidatas](bl2-geometry-query-hzc2.md)
+foram ligadas a `0x28480`/`0x2a24c`. A consulta escreve campos de dois/sete
+bits, um disparo e lê 32 bits de resposta de bases literais; as tabelas de
+cinco bases e a assimetria do slot 4 foram conferidas. São 48 testes e GNU
+de 82 palavras. Isso localiza a fronteira MMIO sem recuperar suas respostas
+ou confirmar o binding físico.
+
 ## Reprodução e limites do ensaio
 
 ```bash
@@ -128,8 +135,9 @@ com exit 2, sem JSON. As evidências textuais são
 [GNU](references/bl2-ram-size-gnu-hzc2.json) e
 [QEMU](references/bl2-ram-size-qemu-hzc2.json). Nenhum blob foi adicionado.
 
-O próximo passo nesta frente é resolver a preparação e o callback de
-`0x30f20`, seguindo a origem das respostas e os bindings mutáveis. Permanecem
+O callback de `0x30f20` agora tem seu [caminho nominal até MMIO](bl2-geometry-query-hzc2.md).
+O próximo passo é seguir a preparação dos controladores e os escritores
+das tabelas, mantendo desconhecidas as respostas reais. Permanecem
 pendentes geometria real, conteúdo publicado, eventual limite aplicado
 pelo LK, respostas soc_info/SEC_PGTBL/Harx e resultado das edições do FDT.
 Um total calculado não estabelece bancos, reservas ou RAM livre.

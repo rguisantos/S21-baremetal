@@ -108,3 +108,13 @@ negativo conferidos. Merge normal em
 `169d704ba19af808c0295b1d4048e20c6899d498`; main local sincronizada e limpa
 antes da continuação sobre o produtor de RAM no BL2. O ensaio não aceitou
 plaintext HZC2 e a integração não declara o handler SVC recuperado.
+
+## PR #10 — produtor BL2 e folha do total de RAM
+
+Head `84b5692855da602aa922dcff46d35c60cd8b58a3`, revisão própria e automática
+concluídas sem achados, sem threads pendentes. Os 15 blobs publicados
+coincidem com a árvore validada; 34 testes BL2, 73 regressões LK, GNU e
+66 execuções isoladas QEMU conferidos. Merge normal em
+`b3f8340c3a1d3d1bd9e0b321c1ae62532697cc14`, main sincronizada/limpa antes
+da continuação da consulta de geometria. Binding nominal e valores reais
+permanecem pendentes; a integração não declara RAM livre ou FDT final.
