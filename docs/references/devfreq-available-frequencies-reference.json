@@ -1,0 +1,31 @@
+{
+  "mode": "pinned_devfreq_available_frequencies_reference",
+  "repository": "xfwdrev/android_kernel_samsung_ex2100",
+  "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+  "path": "drivers/devfreq/devfreq.c",
+  "sha256": "2bab2a9c243593b11b2ac5980bfab34bfc341498f180bc31b715c366dea53646",
+  "lines": 1728,
+  "function_line": 1379,
+  "loop_line": 1389,
+  "source_url": "https://github.com/xfwdrev/android_kernel_samsung_ex2100/blob/756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0/drivers/devfreq/devfreq.c#L1379",
+  "excerpt": [
+    "static ssize_t available_frequencies_show(struct device *d,",
+    "\t\t\t\t\t  struct device_attribute *attr,",
+    "\t\t\t\t\t  char *buf)",
+    "{",
+    "\tstruct devfreq *df = to_devfreq(d);",
+    "\tssize_t count = 0;",
+    "\tint i;",
+    "",
+    "\tmutex_lock(&df->lock);",
+    "",
+    "\tfor (i = 0; i < df->profile->max_state; i++)",
+    "\t\tcount += scnprintf(&buf[count], (PAGE_SIZE - count - 2),",
+    "\t\t\t\t\"%lu \", df->profile->freq_table[i]);",
+    "",
+    "\tmutex_unlock(&df->lock);"
+  ],
+  "iterates_profile_freq_table": true,
+  "reads_live_opp_availability": false,
+  "stock_binary_identity_verified": false
+}

@@ -1,0 +1,119 @@
+{
+  "cli_refusals": [
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [],
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "flags": [],
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [],
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "flags": [],
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [],
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_newtime_columns_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "flags": [],
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "input": "budget_0",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "input": "budget_-1",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "trace_newtime_columns_qemu.py",
+      "input": "budget_20001",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "reports_reproduced_byte_for_byte": [
+    "newtime-columns-hzc2.json",
+    "newtime-columns-gnu-hzc2.json",
+    "newtime-columns-qemu-hzc2.json",
+    "newtime-record-gnu-hzc2.json"
+  ],
+  "host_tests": {
+    "bl2": 88,
+    "newtime_including_13_new": 44,
+    "bugreport": 9,
+    "total": 141,
+    "passed": true
+  },
+  "qemu_cases": 4,
+  "budget_control_cases": 4,
+  "budget_limit_predeclared": 20000,
+  "all_default_cases_stop_before_mmio_pc": "0x19774",
+  "blocked_address": "0x158609bc",
+  "code_ect_metadata_and_guards_matched": true,
+  "no_post_copy_target_column_reads_observed": true,
+  "new_gnu_words": 188,
+  "new_gnu_relative_targets": 11,
+  "new_gnu_selected_operands": 10,
+  "previous_gnu_623_reproduced": true,
+  "python_compile_passed": true,
+  "branch_successor_or_gate_value_supplied": false,
+  "mmio_smc_phone_or_later_consumers_executed": false,
+  "local_links_checked": 709
+}

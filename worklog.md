@@ -2068,3 +2068,51 @@ Nesta conferência, nove testes de privacidade/campos passaram; relatório
 GNU229/36 alvos/17 operandos reproduzido byte a byte. Conferidos JSON da
 cronologia, pais/árvore do merge, 697 links locais e diff. Alteração somente
 documental; não houve novo ensaio QEMU nem operação no telefone.
+
+
+## 2026-10-24 — colunas 1/12 da NEWTIME e callback com parada antes de MMIO
+
+Plano recebido confrontado com sboot fixado. Confirmadas diferenças só nas
+colunas 0/1/12 entre linhas 10/15; palavras impressas em log não observam
+seleção/publicação do callback. Separados metadados parseados de 32 bytes,
+scratch de 144 bytes e descritores de saída de 16 bytes. Colunas 1/12 são
+chaves: 0x12b/0x11b (ou 0x128/0x118 conforme gate) selecionam 15 u32;
+0x71/0x73 selecionam 44/41 u32. Planos condicionais com ramos iguais diferem
+em 12 bytes no tamanho final. Valores/estabilidade de gate continuam abertos.
+
+QEMU10.0.13 funciona pelo loader/bibliotecas do r8/Makefile; -help anuncia
+-plugin. Não diagnosticado aborto no ambiente do relato. Runner novo usa
+GNU e GDB: preflight de cada acesso inteiro, whitelist de código/RAM,
+limite pré-fixado de 20000 instruções e recusa de memória não suportada.
+Sem plugin carregado, resposta MMIO/SMC ou PC escolhido após o gate.
+Quatro casos (linhas10/15, deltas40000000/40200000) executam continuamente
+1355/1495 instruções e 580/645 acessos até parar antes de0x19774, X0=158609bc.
+Cauda copiada, cabeçalho/cursor e guardas conferidos, com código/ECT/metadados
+intactos. Zero leituras posteriores do scratch e do diretório de saída;
+sem retorno completo. JSON contém PC/passo/endereço/valor/coluna e hash
+da trilha, com a seleção publicada distinguida do conjunto coberto pelo hash.
+
+Estática segue chaves em19820/1988c, lookup1982c→1c83c e cópia19964→19968.
+Novo GNU188/11 alvos/10 operandos acompanha leitores posteriores. Coluna1:
+offset em2d5f8→ponteiro31758; folha2e4b4 lê segundo u32, calcula0/28 e
+destina resultado aAP0207365c. Coluna12: linhas em2d5e8→byte31698 e
+offset2d708→ponteiro316a0; próximo leitor pendente. Não executados esses
+consumidores posteriores ou nomeado timing físico/registro do controlador.
+
+Novos dados de kernel/aparelho do plano marcados como informados, sem
+confundir fonte2701/f69a com referência2702/1133. Fonte pública devfreq.c
+fixada (1728 linhas, SHA2bab2a9c...) mostra available_frequencies percorrendo
+profile->freq_table: lista isolada não prova OPP habilitada ou ramo não
+executado. Ausência DEVFREQ permanece aberta. Sem dados privados novos.
+
+Temporários de restauração encontrados no início preservados com hash fora
+do Git. Documentação, README, índices, catálogo, roadmap e integração24
+organizados. Próximo: leitor do payload316a0, uso deAP0207365c e limites
+reais do registro; nenhum gate, registrador físico ou FDT final medido.
+
+Validação: 141 testes de host (88 BL2, 44 NEWTIME incluindo13 novos e nove
+do extrator), 12 recusas CLI exit2/stdout vazio e quatro controles com
+orçamento de uma instrução. Quatro relatórios reproduzidos byte a byte,
+incluindo QEMU e GNU623 anterior. GNU466 palavras da cadeia do stepper;
+Python compilado, 709 links locais e diff conferidos. Registro inteiro
+antes do gate comparado byte a byte; registry e ponteiros também conferidos.

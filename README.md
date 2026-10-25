@@ -10,6 +10,8 @@ O [bugreport HZC2 do aparelho](docs/dram-observed-hzc2.md) trouxe a primeira evi
 
 A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifesto de 17 arquivos já versionados, com hashes e matches de pacotes locais/asset oficial. O `AGENTS.md` agora exige revisão automática concluída para o head exato antes de cada merge, além da revisão própria.
 
+O [rastreio das colunas 1 e 12 da NEWTIME](docs/newtime-columns-hzc2.md) mostra que elas são chaves de subtabelas. Quatro execuções contínuas do callback no QEMU copiam a linha e param antes do primeiro acesso MMIO, sem fornecer gate ou desviar o fluxo. A análise estática segue a coluna 1 até um cálculo de 0/28 para AP0x0207365c e a coluna 12 até o ponteiro de seu payload; o significado físico de timing permanece aberto.
+
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
 A [busca específica por referências a BL2](docs/bl2-kernel-consumers-hzc2.md) encontrou um consumidor Linux de `0x02073600` que imprime a palavra DRAM, uma constante comum ao BL2 HZC2, parâmetros de tempo bootstat e o nome `main_rev` para o campo que condiciona a reescrita das bases. São ligações estáticas; o produtor e os valores reais do registro continuam abertos.

@@ -1,0 +1,242 @@
+{
+  "mode": "static_newtime_columns_1_12",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "previous_suffix_index_sha256": "9e14f887b84aad2ea581978fef2e1dc52dc6126debd27d117a7b4ffb9739194f",
+  "new_instruction_words": 188,
+  "new_instruction_index_sha256": "315d3e1af0376118514d43e9bf120433926a0f2be305d843c38901a9f3411923",
+  "special_table": {
+    "data_file": "0x706c8",
+    "rows": 22,
+    "columns": 17,
+    "row_stride": "0x88"
+  },
+  "differences": [
+    {
+      "column": 0,
+      "row10": "0x1000860000110",
+      "row15": "0x1000850500130"
+    },
+    {
+      "column": 1,
+      "row10": "0x12b",
+      "row15": "0x11b"
+    },
+    {
+      "column": 12,
+      "row10": "0x71",
+      "row15": "0x73"
+    }
+  ],
+  "selected_subtables": [
+    {
+      "key": "0x12b",
+      "mode": 1,
+      "columns": 1,
+      "rows": 15,
+      "data_file": "0x713ec",
+      "bytes": 60,
+      "sha256": "3f00ec5614c726fc0d6f693ab5e15f7c17f97f2ff5a4461868c9ec47e93cc136",
+      "second_u32": "0x0",
+      "derived_0207365c": 0
+    },
+    {
+      "key": "0x11b",
+      "mode": 1,
+      "columns": 1,
+      "rows": 15,
+      "data_file": "0x7135c",
+      "bytes": 60,
+      "sha256": "1bf6968b172cf3f3169b12f8e93786d32c0e5a40f8c00a8bd8ae31753a0b067e",
+      "second_u32": "0x100001",
+      "derived_0207365c": 28
+    },
+    {
+      "key": "0x128",
+      "mode": 1,
+      "columns": 1,
+      "rows": 15,
+      "data_file": "0x713a4",
+      "bytes": 60,
+      "sha256": "79cd91857c21b168310c5034618163a00106beaa45016c15efafa94847467d4f",
+      "second_u32": "0x0",
+      "derived_0207365c": 0
+    },
+    {
+      "key": "0x118",
+      "mode": 1,
+      "columns": 1,
+      "rows": 15,
+      "data_file": "0x71314",
+      "bytes": 60,
+      "sha256": "2de8fd8d12b3e374183b3182d7f347bf73f8f255ad1dfda3e8ed22d327643a9c",
+      "second_u32": "0x100001",
+      "derived_0207365c": 28
+    },
+    {
+      "key": "0x71",
+      "mode": 1,
+      "columns": 1,
+      "rows": 44,
+      "data_file": "0x77390",
+      "bytes": 176,
+      "sha256": "833f93d05db8c7f7604f50d6da0756ab14e5b8a12a8fee90c06384ae74465678",
+      "second_u32": "0x1175",
+      "derived_0207365c": null
+    },
+    {
+      "key": "0x73",
+      "mode": 1,
+      "columns": 1,
+      "rows": 41,
+      "data_file": "0x7745c",
+      "bytes": 164,
+      "sha256": "cb58a092844b8fac685539397d2f0f5b14b480b1eb4dc5af8c14e06f67b1bbd6",
+      "second_u32": "0x107a",
+      "derived_0207365c": null
+    }
+  ],
+  "conditional_record_plans": [
+    {
+      "row": 10,
+      "supplied_branch_mask": "0x0",
+      "used_bytes": "0x22dc",
+      "columns": [
+        {
+          "column": 1,
+          "key": "0x12b",
+          "descriptor_offset": "0x1a0",
+          "payload_offset": "0x2a0",
+          "bytes": 60,
+          "columns": 1,
+          "rows": 15
+        },
+        {
+          "column": 12,
+          "key": "0x71",
+          "descriptor_offset": "0x250",
+          "payload_offset": "0x1fd0",
+          "bytes": 176,
+          "columns": 1,
+          "rows": 44
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "supplied_branch_mask": "0x1ff",
+      "used_bytes": "0x1e4c",
+      "columns": [
+        {
+          "column": 1,
+          "key": "0x128",
+          "descriptor_offset": "0x1a0",
+          "payload_offset": "0x2a0",
+          "bytes": 60,
+          "columns": 1,
+          "rows": 15
+        },
+        {
+          "column": 12,
+          "key": "0x71",
+          "descriptor_offset": "0x250",
+          "payload_offset": "0x1b40",
+          "bytes": 176,
+          "columns": 1,
+          "rows": 44
+        }
+      ]
+    },
+    {
+      "row": 15,
+      "supplied_branch_mask": "0x0",
+      "used_bytes": "0x22d0",
+      "columns": [
+        {
+          "column": 1,
+          "key": "0x11b",
+          "descriptor_offset": "0x1a0",
+          "payload_offset": "0x2a0",
+          "bytes": 60,
+          "columns": 1,
+          "rows": 15
+        },
+        {
+          "column": 12,
+          "key": "0x73",
+          "descriptor_offset": "0x250",
+          "payload_offset": "0x1fd0",
+          "bytes": 164,
+          "columns": 1,
+          "rows": 41
+        }
+      ]
+    },
+    {
+      "row": 15,
+      "supplied_branch_mask": "0x1ff",
+      "used_bytes": "0x1e40",
+      "columns": [
+        {
+          "column": 1,
+          "key": "0x118",
+          "descriptor_offset": "0x1a0",
+          "payload_offset": "0x2a0",
+          "bytes": 60,
+          "columns": 1,
+          "rows": 15
+        },
+        {
+          "column": 12,
+          "key": "0x73",
+          "descriptor_offset": "0x250",
+          "payload_offset": "0x1b40",
+          "bytes": 164,
+          "columns": 1,
+          "rows": 41
+        }
+      ]
+    }
+  ],
+  "callback": {
+    "scratch_tail_bytes_allocated": 144,
+    "tail_cells_copied": 16,
+    "parsed_metadata_entry_bytes": 32,
+    "output_descriptor_bytes": 16,
+    "column_to_loop_index": "column-1",
+    "optional_key_transform": "index<=8 and supplied gate branch: nibble8 ? key+3 : key-3",
+    "key_reads": [
+      "0x197a4",
+      "0x197d4",
+      "0x19804",
+      "0x19820",
+      "0x1988c"
+    ],
+    "subtable_lookup": "0x1982c -> 0x1c83c",
+    "key_store": "0x19890",
+    "payload_copy": "0x19964 load u32 -> 0x19968 store u32",
+    "gate_before_key_read": "0x19774: read AP0x158609bc"
+  },
+  "later_static_consumers": {
+    "conditional_on_fixed_record_alias_and_success": true,
+    "column1": {
+      "descriptor": "AP0x020737a0",
+      "offset_read": "0x2d5f8",
+      "pointer_cached": "0x2d774 -> relative global0x31758",
+      "pointer_load": "0x2e4b8",
+      "second_u32_load": "0x2e4bc",
+      "fixed_output_store": "0x2e4f4 -> AP0x0207365c",
+      "arithmetic": "if bit0 clear:0; else first set bit in4..30 plus8; no hit:0"
+    },
+    "column12": {
+      "descriptor": "AP0x02073850",
+      "rows_read": "0x2d5e8",
+      "rows_cached": "0x2d5ec -> relative global0x31698 byte",
+      "offset_read": "0x2d708",
+      "pointer_cached": "0x2d71c -> relative global0x316a0",
+      "next_payload_reader_resolved": false
+    }
+  },
+  "branch_values_or_live_record_observed": false,
+  "later_consumers_executed": false,
+  "final_controller_write_or_physical_timing_parameter_identified": false
+}
