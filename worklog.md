@@ -2271,3 +2271,31 @@ Validação: GNU84 palavras/3 alvos/22 operandos, reprodução byte a byte,
 60 testes NEWTIME, três recusasCLI, 772 links, Python e diff aprovados.
 Revisão automática deve concluir sem achados/pendências no novo head antes
 da integração; nenhuma chamada SMC ou execução no telefone.
+
+## 2026-10-25 — transportes da célula31580, resultado parcial
+
+Base dc5e745. Reaplicado o decoder dos sete corpos exatos de cópia à
+janela nominal211b408–211b588. Nenhuma origem/destino intersecta a tabela;
+nenhum transporte da célula211b580 por esses corpos/literais. Projeção
+exige oito bytes completos, sem promover sobreposição parcial a ponteiro.
+Preservação, aliases e execução seguem abertos.
+
+Inventariados 46BL e1B para1fcc4 em16000–ec000; PCs reconferidos noGNU,
+sem supor alcançabilidade. Três origens examinadas:211b630 (W19 não fechado),
+211b668/32 bytes e21ab6a4/52 bytes. Nenhuma contém os bytes da célula;
+destinos desconhecidos não excluem sobrescritas. Restam44 referências sem
+análise de argumentos, além de indiretas/outros helpers. BuscaB/BL para
+2d364 ampliada atéec000, sem candidato. Literais e formasMOVZ/MOVK
+selecionadas não forneceram endereço da tabela/célula; não prova ausência
+de exportação ou chamador. OrigemX0 continua sem solução.
+
+Novo extrator, JSON e quatro testes de projeção; documentação atualizada,
+README condensado mantendo os links históricos e auditoriaPR30 registrada.
+Cinco temporários de ferramentas preexistentes foram preservados fora do
+Git com hashes antes de remover suas cópias locais; nenhum binário adicionado.
+Validação: GNU141 palavras/56 alvos/11 operandos, reprodução byte a byte,
+64 testesNEWTIME e16 dos laços, três recusasCLI, 781 links, Python e diff
+aprovados. Sem execuçãoQEMU/SMC/telefone ou ampliação de escopo. Próximo:
+argumentos e wrappers das cópias parametrizadas, distinguindo transporte,
+sobrescrita e uso como função. Revisão automática do novo head deve concluir
+sem achados/pendências antes da integração.

@@ -109,6 +109,9 @@ liga um inicializador concreto à folha SMC e deriva endereços candidatos
 pela convenção pública; a segunda origem e o monitor seguem abertos.
 A [auditoria do slot47](newtime-slot47-hzc2.md) distingue bases e
 descarta quatro candidatos, mantendo despacho/X0 abertos.
+A [investigação de transportes](newtime-transports-hzc2.md) afasta sete
+cópias fixas e examina três das 47 referências parametrizadas; transporte
+da célula e origem de X0 continuam abertos.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

@@ -84,6 +84,10 @@ continua válido sob suas condições: X3 fornecido na chamada `0x18000`, store 
 usar os quatro candidatos descartados para afirmar que esse binding foi
 substituído por 4, preservado no boot ou modificado numa ordem específica.
 
+A [continuação sobre transportes](newtime-transports-hzc2.md) afasta
+sete cópias fixas sob o mapeamento nominal e delimita a frente de cópias
+parametrizadas. O transporte da célula e X0 seguem sem solução.
+
 ## Reprodução, validação e próxima frente
 
 ```bash

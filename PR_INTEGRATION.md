@@ -381,3 +381,16 @@ consultou esse estado e zero threads antes do merge
 Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
 GNU324 anteriores mais46/3 alvos/14 operandos, 56 testes, três recusas CLI,
 764 links e reprodução exata. Nenhuma SMC ou execução adicional de firmware.
+
+## PR #30 — auditoria parcial do slot47
+
+Head `23ea3f2df37f4562922cd4f0394cf0f84b1029e3`, revisão própria
+5644927762; onze blobs e árvore `17cf67ef24f5fdb2582ad0f87b01c1d3721900aa`
+conferidos. Comentário automático 6402296891: completed sem achados ou
+pendências no head exato, updated_at 2026-10-25 15:45:01 -04:00. A sessão
+consultou esse estado e zero threads antes do merge
+`dc5e745fc781045ab4849292f03587317bae74dc`, às 15:45:26 -04:00,
+25 segundos depois. updated_at não é timestamp exclusivo de conclusão.
+Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
+GNU84/3 alvos/22 operandos, 60 testes, três recusas CLI e 772 links;
+origem de X0 permaneceu explicitamente aberta, sem nova execução de firmware.
