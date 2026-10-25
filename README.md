@@ -18,7 +18,9 @@ O [rastreio das recargas NEWTIME](docs/newtime-reloads-hzc2.md) identifica outro
 
 O [binding NEWTIME até a SMC](docs/newtime-smc-binding-hzc2.md) liga um inicializador de `0x31998` à folha `SMC #0; RET`. Os argumentos são compatíveis com a convenção pública SFR_W; aceitação, efeito físico e preservação continuam abertos.
 
-O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota esse relatório como substituto das seções 2.8–2.13 do plano recebido. Organiza as próximas análises estáticas e mantém os consumidores externos ao callback fora do escopo de execução.
+A [auditoria do slot 47](docs/newtime-slot47-hzc2.md) distingue as tabelas `0x30fe8` e `0x31408`: quatro candidatos de imediato 376 pertencem à primeira. O despacho verdadeiro e a origem de X0 permanecem abertos; argumento zero só pula o store do binding.
+
+O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido. Organiza as próximas análises estáticas e mantém os consumidores externos ao callback fora do escopo de execução.
 
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
