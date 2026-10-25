@@ -2217,3 +2217,30 @@ conferidos; relatório reproduzido byte a byte. Três recusas CLI (curto,
 longo, alterado), 53 testes NEWTIME e links locais passaram; diff conferido.
 Não houve execução QEMU ou no telefone nem ampliação de escopo. A revisão
 automática do novo head deve concluir sem achados/pendências antes do merge.
+
+## 2026-10-25 — inicializador de 31998 e binding nominal até SMC
+
+Base a50a1db. Rastreado X3 preparado por17fbc/17fc0/17fc4 para tabela307e0,
+fornecido porBL18000 a1dc90 e publicado condicionalmente em31998 por1dcbc.
+Célula30828 (+72) contém02100420, nominalmente16420: SMC#0;RET. A cadeia
+dos15 envios de28808 possui assim destino nominal concreto, condicionado
+à preservação. Segundo escritor2d394 recebeX0 ainda sem origem; seu alvo
+aparece no slot47 de31408 (célula31580). Execução/ordem não estabelecidas.
+
+A convenção pública de include/soc/samsung/exynos-smc.h na revisão fixada
+756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0 usaSMC_CMD_REG=-101 eSFR_W.
+Fonte reconferida por URL fixada, hash e linhas de macros registrados.
+Inversão deriva15 endereços candidatos de1a340400 a1a3404b4 com lacunas;
+nove valores diferem entre subtabelas12b/11b. Não há prova de atendimento,
+resposta, nomes físicos de campos ou correspondência da fonte com o monitor
+HZC2. Não houve execução QEMU/SMC/telefone nem ampliação do escopo.
+
+Novo extrator e JSON reproduzidos byte a byte; 324 palavras anteriores mais
+46 palavras/3 alvos/14 operandos novos conferidos no GNU. Três testes novos
+sobre a inversão (conhecidos, limites/roundtrip e classes/tipos inválidos),
+56 testes NEWTIME aprovados. Três recusas CLI por imagem curta/longa/alterada,
+764 links locais, compilação Python e diff conferidos. Relatório, README,
+índice, plano, roadmap e auditoria do PR28 atualizados. Próximo: despacho
+do slot47/X0, escritores/aliases e semântica física dos campos candidatos;
+AP0207365c e ordem real permanecem abertos. Revisão automática do novo head
+deve terminar sem achados/pendências antes da integração.

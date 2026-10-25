@@ -69,6 +69,11 @@ Identificar quem fornece esses argumentos e qual método ocupa +72 é a
 próxima aresta desta cadeia. Não foi atribuído a ela um nome como log,
 telemetria ou programação DRAM sem resolver esse destino.
 
+A [continuação estática do binding](newtime-smc-binding-hzc2.md) resolve
+um inicializador concreto e o alvo nominal +72 como folha SMC; a segunda
+origem e a preservação permanecem abertas. As pendências acima descrevem
+o estado desta rodada anterior.
+
 ## Recargas, publicação e limites de preservação
 
 - **Coluna 1:** `0x2d774` publica X7 em S+208; a folha `0x2e4b8` o lê
