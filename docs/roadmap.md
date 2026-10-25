@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #22, 81274a4](https://github.com/rguisantos/S21-baremetal/commit/81274a4bcb4d45dc5b7a2a1d85a43ae04a7076bd).
+[main após revisão/merge do PR #23, 566c977](https://github.com/rguisantos/S21-baremetal/commit/566c977f5d976ecfe151d0f43a937b9acaed5d54).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -21,7 +21,7 @@ não mudam o estado de validação no telefone.
 | R10 em uma CPU | **Validado no laboratório; pendente no S21** | Main real com carregador EL2 sintético, timer IRQ e cinco recusas; faltam contrato Samsung, memória e acessos reais |
 | Diagnóstico mínimo de entrada | **Implementado e testado no QEMU** | Padrão: 12 casos, seis aceitos e seis recusados; 128 entradas relocadas verificadas em etapa anterior |
 | Firmware, fontes e DTB base | **Base identificada; análise da cadeia em andamento** | BL e imagens de boot inventariados; três listas DTS corrigidas reproduzem os 389876 bytes da base HZC2 |
-| Construção de RAM no LK / produtor BL2 | **Identificação DRAM em log confirmada; mapa físico pendente** | [Bugreport HZC2](dram-observed-hzc2.md): Samsung/D1Z, 12.000000GB e palavra 0001000850500130 no LAST KMSG. Getters LK usam campos do cache de AP0x02073600; igualdade do driver com outra palavra não é classificação universal de D1Z. Publicação/empacotamento condicionais conferidos no laboratório; demais slots, SRAM ao vivo, limites e FDT final abertos |
+| Construção de RAM no LK / produtor BL2 | **DRAM observada no log do bootloader; mapa físico pendente** | [Bugreport HZC2](dram-observed-hzc2.md): Samsung/D1Z, 12.000000GB e palavra 0001000850500130 no LAST KMSG. Getters LK usam campos do cache de AP0x02073600; igualdade do driver com outra palavra não é classificação universal de D1Z. Publicação/empacotamento condicionais conferidos no laboratório; demais slots, SRAM ao vivo, limites e FDT final abertos |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
 | Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
 | SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
