@@ -1992,3 +1992,55 @@ exit2 sem JSON antes deGNU/QEMU, relatórios estático/GNU reproduzidos byte
 a byte, Python compilado e links conferidos. README, índices, catálogo,
 roadmap e integração21 organizados. Próximo: efeitos após retorno, recarga,
 bindings físicos, respostas reais e RAM/FDT final, sem repetir coleta bloqueada.
+
+
+## 2026-10-24 — bugreport DRAM e revisão da governança/proveniência
+
+Usuário forneceu ZIP de bugreport e observações do aparelho HZC2. Leitura
+local do arquivo exato (35232190 bytes, SHA d7d494cc...) sem comando no
+telefone; extração privada fora do Git. Relatório público só com lista de
+permissão: kernel atual HZC2/Android15/SM-G998B, dram_info01,08,00,12G,
+LAST KMSG com0001000850500130, Samsung, D1Z e12.000000GB. Kernel HZA6 aparece
+em PRINT RECOVERY LOG, mantido separado. Não publicado ZIP/cmdline/IDs/appdata.
+Log persistido não é snapshot SRAM ao vivo; identidade atual não data todas
+as mensagens. Bugreportz/rish/Shizuku é método informado pelo usuário, não
+executado nesta análise; nenhuma cópia feita em /sdcard/Download.
+
+Revisado restante do driver público de2702 linhas e todas as ocorrências
+DRAM, com hash1133eb69.../commit756951a. RamoMIF lê alto/baixo AP02073600 e
+aplica igualdade exata A0001000860000110. ObservadaB0001000850500130 não
+coincide: é segundo caso especial do empacotador/linha15NEWTIME. LKpreenche
+cacheaa7ea0 por leiturasWAP02073604/600 e usa bits8..15 parafabricante,
+32..47 para processo. A/B/C compartilham fabricante1/processo8, retornando
+Samsung/D1Z, com modos/densidades diferentes. Não concluída identidade do
+stock5.4.242 com fork, política de frequência ou valores dos outros3slots.
+
+229 palavras/36alvos/17operandos GNU; leitor confere5strings/literal1/1024.
+Seis casos QEMU A/B/C em duas colocações executam cache/manufacturer/process
+originais, com endereçosAP traduzidos paraRAM por MMUsintética, guardas e
+ABI/SP. Sem executarprintf inteiro/telefone. Tamanhoformatado LKvem de
+cache ouAP02038848, truncado emMiB e escalado, sem amostra exata do u64.
+KERNELLOG tem17730linhas/2029531bytesUTF8/2352linhasNPU e zero DEVFREQdram.
+Argumento log_buf_len256K não mede capacidade efetiva ou causa da ausência.
+
+PR22 revisadoautomaticamente completed sem achados após merge; procedimento
+anterior não aguardou. AGENTSagora exige completed do headexato antes do
+merge, além de revisão própria, validações e threads. Autorização permanente
+preservada; não se usa ausência dechecks como aprovação automática.
+
+Auditados17arquivos rastreados>=5MiB com hashes/blobs/modos;13payloads
+coincidem com .debs locais,3archives têmcontrole/hash, APK coincide comasset
+oficial app-debug.apk/Magiskv30.7 (digestGitHub40729525...). Assinaturas/
+origem remota dosdebs não autenticadas; manifesto explicitafronteira. Nenhum
+binário adicionado/removido; somatório por caminho não é tamanhoGit, com
+aliases deduplicados no manifesto. Bootstrap fixado para posterior organização.
+Temporário de restauração preservado fora do repositório, sem incorporar.
+
+Extrator tem nove testes de privacidade/seções/campos, incluindo canários e
+texto de aplicativos. Passaram 128 testes de host (88 BL2, 31 NEWTIME e nove
+novos), 15 recusas CLI com exit2/stdout vazio e compilação Python. Quatro
+relatórios reproduzidos byte a byte, incluindo manifesto conferido com
+--check. Links locais conferidos, com um caminho relativo legado corrigido.
+README, índices, catálogo, roadmap e integração22 atualizados.
+Próximo: preservação/recargas e campos reais restantes, sem
+promover logpersistido a mapaRAM ou repetir coletas bloqueadas.

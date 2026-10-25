@@ -1,0 +1,129 @@
+{
+  "mode": "allowlisted_private_bugreport_dram",
+  "archive_bytes": 35232190,
+  "archive_sha256": "d7d494cc5ceca1d8315afe415097e04fc94cf6802d6165678f96cd9ee6346c34",
+  "member": "dumpstate-2026-10-24-21-01-59.txt",
+  "member_sha256": "fc2a1d393747a76a5170595c85d9eebac4eded2e9ef7ea77759e79b46ca1afca",
+  "fields": {
+    "records": [
+      {
+        "line": 13,
+        "section": "HEADER",
+        "fields": {
+          "kernel": "5.4.242-30958140-abG998BXXSJHZC2"
+        }
+      },
+      {
+        "line": 14,
+        "section": "HEADER",
+        "fields": {
+          "dram_info": "01,08,00,12G",
+          "log_buf_len_argument": "256K"
+        }
+      },
+      {
+        "line": 391389,
+        "section": "SYSTEM PROPERTIES",
+        "fields": {
+          "android_release": "15"
+        }
+      },
+      {
+        "line": 391515,
+        "section": "SYSTEM PROPERTIES",
+        "fields": {
+          "model": "SM-G998B"
+        }
+      },
+      {
+        "line": 415311,
+        "section": "LAST KMSG",
+        "fields": {
+          "bootloader_word": "0001000850500130"
+        }
+      },
+      {
+        "line": 415331,
+        "section": "LAST KMSG",
+        "fields": {
+          "bootloader_build": "G998BXXSJHZC2"
+        }
+      },
+      {
+        "line": 415717,
+        "section": "LAST KMSG",
+        "fields": {
+          "manufacturer_label": "Samsung"
+        }
+      },
+      {
+        "line": 415718,
+        "section": "LAST KMSG",
+        "fields": {
+          "process_label": "D1Z"
+        }
+      },
+      {
+        "line": 415719,
+        "section": "LAST KMSG",
+        "fields": {
+          "size_label": "12.000000GB"
+        }
+      },
+      {
+        "line": 416226,
+        "section": "LAST KMSG",
+        "fields": {
+          "bootloader_build": "G998BXXSJHZC2"
+        }
+      },
+      {
+        "line": 520329,
+        "section": "PRINT RECOVERY LOG",
+        "fields": {
+          "recovery_kernel": "5.4.242-30958140-abG998BXXSJHZA6"
+        }
+      },
+      {
+        "line": 520976,
+        "section": "PRINT RECOVERY LOG",
+        "fields": {
+          "recovery_kernel": "5.4.242-30958140-abG998BXXSJHZA6"
+        }
+      },
+      {
+        "line": 521658,
+        "section": "PRINT RECOVERY LOG",
+        "fields": {
+          "recovery_kernel": "5.4.242-30958140-abG998BXXSJHZA6"
+        }
+      },
+      {
+        "line": 522399,
+        "section": "PRINT RECOVERY LOG",
+        "fields": {
+          "recovery_kernel": "5.4.242-30958140-abG998BXXSJHZA6"
+        }
+      },
+      {
+        "line": 523273,
+        "section": "PRINT RECOVERY LOG",
+        "fields": {
+          "recovery_kernel": "5.4.242-30958140-abG998BXXSJHZA6"
+        }
+      }
+    ],
+    "kernel_log": {
+      "lines": 17730,
+      "utf8_bytes": 2029531,
+      "npu_lines": 2352,
+      "devfreq_dram_lines": 0
+    },
+    "raw_lines_or_identifiers_emitted": false,
+    "last_kmsg_is_not_a_live_register_snapshot": true,
+    "current_boot_identity_does_not_date_every_persistent_message": true
+  },
+  "collection_method": "bugreportz via rish/Shizuku, reported by user; not executed by this tool",
+  "direct_02073600_or_02038848_read": false,
+  "smc_or_uart_measurement": false
+}

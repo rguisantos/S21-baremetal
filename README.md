@@ -6,6 +6,10 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
+O [bugreport HZC2 do aparelho](docs/dram-observed-hzc2.md) trouxe a primeira evidência de log nesta investigação: **Samsung, D1Z, 12.000000GB e `0001000850500130`** no `LAST KMSG`. Esse valor difere da comparação `0001000860000110` do driver, mas ambos selecionam Samsung/D1Z pelos getters LK; o observado corresponde à linha 15 da NEWTIME. São 229 palavras GNU e seis casos dos helpers originais no QEMU. O extrato público omite cmdline e identificadores; a observação não é uma leitura direta da SRAM ou do FDT final.
+
+A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifesto de 17 arquivos já versionados, com hashes e matches de pacotes locais/asset oficial. O `AGENTS.md` agora exige revisão automática concluída para o head exato antes de cada merge, além da revisão própria.
+
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
 A [busca específica por referências a BL2](docs/bl2-kernel-consumers-hzc2.md) encontrou um consumidor Linux de `0x02073600` que imprime a palavra DRAM, uma constante comum ao BL2 HZC2, parâmetros de tempo bootstat e o nome `main_rev` para o campo que condiciona a reescrita das bases. São ligações estáticas; o produtor e os valores reais do registro continuam abertos.

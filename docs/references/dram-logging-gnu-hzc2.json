@@ -1,0 +1,11 @@
+{
+  "mode": "GNU_dram_logging",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "6b547ec97422752468586e9bbba949c4d37e67000204400d93abe06ae5122651",
+  "words_matched": 229,
+  "relative_targets_matched": 36,
+  "selected_operands_matched": 17,
+  "strings_checked_by_hash_bound_reader": 5,
+  "scaling_literal_checked_by_hash_bound_reader": true,
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44"
+}

@@ -1,0 +1,398 @@
+{
+  "mode": "tracked_large_binary_inventory",
+  "threshold_bytes": 5242880,
+  "count": 17,
+  "total_versioned_bytes": 396820992,
+  "files": [
+    {
+      "path": "scripts/magiskboot/magisk.apk",
+      "git_blob": "0b75a905b86b8f37a0e189523a54fc7f36691814",
+      "git_mode": "100644",
+      "bytes": 25278536,
+      "sha256": "40729525e298a11dad6e13586a29efa48a48e97cbf00203798e8047d1c710cb2",
+      "provenance": {
+        "kind": "official_release_asset_digest_match",
+        "asset": {
+          "repository": "topjohnwu/Magisk",
+          "tag": "v30.7",
+          "asset_id": 360657865,
+          "asset_name": "app-debug.apk",
+          "bytes": 25278536,
+          "sha256": "40729525e298a11dad6e13586a29efa48a48e97cbf00203798e8047d1c710cb2",
+          "metadata_url": "https://api.github.com/repos/topjohnwu/Magisk/releases/tags/v30.7",
+          "download_url": "https://github.com/topjohnwu/Magisk/releases/download/v30.7/app-debug.apk"
+        }
+      }
+    },
+    {
+      "path": "tools/debs/cpp-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+      "git_blob": "ddba1b2758a21ba8449704d74c72f2d83e1e6a62",
+      "git_mode": "100644",
+      "bytes": 11203104,
+      "sha256": "6610dda7938376fefcbc3b49c81cd23c82e86411a488e4c9a69c082f2acd714e",
+      "provenance": {
+        "kind": "local_deb_archive",
+        "package": "tools/debs/cpp-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+      "git_blob": "7bbef53c881212424e385abb200775a7ccbd068d",
+      "git_mode": "100644",
+      "bytes": 21571468,
+      "sha256": "489acd3a7479d7e55c01e7f3af10176b70a99ec8c2230ba63cacdbcf2e6e0692",
+      "provenance": {
+        "kind": "local_deb_archive",
+        "package": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+      "git_blob": "3ec1c9bd9aaac5ad00c6627e35fe44e9dfcaf4ee",
+      "git_mode": "100644",
+      "bytes": 9901648,
+      "sha256": "babb8ab3c9f5f045184bd8c20604237d28c1b5e6a578d7f400566b9f257b59e7",
+      "provenance": {
+        "kind": "local_deb_archive",
+        "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/aarch64-linux-gnu-lto-dump",
+      "git_blob": "987dcfa8f010a9032743bcf613016a90fce7a353",
+      "git_mode": "100755",
+      "bytes": 34660808,
+      "sha256": "92883507c4cb33b245a63c00abe02654b6c978964500bf48a56154914bab5764",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+            "member": "./usr/bin/aarch64-linux-gnu-lto-dump-14",
+            "bytes": 34660808
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/aarch64-linux-gnu-lto-dump-14",
+      "git_blob": "987dcfa8f010a9032743bcf613016a90fce7a353",
+      "git_mode": "100755",
+      "bytes": 34660808,
+      "sha256": "92883507c4cb33b245a63c00abe02654b6c978964500bf48a56154914bab5764",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+            "member": "./usr/bin/aarch64-linux-gnu-lto-dump-14",
+            "bytes": 34660808
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/qemu-system-aarch64",
+      "git_blob": "e27e97548811a20e01c9da8659600e4ae47144bc",
+      "git_mode": "100755",
+      "bytes": 34073536,
+      "sha256": "2e7fe3008a900980493a85e606036793fd162153edac0228477579988c53e1f5",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+            "member": "./usr/bin/qemu-system-aarch64",
+            "bytes": 34073536
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/qemu-system-arm",
+      "git_blob": "9cde4d10bd7591407bbdf452b810fc02f8d5d90b",
+      "git_mode": "100644",
+      "bytes": 31300320,
+      "sha256": "0dfd6c04c472cf2e6478092caf090a963a6e9ae354ffe39cfc309966430c093e",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+            "member": "./usr/bin/qemu-system-arm",
+            "bytes": 31300320
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/qemu-system-arm64",
+      "git_blob": "e27e97548811a20e01c9da8659600e4ae47144bc",
+      "git_mode": "100644",
+      "bytes": 34073536,
+      "sha256": "2e7fe3008a900980493a85e606036793fd162153edac0228477579988c53e1f5",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+            "member": "./usr/bin/qemu-system-aarch64",
+            "bytes": 34073536
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/qemu-system-armel",
+      "git_blob": "9cde4d10bd7591407bbdf452b810fc02f8d5d90b",
+      "git_mode": "100644",
+      "bytes": 31300320,
+      "sha256": "0dfd6c04c472cf2e6478092caf090a963a6e9ae354ffe39cfc309966430c093e",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+            "member": "./usr/bin/qemu-system-arm",
+            "bytes": 31300320
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/bin/qemu-system-armhf",
+      "git_blob": "9cde4d10bd7591407bbdf452b810fc02f8d5d90b",
+      "git_mode": "100644",
+      "bytes": 31300320,
+      "sha256": "0dfd6c04c472cf2e6478092caf090a963a6e9ae354ffe39cfc309966430c093e",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+            "member": "./usr/bin/qemu-system-arm",
+            "bytes": 31300320
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/lib/gcc-cross/aarch64-linux-gnu/14/libasan.a",
+      "git_blob": "2f84ba71a19be2cc574cd3951e117896ebcd6376",
+      "git_mode": "100644",
+      "bytes": 5682290,
+      "sha256": "fe7bf5646a5f9107371a2c318bb4fa2394564195823b3367b6b2c199c9a5cc9a",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/libgcc-14-dev-arm64-cross_14.2.0-19cross1_all.deb",
+            "member": "./usr/lib/gcc-cross/aarch64-linux-gnu/14/libasan.a",
+            "bytes": 5682290
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/lib/gcc-cross/aarch64-linux-gnu/14/libtsan.a",
+      "git_blob": "3849318e09bdfc9f4c5d9789feae043e8b978276",
+      "git_mode": "100644",
+      "bytes": 5283786,
+      "sha256": "ff505d35e5992c4a56aab7c05b7487061a7d42a60b6fb9c3e55753aaf3e4c498",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/libgcc-14-dev-arm64-cross_14.2.0-19cross1_all.deb",
+            "member": "./usr/lib/gcc-cross/aarch64-linux-gnu/14/libtsan.a",
+            "bytes": 5283786
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/lib/x86_64-linux-gnu/libcapstone.so.5",
+      "git_blob": "8a9bb677593158ed153045ee8cf0b4f9fc6eab9b",
+      "git_mode": "100644",
+      "bytes": 9334752,
+      "sha256": "6db7eb6c4b7899a9f7b236e63f0aec33940fb6c7029384e33d69807e4d5fc201",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/libcapstone5_5.0.7-1~deb13u1_amd64.deb",
+            "member": "./usr/lib/x86_64-linux-gnu/libcapstone.so.5",
+            "bytes": 9334752
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+      "git_blob": "c9b1a9c8b540aa8a745a2dc109a28766fcac41d9",
+      "git_mode": "100644",
+      "bytes": 6521408,
+      "sha256": "8ae56f0a9481280a68c19f59809cd242a07a91ad7142944d21a878221992244b",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/libssl3t64_3.5.7-1~deb13u3_amd64.deb",
+            "member": "./usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+            "bytes": 6521408
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/libexec/gcc-cross/aarch64-linux-gnu/14/cc1",
+      "git_blob": "d0b85aa0784f6d9bed663f6cc55bf0efb3089456",
+      "git_mode": "100755",
+      "bytes": 36009416,
+      "sha256": "2161f3a2c38a7e7153796895aa2d17d47975f9da3fccad8507808f1773430a4e",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/cpp-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+            "member": "./usr/libexec/gcc-cross/aarch64-linux-gnu/14/cc1",
+            "bytes": 36009416
+          }
+        ],
+        "independently_authenticated": false
+      }
+    },
+    {
+      "path": "tools/root/usr/libexec/gcc-cross/aarch64-linux-gnu/14/lto1",
+      "git_blob": "98f742bd6eb14d34595f056894d6df2e838eecd9",
+      "git_mode": "100755",
+      "bytes": 34664936,
+      "sha256": "6c582a90c3e62eaf2aeb0d62585998464930bd091a2fd0ab5b6cf236f015767d",
+      "provenance": {
+        "kind": "byte_match_to_local_deb_payload",
+        "matches": [
+          {
+            "package": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+            "member": "./usr/libexec/gcc-cross/aarch64-linux-gnu/14/lto1",
+            "bytes": 34664936
+          }
+        ],
+        "independently_authenticated": false
+      }
+    }
+  ],
+  "source_not_recovered": [],
+  "local_archives": [
+    {
+      "path": "tools/debs/cpp-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+      "sha256": "6610dda7938376fefcbc3b49c81cd23c82e86411a488e4c9a69c082f2acd714e",
+      "control": {
+        "Package": "cpp-14-aarch64-linux-gnu",
+        "Version": "14.2.0-19cross1",
+        "Architecture": "amd64",
+        "Source": "gcc-14-cross (9)"
+      }
+    },
+    {
+      "path": "tools/debs/gcc-14-aarch64-linux-gnu_14.2.0-19cross1_amd64.deb",
+      "sha256": "489acd3a7479d7e55c01e7f3af10176b70a99ec8c2230ba63cacdbcf2e6e0692",
+      "control": {
+        "Package": "gcc-14-aarch64-linux-gnu",
+        "Version": "14.2.0-19cross1",
+        "Architecture": "amd64",
+        "Source": "gcc-14-cross (9)"
+      }
+    },
+    {
+      "path": "tools/debs/libasan8-arm64-cross_14.2.0-19cross1_all.deb",
+      "sha256": "e223a6c4aa71aa8754abb845cba3de9ae175a213e36a98b67b1aad558ac818be",
+      "control": {
+        "Package": "libasan8-arm64-cross",
+        "Version": "14.2.0-19cross1",
+        "Architecture": "all",
+        "Source": "gcc-14-cross (9)"
+      }
+    },
+    {
+      "path": "tools/debs/libcapstone5_5.0.7-1~deb13u1_amd64.deb",
+      "sha256": "775187a7be26bb0b076d1979a02163b943dbc13eb4adb0efc503223a03c75422",
+      "control": {
+        "Package": "libcapstone5",
+        "Version": "5.0.7-1~deb13u1",
+        "Architecture": "amd64",
+        "Source": "capstone"
+      }
+    },
+    {
+      "path": "tools/debs/libgcc-14-dev-arm64-cross_14.2.0-19cross1_all.deb",
+      "sha256": "44d31567993f2f138638e3088cc75240d13c7d8a2ebe69032aafd37bc35c7a6f",
+      "control": {
+        "Package": "libgcc-14-dev-arm64-cross",
+        "Version": "14.2.0-19cross1",
+        "Architecture": "all",
+        "Source": "gcc-14-cross (9)"
+      }
+    },
+    {
+      "path": "tools/debs/libssl3t64_3.5.7-1~deb13u3_amd64.deb",
+      "sha256": "ff16bc048bcd7d1b256094450b79c77947d8e76fe2a24bd99b91021d591fa074",
+      "control": {
+        "Package": "libssl3t64",
+        "Version": "3.5.7-1~deb13u3",
+        "Architecture": "amd64",
+        "Source": "openssl"
+      }
+    },
+    {
+      "path": "tools/debs/libtsan2-arm64-cross_14.2.0-19cross1_all.deb",
+      "sha256": "a93d548f6a34d1afb6f1dda193fe841c0d6225363af55e6106f333986c906169",
+      "control": {
+        "Package": "libtsan2-arm64-cross",
+        "Version": "14.2.0-19cross1",
+        "Architecture": "all",
+        "Source": "gcc-14-cross (9)"
+      }
+    },
+    {
+      "path": "tools/debs/qemu-system-arm_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+      "sha256": "babb8ab3c9f5f045184bd8c20604237d28c1b5e6a578d7f400566b9f257b59e7",
+      "control": {
+        "Package": "qemu-system-arm",
+        "Version": "1:10.0.13+ds-0+deb13u1",
+        "Architecture": "amd64",
+        "Source": "qemu"
+      }
+    }
+  ],
+  "duplicate_content_groups": [
+    [
+      "tools/root/usr/bin/aarch64-linux-gnu-lto-dump",
+      "tools/root/usr/bin/aarch64-linux-gnu-lto-dump-14"
+    ],
+    [
+      "tools/root/usr/bin/qemu-system-aarch64",
+      "tools/root/usr/bin/qemu-system-arm64"
+    ],
+    [
+      "tools/root/usr/bin/qemu-system-arm",
+      "tools/root/usr/bin/qemu-system-armel",
+      "tools/root/usr/bin/qemu-system-armhf"
+    ]
+  ],
+  "downloaded_or_removed_binaries": false,
+  "debian_signature_or_remote_archives_verified": false
+}

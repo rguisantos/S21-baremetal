@@ -1,0 +1,71 @@
+{
+  "mode": "original_lk_dram_cache_and_labels_qemu",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "6b547ec97422752468586e9bbba949c4d37e67000204400d93abe06ae5122651",
+  "case_count": 6,
+  "cases": [
+    {
+      "case": "reference_A",
+      "laboratory_delta": "0x40000000",
+      "word": "0001000860000110",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    },
+    {
+      "case": "observed_B",
+      "laboratory_delta": "0x40000000",
+      "word": "0001000850500130",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    },
+    {
+      "case": "reference_C",
+      "laboratory_delta": "0x40000000",
+      "word": "0001000860600130",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    },
+    {
+      "case": "reference_A",
+      "laboratory_delta": "0x40200000",
+      "word": "0001000860000110",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    },
+    {
+      "case": "observed_B",
+      "laboratory_delta": "0x40200000",
+      "word": "0001000850500130",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    },
+    {
+      "case": "reference_C",
+      "laboratory_delta": "0x40200000",
+      "word": "0001000860600130",
+      "manufacturer": "Samsung",
+      "process": "D1Z",
+      "cache_and_guards_matched": true,
+      "abi_sp_preserved": true
+    }
+  ],
+  "original_helpers": [
+    "0x11b7f0",
+    "0x11b860",
+    "0x11b8d8"
+  ],
+  "calls_per_case": 3,
+  "synthetic_mmu_alias": true,
+  "device_or_print_routine_executed": false,
+  "observed_word_is_from_supplied_log_not_a_live_register_read": true
+}

@@ -1,5 +1,14 @@
 # Catálogo de scripts
 
+- `inspect_bugreport_dram.py`, `inspect_dram_logging_hzc2.py`,
+  `emulate_lk_dram_labels_qemu.py` e `test_bugreport_dram.py`: extrato técnico
+  do ZIP exato por lista de permissão, cache/rótulos LK, comparação com o
+  driver público e seis casos dos helpers originais em MMU sintética.
+  [Escopo e reprodução](../docs/dram-observed-hzc2.md).
+- `audit_large_binaries.py`: inventário verificável dos arquivos rastreados
+  de pelo menos 5 MiB e correspondência com pacotes/asset fixados.
+  [Limites da proveniência](../docs/binary-provenance.md).
+
 - `inspect_bl2_geometry_publication.py`, `check_bl2_geometry_publication_gnu.py`,
   `emulate_bl2_geometry_publication_qemu.py` e `test_bl2_geometry_publication.py`:
   segunda chamada NEWTIME, duas amostras, destinos fixo/R e contador.
