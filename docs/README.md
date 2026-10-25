@@ -40,6 +40,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Segunda publicação da geometria](bl2-geometry-publication-hzc2.md): slot → wrapper → ponteiro R, cópia fixa e duas amostras distintas; 160 cenários QEMU com MMU sintética e chamadas originais, 119 testes e GNU de 464 palavras. Sem alias ou registro físico observado.
 - [DRAM observada no bugreport HZC2](dram-observed-hzc2.md): Samsung/D1Z, 12GB e assinatura B; campos distintos da igualdade usada no driver, extrator com lista de permissão e seis casos dos getters LK.
 - [Colunas 1 e 12 da NEWTIME](newtime-columns-hzc2.md): chaves de subtabelas, leitores estáticos e quatro execuções contínuas com parada antes do gate, sem respostas MMIO; parâmetros físicos ainda abertos.
+- [Recargas e bindings NEWTIME](newtime-reloads-hzc2.md): outro leitor da coluna 1, 15 envios indiretos, escritores de 0x31998 e bases MMIO mutáveis; GNU324, sem nova execução.
 - [Plano NEWTIME consolidado](newtime-plan-consolidated-hzc2.md): referência atual após substituição das seções 2.8–2.13 do plano recebido, PCs de despacho precisos, pendências e limite de execução preservado.
 - [Consumidores NEWTIME e vddcal](newtime-consumers-hzc2.md): leitor da coluna 12, escritor de 0x31c30, fluxo 108→162 bytes, slots nominais e limites do diretório vddcal; análise estática, GNU1171 e 53 testes.
 - [Proveniência dos binários grandes](binary-provenance.md): 17 arquivos de pelo menos 5 MiB, hashes/blobs, matches de .deb locais e digest de asset oficial; limites de autenticação explícitos.

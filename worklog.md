@@ -2194,3 +2194,26 @@ Validação documental: relatório GNU1171/156 alvos/34 operandos reproduzido
 byte a byte; links locais do projeto e diff conferidos. Sem nova suíte
 ou QEMU, pois os executáveis e o harness não mudaram. A revisão automática
 do novo head deve concluir sem achados/pendências antes da integração.
+
+## 2026-10-25 — recargas NEWTIME e outro leitor da coluna 1
+
+Base eb1f1d7, análise estática. Recuperado o BL fornecido e conferidos os
+hashes anteriores de sboot/vddcal; nenhuma imagem adicionada ao Git.
+Leitor reproduzível identifica 0x28808, alvo nominal do slot14 de30e50:
+15 recargas do payload31758, 14 envios por BLR e um BR final. Os 14
+primeiros valores são u32; o último usa LDRSW. Dispatch recarregado de
+31998 com método+72; célula inicialmente zero, escrita condicionalmente
+por1dcbc(X3) e2d394(X0). Origens e método ainda abertos.
+
+Confirmadas recargas da coluna12 e mudança condicional das cinco bases
+30f98 em2d270 (de finais6000 paraf000). Não foi afirmada preservação dos
+slots nem exaustividade de aliases/escritas. StoreAP0207365c conferido;
+nenhum leitor estabelecido. Ausência de literal u32/u64 não exclui
+endereços calculados. Primeiro item do plano ficou parcial, com próxima
+aresta31998/método+72. README, índice, plano e roadmap atualizados.
+
+Validação: GNU324 palavras/18 alvos relativos, operandos dos15 envios
+conferidos; relatório reproduzido byte a byte. Três recusas CLI (curto,
+longo, alterado), 53 testes NEWTIME e links locais passaram; diff conferido.
+Não houve execução QEMU ou no telefone nem ampliação de escopo. A revisão
+automática do novo head deve concluir sem achados/pendências antes do merge.

@@ -93,8 +93,11 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica na frente de memória: seguir leitores de
-AP0x0207365c e preservação/recargas dos ponteiros e slots envolvidos.**
+**Próxima entrega técnica na frente de memória: seguir
+a origem dos argumentos que inicializam 0x31998 e seu método +72,
+além dos leitores de AP0x0207365c e preservação dos ponteiros/slots.**
+O [rastreio das recargas](newtime-reloads-hzc2.md) avançou parcialmente
+o primeiro item: outro leitor da coluna 1 e bases MMIO mutáveis.
 O [plano NEWTIME consolidado](newtime-plan-consolidated-hzc2.md) adota
 newtime-consumers-hzc2.md em substituição às seções 2.8–2.13 do plano
 recebido. Depois vêm a semântica dos comandos, o mapeamento vddcal e o

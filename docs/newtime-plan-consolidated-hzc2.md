@@ -101,8 +101,11 @@ antes do ensaio. As rotinas podem continuar sendo analisadas estaticamente.
 
 ## Próximos passos estáticos
 
-Todos os itens abaixo estão **pendentes**, não executados por esta
-consolidação. Não dependem de ampliar o escopo QEMU.
+A consolidação original não executou estes itens. O primeiro avançou
+parcialmente no [rastreio de recargas](newtime-reloads-hzc2.md): outro
+leitor da coluna 1 e escritores do binding 0x31998; leitor AP e preservação
+continuam abertos. Os demais itens permanecem pendentes. Nenhum depende
+de ampliar o escopo QEMU.
 
 | Ordem | Trabalho | Critério para encerrar a etapa |
 |---:|---|---|
