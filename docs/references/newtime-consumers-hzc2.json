@@ -1,0 +1,2884 @@
+{
+  "mode": "static_newtime_consumers",
+  "images": {
+    "sboot": {
+      "bytes": 4194304,
+      "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+    },
+    "vddcal": {
+      "bytes": 2097152,
+      "sha256": "2bac8e0eedc9395d7f5630442130a9ccae5a9201e700299a0a60a9565e886e39"
+    }
+  },
+  "instruction_indexes": {
+    "sboot": {
+      "words": 1031,
+      "sha256": "78c2c36655bb302ef97f3d093022c4ba486a1164140d9332f58abef2b0fe69c8",
+      "ranges": [
+        {
+          "first": "0x1fcc4",
+          "end_exclusive": "0x1fce8",
+          "sha256": "38a39e22109f823f54fed65fc2df2e2b64f9ab18ca238005a5005bd623c1e50d"
+        },
+        {
+          "first": "0x21dc0",
+          "end_exclusive": "0x21e74",
+          "sha256": "0fdc87508c87c7b26db46c8d66dc540d6df887956e5cfe5cf4c89bfb5cbda6ac"
+        },
+        {
+          "first": "0x21f84",
+          "end_exclusive": "0x22098",
+          "sha256": "89d9a17bfe31b36d6e71bcdb7d202d241e187e6c1c5a58e872a3e26e5671d30a"
+        },
+        {
+          "first": "0x244ac",
+          "end_exclusive": "0x24518",
+          "sha256": "56b78e6a09d607ab626d81813ac2a673bff524b8a894481dbb60ebcbf751f514"
+        },
+        {
+          "first": "0x25050",
+          "end_exclusive": "0x25070",
+          "sha256": "e97c335cdde2ef3bb69bde5cbe4258338e52420a7f3a120d8222c712adc45cf8"
+        },
+        {
+          "first": "0x257b8",
+          "end_exclusive": "0x25840",
+          "sha256": "2cd6f09eb723bd575cdc2cab6edc5e0012dfa35ad04fde56770ed9b3be066eab"
+        },
+        {
+          "first": "0x259f4",
+          "end_exclusive": "0x25c5c",
+          "sha256": "9ce825b3ffb1955c0c6318b2753200df5b22dfba35ca70cb1bc114ff92112911"
+        },
+        {
+          "first": "0x25cd8",
+          "end_exclusive": "0x25f0c",
+          "sha256": "c196a672bc811141c89c063adad81126b722613baad55fea64e6446c84c59fec"
+        },
+        {
+          "first": "0x263b4",
+          "end_exclusive": "0x264e0",
+          "sha256": "613902045a2327a99042f5f3bee08f1e151a7ebc26bc678f0d09edf92cbde551"
+        },
+        {
+          "first": "0x269f0",
+          "end_exclusive": "0x26af8",
+          "sha256": "f2e55d60b5e7a3e1426748d12dd8c673f8a12d09561c79847ad1c1282aa84e37"
+        },
+        {
+          "first": "0x26e14",
+          "end_exclusive": "0x26f9c",
+          "sha256": "c58a687d0c00b0ddd31d3af54d2167f0292ccf17d4d77828914ad3cd521fde7c"
+        },
+        {
+          "first": "0x27a7c",
+          "end_exclusive": "0x27af8",
+          "sha256": "5ba4c46eddcaf83d6ea913d3bc098f811999c40782892f93e41a8c2c9e780f30"
+        },
+        {
+          "first": "0x28480",
+          "end_exclusive": "0x284e4",
+          "sha256": "eb47bc8f1e3911f01205ed8796f0c809dfc6452ab8b15c8e850c6e5801317548"
+        },
+        {
+          "first": "0x2cb9c",
+          "end_exclusive": "0x2ce88",
+          "sha256": "1fa07a2b5cee83df0aab9b9c714b9c9fc1a6ca1dd0240eede7b0198c1f72ee0e"
+        },
+        {
+          "first": "0x2d41c",
+          "end_exclusive": "0x2d468",
+          "sha256": "1b553222d21c8e90edc4dcbbe54ec49187a08c2d8c2dde0e870c535c87caa0e6"
+        },
+        {
+          "first": "0x2dc18",
+          "end_exclusive": "0x2dc84",
+          "sha256": "39a4741a993beb4b9c2bff62f79bfeaaff0091439aa4f2faca9df7ce2a1159ce"
+        },
+        {
+          "first": "0x2f098",
+          "end_exclusive": "0x2f0d8",
+          "sha256": "543628fb494dea15c84c89709af302868449a2d849957c6fbbee46258267f09a"
+        }
+      ]
+    },
+    "vddcal": {
+      "words": 140,
+      "sha256": "71d2860d284dedcbf4a63e747329793774ef442745071a692c9dee5476e2fa40",
+      "ranges": [
+        {
+          "first": "0x675a4",
+          "end_exclusive": "0x677d4",
+          "sha256": "5480bd19f826b532181a0c3638a6e120f7a108dec6da987f9b4fb69f49fba711"
+        }
+      ]
+    }
+  },
+  "previous_column_instruction_index": "315d3e1af0376118514d43e9bf120433926a0f2be305d843c38901a9f3411923",
+  "common_address_anchor": {
+    "S": "0x31688",
+    "source_language_object_identity_proven": false,
+    "fields": [
+      {
+        "relative": "0x10",
+        "file": "0x31698",
+        "role": "column12 row count byte"
+      },
+      {
+        "relative": "0x18",
+        "file": "0x316a0",
+        "role": "column12 payload pointer"
+      },
+      {
+        "relative": "0xd0",
+        "file": "0x31758",
+        "role": "column1 payload pointer"
+      },
+      {
+        "relative": "0x5a8",
+        "file": "0x31c30",
+        "role": "mutable pointer to 162-byte records"
+      },
+      {
+        "relative": "0x8a8",
+        "file": "0x31f30",
+        "role": "108-byte scratch buffer"
+      },
+      {
+        "relative": "0x918",
+        "file": "0x31fa0",
+        "role": "108-byte-stride scratch records, not pointer table"
+      }
+    ]
+  },
+  "pointer_31c30": {
+    "initial_u64": "0xffffffffffffffff",
+    "address_spill": "0x25d3c/0x25d44 -> 0x25d48 [sp+128]",
+    "provider_call": "0x25ee8 -> 0x22014 -> 0x21f84 -> 0x21dc0",
+    "provider_labels": [
+      "vref_soc_lv",
+      "vref_mem_lv"
+    ],
+    "size_expression": "u8(current_object+12) * 162",
+    "store": "0x25eec reload [sp+128]; 0x25ef0 STR X0,[X1]",
+    "following_zero": "0x25f08 -> 0x1f9e8, returned buffer, same count*162 bytes",
+    "record_use": "0x25c18 load pointer; 0x25c14 signed W20*162; 0x25c24 calls 0x25a98",
+    "helper_input_X3": "0x31f30 (108 bytes)",
+    "helper_inout_X2": "loaded pointer + signed index*162",
+    "data_direction": "108-byte buffer -> selected fields in 162-byte record; not reverse",
+    "selection_link_to_newtime_proven": false
+  },
+  "controller_loop": {
+    "entry": "0x26e14",
+    "stack_sub": 2176,
+    "saved_register_frame": 96,
+    "total_stack": 2272,
+    "passes": "2 if byte at0x31939 equals3; otherwise1",
+    "iterations_per_pass": 64,
+    "stack_array_offset": 544,
+    "stack_array_bytes": 1728,
+    "record_bytes": 108,
+    "stack_array_reused_per_channel_and_pass": true,
+    "direct_call_modes": {
+      "0x244c4": 0,
+      "0x244f0": 2,
+      "0x25058": 1
+    },
+    "function_269f0_base_table": "0x30fc0",
+    "base_values": [
+      "0x1c040000",
+      "0x1c140000",
+      "0x1c240000",
+      "0x1c340000"
+    ]
+  },
+  "dispatch": {
+    "nominal_delta": "0x20ea000",
+    "initial_pointers": [
+      {
+        "table": "0x30e50",
+        "index": 25,
+        "cell": "0x30f18",
+        "raw": "0x2111a7c",
+        "nominal_target": "0x27a7c"
+      },
+      {
+        "table": "0x30e50",
+        "index": 26,
+        "cell": "0x30f20",
+        "raw": "0x2112480",
+        "nominal_target": "0x28480"
+      },
+      {
+        "table": "0x31408",
+        "index": 24,
+        "cell": "0x314c8",
+        "raw": "0x2117568",
+        "nominal_target": "0x2d568"
+      },
+      {
+        "table": "0x31408",
+        "index": 26,
+        "cell": "0x314d8",
+        "raw": "0x2117c18",
+        "nominal_target": "0x2dc18"
+      }
+    ],
+    "access_28480": {
+      "writes": [
+        "base+0",
+        "base+4"
+      ],
+      "read_result": "base+12",
+      "bases": [
+        "0x1c036000",
+        "0x1c136000",
+        "0x1c236000",
+        "0x1c336000",
+        "0x1a346000"
+      ]
+    },
+    "callers": {
+      "0x263e4": {
+        "index": 25,
+        "w2": 26
+      },
+      "0x26478": {
+        "index": 26,
+        "w2": 26
+      },
+      "0x264d4": {
+        "index": 26,
+        "w2": 26
+      }
+    },
+    "actual_runtime_dispatch_verified": false
+  },
+  "column12": {
+    "reader": "0x2cdb8",
+    "count_byte": "0x31698",
+    "skip_if_count_at_most": 1,
+    "pointer_loads": [
+      "0x2ce08",
+      "0x2ce28",
+      "0x2ce40",
+      "0x2ce54"
+    ],
+    "payload_pointer": "0x316a0",
+    "payload_reads": [
+      "0x2ce10 u32",
+      "0x2ce30 byte+1",
+      "0x2ce44 byte+0",
+      "0x2ce58 byte+0"
+    ],
+    "stride": 4,
+    "pointer_and_count_reloaded": true,
+    "conditional_sequence_per_word": [
+      "2cbec(selector)",
+      "2cb9c()",
+      "2cd1c(nibble11:8)",
+      "2cd1c(nibble7:4)",
+      "2cd1c(nibble3:0)",
+      "2cb9c()"
+    ],
+    "nominal_writer": "slot25 of0x30e50 -> 0x27a7c",
+    "writer_fields": "W1 bits1:0 -> base bits29:28; W2 bits6:0 -> bits26:20; W3 bits7:0 -> base+8",
+    "writer_stores": {
+      "0x27ad8": "base+0 control",
+      "0x27ae0": "base+56 =22",
+      "0x27ae8": "base+8 data",
+      "0x27aec": "base+4 =16"
+    },
+    "supplied_payload_models": [
+      {
+        "key": "0x71",
+        "rows": 44,
+        "entries": [
+          {
+            "word": "0x1390",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              9,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x1175",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              1,
+              7,
+              5
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              }
+            ]
+          },
+          {
+            "word": "0x2966",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              6,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x2532",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              3,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x2514",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              1,
+              4
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              }
+            ]
+          },
+          {
+            "word": "0x2080",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              0,
+              8,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x275a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              5,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x24aa",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              4,
+              10,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x122a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              2,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2550",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              5,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x24a5",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              4,
+              10,
+              5
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              }
+            ]
+          },
+          {
+            "word": "0x2051",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              0,
+              5,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x2232",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              3,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x2222",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              2,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x107a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              0,
+              7,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2a43",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              4,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x2767",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              6,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x2530",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              3,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x23a6",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x23aa",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x23a8",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              8
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1778",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              7,
+              8
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1271",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x171a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              1,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1a9a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              9,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x270a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              0,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1931",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              3,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x255a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              5,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x197a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              7,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x15a3",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              10,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x2523",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              2,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x2510",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              1,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x1a04",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              0,
+              4
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              }
+            ]
+          },
+          {
+            "word": "0x2709",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              0,
+              9
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1a99",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              9,
+              9
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1279",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              9
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1719",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              1,
+              9
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1930",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              3,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x255a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              5,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1613",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              6,
+              1,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x1273",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x1277",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x1712",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              1,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x1945",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              4,
+              5
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "0x73",
+        "rows": 41,
+        "entries": [
+          {
+            "word": "0x1390",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              9,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x107a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              0,
+              7,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2a43",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              4,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x2766",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              6,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x2767",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              6,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x2530",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              3,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x23a6",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x23aa",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x23a8",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              8
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2541",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              4,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x2542",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              4,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x1a26",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              2,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x2975",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              7,
+              5
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              }
+            ]
+          },
+          {
+            "word": "0x2941",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              4,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x226a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              6,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2937",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              3,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x1273",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x171a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              1,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2970",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              7,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x2977",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              7,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x2947",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              4,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x2943",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              4,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x1a9a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              10,
+              9,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x1931",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              3,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x1930",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              9,
+              3,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x1275",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              5
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              }
+            ]
+          },
+          {
+            "word": "0x1271",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              2,
+              7,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x2570",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              7,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x1613",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              6,
+              1,
+              3
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 64
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 8
+              }
+            ]
+          },
+          {
+            "word": "0x270a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              0,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x255a",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              5,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2591",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              5,
+              9,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 32
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x1420",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              4,
+              2,
+              0
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              },
+              {
+                "w2": 9,
+                "w3": 1
+              }
+            ]
+          },
+          {
+            "word": "0x23a1",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              10,
+              1
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              }
+            ]
+          },
+          {
+            "word": "0x2418",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              4,
+              1,
+              8
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 16
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              }
+            ]
+          },
+          {
+            "word": "0x2797",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              9,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x1712",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              1,
+              2
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 9,
+                "w3": 2
+              },
+              {
+                "w2": 9,
+                "w3": 4
+              }
+            ]
+          },
+          {
+            "word": "0x2794",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              7,
+              9,
+              4
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 128
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 16
+              }
+            ]
+          },
+          {
+            "word": "0x2387",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              8,
+              7
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 128
+              }
+            ]
+          },
+          {
+            "word": "0x2386",
+            "selector_bits_16_12": 2,
+            "helper_2cbec_w3_sequence": [
+              2,
+              4,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              3,
+              8,
+              6
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 9,
+                "w3": 8
+              },
+              {
+                "w2": 73,
+                "w3": 0
+              },
+              {
+                "w2": 9,
+                "w3": 64
+              }
+            ]
+          },
+          {
+            "word": "0x189a",
+            "selector_bits_16_12": 1,
+            "helper_2cbec_w3_sequence": [
+              1,
+              1,
+              1
+            ],
+            "action_nibbles_11_8_7_4_3_0": [
+              8,
+              9,
+              10
+            ],
+            "helper_2cd1c_commands": [
+              {
+                "w2": 73,
+                "w3": 0
+              },
+              {
+                "w2": 57,
+                "w3": 0
+              },
+              {
+                "w2": 59,
+                "w3": 0
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "runtime_alias_pointer_preservation_and_physical_meaning_verified": false
+  },
+  "reference_search": {
+    "branch_region": [
+      "0x16000",
+      "0x2fd00"
+    ],
+    "branch_alignment": 4,
+    "nominal_pointer_search": "entire sboot, all byte offsets; absence is not unreachability",
+    "targets": [
+      {
+        "target": "0x26e14",
+        "direct_encoding_candidates": [
+          {
+            "pc": "0x244c4",
+            "opcode": "94000a54",
+            "kind": "bl"
+          },
+          {
+            "pc": "0x244f0",
+            "opcode": "94000a49",
+            "kind": "bl"
+          },
+          {
+            "pc": "0x25058",
+            "opcode": "9400076f",
+            "kind": "bl"
+          }
+        ],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x25b80",
+        "direct_encoding_candidates": [
+          {
+            "pc": "0x245c0",
+            "opcode": "94000570",
+            "kind": "bl"
+          },
+          {
+            "pc": "0x25ca4",
+            "opcode": "97ffffb7",
+            "kind": "bl"
+          },
+          {
+            "pc": "0x25fc8",
+            "opcode": "97fffeee",
+            "kind": "bl"
+          }
+        ],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x2d568",
+        "direct_encoding_candidates": [],
+        "nominal_u64_occurrences": [
+          "0x314c8"
+        ]
+      },
+      {
+        "target": "0x2d5f8",
+        "direct_encoding_candidates": [],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x2e4b4",
+        "direct_encoding_candidates": [
+          {
+            "pc": "0x2f0d4",
+            "opcode": "97fffcf8",
+            "kind": "bl"
+          }
+        ],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x244ac",
+        "direct_encoding_candidates": [
+          {
+            "pc": "0x23148",
+            "opcode": "940004d9",
+            "kind": "bl"
+          }
+        ],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x244b8",
+        "direct_encoding_candidates": [],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x25050",
+        "direct_encoding_candidates": [
+          {
+            "pc": "0x22f6c",
+            "opcode": "94000839",
+            "kind": "bl"
+          },
+          {
+            "pc": "0x244b4",
+            "opcode": "140002e7",
+            "kind": "b"
+          }
+        ],
+        "nominal_u64_occurrences": []
+      },
+      {
+        "target": "0x2cdb8",
+        "direct_encoding_candidates": [],
+        "nominal_u64_occurrences": [
+          "0x313c8"
+        ]
+      }
+    ]
+  },
+  "vddcal": {
+    "directory": [
+      {
+        "record_file": "0xf7500",
+        "name_file": "0xf7508",
+        "name": "TIMING",
+        "prefix_u64": "0x0",
+        "field_at_24": 6,
+        "equals_name_length": true,
+        "pointer_raw": "0xffff000000066d60"
+      },
+      {
+        "record_file": "0xf7528",
+        "name_file": "0xf7530",
+        "name": "MINLOCK",
+        "prefix_u64": "0x0",
+        "field_at_24": 7,
+        "equals_name_length": true,
+        "pointer_raw": "0xffff000000066fa0"
+      },
+      {
+        "record_file": "0xf7550",
+        "name_file": "0xf7558",
+        "name": "GEN",
+        "prefix_u64": "0x0",
+        "field_at_24": 3,
+        "equals_name_length": true,
+        "pointer_raw": "0xffff0000000671dc"
+      },
+      {
+        "record_file": "0xf7578",
+        "name_file": "0xf7580",
+        "name": "BIN",
+        "prefix_u64": "0x0",
+        "field_at_24": 3,
+        "equals_name_length": true,
+        "pointer_raw": "0xffff0000000673e0"
+      },
+      {
+        "record_file": "0xf75a0",
+        "name_file": "0xf75a8",
+        "name": "NEWTIME",
+        "prefix_u64": "0x0",
+        "field_at_24": 7,
+        "equals_name_length": true,
+        "pointer_raw": "0xffff000000067630"
+      }
+    ],
+    "index_raw": [
+      {
+        "cell": "0xf89e0",
+        "value": "0xffff0000000f7500"
+      },
+      {
+        "cell": "0xf89e8",
+        "value": "0xffff0000000f75d8"
+      },
+      {
+        "cell": "0xf89f8",
+        "value": "0xffff0000000f76f8"
+      },
+      {
+        "cell": "0xf8a18",
+        "value": "0xffff0000000f7740"
+      }
+    ],
+    "key_u64_occurrences": {
+      "0x1000860000110": [],
+      "0x1000850500130": []
+    },
+    "candidate_parser_prologue": "0x675e0",
+    "candidate_parser_record_bytes": 24,
+    "directory_pointer_low48": "0x67630",
+    "instruction_at_that_file_offset": "ADD X0,X29,#0x18",
+    "file_offset_67630_is_internal_to_candidate_parser": true,
+    "pointer_translation_or_handler_binding_proven": false,
+    "high_pointer_bits_alone_do_not_prove_relocation": true
+  },
+  "firmware_executed": false,
+  "qemu_scope_extended": false,
+  "phone_access": false,
+  "physical_timing_parameter_identified": false
+}

@@ -181,3 +181,12 @@ posterior de AP0x0207365c. Para o callback contínuo ultrapassar o gate,
 hipóteses explicitamente diferentes; a execução atual preserva o requisito
 de não fornecer respostas MMIO. Nem esta etapa nem os modelos condicionais
 demonstram parâmetros físicos, boot Samsung ou o mapa final de RAM/FDT.
+
+
+## Continuação estática de 2026-10-25
+
+O [novo rastreio dos consumidores](newtime-consumers-hzc2.md) resolveu o
+leitor de 0x316a0 em 0x2cdb8 e seguiu os argumentos até escritas nominais
+em registradores. Também corrigiu a direção entre os registros de 108/162
+bytes e delimitou o diretório de vddcal. Os resultados QEMU e as lacunas
+físicas deste documento permanecem com o escopo original.

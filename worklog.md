@@ -2116,3 +2116,47 @@ orçamento de uma instrução. Quatro relatórios reproduzidos byte a byte,
 incluindo QEMU e GNU623 anterior. GNU466 palavras da cadeia do stepper;
 Python compilado, 709 links locais e diff conferidos. Registro inteiro
 antes do gate comparado byte a byte; registry e ponteiros também conferidos.
+
+
+## 2026-10-25 — leitor da coluna 12 e proveniência dos registros
+
+Plano ampliado recebido confrontado com sboot/vddcal fixados. Identificado
+0x2cdb8 como leitor do payload316a0 e contagem31698. Relê ambos, percorre
+u32 e extrai bits16:12 e nibbles11:8/7:4/3:0. Seguidos helpers2cbec,
+2cb9c e2cd1c ao slot25 de30e50, nominal27a7c: controle/data/comando em
+bases30f98. Publicados modelos das85 palavras das subtabelas71/73;
+sem execução, preservação real ou nomes físicos de timing estabelecidos.
+
+Encontrado store25ef0 de retorno22014 em31c30 por endereço salvo noSP.
+Provedor usa rótulos vref_soc_lv/vref_mem_lv e tamanho contagem*162.
+25a98 lê scratch31f30 de108 bytes e atualiza registro162, sentido inverso
+à hipótese recebida.31fa0 é área de dados com passo108, não tabela de
+ponteiros neste caminho. ÂncoraS31688 não prova objeto da linguagem fonte.
+
+Corrigidos quadro2272=2176+96 de26e14, uma/duas passagens de64 combinações,
+modo2 em244f0 e slot25 (não26) em263e4.28480 faz escritas nos registradores.
+Entrada26 de31408 confirmada nominalmente2dc18; entrada24 aponta2d568,
+função que contém2d5f8.2cdb8 tem ponteiro313c8;2e4b4 é chamado em2f0d4.
+244ac encaminha a244b8/25050. Buscas B/BL limitadas e ponteiros brutos não
+viraram prova de alcançabilidade ou ordem runtime.
+
+Em vddcal, registros40 começam8 bytes antes dos nomes; campo+24 coincide
+com seus comprimentos. PonteiroNEWTIME ffff000000067630 termina em offset
+que é interno ao parser candidato675e0. Tradução/vínculo do handler e
+rota de despacho permanecem abertos. Não promovida stringNEWTIME a uma
+segunda cadeia funcional, nem bits altosffff a prova de relocação.
+
+Nenhum código fora do callback executado; nenhum novo QEMU necessário
+para esta entrega estática. Mantida parada anterior19774/158609bc e
+necessidade de decisão explícita para ampliar o escopo. Kernel stock,
+OPPs, DEVFREQ, registrador vivo e FDT final continuam separados dos logs.
+READMEs recebidos reconferidos, genéricos; sem nova divulgação de dados
+pessoais. Cinco temporários de restauração preservados com hash fora doGit.
+
+Validação:53 testes NEWTIME (nove novos), GNU1031+140 palavras,156 alvos
+relativos,34 operandos,12 recusas CLI nas duas imagens/modos e quatro
+relatórios reproduzidos byte a byte (dois novos e dois anteriores).
+Python compilado, links locais/diff conferidos. Índices,README,roadmap e
+integração25 atualizados; revisão automática do próximo head deve terminar
+sem achados/pendências antes do merge. Próximo: semântica dos comandos da
+coluna12, uso deAP0207365c, preservação dos slots e mapeamento vddcal.
