@@ -4,6 +4,8 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 **Estado em 2026-10-25 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
+A [revisão do projeto de 25/10](docs/repository-review-2026-10-25.md) recomenda tornar o baseline obrigatório/automatizado e consolidar o contrato de carga e leitura do diagnóstico. Os testes centrais foram repetidos; o primeiro registro físico continua pendente.
+
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
 O [bugreport HZC2 do aparelho](docs/dram-observed-hzc2.md) trouxe a primeira evidência de log nesta investigação: **Samsung, D1Z, 12.000000GB e `0001000850500130`** no `LAST KMSG`. Esse valor difere da comparação `0001000860000110` do driver, mas ambos selecionam Samsung/D1Z pelos getters LK; o observado corresponde à linha 15 da NEWTIME. São 229 palavras GNU e seis casos dos helpers originais no QEMU. O extrato público omite cmdline e identificadores; a observação não é uma leitura direta da SRAM ou do FDT final.
@@ -137,7 +139,7 @@ A UART fica desativada por padrão. `R10_UART_FIRMWARE_CONFIGURED` só permite u
 
 ## Fontes e documentação
 
-Comece pelo [índice organizado](docs/README.md) e pela [revisão atual com arquivos pendentes](docs/repository-review-2026-10-21.md). O catálogo de scripts distingue ferramentas atuais de experimentos históricos.
+Comece pelo [índice organizado](docs/README.md) e pela [revisão atual e próximos passos](docs/repository-review-2026-10-25.md). O catálogo de scripts distingue ferramentas atuais de experimentos históricos.
 
 - [Mapa de hardware confirmado e pendências](EXYNOS2100_HARDWARE.md)
 - [Imagens stock HZC2: cabeçalhos, DTB, overlays e hashes](docs/stock-firmware-hzc2.md)

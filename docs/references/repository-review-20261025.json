@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-25",
+  "timezone": "America/Campo_Grande",
+  "base_commit": "43356de58be84cfaf1b477f1cc8fb9b3b8f7e604",
+  "scope": "selected R10/diagnostic code, test reproduction, documentation and GitHub state; not an all-driver audit",
+  "remote_open_prs": 0,
+  "remote_open_issues": 0,
+  "tracked_workflow_files": [],
+  "checks": [
+    {
+      "label": "fdt",
+      "command": "python3 scripts/test_fdt.py",
+      "exit_code": 0,
+      "cases": 43,
+      "stdout_condition": null,
+      "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef",
+      "pass_lines": [
+        "FDT MODEL PASS: 43 cases with ASan/UBSan"
+      ],
+      "compiler_warning_lines": []
+    },
+    {
+      "label": "payload",
+      "command": "python3 scripts/test_payload.py",
+      "exit_code": 0,
+      "cases": 59,
+      "stdout_condition": "before explicit production ELF build",
+      "log_sha256": "f2c5ff6d605a0182d9c68dfd0030ca2201a67502d9322bd32a3efafdae5c82e3",
+      "pass_lines": [
+        "PAYLOAD PASS: 59 cases; C consumer with ASan/UBSan"
+      ],
+      "compiler_warning_lines": []
+    },
+    {
+      "label": "r10_build",
+      "command": "make -C r8 build/r10_payload.elf",
+      "exit_code": 0,
+      "cases": null,
+      "stdout_condition": null,
+      "log_sha256": "57116df3034d68cb4a763bbd75566879d69c4f7a62fa7f19eb68f80a89ba20be",
+      "pass_lines": [],
+      "compiler_warning_lines": [
+        "r10_payload/mct.c:69:25: warning: unused parameter ‘irq’ [-Wunused-parameter]",
+        "r10_payload/smp.c:242:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+        "r10_payload/smp.c:266:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+        "r10_payload/smp.c:279:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+        "r10_payload/smp.c:291:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+        "r10_payload/smp.c:303:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]"
+      ]
+    },
+    {
+      "label": "payload_with_elf",
+      "command": "python3 scripts/test_payload.py",
+      "exit_code": 0,
+      "cases": 60,
+      "stdout_condition": "after production ELF build",
+      "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390",
+      "pass_lines": [
+        "R10 ELF extent PASS: BSS and all stacks included",
+        "PAYLOAD PASS: 60 cases; C consumer with ASan/UBSan"
+      ],
+      "compiler_warning_lines": []
+    },
+    {
+      "label": "stage",
+      "command": "python3 scripts/test_payload_stage.py",
+      "exit_code": 0,
+      "cases": 17,
+      "stdout_condition": null,
+      "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7",
+      "pass_lines": [
+        "PAYLOAD STAGE PASS: 17 cases; exact bytes, guards and no writes on rejection"
+      ],
+      "compiler_warning_lines": []
+    },
+    {
+      "label": "entry_diag",
+      "command": "python3 scripts/test_entry_diag.py",
+      "exit_code": 0,
+      "cases": 12,
+      "stdout_condition": null,
+      "log_sha256": "876d851b0ff88205667d9f0f92777015fa2e79f644d4d9957502acc8d20cd87a",
+      "pass_lines": [
+        "ENTRY DIAG PASS: EL1, relocation +0x0, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL1, relocation +0x8000, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL1, relocation +0x1f8000, arguments/state/guards intact",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x4, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x1, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x5, record/code/guards untouched",
+        "ENTRY DIAG PASS: EL2, relocation +0x0, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL2, relocation +0x8000, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL2, relocation +0x1f8000, arguments/state/guards intact",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x4, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x1, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x5, record/code/guards untouched",
+        "ENTRY DIAG: 6 accepted entries + 6 M/C refusals PASS; one CPU, no Samsung hardware claim"
+      ],
+      "compiler_warning_lines": []
+    },
+    {
+      "label": "r10_loader",
+      "command": "python3 scripts/test_payload_loader.py",
+      "exit_code": 0,
+      "cases": 6,
+      "stdout_condition": null,
+      "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b",
+      "pass_lines": [
+        "EL2 MATERIALIZE PASS: exact PT_LOADs, BSS, stacks, FDT and guards",
+        "R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, 25 timer IRQs",
+        "EL2 REJECT PASS: bad-magic, destination untouched",
+        "EL2 REJECT PASS: protected-destination, destination untouched",
+        "EL2 REJECT PASS: different-fdt, destination untouched",
+        "EL2 REJECT PASS: reserved-ram, destination untouched",
+        "EL1 ENTRY REJECT PASS: before BSS clear, destination untouched",
+        "PAYLOAD LOADER QEMU PASS: 1 production handoff + 5 refusal cases, one CPU"
+      ],
+      "compiler_warning_lines": []
+    }
+  ],
+  "source_sha256": {
+    "scripts/test_payload.py": "c0b14745d4e88ce90f567c790d77c542150f530b200e99c79c2838775622efa1",
+    "r8/Makefile": "5231aa449b4d8630d85007d47a0a4aa1e0010005a4b07b2a66d9dfc64b8774c1",
+    "r8/r10_payload/start_r10.S": "63dfeb02bf865374591366934bf6c89b3d515992166901fc4ad2ec77e0448099",
+    "r8/r10_payload/main.c": "3c72d312e9e6c1b005836812cb7f717a0a8bad7c4d407e590fa54536ea843a30",
+    "r8/entry_diag/start.S": "3d7659473b2fef39eac58b726ae9537925b9f8712e540f7bd681fd91e6dc39f3",
+    "shim/loader.c": "2b30f18aee8720ee423aa1b9481af59bbe504031ee796f59520af83ae0813eee",
+    "scripts/bootstrap_tools.sh": "0e3233db0a23c374693b6f68986484cd0e060061c47cbaba55ce7efadbfbcf50"
+  },
+  "phone_access": false,
+  "samsung_firmware_executed": false,
+  "newtime_execution_scope_extended": false,
+  "test_coverage_finding": "test_payload.py conditionally exercises r8/build/r10_payload.elf if it exists; 59 before explicit build, 60 after"
+}

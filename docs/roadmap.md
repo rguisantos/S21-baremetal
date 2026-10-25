@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-25 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #26, 3daf8f3](https://github.com/rguisantos/S21-baremetal/commit/3daf8f33364b9e2d4d9bafdbdd4f28b4d220de58).
+[main após revisão/merge do PR #31, 43356de](https://github.com/rguisantos/S21-baremetal/commit/43356de58be84cfaf1b477f1cc8fb9b3b8f7e604).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -9,6 +9,13 @@ telefone.** Há código funcional e testes em QEMU, uma base DTS que reproduz
 o DTB stock e modelos conferidos das chamadas do LK. Ainda faltam o caminho
 de carregamento físico, as garantias de entrada/memória e uma forma de
 recuperar o resultado. Nenhum diagnóstico ou R10 foi executado no S21.
+
+A [revisão global de 25/10](repository-review-2026-10-25.md) rerodou o
+baseline selecionado: 43 casos FDT, 60 de contêiner após build, 17 de
+materialização, 12 do diagnóstico e um handoff R10 real com cinco recusas. Próxima implementação:
+comando único obrigatório e CI. Próxima investigação principal: contrato
+do diagnóstico Samsung com percurso e canal de recuperação, observando as
+restrições do último estado informado. NEWTIME permanece em paralelo.
 
 ## Estado por frente
 
@@ -85,8 +92,9 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
-| **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
-| **P1 — observação, em paralelo** | Bugreport recupera logs stock, mas ainda não o registro do diagnóstico próprio; fechar UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
+| **P0 — reprodução** | Construir o ELF real e executar um baseline obrigatório, com workflow versionado e logs de falha; tornar explícita a cobertura hoje condicionada à existência do ELF | Mesma cobertura em checkout limpo, testes obrigatórios sem skip silencioso; revisão automática do head exato continua exigida |
+| **P1 — percurso e observação** | Consolidar formato/validações/carga Samsung, condições de acesso do último estado informado e um canal legível para o diagnóstico próprio | Matriz de requisitos com evidência ou bloqueio; recuperação demonstrada dos 128 bytes vinculados à Image/endereço |
+| **P1 — entrada e coerência** | Fechar a cópia e o salto final da rota escolhida, reserva da Image e estado EL/MMU/cache; seguir serviços/EPBL quando houver dependência demonstrada dessa rota | Contrato HZC2 correspondente ou observação verificável; hipóteses de outro SoC e logs stock não substituem estado do diagnóstico |
 | **P2 — memória dinâmica, em paralelo** | Construção NEWTIME e publicação condicional delimitadas. [Colunas 1/12](newtime-columns-hzc2.md) são chaves de subtabelas; quatro casos contínuos param antes do gate MMIO. Coluna 1 seguida estaticamente até cálculo 0/28 para AP0x0207365c; [coluna 12 seguida por 0x2cdb8](newtime-consumers-hzc2.md) até argumentos e escritas nominais; fluxo 108→162 bytes corrigido. Identificar semântica dos comandos, preservação/recargas e bindings; mapear ponteiros de vddcal antes de afirmar seu despacho. Palavra B/Samsung/D1Z observada só em log; slots reais, soc_info/SEC_PGTBL/Harx, efeitos transitivos da depuração e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
 | **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
@@ -269,6 +277,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-Os PRs #5 a #8 foram revisados e mergeados; esta continuação parte da
-main `cd8b512` e segue o fluxo de revisão/merge do projeto. O [worklog](../worklog.md) conserva a sequência histórica
-das descobertas; esta página organiza prioridades e critérios atuais.
+A base desta revisão é a main após o PR #31 (`43356de`). O
+[worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
+conservam a sequência histórica. Esta página organiza prioridades e
+critérios atuais; o novo baseline/CI é uma entrega planejada, ainda não implementada.

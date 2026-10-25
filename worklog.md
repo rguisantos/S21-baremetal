@@ -2299,3 +2299,38 @@ aprovados. Sem execuçãoQEMU/SMC/telefone ou ampliação de escopo. Próximo:
 argumentos e wrappers das cópias parametrizadas, distinguindo transporte,
 sobrescrita e uso como função. Revisão automática do novo head deve concluir
 sem achados/pendências antes da integração.
+
+## 2026-10-25 — revisão global e prioridades do projeto
+
+Base 43356de, main remota/local conferidas; zero PRs/issues abertos antes
+da entrega documental. Relidos os pontos de entrada, roadmap, código de
+entrada/main R10, diagnóstico, linker, loader em quarentena, testes e
+frentes Samsung/memória/XNU. READMEs anexos relidos nos caminhos locais.
+Escopo selecionado, sem alegar auditoria linha a linha de todos os drivers.
+
+Rerodados FDT43 e materialização17 sob ASan/UBSan; contêiner passou com59
+antes do build e60 após compilar o ELF real. A diferença vem de teste
+condicionado à existência de r8/build/r10_payload.elf. Compilação real
+aprovada, com warnings preexistentes nos módulos experimentais MCT/SMP.
+Diagnóstico QEMU:6 entradas+6 recusas. Loader com main real:1 handoff,
+25 IRQs observadas e5 recusas. R8/R9 e XNU não foram repetidos nesta revisão.
+Comandos, saídas PASS e hashes de logs/fontes registrados em JSON público,
+sem firmware, dados do aparelho ou novos executáveis adicionados ao Git.
+
+Não há workflow rastreado em .github. Recomendada como próxima implementação
+uma validação única que construa o ELF real, recuse skips obrigatórios e
+execute host/QEMU com CI. Implementação ainda planejada; lógica do payload
+e testes não mudou. Próxima investigação principal: contrato de carga e
+canal de recuperação dos128 bytes do diagnóstico Samsung, com estado de
+entrada/coerência. NEWTIME e suas44 referências restantes ficam paralelas;
+memória/FDT final e R10 de uma CPU precedem expansão e XNU físico.
+
+Criada revisão global com escopo, resultados e critérios; roadmap atualizado
+para base PR31, novos gates e rodapé atual. README e índice apontam para a
+revisão atual; catálogo inclui leitores NEWTIME recentes. Documentação do
+contêiner explicita59/60 conforme o build. Auditoria PR31 registrada.
+Dois temporários preexistentes de ferramentas foram preservados fora do Git
+com hashes antes de remover cópias locais. Sem comandos no telefone, flash,
+SMC ou ampliação do escopo de execução de firmware. Links e diff conferidos;
+revisão automática do novo head deve concluir sem achados/pendências antes
+da integração, conforme AGENTS.md.

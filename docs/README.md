@@ -23,7 +23,9 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [FDT e política de memória](fdt-resources.md).
 - [Formato S21R10](payload-format.md): empacotador e validação.
 - [Carregador EL2 no QEMU](qemu-el2-loader.md): materialização, main real e recusas.
-- [Validação anterior](validation-2026-10-20.md) e [nova revisão e arquivos pendentes](repository-review-2026-10-21.md).
+- [Validação anterior](validation-2026-10-20.md) e [revisão histórica de 21/10](repository-review-2026-10-21.md).
+
+- [Revisão atual do projeto e próximos passos](repository-review-2026-10-25.md): baseline rerodado, cobertura condicionada ao ELF, CI e prioridade do diagnóstico observável.
 
 ## Evidências do aparelho e fontes externas
 

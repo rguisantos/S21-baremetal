@@ -63,8 +63,13 @@ Não há teste SMP do shim aprovado. Um comando QEMU com `-smp 8` sozinho não v
 
 ## Validação desta entrega
 
-`python3 scripts/test_payload.py`: **60 casos PASS**, incluindo fixtures ELF independentes, tamanho exato de BSS/pilhas do ELF real, casos inválidos, não sobrescrita pelo CLI, leitura C sob ASan/UBSan e fixtures Linux+EFI/vendor_boot. A inspeção read-only do ZIP publicado está em [proton-binary.md](proton-binary.md).
+`make -C r8 build/r10_payload.elf` seguido de `python3 scripts/test_payload.py`: **60 casos PASS**, incluindo fixtures ELF independentes, tamanho exato de BSS/pilhas do ELF real, casos inválidos, não sobrescrita pelo CLI, leitura C sob ASan/UBSan e fixtures Linux+EFI/vendor_boot. A inspeção read-only do ZIP publicado está em [proton-binary.md](proton-binary.md).
 
 Esse desbloqueio agora foi testado em uma CPU: [carregador EL2 QEMU](qemu-el2-loader.md), com janela protegida, cópia/zero exatos, manutenção de cache emitida e FDT bruto entregue à main real. Isso não habilita o shim legado ou demonstra o contrato Samsung, que continua pendente em [loader-contract.md](loader-contract.md).
 
 A implementação posterior do outro branch foi revisada e reproduzida separadamente: [branch-packer-review.md](branch-packer-review.md). Ela não deve substituir este produtor/consumidor.
+
+A revisão de 2026-10-25 reconfirmou essa pré-condição: sem o ELF em
+`r8/build/r10_payload.elf`, a execução isolada passa com **59 casos** e
+pula a conferência da extensão do ELF real. O baseline obrigatório/CI
+ainda é uma entrega planejada; a documentação agora explicita a diferença.

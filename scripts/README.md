@@ -1,5 +1,16 @@
 # Catálogo de scripts
 
+- `inspect_newtime_reloads_hzc2.py`: outro leitor da coluna 1, recargas e
+  bindings; [relatório](../docs/newtime-reloads-hzc2.md).
+- `inspect_newtime_smc_binding_hzc2.py` e `test_newtime_smc_binding.py`:
+  inicializador até folha SMC nominal e convenção pública SFR_W;
+  [limites](../docs/newtime-smc-binding-hzc2.md).
+- `inspect_newtime_slot47_hzc2.py` e `test_newtime_slot47.py`: inventário
+  limitado LDR/LDP e bases distintas; [auditoria](../docs/newtime-slot47-hzc2.md).
+- `inspect_newtime_transports_hzc2.py` e `test_newtime_transports.py`:
+  projeção dos sete laços fixos e referências parametrizadas;
+  [origem de X0 ainda aberta](../docs/newtime-transports-hzc2.md).
+
 - `inspect_newtime_consumers_hzc2.py` e `test_newtime_consumers.py`: leitor
   da coluna 12, direção do fluxo 108→162 bytes, slots de funções e diretório
   candidato de vddcal. Exigem ambos os hashes; GNU1171, modelos de palavras
@@ -92,7 +103,7 @@ Os scripts históricos foram mantidos no lugar para preservar referências e cam
 
 O empacotador atual está em `../tools/mkpayload.py`; não confundir com versões do branch kilo. O carregador de teste usa uma CPU e não verifica SMP.
 
-- `test_entry_diag.py`: seis execuções do diagnóstico Image em QEMU (EL1/EL2 e três endereços); [contrato e limites](../docs/entry-diagnostic.md).
+- `test_entry_diag.py`: 12 casos do diagnóstico Image em QEMU (seis entradas EL1/EL2 em três endereços e seis recusas M/C); [contrato e limites](../docs/entry-diagnostic.md).
 
 - `inspect_uart_reference.py`: leitura somente do Kernel.tar.gz identificado por hash; cruza UART0/UART1, pinctrl e syscon sem extrair o pacote.
 

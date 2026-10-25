@@ -394,3 +394,17 @@ consultou esse estado e zero threads antes do merge
 Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
 GNU84/3 alvos/22 operandos, 60 testes, três recusas CLI e 772 links;
 origem de X0 permaneceu explicitamente aberta, sem nova execução de firmware.
+
+## PR #31 — transportes selecionados da célula NEWTIME
+
+Head `978d780b62593113ea6977a8294eb9d889634dbb`, revisão própria
+5645153512; onze blobs e árvore `3adf87758de55ad1a850bbb66d90cbf2e70c743d`
+conferidos. Comentário automático 6402956519: completed sem achados ou
+pendências no head exato, updated_at 2026-10-25 16:41:04 -04:00. A sessão
+consultou esse estado e zero threads antes do merge
+`43356de58be84cfaf1b477f1cc8fb9b3b8f7e604`, às 16:41:34 -04:00,
+30 segundos depois. updated_at não é timestamp exclusivo de conclusão.
+Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
+GNU141/56 alvos/11 operandos, 64 testes NEWTIME mais 16 dos laços, três
+recusas CLI e 781 links. Transporte e origem de X0 permaneceram abertos;
+nenhuma execução adicional de firmware ou SMC.
