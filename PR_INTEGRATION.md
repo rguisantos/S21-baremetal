@@ -368,3 +368,16 @@ A sessão conferiu esse estado e zero threads antes do merge
 Sem checks/statuses com falha. Main sincronizada com a árvore validada e
 limpa ao concluir. GNU324/18 alvos, três recusas CLI, 53 testes e 755 links;
 nenhuma execução adicional de firmware.
+
+## PR #29 — binding nominal até a folha SMC
+
+Head `47c7f98cb950c2a67f78492eab57946ed1828efb`, revisão própria
+5644820567; doze blobs e árvore `f0c91105b93a66c7a21ba77f3560c6dc1761535d`
+conferidos. Comentário automático 6401958074: completed, sem achados ou
+pendências no head exato; updated_at 2026-10-25 15:14:01 -04:00. A sessão
+consultou esse estado e zero threads antes do merge
+`a60cd37183e7891ab446325c6637c8b464d58fef`, às 15:14:21 -04:00,
+20 segundos depois. updated_at não é timestamp exclusivo de conclusão.
+Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
+GNU324 anteriores mais46/3 alvos/14 operandos, 56 testes, três recusas CLI,
+764 links e reprodução exata. Nenhuma SMC ou execução adicional de firmware.

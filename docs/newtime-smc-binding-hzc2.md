@@ -60,6 +60,9 @@ O ponteiro aparece em `0x31580`. Isso não identifica o despacho indireto,
 a origem de X0 ou exclui outros caminhos. Não foi igualado ao inicializador
 concreto de `0x18000` sem essa evidência.
 
+A [auditoria seguinte do slot47](newtime-slot47-hzc2.md) descarta quatro
+candidatos de outra base. Ela não resolve o chamador ou a origem de X0.
+
 ## Correspondência com uma convenção pública
 
 A [fonte de referência fixada](https://github.com/xfwdrev/android_kernel_samsung_ex2100/blob/756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0/include/soc/samsung/exynos-smc.h)

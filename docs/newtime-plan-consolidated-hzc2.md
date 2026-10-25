@@ -107,6 +107,8 @@ leitor da coluna 1 e escritores do binding 0x31998; leitor AP e preservação
 continuam abertos. A [continuação do binding](newtime-smc-binding-hzc2.md)
 liga um inicializador concreto à folha SMC e deriva endereços candidatos
 pela convenção pública; a segunda origem e o monitor seguem abertos.
+A [auditoria do slot47](newtime-slot47-hzc2.md) distingue bases e
+descarta quatro candidatos, mantendo despacho/X0 abertos.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

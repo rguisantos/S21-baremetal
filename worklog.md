@@ -2244,3 +2244,30 @@ sobre a inversão (conhecidos, limites/roundtrip e classes/tipos inválidos),
 do slot47/X0, escritores/aliases e semântica física dos campos candidatos;
 AP0207365c e ordem real permanecem abertos. Revisão automática do novo head
 deve terminar sem achados/pendências antes da integração.
+
+## 2026-10-25 — auditoria parcial do slot47
+
+Base a60cd37. A origem deX0 e o despacho verdadeiro da célula31580 não
+foram resolvidos. Criado inventário reproduzível de26432 palavras BL2,
+com LDRX unsigned e LDPX signed sem writeback, testando ambos os elementos.
+Deslocamento376 aparece em quatro LDRs (24784/24adc/24ba0/2501c), nenhum
+LDP. Nos caminhos de base selecionados, todos usam30fe8, célula31160,
+ponteiro02116300/alvo2c300; não são oslot47 de31408/célula31580/alvo2d364.
+Os quatroX0=4 não foram atribuídos ao escritor do binding. Retenção da
+base conforme ABI e preservação das células continuam condições.
+
+Busca B/BL para todas as instruções da função2d364–2d3bc não encontrou
+candidato no intervalo BL2. Isso não exclui índices em registrador, cargas
+literais/pre/post-indexadas, cópias, aliases ou outros módulos. Exploração
+temporária por disassembly fora desse inventário não foi promovida a prova
+de ausência. X0zero só pula store2d394; leituraAP02073600 já ocorre antes
+do teste, e callbacks seguem depois. Não há observação runtime.
+
+Relatório/extrator/JSON e quatro testes novos do decoder adicionados;
+README, índice, plano, roadmap e auditoria doPR29 atualizados. Próxima
+frente: exportações/cópias e bases recebidas que transportem31580, antes
+de atribuir um valor aX0. Resultado parcial explicitado, sem ampliarQEMU.
+Validação: GNU84 palavras/3 alvos/22 operandos, reprodução byte a byte,
+60 testes NEWTIME, três recusasCLI, 772 links, Python e diff aprovados.
+Revisão automática deve concluir sem achados/pendências no novo head antes
+da integração; nenhuma chamada SMC ou execução no telefone.
