@@ -1,5 +1,11 @@
 # Catálogo de scripts
 
+- `inspect_newtime_columns_hzc2.py`, `trace_newtime_columns_qemu.py` e
+  `test_newtime_columns.py`: colunas 1/12 como chaves de subtabelas,
+  consumidores estáticos, GNU188 e preflight de cada acesso de memória
+  do callback contínuo, parando antes do gate. Quatro casos QEMU, sem
+  fornecer MMIO ou reescolher PC. [Escopo](../docs/newtime-columns-hzc2.md).
+
 - `inspect_bugreport_dram.py`, `inspect_dram_logging_hzc2.py`,
   `emulate_lk_dram_labels_qemu.py` e `test_bugreport_dram.py`: extrato técnico
   do ZIP exato por lista de permissão, cache/rótulos LK, comparação com o

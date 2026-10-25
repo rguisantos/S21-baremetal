@@ -286,3 +286,19 @@ Revisão própria 5640957518; 128 testes de host, seis casos QEMU e GNU229
 registrados na entrega. Nenhuma execução física ou ausência de DEVFREQ
 declarada resolvida. Samsung/D1Z/12GB são observações do log do bootloader;
 a relação entre os campos de A/B é uma análise estática/laboratorial.
+
+
+## PR #24 — regra DRAM e cronologia verificadas
+
+Head `dd7833ce3cf7465518ee144038c2b60217261fe3`, revisão própria
+5641045529, cinco blobs/árvore `337e23940e31787982760fc74cda567aea712f9f`
+conferidos. Nove testes, relatório GNU229 reproduzido, metadados e 697 links.
+A revisão automática inicial permaneceu running sem resultado por mais de
+15 minutos; solicitada novamente no mesmo head, sem modificar os arquivos,
+pelo comentário 6392364030. O registro automático 6392221469 ficou
+completed/sem achados ou pendências em atualização de 2026-10-24 22:18:40
+-04:00, conferida antes do merge. Zero threads e PR apto à integração.
+
+Merge `0191d5607077678e01c411b271c1c35cc0849f5c` às 22:19:05 -04:00;
+main sincronizada e limpa. DRAM observada no log, leitura física e ausência
+DEVFREQ mantidas separadas. Não houve execução no telefone.

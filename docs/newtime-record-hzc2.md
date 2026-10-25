@@ -143,3 +143,9 @@ a origem da geometria que substitui o marcador e corroborar aliases/bindings,
 com efeitos transitivos do tratamento de erro ainda abertos. Não foram
 medidos gate, registro físico, RAM ou FDT final; o destino AP 0x02073600
 continua dependente da cadeia ACPM e de preservação fora deste escopo.
+
+A [continuação das colunas 1 e 12](newtime-columns-hzc2.md) distingue as
+chaves, payloads e leitores posteriores. Um novo ensaio contínuo não
+fornece ramos: para antes da carga MMIO em 0x19774. Os 196 casos acima
+continuam sendo ensaios condicionais com despacho explícito, com escopo
+diferente desse novo rastreio.

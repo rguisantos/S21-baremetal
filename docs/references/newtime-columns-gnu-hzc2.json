@@ -1,0 +1,10 @@
+{
+  "mode": "GNU_newtime_column_consumers",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "315d3e1af0376118514d43e9bf120433926a0f2be305d843c38901a9f3411923",
+  "words_matched": 188,
+  "relative_targets_matched": 11,
+  "selected_operands_matched": 10,
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "firmware_or_controller_executed": false
+}

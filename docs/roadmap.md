@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-24 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #23, 566c977](https://github.com/rguisantos/S21-baremetal/commit/566c977f5d976ecfe151d0f43a937b9acaed5d54).
+[main após revisão/merge do PR #24, 0191d56](https://github.com/rguisantos/S21-baremetal/commit/0191d5607077678e01c411b271c1c35cc0849f5c).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -87,7 +87,7 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 |---|---|---|
 | **P1 — entrada e coerência** | Dez offsets e dialecto DMA corroborados em fontes, com diferenças de versão preservadas; obter implementação HZC2 de `0x19`, conteúdo verificável da entrada `[0x1fc00,0x1fffc)` ou saída real de 48 bytes; depois transformação/vetores. Campos herdados de -0xe6 e escritores indiretos abertos | Implementação correspondente ou observação verificável; referências ACE/Exynos9830 e dados de outro SoC não substituem o contrato HZC2 |
 | **P1 — observação, em paralelo** | Bugreport recupera logs stock, mas ainda não o registro do diagnóstico próprio; fechar UART com configuração/ligação demonstradas ou outro caminho legível e verificável | Recuperar os 128 bytes e identificar imagem/endereço de origem; gravação sem leitura não conclui o marco |
-| **P2 — memória dinâmica, em paralelo** | Construção NEWTIME, flags de erro e dump do cabeçalho delimitados; empacotamento dos quatro slots conferido sob retornos fornecidos. Palavra B/Samsung/D1Z observada em log, sem leitura SRAM ao vivo. Publicação condicional do primeiro slot em R delimitada; seguir efeitos após retorno do wrapper e bindings das recargas. Efeitos transitivos da depuração continuam abertos. Corroborar aliases/bindings; manter valores reais dos slots, soc_info/SEC_PGTBL/Harx e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
+| **P2 — memória dinâmica, em paralelo** | Construção NEWTIME e publicação condicional delimitadas. [Colunas 1/12](newtime-columns-hzc2.md) são chaves de subtabelas; quatro casos contínuos param antes do gate MMIO. Coluna 1 seguida estaticamente até cálculo 0/28 para AP0x0207365c; coluna 12 até ponteiro relativo 0x316a0. Seguir seus leitores, preservação/recargas e bindings. Palavra B/Samsung/D1Z observada só em log; slots reais, soc_info/SEC_PGTBL/Harx, efeitos transitivos da depuração e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
 | **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
