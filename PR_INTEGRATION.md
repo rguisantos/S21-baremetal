@@ -321,3 +321,22 @@ controles de orçamento, 12 recusas CLI, GNU188 e cadeia466, quatro
 relatórios reproduzidos. Todos os casos contínuos param antes de MMIO;
 nenhum retorno completo ou timing físico afirmado. Main sincronizada e
 limpa ao concluir aquela integração.
+
+
+## PR #26 — consumidores e proveniência dos registros
+
+Head `bebedf4dd89668a9b0fd31924fc3647eff0bb7df`, revisão própria
+5643432119; 13 blobs e árvore `81348a5e5b8429e0b637d89ebc1918019edc7f61`
+conferidos. O [comentário automático](https://github.com/rguisantos/S21-baremetal/pull/26#issuecomment-6398331539)
+registrou completed, sem achados ou pendências no head exato. Seu
+updated_at é 2026-10-25 09:37:11 -04:00; o merge
+`3daf8f33364b9e2d4d9bafdbdd4f28b4d220de58` ocorreu às 09:38:41 -04:00,
+90 segundos depois. A sessão consultou completed antes de enviar o merge;
+updated_at não é um campo dedicado ao instante de conclusão. Estado e
+zero threads reconferidos nesta consolidação.
+
+Entrega estática: 53 testes de host, GNU de 1171 palavras, 12 recusas CLI,
+quatro relatórios reproduzidos e 736 links do projeto. Identificado o
+leitor da coluna 12, corrigido o fluxo 108→162 e mantidos os limites de
+execução, sem afirmar timing físico ou despacho vddcal. Main sincronizada
+com a árvore validada e limpa ao concluir a integração.
