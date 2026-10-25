@@ -13,6 +13,14 @@ ponteiros nominais iniciais, chegam a escritas em blocos de registradores.
 Isso identifica uma sequência de operações no código; não estabelece o
 nome físico dos comandos, sua execução real ou a seleção observada no S21.
 
+## Base adotada após a conferência do usuário
+
+Em 2026-10-25, o usuário determinou usar este relatório em substituição
+às seções 2.8 a 2.13 do plano recebido. O
+[plano consolidado](newtime-plan-consolidated-hzc2.md) registra essa decisão,
+as pendências e o limite de execução. A substituição documental não
+transforma as conclusões estáticas em observações no aparelho.
+
 ## Entradas e reprodução
 
 O leitor exige os dois arquivos exatos, já inventariados em
@@ -149,7 +157,9 @@ Outras correções verificadas:
   A execução e a origem de um índice dinâmico continuam sem prova.
 - `0x263d8` é `MOV W2,#26`, não uma chamada ao índice 26: o BLR em
   `0x263e4` usa o slot **25**. Os BLRs `0x26478` e `0x264d4` usam
-  o slot **26**, alvo nominal `0x28480`.
+  o slot **26**, alvo nominal `0x28480`. Os MOVs em `0x2646c` e
+  `0x264c4` carregam W2=26; os LDRs em `0x26470` e `0x264cc`
+  selecionam esse slot pelo deslocamento 208.
 - `0x28480` **faz escritas** em base+0 e base+4 e lê base+12, usando
   a tabela `0x30f98`. Não é um acessor puro em RAM.
 

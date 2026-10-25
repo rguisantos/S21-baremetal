@@ -2160,3 +2160,37 @@ Python compilado, links locais/diff conferidos. Índices,README,roadmap e
 integração25 atualizados; revisão automática do próximo head deve terminar
 sem achados/pendências antes do merge. Próximo: semântica dos comandos da
 coluna12, uso deAP0207365c, preservação dos slots e mapeamento vddcal.
+
+
+## 2026-10-25 — plano NEWTIME consolidado após conferência do usuário
+
+Registrada a orientação de substituir, como base de trabalho, as seções
+2.8 a 2.13 do plano recebido pelo relatório newtime-consumers-hzc2.md.
+Criado plano consolidado com níveis de evidência, correções, pendências,
+próximas análises estáticas e critérios de conclusão. A confirmação do
+usuário não foi tratada como nova execução ou prova de estado físico.
+
+Precisados os três despachos: MOVs 263d8/2646c/264c4 carregam W2=26;
+LDRs 263d4/26470/264cc usam deslocamentos 200/208/208; BLRs
+263e4/26478/264d4 usam slots 25/26/26. Nove instruções reconferidas no
+sboot fixado e no GNU. Mantidos como pontos fora do escopo de execução
+26e14, 25b80, 2d5f8 e 2e4b4, além dos demais consumidores externos à
+cadeia do callback. 67630 permanece offset interno ao parser candidato
+vddcal, com mapeamento/vínculo pendentes.
+
+Roadmap passou a apontar para o plano atual: primeiro leitores de
+AP0207365c e preservação/recargas de ponteiros e slots; depois semântica
+dos comandos, mapeamento vddcal e grafo entre as fases. README, índice,
+relatório-base e auditoria da integração #26 atualizados. Nenhum script,
+modelo, limite de execução ou resultado científico alterado.
+
+Na retomada havia um log XNU local truncado: os 2560 bytes eram prefixo
+exato dos 63167 bytes versionados. Cópia preservada com SHA-256 antes de
+recuperar o conteúdo de HEAD; três temporários de ferramentas também
+preservados fora do Git. Essa recuperação não gerou diff no log nem
+nova evidência de execução.
+
+Validação documental: relatório GNU1171/156 alvos/34 operandos reproduzido
+byte a byte; links locais do projeto e diff conferidos. Sem nova suíte
+ou QEMU, pois os executáveis e o harness não mudaram. A revisão automática
+do novo head deve concluir sem achados/pendências antes da integração.

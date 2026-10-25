@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-25 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #25, 17c7e74](https://github.com/rguisantos/S21-baremetal/commit/17c7e74a3f9ebe8ba5c70b4893916cb83ce2c53b).
+[main após revisão/merge do PR #26, 3daf8f3](https://github.com/rguisantos/S21-baremetal/commit/3daf8f33364b9e2d4d9bafdbdd4f28b4d220de58).
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
 
 **Estamos entre a validação de laboratório e o primeiro diagnóstico no
@@ -93,13 +93,22 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
-**Próxima entrega técnica na frente de memória: seguir o tratamento dos
-retornos NEWTIME e a origem da geometria que substitui o marcador.**
-O [consumidor Linux](bl2-kernel-consumers-hzc2.md) lê essa palavra como
+**Próxima entrega técnica na frente de memória: seguir leitores de
+AP0x0207365c e preservação/recargas dos ponteiros e slots envolvidos.**
+O [plano NEWTIME consolidado](newtime-plan-consolidated-hzc2.md) adota
+newtime-consumers-hzc2.md em substituição às seções 2.8–2.13 do plano
+recebido. Depois vêm a semântica dos comandos, o mapeamento vddcal e o
+grafo entre publicação/configuração/calibração. Os consumidores fora da
+cadeia do callback permanecem fora do escopo de execução.
+
+Histórico das evidências que sustentam essa frente:
+
+O [consumidor Linux](bl2-kernel-consumers-hzc2.md) lê AP0x02073600 como
 `dram_type`, imprime `DEVFREQ : dram:` e compara uma constante também
-presente no BL2 HZC2. Buscar observação correspondente em logs já
-disponíveis, preservando a distinção entre a fonte pública e o binário
-em execução. CHIPID corrobora o gate das bases como `main_rev == 1`, sem
+presente no BL2 HZC2. A palavra DRAM foi observada no log do bootloader;
+a linha DEVFREQ permanece ausente nas coletas analisadas. Fonte pública
+e binário em execução continuam distintos. CHIPID corrobora o gate das
+bases como `main_rev == 1`, sem
 medir esse valor; bootstat oferece outra pista de parâmetros de tempo.
 O [callback NEWTIME](boot-metadata-hzc2.md) foi resolvido nominalmente,
 com store u64 por ponteiro atualizado a partir de 0x15900108. O destino
@@ -118,8 +127,9 @@ e prefixo até o primeiro store em 56 casos QEMU. O argumento/frame e as
 alocador, cópias e erros sem rollback: 11264 combinações no modelo, 196
 casos QEMU com ramos fornecidos, seis casos da folha e 92 testes de host.
 O gate é reamostrado e segue sem valores reais; o primeiro u64 foi
-conferido no retorno direto nesses bindings. Próximo: efeitos de 0x1fdb8,
-chamadores e aliases/bindings físicos, com o FDT final ainda aberto.
+conferido no retorno direto nesses bindings. Os efeitos selecionados de
+0x1fdb8 foram seguidos no [relatório de erro](newtime-error-hzc2.md);
+chamadores, aliases/bindings físicos e FDT final continuam abertos.
 Os argumentos bootstat no LK também
 foram ligados: BL1 recebe literal 100; nomes não comprovam durações.
 O [rastreio anterior à consulta](bl2-geometry-record-hzc2.md) identifica

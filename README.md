@@ -2,7 +2,7 @@
 
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
-**Estado em 2026-10-24 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
+**Estado em 2026-10-25 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
@@ -13,6 +13,8 @@ A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifest
 O [rastreio das colunas 1 e 12 da NEWTIME](docs/newtime-columns-hzc2.md) mostra que elas são chaves de subtabelas. Quatro execuções contínuas do callback no QEMU copiam a linha e param antes do primeiro acesso MMIO, sem fornecer gate ou desviar o fluxo. A análise estática segue a coluna 1 até um cálculo de 0/28 para AP0x0207365c e a coluna 12 até o ponteiro de seu payload; o significado físico de timing permanece aberto.
 
 A [continuação estática dos consumidores](docs/newtime-consumers-hzc2.md) localiza o leitor da coluna 12 em `0x2cdb8` e segue seus campos até escritas nominais em registradores. Corrige o sentido do fluxo entre registros de 108/162 bytes e delimita o mapeamento ainda incerto de `vddcal_fw`; sem ampliar a execução QEMU ou nomear parâmetros físicos.
+
+O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota esse relatório como substituto das seções 2.8–2.13 do plano recebido. Organiza as próximas análises estáticas e mantém os consumidores externos ao callback fora do escopo de execução.
 
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
