@@ -1,0 +1,141 @@
+{
+  "cli_refusals": [
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [],
+      "input": "firmware_short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "firmware_short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_lk_dram_labels_qemu.py",
+      "flags": [],
+      "input": "firmware_short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [],
+      "input": "firmware_long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "firmware_long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_lk_dram_labels_qemu.py",
+      "flags": [],
+      "input": "firmware_long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [],
+      "input": "firmware_changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "firmware_changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_lk_dram_labels_qemu.py",
+      "flags": [],
+      "input": "firmware_changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [],
+      "input": "changed_reference_driver",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_dram_logging_hzc2.py",
+      "flags": [
+        "--gnu"
+      ],
+      "input": "changed_reference_driver",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_lk_dram_labels_qemu.py",
+      "flags": [],
+      "input": "changed_reference_driver",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_bugreport_dram.py",
+      "input": "archive_short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_bugreport_dram.py",
+      "input": "archive_long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_bugreport_dram.py",
+      "input": "archive_changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "reports_reproduced_byte_for_byte": [
+    "bugreport-dram-20261024.json",
+    "dram-logging-hzc2.json",
+    "dram-logging-gnu-hzc2.json",
+    "large-binary-provenance.json"
+  ],
+  "host_tests": {
+    "bl2": 88,
+    "newtime": 31,
+    "bugreport_and_fields": 9,
+    "total": 128,
+    "passed": true
+  },
+  "qemu_original_label_cases": 6,
+  "qemu_helper_invocations": 18,
+  "qemu_report": "dram-labels-qemu-hzc2.json",
+  "gnu_words": 229,
+  "gnu_relative_targets": 36,
+  "gnu_selected_operands": 17,
+  "hash_bound_string_checks": 5,
+  "hash_bound_scaling_literal_check": true,
+  "large_binary_count": 17,
+  "large_binary_unrecovered_sources": 0,
+  "archive_or_raw_logs_added_to_git": false,
+  "device_execution": false,
+  "python_compile_passed": true,
+  "local_links_checked": 695
+}

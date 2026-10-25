@@ -10,6 +10,12 @@ o merge das entregas concluídas, sem encerrar o trabalho apenas com o PR aberto
   corrija bloqueadores e faça o merge do head revisado. Depois sincronize a
   main local e prossiga o desenvolvimento. Não integre alterações com falhas
   conhecidas ou conflitos pendentes.
+- Antes de cada merge, aguarde a revisão automática do **head exato** ficar
+  `completed`, sem achados nem achados pendentes, e confira as threads.
+  Revisão própria não substitui essa etapa. Ausência de status/check-runs
+  não significa aprovação automática. Se o head mudar, valide e revise o
+  novo head antes de integrar. A autorização para continuar e fazer merge
+  permanece válida, respeitando esses critérios.
 - Organize código em `scripts/`, `r8/`, `lab/` ou no módulo correspondente;
   documentação em `docs/` e evidências textuais em `docs/references/`.
 - Atualize os índices, README, roadmap e worklog quando o estado técnico ou

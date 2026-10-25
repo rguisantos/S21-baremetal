@@ -245,3 +245,19 @@ no mesmo head. Merge normal em
 `70dca683297508bb4be85102a8c63e5fd6c79843`, main sincronizada e limpa.
 Não executou consultas/preparação/CHIPID, inicialização Samsung ou telefone;
 publicação física e respostas reais continuaram abertas.
+
+
+## PR #22 — segunda publicação NEWTIME e correção do procedimento
+
+Head `36e631c5d7a9798a9c63c5a9d08662037d48b0e1`, revisão própria
+5640767925; dezoito blobs/árvore e validações conferidos. Merge em
+`81274a4bcb4d45dc5b7a2a1d85a43ae04a7076bd` enquanto a revisão automática
+ainda estava running. Ela concluiu posteriormente, sem achados ou pendências
+nesse head; zero threads na conferência desta retomada. Isso não transforma
+a revisão posterior numa etapa cumprida antes do merge.
+
+A orientação foi corrigida no AGENTS.md: revisão própria e autorização de
+merge não substituem aguardar a revisão automática completed do head exato.
+Ausência de status/check-runs não é aprovação. A nova entrega deve cumprir
+essa ordem antes de integrar. Evidências anteriores: 119 testes, 160 casos
+QEMU (74 stores/86 erros), GNU464 palavras, nove recusas CLI; sem medição física.

@@ -144,3 +144,10 @@ No S21-baremetal, os dois relatórios estáticos anteriores foram
 reproduzidos sem alteração com `inspect_bl2_geometry_record.py` e
 `inspect_bl2_query_base_rewrite.py`, usando o mesmo sboot. Não houve build
 completo de kernel, novo QEMU, leitura MMIO ou operação no telefone.
+
+
+A [observação posterior por bugreport](dram-observed-hzc2.md) registra
+0001000850500130, Samsung/D1Z e 12GB no log do aparelho. A igualdade com
+0001000860000110 continua falsa. O LK seleciona fabricante/processo por
+campos iguais nas duas palavras, a partir do cache preenchido de AP02073600;
+isso não prova o ramo do driver stock nem uma amostra ao vivo desse endereço.

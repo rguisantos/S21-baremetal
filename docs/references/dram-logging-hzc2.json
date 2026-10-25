@@ -1,0 +1,77 @@
+{
+  "mode": "static_dram_logging_hzc2",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "words": 229,
+  "instruction_index_sha256": "6b547ec97422752468586e9bbba949c4d37e67000204400d93abe06ae5122651",
+  "bl2_print": {
+    "call": "0x1e864 -> 0x1fe54",
+    "source": "state0x31978",
+    "output": "two width8 base16 u32 conversions, high32 then low32"
+  },
+  "lk": {
+    "fill": "0x11b7f0",
+    "high_read": "0x02073604",
+    "low_read": "0x02073600",
+    "read_is_two_nonatomic_u32_samples": true,
+    "cache": "0xaa7ea0",
+    "manufacturer": "0x11b860: cache bits8..15; 1 -> Samsung",
+    "process": "0x11b8d8: cache bits32..39 | bits40..47 <<8; 8 -> D1Z",
+    "labels_print": "0x147d7c..0x147da0",
+    "size_print": "0x147da4..0x147db0",
+    "size_source": "0x11b6f0: cached total or u64 AP0x02038848, then (bytes>>20)/1024",
+    "formatted_size_is_not_an_exact_raw_u64_sample": true
+  },
+  "reference_driver": {
+    "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+    "sha256": "1133eb69f70fed266d34a8dd1718ba5b879119057ca4eb6fc293341fe0b2f7f6",
+    "lines": 2702,
+    "dram_reference_lines": [
+      1964,
+      1983,
+      1985,
+      1986,
+      1988,
+      1989,
+      1991
+    ],
+    "mif_read": "u32 AP0x02073604 then u32 AP0x02073600",
+    "exact_match": "0x1000860000110",
+    "disabled_frequencies_on_exact_match": [
+      2288000,
+      2535000,
+      2730000
+    ],
+    "stock_kernel_binary_identity_verified": false
+  },
+  "observed_word": {
+    "word": "0001000850500130",
+    "mode": 3,
+    "manufacturer_byte": 1,
+    "process_pair": 8,
+    "first_density_index": 5,
+    "first_factor": 0,
+    "second_density_index": 5,
+    "second_factor": 0,
+    "reference_driver_exact_match": false,
+    "selected_manufacturer_label": "Samsung",
+    "selected_process_label": "D1Z"
+  },
+  "reference_word": {
+    "word": "0001000860000110",
+    "mode": 1,
+    "manufacturer_byte": 1,
+    "process_pair": 8,
+    "first_density_index": 6,
+    "first_factor": 0,
+    "second_density_index": 0,
+    "second_factor": 0,
+    "reference_driver_exact_match": true,
+    "selected_manufacturer_label": "Samsung",
+    "selected_process_label": "D1Z"
+  },
+  "xor": "0x30500020",
+  "observed_newtime_row": 15,
+  "labels_can_match_while_full_words_differ": true,
+  "physical_register_or_all_four_slots_observed": false,
+  "final_ram_or_fdt_verified": false
+}

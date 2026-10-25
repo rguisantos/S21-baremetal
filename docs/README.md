@@ -38,6 +38,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Erro NEWTIME, dump e depuração](newtime-error-hzc2.md): flags em +0x24, dump de 104 palavras e console nominal; 26 casos do dump/14 do fragmento de flags no QEMU, 101 testes e GNU de 662 palavras. Efeitos completos e estado físico abertos.
 - [Empacotamento da geometria após o marcador](bl2-geometry-packing-hzc2.md): quatro slots zerados/reconstruídos, extensão 0x31 e modos do slot 0/3; 100 cenários QEMU com retornos fornecidos mais 100 execuções da folha, 111 testes e GNU de 386 palavras. Sem respostas físicas.
 - [Segunda publicação da geometria](bl2-geometry-publication-hzc2.md): slot → wrapper → ponteiro R, cópia fixa e duas amostras distintas; 160 cenários QEMU com MMU sintética e chamadas originais, 119 testes e GNU de 464 palavras. Sem alias ou registro físico observado.
+- [DRAM observada no bugreport HZC2](dram-observed-hzc2.md): Samsung/D1Z, 12GB e assinatura B; campos distintos da igualdade usada no driver, extrator com lista de permissão e seis casos dos getters LK.
+- [Proveniência dos binários grandes](binary-provenance.md): 17 arquivos de pelo menos 5 MiB, hashes/blobs, matches de .deb locais e digest de asset oficial; limites de autenticação explícitos.
 - [DTS enviados e recompilação HZC2](dts-source-roundtrip.md): patch de três listas de CPUs, identidade binária da base stock e limites dos overlays genérico/P3S.
 - [Proton: fonte](proton-reference.md), [binários](proton-binary.md) e [contrato do carregador Samsung](loader-contract.md).
 - [Referência TWRP](twrp-reference.md) e [limites da coleta Shizuku](runtime-collection.md).
