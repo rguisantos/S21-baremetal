@@ -94,9 +94,12 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
 **Próxima entrega técnica na frente de memória: seguir
-exportações/cópias e bases recebidas que transportem a célula 0x31580,
+argumentos das cópias parametrizadas e wrappers que possam transportar 0x31580,
 a origem de X0 e preservação do binding/método,
 além dos leitores de AP0x0207365c e semântica dos campos candidatos.**
+A [investigação de transportes](newtime-transports-hzc2.md) afastou sete
+cópias fixas e delimitou 47 referências parametrizadas, com três origens
+examinadas; o transporte e X0 continuam abertos.
 A [auditoria do slot47](newtime-slot47-hzc2.md) descartou quatro
 candidatos de outra tabela; não resolveu o despacho verdadeiro.
 O [binding até a SMC](newtime-smc-binding-hzc2.md) liga um inicializador

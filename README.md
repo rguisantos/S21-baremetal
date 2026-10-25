@@ -10,17 +10,11 @@ O [bugreport HZC2 do aparelho](docs/dram-observed-hzc2.md) trouxe a primeira evi
 
 A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifesto de 17 arquivos já versionados, com hashes e matches de pacotes locais/asset oficial. O `AGENTS.md` agora exige revisão automática concluída para o head exato antes de cada merge, além da revisão própria.
 
-O [rastreio das colunas 1 e 12 da NEWTIME](docs/newtime-columns-hzc2.md) mostra que elas são chaves de subtabelas. Quatro execuções contínuas do callback no QEMU copiam a linha e param antes do primeiro acesso MMIO, sem fornecer gate ou desviar o fluxo. A análise estática segue a coluna 1 até um cálculo de 0/28 para AP0x0207365c e a coluna 12 até o ponteiro de seu payload; o significado físico de timing permanece aberto.
+A frente de memória tem [colunas NEWTIME](docs/newtime-columns-hzc2.md), [consumidores](docs/newtime-consumers-hzc2.md) e [recargas](docs/newtime-reloads-hzc2.md) delimitados por evidências estáticas e ensaios de laboratório. Um [binding nominal até SMC](docs/newtime-smc-binding-hzc2.md) foi identificado; aceitação pelo monitor, efeitos físicos e preservação permanecem abertos.
 
-A [continuação estática dos consumidores](docs/newtime-consumers-hzc2.md) localiza o leitor da coluna 12 em `0x2cdb8` e segue seus campos até escritas nominais em registradores. Corrige o sentido do fluxo entre registros de 108/162 bytes e delimita o mapeamento ainda incerto de `vddcal_fw`; sem ampliar a execução QEMU ou nomear parâmetros físicos.
+A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de outra tabela. A [investigação de transportes](docs/newtime-transports-hzc2.md) afasta sete cópias fixas, inventaria 47 referências ao helper parametrizado e examina três origens. O despacho verdadeiro de `0x31580` e a origem de X0 continuam sem solução; o próximo foco são as cópias parametrizadas e seus wrappers.
 
-O [rastreio das recargas NEWTIME](docs/newtime-reloads-hzc2.md) identifica outro leitor da coluna 1, com 15 envios indiretos e binding inicialmente nulo. Documenta recargas e alteração condicional das bases MMIO; preservação e leitor de `0x0207365c` continuam abertos.
-
-O [binding NEWTIME até a SMC](docs/newtime-smc-binding-hzc2.md) liga um inicializador de `0x31998` à folha `SMC #0; RET`. Os argumentos são compatíveis com a convenção pública SFR_W; aceitação, efeito físico e preservação continuam abertos.
-
-A [auditoria do slot 47](docs/newtime-slot47-hzc2.md) distingue as tabelas `0x30fe8` e `0x31408`: quatro candidatos de imediato 376 pertencem à primeira. O despacho verdadeiro e a origem de X0 permanecem abertos; argumento zero só pula o store do binding.
-
-O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido. Organiza as próximas análises estáticas e mantém os consumidores externos ao callback fora do escopo de execução.
+O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido e mantém os consumidores externos ao callback fora do escopo de execução.
 
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
