@@ -104,7 +104,10 @@ antes do ensaio. As rotinas podem continuar sendo analisadas estaticamente.
 A consolidação original não executou estes itens. O primeiro avançou
 parcialmente no [rastreio de recargas](newtime-reloads-hzc2.md): outro
 leitor da coluna 1 e escritores do binding 0x31998; leitor AP e preservação
-continuam abertos. Os demais itens permanecem pendentes. Nenhum depende
+continuam abertos. A [continuação do binding](newtime-smc-binding-hzc2.md)
+liga um inicializador concreto à folha SMC e deriva endereços candidatos
+pela convenção pública; a segunda origem e o monitor seguem abertos.
+Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 
 | Ordem | Trabalho | Critério para encerrar a etapa |

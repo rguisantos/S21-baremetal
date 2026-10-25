@@ -355,3 +355,16 @@ exclusivo de conclusão. Não havia checks/statuses com falha.
 Entrega documental: GNU1171 reproduzido e 747 links conferidos antes da
 publicação. Após recuperação local, sete blobs/árvore/diff reconferidos.
 Main sincronizada com o merge e limpa ao concluir a integração.
+
+## PR #28 — recargas e leitor indireto da coluna 1
+
+Head `8d4eb850ed187c5572f1f295c4e35b1e627a3d22`, revisão própria
+5644724217; nove blobs e árvore `2656edb65eadb40981b77a5a01f4117305355d9f`
+conferidos. O comentário automático 6401727631 registrou completed sem
+achados/pendências no head exato, updated_at 2026-10-25 14:53:06 -04:00.
+A sessão conferiu esse estado e zero threads antes do merge
+`a50a1db2e044da99d54a167eed90c67f276c26f5`, às 14:53:43 -04:00,
+37 segundos depois. updated_at não é um timestamp exclusivo de conclusão.
+Sem checks/statuses com falha. Main sincronizada com a árvore validada e
+limpa ao concluir. GNU324/18 alvos, três recusas CLI, 53 testes e 755 links;
+nenhuma execução adicional de firmware.

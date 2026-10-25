@@ -94,8 +94,10 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
 
 **Próxima entrega técnica na frente de memória: seguir
-a origem dos argumentos que inicializam 0x31998 e seu método +72,
-além dos leitores de AP0x0207365c e preservação dos ponteiros/slots.**
+o despacho do slot47 e seu X0, preservação do binding/método,
+além dos leitores de AP0x0207365c e semântica dos campos candidatos.**
+O [binding até a SMC](newtime-smc-binding-hzc2.md) liga um inicializador
+concreto ao método +72 e deriva candidatos SFR_W, sem resposta do monitor.
 O [rastreio das recargas](newtime-reloads-hzc2.md) avançou parcialmente
 o primeiro item: outro leitor da coluna 1 e bases MMIO mutáveis.
 O [plano NEWTIME consolidado](newtime-plan-consolidated-hzc2.md) adota

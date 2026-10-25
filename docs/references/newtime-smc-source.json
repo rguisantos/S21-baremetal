@@ -1,0 +1,26 @@
+{
+  "repository": "xfwdrev/android_kernel_samsung_ex2100",
+  "commit": "756951ae58e9e9eff789ea07bc5a9d07ed5e4ea0",
+  "path": "include/soc/samsung/exynos-smc.h",
+  "convention_only_not_stock_or_monitor": true,
+  "excerpts": [
+    {
+      "line": 26,
+      "text": "#define SMC_CMD_REG\t\t\t(-101)"
+    },
+    {
+      "line": 114,
+      "text": "#define SMC_REG_CLASS_SFR_W\t\t(0x1 << 30)"
+    },
+    {
+      "line": 116,
+      "text": "#define SMC_REG_CLASS_MASK\t\t(0x3 << 30)"
+    },
+    {
+      "line": 117,
+      "text": "#define SMC_REG_ID_SFR_W(ADDR)\t\t(SMC_REG_CLASS_SFR_W | ((ADDR) >> 2))"
+    }
+  ],
+  "source_sha256": "c896ed8086009ae3055c6ac6b3164744c9e7cf7286a0ad993eba2b4792b7db49",
+  "source_git_blob_sha1": "45c8d284835868ed8e9970340590c3294aba9fbd"
+}
