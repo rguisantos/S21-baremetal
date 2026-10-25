@@ -340,3 +340,18 @@ quatro relatórios reproduzidos e 736 links do projeto. Identificado o
 leitor da coluna 12, corrigido o fluxo 108→162 e mantidos os limites de
 execução, sem afirmar timing físico ou despacho vddcal. Main sincronizada
 com a árvore validada e limpa ao concluir a integração.
+
+## PR #27 — plano NEWTIME consolidado
+
+Head `7aa2673a80ca72aa5a04b226d632e5c683b7b69d`, revisão própria
+5644674127; sete blobs e árvore `c7ff7d28b806973c4925655b773fd71ce4446886`
+conferidos. O comentário automático 6401556729 registrou completed sem
+achados ou pendências no head exato, updated_at 2026-10-25 14:37:09 -04:00.
+A sessão consultou esse estado e zero threads antes do merge
+`eb1f1d78689d1c7872aae4d26b1b5c7da0a5a5ff`, às 14:39:53 -04:00,
+164 segundos após aquele updated_at. Esse campo não é um timestamp
+exclusivo de conclusão. Não havia checks/statuses com falha.
+
+Entrega documental: GNU1171 reproduzido e 747 links conferidos antes da
+publicação. Após recuperação local, sete blobs/árvore/diff reconferidos.
+Main sincronizada com o merge e limpa ao concluir a integração.

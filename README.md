@@ -14,6 +14,8 @@ O [rastreio das colunas 1 e 12 da NEWTIME](docs/newtime-columns-hzc2.md) mostra 
 
 A [continuação estática dos consumidores](docs/newtime-consumers-hzc2.md) localiza o leitor da coluna 12 em `0x2cdb8` e segue seus campos até escritas nominais em registradores. Corrige o sentido do fluxo entre registros de 108/162 bytes e delimita o mapeamento ainda incerto de `vddcal_fw`; sem ampliar a execução QEMU ou nomear parâmetros físicos.
 
+O [rastreio das recargas NEWTIME](docs/newtime-reloads-hzc2.md) identifica outro leitor da coluna 1, com 15 envios indiretos e binding inicialmente nulo. Documenta recargas e alteração condicional das bases MMIO; preservação e leitor de `0x0207365c` continuam abertos.
+
 O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota esse relatório como substituto das seções 2.8–2.13 do plano recebido. Organiza as próximas análises estáticas e mantém os consumidores externos ao callback fora do escopo de execução.
 
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
