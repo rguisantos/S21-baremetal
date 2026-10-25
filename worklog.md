@@ -1941,3 +1941,54 @@ a byte, Python compilado, links e diff conferidos. README, índices, catálogo,
 roadmap e integração20 atualizados. Próximo: publicação da geometria no
 registro e callbacks intermediários, mantendo respostas/aliases reais e
 RAM/FDT final como lacunas, sem repetir ensaios físicos bloqueados.
+
+
+## 2026-10-24 — segunda publicação da geometria por NEWTIME
+
+Continuação da main70dca68, PR21 revisado/mergeado e revisão automática
+completed sem achados no head0469ec8. Checkout inicial limpo; branch
+feat/bl2-geometry-publication. Mesmo sboot exato; sem blobs/dependências novos.
+
+Após a chamada de cálculo1e85c, o fragmento1ea18..1ea4c incrementa contador
+W31c28, copia para AP02073648, lê slot31978 e chama célula31510 nominal
+wrapper2f6c0. Wrapper salva argumento em AP02073638 e relê31978 antes de
+chamar contexto+40 nominal193fc. Prefixo seleciona NEWTIME/11111111 e
+publica o u64 original da segunda amostra pelo ponteiro30520 em19694.
+Não presume igualdade entre a amostra do chamador e a recarga do wrapper.
+
+R e endereço fixo são destinos distintos. Ensaios com R02073600/02075600
+conferem publicação no ponteiro sem converter a escolha em valor físico.
+Erros3/2/1 do prefixo não desfazem contador e cópia fixa já gravados.
+Alcançar o primeiro store não prova conclusão do callback: gate/sufixo,
+erro4 e helper externo continuam fora da execução desta entrega.
+
+Após retorno do wrapper, chamadas selecionadas1ea50→nominal2ef90 e
+1ea60→nominal2d568. Primeiro pode atualizar158609bc a partir de metadados;
+segundo contém recarga fixaAP02073600→31978. Essas operações e estados
+posteriores não executados aqui. Fases intermediárias, bindings/aliases
+físicos e preservação transitiva continuam abertos.
+
+QEMU160 casos em dois deltas40000000/40200000: 74 primeiros stores e86
+erros do prefixo. Vetores:22 seletores do bloco embutido, 50 saídas
+materializadas do modelo do empacotador por colocação, R alternativo,
+controles de nome/chave, bit63/contador wrap e três mudanças explícitas do
+slot entre leituras (seis nos dois deltas). Nenhum retorno MMIO fornecido.
+
+Fixture MMU já existente executa M1/C0 com tabelas RW do harness; identidade
+RAM40000000..80000000 e alias virtual02000000..02200000 para RAM física
+QEMU41000000/41200000. Mapeamento sintético, sem provar barramentoExynos.
+Chamadas indiretas do chamador e wrapper realmente executam até19698 ou
+199fc. Não há patch de instruções, salto sobre chamada ou reatribuição de
+registrador de endereço. Não executa empacotador novamente, callbackinteiro,
+erroexterno ou continuação; metadados do parser são materializados no host.
+
+Conferidos LRs salvos, frame/entrada, linha/tail, contador, cópia fixa,
+ponteiro, janela4400 com guardas nas visões virtual e física do laboratório,
+pilha, fontes, metadados, código, contexto, slot e tabelas/fixtureMMU. Não
+alegado ABI restaurado ao parar dentro do callback. GNU464 palavras,
+111 novas+353 do prefixo,59 alvos/29 operandos/5 ponteiros. Oito testes
+novos e111 anteriores passaram; nove recusas CLI curta/longa/alterada
+exit2 sem JSON antes deGNU/QEMU, relatórios estático/GNU reproduzidos byte
+a byte, Python compilado e links conferidos. README, índices, catálogo,
+roadmap e integração21 organizados. Próximo: efeitos após retorno, recarga,
+bindings físicos, respostas reais e RAM/FDT final, sem repetir coleta bloqueada.

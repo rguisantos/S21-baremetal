@@ -133,3 +133,10 @@ imagem curta, longa ou alterada com exit 2 e sem JSON parcial: seis
 controles CLI. Compilação Python, reprodução dos relatórios e aritmética
 do critério de alias conferidas. Sem novo QEMU, MMIO, kernel, serviço
 seguro ou operação no telefone.
+
+
+A [segunda chamada NEWTIME](bl2-geometry-publication-hzc2.md), em 0x1ea48,
+foi ligada ao primeiro slot posterior da geometria. O wrapper copia o
+argumento para endereço fixo e relê o slot antes do callback; esse callback
+publica pelo ponteiro ativo. Chamadas originais executaram no QEMU com
+MMU sintética até o primeiro store/erro, sem comprovar alias ou estado físico.

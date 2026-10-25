@@ -1,0 +1,118 @@
+{
+  "mode": "static_bl2_second_newtime_publication",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instructions": {
+    "words": 464,
+    "index_sha256": "e69c013fddb93ce3b3335900cca58aa993e4f256bd37975c79156718677cbf4f",
+    "new_words": 111,
+    "prefix_words": 353
+  },
+  "nominal_pointers": [
+    {
+      "cell": "0x31510",
+      "target": "0x2f6c0"
+    },
+    {
+      "cell": "0x30808",
+      "target": "0x193fc"
+    },
+    {
+      "cell": "0x31490",
+      "target": "0x2ef90"
+    },
+    {
+      "cell": "0x314c8",
+      "target": "0x2d568"
+    },
+    {
+      "cell": "0x307e0",
+      "target": "0x30b50"
+    }
+  ],
+  "phase": {
+    "earlier_size_call": "0x1e85c -> 0x1d830",
+    "selected_caller": [
+      "0x1ea18",
+      "0x1ea4c"
+    ],
+    "context_pages": [
+      "X19:0x31000",
+      "X20:0x31000",
+      "X22:0x31000"
+    ],
+    "w23_w24_from_original_arguments": [
+      "W1 at0x1dcac",
+      "W2 at0x1dcb0"
+    ],
+    "counter_cell": "0x31c28",
+    "counter_store": "0x1ea30",
+    "fixed_counter_copy": [
+      "0x1ea3c",
+      "0x02073648"
+    ],
+    "counter_arithmetic": "(previous_u32 + 1) mod2^32",
+    "geometry_load": [
+      "0x1ea44",
+      "0x31978"
+    ],
+    "indirect_call": [
+      "0x1ea48",
+      "0x31510"
+    ],
+    "intervening_calls_and_reachability_verified": false
+  },
+  "wrapper": {
+    "entry": "0x2f6c0",
+    "fixed_argument_copy": [
+      "0x2f6cc",
+      "0x02073638"
+    ],
+    "geometry_reload": [
+      "0x2f6d8",
+      "0x31978"
+    ],
+    "context_cell": "0x31998",
+    "context_callback_offset": 40,
+    "indirect_call": "0x2f6e4",
+    "argument_and_reload_guaranteed_equal": false
+  },
+  "first_store": {
+    "callback": "0x193fc",
+    "name": "NEWTIME",
+    "key": "0x11111111",
+    "selector_rows": 22,
+    "pointer_cell": "0x30520",
+    "store": "0x19694",
+    "stored_value": "original wrapper reload, before comparison-key normalization",
+    "source_sample": "wrapper reload, not caller sample",
+    "errors_before_store": {
+      "name": 3,
+      "key": 2,
+      "row": 1
+    },
+    "callback_remainder_and_wrapper_error_helper_executed": false
+  },
+  "continuation": {
+    "after_wrapper_return": [
+      "0x1ea50 -> nominal0x2ef90",
+      "0x1ea60 -> nominal0x2d568",
+      "0x1ea68 -> unresolved_callback"
+    ],
+    "selected_gate_helper": [
+      "0x2ef90",
+      "0x2eff0"
+    ],
+    "gate_reads": [
+      "0x158609b0",
+      "0x158609bc"
+    ],
+    "gate_writes": [
+      "0x158609bc"
+    ],
+    "reload_source": "0x02073600",
+    "pointer_and_fixed_record_alias_verified": false,
+    "final_record_preservation_verified": false
+  },
+  "firmware_executed": false,
+  "hardware_record_or_final_ram_fdt_verified": false
+}
