@@ -1,5 +1,13 @@
 # Catálogo de scripts
 
+- `inspect_bl2_geometry_publication.py`, `check_bl2_geometry_publication_gnu.py`,
+  `emulate_bl2_geometry_publication_qemu.py` e `test_bl2_geometry_publication.py`:
+  segunda chamada NEWTIME, duas amostras, destinos fixo/R e contador.
+  160 casos QEMU com MMU sintética, chamadas originais até primeira escrita
+  ou erro do prefixo; sem reatribuir registradores de endereço.
+  119 testes e GNU de 464 palavras.
+  [Escopo e reprodução](../docs/bl2-geometry-publication-hzc2.md).
+
 - `inspect_bl2_geometry_packing.py`, `check_bl2_geometry_packing_gnu.py`,
   `emulate_bl2_geometry_packing_qemu.py` e `test_bl2_geometry_packing.py`:
   zero/empacotamento dos quatro slots, extensão seletiva e modo final.

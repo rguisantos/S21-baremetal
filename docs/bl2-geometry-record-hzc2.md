@@ -68,8 +68,10 @@ como geometria medida ou convertido em capacidade física do S21.
 A [continuação do empacotamento](bl2-geometry-packing-hzc2.md) separa essa
 recarga do produtor posterior 0x2f130: ele zera os quatro slots de estado
 e os reconstrói com consultas. Foram 100 cenários QEMU com retornos
-fornecidos e a folha original de tamanho; as respostas reais e a publicação
-posterior no registro compartilhado não foram observadas.
+fornecidos e a folha original de tamanho; as respostas reais não foram
+observadas. A [segunda chamada NEWTIME](bl2-geometry-publication-hzc2.md) agora liga
+condicionalmente o primeiro slot ao ponteiro ativo de publicação, sem
+observar o registro no telefone.
 
 ## Cópias que podem transportar o registro
 

@@ -136,7 +136,9 @@ imagem exata antes de GNU/QEMU. Relatórios estático/GNU reproduzidos byte a
 byte, Python compilado e links conferidos.
 [Validação](references/bl2-geometry-packing-validation-hzc2.json).
 
-Próximo: seguir a publicação da geometria de estado no registro compartilhado
-e os callbacks intermediários, mantendo respostas e aliases desconhecidos.
+A [segunda publicação NEWTIME](bl2-geometry-publication-hzc2.md) foi ligada
+ao primeiro slot e ao ponteiro ativo, com chamadas originais e MMU sintética
+no laboratório. Próximo: seguir os efeitos posteriores e callbacks
+intermediários, mantendo respostas e aliases físicos desconhecidos.
 Para fechar RAM física ainda faltam valores reais, demais bindings, limite
 LK e bancos/reservas/FDT final. O empacotamento conferido não fornece esses dados.

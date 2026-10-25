@@ -231,3 +231,17 @@ sem achados ou pendências nesse mesmo head. Merge normal em
 `6c4e6dad3db388e92c4ebd24153abf4f09f4541f`, main sincronizada e limpa.
 Não executou UART, rotina de depuração ou helper externo completo;
 preservação do registro físico e efeitos transitivos continuam abertos.
+
+
+## PR #21 — empacotamento posterior da geometria
+
+Head `0469ec8b8cccce1efc2b7f70c02279d94cfa2e66`, revisão própria
+5640714443 concluída sem bloqueadores. Dezoito blobs e árvore conferidos;
+100 cenários QEMU com retornos fornecidos e 100 execuções subsequentes da
+folha, GNU de 386 palavras e 111 testes passaram. Zero threads, statuses
+ou check-runs reportados no merge. Revisão automática ainda running no
+merge; consulta posterior confirmou completed sem achados ou pendências
+no mesmo head. Merge normal em
+`70dca683297508bb4be85102a8c63e5fd6c79843`, main sincronizada e limpa.
+Não executou consultas/preparação/CHIPID, inicialização Samsung ou telefone;
+publicação física e respostas reais continuaram abertas.

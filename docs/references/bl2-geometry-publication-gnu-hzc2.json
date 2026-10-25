@@ -1,0 +1,12 @@
+{
+  "mode": "GNU_bl2_geometry_publication_crosscheck",
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instruction_index_sha256": "e69c013fddb93ce3b3335900cca58aa993e4f256bd37975c79156718677cbf4f",
+  "words_matched": 464,
+  "relative_targets_matched": 59,
+  "selected_operands_matched": 29,
+  "nominal_pointers_matched": 5,
+  "firmware_executed": false,
+  "runtime_publication_observed": false
+}
