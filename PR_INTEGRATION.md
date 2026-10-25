@@ -302,3 +302,22 @@ completed/sem achados ou pendências em atualização de 2026-10-24 22:18:40
 Merge `0191d5607077678e01c411b271c1c35cc0849f5c` às 22:19:05 -04:00;
 main sincronizada e limpa. DRAM observada no log, leitura física e ausência
 DEVFREQ mantidas separadas. Não houve execução no telefone.
+
+
+## PR #25 — callback contínuo e consumidores das colunas 1/12
+
+Head `f1a630463a3ffbe4d8688d59e5cdf461c450634b`, revisão própria
+5641368942; 16 blobs e árvore `44dc2bb4c393e1215d8f4e0c291ffbd070e5e660`
+conferidos. O [comentário automático](https://github.com/rguisantos/S21-baremetal/pull/25#issuecomment-6393033324)
+ficou completed, sem achados ou pendências nesse head, antes do merge.
+Seu updated_at é 2026-10-24 23:39:38 -04:00; merge
+`17c7e74a3f9ebe8ba5c70b4893916cb83ce2c53b` às 23:41:29 -04:00,
+111 segundos depois. updated_at não é um campo dedicado de conclusão;
+o estado completed também foi consultado antes de enviar o merge.
+Reconferidos comentário e zero threads nesta continuação.
+
+Validação da entrega: 141 testes, quatro execuções contínuas e quatro
+controles de orçamento, 12 recusas CLI, GNU188 e cadeia466, quatro
+relatórios reproduzidos. Todos os casos contínuos param antes de MMIO;
+nenhum retorno completo ou timing físico afirmado. Main sincronizada e
+limpa ao concluir aquela integração.

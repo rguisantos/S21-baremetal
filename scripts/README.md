@@ -1,5 +1,10 @@
 # Catálogo de scripts
 
+- `inspect_newtime_consumers_hzc2.py` e `test_newtime_consumers.py`: leitor
+  da coluna 12, direção do fluxo 108→162 bytes, slots de funções e diretório
+  candidato de vddcal. Exigem ambos os hashes; GNU1171, modelos de palavras
+  fornecidas e buscas limitadas. [Escopo](../docs/newtime-consumers-hzc2.md).
+
 - `inspect_newtime_columns_hzc2.py`, `trace_newtime_columns_qemu.py` e
   `test_newtime_columns.py`: colunas 1/12 como chaves de subtabelas,
   consumidores estáticos, GNU188 e preflight de cada acesso de memória

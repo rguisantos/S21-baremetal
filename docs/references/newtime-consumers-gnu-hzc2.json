@@ -1,0 +1,29 @@
+{
+  "mode": "GNU_newtime_consumers",
+  "images": {
+    "sboot": {
+      "bytes": 4194304,
+      "sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91"
+    },
+    "vddcal": {
+      "bytes": 2097152,
+      "sha256": "2bac8e0eedc9395d7f5630442130a9ccae5a9201e700299a0a60a9565e886e39"
+    }
+  },
+  "results": {
+    "sboot": {
+      "words": 1031,
+      "relative_targets": 133,
+      "selected_operands": 30,
+      "instruction_index_sha256": "78c2c36655bb302ef97f3d093022c4ba486a1164140d9332f58abef2b0fe69c8"
+    },
+    "vddcal": {
+      "words": 140,
+      "relative_targets": 23,
+      "selected_operands": 4,
+      "instruction_index_sha256": "71d2860d284dedcbf4a63e747329793774ef442745071a692c9dee5476e2fa40"
+    }
+  },
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "firmware_executed": false
+}

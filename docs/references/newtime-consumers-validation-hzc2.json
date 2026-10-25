@@ -1,0 +1,140 @@
+{
+  "mode": "static_host_validation",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py' -v",
+    "total": 53,
+    "new": 9,
+    "passed": true
+  },
+  "reports": [
+    {
+      "file": "newtime-consumers-hzc2.json",
+      "sha256": "b7036d1d4a0390466d78408ff3c75090a8eb419072ced4b08f2795d1af017262",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "file": "newtime-consumers-gnu-hzc2.json",
+      "sha256": "b39ab606ffd5189d6dfb31526143674259d6fc60f119c18fb502d083b0a76c0f",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "file": "newtime-columns-hzc2.json",
+      "sha256": "f6453516ce135001204fee03fc4f190338fd9bf420449997d691c0a8ae309358",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "file": "newtime-columns-gnu-hzc2.json",
+      "sha256": "7b96db02d52e03bbd66749122b73e84c041aa1f47e9f49f09e9916abbdf7badf",
+      "reproduced_byte_for_byte": true
+    }
+  ],
+  "cli_refusals": [
+    {
+      "image": "sboot",
+      "input": "short",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "sboot",
+      "input": "short",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "sboot",
+      "input": "long",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "sboot",
+      "input": "long",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "sboot",
+      "input": "changed",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "sboot",
+      "input": "changed",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "short",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "short",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "long",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "long",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "changed",
+      "flags": [],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "image": "vddcal",
+      "input": "changed",
+      "flags": [
+        "--gnu"
+      ],
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "gnu_words": {
+    "sboot": 1031,
+    "vddcal": 140
+  },
+  "gnu_relative_targets": 156,
+  "gnu_selected_operands": 34,
+  "python_compile_passed": true,
+  "new_qemu_execution": false,
+  "firmware_or_phone_executed": false,
+  "local_links_checked": 736,
+  "local_links_scope": "project Markdown, excluding vendored tools documentation"
+}
