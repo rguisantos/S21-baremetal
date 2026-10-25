@@ -261,3 +261,28 @@ merge não substituem aguardar a revisão automática completed do head exato.
 Ausência de status/check-runs não é aprovação. A nova entrega deve cumprir
 essa ordem antes de integrar. Evidências anteriores: 119 testes, 160 casos
 QEMU (74 stores/86 erros), GNU464 palavras, nove recusas CLI; sem medição física.
+
+
+## PR #23 — conferência do commit e da ordem de revisão/merge
+
+Conferidos novamente por `git fetch origin main`, `git log` e API GitHub:
+head `16191d1dee3f51eadbdd2bc85584535ae0150279`, merge
+`566c977f5d976ecfe151d0f43a937b9acaed5d54`, árvore
+`4be5f5c5f6691fa872fc129d8810d2bce5af7e4c`. Os dois pais do merge são
+`81274a4bcb4d45dc5b7a2a1d85a43ae04a7076bd` e esse head. Na conferência,
+main local e origin/main apontavam para o merge, sem alterações locais.
+
+O [comentário automático](https://github.com/rguisantos/S21-baremetal/pull/23#issuecomment-6392031496)
+registra `completed`, `has_any_findings=false` e
+`has_unresolved_findings=false` para o head exato. Seu `updated_at` é
+2026-10-24 21:39:29 -04:00; o `merged_at` é 21:40:34 -04:00, 65 segundos
+depois. `updated_at` é a última atualização do comentário, não um campo
+dedicado ao instante de conclusão. A sessão também consultou e conferiu
+`completed` antes de enviar o merge. Zero threads na nova conferência.
+O #23 cumpriu a ordem que o #22 não havia cumprido.
+
+[Extrato verificável dos metadados](docs/references/pr23-review-merge-verification.json).
+Revisão própria 5640957518; 128 testes de host, seis casos QEMU e GNU229
+registrados na entrega. Nenhuma execução física ou ausência de DEVFREQ
+declarada resolvida. Samsung/D1Z/12GB são observações do log do bootloader;
+a relação entre os campos de A/B é uma análise estática/laboratorial.

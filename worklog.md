@@ -2044,3 +2044,27 @@ relatórios reproduzidos byte a byte, incluindo manifesto conferido com
 README, índices, catálogo, roadmap e integração22 atualizados.
 Próximo: preservação/recargas e campos reais restantes, sem
 promover logpersistido a mapaRAM ou repetir coletas bloqueadas.
+
+
+## 2026-10-24 — rastreabilidade da regra DRAM e conferência do PR #23
+
+Conferidos novamente o merge 566c977 e o PR #23 por fetch/log/API, incluindo
+head 16191d1, pais e árvore 4be5f5c. Comentário automático atualizado às
+21:39:29 -04:00 contém completed e nenhum achado/pendência nesse head;
+merge às 21:40:34, 65 segundos depois. updated_at não é um campo dedicado
+de conclusão; a consulta da sessão anterior também antecedeu o envio do
+merge. Zero threads. Metadados técnicos preservados em extrato JSON e
+PR_INTEGRATION, sem confundir essa ordem com a falha anterior do PR #22.
+
+Roadmap agora diz DRAM observada no log do bootloader. Incluídas referências
+imutáveis às linhas 39, 40, 44 e 45 de inspect_dram_logging_hzc2.py:
+fabricante=(word>>8)&255, processo=(word>>32)&65535; 1/8 selecionam Samsung/D1Z.
+GNU reconferiu extração, branches e retorno dos ponteiros das strings no
+sboot fixado. O getter de processo faz duas cargas: regra de palavra
+estável, sem prova de atomicidade física. Não se deduz leitura direta dos
+registradores ou identidade do driver stock. Ausência DEVFREQ segue aberta.
+
+Nesta conferência, nove testes de privacidade/campos passaram; relatório
+GNU229/36 alvos/17 operandos reproduzido byte a byte. Conferidos JSON da
+cronologia, pais/árvore do merge, 697 links locais e diff. Alteração somente
+documental; não houve novo ensaio QEMU nem operação no telefone.

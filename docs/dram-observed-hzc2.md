@@ -7,7 +7,7 @@ cmdline completa, identificadores e dados de aplicativos não foram adicionados
 ao repositório. O [extrato público](references/bugreport-dram-20261024.json)
 contém somente campos técnicos permitidos, seções, números de linha e hashes.
 
-**A nova evidência é um log do aparelho com Samsung/D1Z e 12.000000GB,
+**A nova evidência é um log persistido do bootloader com Samsung/D1Z e 12.000000GB,
 acompanhado de `0001000850500130`.** Esse valor não é igual à comparação
 `0001000860000110` do driver de referência. O firmware HZC2 conhece ambas
 as assinaturas; a observada é o segundo caso especial do empacotador e o
@@ -64,6 +64,27 @@ nem prova que todos os consumidores tenham visto a mesma amostra.
 | Segundo índice de densidade | Não usado pela folha nesse modo | 5 |
 | Igualdade exata com a constante do driver | Verdadeira | Falsa |
 
+A regra reproduzida no host está fixada no head do PR #23, sem depender de
+memória ou de uma leitura atual do telefone:
+
+| Campo/regra | Fonte exata no repositório |
+|---|---|
+| Fabricante: `(value >> 8) & 0xff` | [inspect_dram_logging_hzc2.py, linha 39](https://github.com/rguisantos/S21-baremetal/blob/16191d1dee3f51eadbdd2bc85584535ae0150279/scripts/inspect_dram_logging_hzc2.py#L39) |
+| Processo: `((value >> 32) & 0xff) \| (((value >> 40) & 0xff) << 8)` | [linha 40](https://github.com/rguisantos/S21-baremetal/blob/16191d1dee3f51eadbdd2bc85584535ae0150279/scripts/inspect_dram_logging_hzc2.py#L40) |
+| Fabricante 1 seleciona Samsung | [linha 44](https://github.com/rguisantos/S21-baremetal/blob/16191d1dee3f51eadbdd2bc85584535ae0150279/scripts/inspect_dram_logging_hzc2.py#L44) |
+| Processo 8 seleciona D1Z | [linha 45](https://github.com/rguisantos/S21-baremetal/blob/16191d1dee3f51eadbdd2bc85584535ae0150279/scripts/inspect_dram_logging_hzc2.py#L45) |
+
+A origem dessa regra é o código LK no sboot de SHA-256
+`a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91`.
+Conferência GNU: `ubfx` em 0x11b868 extrai fabricante; comparação/branch
+em 0x11b87c/0x11b880 selecionam o retorno 0x22b5a0, string Samsung.
+Os `ubfx` em 0x11b8ec/0x11b8f0 e `orr` em 0x11b8f4 montam o par de
+processo; comparação/branch em 0x11b8f8/0x11b8fc selecionam o retorno
+0x22b600, string D1Z. Os bytes das strings são conferidos pelo leitor
+fixado por hash e os helpers originais pelo [ensaio QEMU](references/dram-labels-qemu-hzc2.json).
+O getter de processo faz duas cargas do cache; a fórmula acima representa
+uma palavra estável e não estabelece atomicidade em execução física.
+
 Os outros três slots de geometria não foram observados no bugreport. Não
 foram preenchidos com cópias da palavra B para declarar um total medido.
 O tamanho **12.000000GB é uma observação separada do log**. O formato LK
@@ -94,6 +115,10 @@ de `DEVFREQ : dram:`. O argumento `log_buf_len=256K` está presente, mas
 não mede sozinho o tamanho efetivo do buffer; o texto coletado também não
 mede essa capacidade. Diferença de implementação/configuração e perda de
 mensagens continuam possibilidades, sem causa estabelecida pela ausência.
+
+**A ausência de DEVFREQ continua pendente.** Ler integralmente o driver
+de referência demonstra o caminho que esse código pode executar; não
+demonstra o que o kernel stock do aparelho imprimiu.
 
 ## Validação e próximo trabalho
 
