@@ -129,7 +129,8 @@ de imagem curta/longa/alterada, exit 2 sem JSON e antes de QEMU. Relatórios
 estático/GNU reproduzidos byte a byte; Python compilado e links locais
 conferidos. [Registro da validação](references/newtime-error-validation-hzc2.json).
 
-Próximo: seguir a origem da geometria após o marcador e os bindings das
-recargas; fechar aliases ACPM e, quando pertinente, callbacks/efeitos
-externos ainda abertos. Nenhum ensaio aqui fornece registro físico,
+A [continuação da geometria](bl2-geometry-packing-hzc2.md) delimita o
+empacotador posterior sob retornos fornecidos. Próximo: seguir a publicação
+no registro e os bindings das recargas; fechar aliases ACPM e, quando
+pertinente, callbacks/efeitos externos ainda abertos. Nenhum ensaio aqui fornece registro físico,
 capacidade RAM, reservas ou FDT final.

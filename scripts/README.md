@@ -1,5 +1,13 @@
 # Catálogo de scripts
 
+- `inspect_bl2_geometry_packing.py`, `check_bl2_geometry_packing_gnu.py`,
+  `emulate_bl2_geometry_packing_qemu.py` e `test_bl2_geometry_packing.py`:
+  zero/empacotamento dos quatro slots, extensão seletiva e modo final.
+  QEMU executa blocos originais com retornos de chamadas fornecidos,
+  sem executar BLR/BL nessas arestas, depois a folha original de tamanho.
+  100 cenários, 111 testes e GNU de 386 palavras.
+  [Escopo e reprodução](../docs/bl2-geometry-packing-hzc2.md).
+
 - `inspect_newtime_error_hzc2.py`, `check_newtime_error_gnu.py`,
   `emulate_newtime_error_qemu.py` e `test_newtime_error_hzc2.py`: helper de
   erro, flags +0x24, dump e depuração HZC2. GNU de 662 palavras; 26 dumps no QEMU

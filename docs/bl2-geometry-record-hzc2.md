@@ -65,6 +65,12 @@ A ligação nominal também depende da preservação de X19/X20/X25 no chamador.
 O `0xcafe` é estado intermediário produzido pelo código; não pode ser usado
 como geometria medida ou convertido em capacidade física do S21.
 
+A [continuação do empacotamento](bl2-geometry-packing-hzc2.md) separa essa
+recarga do produtor posterior 0x2f130: ele zera os quatro slots de estado
+e os reconstrói com consultas. Foram 100 cenários QEMU com retornos
+fornecidos e a folha original de tamanho; as respostas reais e a publicação
+posterior no registro compartilhado não foram observadas.
+
 ## Cópias que podem transportar o registro
 
 As [cópias fixas já conferidas](descriptor-provenance-hzc2.md) incluem o
