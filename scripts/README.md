@@ -1,5 +1,9 @@
 # Catálogo de scripts
 
+- `validate_baseline.py` e `test_baseline_runner.py`: build R10 em diretório
+  novo, cobertura obrigatória host/QEMU, logs/resumo JSON e sete controles
+  de falha do runner. [Uso e CI](../docs/baseline-validation.md).
+
 - `inspect_newtime_reloads_hzc2.py`: outro leitor da coluna 1, recargas e
   bindings; [relatório](../docs/newtime-reloads-hzc2.md).
 - `inspect_newtime_smc_binding_hzc2.py` e `test_newtime_smc_binding.py`:

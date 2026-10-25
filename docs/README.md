@@ -5,6 +5,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 ## Implementação e testes atuais
 
 - [Roadmap e estado atual](roadmap.md): evidências, prioridades e critérios separados para diagnóstico físico e R10 em uma CPU.
+- [Baseline obrigatório e CI](baseline-validation.md): comando único, ELF novo, host/QEMU, logs, timeout e recusa de skips.
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
 - [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.

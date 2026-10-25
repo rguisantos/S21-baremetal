@@ -69,7 +69,8 @@ Esse desbloqueio agora foi testado em uma CPU: [carregador EL2 QEMU](qemu-el2-lo
 
 A implementação posterior do outro branch foi revisada e reproduzida separadamente: [branch-packer-review.md](branch-packer-review.md). Ela não deve substituir este produtor/consumidor.
 
-A revisão de 2026-10-25 reconfirmou essa pré-condição: sem o ELF em
-`r8/build/r10_payload.elf`, a execução isolada passa com **59 casos** e
-pula a conferência da extensão do ELF real. O baseline obrigatório/CI
-ainda é uma entrega planejada; a documentação agora explicita a diferença.
+A revisão de 2026-10-25 identificou que o teste isolado podia passar com
+59 casos sem o ELF. O [baseline obrigatório/CI](baseline-validation.md)
+removeu esse skip: o teste exige o ELF em `r8/build/r10_payload.elf` ou
+`--elf CAMINHO` e sai com código 2 se ele faltar. O runner constrói um ELF
+novo e exige os 60 casos, incluindo a extensão real de BSS/pilhas.

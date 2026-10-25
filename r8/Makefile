@@ -1,6 +1,16 @@
 # Makefile — kit R8: MMU / exception levels / exceções + GICv3 + timer
 # Ambiente userspace (sem root): cross-gcc e QEMU extraídos em tools/root
 
+USE_SYSTEM_TOOLS ?= 0
+ifeq ($(USE_SYSTEM_TOOLS),1)
+CROSS ?= aarch64-linux-gnu-
+CC := $(CROSS)gcc
+OBJDUMP := $(CROSS)objdump
+OBJCOPY := $(CROSS)objcopy
+QEMU ?= qemu-system-aarch64
+QENV :=
+QDATA ?= /usr/share/qemu
+else
 TOOLS ?= ../tools/root
 TOOLS := $(abspath $(TOOLS))
 LOCAL_CROSS := $(TOOLS)/usr/bin/aarch64-linux-gnu-
@@ -32,7 +42,14 @@ QDATA ?= /usr/share/qemu
 else
 QDATA ?= $(TOOLS)/usr/share/qemu
 endif
+endif
 
+tool_versions:
+	$(CC) --version
+	$(OBJDUMP) --version
+	$(QENV) $(QEMU) --version
+.PHONY: tool_versions
+.DEFAULT_GOAL := all
 
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
 	   -fno-pie -mgeneral-regs-only -march=armv8-a -O2 -std=gnu11 \

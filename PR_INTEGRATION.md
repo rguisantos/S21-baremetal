@@ -408,3 +408,21 @@ Sem checks/statuses com falha. Main sincronizada e limpa ao concluir.
 GNU141/56 alvos/11 operandos, 64 testes NEWTIME mais 16 dos laços, três
 recusas CLI e 781 links. Transporte e origem de X0 permaneceram abertos;
 nenhuma execução adicional de firmware ou SMC.
+
+## PR #32 — revisão global e prioridade de reprodução
+
+Head `1e6eb7dcd7e097e8ca9c726e08ba11e5907c1f69`, revisão própria
+5645528436; nove blobs e árvore `87e0498e3a21f45a2316b433ddad14e4388c52bc`
+conferidos. Comentário automático 6403867367: completed sem achados ou
+pendências nesse head, instante exibido 2026-10-25 17:57:04.208549 -04:00.
+A sessão conferiu esse estado e zero threads antes do merge
+`d46e787c51554d090d1f96d61e53462377463aa9`, às 17:57:37 -04:00.
+Comentário e threads reconferidos nesta continuação. Sem checks/statuses
+com falha; ausência deles não foi usada como aprovação. Main sincronizada
+e limpa ao concluir.
+
+Entrega documental: build R10, FDT43, contêiner59 antes/60 após build,
+materialização17, diagnóstico12 e loader1+5 com25 IRQs; 791 links.
+Baseline obrigatório/CI ficou como próxima implementação, não como código
+já existente. Prioridade física voltou ao percurso Samsung e à leitura do
+diagnóstico; NEWTIME ficou paralela, sem ampliar execução ou medir telefone.

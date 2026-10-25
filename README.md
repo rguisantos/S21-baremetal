@@ -4,7 +4,7 @@ Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkerne
 
 **Estado em 2026-10-25 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
 
-A [revisão do projeto de 25/10](docs/repository-review-2026-10-25.md) recomenda tornar o baseline obrigatório/automatizado e consolidar o contrato de carga e leitura do diagnóstico. Os testes centrais foram repetidos; o primeiro registro físico continua pendente.
+A [revisão do projeto de 25/10](docs/repository-review-2026-10-25.md) priorizou reprodução e o contrato de carga/leitura do diagnóstico. O [baseline obrigatório e CI](docs/baseline-validation.md) agora compila um ELF novo e exige todos os testes centrais, sem pular o caso de BSS/pilhas. O primeiro registro físico continua pendente.
 
 O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os critérios dos próximos marcos. A prioridade é fechar entrada/coerência e um canal de leitura para o diagnóstico mínimo; reconstrução de memória segue em paralelo. O primeiro registro no S21 e o boot R10 em uma CPU têm requisitos distintos e continuam pendentes.
 
@@ -95,6 +95,17 @@ Há dois testes R10: o estágio anterior substitui a função C principal; o nov
 ## Compilar e reproduzir
 
 Ambiente usado: Linux x86_64, Bash, make, Python 3 e compilador C nativo (`cc`) para os testes host. Toolchain AArch64 GCC 14.2 e QEMU 10.0.13 estão extraídos de pacotes Debian em `tools/root`; os pacotes em `tools/debs` permitem reconstrução com `scripts/bootstrap_tools.sh` e `dpkg-deb`, sem root. O repositório é grande por incluir essas ferramentas.
+
+O comando obrigatório seleciona build real, FDT, contêiner, materialização,
+diagnóstico e loader QEMU. Gera logs e resumo JSON, recusando skips e timeout:
+
+```bash
+python3 scripts/validate_baseline.py
+```
+
+O workflow `Baseline` executa esse comando em PRs/main com ferramentas do
+sistema. [Instalação, cobertura, falhas e limites](docs/baseline-validation.md).
+Para as demais regressões e frentes experimentais:
 
 ```bash
 make -C r8 -j4 all
