@@ -147,3 +147,10 @@ foi ligada a duas recargas de `0x02073600`, ao literal intermediário
 `0xcafe` e a cópias/restaurações condicionais do registro. Os seis campos
 restaurados não incluem seu primeiro u64. São 70 testes e GNU de 148
 palavras; o conteúdo real do registro e os demais slots continuam abertos.
+
+O [empacotador posterior](bl2-geometry-packing-hzc2.md) agora tem seus
+campos, gates W e extensão seletiva conferidos em 100 cenários QEMU com
+retornos fornecidos, seguidos pela folha original. Ele zera os quatro slots
+antes de preenchê-los; o modo final retornado/gravado no byte vem do slot 3,
+enquanto a folha usa o modo do slot 0. Valores físicos e publicação no
+registro compartilhado continuam abertos.

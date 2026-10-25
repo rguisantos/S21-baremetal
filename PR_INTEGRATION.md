@@ -218,3 +218,16 @@ A revisão automática estava running no merge; nesta continuação foi
 conferida completed sem achados ou pendências nesse mesmo head. Merge
 normal em `7723fbdbe00a819b7f0239900e7990555102264a`, main sincronizada.
 Não executou gate MMIO ou helper externo completo, nem observou estado físico.
+
+
+## PR #20 — flags NEWTIME, dump e depuração
+
+Head `c48ed5f3597f243fedfb39268ebfb8044deb9535`, revisão própria
+5640646109 concluída sem bloqueadores. Dezesseis blobs e árvore conferidos;
+26 dumps e 14 fragmentos de flags no QEMU, GNU de 662 palavras e 101 testes
+de host passaram. Zero threads, statuses ou check-runs reportados no merge.
+A revisão automática estava running; após o merge foi conferida completed
+sem achados ou pendências nesse mesmo head. Merge normal em
+`6c4e6dad3db388e92c4ebd24153abf4f09f4541f`, main sincronizada e limpa.
+Não executou UART, rotina de depuração ou helper externo completo;
+preservação do registro físico e efeitos transitivos continuam abertos.

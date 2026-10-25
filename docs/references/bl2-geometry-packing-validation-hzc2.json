@@ -1,0 +1,68 @@
+{
+  "cli_refusals": [
+    {
+      "command": "inspect_bl2_geometry_packing.py",
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_bl2_geometry_packing_gnu.py",
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_bl2_geometry_packing_qemu.py",
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_bl2_geometry_packing.py",
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_bl2_geometry_packing_gnu.py",
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_bl2_geometry_packing_qemu.py",
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "inspect_bl2_geometry_packing.py",
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "check_bl2_geometry_packing_gnu.py",
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "emulate_bl2_geometry_packing_qemu.py",
+      "input": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "static_and_gnu_reports_reproduced_byte_for_byte": true,
+  "new_host_tests": 10,
+  "existing_host_tests": 101,
+  "all_host_tests_passed": true,
+  "conditional_packing_cases": 100,
+  "size_leaf_cases": 100,
+  "all_query_preparation_chipid_calls_skipped": true,
+  "phone_execution": false,
+  "python_compile_passed": true,
+  "local_links_checked": 665
+}

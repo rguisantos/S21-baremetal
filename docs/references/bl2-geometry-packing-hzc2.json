@@ -1,0 +1,247 @@
+{
+  "mode": "static_bl2_geometry_packing",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "instructions": {
+    "words": 386,
+    "index_sha256": "8f76fc88d790dd7a6b0b39a904a3d690655457129eedf27da49e07deccdf1313",
+    "intervals": [
+      [
+        "0x1e298",
+        "0x1e2e4"
+      ],
+      [
+        "0x1e83c",
+        "0x1e864"
+      ],
+      [
+        "0x1d830",
+        "0x1d868"
+      ],
+      [
+        "0x2d568",
+        "0x2d5b8"
+      ],
+      [
+        "0x2d6d0",
+        "0x2d6d4"
+      ],
+      [
+        "0x2d7d0",
+        "0x2d800"
+      ],
+      [
+        "0x2f130",
+        "0x2f484"
+      ],
+      [
+        "0x2e3d0",
+        "0x2e3e4"
+      ],
+      [
+        "0x28480",
+        "0x284e4"
+      ],
+      [
+        "0x2a24c",
+        "0x2a2a8"
+      ],
+      [
+        "0x2caec",
+        "0x2cb9c"
+      ]
+    ]
+  },
+  "nominal_bindings": [
+    {
+      "cell": "0x31510",
+      "target": "0x2f6c0"
+    },
+    {
+      "cell": "0x314c8",
+      "target": "0x2d568"
+    },
+    {
+      "cell": "0x31500",
+      "target": "0x2f130"
+    },
+    {
+      "cell": "0x31558",
+      "target": "0x2fa98"
+    },
+    {
+      "cell": "0x31358",
+      "target": "0x2caec"
+    },
+    {
+      "cell": "0x30f20",
+      "target": "0x28480"
+    },
+    {
+      "cell": "0x31040",
+      "target": "0x2a24c"
+    }
+  ],
+  "path": {
+    "marker_store": "0x1e2c4",
+    "marker": "0xcafe",
+    "marker_cell": "0x31978",
+    "newtime_call": "0x1e2d0",
+    "reload_call": "0x1e2e0",
+    "reload_target": "0x2d568",
+    "reload_source": "0x02073600",
+    "reload": "0x2d7e0 -> 0x2d7e4",
+    "later_size_helper": "0x1e85c -> 0x1d830",
+    "pack_call": "0x1d840",
+    "validation_call": "0x1d848",
+    "leaf_tail": "0x1d864",
+    "intervening_functions_and_reachability_proved": false
+  },
+  "packing": {
+    "entry": "0x2f130",
+    "end_exclusive": "0x2f484",
+    "slots": [
+      "0x31978",
+      "0x31980",
+      "0x31988",
+      "0x31990"
+    ],
+    "clear": "0x2f168: STR XZR before queries for each slot",
+    "scratch_state_offsets": {
+      "selector5": 32,
+      "selector6": 64,
+      "selector7": 96,
+      "selector8": 128
+    },
+    "scratch_slot_stride": 8,
+    "scratch_term_stride": 4,
+    "queries": {
+      "selectors": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "terms": [
+        1,
+        2
+      ],
+      "slots": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "selectors6_7_8_require_full_w_selector5_nonzero": true
+    },
+    "packed_fields": [
+      {
+        "bits": [
+          4,
+          7
+        ],
+        "source": "mode: second active=3; else first active=1; else0"
+      },
+      {
+        "bits": [
+          8,
+          15
+        ],
+        "source": "term1 selector5 low8"
+      },
+      {
+        "bits": [
+          16,
+          19
+        ],
+        "source": "term2 selector8 bits6..7, zero-extended"
+      },
+      {
+        "bits": [
+          20,
+          23
+        ],
+        "source": "term2 selector8 bits2..5"
+      },
+      {
+        "bits": [
+          24,
+          27
+        ],
+        "source": "term1 selector8 bits6..7, zero-extended"
+      },
+      {
+        "bits": [
+          28,
+          31
+        ],
+        "source": "term1 selector8 bits2..5"
+      },
+      {
+        "bits": [
+          32,
+          39
+        ],
+        "source": "term1 selector6 low8"
+      },
+      {
+        "bits": [
+          40,
+          47
+        ],
+        "source": "term1 selector7 low8"
+      },
+      {
+        "bits": [
+          48,
+          51
+        ],
+        "source": "0x2e3d0: register0x10000010 bits20..23"
+      }
+    ],
+    "extension": {
+      "exact_before_query": [
+        "0x1000860000110",
+        "0x1000850500130",
+        "0x1000860600130"
+      ],
+      "selector": 49,
+      "term": 3,
+      "destination_bits": [
+        56,
+        59
+      ],
+      "low_nibble_only": true,
+      "matching_embedded_newtime_rows": [
+        [
+          10
+        ],
+        [
+          15
+        ],
+        [
+          12
+        ]
+      ],
+      "clear_nibble_if_lower52_not_third_constant_and_nibble_le3": true
+    },
+    "final_mode": {
+      "store": "0x2f46c",
+      "cell": "0x31939",
+      "source": "last slot mode W21",
+      "returned_w0": "last slot mode W21",
+      "size_leaf_mode_source": "slot0 bits4..7"
+    },
+    "direct_store_to_fixed_AP_record_address_in_this_body": false
+  },
+  "query_boundary": {
+    "target": "0x28480",
+    "response": "u32 from live_base+12",
+    "trigger": "u32 1 to live_base+4",
+    "control": "read/modify/write u32 live_base",
+    "replies_observed": false,
+    "bases_mutable": true
+  },
+  "firmware_executed": false,
+  "physical_marker_replacement_observed": false,
+  "record_contents_or_final_ram_fdt_verified": false
+}

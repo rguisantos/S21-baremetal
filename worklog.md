@@ -1896,3 +1896,48 @@ exit2 sem JSON antes deQEMU. Relatórios estático/GNU reproduzidos byte a
 byte, Python compilado e links locais conferidos. Índices, catálogo,
 roadmap e integração19 atualizados. Próximo: origem da geometria após o
 marcador, bindings das recargas e aliases ACPM, sem RAM/FDT físico final.
+
+
+## 2026-10-24 — empacotamento de geometria após o marcador
+
+Continuação da main 6c4e6da, PR20 revisado/mergeado; revisão automática
+completed sem achados no head c48ed5f. Checkout inicial limpo e branch
+feat/bl2-geometry-packing. Mesmo sboot exato, sem dependência ou blob novo.
+
+Separados o registro AP02073600 e os slots de estado31978..31990. A
+recarga2d7e0 pode trazer o próprio marcador escrito pelo NEWTIME anterior;
+não garante geometria nova. Mais adiante, 1e85c chama1d830, que seleciona
+nominalmente2f130, depois2fa98 e a folha2caec. Execução das fases e binding
+runtime não observados; callbacks intermediários não foram executados.
+
+2f130 zera cada slot por STR XZR em2f168 antes de consultas. Para dois
+termos, seletor5 W inteiro não zero habilita6/7/8; um W não zero com byte
+baixo zero também ativa. Conferidos arrays de respostas completas, modo
+0/1/3, campos dos seletores5/6/7/8 e revisão de10000010[23:20]. Termo2
+seletores6/7 ficam no scratch, sem empacotar nesses campos. Três constantes
+exatas solicitam seletor49/termo3 e nibble56..59; as duas primeiras apagam
+nibbles0..3, a terceira preserva todos. Coincidem com seletores das linhas
+NEWTIME10/15/12, sem seleção física presumida.
+
+W21 final é modo do slot3, retornado e gravado no byte31939; folha usa o
+nibble do slot0. Casos sintéticos divergentes conferem a distinção, sem
+alegar defeito ou condição física. O corpo não publica diretamente em
+AP02073600; escritores posteriores/indiretos continuam abertos.
+
+QEMU100 cenários (50 vetores em dois deltas40000000/40200000): executa
+blocos originais, para antes de cada BLR de preparação/consulta e BL ao
+helper CHIPID. Fornece X0 e ajusta LR/PC ao sucessor, preservando demais
+registradores/memória nessas arestas. Não executa chamadas ou MMIO.
+Cada cenário executa em seguida a folha original com os slots resultantes,
+mais100 execuções da folha, sem o callback intermediário2fa98. Conferidos
+ordem/argumentos de consultas, zero de cada slot, 784 bytes de estado,
+ABI/SP, guardas, código, tabela e células de callbacks. Registro separado
+de2400 bytes preservaCAFE no laboratório, sem prova do registro AP físico.
+
+GNU2.44 conferiu386 palavras/27 alvos/33 operandos e7 ponteiros. Dez testes
+novos e101 anteriores passaram. Nove recusas CLI curta/longa/alterada,
+exit2 sem JSON antes deGNU/QEMU; relatórios estático/GNU reproduzidos byte
+a byte, Python compilado, links e diff conferidos. README, índices, catálogo,
+roadmap e integração20 atualizados. Próximo: publicação da geometria no
+registro e callbacks intermediários, mantendo respostas/aliases reais e
+RAM/FDT final como lacunas, sem repetir ensaios físicos bloqueados.
