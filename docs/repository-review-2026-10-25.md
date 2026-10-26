@@ -4,6 +4,10 @@ Base auditada: **main `43356de58be84cfaf1b477f1cc8fb9b3b8f7e604`**, após
 PR #31. Data em America/Campo_Grande. A consulta ao GitHub encontrou zero
 PRs e zero issues abertos naquele instante, antes desta entrega documental.
 
+Continuação de implementação: o [baseline obrigatório e CI](baseline-validation.md)
+atende à primeira recomendação abaixo. Os achados e resultados desta revisão
+permanecem como registro da base auditada.
+
 **A prioridade deve voltar ao primeiro diagnóstico observável no S21.**
 O laboratório R10 funciona nos ensaios selecionados. Para chegar ao aparelho,
 faltam um caminho de carregamento verificável, região/coerência e recuperação

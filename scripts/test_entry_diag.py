@@ -113,6 +113,10 @@ def main():
                             print(f'ENTRY DIAG REFUSAL PASS: EL{el}, SCTLR M/C={state_bits:#x}, record/code/guards untouched')
                         else:
                             print(f'ENTRY DIAG PASS: EL{el}, relocation +0x{offset:x}, arguments/state/guards intact')
+                    except Exception:
+                        log.flush()
+                        print((build/'qemu.log').read_text(errors='replace'))
+                        raise
                     finally:
                         if remote: remote.close()
                         if process.poll() is None: os.killpg(process.pid, signal.SIGTERM)

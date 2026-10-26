@@ -2334,3 +2334,64 @@ com hashes antes de remover cópias locais. Sem comandos no telefone, flash,
 SMC ou ampliação do escopo de execução de firmware. Links e diff conferidos;
 revisão automática do novo head deve concluir sem achados/pendências antes
 da integração, conforme AGENTS.md.
+
+## 2026-10-25 — baseline obrigatório e workflow de validação
+
+Base d46e787. Implementado scripts/validate_baseline.py: diretório novo,
+compilação real antes dos testes, oito etapas obrigatórias, logs separados,
+resumo JSON/hashes, timeout e falha se faltarem assinaturas de cobertura.
+test_payload.py exige ELF real com --elf/default e sai2 se ausente; não
+existe mais PASS59 por skip implícito. Importação das fixtures preservada.
+Makefile mantém o default all e adiciona USE_SYSTEM_TOOLS=1 e tool_versions,
+permitindo ignorar tools/root sem remover dependências offline.
+
+Sete controles do runner passaram, incluindo exit0 sem cobertura, exit7
+com PASS, ELF ausente, Python otimizado, diretório repetido e timeout com
+descendente em outra sessão ignorando SIGTERM. Limpeza usa /proc/pidfds
+para alcançar processos QEMU em novas sessões sem sinalizar PIDs reciclados.
+Controles CLI de timeout inválido, reuso e timeout real também passaram;
+o último deixou resumo failed e interrompeu as etapas posteriores.
+
+Baseline completo local passou em build/baseline-final: FDT43,
+contêiner60 com BSS/pilhas reais, materialização17, diagnóstico6+6 e
+loader1+5;24 IRQs no caso positivo. GCC14.2/binutils2.44/QEMU10.0.13.
+Warnings preexistentes de MCT/SMP preservados no log. UBSan fatal no runner.
+Comandos, resultados, hashes de logs/fontes registrados em evidência JSON.
+
+Workflow Baseline em PRs/main/manual usa Ubuntu24.04 e ferramentas APT,
+com limite15min, token read-only, ações oficiais fixadas por SHA e
+logs/resumo como artifact14dias. O YAML não é prova de sucesso hospedado;
+conferir o check real e a revisão automática completed do head exato sem
+achados/pendências antes de integrar. Não altera proteção de branch nem
+substitui AGENTS.md. Pacotes/imagem hospedados ainda não são bit a bit fixos.
+
+README, índice, catálogo, formato e roadmap atualizados; auditoria PR32
+registrada. Próxima entrega principal: matriz do percurso Samsung e leitura
+dos128 bytes, com acesso/entrada/coerência documentados. Sem execução de
+firmware Samsung, SMC ou telefone, sem ampliação do escopo NEWTIME.
+
+### Continuação — CI sem ROM de rede opcional
+
+O primeiro run40240373832 doPR33 passou build e host43/60/17, mas falhou
+na abertura GDB do diagnóstico com QEMU8.2.2 doUbuntu24.04. Nenhum merge
+foi feito apesar da revisão automática completed limpa no head60b1d91.
+Reprodução local desse QEMU, sem ROMs opcionais, mostrou a mensagem
+failed to find romfile efi-virtio.rom; com -nic none ele inicia a espera GDB.
+Desativada a NIC nos alvos do diagnóstico e loader, que não usam rede.
+O harness do diagnóstico agora imprime stderr/QEMU antes de propagar erro,
+preservando a causa no log do runner. Nenhuma mudança no código do payload.
+Nova validação deve cobrir ambos QEMU10 e8 e repetir CI/revisão no novo head.
+
+Baseline completo repetido e aprovado em QEMU10.0.13 e binário Ubuntu8.2.2,
+ambos com GCC14.2/runtime local. O segundo ensaio usou caminho sem ROMs de
+rede, sem instalar ipxe; todos43/60/17,12diagnóstico e1+5loader passaram.
+Essa compatibilidade local não foi confundida com imagem hospedada.
+Evidência atualizada com os dois conjuntos de logs e a falha inicial doCI.
+
+A conferência externa encontrou um log de build incompleto no workspace,
+divergente do hash calculado ao concluir a etapa. Captura alterada para
+pipe com um único escritor de log antes do hash. O controle de integridade
+agora inclui20KB de stderr de um descendente. Também reproduzida a ausência
+de task/*/children e a diferença entre PIDs locais e /proc neste ambiente:
+limpeza passa a seguir PPid/NSpid e o controle verifica morte por pidfd,
+em vez de interpretar arquivo /proc ausente como processo encerrado.

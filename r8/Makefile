@@ -1,6 +1,16 @@
 # Makefile — kit R8: MMU / exception levels / exceções + GICv3 + timer
 # Ambiente userspace (sem root): cross-gcc e QEMU extraídos em tools/root
 
+USE_SYSTEM_TOOLS ?= 0
+ifeq ($(USE_SYSTEM_TOOLS),1)
+CROSS ?= aarch64-linux-gnu-
+CC := $(CROSS)gcc
+OBJDUMP := $(CROSS)objdump
+OBJCOPY := $(CROSS)objcopy
+QEMU ?= qemu-system-aarch64
+QENV :=
+QDATA ?= /usr/share/qemu
+else
 TOOLS ?= ../tools/root
 TOOLS := $(abspath $(TOOLS))
 LOCAL_CROSS := $(TOOLS)/usr/bin/aarch64-linux-gnu-
@@ -32,7 +42,14 @@ QDATA ?= /usr/share/qemu
 else
 QDATA ?= $(TOOLS)/usr/share/qemu
 endif
+endif
 
+tool_versions:
+	$(CC) --version
+	$(OBJDUMP) --version
+	$(QENV) $(QEMU) --version
+.PHONY: tool_versions
+.DEFAULT_GOAL := all
 
 CFLAGS  := -ffreestanding -nostdlib -fno-builtin -fno-stack-protector \
 	   -fno-pie -mgeneral-regs-only -march=armv8-a -O2 -std=gnu11 \
@@ -218,7 +235,7 @@ $(BUILD)/r10_loader_test.elf: $(LOADER_OBJS) tests/payload_loader.ld
 LOADER_VIRTUALIZATION ?= on
 run_r10_loader_test: $(BUILD)/r10_loader_test.elf
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(LOADER_VIRTUALIZATION) -cpu max -smp 1 \
-	    -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
+	    -nic none -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
 .PHONY: run_r10_loader_test
 
 # Standalone entry probe; does not start R10 or touch peripherals.
@@ -231,7 +248,7 @@ $(BUILD)/entry_diag.Image: $(BUILD)/entry_diag.elf
 DIAG_VIRTUALIZATION ?= on
 run_entry_diag: $(BUILD)/entry_diag.Image
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(DIAG_VIRTUALIZATION) -cpu max -smp 1 \
-	    -display none -monitor none -serial none -S -gdb stdio -kernel $<
+	    -nic none -display none -monitor none -serial none -S -gdb stdio -kernel $<
 .PHONY: run_entry_diag
 
 # QEMU fixture for refusal with SCTLR.M/C enabled and read-only identity RAM.

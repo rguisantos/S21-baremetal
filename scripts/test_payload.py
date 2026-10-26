@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Independent ELF fixture + sanitizer tests of the actual C container consumer."""
+import argparse
 import importlib.util
 import json
 import os
@@ -35,6 +36,13 @@ def elf_fixture():
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--elf', type=Path, default=ROOT/'r8/build/r10_payload.elf',
+                        help='required production R10 ELF (build it before testing)')
+    actual = parser.parse_args().elf.resolve()
+    if not actual.is_file():
+        parser.error(f'required R10 ELF is missing: {actual}; '
+                     'run python3 scripts/validate_baseline.py or build it and pass --elf')
     dtb = fdt.encode(fdt.fixture())
     elf = elf_fixture()
     blob = pack.build(elf, dtb, 'console=test')
@@ -131,14 +139,12 @@ def main():
             try: inspect_proton.inspect(archive)
             except ValueError: count+=1
             else: raise AssertionError('invalid kernel/vendor fixture accepted')
-        actual=ROOT/'r8/build/r10_payload.elf'
-        if actual.exists():
-            actual_blob=pack.build(actual.read_bytes(),dtb)
-            info=consume(actual_blob,True)
-            symbols=subprocess.check_output(['readelf','-sW',str(actual)],text=True)
-            line=next(line for line in symbols.splitlines() if line.endswith(' __payload_end'))
-            assert int(info['kernel_end'],16)==int(line.split()[1],16)
-            print('R10 ELF extent PASS: BSS and all stacks included')
+        actual_blob=pack.build(actual.read_bytes(),dtb)
+        info=consume(actual_blob,True)
+        symbols=subprocess.check_output(['readelf','-sW',str(actual)],text=True)
+        line=next(line for line in symbols.splitlines() if line.endswith(' __payload_end'))
+        assert int(info['kernel_end'],16)==int(line.split()[1],16)
+        print('R10 ELF extent PASS: BSS and all stacks included')
     print(f'PAYLOAD PASS: {count} cases; C consumer with ASan/UBSan')
 
 if __name__=='__main__':main()

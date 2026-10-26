@@ -1,0 +1,41 @@
+name: Baseline
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: baseline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  baseline:
+    name: R10 baseline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3
+          dpkg-query -W gcc gcc-aarch64-linux-gnu binutils binutils-aarch64-linux-gnu qemu-system-arm python3
+      - name: Build and validate the required baseline
+        run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
+      - name: Preserve logs and summary
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: baseline-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/baseline-ci/*.log
+            build/baseline-ci/summary.json
+          if-no-files-found: warn
+          retention-days: 14
