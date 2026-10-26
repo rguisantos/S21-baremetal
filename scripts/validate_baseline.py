@@ -36,17 +36,34 @@ def stop_group(process):
     # QEMU tests start their own sessions. Capture descendants before killing
     # their parent; pidfds avoid signalling a recycled PID during cleanup.
     handles = []
-    pending = [process.pid]
     try:
+        # /proc may be mounted in an ancestor PID namespace, and kernels may
+        # omit task/*/children. Follow PPid and translate NSpid to our namespace.
+        own = Path('/proc/self/status').read_text().splitlines()
+        own_fields = dict(line.split(':', 1) for line in own if ':' in line)
+        own_pid = int(own_fields['Pid'])
+        depth = len(own_fields['NSpid'].split())-1
+        children = {}
+        root = None
+        for status in Path('/proc').glob('[0-9]*/status'):
+            try:
+                fields = dict(line.split(':', 1) for line in status.read_text().splitlines() if ':' in line)
+                pid, parent = int(fields['Pid']), int(fields['PPid'])
+                ids = fields['NSpid'].split()
+                if len(ids) <= depth:
+                    continue
+                local_pid = int(ids[depth])
+                children.setdefault(parent, []).append((pid, local_pid))
+                if parent == own_pid and local_pid == process.pid:
+                    root = pid
+            except (OSError, KeyError):
+                continue
+        pending = [root] if root is not None else []
         while pending:
             pid = pending.pop()
-            try:
-                children = Path(f'/proc/{pid}/task/{pid}/children').read_text().split()
-            except FileNotFoundError:
-                continue
-            for child in map(int, children):
+            for child, local_pid in children.get(pid, []):
                 try:
-                    handles.append(os.pidfd_open(child))
+                    handles.append(os.pidfd_open(local_pid))
                     pending.append(child)
                 except ProcessLookupError:
                     pass
@@ -77,14 +94,19 @@ def run_step(name, command, output, env, timeout, required=()):
     started = time.monotonic()
     timed_out = False
     with log.open('xb') as stream:
-        process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=stream,
+        # Only this process writes the log; compiler descendants share a pipe,
+        # not a seekable output file whose offsets may diverge on remote FSs.
+        process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT, start_new_session=True)
         try:
-            process.wait(timeout=timeout)
+            captured, _ = process.communicate(timeout=timeout)
         except subprocess.TimeoutExpired:
             timed_out = True
+            stop_group(process)
+            captured, _ = process.communicate(timeout=5)
         finally:
             stop_group(process)
+        stream.write(captured)
     text = log.read_text(errors='replace')
     missing = [pattern for pattern in required if not re.search(pattern, text, re.MULTILINE)]
     passed = not timed_out and process.returncode == 0 and not missing

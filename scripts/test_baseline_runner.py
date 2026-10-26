@@ -2,10 +2,10 @@
 """Fault-inject the baseline gate without running a compiler or QEMU."""
 import os
 from pathlib import Path
+import select
 import subprocess
 import sys
 import tempfile
-import time
 import unittest
 
 from validate_baseline import new_output, run_step, sha256
@@ -24,9 +24,13 @@ class BaselineGateTests(unittest.TestCase):
                         dict(os.environ), timeout, required)
 
     def test_success_keeps_log_and_hash(self):
-        result = self.run_child("print('EXPECTED PASS')")
+        result = self.run_child(
+            "import subprocess, sys\n"
+            "subprocess.run([sys.executable, '-c', \"import sys; print('x'*20000, file=sys.stderr)\"], check=True)\n"
+            "print('EXPECTED PASS')")
         self.assertEqual(result['status'], 'passed')
         self.assertEqual(result['log_sha256'], sha256(self.output/result['log']))
+        self.assertEqual((self.output/result['log']).read_text(), 'x'*20000+'\nEXPECTED PASS\n')
 
     def test_exit_zero_without_coverage_fails(self):
         result = self.run_child("print('SKIP: artifact absent')")
@@ -52,17 +56,14 @@ class BaselineGateTests(unittest.TestCase):
         self.assertEqual(result['status'], 'failed')
         self.assertLess(result['seconds'], 6)
         child = int((self.output/result['log']).read_text().splitlines()[0])
-        stat = Path(f'/proc/{child}/stat')
-        deadline = time.monotonic()+2
-        while stat.exists():
-            try:
-                state = stat.read_text().rsplit(')', 1)[1].split()[0]
-            except FileNotFoundError:
-                break
-            if state == 'Z':  # Awaiting the host's reaper, no code left running.
-                break
-            self.assertLess(time.monotonic(), deadline, 'timed-out descendant still running')
-            time.sleep(.01)
+        try:
+            fd = os.pidfd_open(child)
+        except ProcessLookupError:
+            return
+        try:
+            self.assertTrue(select.select([fd], [], [], 2)[0], 'timed-out descendant still running')
+        finally:
+            os.close(fd)
 
     def test_output_cannot_reuse_an_existing_directory(self):
         with self.assertRaises(FileExistsError):

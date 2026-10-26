@@ -2369,3 +2369,29 @@ README, índice, catálogo, formato e roadmap atualizados; auditoria PR32
 registrada. Próxima entrega principal: matriz do percurso Samsung e leitura
 dos128 bytes, com acesso/entrada/coerência documentados. Sem execução de
 firmware Samsung, SMC ou telefone, sem ampliação do escopo NEWTIME.
+
+### Continuação — CI sem ROM de rede opcional
+
+O primeiro run40240373832 doPR33 passou build e host43/60/17, mas falhou
+na abertura GDB do diagnóstico com QEMU8.2.2 doUbuntu24.04. Nenhum merge
+foi feito apesar da revisão automática completed limpa no head60b1d91.
+Reprodução local desse QEMU, sem ROMs opcionais, mostrou a mensagem
+failed to find romfile efi-virtio.rom; com -nic none ele inicia a espera GDB.
+Desativada a NIC nos alvos do diagnóstico e loader, que não usam rede.
+O harness do diagnóstico agora imprime stderr/QEMU antes de propagar erro,
+preservando a causa no log do runner. Nenhuma mudança no código do payload.
+Nova validação deve cobrir ambos QEMU10 e8 e repetir CI/revisão no novo head.
+
+Baseline completo repetido e aprovado em QEMU10.0.13 e binário Ubuntu8.2.2,
+ambos com GCC14.2/runtime local. O segundo ensaio usou caminho sem ROMs de
+rede, sem instalar ipxe; todos43/60/17,12diagnóstico e1+5loader passaram.
+Essa compatibilidade local não foi confundida com imagem hospedada.
+Evidência atualizada com os dois conjuntos de logs e a falha inicial doCI.
+
+A conferência externa encontrou um log de build incompleto no workspace,
+divergente do hash calculado ao concluir a etapa. Captura alterada para
+pipe com um único escritor de log antes do hash. O controle de integridade
+agora inclui20KB de stderr de um descendente. Também reproduzida a ausência
+de task/*/children e a diferença entre PIDs locais e /proc neste ambiente:
+limpeza passa a seguir PPid/NSpid e o controle verifica morte por pidfd,
+em vez de interpretar arquivo /proc ausente como processo encerrado.

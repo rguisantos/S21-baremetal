@@ -4,10 +4,10 @@
   "timezone": "America/Campo_Grande",
   "base_commit": "d46e787c51554d090d1f96d61e53462377463aa9",
   "scope": "Fresh R10 build and selected host/QEMU baseline; no Samsung firmware or phone execution",
-  "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-final",
+  "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-verified-pipe10-v2",
   "status": "passed",
-  "started_at": "2026-10-25T22:26:06.490126+00:00",
-  "finished_at": "2026-10-25T22:26:14.943867+00:00",
+  "started_at": "2026-10-26T03:05:52.285596+00:00",
+  "finished_at": "2026-10-26T03:06:00.553138+00:00",
   "versions": {
     "cross_gcc": "14.2.0 (Debian 14.2.0-19)",
     "binutils": "2.44",
@@ -25,9 +25,9 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 1.318,
+      "seconds": 1.39,
       "log": "01-runner-contract.log",
-      "log_sha256": "24a3044a0f1509bf8ecb87663fe4ec0042cbe1c2330edf349d56cc5a59388b70",
+      "log_sha256": "299b191eca2163ce00ae30547696cddfd4dc3b959798a39b779e2d6308aa1ea6",
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
         "./scripts/test_baseline_runner.py"
@@ -43,7 +43,7 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 0.065,
+      "seconds": 0.063,
       "log": "02-tool-versions.log",
       "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4",
       "command": [
@@ -62,15 +62,15 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 1.218,
+      "seconds": 1.173,
       "log": "03-build-r10.log",
-      "log_sha256": "6cf0f2f15af7196a453a874d7755f6845a4cea028285c7e650cc24dc540b4fa3",
+      "log_sha256": "744d6c95e408561de1597119a428c7f17249312430f7af51653c3268f153cf74",
       "command": [
         "make",
         "-C",
         "./r8",
-        "BUILD=./build/baseline-final/r10",
-        "./build/baseline-final/r10/r10_payload.elf"
+        "BUILD=./build/baseline-verified-pipe10-v2/r10",
+        "./build/baseline-verified-pipe10-v2/r10/r10_payload.elf"
       ],
       "pass_lines": [],
       "warnings": [
@@ -88,7 +88,7 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 0.819,
+      "seconds": 0.751,
       "log": "04-fdt.log",
       "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef",
       "command": [
@@ -106,14 +106,14 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 0.867,
+      "seconds": 0.973,
       "log": "05-payload.log",
       "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390",
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
         "./scripts/test_payload.py",
         "--elf",
-        "./build/baseline-final/r10/r10_payload.elf"
+        "./build/baseline-verified-pipe10-v2/r10/r10_payload.elf"
       ],
       "pass_lines": [
         "R10 ELF extent PASS: BSS and all stacks included",
@@ -127,7 +127,7 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 1.073,
+      "seconds": 0.88,
       "log": "06-payload-stage.log",
       "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7",
       "command": [
@@ -145,7 +145,7 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 0.717,
+      "seconds": 0.562,
       "log": "07-entry-diag.log",
       "log_sha256": "876d851b0ff88205667d9f0f92777015fa2e79f644d4d9957502acc8d20cd87a",
       "command": [
@@ -175,16 +175,16 @@
       "returncode": 0,
       "timed_out": false,
       "missing_markers": [],
-      "seconds": 2.375,
+      "seconds": 2.474,
       "log": "08-payload-loader.log",
-      "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1",
+      "log_sha256": "d1b3c6e9d98d1faf5cd399944ccb1ff5c72803fcb418ab19a95164440cc3f655",
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
         "./scripts/test_payload_loader.py"
       ],
       "pass_lines": [
         "EL2 MATERIALIZE PASS: exact PT_LOADs, BSS, stacks, FDT and guards",
-        "R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, 24 timer IRQs",
+        "R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, 23 timer IRQs",
         "EL2 REJECT PASS: bad-magic, destination untouched",
         "EL2 REJECT PASS: protected-destination, destination untouched",
         "EL2 REJECT PASS: different-fdt, destination untouched",
@@ -198,18 +198,224 @@
   "additional_controls": [
     "CLI --timeout 0 exits 2",
     "CLI existing --output-dir exits 2",
-    "CLI --timeout 1 exits 1 and preserves failed JSON summary"
+    "CLI --timeout 1 exits 1 and preserves failed JSON summary",
+    "CLI --timeout 1 with pipe logging exits 1 and preserves failed JSON"
   ],
   "hosted_ci": "Consult the pull request check; this record covers the local execution only",
   "sources_sha256": {
-    "scripts/validate_baseline.py": "bbc12ce22db95abd84a6cd4bf45f0ad59884b0b0b5e73b9fa3b9a23b61602414",
-    "scripts/test_baseline_runner.py": "f3c5e95a87bd0f66e7fc6525d4d39f472abd41e6d8b5dbc88cf7f3113db247c2",
+    "scripts/validate_baseline.py": "3b943df3d5152589858816bf4dff40296d43a0d8ea63129738da08ca3369a13e",
+    "scripts/test_baseline_runner.py": "34679d82784142d7a0bc6c33e4582d72b2a113a7d7364eaa4c2218297ccfea92",
     "scripts/test_payload.py": "cbc89d60a2b8d1416d3b463a933ec952a783b16aa33947ca54c587a3c86d20cd",
     "scripts/test_fdt.py": "7a053feee69688b8743a4c42d95884e09373ef58dcb0aa02e456ae19b92b6d3b",
     "scripts/test_payload_stage.py": "16cf6b10c19c984b37bed93b19a7cefb1935616b65c228dc3767f9a120315ada",
-    "scripts/test_entry_diag.py": "fedd35a9cb48a09fc7a119ed51d17ea8312686a91286edd26c03a60991f9a932",
+    "scripts/test_entry_diag.py": "4da4b20d17a81cc2d013b4eca3cef0dc77c8d88ebdee149bcb00f37071859e8d",
     "scripts/test_payload_loader.py": "178281ac4d74bddc9b8b3c88686642daa91a150fde6c8582d165ac09a74aa995",
-    "r8/Makefile": "fbd5fd67240942e384330a6820e9b9e000f12b598a59175eac063149950a754b",
+    "r8/Makefile": "b268e20bd9d9a3880bb5d5171dbd54e4880b90201602e8fd98388ab78448daf7",
     ".github/workflows/baseline.yml": "205b48fd10eb04f19fd18da0679093764242c1c9f13bbe9e44afcf1f120cd8d7"
+  },
+  "qemu8_compatibility": {
+    "status": "passed",
+    "command": "QEMU=/workspace/scratch/ce67b38567d1/qemu-ubuntu-8/usr/bin/qemu-system-aarch64 QDATA=/workspace/scratch/ce67b38567d1/qemu-ubuntu-8/no-network-roms python3 scripts/validate_baseline.py --output-dir build/baseline-verified-pipe8-v2",
+    "scope": "Ubuntu QEMU 8.2.2 executable with existing tools/root loader/libraries and GCC14.2; not the hosted Ubuntu image",
+    "network_roms": false,
+    "package_url": "https://archive.ubuntu.com/ubuntu/pool/main/q/qemu/qemu-system-arm_8.2.2+ds-0ubuntu1.18_amd64.deb",
+    "package_sha256": "06184a21b9c8dc573ab6d255e9826cc4732df90e56bd65c52e92ad640af4d60a",
+    "started_at": "2026-10-26T03:05:52.286819+00:00",
+    "finished_at": "2026-10-26T03:06:00.425784+00:00",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 1.396,
+        "log": "01-runner-contract.log",
+        "log_sha256": "b11489657f801ed26dad598bcce2c135e23d3d0481d7e58de855f25a7063310d",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_baseline_runner.py"
+        ],
+        "pass_lines": [
+          "BASELINE RUNNER PASS"
+        ],
+        "warnings": []
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 0.055,
+        "log": "02-tool-versions.log",
+        "log_sha256": "de484f7c87047ae91d5f27c7c2c7ab181f181060a650d42952df70a54c1ce985",
+        "command": [
+          "make",
+          "-s",
+          "-C",
+          "./r8",
+          "tool_versions"
+        ],
+        "pass_lines": [],
+        "warnings": []
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 1.173,
+        "log": "03-build-r10.log",
+        "log_sha256": "5b5d17ac8209d593a50eeedc01b69b5e8f3bbc47ae252c19f2a77bc3baed080c",
+        "command": [
+          "make",
+          "-C",
+          "./r8",
+          "BUILD=./build/baseline-verified-pipe8-v2/r10",
+          "./build/baseline-verified-pipe8-v2/r10/r10_payload.elf"
+        ],
+        "pass_lines": [],
+        "warnings": [
+          "r10_payload/mct.c:69:25: warning: unused parameter ‘irq’ [-Wunused-parameter]",
+          "r10_payload/smp.c:242:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+          "r10_payload/smp.c:266:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+          "r10_payload/smp.c:279:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+          "r10_payload/smp.c:291:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]",
+          "r10_payload/smp.c:303:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]"
+        ]
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 0.713,
+        "log": "04-fdt.log",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_fdt.py"
+        ],
+        "pass_lines": [
+          "FDT MODEL PASS: 43 cases with ASan/UBSan"
+        ],
+        "warnings": []
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 0.946,
+        "log": "05-payload.log",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_payload.py",
+          "--elf",
+          "./build/baseline-verified-pipe8-v2/r10/r10_payload.elf"
+        ],
+        "pass_lines": [
+          "R10 ELF extent PASS: BSS and all stacks included",
+          "PAYLOAD PASS: 60 cases; C consumer with ASan/UBSan"
+        ],
+        "warnings": []
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 0.875,
+        "log": "06-payload-stage.log",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_payload_stage.py"
+        ],
+        "pass_lines": [
+          "PAYLOAD STAGE PASS: 17 cases; exact bytes, guards and no writes on rejection"
+        ],
+        "warnings": []
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 0.531,
+        "log": "07-entry-diag.log",
+        "log_sha256": "876d851b0ff88205667d9f0f92777015fa2e79f644d4d9957502acc8d20cd87a",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_entry_diag.py"
+        ],
+        "pass_lines": [
+          "ENTRY DIAG PASS: EL1, relocation +0x0, arguments/state/guards intact",
+          "ENTRY DIAG PASS: EL1, relocation +0x8000, arguments/state/guards intact",
+          "ENTRY DIAG PASS: EL1, relocation +0x1f8000, arguments/state/guards intact",
+          "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x4, record/code/guards untouched",
+          "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x1, record/code/guards untouched",
+          "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x5, record/code/guards untouched",
+          "ENTRY DIAG PASS: EL2, relocation +0x0, arguments/state/guards intact",
+          "ENTRY DIAG PASS: EL2, relocation +0x8000, arguments/state/guards intact",
+          "ENTRY DIAG PASS: EL2, relocation +0x1f8000, arguments/state/guards intact",
+          "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x4, record/code/guards untouched",
+          "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x1, record/code/guards untouched",
+          "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x5, record/code/guards untouched",
+          "ENTRY DIAG: 6 accepted entries + 6 M/C refusals PASS; one CPU, no Samsung hardware claim"
+        ],
+        "warnings": []
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "returncode": 0,
+        "timed_out": false,
+        "missing_markers": [],
+        "seconds": 2.447,
+        "log": "08-payload-loader.log",
+        "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "./scripts/test_payload_loader.py"
+        ],
+        "pass_lines": [
+          "EL2 MATERIALIZE PASS: exact PT_LOADs, BSS, stacks, FDT and guards",
+          "R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, 24 timer IRQs",
+          "EL2 REJECT PASS: bad-magic, destination untouched",
+          "EL2 REJECT PASS: protected-destination, destination untouched",
+          "EL2 REJECT PASS: different-fdt, destination untouched",
+          "EL2 REJECT PASS: reserved-ram, destination untouched",
+          "EL1 ENTRY REJECT PASS: before BSS clear, destination untouched",
+          "PAYLOAD LOADER QEMU PASS: 1 production handoff + 5 refusal cases, one CPU"
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "initial_ci_failure": {
+    "run_id": 40240373832,
+    "job_id": 121310685085,
+    "head_commit": "60b1d91d05607278d2ff38f1bc9a51b5d62dc807",
+    "url": "https://github.com/rguisantos/S21-baremetal/actions/runs/40240373832",
+    "completed_stages": [
+      "runner-contract",
+      "tool-versions",
+      "build-r10",
+      "fdt",
+      "payload",
+      "payload-stage"
+    ],
+    "failure": "GDB disconnected at entry-diag startup; loader stage not run",
+    "logs_artifact_id": 12616492842,
+    "local_reproducer_without_nic_none": "qemu-system-aarch64: failed to find romfile \"efi-virtio.rom\"",
+    "fix": "-nic none in diagnostic and loader targets; expose QEMU stderr on diagnostic failure"
   }
 }

@@ -20,6 +20,9 @@ SHA-256 do log e duração. O resumo registra também Python, plataforma,
 modo de ferramentas e hash/tamanho do ELF aprovado. Uma falha interrompe a
 sequência com exit 1 e preserva os resultados já obtidos. UBSan usa
 `halt_on_error=1`, para erros não virarem apenas mensagens ignoradas.
+O runner captura stdout/stderr por pipe e escreve cada log por um único
+processo, antes de calcular o hash; descendentes não escrevem diretamente
+no arquivo de log.
 
 Para escolher um caminho reproduzível, use um diretório que ainda não exista:
 
@@ -32,6 +35,8 @@ otimização que desative `assert`. Código de saída zero sem as assinaturas de
 cobertura previstas também falha. No timeout, encerra o grupo do processo,
 incluindo descendentes em outra sessão que ignorem SIGTERM. Os testes têm suas próprias
 pastas temporárias; os logs e o build inicial ficam na pasta do runner.
+O rastreio usa PPid/NSpid de `/proc` e pidfds; funciona quando `/proc` está
+montado no namespace ancestral e não exige `task/*/children`.
 
 ## Cobertura exigida
 
@@ -84,6 +89,13 @@ de 15 minutos; logs/resumo são enviados como artifact por 14 dias, inclusive
 após falha do runner. Falha de checkout/instalação pode impedir a criação
 desses arquivos. O ELF não é distribuído pelo workflow.
 
+Os ensaios de diagnóstico e loader usam `-nic none`: não dependem de ROM
+de rede opcional. O primeiro CI (run 40240373832) passou build/host, mas
+parou na conexão GDB do diagnóstico. Uma reprodução com QEMU Ubuntu 8.2.2
+e sem a ROM de rede mostrou `failed to find romfile "efi-virtio.rom"`;
+desativar a NIC elimina essa dependência. O diagnóstico agora também
+inclui stderr do QEMU no log antes de propagar um erro.
+
 Checkout e upload-artifact são fixados em SHAs completos das ações oficiais;
 o token tem apenas `contents: read` e o checkout não persiste credenciais.
 [Referência oficial de permissões e pinning](https://docs.github.com/en/actions/reference/security/secure-use).
@@ -99,7 +111,10 @@ offline existentes foram preservados; o bootstrap não foi substituído.
 
 A execução local completa passou com GCC cross 14.2, binutils 2.44 e
 QEMU 10.0.13, em diretório novo. Contagens da tabela e controles de falha
-passaram. [Comandos, resultados e hashes](references/baseline-validation-20261025.json).
+passaram. O baseline completo também passou com o binário Ubuntu QEMU
+8.2.2 sem ROM de rede, usando GCC 14.2 e o loader/bibliotecas de `tools/root`;
+esse ensaio de compatibilidade não é a imagem Ubuntu hospedada.
+[Comandos, resultados e hashes](references/baseline-validation-20261025.json).
 O resultado hospedado deve ser consultado nos checks do PR correspondente;
 a existência do YAML não demonstra uma execução aprovada.
 

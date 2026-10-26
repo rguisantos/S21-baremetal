@@ -235,7 +235,7 @@ $(BUILD)/r10_loader_test.elf: $(LOADER_OBJS) tests/payload_loader.ld
 LOADER_VIRTUALIZATION ?= on
 run_r10_loader_test: $(BUILD)/r10_loader_test.elf
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(LOADER_VIRTUALIZATION) -cpu max -smp 1 \
-	    -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
+	    -nic none -display none -monitor none -serial file:$(SERIAL_LOG) -S -gdb stdio -kernel $<
 .PHONY: run_r10_loader_test
 
 # Standalone entry probe; does not start R10 or touch peripherals.
@@ -248,7 +248,7 @@ $(BUILD)/entry_diag.Image: $(BUILD)/entry_diag.elf
 DIAG_VIRTUALIZATION ?= on
 run_entry_diag: $(BUILD)/entry_diag.Image
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(DIAG_VIRTUALIZATION) -cpu max -smp 1 \
-	    -display none -monitor none -serial none -S -gdb stdio -kernel $<
+	    -nic none -display none -monitor none -serial none -S -gdb stdio -kernel $<
 .PHONY: run_entry_diag
 
 # QEMU fixture for refusal with SCTLR.M/C enabled and read-only identity RAM.
