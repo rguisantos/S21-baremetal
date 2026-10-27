@@ -158,3 +158,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Origem do bitmap de política LK](lk-policy-bitmap-hzc2.md): transporte nominal de 32 bytes do contexto de token às consultas CP/fingerprint; valores reais desconhecidos.
 
 - [Escritor dos bits de modo do token](lk-token-modes-hzc2.md): comando 21, lista limitada e acumulação OR; erros locais não demonstram publicação global.
+
+- [Boot HZC2 observado no bugreport](bugreport-boot-hzc2.md): intervalos SEC_DRAM/SEC_PGTBL/Harx, ramo de prefixo do token e cenário condicional de bancos; extrato por lista de permissão.

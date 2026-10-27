@@ -1,0 +1,306 @@
+{
+  "mode": "conditional_scenario_from_logged_fields",
+  "observation": "bugreport-boot-20261027.json",
+  "assumptions": [
+    "Logged SEC_DRAM and Harx values supplied to the matching constructor inputs",
+    "Logged normalized SEC_PGTBL base and low32 size supplied with zero high bits",
+    "12.000000GB message interpreted as 12 GiB and supplied to RAM getter; getter X0 was not captured",
+    "Version guard supplied as 0x66001000 and Harx helper status supplied as zero",
+    "FDT edits, later reservations and failures are not modeled"
+  ],
+  "scenario": {
+    "mode": "supplied_lk_ram_node_call_scenario",
+    "inputs": {
+      "total_ram_bytes": "0x300000000",
+      "soc_version_x0": "0x66001000",
+      "soc_base_x0": "0xb8a00000",
+      "soc_reserved_size_x0": "0x7600000",
+      "pgtbl_base_x0": "0xe0000000",
+      "pgtbl_size_x0": "0x1300000",
+      "harx_status_w0": "0x0",
+      "harx_base": "0xc0000000",
+      "harx_size": "0x1400000"
+    },
+    "stop": "bank_calls_complete",
+    "requested_nodes": [
+      {
+        "call_offset": "0xfaf34",
+        "node_name": "memory@80000000",
+        "base": "0x80000000",
+        "size_low32": "0x38a00000",
+        "end_exclusive_math": "0xb8a00000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000008000000038a00000"
+      },
+      {
+        "call_offset": "0xfaf50",
+        "node_name": "memory@c0000000",
+        "base": "0xc0000000",
+        "size_low32": "0x0",
+        "end_exclusive_math": "0xc0000000",
+        "end_overflows_u64": false,
+        "zero_size": true,
+        "reg_bytes_if_written_be": "00000000c000000000000000"
+      },
+      {
+        "call_offset": "0xfb678",
+        "node_name": "memory@c1400000",
+        "base": "0xc1400000",
+        "size_low32": "0x1ec00000",
+        "end_exclusive_math": "0xe0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000000c14000001ec00000"
+      },
+      {
+        "call_offset": "0xfb690",
+        "node_name": "memory@e1300000",
+        "base": "0xe1300000",
+        "size_low32": "0x1ed00000",
+        "end_exclusive_math": "0x100000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000000e13000001ed00000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@880000000",
+        "base": "0x880000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x8a0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000088000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@8a0000000",
+        "base": "0x8a0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x8c0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000008a000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@8c0000000",
+        "base": "0x8c0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x8e0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000008c000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@8e0000000",
+        "base": "0x8e0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x900000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000008e000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@900000000",
+        "base": "0x900000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x920000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000090000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@920000000",
+        "base": "0x920000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x940000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000092000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@940000000",
+        "base": "0x940000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x960000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000094000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@960000000",
+        "base": "0x960000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x980000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000096000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@980000000",
+        "base": "0x980000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x9a0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "000000098000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@9a0000000",
+        "base": "0x9a0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x9c0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000009a000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@9c0000000",
+        "base": "0x9c0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0x9e0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000009c000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@9e0000000",
+        "base": "0x9e0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xa00000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "00000009e000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@a00000000",
+        "base": "0xa00000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xa20000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000a0000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@a20000000",
+        "base": "0xa20000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xa40000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000a2000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@a40000000",
+        "base": "0xa40000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xa60000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000a4000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@a60000000",
+        "base": "0xa60000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xa80000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000a6000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@a80000000",
+        "base": "0xa80000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xaa0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000a8000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@aa0000000",
+        "base": "0xaa0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xac0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000aa000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@ac0000000",
+        "base": "0xac0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xae0000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000ac000000020000000"
+      },
+      {
+        "call_offset": "0xfb7a8",
+        "node_name": "memory@ae0000000",
+        "base": "0xae0000000",
+        "size_low32": "0x20000000",
+        "end_exclusive_math": "0xb00000000",
+        "end_overflows_u64": false,
+        "zero_size": false,
+        "reg_bytes_if_written_be": "0000000ae000000020000000"
+      }
+    ],
+    "runtime_observed": false,
+    "service_replies_observed": false,
+    "provider_executed": false,
+    "fdt_writes_executed": false,
+    "is_final_fdt": false,
+    "memory_map_verified": false,
+    "free_memory_verified": false,
+    "limits": [
+      "Arguments to the bank writer only; editor success is unverified",
+      "All nine inputs are supplied, not inferred from the phone model",
+      "No legacy/positive soc_info translation or secure provider execution",
+      "FDT preparation, bootargs, reservations and later processing omitted",
+      "128 requested calls is a host limit, not an LK guard"
+    ],
+    "sec_pgtbl": {
+      "base_status": "base_accepted",
+      "size_status": "size_low32_kept_without_alignment_check",
+      "normalized_base": "0xe0000000",
+      "size_low32": "0x1300000",
+      "size_reply_upper32_ignored": "0x0",
+      "w22_split_flag": 1,
+      "x27_end_wrapped64": "0xe1300000",
+      "x27_addition_overflows": false,
+      "size_alignment_was_checked": false
+    },
+    "cursor_after_soc_wrapped64": "0xc0000000",
+    "soc_size_upper32_ignored": "0x0",
+    "harx_gap_taken": true,
+    "cursor_after_harx_wrapped64": "0xc1400000",
+    "high_memory": {
+      "base": "0x880000000",
+      "chunk_size": "0x20000000",
+      "call_count": 20,
+      "supplied_total_above_2GiB": "0x280000000",
+      "requested_bytes": "0x280000000",
+      "bytes_past_supplied_remainder": "0x0",
+      "final_chunk_is_clamped": false
+    }
+  }
+}

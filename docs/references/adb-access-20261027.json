@@ -1,0 +1,14 @@
+{
+  "archive_sha256": "f536e100c0aa7be509b7aadcb4a2740030c664f93866c8c215de17de53afec19",
+  "partitions": {
+    "steady": "/dev/block/sda3",
+    "harx": "/dev/block/sda8",
+    "uh": "/dev/block/sda9",
+    "boot": "/dev/block/sda13",
+    "vendor_boot": "/dev/block/sda14"
+  },
+  "listing_is_not_block_read": true,
+  "dmesg_direct": "klogctl: Permission denied",
+  "other_empty_files": "stderr not captured; denial reported by user",
+  "raw_collection_published": false
+}

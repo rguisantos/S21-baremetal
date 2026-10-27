@@ -166,3 +166,11 @@ citados validam as ferramentas, não o acesso no aparelho; não foram repetidos
 para esta atualização de documentação e metadados. O pacote já recebido
 basta para continuar a investigação estática, incluindo soc_info e SEC_PGTBL,
 que permanecem sem valores efetivos observados.
+
+## Atualização de 2026-10-27 — observação por dumpstate
+
+A [nova análise do bugreport HZC2](bugreport-boot-hzc2.md) conserva os
+valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
+token. Isso atualiza as lacunas históricas acima: há texto do bootloader
+recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
+físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.
