@@ -2584,3 +2584,12 @@ exato conferido. Encontrados bitmap de32 bytes, produtor get_token_mode,
 cópia intermediária workspace+29f68 para resposta+120 e publicação cd6618.
 423 palavras/93 destinos GNU; sem execução Samsung. Prefixo ENG e lookup
 STEADY são evidência nominal; produção do workspace e valores reais abertos.
+
+## 2026-10-27 — escritor dos modos do token
+
+Base4546b24, PR40 integrado. Ligado comando21 às duas tabelas e ao handler
+0x13a998: lista de até128 IDs≤255, OR em workspace+0x29f68 e bit5 ao completar
+inclusive lista vazia. Erro tardio deixa escritas locais, mas o caller desvia
+antes da publicação global. Parser136eb0/helper138740 e token ativo continuam
+opacos. Evidência: [análise](docs/lk-token-modes-hzc2.md) e
+[validação](docs/references/lk-token-modes-validation-20261027.json).
