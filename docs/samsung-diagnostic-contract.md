@@ -46,6 +46,12 @@ quando não houver observação explícita. Não foram relidos registradores fí
 | Vínculo e tempo | Leitor offline compara layout/endereço e, opcionalmente, Image inteira | Registro v1 não tem nonce/identificador de execução; autenticidade e frescor dependem do contexto de captura |
 | Recuperação do aparelho | Há Android stock funcionando no último relato | Nenhum plano de retorno/retomada foi ensaiado para uma Image que estaciona em WFE |
 
+A [continuação de retorno do LK](lk-payload-return-hzc2.md) está mapeada:
+`0xfbe18` descarta o valor devolvido, o wrapper retorna zero e o bootstrap
+chama `thread_exit()`. Os blocos selecionados não entram diretamente em
+RDX. Essa cadeia nominal não valida contexto/pilha, não muda a sonda e não
+estabelece o percurso físico de recuperação.
+
 O Marco B (R10 em uma CPU) continua exigindo também FDT/bancos/reservas
 confiáveis e permissões GIC/timer. Resolver o Marco A não comprova esses dados.
 O R10 exige EL2; a Image de diagnóstico aceita EL1/EL2. Os contratos são distintos.
@@ -143,6 +149,10 @@ enquanto parada, ou retomada com preservação especificada e validada.
 Reset exige medir retenção e ausência de sobrescrita; não é retorno
 presumido. Para a rota Android própria, fechar aceitação/transformações
 ainda abertas no LK.
+O [retorno nominal rastreado](lk-payload-return-hzc2.md) termina a aplicação;
+uma proposta cooperativa deve especificar o produtor de observação e seu
+contexto, além de conservar pilha e bytes. Acrescentar RET isoladamente
+não satisfaz esses requisitos.
 Sem uma interface disponível nas condições do aparelho, registrar o bloqueio
 e a condição específica que mudaria a decisão; mais uma busca de constantes
 ou leitura Shizuku já negada não o resolve. Nenhuma execução física é próxima

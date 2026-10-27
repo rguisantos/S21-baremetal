@@ -1,0 +1,124 @@
+{
+  "mode": "host_static_payload_return_validation",
+  "firmware_executed": false,
+  "phone_executed": false,
+  "payload_modified": false,
+  "base_commit": "3cc06d6dc945a47d12964aa77d4d9b92e42e38a2",
+  "checks": [
+    {
+      "name": "new-tests",
+      "command": [
+        "python3",
+        "scripts/test_lk_payload_return.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "bb21779099a2839ad7fe821a5b4500ef283fd0c746665b6ec774992deca8c0db"
+    },
+    {
+      "name": "flow-tests",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_lk_final_edges.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a758b7d857033cc283665bfadd2e93f847516b19d9ef4df6580dd787e5479abe"
+    },
+    {
+      "name": "extract",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_payload_return.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a5be5ed14419b211b8e9c64843a70a4bab82d1a22ae9fb9cf5b8e95bfbbecc7b"
+    },
+    {
+      "name": "reproduce",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_payload_return.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a5be5ed14419b211b8e9c64843a70a4bab82d1a22ae9fb9cf5b8e95bfbbecc7b"
+    },
+    {
+      "name": "previous-rdx",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_rdx_memory_hzc2.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "8799112687096f1ead118d0e02d62a02f5dffeb3615b501022f603b11757afdd"
+    },
+    {
+      "name": "previous-final",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_final_edges.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "9106f1b87f8b56af6ca4998f124518e7db3c345f2f9ae55aa8030116b9bffe0d"
+    },
+    {
+      "name": "compile",
+      "command": [
+        "python3",
+        "-m",
+        "py_compile",
+        "scripts/inspect_lk_payload_return.py",
+        "scripts/test_lk_payload_return.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "negative_firmware_controls": [
+    {
+      "input": "truncated",
+      "input_sha256": "b788f6d11ababad43067006330899e747574bfb645078b8ad7fd6b5b6b4ca781",
+      "exit_code": 2,
+      "json_emitted": false,
+      "log_sha256": "938427fdfa6d99ab8073f179080d35a3dffe59e388c056737d3e1bbc2e0c08fd"
+    },
+    {
+      "input": "changed_last_byte",
+      "input_sha256": "d710ef8cd10acdd57e1dd78546ff801199a0891bf8b89094626ba8c38aa415b5",
+      "exit_code": 2,
+      "json_emitted": false,
+      "log_sha256": "7c2e2dfeaa6a4569040216e5c79156ce0373273a2fbe1d005d771e0341e229f9"
+    }
+  ],
+  "original_firmware_sha256_after": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "test_counts": {
+    "new_local_graph": 14,
+    "existing_flow": 15
+  },
+  "previous_reports_reproduced_exactly": [
+    "lk-rdx-memory-hzc2.json",
+    "lk-final-edges-hzc2.json"
+  ],
+  "source_sha256": {
+    "scripts/inspect_lk_payload_return.py": "e8ea0a5c03396db89780990aa5d9e715453c974942b5cafbccd33f458a785829",
+    "scripts/test_lk_payload_return.py": "5f0f5675d8b857a0248675e4b57d194ad6724cbec654eb70aa012f56dab09baa",
+    "r8/entry_diag/start.S": "3d7659473b2fef39eac58b726ae9537925b9f8712e540f7bd681fd91e6dc39f3"
+  },
+  "new_reference_report_sha256": "a5be5ed14419b211b8e9c64843a70a4bab82d1a22ae9fb9cf5b8e95bfbbecc7b",
+  "markdown_links": {
+    "relative_file_links_checked": 859,
+    "missing": [],
+    "anchors_checked": false,
+    "excluded": "tools/root/ installed third-party documentation"
+  }
+}
