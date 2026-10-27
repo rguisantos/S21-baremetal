@@ -79,3 +79,5 @@ Próxima investigação: separar os validadores anteriores à cópia das consult
 e ações restantes de 0x151b10, começando por 0x157230 e seus chamadores, com
 origem dos estados. O percurso físico permanece pendente sob o último estado
 informado; retorno zero de uma rotina de configuração não muda essa decisão.
+
+Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga workspace+0x29f68 → response+0x120 → 0xcd6618 → 0x157230. O produtor é get_token_mode; produção do workspace, token ativo e autenticação da Image seguem abertos.

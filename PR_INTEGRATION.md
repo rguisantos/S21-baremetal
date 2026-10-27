@@ -519,3 +519,13 @@ Entrega:29 testes, GNU294/57/58, reprodução de três relatórios, duas
 recusas de firmware inválido e859 links. Sem patch de retorno ou execução
 do firmware. Esta continuação resolve as rotinas locais de panic, sem
 promover recuperação de contexto a captura física demonstrada.
+
+## PRs #38 e #39 — continuação de LK
+
+PR38: head18fcf36c58835c731ba738d452a6570fb0a10045, revisão automática
+6434141972 completed sem achados/pendências, zero threads e CI40452698027
+success antes do merge3349dbbe9ad4bcc288fcc091c4c2dfbb0d7d13ba.
+PR39: head2b9a0e4386a5b33f22ccd7c92c41a08f9f97a279, revisão automática
+6434286224 completed sem achados/pendências, zero threads e CI40453651677
+success antes do merge42d2bb63e414c5af3701ffab9f15a3c0015a8be4.
+CI pós-merge40453852082 reconferido success nesta continuação.

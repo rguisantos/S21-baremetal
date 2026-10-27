@@ -154,3 +154,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Envelope BiEn e candidatos TZSW HZC2](tzsw-bien-hzc2.md): região candidata de 641264 bytes, quatro fontes fixadas e um ensaio negativo reproduzido por duas implementações AES. Quinze testes; candidato inválido retorna exit 1, sem salvar firmware/plaintext ou aceitar digest substituído.
 
 - [Configuração LK após a cópia](lk-postcopy-policy-hzc2.md): CP debug, informações ao monitor e proteção nominal de fingerprint; aceitação da Image permanece aberta.
+
+- [Origem do bitmap de política LK](lk-policy-bitmap-hzc2.md): transporte nominal de 32 bytes do contexto de token às consultas CP/fingerprint; valores reais desconhecidos.

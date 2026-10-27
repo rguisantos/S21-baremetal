@@ -189,3 +189,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_panic_recovery.py`: [analisador estático de panic/contexto](../docs/lk-panic-recovery-hzc2.md): parada local ou ERET para contexto salvo; aquisição RDX não demonstrada.
 
 - [Configuração LK após a cópia](../docs/lk-postcopy-policy-hzc2.md): CP debug, informações ao monitor e proteção nominal de fingerprint; aceitação da Image permanece aberta.
+
+- [Origem do bitmap de política LK](../docs/lk-policy-bitmap-hzc2.md): transporte nominal de 32 bytes do contexto de token às consultas CP/fingerprint; valores reais desconhecidos.

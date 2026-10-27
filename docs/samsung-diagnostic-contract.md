@@ -159,3 +159,5 @@ ou leitura Shizuku já negada não o resolve. Nenhuma execução física é pró
 etapa automática desta matriz.
 
 Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.
+
+Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga workspace+0x29f68 → response+0x120 → 0xcd6618 → 0x157230. O produtor é get_token_mode; produção do workspace, token ativo e autenticação da Image seguem abertos.

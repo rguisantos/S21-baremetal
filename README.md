@@ -257,3 +257,5 @@ A [auditoria nominal da árvore UART0](docs/uart-clock-stages.md#origem-nominal-
 O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de reset, IPCLK, PCLK e QCH. O PCLK deriva de BUS_USER, separado do nominal UART_DBG. A auditoria extrai endereços/campos de quatro fontes verificadas por hash, sem atribuir estado ao hardware.
 
 - [Configuração LK após a cópia](docs/lk-postcopy-policy-hzc2.md): CP debug, informações ao monitor e proteção nominal de fingerprint; aceitação da Image permanece aberta.
+
+- [Origem do bitmap de política LK](docs/lk-policy-bitmap-hzc2.md): transporte nominal de 32 bytes do contexto de token às consultas CP/fingerprint; valores reais desconhecidos.

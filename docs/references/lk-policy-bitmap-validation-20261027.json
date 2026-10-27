@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "firmware_executed": false,
+  "exact_reproduction": true,
+  "gnu_words": 423,
+  "gnu_relative_targets": 93,
+  "regressions": {
+    "return_graph": 14,
+    "flow_decoder": 15
+  },
+  "negative_controls": [
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "links": {
+    "count": 863,
+    "broken": 0,
+    "anchors_checked": false
+  },
+  "sha256": {
+    "docs/references/lk-policy-bitmap-hzc2.json": "704056d522ad502f545870acbfcb0be4ca9c3fef82018594fad59551c8903aab",
+    "scripts/inspect_lk_policy_bitmap.py": "2fa6471c60a40edc6799cd2c7cf97a0348e865b9f6ca9aa6aff2c1939c1745ae"
+  }
+}

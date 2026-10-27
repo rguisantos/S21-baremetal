@@ -2576,3 +2576,11 @@ PR38 reproduzido byte a byte e 29 regressões passaram. Continuação identifica
 retorno normal zero não é prova de autenticação. Extrator fixado ao SHA,
 201 palavras/60 destinos GNU, oito grafos e nove strings. Sem execução
 Samsung ou alteração da sonda. Monitor e outros callees seguem fronteiras.
+
+## 2026-10-27 — origem do bitmap de política
+
+Base42d2bb6, CI pós-merge40453852082 success. Fonte sboot restaurada e hash
+exato conferido. Encontrados bitmap de32 bytes, produtor get_token_mode,
+cópia intermediária workspace+29f68 para resposta+120 e publicação cd6618.
+423 palavras/93 destinos GNU; sem execução Samsung. Prefixo ENG e lookup
+STEADY são evidência nominal; produção do workspace e valores reais abertos.
