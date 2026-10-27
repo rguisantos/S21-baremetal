@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-10-26",
+  "timezone": "America/Campo_Grande",
+  "base_commit": "715a5e3f0c3b882c981a87f6a5c90a3e91cfb658",
+  "scope": "Static exact-HZC2 dump/export paths; no firmware, USB client or phone execution",
+  "gnu": {
+    "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "gnu_words": 488,
+    "gnu_relative_targets": 103,
+    "gnu_selected_operands": 61,
+    "instruction_index_sha256": "55e0e9d1de584afc9462eaddbd42e8ed53ae853a6e936ea73fcdb377c91db8e7"
+  },
+  "tests": [
+    {
+      "suite": "dump templates and arithmetic",
+      "tests": 14,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/test_lk_dump.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log_sha256": "277267c708c6397f6c24681e06a63b8904da50bf2beec684880e812e3bfe17f0"
+    },
+    {
+      "suite": "existing A64 flow decoder",
+      "tests": 15,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_lk_final_edges.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log_sha256": "f587efda61c1bd4ad687fbb0ae520dc8c1b3853e9307f3c4d6e3b092b1977355"
+    }
+  ],
+  "reproduction": {
+    "exact_reproduction": true,
+    "report_sha256": "c49c2ae8c1d85c9be4a55dd14df5061011a6cf54e16248ea9844a1a530623714",
+    "negative_controls": [
+      {
+        "label": "truncated",
+        "exit": 2,
+        "bytes": 4194300,
+        "sha256": "b788f6d11ababad43067006330899e747574bfb645078b8ad7fd6b5b6b4ca781"
+      },
+      {
+        "label": "changed-byte",
+        "exit": 2,
+        "bytes": 4194304,
+        "sha256": "d710ef8cd10acdd57e1dd78546ff801199a0891bf8b89094626ba8c38aa415b5"
+      }
+    ],
+    "original_unchanged": true
+  },
+  "sources_sha256": {
+    "scripts/inspect_lk_dump_hzc2.py": "b42ca9bdd352e9bef4adc4fb4880bc75c96cc6c9c755c35f13f750baa92b79b4",
+    "scripts/test_lk_dump.py": "b4eb5d58a5d2393a1e118d2b0ee698df57ba279398c71c0405cccb68e4d14e78",
+    "scripts/inspect_lk_final_edges.py": "4895be69b9066cc234ae9911909435f03bd6b2bfe1823d799a06bf2cef6ef33d",
+    "scripts/check_epbl_protocol_gnu.py": "6c3c81f558b6881b249362d58c966ab20de2c6d32493b58850d2d959627da422",
+    "docs/lk-dump-export-hzc2.md": "acb62abc4abd2001c13fa0ad955318de25804b349f06b5afba4b891e00ba1814",
+    "docs/samsung-diagnostic-contract.md": "6e756aa5f3440c4e3db995bd609af98838bcebd5b3c92a1cf4c4c43dc895657c",
+    "r8/entry_diag/start.S": "3d7659473b2fef39eac58b726ae9537925b9f8712e540f7bd681fd91e6dc39f3",
+    "r8/entry_diag/linker.ld": "5ce07c612d4ac3a8fcb35baa021d42b2076381f889f085c58bdf6c8dce6f4426"
+  },
+  "physical_capture_path_demonstrated": false,
+  "no_runtime_values_supplied": true,
+  "no_qemu_scope_extension": true
+}

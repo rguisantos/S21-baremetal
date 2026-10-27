@@ -72,7 +72,7 @@ comando de dump OEM ou alteração de partição foi feita ou fornecida.
 | [UART0/MUIC](uart-routing.md) | Roteamento/estado físico, clocks e acessibilidade ainda abertos. A Image atual não serializa o registro; habilitar uma UART sozinho não o transmite |
 | Android depois de outro boot | Precisa provar retenção/reserva, endereço, leitura permitida e ausência de sobrescrita; não se presume que reset conserve a Image |
 | HVC/log Harx | [Atributo negado](harx-log-observation.md); serviço de log não é leitura arbitrária do registro |
-| Debugger/leitor de RAM externo ou OEM | Transporte, permissões, domínio de endereço e preservação ainda não identificados/demonstrados |
+| Debugger/leitor de RAM externo ou OEM | [RDX delimitado estaticamente](lk-dump-export-hzc2.md): perfil fixo não cobre a janela candidata; entradas dinâmicas, disponibilidade, permissões e preservação continuam sem demonstração física |
 
 As coletas negadas não devem ser repetidas sem mudança concreta de acesso/canal.
 Não copiar o registro para área reservada alheia, habilitar MMIO/SMC ou executar
@@ -132,6 +132,10 @@ exige ambas as verificações. [Evidência](references/diagnostic-contract-20261
 
 O próximo passo é delimitar **uma interface concreta de carga e aquisição**,
 com suas permissões e preservação, usando as imagens/fontes existentes.
+O [levantamento RDX](lk-dump-export-hzc2.md) já identificou um encaminhamento
+nominal e separou o perfil fixo das entradas de memória acrescentadas em
+execução. A próxima aresta concreta é a origem da tabela relativa `0xcd31d0`
+e a preservação de bindings/bytes no percurso selecionado.
 Se uma rotina de dump/exportação for candidata, seguir seu despacho, faixas
 e transporte estaticamente antes de atribuir leitura da Image a ela. Para a
 rota Android própria, fechar aceitação/transformações ainda abertas no LK.

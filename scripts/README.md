@@ -1,5 +1,10 @@
 # Catálogo de scripts
 
+- `inspect_lk_dump_hzc2.py` e `test_lk_dump.py`: análise estática fixada por
+  hash dos templates/descritores RDX, gates selecionados e encaminhamento
+  nominal de bytes. GNU488/103alvos/61operandos, 14 testes de host;
+  [limites de aquisição e retenção](../docs/lk-dump-export-hzc2.md).
+
 - `inspect_entry_record.py` e `test_entry_record.py`: inspeção offline de
   128 bytes S21ENTRY, referência Image, endereços e snapshot opcional;
   17 testes de host e integração aos seis registros/seis recusas do QEMU.
