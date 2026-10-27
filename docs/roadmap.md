@@ -305,3 +305,5 @@ dos bytes continuam como próxima investigação principal.
 O [ramo de panic](lk-panic-recovery-hzc2.md) foi resolvido estaticamente:
 parada ou ERET ao contexto salvo, sem entrada fixa RDX. Não usar RET/panic
 como plano de captura; definir produtor, contexto e preservação verificáveis.
+
+Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.

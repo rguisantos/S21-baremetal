@@ -127,3 +127,5 @@ não depende de Capstone. Para desassemblar, usar o snippet de
 [bootloader-hzc2.md](bootloader-hzc2.md) nos intervalos 0xfb9c8:0xfba38,
 0xfbb98:0xfbbb8, 0x12e048:0x12e094, 0x12e298:0x12e424,
 0x12e540:0x12e590, 0x12e764:0x12e894 e 0x1af3c0:0x1af488.
+
+Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.

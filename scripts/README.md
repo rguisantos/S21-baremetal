@@ -187,3 +187,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_tzsw_bien.py` e `test_tzsw_bien.py`: envelope TZSW HZC2 exato e validação de candidato completo contra o original. Quinze testes; ensaio opcional com quatro fontes Exynos9830 fixadas por SHA-256/blob, AST sem executar fontes, cryptography/OpenSSL. A hipótese falhou no digest HZC2; nenhum plaintext emitido. `--candidate` inválido sai com código 1 e JSON de recusa; erros estruturais saem com 2. [Escopo](../docs/tzsw-bien-hzc2.md).
 
 - `inspect_lk_panic_recovery.py`: [analisador estático de panic/contexto](../docs/lk-panic-recovery-hzc2.md): parada local ou ERET para contexto salvo; aquisição RDX não demonstrada.
+
+- [Configuração LK após a cópia](../docs/lk-postcopy-policy-hzc2.md): CP debug, informações ao monitor e proteção nominal de fingerprint; aceitação da Image permanece aberta.

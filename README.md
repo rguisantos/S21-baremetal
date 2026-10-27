@@ -255,3 +255,5 @@ O [rastreio dos clocks entre BL2 e LK](docs/uart-clock-stages.md) encontrou um w
 A [auditoria nominal da árvore UART0](docs/uart-clock-stages.md#origem-nominal-fechada-na-fonte--continuação-2026-10-21) fechou a conta PLL_SHARED2 799,5 MHz ÷2 ÷1 ÷3 = 133,25 MHz, consistente com BL2/LK. A ferramenta offline verifica os hashes e seletores; gates e frequência real permanecem pendentes.
 
 O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de reset, IPCLK, PCLK e QCH. O PCLK deriva de BUS_USER, separado do nominal UART_DBG. A auditoria extrai endereços/campos de quatro fontes verificadas por hash, sem atribuir estado ao hardware.
+
+- [Configuração LK após a cópia](docs/lk-postcopy-policy-hzc2.md): CP debug, informações ao monitor e proteção nominal de fingerprint; aceitação da Image permanece aberta.
