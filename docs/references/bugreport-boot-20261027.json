@@ -1,0 +1,191 @@
+{
+  "mode": "allowlisted_bugreport_boot_observation",
+  "archive_sha256": "5a8e98c0f6dd657e87d099bfa7b26f1dd512ba39220ad85aecded709d79c40ef",
+  "main_member": "dumpstate-2026-10-27-18-23-28.txt",
+  "main_member_bytes": 160833984,
+  "main_member_sha256": "f24e96c70d4ed17098b3bb470d15380f5466efb357011e41759cfcd4b1451673",
+  "properties": {
+    "ro.boot.bootloader": {
+      "value": "G998BXXSJHZC2",
+      "source_line": 379664
+    },
+    "ro.boot.flash.locked": {
+      "value": "1",
+      "source_line": 379683
+    },
+    "ro.boot.vbmeta.device_state": {
+      "value": "locked",
+      "source_line": 379716
+    },
+    "ro.boot.verifiedbootstate": {
+      "value": "green",
+      "source_line": 379721
+    }
+  },
+  "section": {
+    "first_line": 408667,
+    "last_line": 409664,
+    "bytes": 56417,
+    "sha256": "dc155d60764ad35dba56eafb9c6f10167ae2b6a2adaaa5e91219440096e1d931"
+  },
+  "boot": {
+    "events": [
+      {
+        "kind": "token_prefix_mismatch_message",
+        "source_line": 409075,
+        "boot_seconds": "1.457551"
+      },
+      {
+        "kind": "dram_size_12gb_message",
+        "source_line": 409091,
+        "boot_seconds": "1.458468"
+      },
+      {
+        "kind": "harx_loading_done",
+        "source_line": 409331,
+        "boot_seconds": "1.934014"
+      },
+      {
+        "kind": "harx_initialization_message",
+        "source_line": 409332,
+        "boot_seconds": "1.995252"
+      },
+      {
+        "kind": "harx_crash_registration_message",
+        "source_line": 409333,
+        "boot_seconds": "1.995269"
+      },
+      {
+        "kind": "uh_registration_message",
+        "source_line": 409339,
+        "boot_seconds": "2.011432"
+      },
+      {
+        "kind": "cp_table_21_message",
+        "source_line": 409381,
+        "boot_seconds": "2.158177"
+      },
+      {
+        "kind": "fingerprint_success_message",
+        "source_line": 409382,
+        "boot_seconds": "2.158659"
+      },
+      {
+        "kind": "dtb_entry_0_message",
+        "source_line": 409384,
+        "boot_seconds": "2.158772"
+      },
+      {
+        "kind": "dtbo_entry_7_message",
+        "source_line": 409386,
+        "boot_seconds": "2.167531"
+      },
+      {
+        "kind": "dt_overlay_complete_message",
+        "source_line": 409387,
+        "boot_seconds": "2.280206"
+      },
+      {
+        "kind": "boot_hash_success_message",
+        "source_line": 409401,
+        "boot_seconds": null
+      },
+      {
+        "kind": "harx_hash_success_message",
+        "source_line": 409406,
+        "boot_seconds": null
+      },
+      {
+        "kind": "vendor_boot_hash_success_message",
+        "source_line": 409414,
+        "boot_seconds": null
+      },
+      {
+        "kind": "SEC_DRAM_BASE",
+        "value": "0xb8a00000",
+        "source_line": 409493,
+        "boot_seconds": "2.648648"
+      },
+      {
+        "kind": "SEC_DRAM_SIZE",
+        "value": "0x7600000",
+        "source_line": 409494,
+        "boot_seconds": "2.648652"
+      },
+      {
+        "kind": "SEC_PGTBL_BASE",
+        "value": "0xe0000000",
+        "source_line": 409495,
+        "boot_seconds": "2.648667"
+      },
+      {
+        "kind": "SEC_PGTBL_SIZE",
+        "value": "0x1300000",
+        "source_line": 409496,
+        "boot_seconds": "2.648670"
+      },
+      {
+        "kind": "HARX_BASE",
+        "value": "0xc0000000",
+        "source_line": 409497,
+        "boot_seconds": "2.648677"
+      },
+      {
+        "kind": "HARX_SIZE",
+        "value": "0x1400000",
+        "source_line": 409498,
+        "boot_seconds": "2.648681"
+      },
+      {
+        "kind": "edtbo_absent_message",
+        "source_line": 409500,
+        "boot_seconds": "2.648690"
+      },
+      {
+        "kind": "default_console_ram_message",
+        "source_line": 409502,
+        "boot_seconds": "2.892315"
+      },
+      {
+        "kind": "boot_log_build_hzc2_message",
+        "source_line": 409598,
+        "boot_seconds": "2.952566"
+      },
+      {
+        "kind": "starting_kernel_message",
+        "source_line": 409663,
+        "boot_seconds": "3.103876"
+      }
+    ],
+    "logged_intervals": {
+      "SEC_DRAM": {
+        "base": "0xb8a00000",
+        "size": "0x7600000",
+        "end_exclusive": "0xc0000000"
+      },
+      "SEC_PGTBL": {
+        "base": "0xe0000000",
+        "size": "0x1300000",
+        "end_exclusive": "0xe1300000"
+      },
+      "HARX": {
+        "base": "0xc0000000",
+        "size": "0x1400000",
+        "end_exclusive": "0xc1400000"
+      }
+    },
+    "derived_relations": {
+      "sec_dram_end_equals_harx_base": true
+    }
+  },
+  "raw_logs_published": false,
+  "final_fdt_captured": false,
+  "payload_executed": false,
+  "limits": [
+    "Log messages are observations, not a trace of register values or secure services",
+    "LAST KMSG capture time is not the boot time; persistence across reset is untested",
+    "Recovery cache logs from other builds are excluded",
+    "Token-prefix message is not proof of an empty partition or zero global bitmap",
+    "No arbitrary memory acquisition, final FDT or diagnostic record recovered"
+  ]
+}

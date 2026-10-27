@@ -99,3 +99,11 @@ Próximo alvo: seguir a produção desse campo em 0x132130 e separar a validaç�
 do token da autenticação da Image anterior à cópia. Esta descoberta não
 estabelece um caminho de carregamento próprio nem recuperação do diagnóstico.
 Não houve mudança da sonda ou tentativa física.
+
+## Atualização de 2026-10-27 — observação por dumpstate
+
+A [nova análise do bugreport HZC2](bugreport-boot-hzc2.md) conserva os
+valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
+token. Isso atualiza as lacunas históricas acima: há texto do bootloader
+recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
+físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.

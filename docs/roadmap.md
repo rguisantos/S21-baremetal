@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
-Atualizado em **2026-10-26 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #36, 3cc06d6](https://github.com/rguisantos/S21-baremetal/commit/3cc06d6dc945a47d12964aa77d4d9b92e42e38a2),
+Atualizado em **2026-10-27 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge do PR #41, 436b539](https://github.com/rguisantos/S21-baremetal/commit/436b5397c501b1f37e0f06cd23e52378417f31c7),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -49,7 +49,7 @@ não mudam o estado de validação no telefone.
 | Construção de RAM no LK / produtor BL2 | **DRAM observada no log do bootloader; mapa físico pendente** | [Bugreport HZC2](dram-observed-hzc2.md): Samsung/D1Z, 12.000000GB e palavra 0001000850500130 no LAST KMSG. Getters LK usam campos do cache de AP0x02073600; igualdade do driver com outra palavra não é classificação universal de D1Z. Publicação/empacotamento condicionais conferidos no laboratório; demais slots, SRAM ao vivo, limites e FDT final abertos |
 | Cache/MMU e argumentos finais LK | **Helper conferido; cadeia final ainda parcial** | Helper: 352 cenários anteriores; [chamadas finais](lk-final-edges.md): 1834 instruções conferidas e 29 testes de host. Bindings mutáveis, SMC anterior e estado físico ainda abertos |
 | Preparação do monitor e lista LK | **Buffers e offsets corroborados; provedor aberto** | [Fontes HASH](epbl-hash-provenance-hzc2.md): dez offsets ACE/Fireplace e dialecto DMA concordam; nomes dos contadores corrigidos, 83 testes. Modo 0x19 não implementado no emulador Exynos9830; dados/algoritmo HZC2, vetores e transformação abertos. Inventário anterior: 1095 instruções/114 alvos/177 acessos MMIO |
-| SEC_PGTBL/LDFW | **Chamador conferido; provedor aberto** | 248 cenários Unicorn e 20 testes de host; 52 status na fonte não comprovam o retorno da consulta; DRM candidato cifrado |
+| SEC_PGTBL/LDFW | **Campos LK observados; provedor aberto** | [Bugreport de 27/10](bugreport-boot-hzc2.md): SEC_PGTBL 0xe0000000/0x1300000; SEC_DRAM 0xb8a00000/0x7600000. Valores formatados pelo LK, não registradores brutos do provedor. FDT final e DRM candidato cifrado seguem abertos |
 | UART e recuperação de logs | **Log stock recuperado; canal do diagnóstico ainda pendente** | Bugreport via rish/Shizuku fornecido pelo usuário contém log do bootloader; UART/pinmux/clock e recuperação dos 128 bytes do diagnóstico próprio continuam sem medição |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
 | XNU/Darwin no QEMU | **Init próprio e referência iOS gráfica executados** | SpringBoard, Ajustes e Geral conferidos em PNG nativo 1125×2436; quatro CPUs, kernel prebuilt e imagens APFS identificados; sem hardware Samsung |
@@ -278,8 +278,10 @@ dos ajustes FDT e um canal de observação. Para continuar a análise interna do
 handler DRM cifrado, falta código HZC2 em claro com origem verificável ou
 fonte correspondente. Isso não é pedido de reenvio do LDFW cifrado.
 
-As coletas atuais usaram **uid=2000(shell)/Shizuku**. FDT, mapas e logs
-solicitados não ficaram disponíveis; `exynos_el2_log` foi confirmado como
+As coletas diretas usaram **uid=2000(shell)/Shizuku ou ADB**. FDT, mapas
+e nós de log solicitados não ficaram disponíveis para o shell; o serviço
+dumpstate recuperou texto de boot stock, como documentado nas coletas de
+24/10 e [27/10](bugreport-boot-hzc2.md); `exynos_el2_log` foi confirmado como
 **UNREADABLE**, sem conteúdo capturado. Não repetir as mesmas coletas,
 pedir um log inexistente ou pressupor root. Uma nova coleta deve primeiro
 demonstrar uma mudança relevante de acesso/canal.
@@ -295,7 +297,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A base desta continuação é a main após o PR #37 (`0d80be2`). O
+A base desta continuação é a main após o PR #41 (`436b539`). O
 [worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
 conservam a sequência histórica. Esta página organiza prioridades e
 critérios atuais. Baseline/CI e matriz do diagnóstico estão implementados;
@@ -311,3 +313,5 @@ Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como d
 Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga workspace+0x29f68 → response+0x120 → 0xcd6618 → 0x157230. O produtor é get_token_mode; produção do workspace, token ativo e autenticação da Image seguem abertos.
 
 Continuação: [escritor do workspace](lk-token-modes-hzc2.md) identificado em 0x13a998 para comando 21: até 128 IDs de 0..255, OR nos quatro u64. Próxima fronteira: parser 0x136eb0 e helper 0x138740; token ativo e autenticação da Image continuam desconhecidos.
+
+Continuação de observação: [bugreport de 27/10](bugreport-boot-hzc2.md) liga seis campos de intervalos ao LK e confirma mensagem do ramo de prefixo do token. No cenário condicional, SEC_DRAM termina na base Harx e o construtor solicita um intervalo zero; resultado no editor/FDT final permanece aberto. Odin/Download fora desta continuação por escolha do usuário.

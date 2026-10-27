@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-27",
+  "base_commit": "436b5397c501b1f37e0f06cd23e52378417f31c7",
+  "exact_observation_reproduction": true,
+  "conditional_bank_model_reproduction": true,
+  "firmware_format_strings_checked": 5,
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "tests": {
+    "bugreport_privacy_provenance_bounds": 9,
+    "bank_model_existing": 17
+  },
+  "baseline": {
+    "result": "PASS",
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17
+  },
+  "physical_payload_executed": false,
+  "raw_private_logs_committed": false,
+  "links": {
+    "count": 917,
+    "broken": 0,
+    "anchors_checked": false
+  },
+  "sha256": {
+    "scripts/inspect_bugreport_boot.py": "e0f2e202ddf049bfa686da291728f789ca780557445dbb344236b292ce706eca",
+    "scripts/test_bugreport_boot.py": "6f84b00bc9260366514ac324342bc7826e05ab22b72c16ac2c2d0b646d8216bd",
+    "docs/references/bugreport-boot-20261027.json": "11139e1b2f0261c6050347ff993bbdb465e4ec180e65a0ac864b3e5d2ec7f3da",
+    "docs/references/adb-access-20261027.json": "4fa50057c5154117e0fa06b25c8c3825a4d10ffac3c832ca5647e419945dd832",
+    "docs/references/bugreport-bank-inputs-20261027.json": "26eacfa4e0da678a2d37427a1562d086eadd888fc8cfe89c2ae90c441dd091b3",
+    "docs/references/bugreport-bank-scenario-20261027.json": "a76665d3f1ecf24fdf58ec36b7ea7447bf8009ab7c937e2771363c5186f6c4b1"
+  }
+}

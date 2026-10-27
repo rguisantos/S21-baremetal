@@ -536,3 +536,10 @@ Head `38e0fff61875c33b3608bc57e3f545073fd60f82`, revisão automática
 6441850315 completed sem achados/pendências, CI40503789254 success e zero
 threads antes do merge `4546b2457431d6813d9c250251db18ab58a19262`.
 CI pós-merge40504139264 conferido success nesta continuação.
+
+## PR #41 — escritor dos modos do token
+
+Head `76d611f90eef3a1ede7889a706dd1752e138189f`, revisão automática
+6443214469 completed sem achados/pendências, zero threads e CI40513134170
+success antes do merge `436b5397c501b1f37e0f06cd23e52378417f31c7`.
+CI pós-merge40513488970 reconferido success nesta continuação.

@@ -113,3 +113,11 @@ eventuais regiões adicionais continuam sem demonstração no aparelho.
 | drivers/soc/samsung/debug/debug-snapshot.c | `158602ffb2c6d09503cdaaae9e1e6158bb2d3425b0b4894d1e26a1b43bb4f24e` |
 | drivers/soc/samsung/debug/debug-snapshot-local.h | `a77f20ad7bcfed361ffb164322d2245f6019c5716fa16a0777c79f9d7916d0b7` |
 | arch/arm64/boot/dts/exynos/exynos2100.dts | `586ca56987bbaacce0a38ddaee8a852721caaaeb9096ada6bfde8bc8c0d88ca8` |
+
+## Atualização de 2026-10-27 — observação por dumpstate
+
+A [nova análise do bugreport HZC2](bugreport-boot-hzc2.md) conserva os
+valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
+token. Isso atualiza as lacunas históricas acima: há texto do bootloader
+recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
+físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.

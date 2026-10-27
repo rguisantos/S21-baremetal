@@ -261,3 +261,5 @@ O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de r
 - [Origem do bitmap de política LK](docs/lk-policy-bitmap-hzc2.md): transporte nominal de 32 bytes do contexto de token às consultas CP/fingerprint; valores reais desconhecidos.
 
 - [Escritor dos bits de modo do token](docs/lk-token-modes-hzc2.md): comando 21, lista limitada e acumulação OR; erros locais não demonstram publicação global.
+
+- [Boot HZC2 observado no bugreport](docs/bugreport-boot-hzc2.md): intervalos SEC_DRAM/SEC_PGTBL/Harx, ramo de prefixo do token e cenário condicional de bancos; extrato por lista de permissão.

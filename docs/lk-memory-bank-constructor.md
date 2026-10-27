@@ -134,3 +134,11 @@ os blobs e dependências ficaram fora dele. R8/R9/R10 não mudaram e suas
 suítes não foram reexecutadas. Os próximos dados necessários para fechar o
 mapa são os valores/condições efetivos e o resultado das edições do FDT;
 o material recebido continua suficiente para investigação estática.
+
+## Atualização de 2026-10-27 — observação por dumpstate
+
+A [nova análise do bugreport HZC2](bugreport-boot-hzc2.md) conserva os
+valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
+token. Isso atualiza as lacunas históricas acima: há texto do bootloader
+recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
+físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.

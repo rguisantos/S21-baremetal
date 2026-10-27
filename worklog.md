@@ -2593,3 +2593,14 @@ inclusive lista vazia. Erro tardio deixa escritas locais, mas o caller desvia
 antes da publicação global. Parser136eb0/helper138740 e token ativo continuam
 opacos. Evidência: [análise](docs/lk-token-modes-hzc2.md) e
 [validação](docs/references/lk-token-modes-validation-20261027.json).
+
+## 2026-10-27 — observação do boot stock via ADB/dumpstate
+
+Base436b539; usuário encerrou a alternativa Odin e pediu continuidade com
+as coletas recebidas. ZIP privado permaneceu fora do Git. Extrator por lista
+de permissão preserva linhas/hashes e seis campos SEC_DRAM/SEC_PGTBL/Harx.
+A adjacência SEC_DRAM→Harx produz chamada de tamanho zero no cenário do
+construtor, sem prova de FDT final. Token: mensagem316 corresponde ao ramo
+de prefixo diferente de ENG, não a prova de partição vazia/bitmap zero.
+[Análise](docs/bugreport-boot-hzc2.md) e
+[validação](docs/references/bugreport-boot-validation-20261027.json).

@@ -325,3 +325,10 @@ Tracing do kernel exigiria um canal de observação que não existe na sessão
 rish atual. As recusas já recebidas continuam válidas; não se repetiram
 coletas, não se pediu root e não se provocaram falhas no telefone. As
 respostas efetivas soc_info/SEC_PGTBL e o estado final de boot seguem abertos.
+
+## Atualização de 2026-10-27 — valores impressos pelo LK
+
+O [bugreport HZC2](bugreport-boot-hzc2.md) registra SEC_PGTBL_BASE=0xe0000000
+e SIZE=0x1300000. São os campos formatados após o tratamento local, não
+uma captura de todos os bits dos retornos SMC. Isso preenche a lacuna de
+valores de log nesta execução; o provedor DRM e o FDT final seguem abertos.

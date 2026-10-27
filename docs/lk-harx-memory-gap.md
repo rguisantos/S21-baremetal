@@ -132,3 +132,10 @@ O próximo ponto continua sendo os valores/ramos soc_info e SEC_PGTBL que
 determinam o restante dos bancos. O material recebido basta para seguir a
 análise estática; não há novo arquivo necessário ou autorização de boot físico
 derivada deste marco.
+
+## Atualização de 2026-10-27 — confirmação textual e adjacência
+
+O [bugreport HZC2](bugreport-boot-hzc2.md) imprime base/tamanho Harx iguais
+às constantes acima. SEC_DRAM=0xb8a00000/0x7600000 termina na base Harx;
+com esses campos, o cenário do construtor pede tamanho zero em 0xfaf50.
+Isso não estabelece o resultado da chamada ao editor nem o FDT final.

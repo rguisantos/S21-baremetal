@@ -1,0 +1,11 @@
+{
+  "total_ram_bytes": "0x300000000",
+  "soc_version_x0": "0x66001000",
+  "soc_base_x0": "0xb8a00000",
+  "soc_reserved_size_x0": "0x7600000",
+  "pgtbl_base_x0": "0xe0000000",
+  "pgtbl_size_x0": "0x1300000",
+  "harx_status_w0": "0x0",
+  "harx_base": "0xc0000000",
+  "harx_size": "0x1400000"
+}

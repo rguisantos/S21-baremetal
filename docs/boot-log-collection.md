@@ -103,3 +103,11 @@ Uma análise posterior identificou o atributo sysfs **exynos_el2_log**, ligado
 a outro driver e cruzado com a Image/DTB stock. A [nova tentativa delimitada](harx-log-observation.md)
 não repete estes nós proc e não presume acesso pelo shell. A leitura desse
 outro serviço pode avançar um cursor, diferença documentada no novo coletor.
+
+## Atualização de 2026-10-27 — observação por dumpstate
+
+A [nova análise do bugreport HZC2](bugreport-boot-hzc2.md) conserva os
+valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
+token. Isso atualiza as lacunas históricas acima: há texto do bootloader
+recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
+físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.
