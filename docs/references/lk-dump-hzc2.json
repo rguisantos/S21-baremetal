@@ -1,0 +1,955 @@
+{
+  "mode": "static_LK_RDX_selected_paths",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "firmware_executed": false,
+  "hardware_observed": false,
+  "device_client_implemented": false,
+  "file_ranges": [
+    [
+      "0x11b6c0",
+      "0x11b6f0"
+    ],
+    [
+      "0x12df28",
+      "0x12dfe4"
+    ],
+    [
+      "0x148020",
+      "0x14802c"
+    ],
+    [
+      "0x148030",
+      "0x148040"
+    ],
+    [
+      "0x147ed8",
+      "0x147ee4"
+    ],
+    [
+      "0x147ee8",
+      "0x147f5c"
+    ],
+    [
+      "0x159528",
+      "0x159588"
+    ],
+    [
+      "0x15e0e8",
+      "0x15e16c"
+    ],
+    [
+      "0x15e1b8",
+      "0x15e358"
+    ],
+    [
+      "0x15e6cc",
+      "0x15e6d8"
+    ],
+    [
+      "0x15e6fc",
+      "0x15e760"
+    ],
+    [
+      "0x15e7d0",
+      "0x15e8d4"
+    ],
+    [
+      "0x116e88",
+      "0x116e9c"
+    ],
+    [
+      "0x17b8d0",
+      "0x17b8e8"
+    ],
+    [
+      "0x116f70",
+      "0x116f88"
+    ],
+    [
+      "0x117260",
+      "0x117274"
+    ],
+    [
+      "0x11786c",
+      "0x1178f0"
+    ],
+    [
+      "0x117a7c",
+      "0x117ae4"
+    ],
+    [
+      "0x112338",
+      "0x112414"
+    ]
+  ],
+  "gnu_version": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "gnu_words": 488,
+  "gnu_relative_targets": 103,
+  "gnu_selected_operands": 61,
+  "instruction_index_sha256": "55e0e9d1de584afc9462eaddbd42e8ed53ae853a6e936ea73fcdb377c91db8e7",
+  "branches": {
+    "0x11b6c8": {
+      "kind": "conditional",
+      "target": "0x11b6ec"
+    },
+    "0x12df48": {
+      "kind": "bl",
+      "target": "0x148020"
+    },
+    "0x12df54": {
+      "kind": "bl",
+      "target": "0x1b24d8"
+    },
+    "0x12df8c": {
+      "kind": "conditional",
+      "target": "0x12dfa0"
+    },
+    "0x12df98": {
+      "kind": "bl",
+      "target": "0x1b2688"
+    },
+    "0x12dfe0": {
+      "kind": "b",
+      "target": "0x1b1658"
+    },
+    "0x147ef4": {
+      "kind": "conditional",
+      "target": "0x147f38"
+    },
+    "0x147ef8": {
+      "kind": "conditional",
+      "target": "0x147f18"
+    },
+    "0x147f28": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x147f50": {
+      "kind": "conditional",
+      "target": "0x147f78"
+    },
+    "0x147f58": {
+      "kind": "conditional",
+      "target": "0x147f10"
+    },
+    "0x159548": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x159550": {
+      "kind": "bl",
+      "target": "0x149a90"
+    },
+    "0x159554": {
+      "kind": "conditional",
+      "target": "0x159570"
+    },
+    "0x159560": {
+      "kind": "bl",
+      "target": "0x147ee8"
+    },
+    "0x159568": {
+      "kind": "b",
+      "target": "0x15e210"
+    },
+    "0x159578": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e100": {
+      "kind": "bl",
+      "target": "0x148030"
+    },
+    "0x15e108": {
+      "kind": "bl",
+      "target": "0x11b6c0"
+    },
+    "0x15e114": {
+      "kind": "conditional",
+      "target": "0x15e154"
+    },
+    "0x15e148": {
+      "kind": "bl",
+      "target": "0x12df68"
+    },
+    "0x15e150": {
+      "kind": "conditional",
+      "target": "0x15e128"
+    },
+    "0x15e1d4": {
+      "kind": "conditional",
+      "target": "0x15e1f0"
+    },
+    "0x15e1dc": {
+      "kind": "bl",
+      "target": "0x12dbc8"
+    },
+    "0x15e200": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e230": {
+      "kind": "bl",
+      "target": "0x147ee8"
+    },
+    "0x15e23c": {
+      "kind": "conditional",
+      "target": "0x15e244"
+    },
+    "0x15e24c": {
+      "kind": "conditional",
+      "target": "0x15e254"
+    },
+    "0x15e260": {
+      "kind": "bl",
+      "target": "0x173250"
+    },
+    "0x15e26c": {
+      "kind": "bl",
+      "target": "0x173ce0"
+    },
+    "0x15e274": {
+      "kind": "bl",
+      "target": "0x12dbc8"
+    },
+    "0x15e27c": {
+      "kind": "bl",
+      "target": "0x12df28"
+    },
+    "0x15e294": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e2ac": {
+      "kind": "bl",
+      "target": "0x1b26b0"
+    },
+    "0x15e2b0": {
+      "kind": "conditional",
+      "target": "0x15e2d4"
+    },
+    "0x15e2d0": {
+      "kind": "bl",
+      "target": "0x12df68"
+    },
+    "0x15e2f4": {
+      "kind": "b",
+      "target": "0x15e30c"
+    },
+    "0x15e2fc": {
+      "kind": "conditional",
+      "target": "0x15e53c"
+    },
+    "0x15e308": {
+      "kind": "conditional",
+      "target": "0x15e314"
+    },
+    "0x15e310": {
+      "kind": "conditional",
+      "target": "0x15e2f8"
+    },
+    "0x15e318": {
+      "kind": "conditional",
+      "target": "0x15e324"
+    },
+    "0x15e320": {
+      "kind": "bl",
+      "target": "0x15e0e8"
+    },
+    "0x15e324": {
+      "kind": "bl",
+      "target": "0x16e208"
+    },
+    "0x15e32c": {
+      "kind": "bl",
+      "target": "0x181218"
+    },
+    "0x15e344": {
+      "kind": "bl",
+      "target": "0x12eb68"
+    },
+    "0x15e34c": {
+      "kind": "bl",
+      "target": "0x116e88"
+    },
+    "0x15e354": {
+      "kind": "bl",
+      "target": "0x111c58"
+    },
+    "0x15e6d4": {
+      "kind": "bl",
+      "target": "0x147ee8"
+    },
+    "0x15e710": {
+      "kind": "bl",
+      "target": "0x1af3c0"
+    },
+    "0x15e724": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e728": {
+      "kind": "bl",
+      "target": "0x12df28"
+    },
+    "0x15e748": {
+      "kind": "bl",
+      "target": "0x12df68"
+    },
+    "0x15e754": {
+      "kind": "conditional",
+      "target": "0x15e734"
+    },
+    "0x15e75c": {
+      "kind": "bl",
+      "target": "0x15e0e8"
+    },
+    "0x15e7e4": {
+      "kind": "bl",
+      "target": "0x12dbc8"
+    },
+    "0x15e7ec": {
+      "kind": "conditional",
+      "target": "0x15e888"
+    },
+    "0x15e810": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e81c": {
+      "kind": "bl",
+      "target": "0x15f918"
+    },
+    "0x15e830": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e838": {
+      "kind": "bl",
+      "target": "0x15f968"
+    },
+    "0x15e844": {
+      "kind": "conditional",
+      "target": "0x15e858"
+    },
+    "0x15e85c": {
+      "kind": "bl",
+      "target": "0x149a90"
+    },
+    "0x15e860": {
+      "kind": "conditional",
+      "target": "0x15e8b0"
+    },
+    "0x15e870": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e8a8": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e8ac": {
+      "kind": "b",
+      "target": "0x15e814"
+    },
+    "0x15e8bc": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x15e8cc": {
+      "kind": "bl",
+      "target": "0x146ba0"
+    },
+    "0x15e8d0": {
+      "kind": "b",
+      "target": "0x15e864"
+    },
+    "0x116e98": {
+      "kind": "b",
+      "target": "0x17b8d0"
+    },
+    "0x116f74": {
+      "kind": "bl",
+      "target": "0x147ed8"
+    },
+    "0x116f78": {
+      "kind": "conditional",
+      "target": "0x117260"
+    },
+    "0x116f84": {
+      "kind": "conditional",
+      "target": "0x1171e8"
+    },
+    "0x117260": {
+      "kind": "bl",
+      "target": "0x147ed8"
+    },
+    "0x117264": {
+      "kind": "conditional",
+      "target": "0x116f38"
+    },
+    "0x117880": {
+      "kind": "conditional",
+      "target": "0x117914"
+    },
+    "0x117894": {
+      "kind": "conditional",
+      "target": "0x1178f0"
+    },
+    "0x1178b4": {
+      "kind": "conditional",
+      "target": "0x1178c0"
+    },
+    "0x1178bc": {
+      "kind": "conditional",
+      "target": "0x117948"
+    },
+    "0x1178c4": {
+      "kind": "bl",
+      "target": "0x112400"
+    },
+    "0x1178cc": {
+      "kind": "conditional",
+      "target": "0x1178d8"
+    },
+    "0x1178d4": {
+      "kind": "conditional",
+      "target": "0x117904"
+    },
+    "0x1178ec": {
+      "kind": "b",
+      "target": "0x116f40"
+    },
+    "0x117a98": {
+      "kind": "bl",
+      "target": "0x1af3c0"
+    },
+    "0x117a9c": {
+      "kind": "bl",
+      "target": "0x112458"
+    },
+    "0x117aac": {
+      "kind": "conditional",
+      "target": "0x117ab4"
+    },
+    "0x117ab0": {
+      "kind": "bl",
+      "target": "0x112468"
+    },
+    "0x117abc": {
+      "kind": "bl",
+      "target": "0x112400"
+    },
+    "0x117acc": {
+      "kind": "bl",
+      "target": "0x1b2290"
+    },
+    "0x117ad0": {
+      "kind": "conditional",
+      "target": "0x117b14"
+    },
+    "0x117adc": {
+      "kind": "bl",
+      "target": "0x1b1658"
+    },
+    "0x117ae0": {
+      "kind": "b",
+      "target": "0x11780c"
+    },
+    "0x112358": {
+      "kind": "conditional",
+      "target": "0x1123b0"
+    },
+    "0x112370": {
+      "kind": "bl",
+      "target": "0x18c4c8"
+    },
+    "0x112384": {
+      "kind": "bl",
+      "target": "0x18c4c8"
+    },
+    "0x112390": {
+      "kind": "bl",
+      "target": "0x18c508"
+    },
+    "0x11239c": {
+      "kind": "conditional",
+      "target": "0x1123dc"
+    },
+    "0x1123c4": {
+      "kind": "bl",
+      "target": "0x18c4c8"
+    },
+    "0x1123cc": {
+      "kind": "bl",
+      "target": "0x18c508"
+    },
+    "0x1123d8": {
+      "kind": "conditional",
+      "target": "0x1123a0"
+    },
+    "0x1123e8": {
+      "kind": "bl",
+      "target": "0x119be8"
+    },
+    "0x1123fc": {
+      "kind": "b",
+      "target": "0x119d38"
+    },
+    "0x112410": {
+      "kind": "b",
+      "target": "0x112338"
+    }
+  },
+  "selected_operands": {
+    "0x12df58": {
+      "word": "91004260",
+      "op": "add",
+      "args": "x0, x19, #0x10"
+    },
+    "0x12df88": {
+      "word": "b9000280",
+      "op": "str",
+      "args": "w0, [x20]"
+    },
+    "0x12df90": {
+      "word": "d28001e2",
+      "op": "mov",
+      "args": "x2, #0xf"
+    },
+    "0x12df94": {
+      "word": "91001280",
+      "op": "add",
+      "args": "x0, x20, #0x4"
+    },
+    "0x12dfa0": {
+      "word": "d1000662",
+      "op": "sub",
+      "args": "x2, x19, #0x1"
+    },
+    "0x12dfa8": {
+      "word": "8b150042",
+      "op": "add",
+      "args": "x2, x2, x21"
+    },
+    "0x12dfac": {
+      "word": "9100a280",
+      "op": "add",
+      "args": "x0, x20, #0x28"
+    },
+    "0x12dfb0": {
+      "word": "a9018a95",
+      "op": "stp",
+      "args": "x21, x2, [x20, #24]"
+    },
+    "0x12dfdc": {
+      "word": "b90718a4",
+      "op": "str",
+      "args": "w4, [x5, #1816]"
+    },
+    "0x15e12c": {
+      "word": "aa1303e0",
+      "op": "mov",
+      "args": "x0, x19"
+    },
+    "0x15e134": {
+      "word": "11000ab5",
+      "op": "add",
+      "args": "w21, w21, #0x2"
+    },
+    "0x15e138": {
+      "word": "f8420682",
+      "op": "ldr",
+      "args": "x2, [x20], #32"
+    },
+    "0x15e13c": {
+      "word": "9100a273",
+      "op": "add",
+      "args": "x19, x19, #0x28"
+    },
+    "0x15e140": {
+      "word": "8b010063",
+      "op": "add",
+      "args": "x3, x3, x1"
+    },
+    "0x15e270": {
+      "word": "52800220",
+      "op": "mov",
+      "args": "w0, #0x11"
+    },
+    "0x15e214": {
+      "word": "52a00020",
+      "op": "mov",
+      "args": "w0, #0x10000"
+    },
+    "0x15e218": {
+      "word": "52800021",
+      "op": "mov",
+      "args": "w1, #0x1"
+    },
+    "0x15e230": {
+      "word": "97ffa72e",
+      "op": "bl",
+      "args": "0x147ee8"
+    },
+    "0x15e6d0": {
+      "word": "52a00020",
+      "op": "mov",
+      "args": "w0, #0x10000"
+    },
+    "0x15e6d4": {
+      "word": "97ffa605",
+      "op": "bl",
+      "args": "0x147ee8"
+    },
+    "0x147edc": {
+      "word": "b944ec00",
+      "op": "ldr",
+      "args": "w0, [x0, #1260]"
+    },
+    "0x147f48": {
+      "word": "2a000042",
+      "op": "orr",
+      "args": "w2, w2, w0"
+    },
+    "0x147f4c": {
+      "word": "b9034422",
+      "op": "str",
+      "args": "w2, [x1, #836]"
+    },
+    "0x15e314": {
+      "word": "7100171f",
+      "op": "cmp",
+      "args": "w24, #0x5"
+    },
+    "0x15e6fc": {
+      "word": "f0000721",
+      "op": "adrp",
+      "args": "x1, 0x245000"
+    },
+    "0x15e700": {
+      "word": "d2801402",
+      "op": "mov",
+      "args": "x2, #0xa0"
+    },
+    "0x15e704": {
+      "word": "910d0021",
+      "op": "add",
+      "args": "x1, x1, #0x340"
+    },
+    "0x15e730": {
+      "word": "91028015",
+      "op": "add",
+      "args": "x21, x0, #0xa0"
+    },
+    "0x15e734": {
+      "word": "a9410e62",
+      "op": "ldp",
+      "args": "x2, x3, [x19, #16]"
+    },
+    "0x15e740": {
+      "word": "9100a096",
+      "op": "add",
+      "args": "x22, x4, #0x28"
+    },
+    "0x15e748": {
+      "word": "97ff3e08",
+      "op": "bl",
+      "args": "0x12df68"
+    },
+    "0x15e75c": {
+      "word": "97fffe63",
+      "op": "bl",
+      "args": "0x15e0e8"
+    },
+    "0x159550": {
+      "word": "97ffc150",
+      "op": "bl",
+      "args": "0x149a90"
+    },
+    "0x159554": {
+      "word": "350000e0",
+      "op": "cbnz",
+      "args": "w0, 0x159570"
+    },
+    "0x159568": {
+      "word": "1400132a",
+      "op": "b",
+      "args": "0x15e210"
+    },
+    "0x15957c": {
+      "word": "52800000",
+      "op": "mov",
+      "args": "w0, #0x0"
+    },
+    "0x15e85c": {
+      "word": "97ffac8d",
+      "op": "bl",
+      "args": "0x149a90"
+    },
+    "0x15e860": {
+      "word": "35000280",
+      "op": "cbnz",
+      "args": "w0, 0x15e8b0"
+    },
+    "0x15e878": {
+      "word": "52800020",
+      "op": "mov",
+      "args": "w0, #0x1"
+    },
+    "0x15e8cc": {
+      "word": "97ffa0b5",
+      "op": "bl",
+      "args": "0x146ba0"
+    },
+    "0x15e8d0": {
+      "word": "17ffffe5",
+      "op": "b",
+      "args": "0x15e864"
+    },
+    "0x116e90": {
+      "word": "9133e021",
+      "op": "add",
+      "args": "x1, x1, #0xcf8"
+    },
+    "0x116e94": {
+      "word": "91340000",
+      "op": "add",
+      "args": "x0, x0, #0xd00"
+    },
+    "0x17b8d8": {
+      "word": "f900cc40",
+      "op": "str",
+      "args": "x0, [x2, #408]"
+    },
+    "0x17b8e0": {
+      "word": "f9000461",
+      "op": "str",
+      "args": "x1, [x3, #8]"
+    },
+    "0x116f74": {
+      "word": "9400c3d9",
+      "op": "bl",
+      "args": "0x147ed8"
+    },
+    "0x116f78": {
+      "word": "36881740",
+      "op": "tbz",
+      "args": "w0, #17, 0x117260"
+    },
+    "0x117260": {
+      "word": "9400c31e",
+      "op": "bl",
+      "args": "0x147ed8"
+    },
+    "0x117264": {
+      "word": "3687e6a0",
+      "op": "tbz",
+      "args": "w0, #16, 0x116f38"
+    },
+    "0x117878": {
+      "word": "f9445021",
+      "op": "ldr",
+      "args": "x1, [x1, #2208]"
+    },
+    "0x11789c": {
+      "word": "f94482c3",
+      "op": "ldr",
+      "args": "x3, [x22, #2304]"
+    },
+    "0x1178a0": {
+      "word": "cb000033",
+      "op": "sub",
+      "args": "x19, x1, x0"
+    },
+    "0x1178a4": {
+      "word": "d2a00102",
+      "op": "mov",
+      "args": "x2, #0x80000"
+    },
+    "0x1178b0": {
+      "word": "9a829273",
+      "op": "csel",
+      "args": "x19, x19, x2, ls"
+    },
+    "0x1178c0": {
+      "word": "2a1303e1",
+      "op": "mov",
+      "args": "w1, w19"
+    },
+    "0x1178c4": {
+      "word": "97ffeacf",
+      "op": "bl",
+      "args": "0x112400"
+    },
+    "0x112400": {
+      "word": "b0003ca2",
+      "op": "adrp",
+      "args": "x2, 0x8a7000"
+    },
+    "0x112410": {
+      "word": "17ffffca",
+      "op": "b",
+      "args": "0x112338"
+    },
+    "0x1123b4": {
+      "word": "2a0103e2",
+      "op": "mov",
+      "args": "w2, w1"
+    },
+    "0x1123bc": {
+      "word": "aa1503e1",
+      "op": "mov",
+      "args": "x1, x21"
+    },
+    "0x1123c4": {
+      "word": "9401e841",
+      "op": "bl",
+      "args": "0x18c4c8"
+    }
+  },
+  "strings": {
+    "0x22aa30": "usbd3_rdx_process",
+    "0x22ab90": "usb:rdx_probe_info is invalid!!\n",
+    "0x22abb8": "usb:rdx_probe_info is valid!!\n",
+    "0x2431d8": "FMM Lock is On, upload mode is not Allowed!...\n",
+    "0x2453e0": "is_upload_available",
+    "0x245430": "set_rdx_info",
+    "0x245440": "set_rdx_info_boot",
+    "0x2455e8": "%s: FMM Lock on, Upload Mode is not Allowed!...\n"
+  },
+  "fixed_bootloader_templates": [
+    {
+      "index": 0,
+      "file_offset": "0x245340",
+      "name": "log",
+      "base": "0xf0010000",
+      "bytes": 2097152,
+      "end_exclusive": "0xf0210000",
+      "initial_flag": 1,
+      "overlaps_candidate_probe_envelope": false
+    },
+    {
+      "index": 1,
+      "file_offset": "0x245368",
+      "name": "boot_ram",
+      "base": "0xe8000000",
+      "bytes": 2621440,
+      "end_exclusive": "0xe8280000",
+      "initial_flag": 1,
+      "overlaps_candidate_probe_envelope": false
+    },
+    {
+      "index": 2,
+      "file_offset": "0x245390",
+      "name": "auto_comment",
+      "base": "0x91100000",
+      "bytes": 4096,
+      "end_exclusive": "0x91101000",
+      "initial_flag": 1,
+      "overlaps_candidate_probe_envelope": false
+    },
+    {
+      "index": 3,
+      "file_offset": "0x2453b8",
+      "name": "summary.html",
+      "base": "0x91101000",
+      "bytes": 131072,
+      "end_exclusive": "0x91121000",
+      "initial_flag": 1,
+      "overlaps_candidate_probe_envelope": false
+    }
+  ],
+  "candidate_probe_comparison": {
+    "start": "0x80080000",
+    "end_exclusive": "0x80378000",
+    "basis": "64 previously reconstructed LK candidate entries, 0x80080000+0..0x1f8000, and probe ADR extent <1 MiB",
+    "observed_or_allocated": false
+  },
+  "log_template_includes_snapshot_header": false,
+  "nominal_lk_mapping": {
+    "delta": "0xe7f14000",
+    "file_start": "0xec000",
+    "file_end_exclusive": "0x36c000",
+    "mapped_start": "0xe8000000",
+    "mapped_end_exclusive": "0xe8280000"
+  },
+  "output_descriptor": {
+    "builder": "0x12df68",
+    "stride": 40,
+    "enabled_offset": 0,
+    "name_offset": 4,
+    "name_max_bytes": 15,
+    "start_offset": 24,
+    "inclusive_end_offset": 32,
+    "header_bytes": 16,
+    "end_arithmetic": "(start + size - 1) modulo 2^64; no zero/overflow guard in this body"
+  },
+  "dynamic_append": {
+    "helper": "0x15e0e8",
+    "source_getter": "0x148030",
+    "source_relative": "0xcd31d0",
+    "source_stride": 32,
+    "size_expression": "u64(entry[8] + entry[24])",
+    "count_helper": "0x11b6c0",
+    "count_basis": "cached u32, else AP0x02038848 >> 29 truncated to u32",
+    "counter_step": 2,
+    "generic_path_condition": "0x12dbc8(index=0x11) returned 5 at 0x15e314",
+    "bootloader_path_call": "0x15e75c",
+    "entries_or_preservation_observed": false
+  },
+  "callback_registration": {
+    "call_from_upload": "0x15e34c",
+    "helper": "0x116e88",
+    "store_helper": "0x17b8d0",
+    "transmit_callback": "0x116d00",
+    "receive_callback": "0x116cf8",
+    "runtime_binding_observed": false
+  },
+  "send_window": {
+    "start_pc": "0x11786c",
+    "end_pc_exclusive": "0x1178f0",
+    "start_relative": "0x8a78c8",
+    "inclusive_end_relative": "0x8a78a0",
+    "chunk_limit": 524288,
+    "call": "0x1178c4",
+    "target": "0x112400",
+    "tail_target": "0x112338",
+    "backend_call": "0x18c4c8",
+    "direct_memory_condition": "context pointer null or u32(context+4)==0; alternate branch calls 0x162cc8 with a buffer/context, associated with handle_storage_dump; helper not reconstructed",
+    "runtime_memory_read_available": "not_established"
+  },
+  "receive_dispatch": {
+    "helper": "0x147ed8",
+    "first_test": "bit17 at 0x116f78",
+    "fallback_test": "bit16 at 0x117264",
+    "flag_relative": "0xcd34ec",
+    "bit16_set_by_calls": [
+      "0x15e230",
+      "0x15e6d4"
+    ],
+    "setter": "0x147ee8",
+    "setter_arguments": {
+      "w0": "0x10000",
+      "w1": 1
+    },
+    "setting_index_0x11_is_a_separate_input": true,
+    "flag_values_and_full_gate_analysis": "not_established"
+  },
+  "policy": {
+    "shell_entry": "0x159528",
+    "helper": "0x149a90",
+    "argument": 1,
+    "nonzero_result": "0x159570 prints FMM denial; returns zero, no tail branch to upload",
+    "other_wrapper": "0x15e7d0 logs FMM denial, passes fmm_lock_upload to 0x146ba0 and joins a return-one tail; helper effects not reconstructed",
+    "fmm_state_observed": false,
+    "bootloader_lock_equivalence_established": false
+  },
+  "limits": [
+    "selected static paths and templates only; not complete protocol/authorization analysis",
+    "fixed-template non-overlap does not exclude appended runtime descriptions or other profiles",
+    "runtime relative addresses are not acquired physical memory values",
+    "no guarantee of retention, availability, writable ownership or progress on the phone",
+    "storage dump path present by names; implementation/readback not reconstructed here"
+  ]
+}

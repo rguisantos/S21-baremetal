@@ -100,6 +100,12 @@ recebida não responde isso. Não é necessário reenviar os pacotes nem repetir
 as leituras de FDT/iomem/cmdline que falharam. A próxima análise pode acompanhar
 as rotinas de dump que exportam a memória, sem presumir acesso pelo Android.
 
+Continuação de 2026-10-26: o [perfil RDX fixo](lk-dump-export-hzc2.md)
+inclui `log` em `[0xf0010000,0xf0210000)`, mas não seu cabeçalho. Esses
+2 MiB isolados não são o dump contíguo de 0x210000 bytes exigido pelo leitor.
+O envio nominal foi delimitado estaticamente; leitura efetiva, retenção e
+eventuais regiões adicionais continuam sem demonstração no aparelho.
+
 ## Proveniência das fontes adicionais
 
 | Arquivo no Kernel.tar.gz | SHA-256 |

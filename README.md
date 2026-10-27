@@ -10,6 +10,8 @@ O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os crité
 
 O [contrato do diagnóstico Samsung](docs/samsung-diagnostic-contract.md) reúne os bloqueios de carga e recuperação sob o último estado informado, sem root/bootloader travado. O leitor offline valida os 128 bytes e, opcionalmente, a Image inteira; passou com capturas QEMU EL1/EL2, sem provar origem, frescor ou execução no telefone.
 
+A [análise estática RDX](docs/lk-dump-export-hzc2.md) identificou quatro regiões fixas e um encaminhamento nominal de bytes. `boot_ram` corresponde à janela da imagem LK, sem cobrir a janela candidata do diagnóstico; a entrada `log` não inclui o cabeçalho debug-snapshot. Descritores acrescentados em execução, políticas e retenção continuam abertos, sem novo canal físico demonstrado.
+
 O [bugreport HZC2 do aparelho](docs/dram-observed-hzc2.md) trouxe a primeira evidência de log nesta investigação: **Samsung, D1Z, 12.000000GB e `0001000850500130`** no `LAST KMSG`. Esse valor difere da comparação `0001000860000110` do driver, mas ambos selecionam Samsung/D1Z pelos getters LK; o observado corresponde à linha 15 da NEWTIME. São 229 palavras GNU e seis casos dos helpers originais no QEMU. O extrato público omite cmdline e identificadores; a observação não é uma leitura direta da SRAM ou do FDT final.
 
 A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifesto de 17 arquivos já versionados, com hashes e matches de pacotes locais/asset oficial. O `AGENTS.md` agora exige revisão automática concluída para o head exato antes de cada merge, além da revisão própria.

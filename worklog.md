@@ -2432,3 +2432,39 @@ dos logs e hashes de fontes/capturas registrados em evidência JSON. Quatro
 remanescentes preexistentes de ferramentas preservados fora do Git antes
 da organização local. Revisão automática limpa do head exato e CI devem
 concluir antes do merge, conforme AGENTS.md.
+
+## 2026-10-26 — perfis de dump e envio RDX estático
+
+Base715a5e3. Verificado SHA exato do sboot e rastreados pontos ligados a
+upload/RDX. Tabela245340 contém quatro entradas de40bytes, copiada para
+pilha e convertida por12df68: log,boot_ram,auto_comment,summary.html.
+Nenhuma cobre o envelope conservador da janela candidata do diagnóstico.
+boot_ram corresponde à janela nominal da imagem LK e não à Image do kernel;
+log exporta2MiB sem o cabeçalho exigido pelo leitor debug-snapshot.
+
+Descritor de saída usa flag+0,nome+4,início+24,fim inclusivo+32,stride40.
+A conta do fim é modular e o corpo não rejeita tamanho zero/overflow;
+guardas do extrator são host. Caminhos acrescentam dados relativos0xcd31d0,
+stride32,tamanho=[+8]+[+24],contador em2 e limite de unidades512MiB. Valores
+de execução não foram obtidos nem preenchidos a partir dos12GB do log.
+
+Registro de callbacks116e88/17b8d0, bits17/16 e setterORR de bit16 foram
+delimitados. Recorte11786c encaminha blocos até0x80000 para112400/112338
+e backend18c4c8, com ramo alternativo de armazenamento. Não é prova de
+autorização de pedidos, bindings USB, retenção ou canal disponível no telefone.
+Gate do cmd_upload e wrapper FMM têm fluxos diferentes; não se equiparam
+FMM/AVB nem se atribui escrita de flag ao helper146ba0 não reconstruído.
+
+Novo extrator exige hash/objdump, sem depender de Capstone ou executar firmware;
+GNU488palavras/103alvos/61operandos. Quatorze testes novos cobrem layouts,
+limites, fim modular e identidade recusada. Relatório, README, índices,
+contrato, roadmap e auditoriaPR34 atualizados. Próximo: escritores da tabela
+relativa0xcd31d0 e preservação de bindings/bytes no percurso candidato.
+Nenhum MMIO/SMC/cliente de dispositivo, alteração de políticas, flash ou
+ampliação QEMU; o diagnóstico continua estacionando em WFE sem saída USB.
+
+Validação: 14 testes novos e 15 do decoder de fluxo passaram, relatório
+reproduzido byte a byte, duas recusas CLI com cópias truncada/alterada do
+sboot e original intacto. GNU488/103/61, Python, hashes e835 links conferidos.
+Nenhum código do R10 foi alterado; CI do novo head deve validar o baseline
+existente e a revisão automática deve concluir limpa antes de integrar.

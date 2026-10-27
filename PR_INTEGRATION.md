@@ -446,3 +446,20 @@ a mudança do primeiro head. Main sincronizada e limpa; CI pós-merge
 Validação: build novo, host43/60/17, diagnóstico12, loader1+5, sete controles
 do runner, CLI/timeouts,16 hashes de logs e800 links. Compatibilidade QEMU10
 e8 no laboratório, sem firmware Samsung ou telefone executado.
+
+## PR #34 — contrato Samsung e leitor do registro
+
+Head `4439e686ae18f7664b50180de26b75aa9b47f0d8`, revisão própria5660684329;
+14 blobs e árvore `32ec15fe04caee4a5a81c3980d058126fb865b1a` conferidos.
+CI40423540199 passou no head. Comentário automático6430238251 ficou
+completed sem achados/pendências nesse mesmo head, updated_at2026-10-26
+20:02:10 -04:00. Estado e zero threads foram conferidos antes do merge
+`715a5e3f0c3b882c981a87f6a5c90a3e91cfb658`, às20:03:17 -04:00,
+67segundos após esse updated_at. Esse campo não é um timestamp dedicado
+à conclusão. Metadados, zero threads e CI reconferidos nesta continuação.
+
+Main sincronizada e limpa; CI pós-merge40423876014 também passou no merge.
+Entrega: matriz de carga/aquisição e leitor offline,17 testes novos, seis
+registros QEMU/seis capturas sem marcador, roundtrip de seis snapshots e
+baseline completo de nove etapas. Sem firmware Samsung/telefone executado
+ou canal físico declarado resolvido.
