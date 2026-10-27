@@ -53,6 +53,11 @@ alinhado a 64 bytes; sua posição exata vem do ELF da mesma compilação.
 x0 é apenas um valor registrado: não é certificado como FDT válido.
 O marcador não é prova de persistência após reinício nem autenticação.
 
+O [contrato consolidado Samsung](samsung-diagnostic-contract.md) agora reúne
+percurso de carga, posse/coerência, recuperação e bloqueios do último estado
+informado. Inclui o leitor offline dos 128 bytes e capturas completas QEMU;
+consistência de bytes não comprova origem ou frescor do registro.
+
 ## Reprodução e evidência
 
 ```bash

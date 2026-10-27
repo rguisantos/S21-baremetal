@@ -426,3 +426,23 @@ materialização17, diagnóstico12 e loader1+5 com25 IRQs; 791 links.
 Baseline obrigatório/CI ficou como próxima implementação, não como código
 já existente. Prioridade física voltou ao percurso Samsung e à leitura do
 diagnóstico; NEWTIME ficou paralela, sem ampliar execução ou medir telefone.
+
+## PR #33 — baseline obrigatório e CI
+
+Head final `caeb7b3bf8dc76dd77b29508b7fb154bba863a91`, revisão própria
+5646937992; árvore `4dde6bcfa61ceb450c5c6ffea6d531d2c4a21089` e 16 blobs
+conferidos. A primeira tentativa CI40240373832 falhou na abertura GDB do
+diagnóstico e não foi integrada. Correção de NIC/ROM, captura de logs e
+limpeza de descendentes validada em novo head; CI40262553431 passou nele.
+
+Comentário automático6404281053 ficou completed sem achados/pendências no
+head final, updated_at2026-10-25 23:11:18 -04:00. Estado e zero threads
+foram conferidos antes do merge `b70c3a9d1aa3b7fe165f89397b76cdb469d60077`
+às23:12:32 -04:00,74segundos depois desse updated_at. Esse campo não é um
+timestamp dedicado de conclusão. CI e revisão voltaram a ser exigidos após
+a mudança do primeiro head. Main sincronizada e limpa; CI pós-merge
+40262929355 também passou em b70c3a9. Metadados reconferidos nesta continuação.
+
+Validação: build novo, host43/60/17, diagnóstico12, loader1+5, sete controles
+do runner, CLI/timeouts,16 hashes de logs e800 links. Compatibilidade QEMU10
+e8 no laboratório, sem firmware Samsung ou telefone executado.

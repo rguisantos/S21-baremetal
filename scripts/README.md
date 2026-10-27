@@ -1,5 +1,10 @@
 # Catálogo de scripts
 
+- `inspect_entry_record.py` e `test_entry_record.py`: inspeção offline de
+  128 bytes S21ENTRY, referência Image, endereços e snapshot opcional;
+  17 testes de host e integração aos seis registros/seis recusas do QEMU.
+  Origem e frescor não são autenticados. [Contrato e exemplo](../docs/samsung-diagnostic-contract.md).
+
 - `validate_baseline.py` e `test_baseline_runner.py`: build R10 em diretório
   novo, cobertura obrigatória host/QEMU, logs/resumo JSON e sete controles
   de falha do runner. [Uso e CI](../docs/baseline-validation.md).

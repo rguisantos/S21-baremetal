@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Observe the raw ARM64 Image in QEMU at EL1/EL2 and relocated addresses."""
 import argparse
+import json
 import os
 from pathlib import Path
 import signal
@@ -8,6 +9,7 @@ import struct
 import subprocess
 import tempfile
 from test_payload_loader import Remote, symbols, ROOT
+from inspect_entry_record import inspect_record, digest
 
 
 def register(remote, number, value=None, size=8):
@@ -20,8 +22,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--all-offsets", action="store_true",
                         help="test all 64 offsets in the decoded HZC2 range")
+    parser.add_argument('--output-dir', type=Path,
+                        help='new directory for reference Image, records and full QEMU captures')
     args = parser.parse_args()
     offsets = tuple(range(0, 0x200000, 0x8000)) if args.all_offsets else (0, 0x8000, 0x1f8000)
+    output = args.output_dir.resolve() if args.output_dir else None
+    if output:
+        try: output.mkdir(parents=True, exist_ok=False)
+        except OSError as error: parser.error(str(error))
+    captures = []
     with tempfile.TemporaryDirectory(prefix='entry-diag-') as directory:
         build = Path(directory)
         subprocess.run(['make', '-s', '-C', str(ROOT/'r8'), f'BUILD={build}',
@@ -34,6 +43,8 @@ def main():
         assert struct.unpack_from('<QQQ', image, 8) == (0x80000, len(image), 8)
         assert image[32:56] == bytes(24) and image[56:64] == b'ARM\x64\0\0\0\0'
         assert len(image) == sym['diag_end']-base
+        assert sym['diag_record']-base == len(image)-128
+        if output: (output/'entry_diag.Image').write_bytes(image)
         for el, virtualization in ((1, 'off'), (2, 'on')):
             for offset, state_bits in [(off, 0) for off in offsets] + [(0, 4), (0, 1), (0, 5)]:
                 with (build/'qemu.log').open('wb') as log:
@@ -82,6 +93,9 @@ def main():
                         assert register(remote, 32) == done
                         data = remote.read(record, 128)
                         if state_bits:
+                            try: inspect_record(data, image, address)
+                            except ValueError: pass
+                            else: raise AssertionError('uncommitted capture accepted as a record')
                             assert data == b'\xa5'*128, 'refusal changed record'
                             assert register(remote, 4) == el*4
                             assert register(remote, 5) == pstate & 0x3c0
@@ -97,6 +111,9 @@ def main():
                             for i, value in enumerate(args):
                                 assert register(remote, i) == value
                         else:
+                            snapshot = remote.read(address, len(image))
+                            decoded = inspect_record(data, image, address, snapshot)
+                            assert decoded['recorded_el'] == el
                             assert struct.unpack_from('<QII', data) == (0x5952544e45313253, 1, 128)
                             values = struct.unpack_from('<14Q', data, 16)
                             assert values[:4] == args
@@ -109,6 +126,15 @@ def main():
                         assert remote.read(address-16, 16) == guards
                         assert remote.read(address+len(image), 16) == guards
                         assert remote.read(address, record-address) == image[:record-address]
+                        if output:
+                            name = f'el{el}-offset{offset:x}-mc{state_bits}'
+                            (output/(name+'.record')).write_bytes(data)
+                            case = {'name': name, 'source': 'QEMU virt', 'load_address': hex(address),
+                                    'record_sha256': digest(data), 'accepted': not bool(state_bits)}
+                            if not state_bits:
+                                (output/(name+'.snapshot')).write_bytes(snapshot)
+                                case['snapshot_sha256'] = digest(snapshot)
+                            captures.append(case)
                         if state_bits:
                             print(f'ENTRY DIAG REFUSAL PASS: EL{el}, SCTLR M/C={state_bits:#x}, record/code/guards untouched')
                         else:
@@ -124,5 +150,11 @@ def main():
                         except subprocess.TimeoutExpired:
                             os.killpg(process.pid, signal.SIGKILL); process.wait()
         print(f'ENTRY DIAG: {2*len(offsets)} accepted entries + 6 M/C refusals PASS; one CPU, no Samsung hardware claim')
+        print(f'ENTRY RECORD INTEGRATION PASS: {2*len(offsets)} records + 6 uncommitted captures refused')
+        if output:
+            (output/'captures.json').write_text(json.dumps({
+                'source': 'QEMU virt', 'status': 'passed', 'image_sha256': digest(image),
+                'record_offset': len(image)-128, 'image_size': len(image), 'cases': captures,
+            }, indent=2)+'\n')
 
 if __name__ == '__main__': main()

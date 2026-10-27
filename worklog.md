@@ -2395,3 +2395,40 @@ agora inclui20KB de stderr de um descendente. Também reproduzida a ausência
 de task/*/children e a diferença entre PIDs locais e /proc neste ambiente:
 limpeza passa a seguir PPid/NSpid e o controle verifica morte por pidfd,
 em vez de interpretar arquivo /proc ausente como processo encerrado.
+
+## 2026-10-26 — contrato de carga/recuperação e leitor do registro
+
+Base b70c3a9 apósPR33. Conferidos os contratos existentes de Image, cópia/salto
+LK, coerência, logs/console, acesso shell e referência de kernel. READMEs
+anexos relidos; são instruções de build, sem transporte de carga/recuperação.
+Consolidada matriz do MarcoA: último relato sem root/travado, aceitação de
+imagem própria, posse/coerência e aquisição continuam sem percurso completo
+demonstrado. Logs stock/bugreport não equivalem à recuperação da Image própria;
+debug-snapshot não é RAM livre. Nenhum novo acesso ao aparelho foi feito.
+
+Adicionado inspect_entry_record.py:128bytes exatos, referência Image v1,
+base esperada e snapshot completo opcional. Valida header/layout, marcador,
+versão/tamanho, EL/M/C, DAIF/SPSel, reservas e endereços. Com snapshot, compara
+todo o código/header e registro. Origem, frescor e autenticação continuam
+explicitamente não verificados; marcador ausente não identifica uma recusa.
+O leitor não dereferencia x0, não procura RAM e não escreve dados do aparelho.
+
+Dezessete testes de host passaram. Harness QEMU usa o leitor nas seis entradas
+aceitas e rejeita seis capturas sem marcador; conserva as verificações de
+registradores/código/guards. Nova opção --output-dir exporta referência,
+registros, snapshots e manifesto QEMU com hashes, recusando diretório existente.
+Offset do leitor conferido contra símbolos ELF; nenhuma mudança no assembly.
+Baseline/CI ganha nona etapa obrigatória e exige a integração do leitor.
+
+README, índices, diagnóstico, baseline e roadmap atualizados; auditoriaPR33
+registrada. Próximo: delimitar uma interface disponível de carga/aquisição,
+seus despachos, permissões e preservação, mantendo a investigação estática.
+Nenhuma liberação de MMIO/SMC, ampliação NEWTIME, flash ou mudança de bootloader.
+
+Validação final: nove etapas do baseline passaram, incluindo43/60/17,
+diagnóstico12, loader1+5 e leitor17. Roundtrip CLI de seis snapshots completos
+e seis recusas passou, incluindo não sobrescrita de diretório. Nove hashes
+dos logs e hashes de fontes/capturas registrados em evidência JSON. Quatro
+remanescentes preexistentes de ferramentas preservados fora do Git antes
+da organização local. Revisão automática limpa do head exato e CI devem
+concluir antes do merge, conforme AGENTS.md.
