@@ -1,5 +1,11 @@
 # Catálogo de scripts
 
+- `inspect_lk_rdx_memory_hzc2.py` e `test_lk_rdx_memory.py`: origem estática dos
+  bancos relativos `0xcd31d0`, pares exportados e binding nominal DWC3;
+  hash exato, GNU839/202/85 e 16 testes de host. Exemplos de quantidade são
+  fornecidos no host; não executam firmware ou demonstram retenção.
+  [Conclusão e reprodução](../docs/lk-rdx-memory-origin-hzc2.md).
+
 - `inspect_lk_dump_hzc2.py` e `test_lk_dump.py`: análise estática fixada por
   hash dos templates/descritores RDX, gates selecionados e encaminhamento
   nominal de bytes. GNU488/103alvos/61operandos, 14 testes de host;

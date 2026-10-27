@@ -12,6 +12,12 @@ fixo examinado não inclui sua janela candidata. Outros descritores são
 acrescentados a partir de estado de execução que ainda não foi adquirido.
 Não foi executado firmware Samsung, cliente USB, comando no telefone ou gravação.
 
+Continuação após o PR #35: a [origem da tabela foi encontrada](lk-rdx-memory-origin-hzc2.md)
+em `0xee370`. São bancos lógicos de 16 bytes, consumidos dois por iteração.
+O primeiro par conservado cobre a janela candidata; o binding nominal USB
+foi ligado ao DWC3. A cobertura nominal está resolvida, e a sonda atual
+continua sem retorno cooperativo ao LK ou aquisição física demonstrada.
+
 ## Quatro regiões fixas do caminho iniciado pelo bootloader
 
 A tabela em `0x245340` tem quatro entradas de 40 bytes: nome[16], início u64
@@ -127,10 +133,11 @@ Há ainda nomes de um caminho para armazenamento (`boot_ramdumps_to_bootdev`,
 `dumpsink_bootdev`), distinto do envio direto. Sua implementação/gravação e
 leitura posterior não foram reconstruídas aqui. Não foi chamado esse caminho.
 
-Próxima investigação: escritores/entradas da estrutura relativa `0xcd31d0`,
-bindings do dispatcher e preservação dos flags/descritores no percurso que
-possa ser demonstrado. O transporte e a retenção precisam ser comprovados
-juntos; não repetir leituras Shizuku já negadas ou alterar políticas do aparelho.
+A [continuação de origem e cobertura](lk-rdx-memory-origin-hzc2.md) fecha a
+aresta `0xee370 → 0xcd31d0 → 0x15e0e8`, com binding nominal DWC3 e uma
+conclusão específica para o laço WFE da sonda. O transporte físico e a
+retenção ainda precisam ser comprovados juntos; não repetir leituras Shizuku
+já negadas ou alterar políticas do aparelho.
 
 ## Reprodução e limites
 
