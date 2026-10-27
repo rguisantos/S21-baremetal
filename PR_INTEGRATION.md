@@ -529,3 +529,10 @@ PR39: head2b9a0e4386a5b33f22ccd7c92c41a08f9f97a279, revisão automática
 6434286224 completed sem achados/pendências, zero threads e CI40453651677
 success antes do merge42d2bb63e414c5af3701ffab9f15a3c0015a8be4.
 CI pós-merge40453852082 reconferido success nesta continuação.
+
+## PR #40 — produtor do bitmap
+
+Head `38e0fff61875c33b3608bc57e3f545073fd60f82`, revisão automática
+6441850315 completed sem achados/pendências, CI40503789254 success e zero
+threads antes do merge `4546b2457431d6813d9c250251db18ab58a19262`.
+CI pós-merge40504139264 conferido success nesta continuação.

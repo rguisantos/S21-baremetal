@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-27",
+  "firmware_executed": false,
+  "exact_reproduction": true,
+  "gnu_words": 335,
+  "gnu_relative_targets": 72,
+  "regressions": {
+    "return_graph": 14,
+    "flow_decoder": 15
+  },
+  "negative_controls": [
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "sha256": {
+    "docs/references/lk-token-modes-hzc2.json": "a39f42c14e2ce7fabd5837a68ce6f22ee56436f558151896e01a097ac42f5166",
+    "scripts/inspect_lk_token_modes.py": "097ae47aac894c9d6f9920f4e0628baac89eda99832fac1ddbab6f3f9842b166"
+  },
+  "baseline": {
+    "result": "PASS",
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17,
+    "samsung_firmware_executed": false
+  }
+}
