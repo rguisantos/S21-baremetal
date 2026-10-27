@@ -151,11 +151,14 @@ def main():
         ('06-payload-stage', [python, str(ROOT/'scripts/test_payload_stage.py')],
          (r'^PAYLOAD STAGE PASS: 17 cases; exact bytes, guards and no writes on rejection$',)),
         ('07-entry-diag', [python, str(ROOT/'scripts/test_entry_diag.py')],
-         (r'^ENTRY DIAG: 6 accepted entries \+ 6 M/C refusals PASS; one CPU, no Samsung hardware claim$',)),
+         (r'^ENTRY DIAG: 6 accepted entries \+ 6 M/C refusals PASS; one CPU, no Samsung hardware claim$',
+          r'^ENTRY RECORD INTEGRATION PASS: 6 records \+ 6 uncommitted captures refused$')),
         ('08-payload-loader', [python, str(ROOT/'scripts/test_payload_loader.py')],
          (r'^EL2 MATERIALIZE PASS: exact PT_LOADs, BSS, stacks, FDT and guards$',
           r'^R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, [1-9][0-9]* timer IRQs$',
           r'^PAYLOAD LOADER QEMU PASS: 1 production handoff \+ 5 refusal cases, one CPU$')),
+        ('09-entry-record', [python, str(ROOT/'scripts/test_entry_record.py')],
+         (r'^ENTRY RECORD HOST PASS: 17 tests$',)),
     ]
     report = {'schema_version': 1, 'status': 'failed',
               'started_at': datetime.now(timezone.utc).isoformat(),
@@ -181,7 +184,7 @@ def main():
             print(f'PASS {name}', flush=True)
         report['elf'] = {'path': str(elf), 'sha256': sha256(elf), 'bytes': elf.stat().st_size}
         report['status'] = 'passed'
-        print('BASELINE PASS: fresh R10 ELF, host 43/60/17, diagnostic 12, loader 1+5', flush=True)
+        print('BASELINE PASS: fresh R10 ELF, host 43/60/17, diagnostic 12, loader 1+5, entry-record 17', flush=True)
         return 0
     finally:
         report['finished_at'] = datetime.now(timezone.utc).isoformat()

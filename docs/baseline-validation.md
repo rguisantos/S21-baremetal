@@ -50,11 +50,17 @@ montado no namespace ancestral e não exige `task/*/children`.
 | Materialização | 17 casos; bytes, guards e recusas antes de escrever |
 | Diagnóstico | Seis entradas EL1/EL2 e seis recusas M/C |
 | Loader QEMU | Materialização exata, main de produção em EL1 com IRQs de timer, um handoff e cinco recusas |
+| Registro de entrada | 17 testes de host; seis registros QEMU e seis capturas sem marcador verificadas pelo leitor offline |
 
 As contagens e assinaturas são gates explícitos. Ao alterar a cobertura,
 atualize os marcadores do runner junto com os testes. Não há opção de pular
 uma etapa obrigatória. R8/R9, XNU e análises de firmware têm suítes próprias;
 este baseline selecionado não as substitui.
+
+Após a [consolidação do contrato Samsung](samsung-diagnostic-contract.md),
+o baseline tem nove etapas: o leitor offline também é obrigatório e o teste
+QEMU exige sua integração. Isso não adiciona instruções à Image ou um canal
+de aquisição no telefone.
 
 `test_payload.py` agora exige um ELF e falha com exit 2 se ele faltar, inclusive
 quando executado isoladamente. Para usar um ELF já compilado:

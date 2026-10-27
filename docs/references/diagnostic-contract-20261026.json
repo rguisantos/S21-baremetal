@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-10-26",
+  "timezone": "America/Campo_Grande",
+  "base_commit": "b70c3a9d1aa3b7fe165f89397b76cdb469d60077",
+  "scope": "Requirements consolidation plus offline reader and QEMU captures; no phone or Samsung firmware execution",
+  "physical_path_demonstrated": false,
+  "phone_state_basis": "Latest user report; no new measurement",
+  "phone_capture_acquired": false,
+  "record_origin_and_freshness": "Not authenticated by the v1 record or offline reader",
+  "baseline_command": "python3 scripts/validate_baseline.py --output-dir build/diagnostic-contract-final",
+  "baseline_status": "passed",
+  "started_at": "2026-10-26T23:57:03.369311+00:00",
+  "finished_at": "2026-10-26T23:57:12.106939+00:00",
+  "baseline_steps": [
+    {
+      "name": "01-runner-contract",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 1.361,
+      "log": "01-runner-contract.log",
+      "log_sha256": "f132a71720cf335d1e31d634eb88f1c45a0bc108b6197372df418477a3ab7671",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_baseline_runner.py"
+      ],
+      "pass_lines": [
+        "BASELINE RUNNER PASS"
+      ]
+    },
+    {
+      "name": "02-tool-versions",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.058,
+      "log": "02-tool-versions.log",
+      "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4",
+      "command": [
+        "make",
+        "-s",
+        "-C",
+        "./r8",
+        "tool_versions"
+      ],
+      "pass_lines": []
+    },
+    {
+      "name": "03-build-r10",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 1.187,
+      "log": "03-build-r10.log",
+      "log_sha256": "77194519601f99c268ca6caafd52caa0c9fd04d227ec07e03cfe2efbb46b5261",
+      "command": [
+        "make",
+        "-C",
+        "./r8",
+        "BUILD=./build/diagnostic-contract-final/r10",
+        "./build/diagnostic-contract-final/r10/r10_payload.elf"
+      ],
+      "pass_lines": []
+    },
+    {
+      "name": "04-fdt",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.784,
+      "log": "04-fdt.log",
+      "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_fdt.py"
+      ],
+      "pass_lines": [
+        "FDT MODEL PASS: 43 cases with ASan/UBSan"
+      ]
+    },
+    {
+      "name": "05-payload",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.987,
+      "log": "05-payload.log",
+      "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_payload.py",
+        "--elf",
+        "./build/diagnostic-contract-final/r10/r10_payload.elf"
+      ],
+      "pass_lines": [
+        "R10 ELF extent PASS: BSS and all stacks included",
+        "PAYLOAD PASS: 60 cases; C consumer with ASan/UBSan"
+      ]
+    },
+    {
+      "name": "06-payload-stage",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.934,
+      "log": "06-payload-stage.log",
+      "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_payload_stage.py"
+      ],
+      "pass_lines": [
+        "PAYLOAD STAGE PASS: 17 cases; exact bytes, guards and no writes on rejection"
+      ]
+    },
+    {
+      "name": "07-entry-diag",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.715,
+      "log": "07-entry-diag.log",
+      "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_entry_diag.py"
+      ],
+      "pass_lines": [
+        "ENTRY DIAG PASS: EL1, relocation +0x0, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL1, relocation +0x8000, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL1, relocation +0x1f8000, arguments/state/guards intact",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x4, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x1, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL1, SCTLR M/C=0x5, record/code/guards untouched",
+        "ENTRY DIAG PASS: EL2, relocation +0x0, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL2, relocation +0x8000, arguments/state/guards intact",
+        "ENTRY DIAG PASS: EL2, relocation +0x1f8000, arguments/state/guards intact",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x4, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x1, record/code/guards untouched",
+        "ENTRY DIAG REFUSAL PASS: EL2, SCTLR M/C=0x5, record/code/guards untouched",
+        "ENTRY DIAG: 6 accepted entries + 6 M/C refusals PASS; one CPU, no Samsung hardware claim",
+        "ENTRY RECORD INTEGRATION PASS: 6 records + 6 uncommitted captures refused"
+      ]
+    },
+    {
+      "name": "08-payload-loader",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 2.587,
+      "log": "08-payload-loader.log",
+      "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_payload_loader.py"
+      ],
+      "pass_lines": [
+        "EL2 MATERIALIZE PASS: exact PT_LOADs, BSS, stacks, FDT and guards",
+        "R10 CONTAINER HANDOFF PASS: production main at EL1, raw FDT, 24 timer IRQs",
+        "EL2 REJECT PASS: bad-magic, destination untouched",
+        "EL2 REJECT PASS: protected-destination, destination untouched",
+        "EL2 REJECT PASS: different-fdt, destination untouched",
+        "EL2 REJECT PASS: reserved-ram, destination untouched",
+        "EL1 ENTRY REJECT PASS: before BSS clear, destination untouched",
+        "PAYLOAD LOADER QEMU PASS: 1 production handoff + 5 refusal cases, one CPU"
+      ]
+    },
+    {
+      "name": "09-entry-record",
+      "status": "passed",
+      "returncode": 0,
+      "timed_out": false,
+      "missing_markers": [],
+      "seconds": 0.123,
+      "log": "09-entry-record.log",
+      "log_sha256": "2f6c845b963fbf624973688559fcda45146b3b9a9cc76d4cd72b993f74efe5cf",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "./scripts/test_entry_record.py"
+      ],
+      "pass_lines": [
+        "ENTRY RECORD HOST PASS: 17 tests"
+      ]
+    }
+  ],
+  "qemu_export": {
+    "source": "QEMU virt",
+    "status": "passed",
+    "image_sha256": "82648f10e4c25e604e6bcc0f811df73be2bf4eee090f8a6605dfed2324ac3df8",
+    "record_offset": 256,
+    "image_size": 384,
+    "cases": [
+      {
+        "name": "el1-offset0-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "ec7318a9c88f00060987498222e0c13036ccb74512443e850b62f53d10879247",
+        "accepted": true,
+        "snapshot_sha256": "28cded9a5cb474e42167c7af2105e58367f839a67a08804581ff69daf70d4aa8"
+      },
+      {
+        "name": "el1-offset8000-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40088000",
+        "record_sha256": "0c0b03c51fff6bbb2ce526900cb1dcd8978b50f0447b235b8c28355ebb5618bf",
+        "accepted": true,
+        "snapshot_sha256": "a000da6417fb6e7de306e43c5a73867f652ea0e0cccba8bc3e49b1acc05c784e"
+      },
+      {
+        "name": "el1-offset1f8000-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40278000",
+        "record_sha256": "894050c4aec1d575577600d46b967404a5223f177921dec86e8d834cebd1f4e6",
+        "accepted": true,
+        "snapshot_sha256": "af8441eb93fcae2728b230c57d0c0b61b954085399e0458e8d93dfaa5cc681d0"
+      },
+      {
+        "name": "el1-offset0-mc4",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      },
+      {
+        "name": "el1-offset0-mc1",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      },
+      {
+        "name": "el1-offset0-mc5",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      },
+      {
+        "name": "el2-offset0-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "b7f78b3e2dbdb9c39844ac651fd5c62fed54df70df38bee23f579b9fa62a0d10",
+        "accepted": true,
+        "snapshot_sha256": "a96ce96e97d28a613c375cccd8a62848d84c01a0eb8c5e16427d3771ac92d4ad"
+      },
+      {
+        "name": "el2-offset8000-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40088000",
+        "record_sha256": "79b7b8d920a12849b07f697d3571dabaac5a9187a8e018e97d9ae2d95eea66fb",
+        "accepted": true,
+        "snapshot_sha256": "ab66538ed78805c0a06731a6cfcdeffeaee81ffc8610fa17c6352c2688b0e46d"
+      },
+      {
+        "name": "el2-offset1f8000-mc0",
+        "source": "QEMU virt",
+        "load_address": "0x40278000",
+        "record_sha256": "0f36a0d82af7dca1979a5fcec6eeeb00fe2a1f4ba703d84ae8419ebb159ccd53",
+        "accepted": true,
+        "snapshot_sha256": "464406ea69b0c24fe9c5c3393e8557f9e3c78fc8d3e6082de894773e9b4db0ae"
+      },
+      {
+        "name": "el2-offset0-mc4",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      },
+      {
+        "name": "el2-offset0-mc1",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      },
+      {
+        "name": "el2-offset0-mc5",
+        "source": "QEMU virt",
+        "load_address": "0x40080000",
+        "record_sha256": "39557315215be0f6922cec45d29336c8f72198032cababdc5ec0672d45e894ad",
+        "accepted": false
+      }
+    ]
+  },
+  "cli_roundtrip": {
+    "complete_snapshots_accepted": 6,
+    "uncommitted_records_rejected": 6,
+    "existing_output_directory_rejected": true
+  },
+  "sources_sha256": {
+    "scripts/inspect_entry_record.py": "61689d80514db066c1cbcf48328fcba9b6d64349ace6a48c66833c4b08e29a2d",
+    "scripts/test_entry_record.py": "cbe0222a02ef39bfc6adad2b7fb04062872f100789d92dc03537bd45ae91bd7d",
+    "scripts/test_entry_diag.py": "23bda739bdfee9d2ce159d21814e2d51a6a0563e9ec48b49a7daa6cd58a15571",
+    "scripts/validate_baseline.py": "5ef29cfc860623e5f30160d9adf6dbd45bcf1d1cd6fa162ea4ccafccf6ac5c39",
+    "r8/entry_diag/start.S": "3d7659473b2fef39eac58b726ae9537925b9f8712e540f7bd681fd91e6dc39f3",
+    "r8/entry_diag/linker.ld": "5ce07c612d4ac3a8fcb35baa021d42b2076381f889f085c58bdf6c8dce6f4426",
+    "docs/samsung-diagnostic-contract.md": "06bdef0065e7b59f42b71358841d2b39df72fdf82da6f5c74dfb5a462b86e75a",
+    "docs/lk-kernel-copy.md": "c7b573a190dcbc9363043434ffcead555abd306988a4f0675071ec400ef6d20f",
+    "docs/lk-cache-handoff.md": "2d4ecf911c6ce68efd80f54ab872de2e159547ec885fa4e1e48de64c656cfccc",
+    "docs/lk-final-edges.md": "f76d289ad492f81ed648f325b9dfb2ae5b85a71c8bef2a27b0e5c8b9947ac0cf",
+    "docs/stock-firmware-hzc2.md": "7c371d934a748e9cec0d3229efff1be1de68d0319cb9a82ababad72256af0cba",
+    "docs/runtime-collection.md": "28a1fe6dbb6597e29a661d8989ecd8ff6ca441fe2e82eb870f8398a97d2a57c7",
+    "docs/lk-memory-log.md": "9797a1b71cd5cbce7f686310177e4cfac03541d6a14666408b36900f75edcd75",
+    "docs/harx-log-observation.md": "1f1211ac4ff531de6a304f6501f5a3ccdf88d20fc96693901c9d48d41f1492d1",
+    "docs/xfwdrev-kernel-reference.md": "c84c4eae63039783621b0eaee63321135c8cc78e120d9602794555a226dc00c2"
+  },
+  "external_references": [
+    {
+      "url": "https://source.android.com/docs/security/features/verifiedboot/device-state",
+      "role": "Generic Android LOCKED semantics, not a Samsung implementation proof",
+      "consulted_on": "2026-10-26"
+    },
+    {
+      "url": "https://source.android.com/docs/core/architecture/bootloader/locking_unlocking",
+      "role": "State transitions are not RAM retention transports; no commands adopted",
+      "consulted_on": "2026-10-26"
+    }
+  ]
+}
