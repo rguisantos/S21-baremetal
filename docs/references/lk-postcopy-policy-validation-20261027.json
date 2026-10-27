@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-27",
+  "firmware_executed": false,
+  "exact_reproduction": true,
+  "gnu_words": 201,
+  "gnu_relative_targets": 60,
+  "regressions": {
+    "return_graph": 14,
+    "flow_decoder": 15
+  },
+  "negative_controls": [
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "sha256": {
+    "docs/references/lk-postcopy-policy-hzc2.json": "f0d2ce156af36ac8d1ba463637ecc4e1be6a58886b534268f6e5700d2c0f7622"
+  }
+}

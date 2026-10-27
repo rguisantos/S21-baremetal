@@ -157,3 +157,5 @@ Sem uma interface disponível nas condições do aparelho, registrar o bloqueio
 e a condição específica que mudaria a decisão; mais uma busca de constantes
 ou leitura Shizuku já negada não o resolve. Nenhuma execução física é próxima
 etapa automática desta matriz.
+
+Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.

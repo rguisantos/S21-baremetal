@@ -2568,3 +2568,11 @@ fixados pelo hash do firmware. GNU 223 palavras/25 destinos;
 29 testes existentes do decoder/grafo passaram, reprodução exata e duas
 recusas de entrada corrompida. Sem firmware executado ou sonda alterada.
 A captura física segue pendente; esta entrega fecha a semântica local de panic.
+
+## 2026-10-27 — configuração LK após a cópia
+
+PR38 reproduzido byte a byte e 29 regressões passaram. Continuação identifica
+0x151b10 como dispatcher com ações CP/fingerprint e serviços SMC concretos;
+retorno normal zero não é prova de autenticação. Extrator fixado ao SHA,
+201 palavras/60 destinos GNU, oito grafos e nove strings. Sem execução
+Samsung ou alteração da sonda. Monitor e outros callees seguem fronteiras.
