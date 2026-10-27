@@ -155,6 +155,12 @@ preservação. Um reset só serve depois de medir a retenção e a ausência de
 sobrescrita. Não se troca o laço por `ret`: o estado de entrada e o contrato
 de retorno do LK não foram validados para isso.
 
+A [continuação estática do retorno](lk-payload-return-hzc2.md) foi seguida
+na etapa posterior: o link do handoff existe, mas os epílogos descartam o
+valor retornado, devolvem ao wrapper `sbl_boot` e chegam a `thread_exit()`.
+Isso não estabelece uma ponte automática para RDX ou um contrato físico de
+retorno. A conclusão sobre aquisição e preservação continua válida.
+
 ## Reprodução
 
 ```bash

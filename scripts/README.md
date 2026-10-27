@@ -1,5 +1,11 @@
 # Catálogo de scripts
 
+- `inspect_lk_payload_return.py` e `test_lk_payload_return.py`: resumos estáticos
+  do retorno nominal da Image, wrapper e saída da thread; hash exato,
+  GNU294/57/58 e 14 testes novos. Chamadas opacas mantêm apenas continuação
+  condicional, sem inventar valores de pilha ou executar firmware.
+  [Conclusão e reprodução](../docs/lk-payload-return-hzc2.md).
+
 - `inspect_lk_rdx_memory_hzc2.py` e `test_lk_rdx_memory.py`: origem estática dos
   bancos relativos `0xcd31d0`, pares exportados e binding nominal DWC3;
   hash exato, GNU839/202/85 e 16 testes de host. Exemplos de quantidade são

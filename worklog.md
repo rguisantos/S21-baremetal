@@ -2514,3 +2514,47 @@ e conferir threads antes do merge, conforme AGENTS.md.
 Conferidos também845 links relativos do projeto, Python, diff e hashes das
 fontes, relatório e dez logs de validação. Documentação de dependências
 instaladas em tools/root ficou fora da conferência de links do projeto.
+
+## 2026-10-26 — continuação de retorno da Image no LK
+
+Base3cc06d6 após PR36. Seguido o retorno hipotético normal do BLR X4
+em0xfbe14: epílogo0xfbe18 forçaW0=0, recupera X19/X20/X21/X29/X30 e
+SP, depois RET. Dois tails do entry inicial `sbl_boot` restauram o frame
+e fazem B para0xfbc10, conservando o link nominal do wrapper0xfaa54.
+O wrapper força zero novamente, recupera seu frame e retorna a0xfa5f4,
+que chama0x11aba8. A string de fallback identifica `thread_exit()`.
+
+Descritor inicial0x29b030,entryFAB48,wrapperFAA40,construtor11a1e0/11a068,
+campos thread+270/+278 e seedFA5D0 da pilha estão ligados estaticamente.
+Nenhum desses bindings iniciais é medição de thread/contexto do telefone.
+Os epílogos dependem de leituras da pilha e não restauram SCTLR/DAIF/TPIDR.
+O bootstrap limpa IRQ antes de chamar, não no retorno da Image. Contexto
+compatível e preservação não foram estabelecidos; BLR não fornece sozinho
+uma ABI de retorno físico para o protocolo de Image.
+
+Thread_exit guarda status em+280/estado5 em+2c e chama119f28. Se esse
+scheduler retornar normalmente, alcança panic18f8a8. Corpos locais de
+saída/panic não têm RET. Nenhuma transferência direta aos três pontos RDX
+selecionados aparece nesses blocos, sem excluir callees, callbacks mutáveis,
+outras threads, traps ou reset. O destino nominal é terminar a aplicação;
+RET isolado não constitui mecanismo de observação cooperativa. Sonda
+permanece em WFE, sem modificação ou execução adicional de firmware.
+
+Novo extrator exige o sboot exato, GNU294palavras/57alvos/58operandos e
+sete grafos locais com continuação de chamada explicitamente condicional.
+14 testes novos e15 do decoder passaram; relatórios novo, RDX e chamadas
+finais reproduzidos exatamente. Duas cópias truncada/alterada recusadas
+com exit2 e original intacto. Comandos e hashes em evidência JSON.
+README, índices, retorno, matriz Samsung e roadmap atualizados, com
+auditoria do PR36. Três remanescentes preexistentes de ferramentas foram
+preservados fora do Git com hashes antes da organização local.
+
+CI pós-merge36 encontrado cancelado na instalação, sem baseline executado;
+job reexecutado nesta continuação, separado do PASS do head antes do merge.
+Nenhum MMIO/SMC, cliente USB, comando no aparelho ou ampliação NEWTIME.
+Aguardar CI/revisão automática limpa do novo head e conferir threads antes
+do merge, conforme AGENTS.md.
+
+Conferidos859 links relativos e hashes das fontes, relatório e sete logs.
+A segunda tentativa do run40431618302 concluiu success no merge3cc06d6,
+job121992403220; auditoriaPR36 atualizada antes de publicar esta entrega.

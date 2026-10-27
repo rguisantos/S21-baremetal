@@ -480,3 +480,26 @@ Entrega: GNU488/103/61,14 testes novos,15 do decoder, reprodução exata,
 duas recusas CLI e835 links. Sem firmware/telefone executado ou canal
 físico declarado resolvido. A continuação identifica o produtor e a cobertura
 nominal dos descritores acrescentados, mantendo a retenção física separada.
+
+## PR #36 — origem da RAM RDX e conclusão da sonda
+
+Head `10fedb344d28d43b2baef76dc00fd6a211b1f06a`, revisão própria5661130032;
+13 blobs e árvore `1cf9bf0ad6cd733b1c9df6eda24d5a73a53104d4` conferidos.
+Check R10 baseline121949429505 passou no head. Comentário automático
+6431258494 ficou completed sem achados/pendências nesse head, updated_at
+2026-10-26 21:15:16 -04:00. Estado e zero threads foram conferidos antes
+do merge `3cc06d6dc945a47d12964aa77d4d9b92e42e38a2`, às21:16:40 -04:00,
+84segundos após aquele updated_at. Esse campo não é timestamp exclusivo
+de conclusão. Metadados e zero threads reconferidos nesta continuação.
+
+Main sincronizada e limpa ao concluir;45 testes, GNU839/202/85, dois
+relatórios reproduzidos, duas recusas CLI, Image384 e845 links conferidos.
+O run pós-merge40431618302 foi encontrado cancelado na instalação das
+ferramentas, com baseline skipped; não foi registrado como PASS. Job
+121950399793 reexecutado nesta continuação. Isso não altera o PASS do
+head do PR antes do merge nem constitui falha observada de um teste.
+A segunda tentativa do mesmo run concluiu success no merge3cc06d6,
+job121992403220, antes da publicação desta continuação. O cancelamento
+inicial continua registrado; a nova tentativa é a validação pós-merge aprovada.
+
+Sem execução Samsung/telefone ou retorno cooperativo introduzido na sonda.

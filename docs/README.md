@@ -22,6 +22,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Contrato do diagnóstico Samsung](samsung-diagnostic-contract.md): matriz de carga/recuperação, condições pendentes e leitor offline de registros/capturas QEMU.
 - [Perfis de dump e encaminhamento RDX](lk-dump-export-hzc2.md): quatro regiões fixas, descritores dinâmicos e envio nominal; disponibilidade e retenção ainda pendentes.
 - [Origem da memória RDX e conclusão para a sonda](lk-rdx-memory-origin-hzc2.md): produtor `0xee370`, bancos de 16 bytes agrupados em pares, cobertura nominal da janela candidata e binding DWC3; a sonda atual não retorna cooperativamente ao LK.
+- [Continuação de retorno da Image no LK](lk-payload-return-hzc2.md): epílogos, wrapper `sbl_boot` e saída da thread; retorno nominal descarta o valor da Image e não transfere diretamente ao RDX nos blocos selecionados.
 
 - [R10 em uma CPU](r10-single-cpu.md): entrada, exceções, GIC e timer.
 - [FDT e política de memória](fdt-resources.md).

@@ -137,3 +137,9 @@ carregamento Samsung e leitura do registro de 128 bytes. Não há novo arquivo
 solicitado nem razão para repetir as coletas Shizuku já bloqueadas.
 
 A [continuação sobre preparação do monitor e escritores da lista](monitor-preparation-hzc2.md) inclui saltos de cauda B: encontrou um segundo objeto, com inserção/remoção e corpo bloqueados por gate constante nesta imagem. Essa classificação não altera a contagem histórica acima nem prova completude da lista em execução.
+
+A [auditoria da continuação de retorno](lk-payload-return-hzc2.md) cobre a
+aresta que esta página exclui: epílogo `0xfbe18`, wrapper `sbl_boot` e
+`thread_exit()`. O valor da Image é descartado e não há transferência direta
+ao RDX nos blocos selecionados. É análise estática adicional, sem retornar
+uma Image no telefone ou alterar o recorte histórico acima.
