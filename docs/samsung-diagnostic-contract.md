@@ -72,7 +72,7 @@ comando de dump OEM ou alteração de partição foi feita ou fornecida.
 | [UART0/MUIC](uart-routing.md) | Roteamento/estado físico, clocks e acessibilidade ainda abertos. A Image atual não serializa o registro; habilitar uma UART sozinho não o transmite |
 | Android depois de outro boot | Precisa provar retenção/reserva, endereço, leitura permitida e ausência de sobrescrita; não se presume que reset conserve a Image |
 | HVC/log Harx | [Atributo negado](harx-log-observation.md); serviço de log não é leitura arbitrária do registro |
-| Debugger/leitor de RAM externo ou OEM | [RDX delimitado estaticamente](lk-dump-export-hzc2.md): perfil fixo não cobre a janela candidata; entradas dinâmicas, disponibilidade, permissões e preservação continuam sem demonstração física |
+| Debugger/leitor de RAM externo ou OEM | [Origem RDX encontrada](lk-rdx-memory-origin-hzc2.md): o primeiro par de bancos conservado cobre a janela candidata e há binding nominal DWC3; a sonda atual não retorna ao LK. Disponibilidade, permissões e preservação após reset continuam sem demonstração física |
 
 As coletas negadas não devem ser repetidas sem mudança concreta de acesso/canal.
 Não copiar o registro para área reservada alheia, habilitar MMIO/SMC ou executar
@@ -134,11 +134,15 @@ O próximo passo é delimitar **uma interface concreta de carga e aquisição**,
 com suas permissões e preservação, usando as imagens/fontes existentes.
 O [levantamento RDX](lk-dump-export-hzc2.md) já identificou um encaminhamento
 nominal e separou o perfil fixo das entradas de memória acrescentadas em
-execução. A próxima aresta concreta é a origem da tabela relativa `0xcd31d0`
-e a preservação de bindings/bytes no percurso selecionado.
-Se uma rotina de dump/exportação for candidata, seguir seu despacho, faixas
-e transporte estaticamente antes de atribuir leitura da Image a ela. Para a
-rota Android própria, fechar aceitação/transformações ainda abertas no LK.
+execução. A [continuação](lk-rdx-memory-origin-hzc2.md) encontrou o produtor
+`0xee370`, a cobertura nominal da janela candidata e o binding DWC3.
+A conclusão para a Image atual é manter a combinação com RDX bloqueada:
+ela estaciona em WFE sem devolver o controle ao LK. Para mudar a decisão,
+é necessário um percurso de carga compatível e aquisição independente
+enquanto parada, ou retomada com preservação especificada e validada.
+Reset exige medir retenção e ausência de sobrescrita; não é retorno
+presumido. Para a rota Android própria, fechar aceitação/transformações
+ainda abertas no LK.
 Sem uma interface disponível nas condições do aparelho, registrar o bloqueio
 e a condição específica que mudaria a decisão; mais uma busca de constantes
 ou leitura Shizuku já negada não o resolve. Nenhuma execução física é próxima

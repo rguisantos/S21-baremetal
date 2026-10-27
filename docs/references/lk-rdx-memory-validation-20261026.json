@@ -1,0 +1,191 @@
+{
+  "mode": "host_static_validation",
+  "firmware_executed": false,
+  "phone_executed": false,
+  "base_commit": "ce67fc59fde690d779951a2c2f31400c33afd43e",
+  "checks": [
+    {
+      "name": "new-tests",
+      "command": [
+        "python3",
+        "scripts/test_lk_rdx_memory.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "daea69cd5832037e3b5f5770e853e10802bbcf7b19db9e7af76be16bb75e5800"
+    },
+    {
+      "name": "dump-tests",
+      "command": [
+        "python3",
+        "scripts/test_lk_dump.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "277267c708c6397f6c24681e06a63b8904da50bf2beec684880e812e3bfe17f0"
+    },
+    {
+      "name": "flow-tests",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_lk_final_edges.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "417cb2c23fae926fabd8001f81ecce8953976db2eaeb45e02ce3c5514c2ea7e5"
+    },
+    {
+      "name": "extract",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_rdx_memory_hzc2.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "8799112687096f1ead118d0e02d62a02f5dffeb3615b501022f603b11757afdd"
+    },
+    {
+      "name": "reproduce",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_rdx_memory_hzc2.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "8799112687096f1ead118d0e02d62a02f5dffeb3615b501022f603b11757afdd"
+    },
+    {
+      "name": "previous-report",
+      "command": [
+        "python3",
+        "scripts/inspect_lk_dump_hzc2.py",
+        "../firmware/sboot.bin"
+      ],
+      "exit_code": 0,
+      "log_sha256": "c49c2ae8c1d85c9be4a55dd14df5061011a6cf54e16248ea9844a1a530623714"
+    },
+    {
+      "name": "compile",
+      "command": [
+        "python3",
+        "-m",
+        "py_compile",
+        "scripts/inspect_lk_rdx_memory_hzc2.py",
+        "scripts/test_lk_rdx_memory.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "probe-build",
+      "command": [
+        "make",
+        "-s",
+        "-C",
+        "r8",
+        "BUILD=build/rdx-memory-probe",
+        "build/rdx-memory-probe/entry_diag.elf",
+        "build/rdx-memory-probe/entry_diag.Image"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "probe-gnu",
+      "command": [
+        "bash",
+        "scripts/cross-run.sh",
+        "tools/root",
+        "tools/root/usr/bin/aarch64-linux-gnu-objdump",
+        "-d",
+        "r8/build/rdx-memory-probe/entry_diag.elf"
+      ],
+      "exit_code": 0,
+      "log_sha256": "6d4698ed55fe7367061be25262015b9ae2875b01435cf31576033794efb51b1f"
+    },
+    {
+      "name": "probe-symbols",
+      "command": [
+        "bash",
+        "scripts/cross-run.sh",
+        "tools/root",
+        "tools/root/usr/bin/aarch64-linux-gnu-nm",
+        "-n",
+        "r8/build/rdx-memory-probe/entry_diag.elf"
+      ],
+      "exit_code": 0,
+      "log_sha256": "aa0507a9ea1bd9e1a5035067ed8dbb6b933d443505c9532498da701f3f948525"
+    }
+  ],
+  "probe": {
+    "image_bytes": 384,
+    "image_sha256": "82648f10e4c25e604e6bcc0f811df73be2bf4eee090f8a6605dfed2324ac3df8",
+    "source_sha256": "3d7659473b2fef39eac58b726ae9537925b9f8712e540f7bd681fd91e6dc39f3",
+    "linker_sha256": "5ce07c612d4ac3a8fcb35baa021d42b2076381f889f085c58bdf6c8dce6f4426",
+    "record_offset": 256,
+    "record_bytes": 128,
+    "loops": [
+      {
+        "symbol": "diag_done",
+        "image_offset": "0xd0",
+        "words": [
+          "d503205f",
+          "17ffffff"
+        ],
+        "normal_successors_inside_pair": true
+      },
+      {
+        "symbol": "diag_refused",
+        "image_offset": "0xd8",
+        "words": [
+          "d503205f",
+          "17ffffff"
+        ],
+        "normal_successors_inside_pair": true
+      }
+    ],
+    "normal_call_return_indirect_or_exception_call_in_entry_text": false,
+    "external_reset_trap_or_intervention_excluded": false,
+    "daifset_15_word_at_offset_0x48": "d5034fdf"
+  },
+  "negative_firmware_controls": [
+    {
+      "input": "truncated",
+      "input_sha256": "b788f6d11ababad43067006330899e747574bfb645078b8ad7fd6b5b6b4ca781",
+      "exit_code": 2,
+      "json_emitted": false,
+      "log_sha256": "33417fda1459fa3db9cec8a044fa9a850a0f5b7801ab386413de59fce5e210b8"
+    },
+    {
+      "input": "changed_last_byte",
+      "input_sha256": "d710ef8cd10acdd57e1dd78546ff801199a0891bf8b89094626ba8c38aa415b5",
+      "exit_code": 2,
+      "json_emitted": false,
+      "log_sha256": "efdacceee5d2c7eaa7acbbfbd6009d25d353379f591106c6c95cea4a4d70951f"
+    }
+  ],
+  "original_firmware_sha256_after": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "source_sha256": {
+    "scripts/inspect_lk_rdx_memory_hzc2.py": "f2b6666769a903e5ec2c207f3dc48c9925aaa9cfcca595c0c5270c29e8bbc6d9",
+    "scripts/test_lk_rdx_memory.py": "15693f618223b5029c11fef0724a0a59650f2d0a95fc2328e5d70e4ee7b47a16"
+  },
+  "reference_report_sha256": "8799112687096f1ead118d0e02d62a02f5dffeb3615b501022f603b11757afdd",
+  "previous_report_reproduced_exactly": true,
+  "test_counts": {
+    "new": 16,
+    "existing_dump": 14,
+    "existing_flow": 15
+  },
+  "markdown_links": {
+    "relative_file_links_checked": 845,
+    "missing": [],
+    "anchors_checked": false,
+    "excluded": "tools/root/ installed third-party documentation"
+  }
+}

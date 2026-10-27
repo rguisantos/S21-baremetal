@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-26 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #34, 715a5e3](https://github.com/rguisantos/S21-baremetal/commit/715a5e3f0c3b882c981a87f6a5c90a3e91cfb658),
+[main após revisão/merge do PR #35, ce67fc5](https://github.com/rguisantos/S21-baremetal/commit/ce67fc59fde690d779951a2c2f31400c33afd43e),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -21,11 +21,13 @@ e o leitor offline dos 128 bytes estão implementados; o baseline exige também
 uma interface concreta de carga e aquisição, observando as restrições do
 último estado informado. NEWTIME permanece em paralelo.
 
-O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas,
-um construtor de descritores e encaminhamento nominal de bytes. Nenhuma
-dessas quatro regiões cobre a janela candidata do diagnóstico. Próxima
-investigação de aquisição: escritores da tabela relativa `0xcd31d0`, bindings
-e preservação dos descritores/bytes; não há canal físico disponível demonstrado.
+O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas
+e o encaminhamento de bytes. A [origem dinâmica foi encontrada](lk-rdx-memory-origin-hzc2.md):
+`0xee370` constrói bancos de 512 MiB; o primeiro par conservado cobre a
+janela candidata da sonda. O backend tem binding nominal DWC3. A sonda atual
+não retorna cooperativamente ao LK; a combinação com RDX exige uma rota
+compatível de carga e aquisição independente ou retomada com preservação.
+A busca de origem/cobertura nominal está encerrada, sem canal físico demonstrado.
 
 ## Estado por frente
 
@@ -103,7 +105,7 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
 | **P0 — reprodução implementada** | Runner constrói ELF novo e exige host/QEMU com logs, resumo e timeout; workflow versionado em PRs/main | Baseline local passou, incluindo 60 casos de contêiner e sete controles do runner; conferir o check `R10 baseline` e a revisão automática do head exato em cada PR |
-| **P1 — percurso e observação** | [Matriz/leitor](samsung-diagnostic-contract.md) entregues; [RDX estático](lk-dump-export-hzc2.md) separa perfil fixo, entradas dinâmicas e envio nominal. Seguir a tabela relativa `0xcd31d0`, bindings e retenção | Leitor validado no host/QEMU; perfil fixo não cobre o diagnóstico. Recuperação no telefone exige rota disponível, descritores e preservação observados, sem presumir root ou retenção após reset |
+| **P1 — percurso e observação** | [Origem RDX e cobertura nominal concluídas](lk-rdx-memory-origin-hzc2.md): produtor `0xee370`, primeiro par cobre a janela candidata e backend DWC3 ligado. Sonda atual sem retorno cooperativo; selecionar aquisição independente ou especificar retomada com preservação junto ao percurso de carga | Combinação sonda/RDX ainda bloqueada. Mudança de decisão exige percurso disponível e observação dos bytes enquanto preservados; reset não demonstra retenção |
 | **P1 — entrada e coerência** | Fechar a cópia e o salto final da rota escolhida, reserva da Image e estado EL/MMU/cache; seguir serviços/EPBL quando houver dependência demonstrada dessa rota | Contrato HZC2 correspondente ou observação verificável; hipóteses de outro SoC e logs stock não substituem estado do diagnóstico |
 | **P2 — memória dinâmica, em paralelo** | Construção NEWTIME e publicação condicional delimitadas. [Colunas 1/12](newtime-columns-hzc2.md) são chaves de subtabelas; quatro casos contínuos param antes do gate MMIO. Coluna 1 seguida estaticamente até cálculo 0/28 para AP0x0207365c; [coluna 12 seguida por 0x2cdb8](newtime-consumers-hzc2.md) até argumentos e escritas nominais; fluxo 108→162 bytes corrigido. Identificar semântica dos comandos, preservação/recargas e bindings; mapear ponteiros de vddcal antes de afirmar seu despacho. Palavra B/Samsung/D1Z observada só em log; slots reais, soc_info/SEC_PGTBL/Harx, efeitos transitivos da depuração e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
 | **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
@@ -287,7 +289,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A base desta continuação é a main após o PR #34 (`715a5e3`). O
+A base desta continuação é a main após o PR #35 (`ce67fc5`). O
 [worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
 conservam a sequência histórica. Esta página organiza prioridades e
 critérios atuais. Baseline/CI e matriz do diagnóstico estão implementados;

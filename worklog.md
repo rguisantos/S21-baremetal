@@ -2468,3 +2468,49 @@ reproduzido byte a byte, duas recusas CLI com cópias truncada/alterada do
 sboot e original intacto. GNU488/103/61, Python, hashes e835 links conferidos.
 Nenhum código do R10 foi alterado; CI do novo head deve validar o baseline
 existente e a revisão automática deve concluir limpa antes de integrar.
+
+## 2026-10-26 — origem RDX encontrada e conclusão para a sonda
+
+Base ce67fc5 após PR35. A busca estática encontrou `0xee370`: o getter
+147e88 retorna S=0xcd31a8, o store ee3d8 escreve o primeiro banco em S+0x28
+e o laço escreve pares início/tamanho de16bytes, em unidades de512MiB.
+No índice4, ee41c muda a base para0x880000000. O append15e0e8 consome dois
+bancos por iteração; a string de nome é `ap`. Dois primeiros bancos
+produzidos/conservados e append positivo dão o descritor
+[0x80000000,0xc0000000), que contém todo o envelope candidato da sonda.
+A origem/cobertura nominal está resolvida; não é mapa físico adquirido.
+
+Cache0xaa7ea8 pode ser publicado por11b6c0/11b6f0/11b758 e limitado por
+11b798; chamador147310 passa quatro bits. Os12GB do log não substituem a
+leitura deAP0x02038848 ou a contagem consumida. O exemplo24 do relatório
+é fornecido pelo host. Cauda ímpar lê tamanho adicional não inicializado
+pelo produtor; modelo mantém desconhecido. Somar tamanhos não valida
+contiguidade, wrap, RAM livre ou preservação de uma tabela alterada.
+
+Tabela305530 e entradas de init29b148/29b178 ligam nominalmente o backend
+ao DWC3: 113a60/18d1b0 publica operações,18d210 publica contexto,
+slot+0x38→114fe0/114eb8,slot+0x48→114c18/114b10. Seleção de fa7b0 por
+nível/flags e precedência dos bits17/16 delimitadas; sem execução ou
+garantia de bindings mutáveis, endpoints, autorização completa ou progressoUSB.
+
+Recompilada a fonte inalterada da sonda: Image384bytes,registro em256;
+GNU e palavras conferem laços fechados `wfe;b` em0xd0/0xd8. Não contém
+chamada/retorno/salto indireto no texto de entrada. Conclusão: a sonda
+atual não retoma cooperativamente o LK para produzir o dump. Cobertura
+existe no código; aquisição depende de percurso compatível e canal
+independente ou retomada com preservação validada. Reset exige observação
+de retenção, não está demonstrado. Nenhum `ret` foi acrescentado.
+
+Extrator fixado por hash confere GNU839palavras/202alvos/85operandos,
+slots e initrecords;16 testes novos+14 anteriores de dump+15 de fluxo
+passaram. Relatórios novo/anterior reproduzidos byte a byte, duas cópias
+truncada/alterada recusadas com exit2, original intacto. Prova dos laços,
+hashes e comandos em `lk-rdx-memory-validation-20261026.json`.
+README, índices, contrato, roadmap e auditoriaPR35 atualizados. Nenhum
+firmware Samsung, MMIO/SMC, cliente de dispositivo ou telefone executado;
+escopo NEWTIME preservado. Aguardar CI/revisão automática do head exato
+e conferir threads antes do merge, conforme AGENTS.md.
+
+Conferidos também845 links relativos do projeto, Python, diff e hashes das
+fontes, relatório e dez logs de validação. Documentação de dependências
+instaladas em tools/root ficou fora da conferência de links do projeto.

@@ -463,3 +463,20 @@ Entrega: matriz de carga/aquisição e leitor offline,17 testes novos, seis
 registros QEMU/seis capturas sem marcador, roundtrip de seis snapshots e
 baseline completo de nove etapas. Sem firmware Samsung/telefone executado
 ou canal físico declarado resolvido.
+
+## PR #35 — perfis fixos e encaminhamento RDX
+
+Head `5bc86ee561a51864d67dea56bff48306248892ee`, revisão própria5660987985;
+13 blobs e árvore `6f8a1223a7c89dd1ccec3e35930b202863b4d6df` conferidos.
+CI40428755511 passou no head. Comentário automático6430922652 ficou
+completed sem achados/pendências no mesmo head, updated_at2026-10-26
+20:50:21 -04:00. Estado e zero threads foram conferidos antes do merge
+`ce67fc59fde690d779951a2c2f31400c33afd43e`, às20:51:50 -04:00,
+89segundos após esse updated_at. Esse campo não é um timestamp dedicado
+à conclusão. Metadados e zero threads reconferidos nesta continuação.
+
+Main sincronizada e limpa; CI pós-merge40429068227 também passou no merge.
+Entrega: GNU488/103/61,14 testes novos,15 do decoder, reprodução exata,
+duas recusas CLI e835 links. Sem firmware/telefone executado ou canal
+físico declarado resolvido. A continuação identifica o produtor e a cobertura
+nominal dos descritores acrescentados, mantendo a retenção física separada.
