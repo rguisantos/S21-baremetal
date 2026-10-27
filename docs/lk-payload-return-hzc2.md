@@ -135,3 +135,6 @@ e mantêm chamadas opacas: a aresta PC+4 só vale se o callee retornar
 normalmente. Não avaliam registradores, dados da pilha, viabilidade, traps,
 serviços ou hardware. Catorze testes novos conferem essas fronteiras e as
 recusas da CLI; nenhuma emulação de firmware ou execução física foi feita.
+
+Continuação: [panic e recuperação de contexto](lk-panic-recovery-hzc2.md) resolve
+as três rotinas antes opacas, mantendo callbacks e estado de execução como fronteiras.

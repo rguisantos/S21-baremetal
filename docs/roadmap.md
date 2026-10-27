@@ -295,9 +295,13 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A base desta continuação é a main após o PR #36 (`3cc06d6`). O
+A base desta continuação é a main após o PR #37 (`0d80be2`). O
 [worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
 conservam a sequência histórica. Esta página organiza prioridades e
 critérios atuais. Baseline/CI e matriz do diagnóstico estão implementados;
 identificar uma interface Samsung disponível e comprovar aquisição/preservação
 dos bytes continuam como próxima investigação principal.
+
+O [ramo de panic](lk-panic-recovery-hzc2.md) foi resolvido estaticamente:
+parada ou ERET ao contexto salvo, sem entrada fixa RDX. Não usar RET/panic
+como plano de captura; definir produtor, contexto e preservação verificáveis.

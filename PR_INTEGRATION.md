@@ -503,3 +503,19 @@ job121992403220, antes da publicação desta continuação. O cancelamento
 inicial continua registrado; a nova tentativa é a validação pós-merge aprovada.
 
 Sem execução Samsung/telefone ou retorno cooperativo introduzido na sonda.
+
+## PR #37 — retorno nominal da Image
+
+Head `5bae6fe4d2e83b8165e9915e0e9394473042bcc5`, revisão própria5661977703;
+árvore `c2bfe0da7f509ee728f67f0d53a085d8a06fc7b7`. Comentário automático
+6433215200 completed sem achados/pendências no head exato, updated_at
+2026-10-26 23:46:07 -04:00. Conferido antes do merge
+`0d80be26d95d0d7b77390656be3afa866da26ec4`, às23:47:30 -04:00:83segundos
+após aquele campo, que não é timestamp exclusivo da conclusão. Estado e
+zero threads reconferidos nesta continuação. CI do head121996875751 e
+pós-merge40446128940 passaram. Main sincronizada e limpa ao concluir.
+
+Entrega:29 testes, GNU294/57/58, reprodução de três relatórios, duas
+recusas de firmware inválido e859 links. Sem patch de retorno ou execução
+do firmware. Esta continuação resolve as rotinas locais de panic, sem
+promover recuperação de contexto a captura física demonstrada.
