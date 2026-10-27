@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-27",
+  "timezone": "America/Campo_Grande",
+  "firmware_executed": false,
+  "tests": {
+    "return_graphs": 14,
+    "flow_decoder": 15
+  },
+  "exact_report_reproduction": true,
+  "negative_controls": [
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "gnu_words": 223,
+  "gnu_relative_targets": 25,
+  "instruction_index_sha256": "96930e844f1951cdf9c31f00bad49e5352fecf25ff3f1ae46f05f176fd0f4125",
+  "sha256": {
+    "scripts/inspect_lk_panic_recovery.py": "ad6320a9a61cd001f48bd4d5d32afdaf3d901e4a7dca8048d73f50b1ecba4624",
+    "docs/references/lk-panic-recovery-hzc2.json": "416b79e7fb77ecfe3d176b184e85e22dc9cd31879157dd07567d96c9fc576e75",
+    "build/lk-panic-validation-20261027/return-tests.log": "2415f288c081aa0f3943756da53ef3faaa0264f87a3601fc8b8a94a09a31d4d5",
+    "build/lk-panic-validation-20261027/flow-tests.log": "9fc652a196457d4ff9b3a9b3d2f85a4d04bbc6bc99761301c9be2b7d148a4d0e"
+  },
+  "relative_project_links": {
+    "count": 867,
+    "broken": 0,
+    "excluded": "tools/root third-party documentation",
+    "anchors_checked": false
+  }
+}

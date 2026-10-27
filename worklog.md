@@ -2558,3 +2558,13 @@ do merge, conforme AGENTS.md.
 Conferidos859 links relativos e hashes das fontes, relatório e sete logs.
 A segunda tentativa do run40431618302 concluiu success no merge3cc06d6,
 job121992403220; auditoriaPR36 atualizada antes de publicar esta entrega.
+
+## 2026-10-27 — panic e recuperação de contexto HZC2
+
+Base 0d80be2. Resolvidas as rotinas 205788 (contador), 17d880 (halt) e
+205818 (recuperação via contexto e ERET). Produtor 202800 guarda X30 como
+PC; não há destino fixo RDX nesse mecanismo. Relatório, JSON e analisador
+fixados pelo hash do firmware. GNU 223 palavras/25 destinos;
+29 testes existentes do decoder/grafo passaram, reprodução exata e duas
+recusas de entrada corrompida. Sem firmware executado ou sonda alterada.
+A captura física segue pendente; esta entrega fecha a semântica local de panic.
