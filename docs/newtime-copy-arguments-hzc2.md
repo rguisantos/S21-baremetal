@@ -150,3 +150,8 @@ slot 20 com o argumento X5. Transporte, escrita sobre a célula e uso do
 valor como ponteiro de função continuam perguntas diferentes. O leitor de
 AP0x0207365c, o significado físico das colunas e a origem do X0 do slot 47
 permanecem abertos.
+
+Continuação de 27/10: [origens dos canais e descritores](newtime-channel-origins-hzc2.md)
+liga o escritor `0x2d468` às quatro bases fixas e uma chamada nominal,
+delimita o diretório e dois perfis novos condicionais. Isso avança as
+origens selecionadas acima sem comprovar preservação ou transporte do slot 47.

@@ -270,3 +270,4 @@ O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de r
 
 - [Observação NEWTIME no gate](docs/newtime-gate-observation-scope-hzc2.md): snapshots no runner com preflight preservado; ponteiro e scratch ff inalterados, predição de scratch zero refutada, sem execução após o gate.
 - [Argumentos das cópias NEWTIME](docs/newtime-copy-arguments-hzc2.md): revisão estática das 47 referências e wrappers; índices dependem do chamador e ponteiros de canal/metadados seguem abertos, sem transporte comprovado do slot 47.
+- [Origem dos canais NEWTIME](docs/newtime-channel-origins-hzc2.md): inicializador das quatro bases, chamada nominal via slot 18 e diretório de cópia; exemplos condicionais de host, sem execução Samsung.
