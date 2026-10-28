@@ -115,3 +115,9 @@ A [continuação do slot 20](newtime-slot20-hzc2.md) resolve X5 em nove
 chamadas selecionadas e acrescenta buscas de endereços diretos da célula.
 Nenhum novo despacho do slot 47 foi estabelecido; os limites das formas
 de carga, pares adjacentes e região BL2 continuam explícitos.
+
+A [enumeração de dois switches](newtime-jump-tables-hzc2.md) acrescenta
+conjuntos finitos para os BRs `0x1ada4` e `0x2f928`: 20/5 entradas nos
+arrays `0x30108`/`0x30130`, com 12/4 destinos distintos. Os anchors de código
+`0x1ada8`/`0x2f92c` são distintos dos arrays. Nenhuma entrada aponta à
+rotina do slot 47; chamadas e continuações posteriores permanecem abertas.

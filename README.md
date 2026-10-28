@@ -21,7 +21,7 @@ A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifest
 
 A frente de memória tem [colunas NEWTIME](docs/newtime-columns-hzc2.md), [consumidores](docs/newtime-consumers-hzc2.md) e [recargas](docs/newtime-reloads-hzc2.md) delimitados por evidências estáticas e ensaios de laboratório. Um [binding nominal até SMC](docs/newtime-smc-binding-hzc2.md) foi identificado; aceitação pelo monitor, efeitos físicos e preservação permanecem abertos.
 
-A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de outra tabela. A [investigação de transportes](docs/newtime-transports-hzc2.md) afasta sete cópias fixas, inventaria 47 referências ao helper parametrizado e examina três origens. O despacho verdadeiro de `0x31580` e a origem de X0 continuam sem solução; o próximo foco são as cópias parametrizadas e seus wrappers.
+A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de outra tabela. A [investigação de transportes](docs/newtime-transports-hzc2.md) afasta sete cópias fixas e tem suas 47 referências ao helper revistas na [continuação de argumentos](docs/newtime-copy-arguments-hzc2.md). Os [dois switches relativos](docs/newtime-jump-tables-hzc2.md) acrescentam 25 entradas enumeradas; chamadas e continuações seguem como fronteiras. O despacho verdadeiro de `0x31580` e a origem de X0 continuam sem solução; bases recebidas, aliases e efeitos das chamadas ainda precisam de evidência.
 
 O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido e mantém os consumidores externos ao callback fora do escopo de execução.
 
@@ -272,3 +272,4 @@ O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de r
 - [Argumentos das cópias NEWTIME](docs/newtime-copy-arguments-hzc2.md): revisão estática das 47 referências e wrappers; índices dependem do chamador e ponteiros de canal/metadados seguem abertos, sem transporte comprovado do slot 47.
 - [Origem dos canais NEWTIME](docs/newtime-channel-origins-hzc2.md): inicializador das quatro bases, chamada nominal via slot 18 e diretório de cópia; exemplos condicionais de host, sem execução Samsung.
 - [Slot 20 NEWTIME e X5](docs/newtime-slot20-hzc2.md): nove chamadas com origens delimitadas para X5, construção e leitura do buffer de 64 bytes; slot 47 continua aberto.
+- [Dois switches NEWTIME e entradas relativas](docs/newtime-jump-tables-hzc2.md): 20/5 entradas, 12/4 destinos e fronteiras de chamadas; nenhum destino imediato é o slot 47.

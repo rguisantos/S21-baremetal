@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
-Atualizado em **2026-10-27 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #47, 912edb3](https://github.com/rguisantos/S21-baremetal/commit/912edb3b4219ead9cc609de68bdd345b5a0dca3c),
+Atualizado em **2026-10-28 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge do PR #48, e9bcc87](https://github.com/rguisantos/S21-baremetal/commit/e9bcc87a2b5cc643364b4381b81d3c652ad27052),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -30,6 +30,10 @@ preservação/metadados reais continuam abertos. A [continuação do slot 20](ne
 liga X5 a zero ou buffer local em nove chamadas selecionadas. O despacho e
 X0 do slot 47 continuam abertos, inclusive após buscas adicionais de
 encodings/endereço. O escopo QEMU continua igual.
+Os [dois switches relativos](newtime-jump-tables-hzc2.md) têm 25 entradas
+enumeradas, sem destino imediato no slot 47. O grafo local mantém a chamada
+`0x1a668`, a continuação comum `0x1aff0` e o callback nominal do slot 38
+como fronteiras; não é uma exclusão de chamador por toda a imagem.
 
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas
 e o encaminhamento de bytes. A [origem dinâmica foi encontrada](lk-rdx-memory-origin-hzc2.md):

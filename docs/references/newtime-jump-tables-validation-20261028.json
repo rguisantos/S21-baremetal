@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Campo_Grande",
+  "base_commit": "e9bcc87a2b5cc643364b4381b81d3c652ad27052",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_only_for_Samsung_firmware": true,
+  "own_extractor": {
+    "script_sha256": "f9ae759e9bbd1e6914c37997cce3df6ab2ee64ac26745a8c3aaf208ccba3b687",
+    "report_sha256": "8623b8ab06565e38ded0378cf526f926aeec8756dbaba774a4bb4faf2935951e",
+    "exact_reproduction": true,
+    "gnu": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 256,
+      "relative_targets": 26,
+      "selected_operands": 26
+    },
+    "entry_counts": [
+      20,
+      5
+    ],
+    "distinct_targets": [
+      12,
+      4
+    ],
+    "local_pcs": [
+      146,
+      91
+    ],
+    "invalid_inputs": [
+      {
+        "case": "short",
+        "exit_code": 2
+      },
+      {
+        "case": "long",
+        "exit_code": 2
+      },
+      {
+        "case": "changed",
+        "exit_code": 2
+      }
+    ]
+  },
+  "newtime_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 131,
+    "new": 23,
+    "failures": 0
+  },
+  "external_v5": {
+    "files": [
+      {
+        "logical_name": "inspect_slot47_caller_hzc2.py",
+        "sha256": "c51665fc7c1a15e8a7571cabe8cba34d96de45aa1253f1cb7e675d2c61fc1e38",
+        "bytes": 162590
+      },
+      {
+        "logical_name": "test_inspect_slot47_caller_hzc2.py",
+        "sha256": "069ebfc5c26e876fe03073e21ad287c0935c1e256d45a49387e53f7032126580",
+        "bytes": 95753
+      },
+      {
+        "logical_name": "slot47-caller-evidence.json",
+        "sha256": "74ad43790d56a019610b69e2eb1d1b68a5f6a48197be795c7159e6f3c9ea7f1b",
+        "bytes": 3798961
+      }
+    ],
+    "capstone": "5.0.9",
+    "tests": {
+      "passed": 137,
+      "failures": 0,
+      "skipped": 0
+    },
+    "report_reproduced_except": [
+      "file"
+    ],
+    "fixture_setup": "REAL points to the hash-checked firmware; RealShiftInstructionTests and RealFileIntegrationTests enabled; GNU uses the existing cross-run.sh loader",
+    "note": "reproduction and concrete regressions, not a proof of complete ISA/CFG semantics or observed hardware execution"
+  },
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-jumps-20261028",
+    "summary_sha256": "4bb823a3cc71c9762eb4c2b12edb3a79ab9b20373d4b2a36d0e704b446a14522",
+    "status": "passed",
+    "fresh_R10": true,
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17
+  },
+  "markdown_links": {
+    "checked": 1023,
+    "broken": 0,
+    "scope": "project Markdown, excluding packaged tools/download/build documentation"
+  }
+}
