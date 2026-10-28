@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Campo_Grande",
+  "base_local_commit": "131a1157cd485b1fe37455af30a3de85d99ce66f",
+  "base_remote_commit": "4065cfe7dc75137a2ed85acde620bc60aac4f018",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "own_extractor": {
+    "script_sha256": "af41d661cd279e0edd3ef119bb0230e89fc99e45a2830441fda8edc200c0a3a6",
+    "report_sha256": "99da5cab3adaa80aad1dd2173c43c00686ae19cba935e8dddbffd3d77eba1a1b",
+    "gnu": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 595,
+      "relative_targets": 111,
+      "selected_operands": 62
+    },
+    "exact_reproduction": true,
+    "invalid_inputs": [
+      {
+        "case": "short",
+        "exit_code": 2
+      },
+      {
+        "case": "long",
+        "exit_code": 2
+      },
+      {
+        "case": "changed",
+        "exit_code": 2
+      }
+    ]
+  },
+  "external": {
+    "files": [
+      {
+        "name": "inspect_margin_chain_hzc2.py",
+        "sha256": "6801c6a0948feca5a9816a41abfc022e67fb58feb435e715b549b19890f5a9d8",
+        "bytes": 32833
+      },
+      {
+        "name": "test_margin_chain_hzc2.py",
+        "sha256": "25fd978c463c75ea98c2f320f7c81a283cc4ae3c283b53de2a943bbc1eb5a914",
+        "bytes": 23211
+      },
+      {
+        "name": "margin-chain-hzc2.json",
+        "sha256": "ebc507765dbcc61a7f634e7acaa14b1443ab4eab71c0fddc9746787939304d59",
+        "bytes": 61301
+      },
+      {
+        "name": "margin-chain-hzc2 (1).json",
+        "sha256": "ebc507765dbcc61a7f634e7acaa14b1443ab4eab71c0fddc9746787939304d59",
+        "bytes": 61301
+      }
+    ],
+    "normalizations": [
+      "absolute paths and local GNU runtime wrapper only"
+    ],
+    "tests_passed": 44,
+    "json_byte_equal": true,
+    "identical_two_json_attachments": true,
+    "gnu_encoding_and_text_checks": 200,
+    "counterexamples": {
+      "reader_length": "0xfffffffe",
+      "model_cursor": 4294967300,
+      "correct_W32_cursor": 4,
+      "bump_old": "0xfffffffffffffffc",
+      "model_bump_cursor": "0x10000000000000000",
+      "correct_X64_cursor": "0x0",
+      "lookup_count1_name_B": 1,
+      "correct_lookup": null
+    },
+    "originals_modified": false
+  },
+  "newtime_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 217,
+    "new": 25,
+    "failures": 0
+  },
+  "derived_case_filter": {
+    "present": [
+      0,
+      19
+    ],
+    "secondary": [],
+    "fast_alias_intersection": [],
+    "tags": {
+      "0": [
+        255
+      ],
+      "19": [
+        255
+      ]
+    },
+    "tag_proofs": [
+      {
+        "index": 0,
+        "case": "0x1ada8",
+        "pc": "0x1adac",
+        "value": 255
+      },
+      {
+        "index": 19,
+        "case": "0x1ae0c",
+        "pc": "0x1ae10",
+        "value": 255
+      }
+    ],
+    "no_Q_store_in_selected_preserved_MARGIN_path": true,
+    "conditions": "driver/registry handles are zero or refer to constructed MARGIN objects; switch and lookups use preserved bytes/names/records; frame and tags survive calls"
+  },
+  "firmware_executed": false,
+  "qemu_scope_extended": false,
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-margin-20261028",
+    "status": "passed",
+    "report_sha256": "ae83b69035abc01aa046e0b58a2cd1427424dc11bf187aa6b654ce74ae61ca40"
+  },
+  "local_markdown_links_checked": 1084
+}

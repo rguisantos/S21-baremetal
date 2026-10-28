@@ -2753,3 +2753,22 @@ GNU 482/47/91, 192 testes NEWTIME (25 novos), JSON exato, três recusas,
 links e baseline aprovados. Sem avanço QEMU; slot 47/X0 ainda abertos.
 [Análise](docs/newtime-secondary-result-hzc2.md) e
 [validação](docs/references/newtime-secondary-result-validation-20261028.json).
+
+## 2026-10-28 — MARGIN e correção da tabela de nomes
+
+Base remota `4065cfe` no PR #50. Reproduzidos 44 testes, JSON byte a byte
+(dois anexos idênticos) e 200 checks GNU. Confirmados callback 0x1b96c,
+publicação 0x30a48 e payload MARGIN de 368 bytes, com MIF/INTSCI e matrizes
+13×12. Corrigido o endereço derivado de 0x1825c: 0x30930, não 0x31930;
+nomes são estáticos no arquivo. Os casos que casam são 0/19 e derivam tag
+255 dos respectivos destinos da jump table. Sob o driver, nomes/registros
+preservados e handles zero/construídos, a store em Q é pulada; E é zero nos
+casos Q=B 2/3. O modelo anterior de soma dupla permanece condicional ao
+código, mas não é demonstrado por esse dataset preservado. Modelos externos
+não respeitavam o limite positivo count, wrap W no skip de nomes e wrap X
+no bump; três contraexemplos registrados. H/R mantidos simbólicos porque
+as alocações anteriores não foram modeladas. Ordenação é de programa, sem
+prova de gates/sucesso real. GNU 595/111/62, 217 testes NEWTIME (25 novos),
+JSON exato, três recusas, links e baseline aprovados. Sem avanço QEMU.
+[Análise](docs/newtime-margin-hzc2.md) e
+[validação](docs/references/newtime-margin-validation-20261028.json).

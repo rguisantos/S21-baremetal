@@ -127,6 +127,16 @@ não zero de E, viabilidade conjunta das condições no boot real, significado
 físico incorreto ou vulnerabilidade. Nos caminhos Qnew, uma nova chamada
 de alocação também não prova disjunção física dos buffers.
 
+## Restrição posterior pelos dados MARGIN
+
+A [auditoria MARGIN](newtime-margin-hzc2.md) corrige a tabela de nomes para
+0x30930 e encontra registros apenas para MIF/INTSCI (casos 0/19, tag 255).
+Sob os nomes/registros preservados e o caminho do driver selecionado,
+a store em Q é pulada nesses casos; em 2/3, E é zero. Assim, o modelo
+Q=B/two-add não demonstra soma dupla com esse conjunto de dados. Ele
+continua descrevendo a ordem do código sob suas condições, sem exclusão
+global de outros objetos, aliases ou mutações.
+
 ## Reprodução
 
 ```sh

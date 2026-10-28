@@ -145,3 +145,8 @@ fronteiras incluem a origem das bases/metadados e os demais ramos indiretos.
 O [resultado secundário](newtime-secondary-result-hzc2.md) mostra Q=B nos
 caminhos rápidos dos seletores 2/3 e duas adições ao mesmo byte sob
 preservação, E estável e execução do laço; não é uma observação do aparelho.
+
+A [cadeia MARGIN](newtime-margin-hzc2.md) acrescenta o filtro dos nomes
+estáticos em 0x30930: no conjunto preservado, E só corresponde aos casos
+0/19 com tag 255. Isso restringe a store secundária e os modelos de Q zero
+ou Q=B; não prova ausência global diante de outros dados/callers.

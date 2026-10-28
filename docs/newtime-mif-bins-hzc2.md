@@ -116,7 +116,8 @@ Isso não valida suas afirmações globais ou todos os campos textuais.
 O motor externo não foi incorporado ao repositório.
 
 Continuam abertos os efeitos de outros callees, dados ECT dinâmicos,
-aliases e a chamada real do slot 47. O parser MARGIN é uma próxima frente;
+aliases e a chamada real do slot 47. A [cadeia MARGIN](newtime-margin-hzc2.md)
+foi seguida com nomes em 0x30930 e publicação simbólica do handle;
 `0x1aff0` já tem análise independente e não precisa ser refeito. O
 [resultado de 0x1a804](newtime-secondary-result-hzc2.md) também foi delimitado
 separadamente, preservando as origens dinâmicas e resultados FP como lacunas.
