@@ -2712,3 +2712,20 @@ GNU 784/111/52, 151 testes NEWTIME (20 novos), reprodução exata, três
 recusas, 1036 links e baseline aprovados. Sem execução Samsung ou avanço
 QEMU. [Análise](docs/newtime-common-continuation-hzc2.md) e
 [validação](docs/references/newtime-common-continuation-validation-20261028.json).
+
+## 2026-10-28 — auditoria da folha MIF e anexos GLM
+
+Complemento no PR #50 sobre head remoto a6013d1 (árvore equivalente ao
+commit local 18c3ec2). Reproduzidos 29 testes, JSON byte a byte e 49 encodings
+GNU dos anexos, após adaptação de caminhos/runtime locais. Confirmados
+53 palavras, 13 limiares e stores globais 31a70/74/78. Corrigido contrato:
+X2/X3 são limiares carregados, não X2=13; CMP do switch é 0x13; ADR não
+deriva base absoluta. Scan externo tem falso positivo W/X e não demonstra
+exclusividade de escritores/chamadores. X2..X7 não conservam argumentos
+iniciais através de chamadas; exemplo condicional MARGIN handle zero deixa
+X2=0. Dois overwrites de retorno conferidos por caminhos. Modelo próprio
+comparado em 144 estados sintéticos nos quatro GPRs de saída, sem executar
+no aparelho/QEMU. Extrator GNU 203/37/34, 167 testes NEWTIME (16 novos),
+reprodução exata, três recusas, links locais e baseline aprovados. Slot 47
+permanece aberto. [Auditoria](docs/newtime-mif-bins-hzc2.md) e
+[validação](docs/references/newtime-mif-bins-validation-20261028.json).

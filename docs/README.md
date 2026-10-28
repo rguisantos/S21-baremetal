@@ -52,6 +52,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Argumentos das cópias NEWTIME](newtime-copy-arguments-hzc2.md): 47 referências revisadas, wrappers e índices assinados; ponteiros de canal/metadados ainda abertos, sem transporte comprovado da célula.
 - [Origem dos canais NEWTIME](newtime-channel-origins-hzc2.md): escritor concreto das quatro bases, chamada nominal via slot 18 e descritores de registro/recuperação; preservação e metadados reais continuam abertos.
 - [Slot 20 e origem de X5](newtime-slot20-hzc2.md): nove chamadas nominais, sete X5 zero e duas com buffer calculado de 64 bytes; novas buscas limitadas não resolvem o slot 47.
+- [Chamada MIF e bins NEWTIME](newtime-mif-bins-hzc2.md): tabela de 13 limiares, X0/X1 na chamada e contrato de saída corrigido após auditoria dos anexos.
 - [Continuação comum NEWTIME](newtime-common-continuation-hzc2.md): 227 PCs, sete chamadas e layout de palavras/bytes; bases e efeitos numéricos ainda condicionais.
 - [Dois switches e entradas relativas](newtime-jump-tables-hzc2.md): arrays em 0x30108/0x30130, 25 entradas e 16 destinos distintos; continuação comum e callbacks preservados como fronteiras.
 - [Auditoria do slot 47](newtime-slot47-hzc2.md): candidatos de outra base descartados, cobertura LDR/LDP e semântica de X0 zero; origem verdadeira ainda aberta.

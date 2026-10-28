@@ -33,8 +33,9 @@ encodings/endereço. O escopo QEMU continua igual.
 Os [dois switches relativos](newtime-jump-tables-hzc2.md) têm 25 entradas
 enumeradas, sem destino imediato no slot 47. A
 [continuação comum](newtime-common-continuation-hzc2.md) tem 227 PCs,
-sete chamadas e layout de resultado delimitado. `0x1a668`, `0x1a804`, bases
-dinâmicas e o callback nominal do slot 38 permanecem fronteiras; não há
+sete chamadas e layout de resultado delimitado. A [folha MIF 0x1a668](newtime-mif-bins-hzc2.md)
+publica dois bins e um valor bruto em três células globais nominais. `0x1a804`,
+bases dinâmicas e o callback nominal do slot 38 permanecem fronteiras; não há
 exclusão de chamador por toda a imagem.
 
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas

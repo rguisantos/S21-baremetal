@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Campo_Grande",
+  "base_local_commit": "18c3ec274e853d99637b741ee67b37dcac56eb7d",
+  "base_remote_commit": "a6013d18c60fafdffcc2231e0c0db77ee4b07ca5",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "own_extractor": {
+    "script_sha256": "5104e44091b83ca7f818c307a90196fe540807ee20543fb881e28cfc7d3f0ab6",
+    "report_sha256": "f7a6a0696ae4e64473de05a84a0dd95eb53d8543d250a99b95feff2da4553718",
+    "exact_reproduction": true,
+    "gnu": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 203,
+      "relative_targets": 37,
+      "selected_operands": 34
+    },
+    "invalid_inputs": [
+      {
+        "case": "short",
+        "exit_code": 2
+      },
+      {
+        "case": "long",
+        "exit_code": 2
+      },
+      {
+        "case": "changed",
+        "exit_code": 2
+      }
+    ]
+  },
+  "external": {
+    "files": [
+      {
+        "name": "inspect_call_1adcc_1a668_hzc2.py",
+        "sha256": "2fe80b18e8bdcc421dc5b2e70cd7e9665fee5048d10ef3c2c9a09f413731d707",
+        "bytes": 29163
+      },
+      {
+        "name": "test_call_1adcc_1a668_hzc2.py",
+        "sha256": "7fa25aec88c572835759b59006ddf427319c71038da240dffd9344d8a81bd263",
+        "bytes": 16265
+      },
+      {
+        "name": "call-1adcc-1a668-evidence.json",
+        "sha256": "bb0edb2fe15c356c50570ee65cbbf3b08582616f18d759cea262913519098feb",
+        "bytes": 9112
+      }
+    ],
+    "originals_modified": false,
+    "adaptations": [
+      "absolute workspace paths",
+      "GNU runtime library wrapper and executable copies; same tool bytes"
+    ],
+    "tests_passed": 29,
+    "tests_skipped": 0,
+    "json_byte_equal": true,
+    "gnu_encodings_passed": 49,
+    "contract_comparisons_against_received_synthetic_interpreter": 144,
+    "comparison_registers": [
+      "X0",
+      "X1",
+      "X2",
+      "X3"
+    ],
+    "counterexamples": [
+      {
+        "W0": 0,
+        "W1": 0,
+        "X2": 0
+      },
+      {
+        "W0": 3172,
+        "W1": 2730,
+        "X2": 2730
+      },
+      {
+        "W0": 1000,
+        "W1": 2000,
+        "X2": 1716
+      }
+    ],
+    "writer_scan_counterexample": {
+      "words": [
+        "f00000c2",
+        "4a020042",
+        "b90a7040"
+      ],
+      "reported_cell": "0x0211ba70",
+      "actual_model_cell": "0xa70",
+      "source": "synthetic ADRP X2 / EOR W2 / STR W0",
+      "hits": [
+        {
+          "pc": "0x16008",
+          "insn": "str w0, [x2, #0xa70]",
+          "cell_va": "0x0211ba70",
+          "cell_file": "0x31a70"
+        }
+      ]
+    },
+    "observed_on_device": false
+  },
+  "newtime_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 167,
+    "new": 16,
+    "failures": 0
+  },
+  "firmware_executed_on_device_or_qemu": false,
+  "qemu_scope_extended": false,
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-mif-bins-20261028",
+    "status": "passed",
+    "report_sha256": "fdea1cbb12ab19e2f26b6c197ddb8781de28c6348459597447a27a511ecc22d0"
+  },
+  "local_markdown_links_checked": 1053
+}

@@ -132,5 +132,7 @@ inclui as testemunhas completas, grafo e condições. Os
 SXTW, campos packed, contagens signed, byte de correção, low24 e base Q
 zero sem guard inventado. [Validação](references/newtime-common-continuation-validation-20261028.json).
 
-As próximas fronteiras são os efeitos de `0x1a668`, `0x1a804`, a origem
-das bases/metadados e os demais ramos indiretos ainda abertos.
+A [folha 0x1a668](newtime-mif-bins-hzc2.md) foi delimitada separadamente:
+dois bins e três stores globais nominais, com contrato corrigido. As próximas
+fronteiras são `0x1a804`, a origem das bases/metadados e os demais ramos
+indiretos ainda abertos.
