@@ -1,0 +1,100 @@
+python
+import gdb, json, os
+
+TARGET = os.environ.get("TARGET_NAME", "").strip()
+if TARGET == "none":
+    TARGET = ""
+RETURN = int(os.environ["CALLBACK_RETURN"], 0)
+# Endereco guest = IMAGE_BASE + offset de arquivo do sboot. Literais AP (0x0207365c)
+# e CALLBACK_RETURN sao absolutos e nao recebem IMAGE_BASE.
+BASE   = int(os.environ.get("IMAGE_BASE", "0"), 0)
+OUT    = os.environ["MOTIVE_OUT"]
+
+ALVOS = {
+    "config_16regs": BASE + 0x26e14,
+    "scratch_108":   BASE + 0x25b80,
+    "col1_fn_entry": BASE + 0x2d568,
+    "col1_leaf":     BASE + 0x2e4b4,
+}
+GATE = BASE + 0x19774
+
+DUMP = [
+    (BASE + 0x31c30, 8,   "ptr_31c30"),
+    (BASE + 0x31f30, 108, "scratch_31f30"),
+    (BASE + 0x31758, 8,   "ptr_col1_31758"),
+    (BASE + 0x31698, 1,   "count_col12_31698"),
+    (BASE + 0x316a0, 8,   "ptr_col12_316a0"),
+    (0x0207365c,     4,   "result_col1_0207365c"),
+]
+
+hit = {"reason": None, "regs": None, "mem": None}
+
+def snapshot_regs():
+    out = {}
+    for r in ("pc","lr","sp","x0","x1","x2","x3","x4","x5","x6","x7"):
+        try:    out[r] = int(gdb.parse_and_eval("$"+r)) & 0xffffffffffffffff
+        except Exception: out[r] = None
+    return out
+
+def snapshot_mem():
+    out = {}
+    try:
+        inf = gdb.selected_inferior()
+        for addr, n, name in DUMP:
+            try:    out[name] = inf.read_memory(addr, n).tobytes().hex()
+            except Exception as e: out[name] = "ERR:"+str(e)
+    except Exception as e:
+        for _, _, name in DUMP:
+            out[name] = "ERR_no_inferior:"+str(e)
+    return out
+
+class BP(gdb.Breakpoint):
+    def __init__(self, addr, name):
+        super().__init__(f"*{addr:#x}")
+        self.bpname = name
+        self.silent = True
+    def stop(self):
+        hit["reason"] = "bp:" + self.bpname
+        hit["regs"]   = snapshot_regs()
+        hit["mem"]    = snapshot_mem()
+        return True
+
+if TARGET and TARGET not in ALVOS:
+    raise SystemExit(f"unknown TARGET_NAME: {TARGET}")
+
+try:
+    gdb.execute("target remote localhost:1234")
+except gdb.error as e:
+    hit["reason"] = "gdb_error:target_remote:" + str(e)
+
+if hit["reason"] is None:
+    if TARGET:
+        if TARGET not in ALVOS:
+            raise SystemExit(f"unknown TARGET_NAME: {TARGET}")
+        BP(ALVOS[TARGET], TARGET)
+    BP(GATE,   "gate_0x19774")
+    BP(RETURN, "callback_return")
+
+    try:
+        gdb.execute("continue")
+        if hit["reason"] is None:
+            try:
+                gdb.parse_and_eval("$pc")
+                hit["reason"] = "continue_returned_alive"
+            except Exception:
+                hit["reason"] = "inferior_exit"
+            hit["regs"] = snapshot_regs()
+            hit["mem"]  = snapshot_mem()
+    except gdb.error as e:
+        if hit["reason"] is None:
+            hit["reason"] = "gdb_error:continue:" + str(e)
+            hit["regs"] = snapshot_regs()
+            hit["mem"]  = snapshot_mem()
+
+state = {"target": TARGET or None, "image_base": BASE, "reason": hit["reason"],
+         "regs": hit["regs"], "mem": hit["mem"]}
+with open(OUT, "w") as f:
+    json.dump(state, f, indent=2)
+print("STOP:", state["reason"])
+end
+quit

@@ -1,0 +1,608 @@
+{
+  "mode": "bounded_original_newtime_callback_before_external_access",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "prefix_instruction_index_sha256": "72f162c20138f76ddd61cbe79c0e8bd6f7bd16dcbe1525767aaf9c2e7ff58ce3",
+  "suffix_instruction_index_sha256": "9e14f887b84aad2ea581978fef2e1dc52dc6126debd27d117a7b4ffb9739194f",
+  "instruction_budget_per_case": 20000,
+  "case_count": 2,
+  "cases": [
+    {
+      "row": 15,
+      "key": "0001000850500130",
+      "laboratory_delta": "0x40000000",
+      "executed_instructions": 1495,
+      "memory_accesses": 645,
+      "stop": {
+        "reason": "before_access_outside_lab_ram",
+        "pc": "0x19774",
+        "address": "0x158609bc",
+        "size": 4,
+        "operation": "read"
+      },
+      "watched_accesses": [
+        {
+          "step": 853,
+          "pc": "0x1c54c",
+          "address": "0x40070ecc",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "00000000",
+          "region": "embedded_row",
+          "column": 1,
+          "cell_byte_offset": 4
+        },
+        {
+          "step": 854,
+          "pc": "0x1c550",
+          "address": "0x40070ec8",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "1b010000",
+          "region": "embedded_row",
+          "column": 1,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 857,
+          "pc": "0x19600",
+          "address": "0x401efe50",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "1b01000000000000",
+          "region": "copied_tail",
+          "column": 1,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 1194,
+          "pc": "0x1c54c",
+          "address": "0x40070f24",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "00000000",
+          "region": "embedded_row",
+          "column": 12,
+          "cell_byte_offset": 4
+        },
+        {
+          "step": 1195,
+          "pc": "0x1c550",
+          "address": "0x40070f20",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "73000000",
+          "region": "embedded_row",
+          "column": 12,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 1198,
+          "pc": "0x19600",
+          "address": "0x401efea8",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "7300000000000000",
+          "region": "copied_tail",
+          "column": 12,
+          "cell_byte_offset": 0
+        }
+      ],
+      "trace_sha256": "3474d155d5897abd4058c8f25057aae118ea8f8f645830d4ddafde78d3cd4334",
+      "record_header_accesses": [
+        {
+          "step": 1349,
+          "pc": "0x19694",
+          "address": "0x40180000",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "3001505008000100"
+        },
+        {
+          "step": 1365,
+          "pc": "0x196c8",
+          "address": "0x40180008",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1374,
+          "pc": "0x196ec",
+          "address": "0x4018000c",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1391,
+          "pc": "0x196c8",
+          "address": "0x40180009",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1400,
+          "pc": "0x196ec",
+          "address": "0x4018000d",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "2e"
+        },
+        {
+          "step": 1417,
+          "pc": "0x196c8",
+          "address": "0x4018000a",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "37"
+        },
+        {
+          "step": 1426,
+          "pc": "0x196ec",
+          "address": "0x4018000e",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "38"
+        },
+        {
+          "step": 1443,
+          "pc": "0x196c8",
+          "address": "0x4018000b",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "6e"
+        },
+        {
+          "step": 1452,
+          "pc": "0x196ec",
+          "address": "0x4018000f",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "31"
+        },
+        {
+          "step": 1463,
+          "pc": "0x19718",
+          "address": "0x40180020",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "a001184000000000"
+        },
+        {
+          "step": 1465,
+          "pc": "0x19720",
+          "address": "0x40180020",
+          "size": 8,
+          "operation": "read",
+          "value_hex_le": "a001184000000000"
+        }
+      ],
+      "output_directory_accesses": [],
+      "post_copy_tail_reads": 0,
+      "callback_return_observed": false,
+      "immutable_code_source_metadata_and_guards_matched": true,
+      "observation": {
+        "reason": "bp:gate_0x19774",
+        "image_base": "0x40000000",
+        "callback_return": "0x40015000",
+        "entry_lr": "0x40015000",
+        "pc": "0x40019774",
+        "pc_file_offset": "0x19774",
+        "registers": {
+          "lr": "0x40019768",
+          "sp": "0x401efe50",
+          "x0": "0x158609bc",
+          "x1": "0x10",
+          "x2": "0x40031a40",
+          "x3": "0x0",
+          "x4": "0x11111111",
+          "x5": "0x40100018",
+          "x6": "0x39",
+          "x7": "0x40030b30"
+        },
+        "fields": {
+          "ptr_31c30": {
+            "address": "0x40031c30",
+            "size": 8,
+            "hex": "ffffffffffffffff"
+          },
+          "scratch_31f30": {
+            "address": "0x40031f30",
+            "size": 108,
+            "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          },
+          "ptr_col1_31758": {
+            "address": "0x40031758",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "count_col12_31698": {
+            "address": "0x40031698",
+            "size": 1,
+            "hex": "00"
+          },
+          "ptr_col12_316a0": {
+            "address": "0x400316a0",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "result_col1_0207365c": {
+            "address": "0x207365c",
+            "size": 4,
+            "error": "not_in_lab_regions"
+          }
+        },
+        "firmware_instruction_executed_by_snapshot": false
+      },
+      "initial_observation": {
+        "reason": "prepared_entry",
+        "image_base": "0x40000000",
+        "callback_return": "0x40015000",
+        "entry_lr": "0x40015000",
+        "pc": "0x400193fc",
+        "pc_file_offset": "0x193fc",
+        "registers": {
+          "lr": "0x40015000",
+          "sp": "0x401f0000",
+          "x0": "0x1000850500130",
+          "x1": "0xa500000000000001",
+          "x2": "0xa500000000000002",
+          "x3": "0xa500000000000003",
+          "x4": "0xa500000000000004",
+          "x5": "0xa500000000000005",
+          "x6": "0xa500000000000006",
+          "x7": "0xa500000000000007"
+        },
+        "fields": {
+          "ptr_31c30": {
+            "address": "0x40031c30",
+            "size": 8,
+            "hex": "ffffffffffffffff"
+          },
+          "scratch_31f30": {
+            "address": "0x40031f30",
+            "size": 108,
+            "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          },
+          "ptr_col1_31758": {
+            "address": "0x40031758",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "count_col12_31698": {
+            "address": "0x40031698",
+            "size": 1,
+            "hex": "00"
+          },
+          "ptr_col12_316a0": {
+            "address": "0x400316a0",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "result_col1_0207365c": {
+            "address": "0x207365c",
+            "size": 4,
+            "error": "not_in_lab_regions"
+          }
+        },
+        "firmware_instruction_executed_by_snapshot": false
+      },
+      "observed_field_write_counts": {
+        "ptr_31c30": 0,
+        "scratch_31f30": 0,
+        "ptr_col1_31758": 0,
+        "count_col12_31698": 0,
+        "ptr_col12_316a0": 0,
+        "result_col1_0207365c": 0
+      }
+    },
+    {
+      "row": 15,
+      "key": "0001000850500130",
+      "laboratory_delta": "0x40200000",
+      "executed_instructions": 1495,
+      "memory_accesses": 645,
+      "stop": {
+        "reason": "before_access_outside_lab_ram",
+        "pc": "0x19774",
+        "address": "0x158609bc",
+        "size": 4,
+        "operation": "read"
+      },
+      "watched_accesses": [
+        {
+          "step": 853,
+          "pc": "0x1c54c",
+          "address": "0x40270ecc",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "00000000",
+          "region": "embedded_row",
+          "column": 1,
+          "cell_byte_offset": 4
+        },
+        {
+          "step": 854,
+          "pc": "0x1c550",
+          "address": "0x40270ec8",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "1b010000",
+          "region": "embedded_row",
+          "column": 1,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 857,
+          "pc": "0x19600",
+          "address": "0x403efe50",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "1b01000000000000",
+          "region": "copied_tail",
+          "column": 1,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 1194,
+          "pc": "0x1c54c",
+          "address": "0x40270f24",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "00000000",
+          "region": "embedded_row",
+          "column": 12,
+          "cell_byte_offset": 4
+        },
+        {
+          "step": 1195,
+          "pc": "0x1c550",
+          "address": "0x40270f20",
+          "size": 4,
+          "operation": "read",
+          "value_hex_le": "73000000",
+          "region": "embedded_row",
+          "column": 12,
+          "cell_byte_offset": 0
+        },
+        {
+          "step": 1198,
+          "pc": "0x19600",
+          "address": "0x403efea8",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "7300000000000000",
+          "region": "copied_tail",
+          "column": 12,
+          "cell_byte_offset": 0
+        }
+      ],
+      "trace_sha256": "00a9638f879d02e40c029123e46a5d8304c4ebad09f840fbccea3944dea390b7",
+      "record_header_accesses": [
+        {
+          "step": 1349,
+          "pc": "0x19694",
+          "address": "0x40380000",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "3001505008000100"
+        },
+        {
+          "step": 1365,
+          "pc": "0x196c8",
+          "address": "0x40380008",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1374,
+          "pc": "0x196ec",
+          "address": "0x4038000c",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1391,
+          "pc": "0x196c8",
+          "address": "0x40380009",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "30"
+        },
+        {
+          "step": 1400,
+          "pc": "0x196ec",
+          "address": "0x4038000d",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "2e"
+        },
+        {
+          "step": 1417,
+          "pc": "0x196c8",
+          "address": "0x4038000a",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "37"
+        },
+        {
+          "step": 1426,
+          "pc": "0x196ec",
+          "address": "0x4038000e",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "38"
+        },
+        {
+          "step": 1443,
+          "pc": "0x196c8",
+          "address": "0x4038000b",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "6e"
+        },
+        {
+          "step": 1452,
+          "pc": "0x196ec",
+          "address": "0x4038000f",
+          "size": 1,
+          "operation": "write",
+          "value_hex_le": "31"
+        },
+        {
+          "step": 1463,
+          "pc": "0x19718",
+          "address": "0x40380020",
+          "size": 8,
+          "operation": "write",
+          "value_hex_le": "a001384000000000"
+        },
+        {
+          "step": 1465,
+          "pc": "0x19720",
+          "address": "0x40380020",
+          "size": 8,
+          "operation": "read",
+          "value_hex_le": "a001384000000000"
+        }
+      ],
+      "output_directory_accesses": [],
+      "post_copy_tail_reads": 0,
+      "callback_return_observed": false,
+      "immutable_code_source_metadata_and_guards_matched": true,
+      "observation": {
+        "reason": "bp:gate_0x19774",
+        "image_base": "0x40200000",
+        "callback_return": "0x40215000",
+        "entry_lr": "0x40215000",
+        "pc": "0x40219774",
+        "pc_file_offset": "0x19774",
+        "registers": {
+          "lr": "0x40219768",
+          "sp": "0x403efe50",
+          "x0": "0x158609bc",
+          "x1": "0x10",
+          "x2": "0x40231a40",
+          "x3": "0x0",
+          "x4": "0x11111111",
+          "x5": "0x40300018",
+          "x6": "0x39",
+          "x7": "0x40230b30"
+        },
+        "fields": {
+          "ptr_31c30": {
+            "address": "0x40231c30",
+            "size": 8,
+            "hex": "ffffffffffffffff"
+          },
+          "scratch_31f30": {
+            "address": "0x40231f30",
+            "size": 108,
+            "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          },
+          "ptr_col1_31758": {
+            "address": "0x40231758",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "count_col12_31698": {
+            "address": "0x40231698",
+            "size": 1,
+            "hex": "00"
+          },
+          "ptr_col12_316a0": {
+            "address": "0x402316a0",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "result_col1_0207365c": {
+            "address": "0x207365c",
+            "size": 4,
+            "error": "not_in_lab_regions"
+          }
+        },
+        "firmware_instruction_executed_by_snapshot": false
+      },
+      "initial_observation": {
+        "reason": "prepared_entry",
+        "image_base": "0x40200000",
+        "callback_return": "0x40215000",
+        "entry_lr": "0x40215000",
+        "pc": "0x402193fc",
+        "pc_file_offset": "0x193fc",
+        "registers": {
+          "lr": "0x40215000",
+          "sp": "0x403f0000",
+          "x0": "0x1000850500130",
+          "x1": "0xa500000000000001",
+          "x2": "0xa500000000000002",
+          "x3": "0xa500000000000003",
+          "x4": "0xa500000000000004",
+          "x5": "0xa500000000000005",
+          "x6": "0xa500000000000006",
+          "x7": "0xa500000000000007"
+        },
+        "fields": {
+          "ptr_31c30": {
+            "address": "0x40231c30",
+            "size": 8,
+            "hex": "ffffffffffffffff"
+          },
+          "scratch_31f30": {
+            "address": "0x40231f30",
+            "size": 108,
+            "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          },
+          "ptr_col1_31758": {
+            "address": "0x40231758",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "count_col12_31698": {
+            "address": "0x40231698",
+            "size": 1,
+            "hex": "00"
+          },
+          "ptr_col12_316a0": {
+            "address": "0x402316a0",
+            "size": 8,
+            "hex": "0000000000000000"
+          },
+          "result_col1_0207365c": {
+            "address": "0x207365c",
+            "size": 4,
+            "error": "not_in_lab_regions"
+          }
+        },
+        "firmware_instruction_executed_by_snapshot": false
+      },
+      "observed_field_write_counts": {
+        "ptr_31c30": 0,
+        "scratch_31f30": 0,
+        "ptr_col1_31758": 0,
+        "count_col12_31698": 0,
+        "ptr_col12_316a0": 0,
+        "result_col1_0207365c": 0
+      }
+    }
+  ],
+  "gnu_callback_chain_instruction_words": 466,
+  "tracing": "GNU-addressed GDB single step with preflight for every integer memory access",
+  "original_flow_continuous_until_stop": true,
+  "parsed_metadata_materialized_by_host": true,
+  "gate_value_or_branch_successor_supplied": false,
+  "mmio_or_smc_executed": false,
+  "physical_controller_parameter_identified": false,
+  "phone_execution": false,
+  "gate_observation": {
+    "qemu_version": "QEMU emulator version 10.0.13 (Debian 1:10.0.13+ds-0+deb13u1)",
+    "launch_recipe": "/workspace/scratch/ca8778db29e1/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 --library-path /workspace/scratch/ca8778db29e1/S21-baremetal/tools/root/usr/lib/x86_64-linux-gnu:/workspace/scratch/ca8778db29e1/S21-baremetal/tools/root/usr/lib /workspace/scratch/ca8778db29e1/S21-baremetal/tools/root/usr/bin/qemu-system-aarch64 -L /workspace/scratch/ca8778db29e1/S21-baremetal/tools/root/usr/share/qemu -M virt,gic-version=3,virtualization=off -cpu max -smp 1 \\\n    -nic none -display none -monitor none -serial none -S -gdb stdio -kernel <BUILD>/entry_diag.Image",
+    "mutable_file_data_reset_per_case": true,
+    "snapshots_at_original_stop": true,
+    "shared_epilogue_stop_preserved": true,
+    "auxiliary_gdb_harness_used": false
+  }
+}

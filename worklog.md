@@ -2629,3 +2629,16 @@ no ensaio não são evidência de dados malformados no aparelho. Corrigidas
 afirmações que confundiam DTB base com método após edições do LK.
 [Análise](docs/lk-psci-final-edit-hzc2.md) e
 [validação](docs/references/lk-psci-final-validation-20261027.json).
+
+## 2026-10-27 — observação NEWTIME/opção 2 no runner
+
+Basea12a8e2. Revistos escopo/obs.gdb/patch recebidos; harness continue não
+usado, originais preservados como referência. Runner mantém preflight,
+20000 instruções e fronteiras; snapshots de entrada/parada sem instrução
+guest, sem leitura do literal AP fora do envelope. Quatro casos param no
+gate, 1355/1495 instruções, hashes iguais à referência. 31f30 já entra ff
+no arquivo, sem escritas até o gate: predição zero refutada sem demonstrar
+preenchimento pelo descritor. JSON por linha e comparador próprio entregues;
+compare.py/run_case.sh originais não recebidos. Nenhum avanço de escopo.
+[Relatório](docs/newtime-gate-observation-scope-hzc2.md) e
+[validação](docs/references/newtime-gate-observation-validation-20261027.json).

@@ -1,0 +1,77 @@
+{
+  "mode": "newtime_gate_comparison",
+  "placements": [
+    {
+      "image_base": "0x40000000",
+      "comparable": true,
+      "field_comparison_performed": true,
+      "callback_return": "0x40015000",
+      "primary_fields_identical_between_rows": true,
+      "primary_fields_unchanged_from_entry": true,
+      "primary_write_events_by_row": {
+        "10": {
+          "ptr_31c30": 0,
+          "scratch_31f30": 0
+        },
+        "15": {
+          "ptr_31c30": 0,
+          "scratch_31f30": 0
+        }
+      },
+      "predictions": {
+        "pointer_ff": true,
+        "scratch_zero": false
+      },
+      "observed_scratch_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "informational_compared_fields": [
+        "count_col12_31698",
+        "ptr_col12_316a0",
+        "ptr_col1_31758"
+      ],
+      "informational_equal": true,
+      "unavailable_field": "result_col1_0207365c: not_in_lab_regions"
+    },
+    {
+      "image_base": "0x40200000",
+      "comparable": true,
+      "field_comparison_performed": true,
+      "callback_return": "0x40215000",
+      "primary_fields_identical_between_rows": true,
+      "primary_fields_unchanged_from_entry": true,
+      "primary_write_events_by_row": {
+        "10": {
+          "ptr_31c30": 0,
+          "scratch_31f30": 0
+        },
+        "15": {
+          "ptr_31c30": 0,
+          "scratch_31f30": 0
+        }
+      },
+      "predictions": {
+        "pointer_ff": true,
+        "scratch_zero": false
+      },
+      "observed_scratch_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "informational_compared_fields": [
+        "count_col12_31698",
+        "ptr_col12_316a0",
+        "ptr_col1_31758"
+      ],
+      "informational_equal": true,
+      "unavailable_field": "result_col1_0207365c: not_in_lab_regions"
+    }
+  ],
+  "artifacts_authenticated": false,
+  "physical_execution_inferred": false,
+  "limits": [
+    "Compares declared observations; does not authenticate their producer",
+    "Nonzero scratch alone does not demonstrate a write or a particular producer",
+    "Trace hashes and instruction counts need not match across different input rows",
+    "No execution after the gate is authorized by this result"
+  ],
+  "input_sha256": {
+    "line10__none.json": "6a2f9fac8f065c9c1ed47f6ebb1825fbb58698413b200d14fbeb0faf59215813",
+    "line15__none.json": "3d506de582e65f0bd084a1d53b270ebcc9f16bfcfeb28c650750f7a14aea52c4"
+  }
+}

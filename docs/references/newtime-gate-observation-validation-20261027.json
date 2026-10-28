@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-27",
+  "base_commit": "a12a8e284b118b565dbaefc37fd334fdca88c1f0",
+  "case_count": 4,
+  "logical_rows": [
+    10,
+    15
+  ],
+  "placements": [
+    "0x40000000",
+    "0x40200000"
+  ],
+  "exact_cli_output_reproduction": true,
+  "historical_trace_hashes_match": true,
+  "instruction_counts_by_row": {
+    "10": 1355,
+    "15": 1495
+  },
+  "scratch_zero_prediction_met": false,
+  "primary_fields_unchanged_from_entry": true,
+  "primary_write_events": 0,
+  "tests": {
+    "new_observation_comparison": 10,
+    "existing_preflight_decoder": 13
+  },
+  "negative_controls": [
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "baseline": {
+    "result": "PASS",
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17
+  },
+  "links": {
+    "count": 968,
+    "broken": 0,
+    "anchors_checked": false
+  },
+  "mmio_smc_executed": false,
+  "execution_after_gate": false,
+  "phone_execution": false,
+  "sha256": {
+    "scripts/trace_newtime_columns_qemu.py": "a323079f50eb176df001f568a7966d2fcc7470bf3f1c5c1730b9af33b1b3acac",
+    "scripts/compare_newtime_gate.py": "c0cb11577a9e912d90cb0d8d1b41e3a512133b92494253b94811f1eccd2184bb",
+    "scripts/test_newtime_gate_observation.py": "2931fb885649fad12f018ae706a61dec843fea9691126a791708c5885c3b1e59",
+    "docs/references/newtime-gate-scope-received.md.txt": "cbe1a130cb00ea3be3ee3f69e73e30cc2f4e097740fda3f5deab9097dd43215d",
+    "docs/references/newtime-gate-obs-gdb-received.txt": "627a3c72910d7870e90ab918b2b0e67ad94cb20123609774fb917aa604940e5a",
+    "docs/references/newtime-gate-image-base-received.patch": "8b591de779cd6e17cfbd3631acfe6fab25b1915ff48b864458dc5f1df7faa0eb",
+    "docs/references/newtime-gate-observation/comparison.json": "fdfd77aee915492a4660220e8ccb6883d0061effa8d28d909f7214386c74139f",
+    "docs/references/newtime-gate-observation/line10__none.json": "6a2f9fac8f065c9c1ed47f6ebb1825fbb58698413b200d14fbeb0faf59215813",
+    "docs/references/newtime-gate-observation/line15__none.json": "3d506de582e65f0bd084a1d53b270ebcc9f16bfcfeb28c650750f7a14aea52c4"
+  }
+}

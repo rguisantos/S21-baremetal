@@ -139,3 +139,12 @@ presença de strings não substitui essa evidência.
 `available_frequencies` não revela o estado habilitado de cada OPP.
 Samsung/D1Z/12 GB continuam descritos como **observados no log do bootloader**.
 Dados pessoais do bugreport permanecem fora dos artefatos públicos.
+
+## Continuação — observação no ponto de parada
+
+A [observação no runner existente](newtime-gate-observation-scope-hzc2.md)
+registra entrada e parada nas linhas 10/15, em duas colocações. Os quatro
+hashes de trilha e 1355/1495 instruções coincidem com o ensaio anterior.
+31c30 e os 108 bytes de 31f30 permanecem ff, sem escritas sobre eles; a
+predição recebida de scratch zerado foi refutada pela inicialização do
+próprio arquivo. O preflight e todas as fronteiras continuam preservados.
