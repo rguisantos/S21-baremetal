@@ -2656,3 +2656,16 @@ NEWTIME, reprodução exata, três recusas e baseline aprovados. Sem executar
 firmware ou ampliar o escopo QEMU.
 [Análise](docs/newtime-copy-arguments-hzc2.md) e
 [validação](docs/references/newtime-copy-arguments-validation-20261027.json).
+
+## 2026-10-27 — origem dos buffers de canal NEWTIME
+
+Base `68eacaa`, CI pós-merge do PR #46 aprovado. Encontrado escritor
+`0x2d468`: quatro bases desde `0x02075a00`, passo 4016, e configuração em
+`0x020798c0`. Chamada nominal `0x2f73c`, slot 18 da tabela `0x31408`.
+Diretório `0x0223f000` delimitado: registros de 24 bytes, origem/tamanho
+u32, lookup de 15 posições sem limite pela contagem. Modelos novos com/sem
+charac_lvcc permanecem condicionais; stores antecedem os guards, sem prova
+geral de bounds ou rollback. GNU 428/70/64, 95 testes NEWTIME e baseline
+aprovados. Sem execução Samsung ou ampliação QEMU; slot 47 ainda aberto.
+[Análise](docs/newtime-channel-origins-hzc2.md) e
+[validação](docs/references/newtime-channel-origins-validation-20261027.json).

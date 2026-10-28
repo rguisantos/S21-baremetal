@@ -116,6 +116,10 @@ Sua [continuação de argumentos](newtime-copy-arguments-hzc2.md) revisa as
 47 referências e os wrappers: índices limitados pelo chamador selecionado,
 ponteiros de canal/metadados e buffer opcional ainda abertos, sem transporte
 comprovado. A contagem de três acima pertence à rodada original.
+A [origem dos canais](newtime-channel-origins-hzc2.md) encontra o escritor
+`0x2d468`, chamada nominal via slot 18 e o diretório de registro/recuperação.
+Os quatro intervalos ficam fora da célula sob preservação; metadados e
+ordem reais continuam abertos. Os exemplos de diretório são modelos de host.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

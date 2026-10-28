@@ -571,3 +571,10 @@ Head `8904813c599c248cf0416a59d64852a8e0586fa8`, revisão automática
 6457990003 completed sem achados/pendências, zero threads e CI40613716373
 success antes do merge `5b3ef6acd1624f372c4e3b226b115f470df577d6`.
 CI pós-merge40613972935 conferido success nesta continuação.
+
+## PR #46 — argumentos das cópias NEWTIME
+
+Head `d803134fe55cd5f1bcfc7ee843abf75acd5dc968`, revisão automática
+6458895834 completed sem achados/pendências, zero threads e CI40620328843
+success antes do merge `68eacaab153f2989c71bb68104afd55922312db7`.
+CI pós-merge40620658941 conferido success nesta continuação.
