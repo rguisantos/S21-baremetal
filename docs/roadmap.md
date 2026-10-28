@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-27 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #43, 8f88999](https://github.com/rguisantos/S21-baremetal/commit/8f88999830d77dc5be60291eea37c4fc8e04ac42),
+[main após revisão/merge do PR #44, a12a8e2](https://github.com/rguisantos/S21-baremetal/commit/a12a8e284b118b565dbaefc37fd334fdca88c1f0),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -297,7 +297,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A base desta continuação é a main após o PR #43 (`8f88999`). O
+A base desta continuação é a main após o PR #44 (`a12a8e2`). O
 [worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
 conservam a sequência histórica. Esta página organiza prioridades e
 critérios atuais. Baseline/CI e matriz do diagnóstico estão implementados;
@@ -319,3 +319,5 @@ Continuação de observação: [bugreport de 27/10](bugreport-boot-hzc2.md) liga
 Continuação do editor: [16 casos QEMU com código HZC2 original](lk-zero-bank-editor-hzc2.md) confirmam reg zero quando há espaço e edições parciais nos erros. W0 final não agrega sucesso das três operações. Próxima fronteira: transformações/consumidores posteriores, mantendo FDT físico e canal do diagnóstico pendentes.
 
 Continuação após os bancos: [edição PSCI do LK](lk-psci-final-edit-hzc2.md) troca smc→hvc sob flag Harx, com mensagem de sucesso no LAST KMSG e 24 casos QEMU. Não inferir método final pelo DTB base; não ativar fallback ou chamadas PSCI no R10. Callees posteriores e FDT físico continuam abertos.
+
+NEWTIME/opção 2: [observações no gate entregues](newtime-gate-observation-scope-hzc2.md), sem consumidores novos. Estado inicial e final ff em 31c30/31f30, sem escritas, e trilhas idênticas à referência. Predição de scratch zero refutada; próxima execução além do gate não está incluída nesse resultado.

@@ -1,0 +1,158 @@
+# HZC2: escopo da observação no gate da NEWTIME (opção 2)
+
+Status: **decisão registrada; execuções pendentes.** Atualizado em
+2026-10-27 (Campo Grande). Este documento é de escopo e reprodução. Não
+registra nenhum resultado de execução e não valida nenhuma hipótese.
+
+Substitui a proposta de 2026-10-25 (`newtime-scope-proposal-hzc2.md`), que
+oferecia três opções e não tinha nenhuma marcada. Complementa a seção
+"Escopo de execução preservado" do
+[plano consolidado](newtime-plan-consolidated-hzc2.md).
+
+## 1. Decisão
+
+Em 2026-10-25, o usuário aprovou, por escrito e na conversa de trabalho, a
+**opção 2**: observar `0x31c30` e `0x31f30` **no ponto de parada**, sem ampliar
+a execução para `0x26e14` nem para os demais alvos. A aprovação autoriza as
+duas execuções sem alvo (`line10__none` e `line15__none`).
+
+Não autoriza: `0x26e14`, `0x25b80`, `0x2d568`/`0x2d5f8`, `0x2e4b4`, `0x2cdb8`,
+`vddcal_fw`, resposta MMIO ou SMC, gate artificial, alteração de PC.
+
+## 2. Escopo
+
+| Item | Valor |
+|---|---|
+| Imagem | `sboot.bin`, 4194304 bytes, SHA-256 `a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91` |
+| Entrada | `0x193fc` (offset de arquivo) |
+| Casos | linha 10 (`0x0001000860000110`) e linha 15 (`0x0001000850500130`); mesma preparação de RAM, heap e pilha |
+| Parada | o que vier primeiro: gate `0x19774` (carga de AP`0x158609bc`, **antes** de executá-la), retorno da callback, limite de instruções |
+| Limite | 20000 instruções por caso, como no ensaio contínuo atual |
+| Proibido | stub de MMIO/SMC, valor de gate, mudança de PC, execução de código fora da cadeia já permitida |
+
+Se a callback não chegar ao gate nem retornar, o resultado é "não alcançado
+nesse caminho". O escopo não é ampliado por conta própria.
+
+## 3. Ponto de parada e `CALLBACK_RETURN`
+
+- **Gate:** breakpoint em `0x19774`. Nos quatro casos contínuos já documentados
+  em [colunas e ensaio contínuo](newtime-columns-hzc2.md), o rastreio para
+  aqui com X0=`0x158609bc`, em 1355 (linha 10) e 1495 (linha 15) instruções.
+  Aquele resultado é a referência, **não** um resultado destes ensaios.
+- **`CALLBACK_RETURN`:** endereço absoluto para o qual a callback retorna,
+  isto é, o valor de `lr` na entrada de `0x193fc`. **É um valor de laboratório
+  definido pela preparação do QEMU, não um endereço do firmware.** Deve:
+  - ser capturado na execução de referência já existente, não inventado;
+  - ficar fora do código do sboot executável e da cadeia permitida;
+  - ser registrado no JSON de cada caso e ser idêntico nos dois casos.
+  Valor esperado: o mesmo `lr` já usado pelo runner atual
+  (`trace_newtime_columns_qemu.py`). **Não está registrado neste documento**,
+  porque não foi capturado aqui.
+- Se o caso parar em `callback_return`, a hipótese "a callback não retorna no
+  prefixo permitido" é refutada; o reason registra isso.
+
+## 4. Endereços observados
+
+Endereço guest = `IMAGE_BASE` + offset de arquivo, onde `IMAGE_BASE` é a
+colocação do sboot usada na preparação (o ensaio contínuo usa
+`0x40000000` e `0x40200000`). `0x0207365c` e `CALLBACK_RETURN` são literais
+absolutos.
+
+| Campo | Endereço | Bytes | Uso |
+|---|---|---:|---|
+| `ptr_31c30` | `IMAGE_BASE+0x31c30` | 8 | principal |
+| `scratch_31f30` | `IMAGE_BASE+0x31f30` | 108 | principal |
+| `ptr_col1_31758` | `IMAGE_BASE+0x31758` | 8 | informativo |
+| `count_col12_31698` | `IMAGE_BASE+0x31698` | 1 | informativo |
+| `ptr_col12_316a0` | `IMAGE_BASE+0x316a0` | 8 | informativo |
+| `result_col1_0207365c` | `0x0207365c` | 4 | informativo; pode não estar mapeado |
+
+Leitura de memória no ponto de parada **não executa instrução do firmware**.
+Endereço não mapeado vira `ERR:…` no JSON e é um resultado, não uma falha.
+O instante do snapshot é sempre o ponto de parada do caso; o reason o
+identifica. Dois casos que parem em pontos diferentes **não são comparáveis**
+campo a campo.
+
+## 5. Motivos de parada
+
+`bp:gate_0x19774`, `bp:callback_return`, `instruction_limit`,
+`continue_returned_alive`, `inferior_exit`, `gdb_error:target_remote:…`,
+`gdb_error:continue:…`, `tool_missing:gdb-multiarch`, `wall_clock_timeout`,
+`gdb_no_json:rc=N`. Nenhum motivo genérico.
+
+## 6. Dependências substituídas e lacunas
+
+| Runner do repositório | Harness da opção 2 | Consequência |
+|---|---|---|
+| Single-step GDB, **preflight de cada acesso de memória antes de executar** | `continue` até o breakpoint | **O preflight não existe no harness.** Acesso fora da região permitida ou PC fora da cadeia só seriam notados depois, se notados |
+| Limite de 20000 instruções | Limite de 120 s de relógio | `instruction_limit` não é emitido; "parou por tempo" e "parou por limite" não se distinguem |
+| Preparação e registradores do runner | `QEMU_CMD` informado pelo usuário | Só vale se a preparação for a do ensaio contínuo; ver seção 8 |
+| Saída JSON com hash de trilha | JSON de estado no ponto de parada | Sem trilha de PCs nem hash |
+
+**Recomendação:** implementar a leitura no ponto de parada **dentro do runner
+do repositório**, que já tem preflight e limite de instruções, em vez de usar o
+harness gdb como evidência. O harness gdb fica como verificação auxiliar e só
+pode ser aceito se a preparação for comprovadamente a do runner e se o
+limite de instruções for obtido de um contador do QEMU.
+
+## 7. Critérios de comparação (linha 10 × linha 15)
+
+Predições declaradas **antes** das execuções, para serem falsificáveis:
+
+| Campo | Predição no gate | Se divergir |
+|---|---|---|
+| reason | `bp:gate_0x19774` nos dois casos | `bp:callback_return`: a callback retorna no prefixo; revisar perguntas 2 e 3 |
+| `ptr_31c30` | `ffffffffffffffff` | outro valor: `0x25ef0` está no caminho |
+| `scratch_31f30` | 108 bytes zero | preenchido: ganha evidência a hipótese de que o scratch vem do descritor NEWTIME no prefixo permitido |
+| linha 10 × linha 15 | estado idêntico | diferença em `31c30`/`31f30` antes do gate: as colunas 1 e 12 chegam ao scratch no prefixo |
+
+Se o estado for idêntico, a conclusão é "não observado no prefixo permitido".
+A próxima pergunta exige decisão de escopo nova, por escrito. Não se
+reinterpreta este resultado.
+
+Os campos informativos (`31758`, `31698`, `316a0`, `0207365c`) não têm
+predição; não são critério de aceite.
+
+## 8. Evidências pendentes
+
+Itens identificados como **pendentes de envio**. Nenhum deve ser tratado como
+resultado, nem deduzido de outros PRs (em particular o PR #44, que trata de
+PSCI no LK e não tem relação demonstrada com estes ensaios):
+
+| Evidência | Estado |
+|---|---|
+| `out/line10__none.json` | pendente |
+| `out/line15__none.json` | pendente |
+| saída de `compare.py` | pendente |
+| valor de `CALLBACK_RETURN` usado | pendente |
+| `IMAGE_BASE` usado | pendente |
+| QEMU (versão e linha de comando), sem dados pessoais | pendente |
+| SHA-256 do `sboot.bin` carregado | pendente |
+
+Arquivos do harness (fora do Git por enquanto): `obs.gdb`, `run_case.sh`,
+`compare.py`. O `obs.gdb` aceita `IMAGE_BASE` (padrão 0) e grava o valor usado
+no JSON.
+
+Reprodução (na máquina do usuário, não neste ambiente):
+
+```bash
+export QEMU_CMD='<comando QEMU do ensaio contínuo, sem -gdb/-S>'
+export CALLBACK_RETURN=0x...    # lr na entrada de 0x193fc
+export IMAGE_BASE=0x40000000    # a colocação usada
+OUT=out ./run_case.sh line10 none
+OUT=out ./run_case.sh line15 none
+python3 compare.py out
+```
+
+Teste do harness sem QEMU: o guard do `reason` foi exercitado com um módulo
+`gdb` simulado (quatro casos). Isso valida a lógica do script, não o alvo.
+Dados sintéticos do `compare.py` não são evidência.
+
+## 9. Limites
+
+- Não prova o uso físico das colunas 1 e 12.
+- Não observa nada depois do gate, nem a SMC ligada ao binding de `0x31998`.
+- Não prova qual modelo Samsung usa qual linha; o Exynos 2100 equipa outros
+  aparelhos da linha S21.
+- RAM, heap e pilha são laboratoriais.
+- Identificadores pessoais e dados do bugreport ficam fora dos artefatos.

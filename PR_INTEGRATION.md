@@ -557,3 +557,10 @@ Head `c55742e674fdf8ca7cca358c912b41aace7076ae`, revisão automática
 6457293310 completed sem achados/pendências, zero threads e CI40608567083
 success antes do merge `8f88999830d77dc5be60291eea37c4fc8e04ac42`.
 CI pós-merge40608801084 conferido success nesta continuação.
+
+## PR #44 — edição PSCI após os bancos
+
+Head `1f2330c1f95cb7a96a343bccd01db67f2a5711f1`, revisão automática
+6457599753 completed sem achados/pendências, zero threads e CI40610865101
+success antes do merge `a12a8e284b118b565dbaefc37fd334fdca88c1f0`.
+CI pós-merge40611102687 conferido success nesta continuação.

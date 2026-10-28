@@ -190,3 +190,12 @@ leitor de 0x316a0 em 0x2cdb8 e seguiu os argumentos até escritas nominais
 em registradores. Também corrigiu a direção entre os registros de 108/162
 bytes e delimitou o diretório de vddcal. Os resultados QEMU e as lacunas
 físicas deste documento permanecem com o escopo original.
+
+## Continuação — observação no ponto de parada
+
+A [observação no runner existente](newtime-gate-observation-scope-hzc2.md)
+registra entrada e parada nas linhas 10/15, em duas colocações. Os quatro
+hashes de trilha e 1355/1495 instruções coincidem com o ensaio anterior.
+31c30 e os 108 bytes de 31f30 permanecem ff, sem escritas sobre eles; a
+predição recebida de scratch zerado foi refutada pela inicialização do
+próprio arquivo. O preflight e todas as fronteiras continuam preservados.
