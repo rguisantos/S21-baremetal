@@ -128,8 +128,9 @@ têm 20/5 casos enumerados, com anchors e arrays separados. Os destinos
 imediatos não incluem o slot 47. A [continuação 0x1aff0](newtime-common-continuation-hzc2.md)
 delimita sete chamadas, campos packed e layout de resultado. A [folha MIF](newtime-mif-bins-hzc2.md)
 tem 53 palavras e três células de saída; não prova exclusividade global.
-`0x1a804`, bases dinâmicas e callback nominal do slot 38 ficam abertos,
-sem execução adicional.
+O [resultado de 0x1a804](newtime-secondary-result-hzc2.md) separa B/Qnew e
+metadados u16, incluindo a interação das correções quando Q=B. MARGIN,
+bases dinâmicas e callback nominal do slot 38 ficam abertos, sem execução adicional.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

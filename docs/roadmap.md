@@ -34,8 +34,10 @@ Os [dois switches relativos](newtime-jump-tables-hzc2.md) têm 25 entradas
 enumeradas, sem destino imediato no slot 47. A
 [continuação comum](newtime-common-continuation-hzc2.md) tem 227 PCs,
 sete chamadas e layout de resultado delimitado. A [folha MIF 0x1a668](newtime-mif-bins-hzc2.md)
-publica dois bins e um valor bruto em três células globais nominais. `0x1a804`,
-bases dinâmicas e o callback nominal do slot 38 permanecem fronteiras; não há
+publica dois bins e um valor bruto em três células globais nominais. O
+[resultado de 0x1a804](newtime-secondary-result-hzc2.md) identifica retorno
+B/Qnew, campos u16 e duas adições sob alias exato Q=B. MARGIN, bases
+dinâmicas e o callback nominal do slot 38 permanecem fronteiras; não há
 exclusão de chamador por toda a imagem.
 
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas

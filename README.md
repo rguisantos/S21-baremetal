@@ -272,6 +272,7 @@ O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de r
 - [Argumentos das cópias NEWTIME](docs/newtime-copy-arguments-hzc2.md): revisão estática das 47 referências e wrappers; índices dependem do chamador e ponteiros de canal/metadados seguem abertos, sem transporte comprovado do slot 47.
 - [Origem dos canais NEWTIME](docs/newtime-channel-origins-hzc2.md): inicializador das quatro bases, chamada nominal via slot 18 e diretório de cópia; exemplos condicionais de host, sem execução Samsung.
 - [Slot 20 NEWTIME e X5](docs/newtime-slot20-hzc2.md): nove chamadas com origens delimitadas para X5, construção e leitura do buffer de 64 bytes; slot 47 continua aberto.
+- [Resultado secundário NEWTIME](docs/newtime-secondary-result-hzc2.md): retorno B/Qnew, campos relativos u16 e adições condicionais quando Q=B.
 - [Chamada MIF e bins NEWTIME](docs/newtime-mif-bins-hzc2.md): folha de 53 palavras, três células e contrato corrigido; sem exclusão global de chamadores/escritores.
 - [Continuação comum NEWTIME](docs/newtime-common-continuation-hzc2.md): sete chamadas, leitor de campos de 16 bits e escritas condicionais do resultado.
 - [Dois switches NEWTIME e entradas relativas](docs/newtime-jump-tables-hzc2.md): 20/5 entradas, 12/4 destinos e fronteiras de chamadas; nenhum destino imediato é o slot 47.

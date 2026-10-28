@@ -45,6 +45,7 @@
 - `inspect_newtime_slot20_hzc2.py` e `test_newtime_slot20.py`: chamadores
   selecionados, X5 local/nulo, aritmética e buscas limitadas de endereço;
   [relatório](../docs/newtime-slot20-hzc2.md).
+- `inspect_newtime_secondary_result_hzc2.py` e `test_newtime_secondary_result.py`: retorno do buffer secundário, gates/tags, offsets u16 e stores com alias exato; [escopo](../docs/newtime-secondary-result-hzc2.md).
 - `inspect_newtime_mif_bins_hzc2.py` e `test_newtime_mif_bins.py`: folha de 53 palavras, tabela/células, X2/X3 de saída e liveness do retorno; [auditoria](../docs/newtime-mif-bins-hzc2.md).
 - `inspect_newtime_common_continuation_hzc2.py` e `test_newtime_common_continuation.py`: grafo de 0x1aff0, argumentos de sete chamadas e modelos W/byte, com aliases abertos; [reprodução](../docs/newtime-common-continuation-hzc2.md).
 - `inspect_newtime_jump_tables_hzc2.py` e `test_newtime_jump_tables.py`:

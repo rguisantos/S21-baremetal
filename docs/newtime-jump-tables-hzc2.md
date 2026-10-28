@@ -104,7 +104,8 @@ Os hashes dos três anexos constam na validação, sem redistribuir o firmware.
 A [continuação 0x1aff0](newtime-common-continuation-hzc2.md) foi seguida
 separadamente: 227 PCs, sete BLs, campos packed e escritas condicionais.
 A [folha 0x1a668](newtime-mif-bins-hzc2.md) tem dois bins e três stores
-globais nominais delimitados; `0x1a804` e bases/aliases seguem abertos.
+globais nominais delimitados. O [helper 0x1a804](newtime-secondary-result-hzc2.md)
+pode devolver o buffer original ou nova alocação; bases/aliases seguem abertos.
 O despacho real do slot 47 e X0
 continuam pendentes; a contagem de 593 do JSON externo não foi reescrita
 como uma nova contagem global deste extrator.

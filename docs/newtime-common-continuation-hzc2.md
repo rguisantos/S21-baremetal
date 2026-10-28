@@ -100,7 +100,8 @@ O corpo `[0x1a294,0x1a5b0)` tem 199 palavras, nenhum BL/BLR/BR e nenhuma
 referência aos GPRs X13/X14/X15/X18/X25 usados através da chamada do laço.
 Isso sustenta a preservação desses GPRs pelo corpo selecionado; não prova
 pureza de memória ou valores numéricos. Operações FP e efeitos de memória
-desse helper, e o corpo de `0x1a804`, permanecem opacos aqui.
+desse helper permanecem opacos aqui. O [corpo de 0x1a804](newtime-secondary-result-hzc2.md)
+foi seguido separadamente: pode retornar B ou uma nova alocação.
 
 ## Casos que exigem cautela na continuação
 
@@ -140,5 +141,7 @@ zero sem guard inventado. [Validação](references/newtime-common-continuation-v
 
 A [folha 0x1a668](newtime-mif-bins-hzc2.md) foi delimitada separadamente:
 dois bins e três stores globais nominais, com contrato corrigido. As próximas
-fronteiras são `0x1a804`, a origem das bases/metadados e os demais ramos
-indiretos ainda abertos.
+fronteiras incluem a origem das bases/metadados e os demais ramos indiretos.
+O [resultado secundário](newtime-secondary-result-hzc2.md) mostra Q=B nos
+caminhos rápidos dos seletores 2/3 e duas adições ao mesmo byte sob
+preservação, E estável e execução do laço; não é uma observação do aparelho.

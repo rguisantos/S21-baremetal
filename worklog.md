@@ -2735,3 +2735,21 @@ substituído pelo lookup MARGIN em 0x1ad74/0x1ad78 quando o handle de
 0x1ad68 não é zero; a descrição anterior só registrava a busca inicial.
 Extrator/JSON/validação corrigidos, reprodução e três recusas repetidas,
 167 testes aprovados. O conjunto GNU da continuação agora é 784/111/56.
+
+## 2026-10-28 — resultado secundário e identidade Q=B
+
+Base remota `2abb0e6` no PR #50. Prompt entregue para a frente paralela
+MARGIN/callback nominal 0x1b96c/handle 0x30a48. Nesta frente, seguido
+0x1a804: 172 PCs, três BLs e um RET. O alocador antecede os gates; seletores
+2/3 com gate zero retornam B, caso contrário retorna Qnew. Campos u16 em
+Rentry+0x420/+0x422 transportam low16(ponteiro-Rlate), sem reconstrução
+integral. Ajustes Y por campos de dois bits, contagem unsigned UMULL e
+layout da palavra delimitados; FP/dados dinâmicos continuam opacos.
+Casos 2/3 copiam o mesmo bit para tag W27 e gate; o helper restaura X27
+no epílogo. Sob preservação, tag/gate zero dá Q=B; se o laço E executa com
+byte estável, as duas stores somam duas vezes ao mesmo byte módulo 256.
+Não é observação no aparelho nem conclusão física/vulnerabilidade.
+GNU 482/47/91, 192 testes NEWTIME (25 novos), JSON exato, três recusas,
+links e baseline aprovados. Sem avanço QEMU; slot 47/X0 ainda abertos.
+[Análise](docs/newtime-secondary-result-hzc2.md) e
+[validação](docs/references/newtime-secondary-result-validation-20261028.json).
