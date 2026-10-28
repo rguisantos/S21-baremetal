@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-27 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #41, 436b539](https://github.com/rguisantos/S21-baremetal/commit/436b5397c501b1f37e0f06cd23e52378417f31c7),
+[main após revisão/merge do PR #42, c2e41bb](https://github.com/rguisantos/S21-baremetal/commit/c2e41bb17d4a284dddf64eb7a09395264918ac15),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -297,7 +297,7 @@ demonstrar uma mudança relevante de acesso/canal.
 | Observação | [Console](lk-console-handoff.md), [roteamento](uart-routing.md), [pinmux BL2](bl2-uart-hzc2.md), [clocks](uart-clock-stages.md), [gates](uart-gates.md), [log em memória](lk-memory-log.md) |
 | Limites de acesso atuais | [Coleta Shizuku](runtime-collection.md), [logs de boot](boot-log-collection.md), [log Harx bloqueado](harx-log-observation.md) |
 
-A base desta continuação é a main após o PR #41 (`436b539`). O
+A base desta continuação é a main após o PR #42 (`c2e41bb`). O
 [worklog](../worklog.md) e a [auditoria de integrações](../PR_INTEGRATION.md)
 conservam a sequência histórica. Esta página organiza prioridades e
 critérios atuais. Baseline/CI e matriz do diagnóstico estão implementados;
@@ -315,3 +315,5 @@ Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga worksp
 Continuação: [escritor do workspace](lk-token-modes-hzc2.md) identificado em 0x13a998 para comando 21: até 128 IDs de 0..255, OR nos quatro u64. Próxima fronteira: parser 0x136eb0 e helper 0x138740; token ativo e autenticação da Image continuam desconhecidos.
 
 Continuação de observação: [bugreport de 27/10](bugreport-boot-hzc2.md) liga seis campos de intervalos ao LK e confirma mensagem do ramo de prefixo do token. No cenário condicional, SEC_DRAM termina na base Harx e o construtor solicita um intervalo zero; resultado no editor/FDT final permanece aberto. Odin/Download fora desta continuação por escolha do usuário.
+
+Continuação do editor: [16 casos QEMU com código HZC2 original](lk-zero-bank-editor-hzc2.md) confirmam reg zero quando há espaço e edições parciais nos erros. W0 final não agrega sucesso das três operações. Próxima fronteira: transformações/consumidores posteriores, mantendo FDT físico e canal do diagnóstico pendentes.

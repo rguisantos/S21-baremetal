@@ -160,3 +160,5 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Escritor dos bits de modo do token](lk-token-modes-hzc2.md): comando 21, lista limitada e acumulação OR; erros locais não demonstram publicação global.
 
 - [Boot HZC2 observado no bugreport](bugreport-boot-hzc2.md): intervalos SEC_DRAM/SEC_PGTBL/Harx, ramo de prefixo do token e cenário condicional de bancos; extrato por lista de permissão.
+
+- [Banco zero no editor FDT HZC2](lk-zero-bank-editor-hzc2.md): código original aceita reg de tamanho zero em fixture; edições parciais e retorno final que pode ocultar falha de reg, com 16 casos QEMU.

@@ -122,7 +122,8 @@ carga compatível e aquisição dos 128 bytes do diagnóstico enquanto válidos.
 O log Harx via sysfs continua negado; LAST KMSG do LK é outro canal, e não
 um dump da região Harx ou um leitor arbitrário de RAM.
 
-A próxima investigação de memória é o tratamento dos bancos pelo editor e
-as transformações posteriores, usando os valores registrados como entradas
-condicionais. O nó zero precisa ser seguido até seu resultado antes de se
-classificar seu efeito. Não há nova coleta a solicitar ao usuário nesta etapa.
+Continuação: o [editor do banco zero](lk-zero-bank-editor-hzc2.md) foi seguido
+e executado em fixtures. Com espaço, ele conserva o nó/reg de tamanho zero;
+com falhas, pode deixar edições parciais e retornar zero apesar de reg ausente.
+Isso resolve a semântica local; transformações posteriores e FDT físico
+continuam abertos. Não há nova coleta a solicitar ao usuário nesta etapa.

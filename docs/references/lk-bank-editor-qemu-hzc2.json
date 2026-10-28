@@ -1,0 +1,545 @@
+{
+  "mode": "original_lk_bank_writer_editor_qemu",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "segments": [
+    {
+      "start": "0xf12c8",
+      "end": "0xf164c",
+      "sha256": "2de67bfe64351bfdde56662bceb87625b274f2ed4ff64de72c697aaf76ab36c2"
+    },
+    {
+      "start": "0x11e5e0",
+      "end": "0x11ff68",
+      "sha256": "4f56576a1176791bee36707b0454c5a7a02965c8944ebde79aac2eafa5e8a921"
+    },
+    {
+      "start": "0x1af3c0",
+      "end": "0x1af688",
+      "sha256": "1803f055fe106615b3f10c5eab9e52d1248806f1070bc5a251b7a65865d706e3"
+    },
+    {
+      "start": "0x1b2250",
+      "end": "0x1b2900",
+      "sha256": "3fc64caeae5f41c61451f8f38ff274530401c25b78363cb5fadfdeed73e215c3"
+    },
+    {
+      "start": "0x20e000",
+      "end": "0x20f800",
+      "sha256": "bbb93ee797278dae563e84ec58147425d44692cacb76c4e1a5dd14f5b5afac29"
+    },
+    {
+      "start": "0x22c000",
+      "end": "0x22d000",
+      "sha256": "8eff52dfa1508124bce5dd07bffc689512e826d91db6a82e0b9040bd51e30fbb"
+    }
+  ],
+  "cases": [
+    {
+      "case": "no_space",
+      "laboratory_delta": "0x40000000",
+      "slack": 0,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 1,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": false,
+      "properties": {},
+      "output_sha256": "fff93dae76603f89e8260d1cace0fd5d88c1eadef31c8ac1fede73dc0a0c26eb",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 3
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "node_only",
+      "laboratory_delta": "0x40000000",
+      "slack": 32,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 1,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": true,
+      "properties": {},
+      "output_sha256": "649a9138347d45de68a1a86be704b2aa146a5d98f5b337a37ebec8b13575c6cb",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 2
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "reg_without_type",
+      "laboratory_delta": "0x40000000",
+      "slack": 64,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": true,
+      "properties": {
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "d55f2b604f89044f17814caf40a103c649b78e5669c5ef889e5952011ce58fa6",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "zero_complete",
+      "laboratory_delta": "0x40000000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "77b22f67326fac89dcbd9e1ae3de5c360dac70dc19965e28950d539dd3550414",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "replace_existing",
+      "laboratory_delta": "0x40000000",
+      "slack": 128,
+      "existing": true,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "0666ed8f524bc1169f51eabdd1a3b6614f04e8acaeca5a1d280f0d1089fd2fbc",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "hidden_reg_failure",
+      "laboratory_delta": "0x40000000",
+      "slack": 0,
+      "existing": true,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 1,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900"
+      },
+      "output_sha256": "02da8ead13ae471692d2805428a1315045f23cf2cdeccb282999f996634db409",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 2
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "nonzero_control",
+      "laboratory_delta": "0x40000000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x1000",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000001000"
+      },
+      "output_sha256": "a770c1fc9f92c8804461680fc51901b53c4e8ba9afef38e055641456baa53116",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x1000",
+          "end_exclusive": "0xc0001000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": true
+        }
+      ]
+    },
+    {
+      "case": "size_high_bits_truncated",
+      "laboratory_delta": "0x40000000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x100000000",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "77b22f67326fac89dcbd9e1ae3de5c360dac70dc19965e28950d539dd3550414",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "no_space",
+      "laboratory_delta": "0x40200000",
+      "slack": 0,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 1,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": false,
+      "properties": {},
+      "output_sha256": "fff93dae76603f89e8260d1cace0fd5d88c1eadef31c8ac1fede73dc0a0c26eb",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 3
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "node_only",
+      "laboratory_delta": "0x40200000",
+      "slack": 32,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 1,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": true,
+      "properties": {},
+      "output_sha256": "649a9138347d45de68a1a86be704b2aa146a5d98f5b337a37ebec8b13575c6cb",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 2
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "reg_without_type",
+      "laboratory_delta": "0x40200000",
+      "slack": 64,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 1
+      },
+      "final_w0": 1,
+      "node_present": true,
+      "properties": {
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "d55f2b604f89044f17814caf40a103c649b78e5669c5ef889e5952011ce58fa6",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "zero_complete",
+      "laboratory_delta": "0x40200000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "77b22f67326fac89dcbd9e1ae3de5c360dac70dc19965e28950d539dd3550414",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "replace_existing",
+      "laboratory_delta": "0x40200000",
+      "slack": 128,
+      "existing": true,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "0666ed8f524bc1169f51eabdd1a3b6614f04e8acaeca5a1d280f0d1089fd2fbc",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    },
+    {
+      "case": "hidden_reg_failure",
+      "laboratory_delta": "0x40200000",
+      "slack": 0,
+      "existing": true,
+      "supplied_size": "0x0",
+      "helper_returns": {
+        "create": 1,
+        "reg": 1,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900"
+      },
+      "output_sha256": "02da8ead13ae471692d2805428a1315045f23cf2cdeccb282999f996634db409",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 2
+      },
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "nonzero_control",
+      "laboratory_delta": "0x40200000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x1000",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000001000"
+      },
+      "output_sha256": "a770c1fc9f92c8804461680fc51901b53c4e8ba9afef38e055641456baa53116",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x1000",
+          "end_exclusive": "0xc0001000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": true
+        }
+      ]
+    },
+    {
+      "case": "size_high_bits_truncated",
+      "laboratory_delta": "0x40200000",
+      "slack": 128,
+      "existing": false,
+      "supplied_size": "0x100000000",
+      "helper_returns": {
+        "create": 0,
+        "reg": 0,
+        "device_type": 0
+      },
+      "final_w0": 0,
+      "node_present": true,
+      "properties": {
+        "device_type": "6d656d6f727900",
+        "reg": "00000000c000000000000000"
+      },
+      "output_sha256": "77b22f67326fac89dcbd9e1ae3de5c360dac70dc19965e28950d539dd3550414",
+      "substitutions": {
+        "0x1b1160": 5,
+        "0x1af890": 3,
+        "0x1b1658": 0
+      },
+      "guards_and_callee_saved_preserved": true,
+      "lk_uh_callback_model": [
+        {
+          "node": "/memory@c0000000",
+          "base": "0xc0000000",
+          "size": "0x0",
+          "end_exclusive": "0xc0000000",
+          "reg_size": 12,
+          "ignored_reg_tuple_count": 0,
+          "uh_initial_nonzero_guard_passes": false
+        }
+      ]
+    }
+  ],
+  "case_count": 16,
+  "original_code_segments_unchanged": true,
+  "both_placements_match": true,
+  "writer_and_editor_executed_in_qemu": true,
+  "physical_fdt_observed": false,
+  "services_executed": false,
+  "is_final_fdt": false,
+  "limits": [
+    "Synthetic FDTs and two laboratory relocations; not Samsung runtime addresses",
+    "snprintf/strtoul/diagnostic printf substituted with guarded host operations",
+    "Bank constructor, later edits, LK walker and uH are not executed",
+    "LK-to-uH callback arguments modeled from resulting synthetic bytes only"
+  ]
+}

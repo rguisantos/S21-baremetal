@@ -543,3 +543,10 @@ Head `76d611f90eef3a1ede7889a706dd1752e138189f`, revisão automática
 6443214469 completed sem achados/pendências, zero threads e CI40513134170
 success antes do merge `436b5397c501b1f37e0f06cd23e52378417f31c7`.
 CI pós-merge40513488970 reconferido success nesta continuação.
+
+## PR #42 — observações do bugreport e cenário de bancos
+
+Head `0bf198bd8b2bfb534b437e9dea25ee355dce5943`, revisão automática
+6455347436 completed sem achados/pendências, zero threads e CI40596457728
+success antes do merge `c2e41bb17d4a284dddf64eb7a09395264918ac15`.
+CI pós-merge40596714509 conferido success nesta continuação.
