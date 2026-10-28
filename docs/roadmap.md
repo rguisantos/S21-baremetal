@@ -31,9 +31,11 @@ liga X5 a zero ou buffer local em nove chamadas selecionadas. O despacho e
 X0 do slot 47 continuam abertos, inclusive após buscas adicionais de
 encodings/endereço. O escopo QEMU continua igual.
 Os [dois switches relativos](newtime-jump-tables-hzc2.md) têm 25 entradas
-enumeradas, sem destino imediato no slot 47. O grafo local mantém a chamada
-`0x1a668`, a continuação comum `0x1aff0` e o callback nominal do slot 38
-como fronteiras; não é uma exclusão de chamador por toda a imagem.
+enumeradas, sem destino imediato no slot 47. A
+[continuação comum](newtime-common-continuation-hzc2.md) tem 227 PCs,
+sete chamadas e layout de resultado delimitado. `0x1a668`, `0x1a804`, bases
+dinâmicas e o callback nominal do slot 38 permanecem fronteiras; não há
+exclusão de chamador por toda a imagem.
 
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas
 e o encaminhamento de bytes. A [origem dinâmica foi encontrada](lk-rdx-memory-origin-hzc2.md):

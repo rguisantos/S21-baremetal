@@ -101,7 +101,9 @@ ou as 540 candidaturas condicionais como execuções. O extrator desta entrega
 usa as formas e janelas declaradas acima; não incorpora o motor externo.
 Os hashes dos três anexos constam na validação, sem redistribuir o firmware.
 
-Próxima frente: seguir `0x1a668`, a continuação `0x1aff0` ou os bindings
-recebidos por outros ramos ainda abertos. O despacho real do slot 47 e X0
+A [continuação 0x1aff0](newtime-common-continuation-hzc2.md) foi seguida
+separadamente: 227 PCs, sete BLs, campos packed e escritas condicionais.
+Próxima frente: efeitos de `0x1a668`/`0x1a804` e bases/aliases ainda abertos.
+O despacho real do slot 47 e X0
 continuam pendentes; a contagem de 593 do JSON externo não foi reescrita
 como uma nova contagem global deste extrator.

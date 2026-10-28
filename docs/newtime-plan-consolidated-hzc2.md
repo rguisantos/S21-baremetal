@@ -125,8 +125,10 @@ nominais a zero ou buffer local de 64 bytes e delimita construção/leitura.
 Essa tabela é distinta; o despacho e X0 do slot 47 permanecem abertos.
 Dois [switches com entradas relativas](newtime-jump-tables-hzc2.md) agora
 têm 20/5 casos enumerados, com anchors e arrays separados. Os destinos
-imediatos não incluem o slot 47; `0x1a668`, a continuação `0x1aff0` e o
-callback nominal do slot 38 são fronteiras, sem execução adicional.
+imediatos não incluem o slot 47. A [continuação 0x1aff0](newtime-common-continuation-hzc2.md)
+delimita sete chamadas, campos packed e layout de resultado; `0x1a668`,
+`0x1a804`, bases dinâmicas e callback nominal do slot 38 ficam abertos,
+sem execução adicional.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

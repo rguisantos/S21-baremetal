@@ -2697,3 +2697,18 @@ GNU 256/26/26, 131 testes NEWTIME (23 novos), 1023 links e baseline
 aprovados; sem executar firmware Samsung ou
 ampliar QEMU. [Análise](docs/newtime-jump-tables-hzc2.md) e
 [validação](docs/references/newtime-jump-tables-validation-20261028.json).
+
+## 2026-10-28 — continuação comum NEWTIME
+
+Base `054f5c8`, CI pós-merge do PR #49 aprovado. Seguido o grafo local de
+`0x1aff0`: 227 PCs, sete BLs e RET 0x1b378. Leitor 0x1a26c extrai quatro
+campos de 16 bits; os seletores dos 20 casos cobrem 24 palavras sob
+preservação, sem limite demonstrado no default. Delimitados layout de
+quatro bytes, low24, correções de byte e argumentos; helpers numéricos
+permanecem opacos. Contagem signed<=0 e Q zero preservados como endereços
+sintáticos possíveis, sem declarar fault/alcançabilidade. Bases dinâmicas
+não excluem aliases de 0x31580/0x31998; slot 47 e X0 continuam abertos.
+GNU 784/111/52, 151 testes NEWTIME (20 novos), reprodução exata, três
+recusas, 1036 links e baseline aprovados. Sem execução Samsung ou avanço
+QEMU. [Análise](docs/newtime-common-continuation-hzc2.md) e
+[validação](docs/references/newtime-common-continuation-validation-20261028.json).
