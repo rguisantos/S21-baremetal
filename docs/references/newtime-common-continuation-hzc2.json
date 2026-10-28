@@ -289,10 +289,16 @@
     "F": "X29/SP after 224-byte prologue",
     "B": "X25 = return of allocator BL@0x1abb4",
     "D": "X28 = lookup result BL@0x1ab94, or zero",
-    "E": "X26 = lookup result BL@0x1ab7c, or zero",
+    "E": "X26 = initial BL@0x1ab7c result or zero; replaced at 0x1ad78 by BL@0x1ad74 result if BL@0x1ad68 returns nonzero",
     "C": "X24 = lookup result BL@0x1ab58, or zero",
     "n": "W23 = M32[D+16], or zero",
     "G": "0x31aa8"
+  },
+  "margin_rebind": {
+    "handle_lookup": "BL@0x1ad68 -> 0x1c55c(MARGIN)",
+    "zero_handle": "0x1ad6c branches past reassignment, retaining initial X26",
+    "nonzero_handle": "BL@0x1ad74 -> 0x1c700(handle, name); 0x1ad78 replaces X26, including a zero result",
+    "runtime_handle_and_result_observed": false
   },
   "allocation": {
     "call": "0x1abb4",
@@ -753,7 +759,7 @@
     "version": "GNU objdump (GNU Binutils for Debian) 2.44",
     "words": 784,
     "relative_targets": 111,
-    "selected_operands": 52
+    "selected_operands": 56
   },
   "witnesses": [
     {

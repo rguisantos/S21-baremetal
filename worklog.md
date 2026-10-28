@@ -2729,3 +2729,9 @@ no aparelho/QEMU. Extrator GNU 203/37/34, 167 testes NEWTIME (16 novos),
 reprodução exata, três recusas, links locais e baseline aprovados. Slot 47
 permanece aberto. [Auditoria](docs/newtime-mif-bins-hzc2.md) e
 [validação](docs/references/newtime-mif-bins-validation-20261028.json).
+
+Correção ao cruzar os dois extratores: o E/X26 da continuação pode ser
+substituído pelo lookup MARGIN em 0x1ad74/0x1ad78 quando o handle de
+0x1ad68 não é zero; a descrição anterior só registrava a busca inicial.
+Extrator/JSON/validação corrigidos, reprodução e três recusas repetidas,
+167 testes aprovados. O conjunto GNU da continuação agora é 784/111/56.

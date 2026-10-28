@@ -24,13 +24,19 @@ Isso não fecha os efeitos dos callees nem prova execução desse caminho.
 | n | W23, carga `[D+16]` em `0x1aba0`, ou zero |
 | B | X25, retorno do alocador em `0x1abb4` |
 | C | X24, retorno do lookup em `0x1ab58`, ou zero |
-| E | X26, retorno do lookup em `0x1ab7c`, ou zero |
+| E | X26: lookup inicial `0x1ab7c`/zero; pode ser substituído em `0x1ad78` pelo retorno de `0x1ad74` |
 | G | estrutura global nominal correspondente ao arquivo `0x31aa8` |
 | Q | zero ou retorno opaco de `0x1a804`, conforme o caminho |
 
 Os nomes são papéis locais. Não atribuem significado físico aos campos nem
 estabelecem que um descritor, buffer ou endereço zero seja válido no aparelho.
 O retorno em `0x1b35c` copia B para X0 antes de restaurar o X25 do chamador.
+
+Antes do switch, `0x1ad68` busca o handle de MARGIN. Se ele é zero,
+`0x1ad6c` preserva o X26 inicial. Se não é zero, `0x1ad74` procura a entrada
+por nome e `0x1ad78` substitui X26 pelo resultado, inclusive se esse resultado
+for zero. Essa redefinição foi acrescentada ao cruzar a auditoria MIF com
+a continuação; E não deve ser descrito apenas pela busca inicial.
 
 ## Alocação e layout do resultado
 
@@ -125,7 +131,7 @@ python3 -m unittest discover -s scripts -p 'test_newtime*.py'
 ```
 
 O [extrator](../scripts/inspect_newtime_common_continuation_hzc2.py) exige
-hash/tamanho exatos, confere GNU 784 palavras, 111 alvos relativos e 52
+hash/tamanho exatos, confere GNU 784 palavras, 111 alvos relativos e 56
 operandos selecionados. O [JSON](references/newtime-common-continuation-hzc2.json)
 inclui as testemunhas completas, grafo e condições. Os
 [testes](../scripts/test_newtime_common_continuation.py) verificam wrap W,
