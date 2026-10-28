@@ -105,3 +105,8 @@ a célula `0x31580`, antes de atribuir um índice dinâmico ou valor a X0.
 Binding/método, leitor de AP`0x0207365c`, semântica física e ordem real
 continuam abertos. O resultado desta rodada é **parcial**, não fechamento
 da origem de X0 ou autorização de execução fora do callback NEWTIME.
+
+Continuação: a [revisão dos argumentos de cópia](newtime-copy-arguments-hzc2.md)
+cobre as 47 referências diretas e seus wrappers, sem transporte comprovado.
+O buffer opcional de 64 bytes leva a outra tabela: slot 20 de `0x30fe8`,
+não slot 47 de `0x31408`. Ponteiros de canal e metadados são a frente seguinte.

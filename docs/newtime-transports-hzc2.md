@@ -7,6 +7,11 @@ janelas de cópias parametrizadas têm origens distintas. Outras 44 referências
 ao helper de cópia permanecem sem análise de argumentos nesta entrega.
 Nenhuma rotina foi executada no QEMU, no monitor seguro ou no aparelho.
 
+Continuação de 27/10: os [argumentos das 47 referências](newtime-copy-arguments-hzc2.md)
+foram revisados, incluindo as 44 pendentes. Há grupos de strings, buffers,
+índices assinados e wrappers; ponteiros de canal/metadados seguem abertos.
+As pendências e contagens abaixo descrevem a rodada original de 25/10.
+
 ## Janela auditada e hipótese de endereço
 
 Mesmo sboot HZC2 de 4194304 bytes, SHA-256

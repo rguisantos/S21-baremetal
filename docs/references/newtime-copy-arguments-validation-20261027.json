@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-27",
+  "timezone": "America/Campo_Grande",
+  "base_main": "5b3ef6acd1624f372c4e3b226b115f470df577d6",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "5bcffe9c5cf16632f686478dc9e6c4de48df31bf1a566346f3fa5ff389928e1c",
+  "report_reproduced_byte_for_byte": true,
+  "direct_copy_references": 47,
+  "newly_classified_references": 44,
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 1320,
+    "relative_targets": 231,
+    "selected_operands": 46,
+    "instruction_index_sha256": "68027a977f7aa48bd05d45372dcee31f8f017fe100662544f4c7f1c6d4b2452c"
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p test_newtime*.py",
+    "returncode": 0,
+    "stderr": "....................................................................................\n----------------------------------------------------------------------\nRan 84 tests in 0.010s\n\nOK",
+    "new_boundary_tests": 10
+  },
+  "negative_input_controls": [
+    {
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "rejected_before_report": true
+    },
+    {
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "rejected_before_report": true
+    },
+    {
+      "input": "modified",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "rejected_before_report": true
+    }
+  ],
+  "baseline": {
+    "status": "passed",
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-copy-arguments-20261027",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "658b93d8384706c02181ee37402b9b3c02fff856f533c8a0456298beeeb2baad"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "f612d547504a9bef7ecda9dac555501a4cb5a191df14f28cd95a21e15c20cb9b"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "9340091d4952f4da241030a3a068f1259c2b4a2b9af857a0cae09f734a5cd25a"
+      }
+    ]
+  },
+  "firmware_executed_by_analysis": false,
+  "baseline_synthetic_qemu_only": true,
+  "qemu_scope_extended": false,
+  "physical_device_tested": false,
+  "local_markdown_links_checked": 967,
+  "local_markdown_links_missing": []
+}
