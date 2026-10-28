@@ -2642,3 +2642,17 @@ preenchimento pelo descritor. JSON por linha e comparador próprio entregues;
 compare.py/run_case.sh originais não recebidos. Nenhum avanço de escopo.
 [Relatório](docs/newtime-gate-observation-scope-hzc2.md) e
 [validação](docs/references/newtime-gate-observation-validation-20261027.json).
+
+## 2026-10-27 — argumentos das cópias NEWTIME
+
+Base `5b3ef6a`; CI pós-merge do PR #45 aprovado. Revisadas as 44 referências
+pendentes e mantidas as três anteriores: 47 locais de B/BL para 0x1fcc4,
+mais referências de wrappers. Grupos de 24 strings, buffers, índices com
+sinal e metadados delimitados. O único chamador direto de 0x25400 recebe
+índice não negativo do laço selecionado sob preservação ABI. O buffer X5
+de 64 bytes aponta para investigação do slot 20 de outra tabela. Sem transporte
+comprovado de `0x31580` ou origem de X0 resolvida. GNU 1320/231/46, 84 testes
+NEWTIME, reprodução exata, três recusas e baseline aprovados. Sem executar
+firmware ou ampliar o escopo QEMU.
+[Análise](docs/newtime-copy-arguments-hzc2.md) e
+[validação](docs/references/newtime-copy-arguments-validation-20261027.json).

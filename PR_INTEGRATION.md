@@ -564,3 +564,10 @@ Head `1f2330c1f95cb7a96a343bccd01db67f2a5711f1`, revisão automática
 6457599753 completed sem achados/pendências, zero threads e CI40610865101
 success antes do merge `a12a8e284b118b565dbaefc37fd334fdca88c1f0`.
 CI pós-merge40611102687 conferido success nesta continuação.
+
+## PR #45 — observação no gate NEWTIME
+
+Head `8904813c599c248cf0416a59d64852a8e0586fa8`, revisão automática
+6457990003 completed sem achados/pendências, zero threads e CI40613716373
+success antes do merge `5b3ef6acd1624f372c4e3b226b115f470df577d6`.
+CI pós-merge40613972935 conferido success nesta continuação.

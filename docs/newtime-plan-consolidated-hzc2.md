@@ -112,6 +112,10 @@ descarta quatro candidatos, mantendo despacho/X0 abertos.
 A [investigação de transportes](newtime-transports-hzc2.md) afasta sete
 cópias fixas e examina três das 47 referências parametrizadas; transporte
 da célula e origem de X0 continuam abertos.
+Sua [continuação de argumentos](newtime-copy-arguments-hzc2.md) revisa as
+47 referências e os wrappers: índices limitados pelo chamador selecionado,
+ponteiros de canal/metadados e buffer opcional ainda abertos, sem transporte
+comprovado. A contagem de três acima pertence à rodada original.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 
