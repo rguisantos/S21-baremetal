@@ -42,6 +42,9 @@
 - `inspect_newtime_channel_origins_hzc2.py` e `test_newtime_channel_origins.py`:
   escritor das quatro células e modelos condicionais dos descritores;
   [origens, verificações e limites](../docs/newtime-channel-origins-hzc2.md).
+- `inspect_newtime_slot20_hzc2.py` e `test_newtime_slot20.py`: chamadores
+  selecionados, X5 local/nulo, aritmética e buscas limitadas de endereço;
+  [relatório](../docs/newtime-slot20-hzc2.md).
 
 - `inspect_newtime_consumers_hzc2.py` e `test_newtime_consumers.py`: leitor
   da coluna 12, direção do fluxo 108→162 bytes, slots de funções e diretório

@@ -110,3 +110,8 @@ Continuação: a [revisão dos argumentos de cópia](newtime-copy-arguments-hzc2
 cobre as 47 referências diretas e seus wrappers, sem transporte comprovado.
 O buffer opcional de 64 bytes leva a outra tabela: slot 20 de `0x30fe8`,
 não slot 47 de `0x31408`. Ponteiros de canal e metadados são a frente seguinte.
+
+A [continuação do slot 20](newtime-slot20-hzc2.md) resolve X5 em nove
+chamadas selecionadas e acrescenta buscas de endereços diretos da célula.
+Nenhum novo despacho do slot 47 foi estabelecido; os limites das formas
+de carga, pares adjacentes e região BL2 continuam explícitos.

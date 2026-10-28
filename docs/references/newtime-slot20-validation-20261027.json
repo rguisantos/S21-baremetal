@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-27",
+  "timezone": "America/Campo_Grande",
+  "base_main": "912edb3b4219ead9cc609de68bdd345b5a0dca3c",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "reports": [
+    {
+      "script": "inspect_newtime_slot20_hzc2.py",
+      "report": "newtime-slot20-hzc2.json",
+      "sha256": "e5c8c8a15d549a3920d4f7b0980d07f6299f47af899cb1eeb66a3d6cbb540653",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "script": "inspect_newtime_channel_origins_hzc2.py",
+      "report": "newtime-channel-origins-hzc2.json",
+      "sha256": "713301df2f01f819d865521439c4f9cd4ce1c17f708874eb122ed13c920a92ec",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "script": "inspect_newtime_slot47_hzc2.py",
+      "report": "newtime-slot47-hzc2.json",
+      "sha256": "bb9d0e688b0c29f4e2ca1a47037cb90273218940b7316e67561e386910d8d35c",
+      "reproduced_byte_for_byte": true
+    }
+  ],
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 486,
+    "relative_targets": 48,
+    "selected_operands": 41,
+    "instruction_index_sha256": "55acda3467e7ce8c21f612cf6c05b24acf15ef67f9104e21cc3017cff9c7b89f"
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p test_newtime*.py",
+    "new_tests": 13,
+    "returncode": 0,
+    "stderr": "............................................................................................................\n----------------------------------------------------------------------\nRan 108 tests in 0.018s\n\nOK"
+  },
+  "negative_inputs": [
+    {
+      "input": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "modified",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "baseline": {
+    "status": "passed",
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-slot20-20261027",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "be30f328144cdf0ee03a69cbbecfa5edeb2acb5b0dbe049895600fabe51cdc30"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "b1bbba177dab8f9699b6182795dbae10c98a7b8598a4e657e704353721bb14dc"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "3d3b74ed49fc4e6d98acf1951fbd0aa4af2786501104a6ffefc0524e58bdca27"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "98d5fb2a4ece14bdccb703db676598c6579a0d12124da434a258177c5a5fc6ee"
+      }
+    ]
+  },
+  "firmware_executed_by_analysis": false,
+  "models_are_conditional_host_arithmetic": true,
+  "qemu_scope_extended": false,
+  "physical_device_tested": false,
+  "local_markdown_links_checked": 994,
+  "local_markdown_links_missing": []
+}
