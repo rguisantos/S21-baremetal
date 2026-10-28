@@ -2669,3 +2669,16 @@ geral de bounds ou rollback. GNU 428/70/64, 95 testes NEWTIME e baseline
 aprovados. Sem execução Samsung ou ampliação QEMU; slot 47 ainda aberto.
 [Análise](docs/newtime-channel-origins-hzc2.md) e
 [validação](docs/references/newtime-channel-origins-validation-20261027.json).
+
+## 2026-10-27 — slot 20 NEWTIME e origem de X5
+
+Base `912edb3`, CI pós-merge do PR #47 aprovado. Scan LDR/LDP de 160 bytes
+classifica 16 cargas; oito usam nominalmente `0x30fe8`/slot 20, com nove BLRs:
+sete X5 zero, duas SP+0xc0. Delimitadas construção de 16 u32 por diferenças
+de amostras + base aditiva, cópia de 64 bytes e leituras low16 no bit 13.
+Sem valores físicos ou transporte demonstrado do slot 47. Busca adicional
+de LDR literal/ADR/pares ADRP+ADD e offsets 1408/5504 mantém despacho/X0
+abertos. GNU 486/48/41, 108 testes NEWTIME e baseline aprovados; análise
+estática, sem avanço QEMU.
+[Análise](docs/newtime-slot20-hzc2.md) e
+[validação](docs/references/newtime-slot20-validation-20261027.json).

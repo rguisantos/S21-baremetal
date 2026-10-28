@@ -578,3 +578,10 @@ Head `d803134fe55cd5f1bcfc7ee843abf75acd5dc968`, revisão automática
 6458895834 completed sem achados/pendências, zero threads e CI40620328843
 success antes do merge `68eacaab153f2989c71bb68104afd55922312db7`.
 CI pós-merge40620658941 conferido success nesta continuação.
+
+## PR #47 — origens dos canais e descritores NEWTIME
+
+Head `39eacbaaf14af04ec7e9050b3ba06e9f62373c46`, revisão automática
+6460087727 completed sem achados/pendências, zero threads e CI40628188250
+success antes do merge `912edb3b4219ead9cc609de68bdd345b5a0dca3c`.
+CI pós-merge40628421245 conferido success nesta continuação.

@@ -136,3 +136,8 @@ agora têm arestas concretas. Preservação posterior e metadados efetivos
 seguem abertos. A próxima frente pode seguir o argumento X5 do slot 20
 da outra tabela e o despacho que fornece X0 ao slot 47; nenhuma ligação
 entre eles foi demonstrada por esta análise.
+
+Continuação: [chamadores do slot 20 e origem de X5](newtime-slot20-hzc2.md)
+liga oito cargas a nove chamadas nominais: sete X5 zero e duas com buffer
+local calculado, sem ligação demonstrada ao slot 47. A busca adicional
+de endereços preserva o limite das formas aceitas.

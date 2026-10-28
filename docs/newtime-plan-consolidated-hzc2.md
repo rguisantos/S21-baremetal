@@ -120,6 +120,9 @@ A [origem dos canais](newtime-channel-origins-hzc2.md) encontra o escritor
 `0x2d468`, chamada nominal via slot 18 e o diretório de registro/recuperação.
 Os quatro intervalos ficam fora da célula sob preservação; metadados e
 ordem reais continuam abertos. Os exemplos de diretório são modelos de host.
+A [origem de X5 no slot 20](newtime-slot20-hzc2.md) liga nove chamadas
+nominais a zero ou buffer local de 64 bytes e delimita construção/leitura.
+Essa tabela é distinta; o despacho e X0 do slot 47 permanecem abertos.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 
