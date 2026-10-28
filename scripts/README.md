@@ -45,6 +45,10 @@
 - `inspect_newtime_slot20_hzc2.py` e `test_newtime_slot20.py`: chamadores
   selecionados, X5 local/nulo, aritmética e buscas limitadas de endereço;
   [relatório](../docs/newtime-slot20-hzc2.md).
+- `inspect_newtime_jump_tables_hzc2.py` e `test_newtime_jump_tables.py`:
+  20 entradas halfword e cinco byte, anchors separados dos arrays,
+  guard unsigned e grafos locais com callees opacos;
+  [limites e reprodução](../docs/newtime-jump-tables-hzc2.md).
 
 - `inspect_newtime_consumers_hzc2.py` e `test_newtime_consumers.py`: leitor
   da coluna 12, direção do fluxo 108→162 bytes, slots de funções e diretório

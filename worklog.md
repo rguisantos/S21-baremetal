@@ -2682,3 +2682,18 @@ abertos. GNU 486/48/41, 108 testes NEWTIME e baseline aprovados; análise
 estática, sem avanço QEMU.
 [Análise](docs/newtime-slot20-hzc2.md) e
 [validação](docs/references/newtime-slot20-validation-20261027.json).
+
+## 2026-10-28 — dois switches NEWTIME com entradas relativas
+
+Base `e9bcc87`, CI pós-merge do PR #48 aprovado. Material externo v5
+reproduzido (137 testes sem skips, JSON igual salvo caminho da entrada).
+Enumerados independentemente os BRs `0x1ada4` e `0x2f928`: arrays
+`0x30108`/`0x30130`, 20 halfwords/5 bytes e 12/4 destinos. Os anchors
+`0x1ada8`/`0x2f92c` são código, não as tabelas. Nenhuma entrada aponta ao
+slot 47; os grafos locais deixam `0x1a668`, `0x1aff0` e o callback em
+`0x2fa78` como fronteiras. O callback usa nominalmente slot 38/`0x31538`
+→ `0x2d2e4`, condicionado ao bit 12 de AP0x02073698 e à preservação.
+GNU 256/26/26, 131 testes NEWTIME (23 novos), 1023 links e baseline
+aprovados; sem executar firmware Samsung ou
+ampliar QEMU. [Análise](docs/newtime-jump-tables-hzc2.md) e
+[validação](docs/references/newtime-jump-tables-validation-20261028.json).
