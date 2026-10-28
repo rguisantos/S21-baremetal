@@ -1,6 +1,6 @@
 # Exynos 2100 / SM-G998B: estado confirmado
 
-Atualizado em 2026-10-22 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
+Atualizado em 2026-10-27 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware informado pelo usuário como original e igual ao instalado, `G998BXXSJHZC2`, Android 15. A string do kernel nas imagens recebidas confirma HZC2 e Linux 5.4.242. Não houve execução do payload nem flash no aparelho.
 
 ## Recursos extraídos do firmware
 
@@ -13,7 +13,7 @@ Atualizado em 2026-10-22 (Campo Grande). Alvo: Galaxy S21 Ultra `p3s`, firmware 
 | GICD | 0x10200000 / 0x10000 |
 | GICR | 0x10240000 / 0x200000; sem stride explícito |
 | Timer | físico NS, PPI 14 = INTID 30; DT anuncia 26 MHz |
-| PSCI | `smc` no DTB; não selecionar HVC por strings soltas do firmware |
+| PSCI | `smc` na base; [LK pode editar para hvc](docs/lk-psci-final-edit-hzc2.md), com mensagem observada. FDT final e serviço não capturados; sem sondagem de conduíte |
 | UART1 | 0x10840000 / 0x100; Exynos USI v2; FIFO 256 |
 | IRQ UART1 | SPI 533 = INTID 565 |
 | UART status | disabled no base; okay nos oito resultados com overlay |

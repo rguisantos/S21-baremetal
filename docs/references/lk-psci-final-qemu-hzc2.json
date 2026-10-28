@@ -1,0 +1,372 @@
+{
+  "mode": "original_lk_psci_property_rewriter_qemu",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "case_count": 24,
+  "cases": [
+    {
+      "case": "flag_zero",
+      "laboratory_delta": "0x40000000",
+      "flag": 0,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "736d6300",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "smc_to_hvc",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "already_hvc",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "68766300",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "unknown_method",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "666f6f00",
+      "result_method_hex": "666f6f00",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "1f9db8db0e3bec4c42829357efd71940d197cbacaa8a4edb15a16ca28582a4ce",
+      "output_sha256": "1f9db8db0e3bec4c42829357efd71940d197cbacaa8a4edb15a16ca28582a4ce",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "missing_node",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": null,
+      "result_method_hex": null,
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "68208b733ef68bc8f9303831d51279a67752751bdba4337162e50dd84ba6c14e",
+      "output_sha256": "68208b733ef68bc8f9303831d51279a67752751bdba4337162e50dd84ba6c14e",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "missing_method",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": null,
+      "result_method_hex": null,
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "35cf137311d50544ba4152aa31ad641fe9e4d10bb53c2bf3087e2f34ce2fa4c6",
+      "output_sha256": "35cf137311d50544ba4152aa31ad641fe9e4d10bb53c2bf3087e2f34ce2fa4c6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "null_fdt",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "736d6300",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "empty_property",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "7fa2655d8acf247644e75860ed12f90392a16118d91978ef6deb85237420df0d",
+      "output_sha256": "7bf314e71cdb8f1a53f540582c55a5e76dd85032c6270b96f84ae1738ddbed66",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "smc_prefix_only",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "73",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "ee3cda381d329fc512a9876f459458c0aeae46d50466c674eb211ddd2e01bab9",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "hvc_prefix_only",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "6876",
+      "result_method_hex": "6876",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "7150f46a9089868c78ec863209d04108d013db8574645de38d48c844a5f3f87b",
+      "output_sha256": "7150f46a9089868c78ec863209d04108d013db8574645de38d48c844a5f3f87b",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "embedded_nul_tail",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "736d63007461696c",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "6365a1f4ec6146c1572954f4ca502a58d3fe06e946404d0634c6362a25adff72",
+      "output_sha256": "c6331070e377c29c37674fdec002578752ce364519c8e3b392e661c794448a6e",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "no_room_to_grow",
+      "laboratory_delta": "0x40000000",
+      "flag": 1,
+      "supplied_method_hex": "",
+      "result_method_hex": "",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "ffc7cf098d49cba3a0025d5c72a9e3673afb805fbf5c594311841180076c51c7",
+      "output_sha256": "ffc7cf098d49cba3a0025d5c72a9e3673afb805fbf5c594311841180076c51c7",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "flag_zero",
+      "laboratory_delta": "0x40200000",
+      "flag": 0,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "736d6300",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "smc_to_hvc",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "already_hvc",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "68766300",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "unknown_method",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "666f6f00",
+      "result_method_hex": "666f6f00",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "1f9db8db0e3bec4c42829357efd71940d197cbacaa8a4edb15a16ca28582a4ce",
+      "output_sha256": "1f9db8db0e3bec4c42829357efd71940d197cbacaa8a4edb15a16ca28582a4ce",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "missing_node",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": null,
+      "result_method_hex": null,
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "68208b733ef68bc8f9303831d51279a67752751bdba4337162e50dd84ba6c14e",
+      "output_sha256": "68208b733ef68bc8f9303831d51279a67752751bdba4337162e50dd84ba6c14e",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "missing_method",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": null,
+      "result_method_hex": null,
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "35cf137311d50544ba4152aa31ad641fe9e4d10bb53c2bf3087e2f34ce2fa4c6",
+      "output_sha256": "35cf137311d50544ba4152aa31ad641fe9e4d10bb53c2bf3087e2f34ce2fa4c6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "null_fdt",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "736d6300",
+      "result_method_hex": "736d6300",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "output_sha256": "05b2b4b4600581db6dc2b85970b1dd0ab17ee880c7068b3f79e7d0dfa42a1de6",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "empty_property",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "7fa2655d8acf247644e75860ed12f90392a16118d91978ef6deb85237420df0d",
+      "output_sha256": "7bf314e71cdb8f1a53f540582c55a5e76dd85032c6270b96f84ae1738ddbed66",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "smc_prefix_only",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "73",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "ee3cda381d329fc512a9876f459458c0aeae46d50466c674eb211ddd2e01bab9",
+      "output_sha256": "5f74273a4bcca158e028e4b4fe45d77c506aa5da09a1c58b92d0be273b47a9da",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "hvc_prefix_only",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "6876",
+      "result_method_hex": "6876",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "7150f46a9089868c78ec863209d04108d013db8574645de38d48c844a5f3f87b",
+      "output_sha256": "7150f46a9089868c78ec863209d04108d013db8574645de38d48c844a5f3f87b",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "embedded_nul_tail",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "736d63007461696c",
+      "result_method_hex": "68766300",
+      "final_w0_signed": 0,
+      "diagnostic_calls_suppressed": 2,
+      "input_sha256": "6365a1f4ec6146c1572954f4ca502a58d3fe06e946404d0634c6362a25adff72",
+      "output_sha256": "c6331070e377c29c37674fdec002578752ce364519c8e3b392e661c794448a6e",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    },
+    {
+      "case": "no_room_to_grow",
+      "laboratory_delta": "0x40200000",
+      "flag": 1,
+      "supplied_method_hex": "",
+      "result_method_hex": "",
+      "final_w0_signed": -1,
+      "diagnostic_calls_suppressed": 1,
+      "input_sha256": "ffc7cf098d49cba3a0025d5c72a9e3673afb805fbf5c594311841180076c51c7",
+      "output_sha256": "ffc7cf098d49cba3a0025d5c72a9e3673afb805fbf5c594311841180076c51c7",
+      "zero_bank_unchanged": true,
+      "guards_and_callee_saved_preserved": true
+    }
+  ],
+  "both_placements_match": true,
+  "segments": [
+    {
+      "start": "0x11e5e0",
+      "end": "0x11ff68",
+      "sha256": "4f56576a1176791bee36707b0454c5a7a02965c8944ebde79aac2eafa5e8a921"
+    },
+    {
+      "start": "0x1af3c0",
+      "end": "0x1af688",
+      "sha256": "1803f055fe106615b3f10c5eab9e52d1248806f1070bc5a251b7a65865d706e3"
+    },
+    {
+      "start": "0x1b2250",
+      "end": "0x1b2900",
+      "sha256": "3fc64caeae5f41c61451f8f38ff274530401c25b78363cb5fadfdeed73e215c3"
+    },
+    {
+      "start": "0x22c000",
+      "end": "0x22d000",
+      "sha256": "8eff52dfa1508124bce5dd07bffc689512e826d91db6a82e0b9040bd51e30fbb"
+    },
+    {
+      "start": "0xf9470",
+      "end": "0xf9618",
+      "sha256": "b33606e3dc5caf887f0c3ef115457616002f731977e35c4554b7697995c0830a"
+    },
+    {
+      "start": "0x214000",
+      "end": "0x215000",
+      "sha256": "5869b251d0e70e57c635862136aef73e13ac69386a7eb13574e691227b753b4d"
+    },
+    {
+      "start": "0x22b000",
+      "end": "0x22c000",
+      "sha256": "ae5e6fc23e8e0d84688c257fbe262aa32098589dd0f14df47315d1e48ff10fe0"
+    },
+    {
+      "start": "0x26d000",
+      "end": "0x26e000",
+      "sha256": "48b62ce3f6e17c31b4440a1257b588a611d936bf68018b79b62bde54d3c3b171"
+    }
+  ],
+  "original_code_segments_unchanged": true,
+  "diagnostic_printf_substituted": true,
+  "comparison_and_fdt_editor_original": true,
+  "psci_smc_hvc_executed": false,
+  "physical_final_fdt_captured": false,
+  "limits": [
+    "Synthetic FDTs and supplied Harx flag; not a live register snapshot",
+    "Only diagnostic printf is substituted; no console hardware is used",
+    "A zero bank remains unchanged by this routine only; later calls stay opaque"
+  ]
+}

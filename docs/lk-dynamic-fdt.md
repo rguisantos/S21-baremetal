@@ -75,7 +75,9 @@ reservas finais e não autoriza considerar o restante como memória livre.
 0x148b1c passa ao HVC ponteiros de dois buffers previamente zerados. Em
 0x148b20, seus conteúdos são carregados como base/tamanho. O estado inicial
 zero não comprova o resultado do serviço; esse HVC também não estabelece
-conduíte PSCI alternativo. O DTB continua declarando PSCI SMC.
+conduíte PSCI alternativo. O DTB **base** declara PSCI SMC; outra rotina,
+[0xf9470, edita method para hvc](lk-psci-final-edit-hzc2.md) condicionalmente
+mais tarde. Essa edição tem mensagem de sucesso observada no bugreport.
 
 Atualização de 2026-10-22 UTC: o [handler no uH do pacote BL](el2-earlymem-hzc2.md)
 foi identificado. Pode calcular, alocar e inicializar a região, dependendo de

@@ -2616,3 +2616,16 @@ ABI/sentinelas/código. Modelo do walker encaminha zero, guard uH falharia;
 sem walker/HVC/uH físico ou FDT final capturado.
 [Análise](docs/lk-zero-bank-editor-hzc2.md) e
 [validação](docs/references/lk-bank-editor-validation-20261027.json).
+
+## 2026-10-27 — PSCI editado depois dos bancos
+
+Base8f88999. Seguido trecho posterior: 0xfb52c chama 0xf9470, que sob
+flag Harx tenta smc→hvc em /psci/method. Mensagem do ramo após setprop
+não negativo observada na linha409533 do LAST KMSG privado, tempo2.946751.
+Extrato por lista de permissão separado preserva relatório anterior.
+24 casos QEMU com implementação FDT/comparações originais, só printf
+substituído; banco zero preservado nessa rotina. Comprimentos curtos aceitos
+no ensaio não são evidência de dados malformados no aparelho. Corrigidas
+afirmações que confundiam DTB base com método após edições do LK.
+[Análise](docs/lk-psci-final-edit-hzc2.md) e
+[validação](docs/references/lk-psci-final-validation-20261027.json).

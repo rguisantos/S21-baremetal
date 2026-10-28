@@ -87,3 +87,11 @@ O contêiner agora foi carregado no QEMU até a main R10 real em EL1, com confer
 ## Evidência posterior: entrada LK
 
 A primeira chamada de LK no sboot HZC2 configura/preserva EL1, conforme [sboot-layout-hzc2.md](sboot-layout-hzc2.md). Isso impede usar “Samsung entrega em EL2” como premissa do R10. A Image de diagnóstico descrita nesta página deve tratar EL1/EL2 antes de registradores específicos, e a compatibilidade com o salto final ainda precisa de observação.
+
+## Continuação de 27/10 — método PSCI após a base
+
+O [editor posterior do LK](lk-psci-final-edit-hzc2.md) pode trocar
+/psci/method de smc para hvc sob o flag Harx. O bugreport contém a mensagem
+do ramo após setprop não negativo. Vinte e quatro casos QEMU conferem
+essa rotina; não são captura do FDT final ou execução de serviço PSCI.
+A main de uma CPU permanece sem sondagens SMC/HVC.

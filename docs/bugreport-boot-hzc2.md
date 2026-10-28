@@ -127,3 +127,11 @@ e executado em fixtures. Com espaço, ele conserva o nó/reg de tamanho zero;
 com falhas, pode deixar edições parciais e retornar zero apesar de reg ausente.
 Isso resolve a semântica local; transformações posteriores e FDT físico
 continuam abertos. Não há nova coleta a solicitar ao usuário nesta etapa.
+
+## Continuação de 27/10 — método PSCI após a base
+
+O [editor posterior do LK](lk-psci-final-edit-hzc2.md) pode trocar
+/psci/method de smc para hvc sob o flag Harx. O bugreport contém a mensagem
+do ramo após setprop não negativo. Vinte e quatro casos QEMU conferem
+essa rotina; não são captura do FDT final ou execução de serviço PSCI.
+A main de uma CPU permanece sem sondagens SMC/HVC.
