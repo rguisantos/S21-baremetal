@@ -2604,3 +2604,15 @@ construtor, sem prova de FDT final. Token: mensagem316 corresponde ao ramo
 de prefixo diferente de ENG, não a prova de partição vazia/bitmap zero.
 [Análise](docs/bugreport-boot-hzc2.md) e
 [validação](docs/references/bugreport-boot-validation-20261027.json).
+
+## 2026-10-27 — resultado local do banco zero no editor
+
+Basec2e41bb. Seguidos 0xf1570, helpers e editor FDT original HZC2. Com
+espaço, cria memory@c0000000 com reg de tamanho zero; falta de espaço deixa
+edições parciais. Caso de reg ausente com tipo preexistente termina W0=0
+apesar da falha de reg. Dezesseis casos QEMU, duas posições de laboratório,
+substituições explícitas de snprintf/strtoul/printf e conferência de bytes,
+ABI/sentinelas/código. Modelo do walker encaminha zero, guard uH falharia;
+sem walker/HVC/uH físico ou FDT final capturado.
+[Análise](docs/lk-zero-bank-editor-hzc2.md) e
+[validação](docs/references/lk-bank-editor-validation-20261027.json).

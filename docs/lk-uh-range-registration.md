@@ -105,3 +105,11 @@ Faltam os valores e ramos usados para construir os bancos nessa árvore,
 incluindo os retornos soc_info/SMC, a limitação de tamanho de RAM e eventuais
 edições posteriores. Essa é a próxima prioridade; o material recebido basta
 para continuar, sem repetir as coletas rish já bloqueadas.
+
+## Continuação — banco zero e editor original
+
+O [editor HZC2](lk-zero-bank-editor-hzc2.md) foi executado em 16 casos
+QEMU com árvores sintéticas. Ele pode conservar reg de tamanho zero e deixar
+edições parciais; W0 final reflete apenas a última edição. O percurso LK
+não filtra reg zero, mas o guard uH base/tamanho não zero não passaria.
+Isso não substitui captura do FDT final nem execução física de walker/uH.

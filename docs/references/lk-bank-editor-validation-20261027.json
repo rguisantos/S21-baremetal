@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-27",
+  "base_commit": "c2e41bb17d4a284dddf64eb7a09395264918ac15",
+  "gnu_words": 366,
+  "gnu_relative_targets": 67,
+  "qemu_cases": 16,
+  "both_laboratory_placements_match": true,
+  "exact_reproduction": [
+    "static_report",
+    "qemu_report"
+  ],
+  "regressions": {
+    "bank_model": 17,
+    "uh_range_model": 8,
+    "return_graph": 14,
+    "flow_decoder": 15
+  },
+  "negative_controls": [
+    {
+      "script": "inspect_lk_bank_editor.py",
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "emulate_lk_bank_editor_qemu.py",
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "inspect_lk_bank_editor.py",
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "emulate_lk_bank_editor_qemu.py",
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "baseline": {
+    "result": "PASS",
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17
+  },
+  "links": {
+    "count": 932,
+    "broken": 0,
+    "anchors_checked": false
+  },
+  "physical_payload_executed": false,
+  "final_fdt_captured": false,
+  "sha256": {
+    "scripts/inspect_lk_bank_editor.py": "6a14d0ca0d2af8d38b825dd514b030ada2a2d2f1c21db2b9aacd9048bdb0c7c7",
+    "scripts/emulate_lk_bank_editor_qemu.py": "49029f47f1e9827597bd14e56bebad361990a79f203c3c8ffb95b81f3d3b082c",
+    "docs/references/lk-bank-editor-hzc2.json": "b06b1a3d750501d7efecc609786db621302baa1ad699ba8b8af85418dfb02925",
+    "docs/references/lk-bank-editor-qemu-hzc2.json": "ed3633ababb730a67b96365991ff840cfaa6d99d7607e68e494479e402719f3f"
+  }
+}

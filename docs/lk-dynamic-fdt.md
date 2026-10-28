@@ -147,3 +147,11 @@ Intervalos para desassemblagem independente: 0xfb408:0xfb4dc,
 0x1486a0:0x148770, 0x148a80:0x148c34, 0x11b758:0x11b794 e
 0x1472e0:0x147330. O material recebido basta para continuar seguindo os
 serviços e ramos que definem o mapa efetivo.
+
+## Continuação — banco zero e editor original
+
+O [editor HZC2](lk-zero-bank-editor-hzc2.md) foi executado em 16 casos
+QEMU com árvores sintéticas. Ele pode conservar reg de tamanho zero e deixar
+edições parciais; W0 final reflete apenas a última edição. O percurso LK
+não filtra reg zero, mas o guard uH base/tamanho não zero não passaria.
+Isso não substitui captura do FDT final nem execução física de walker/uH.

@@ -142,3 +142,11 @@ valores impressos de SEC_DRAM/SEC_PGTBL/Harx e a mensagem de prefixo do
 token. Isso atualiza as lacunas históricas acima: há texto do bootloader
 recuperado pelo serviço, mas o shell direto continua restrito. Não é dump
 físico, FDT final ou prova de execução/aquisição do diagnóstico próprio.
+
+## Continuação — banco zero e editor original
+
+O [editor HZC2](lk-zero-bank-editor-hzc2.md) foi executado em 16 casos
+QEMU com árvores sintéticas. Ele pode conservar reg de tamanho zero e deixar
+edições parciais; W0 final reflete apenas a última edição. O percurso LK
+não filtra reg zero, mas o guard uH base/tamanho não zero não passaria.
+Isso não substitui captura do FDT final nem execução física de walker/uH.
