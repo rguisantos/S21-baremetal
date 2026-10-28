@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-27",
+  "base_commit": "8f88999830d77dc5be60291eea37c4fc8e04ac42",
+  "gnu_words": 238,
+  "gnu_relative_targets": 60,
+  "qemu_cases": 24,
+  "both_laboratory_placements_match": true,
+  "exact_reproduction": [
+    "static_and_allowlisted_log_report",
+    "qemu_report"
+  ],
+  "host_tests": {
+    "psci_log_privacy_provenance": 5,
+    "return_graph": 14,
+    "flow_decoder": 15
+  },
+  "negative_controls": [
+    {
+      "script": "inspect_lk_psci_final.py",
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "emulate_lk_psci_final_qemu.py",
+      "case": "truncated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "inspect_lk_psci_final.py",
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "emulate_lk_psci_final_qemu.py",
+      "case": "mutated",
+      "exit_code": 2,
+      "stdout_empty": true
+    },
+    {
+      "script": "inspect_lk_psci_final.py",
+      "case": "wrong_bugreport_hash",
+      "exit_code": 2,
+      "stdout_empty": true
+    }
+  ],
+  "baseline": {
+    "result": "PASS",
+    "host": [
+      43,
+      60,
+      17
+    ],
+    "diagnostic": 12,
+    "loader": [
+      1,
+      5
+    ],
+    "entry_record": 17
+  },
+  "links": {
+    "count": 950,
+    "broken": 0,
+    "anchors_checked": false
+  },
+  "physical_payload_executed": false,
+  "psci_service_invoked": false,
+  "final_fdt_captured": false,
+  "sha256": {
+    "scripts/inspect_lk_psci_final.py": "30df7a131a6f7a75336b13f7df3d35da28b4aee3d2b460bb1ed8cc159861e0e2",
+    "scripts/emulate_lk_psci_final_qemu.py": "162d616f3b2eb3d1cd4d859776df620a0161bb3a785b72ea72e116a23915bf8a",
+    "scripts/test_lk_psci_final.py": "a1dcf074f9e0634afccbdd5e1a20e668c48119e7cb279154fc601f4806a59d14",
+    "docs/references/lk-psci-final-hzc2.json": "fcb7f2851c60cf94f0c6bce9c6d6163ce97ab25925d42262847760e8debfb5a9",
+    "docs/references/lk-psci-final-qemu-hzc2.json": "78ba8b5cb6f5e4bbf37d760cc3ef955135a7c84d3dfa0c56da9ac1aefdb6cdbb"
+  }
+}

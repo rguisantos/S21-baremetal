@@ -124,3 +124,11 @@ Continuam abertos os bytes do FDT após todas as edições, a admissão dos banc
 pelo consumidor e o estado da lista uH. A próxima análise deve acompanhar as
 edições posteriores e os consumidores, sem promover a árvore sintética a mapa
 físico. Nenhuma coleta, Odin ou alteração no telefone é necessária nesta etapa.
+
+## Continuação de 27/10 — método PSCI após a base
+
+O [editor posterior do LK](lk-psci-final-edit-hzc2.md) pode trocar
+/psci/method de smc para hvc sob o flag Harx. O bugreport contém a mensagem
+do ramo após setprop não negativo. Vinte e quatro casos QEMU conferem
+essa rotina; não são captura do FDT final ou execução de serviço PSCI.
+A main de uma CPU permanece sem sondagens SMC/HVC.

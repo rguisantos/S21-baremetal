@@ -171,7 +171,7 @@ Exemplos de construção observada:
 
 Não foi selecionado o ramo efetivamente usado pelo aparelho de 12 GB. Não converter esses exemplos em um DTS com bancos presumidos ou usar MemTotal como substituto. As chamadas dão evidência de montagem dinâmica e divisão de bancos; não enumeram por si só as reservas finais.
 
-A rotina `0x148a80` procura `/reserved-memory` e chama `0x148770` com nomes como `el2_code`, `el2,uh` e `kaslr`. Em `0x148b1c` chama o wrapper `0x209a28`, que decodifica como **HVC #0; RET**, com identificador 0x83000004 e endereços de buffers locais; os valores desses buffers são usados em uma chamada posterior. Isso demonstra participação de outra interface de firmware nesse caminho. **Não demonstra que PSCI use HVC**: o DTB stock continua declarando PSCI SMC, e não foi habilitada sondagem de conduíte alternativo.
+A rotina `0x148a80` procura `/reserved-memory` e chama `0x148770` com nomes como `el2_code`, `el2,uh` e `kaslr`. Em `0x148b1c` chama o wrapper `0x209a28`, que decodifica como **HVC #0; RET**, com identificador 0x83000004 e endereços de buffers locais; os valores desses buffers são usados em uma chamada posterior. Isso demonstra participação de outra interface de firmware nesse caminho. Essa chamada de reservas não demonstra que PSCI use HVC. A base stock declara SMC; uma [edição posterior separada](lk-psci-final-edit-hzc2.md) troca method para hvc sob o flag Harx e tem mensagem observada no bugreport. O FDT final e uma chamada PSCI não foram capturados; não foi habilitada sondagem de conduíte alternativo.
 
 ### Limites e próxima etapa
 

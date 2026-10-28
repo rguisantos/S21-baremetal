@@ -65,3 +65,11 @@ Platform.tar.gz foi inventariado: 12.274 arquivos, principalmente external/libco
 | `dtbo.img` | `d2887b046ae6d533a8be830f30a483b6bc80cde772a07623573f6582ce24b672` | `f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34` |
 
 A descompressão usou liblz4/LZ4F com verificação de erros e consumo completo do frame. Cabeçalhos Android foram interpretados conforme sua versão; a região DTB foi separada da tabela que a encapsula. Os resultados acima substituem afirmações conflitantes da documentação antiga, especialmente kernel ausente, UART sempre disabled, MPIDR 0..7 e IRQ UART 533 como INTID.
+
+## Continuação de 27/10 — método PSCI após a base
+
+O [editor posterior do LK](lk-psci-final-edit-hzc2.md) pode trocar
+/psci/method de smc para hvc sob o flag Harx. O bugreport contém a mensagem
+do ramo após setprop não negativo. Vinte e quatro casos QEMU conferem
+essa rotina; não são captura do FDT final ou execução de serviço PSCI.
+A main de uma CPU permanece sem sondagens SMC/HVC.

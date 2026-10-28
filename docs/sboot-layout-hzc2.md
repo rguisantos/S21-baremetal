@@ -73,7 +73,7 @@ Branch consultado em **f624360f7bd5abdd2b2300321acf5cd16c798592**. Desde 9dca396
 | sboot = BL2 + TF-A / BL2 diretamente ao kernel | Contêiner com múltiplos estágios; salto/FDT analisados ficam em LK |
 | EL2 confirmado | Entrada LK programa/preserva EL1; EL final do kernel não foi observado |
 | 0x80080000 fixo confirmado | É base nominal somada a deslocamento de até 0x1f8000 no caminho rastreado; ver análise anterior |
-| PSCI HVC e SMC, testar ambos | DTB declara PSCI SMC. HVC aparece em outro serviço, sem comprovar PSCI por HVC |
+| PSCI HVC e SMC, testar ambos | Base declara SMC; [editor posterior pode escrever hvc](lk-psci-final-edit-hzc2.md), com mensagem observada. Isso não comprova serviço PSCI nem autoriza testar ambos |
 | UART 565 diferente de 533 | SPI 533 corresponde a INTID 565; é conversão de numeração, não divergência |
 | MCT “SPI 975–986” extraído de /proc/interrupts | Sem arquivo bruto rastreável nesse branch, não foi verificada a coluna usada; IRQ Linux, hwirq/INTID e número SPI não são intercambiáveis |
 | configure_dtb em 0x216900 | A string está em **0x216a80** |
