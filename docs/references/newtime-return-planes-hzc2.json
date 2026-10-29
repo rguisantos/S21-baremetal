@@ -1,0 +1,161 @@
+{
+  "scope": "static command6/domain0/channel1 return planes",
+  "witnesses": [
+    {
+      "pc": "0x3f120",
+      "bytes": "0400",
+      "op": "movs",
+      "args": "r4, r0"
+    },
+    {
+      "pc": "0x3f130",
+      "bytes": "a4b9",
+      "op": "cbnz",
+      "args": "r4, 0x3f15c"
+    },
+    {
+      "pc": "0x3f144",
+      "bytes": "2000",
+      "op": "movs",
+      "args": "r0, r4"
+    },
+    {
+      "pc": "0x3f160",
+      "bytes": "2100",
+      "op": "movs",
+      "args": "r1, r4"
+    },
+    {
+      "pc": "0x3f166",
+      "bytes": "fff78fff",
+      "op": "bl",
+      "args": "0x3f088"
+    },
+    {
+      "pc": "0x3f16a",
+      "bytes": "ebe7",
+      "op": "b.n",
+      "args": "0x3f144"
+    },
+    {
+      "pc": "0x3f2d0",
+      "bytes": "4ff6ff76",
+      "op": "movw",
+      "args": "r6, #65535\t@ 0xffff"
+    },
+    {
+      "pc": "0x3f2d4",
+      "bytes": "0500",
+      "op": "movs",
+      "args": "r5, r0"
+    },
+    {
+      "pc": "0x3f2d6",
+      "bytes": "0100",
+      "op": "movs",
+      "args": "r1, r0"
+    },
+    {
+      "pc": "0x3f2d8",
+      "bytes": "0640",
+      "op": "ands",
+      "args": "r6, r0"
+    },
+    {
+      "pc": "0x3f1de",
+      "bytes": "3443",
+      "op": "orrs",
+      "args": "r4, r6"
+    },
+    {
+      "pc": "0x3f1e0",
+      "bytes": "0460",
+      "op": "str",
+      "args": "r4, [r0, #0]"
+    },
+    {
+      "pc": "0x3f1f2",
+      "bytes": "9847",
+      "op": "blx",
+      "args": "r3"
+    },
+    {
+      "pc": "0x3f202",
+      "bytes": "2800",
+      "op": "movs",
+      "args": "r0, r5"
+    }
+  ],
+  "scenarios": [
+    {
+      "result": 0,
+      "full_callback_return": 0,
+      "cache_write": {
+        "core": 75540,
+        "value": 300
+      },
+      "constructed_word": 0,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    },
+    {
+      "result": 1,
+      "full_callback_return": 1,
+      "cache_write": null,
+      "constructed_word": 1,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    },
+    {
+      "result": 10,
+      "full_callback_return": 10,
+      "cache_write": null,
+      "constructed_word": 10,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    },
+    {
+      "result": 65536,
+      "full_callback_return": 65536,
+      "cache_write": null,
+      "constructed_word": 0,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    },
+    {
+      "result": 2147483648,
+      "full_callback_return": 2147483648,
+      "cache_write": null,
+      "constructed_word": 0,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    },
+    {
+      "result": 4294967295,
+      "full_callback_return": 4294967295,
+      "cache_write": null,
+      "constructed_word": 65535,
+      "published_word": 0,
+      "bl2_exact_zero": true,
+      "physical_success_established": false
+    }
+  ],
+  "conditions": [
+    "selected copy mapping and stable roots/private frames",
+    "logging/publication calls return and preserve carried r4/r5/r6",
+    "reply allocation returns a valid stable slot; no alias/concurrent writes",
+    "non-returning polls/calls do not produce a completed response"
+  ],
+  "boundaries": [
+    "caller of the FVP callback may interpret its full return separately",
+    "no automatic retry or physical hardware result established",
+    "cache is not a hardware acknowledgement"
+  ],
+  "firmware_executed": false,
+  "slot47_resolved": false
+}

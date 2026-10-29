@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
+
 Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
 [main após revisão/merge do PR #49, 054f5c8](https://github.com/rguisantos/S21-baremetal/commit/054f5c80c920bf602fe593361a83efcb5ce8447b),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e

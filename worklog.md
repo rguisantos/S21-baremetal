@@ -2954,3 +2954,14 @@ Na conferência do head6a237c0, CI R10 completed/success e zero threads;
 revisão automática ainda running no head antigo a6013d1, e Entire registra
 aprovação ausente e revisão do head atual pendente. Integração não registrada
 como concluída: permanece dependente dos critérios de AGENTS.md.
+
+## 2026-10-29 — retorno completo FVP, cache e header
+
+Base5ec3ea2, merge PR50 confirmado remoto. Helper preserva resultado emR4,
+caller emR5 e epílogo3f202 o devolve inteiro; header usa apenas low16 antes
+da projeção posterior. Fixture R=65536 distingue cache não atualizado e
+retorno completo não zero de header construído/publicado zero. Nova
+invocação explícita do mesmo pedido ainda seleciona helper sob estado
+preservado; não se conclui retry automático. Nove regressões adicionais,
+sem executar firmware Samsung. DMC8/9 permanece frente complementar GLM.
+[Documento](docs/newtime-return-planes-hzc2.md).
