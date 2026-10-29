@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; DMC8/9 continua a próxima frente.
+
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
 Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:

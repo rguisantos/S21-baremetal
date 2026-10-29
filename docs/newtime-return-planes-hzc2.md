@@ -20,8 +20,9 @@ No caminho comando6/domínio0/canal1, seja R o resultado u32 do relay:
 
 Logging/publicação retornando normalmente e preservando os registradores
 carregados são condições. O retorno de publicação em R0 não substitui o
-resultado guardado em R5 no epílogo selecionado. O consumidor externo desse
-retorno completo ainda pode ter política própria; esta rodada não a resolve.
+resultado guardado em R5 no epílogo selecionado. A [continuação do dispatcher](newtime-dispatch-completion-hzc2.md) agora
+rastreia o logging e o avanço local após esse retorno; políticas externas
+a essa janela permanecem abertas.
 
 Exemplo sintético particularmente discriminante: R=0x00010000. O helper
 não atualiza cache, o callback devolve65536, mas low16(R)=0. Com header alto

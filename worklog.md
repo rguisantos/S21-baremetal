@@ -2965,3 +2965,17 @@ invocação explícita do mesmo pedido ainda seleciona helper sob estado
 preservado; não se conclui retry automático. Nove regressões adicionais,
 sem executar firmware Samsung. DMC8/9 permanece frente complementar GLM.
 [Documento](docs/newtime-return-planes-hzc2.md).
+
+## 2026-10-29 — consumidor do retorno FVP no dispatcher
+
+Head anterior0bb0a7e teve revisão automática completed sem achados e CI
+success; Entire ainda exige aprovação. Continuação3929a..3933c confirma
+retorno salvo emframe+4 para logging, avanço do índice sem guard local do
+erro, count relido após callback e saída normal comR0=0. Fórmula de avanço
+é comparação de igualdade comcount, não módulo para índices inválidos.
+Nove testes novos incluem528 índices válidos,256 pares aleatórios e limites.
+Sem inferir retry automático, efeitos físicos ou preservação pelos hooks.
+[Documento](docs/newtime-dispatch-completion-hzc2.md).
+Validação desta continuação:456 testes NEWTIME, JSON reproduzido exatamente,
+três recusas CLI sem JSON parcial, GNU151 instruções/167 halfwords/13 alvos/
+19 operandos e505 links locais válidos.

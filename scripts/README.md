@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+- `inspect_newtime_dispatch_completion_hzc2.py` / `test_newtime_dispatch_completion.py`: consumidor do retorno FVP e avanço circular condicionado, nove testes.
+
 - `inspect_newtime_return_planes_hzc2.py` e `test_newtime_return_planes.py`: separação estática dos retornos FVP/cache/header, nove regressões.
 
 - `inspect_lk_payload_return.py` e `test_lk_payload_return.py`: resumos estáticos
