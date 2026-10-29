@@ -2853,3 +2853,26 @@ JSON reproduzido, três recusas CLI, links e baseline R10 recompilado
 registrados na validação. Sem execução Samsung ou ampliação QEMU.
 [Análise](docs/newtime-method56-hzc2.md) e
 [validação](docs/references/newtime-method56-validation-20261028.json).
+
+## 2026-10-29 — comando6, canal1, FVP e ponte para DVFS
+
+Base a2b02e2, PR #50. Inicializador Thumb publica tabela73c0 em8008;
+canal1 de passo72 corresponde aos campos BL2. Alocador15 canais, origem
+8800 e primeiros dois registros preservados produzem TX8a50/RX8a10,
+count3/stride16; não são amostras físicas ou índices iniciais atribuídos.
+Evento128/máscaraexatamente2 seleciona plugin2 FVP. Inicializador3f000
+publica receptor3f16c, comando na terceira palavra leva ao caso6 3f38c.
+Domínio0 grava solicitação120f4; políticas dinâmicas formam valor efetivo.
+API28/38b04 aplica gates de habilitação/callback/máscara; bitcaller2 é
+permitido no mask inicialb34 do plugin7 DVFS. Método nominal5bb6c/modo0
+chega à função59be4, mantida como próxima fronteira.
+FVP escreve resultado interno low16 no header, mas publicação38738
+readquire slot e remove low16 antes da sinalização. Para header alto0,
+65536 resultados baixos projetam palavra0=0 sob slot/config preservados;
+match BL2 não prova sucesso físico. Fila cheia do alocador pode entrar
+no WFI local; sem execução do poll ou do firmware.
+Extrator GNU814 instruções/932 halfwords/112 alvos/10 literais/96 operandos;
+25 testes novos e355 NEWTIME aprovados, JSON exato, recusas CLI, links e
+baseline R10 recompilado registrados na validação. Sem ampliação QEMU.
+[Análise](docs/newtime-command6-hzc2.md) e
+[validação](docs/references/newtime-command6-validation-20261029.json).

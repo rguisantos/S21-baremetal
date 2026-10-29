@@ -151,3 +151,9 @@ Próximas arestas: escritores dos metadados R+20/tabela de palavras,
 produtor/consumidor da configuração de canal, destinatário do comando6
 e BR `0x2f4ac → 0x2a24c`. Valores físicos, aliases, viabilidade conjunta,
 consumo do buffer B e chamador/X0 do slot47 continuam abertos.
+
+A [continuação ACPM/FVP/DVFS](newtime-command6-hzc2.md) resolve o destinatário
+nominal do comando6 e o serviço do plugin7. O publicador Thumb remove o
+resultado low16 do header antes da sinalização; o casamento do BL2 com
+zero não prova sucesso do serviço. A próxima função é 0x59be4, com aliases,
+políticas e efeitos físicos ainda abertos.

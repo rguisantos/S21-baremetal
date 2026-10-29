@@ -40,6 +40,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Slot 38 e máscara da coluna 13](newtime-slot38-hzc2.md): folha de 13 palavras, dois produtores nominais do ponteiro, máscara comum e cinco caminhos u8 condicionais; efeito de um byte e aliases abertos.
 - [Buffer do slot38 e restauração](newtime-slot38-buffers-hzc2.md): colunas 6/7, 88 perfis completos, janelas delimitadas e seis cópias; restauração condicional, sem excluir efeitos do método +56.
 - [Método +56, fila e resposta](newtime-method56-hzc2.md): binding nominal até comando6, palavra runtime low24, publicação/espera e limites da restauração; GNU207/14/107 e 32 testes.
+- [Comando6: ACPM, FVP e DVFS](newtime-command6-hzc2.md): canal1 e pares de filas, receptor FVP, serviço plugin7 e projeção do header; 25 testes e GNU814/932/112/10/96.
 
 - [Hardware](../EXYNOS2100_HARDWARE.md) e [firmware stock HZC2](stock-firmware-hzc2.md).
 - [Fontes Samsung e READMEs recebidos](samsung-reference.md).

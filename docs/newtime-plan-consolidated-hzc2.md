@@ -186,3 +186,8 @@ completa e não tem timeout sintático. Valor24 vem de R+offset16+4*k, sem
 ligação direta estabelecida ao buffer B. O produtor selecionado de R+20
 aponta ao vetor MIF sob roundtrip u16 válido. Preservação de R/configuração,
 destinatário do comando e BR posterior 0x2a24c são as próximas arestas.
+
+A [ponte do comando6](newtime-command6-hzc2.md) agora tem canal1, filas
+nominais e receptor FVP ligados ao serviço DVFS plugin7. O resultado baixo
+não sobrevive à projeção do header; não tratar o zero do poll BL2 como
+sucesso físico. Próximo: 0x59be4 e consumidores do valor efetivo.
