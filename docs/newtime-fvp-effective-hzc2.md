@@ -4,6 +4,8 @@ Análise estática de 2026-10-29 (Campo Grande), base remota `4d36dd1`.
 Complementa a [ponte do comando6](newtime-command6-hzc2.md). O corpo do
 destinatário `0x59be4` é uma frente separada; esta entrega fecha a seleção
 local do valor encaminhado, sob condições explícitas.
+A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) complementa
+esta seleção com o callback e as condições de inicialização/retorno.
 
 Sboot: 4194304 bytes, SHA-256
 `a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91`.

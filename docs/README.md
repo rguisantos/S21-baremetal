@@ -43,6 +43,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Método +56, fila e resposta](newtime-method56-hzc2.md): binding nominal até comando6, palavra runtime low24, publicação/espera e limites da restauração; GNU207/14/107 e 32 testes.
 - [Comando6: ACPM, FVP e DVFS](newtime-command6-hzc2.md): canal1 e pares de filas, receptor FVP, serviço plugin7 e projeção do header; 25 testes e GNU814/932/112/10/96.
 - [Valor efetivo FVP](newtime-fvp-effective-hzc2.md): máximo unsigned, limite posterior, indicadores anteriores ao limite, releitura e retorno sem rollback local; 28 testes e4608 fixtures sobre palavras Thumb cruas.
+- [Receptor DVFS e auditoria GLM](newtime-dvfs-receiver-hzc2.md): modo0/callback, primeira falha não agregada, dados vivos do init, limiar sem recusa e broadcast exclusivo; 28 regressões próprias e47 externas reproduzidas com limites.
 
 - [Hardware](../EXYNOS2100_HARDWARE.md) e [firmware stock HZC2](stock-firmware-hzc2.md).
 - [Fontes Samsung e READMEs recebidos](samsung-reference.md).

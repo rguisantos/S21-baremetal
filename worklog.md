@@ -2918,3 +2918,26 @@ Corpo59be4 segue frente complementar GLM; unidades, fontes físicas,
 aliases, retornos dos plugins e slot47/X0 abertos. Sem execução Samsung.
 [Análise](docs/newtime-fvp-effective-hzc2.md) e
 [validação](docs/references/newtime-fvp-effective-validation-20261029.json).
+
+## 2026-10-29 — auditoria da entrega GLM do receptor DVFS
+
+Base ed48cba, PR #50. Recebidos extrator,47 testes,JSON e helper Thumb.
+47 testes reproduzidos em cópia temporária com caminhos/GNU adaptados;
+JSON idêntico normalizando somente GNU2.42→2.44.2341 registros em bytes
+conferem,2314 PCs únicos incluindo sobreposições/pools, sem concluir
+cobertura executável por essa contagem. Corrigido o teste externo que
+preserva low16 apesar de declarar removê-los: interno10 publica0.
+Modo0 liga5bb6c→59be4→598dc. Callback ignora primeiro retorno, relê B e
+devolve apenas resultado final. Init: primeiros29 sub_i=38e00+52*i e
+corrente de dados vivos depois do handshake; mais8 registros derivados.
+Limiar2f230 escolhe caminhos2/3/1, não recusa. Broadcast587a4 tem quatro
+registros e limite superior exclusivo; final usa máscaraf1/dadof0, limpa
+bit24. Notificação usa célula direta2eccc+16. Localreturn0 não agrega
+aceitação dos RPCs; estado terminal literaldom0, fontes/aliases abertos.
+28 testes próprios incluem216 casos crus do callback, falha intermediária,
+recarga B, init29 não zero, gates de limiar e quatro stores do broadcast.
+438 NEWTIME, JSON exato, recusas, hashes/links e baseline registrados na
+validação. Próxima frente: DMC método+12/subcmd8/9; FVP já auditado.
+Sem execução Samsung, ampliação QEMU ou resolução do slot47/X0.
+[Análise](docs/newtime-dvfs-receiver-hzc2.md) e
+[validação](docs/references/newtime-dvfs-receiver-validation-20261029.json).

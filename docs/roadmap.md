@@ -63,6 +63,13 @@ espelho usam o máximo anterior ao limite; erro do relay não desfaz as
 stores locais selecionadas. Próxima fronteira: corpo0x59be4 e origens
 runtime das entradas concorrentes/limites, sem inferir sucesso físico.
 
+A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) confirma
+modo0→callback, mas a primeira transição não tem retorno testado antes da
+final, que relê B. Init avança sub por52 e depende de dados após handshake;
+limiar seleciona caminhos, broadcast tem limite exclusivo/quatro registros.
+Próxima frente: método+12 DMC/subcomandos8/9, sem tratar retorno0 local
+como agregação de aceitação ou aplicação física.
+
 O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
 e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;
 os onze bytes INTSCI adjacentes cabem na reserva maior. Monitoração opaca,

@@ -88,6 +88,9 @@ ponteiros para domínio0, valor efetivo e modo0 (frame privado inicializado).
 A tabela de modos em core0x2f400 tem slot0 core0x2c3e5 → arquivo
 **0x59be4**. Essa função e seus efeitos são a próxima fronteira.
 O resultado do relay continua opaco, incluindo seus retornos por gates.
+A [auditoria posterior do receptor](newtime-dvfs-receiver-hzc2.md) agora
+delimita wrapper/callback/init e corrige a interpretação do limiar e do
+retorno intermediário; consumidores DMC e efeitos físicos seguem abertos.
 
 ## Resposta publicada e limite da confirmação
 

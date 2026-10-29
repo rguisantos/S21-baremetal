@@ -204,3 +204,10 @@ Indicador/espelho são anteriores ao limite e não certificam a relação do
 valor final com o anterior. O helper relê S+0 e transmite ponteiros;
 resultado não zero não desfaz as stores locais selecionadas. Próxima
 fronteira complementar: corpo DVFS0x59be4 e origens runtime dos campos.
+
+O [receptor DVFS nominal](newtime-dvfs-receiver-hzc2.md) agora tem auditoria
+do wrapper, callback, primeiro laço do init e retornos. A primeira etapa
+do callback não aborta por retorno não zero; a final relê B e substitui o
+resultado anterior. Limiar não é recusa, e broadcast termina antes do
+limite superior. Próxima aresta complementar: interfaces DMC e subcmd8/9.
+Dados vivos, RPCs, polls e aliases impedem concluir aceitação física.
