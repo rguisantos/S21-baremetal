@@ -197,3 +197,10 @@ retornos normais e separa efeitos diretos de efeitos opacos do monitor.
 Reserva ASV corrigida: alloc16 antes de total+4, cursor final equivalente
 0x7a0d8. Onze bytes INTSCI adjacentes ficam na reserva, ainda fora da matriz.
 Cópias/finalize posteriores dependem das chamadas/polls intermediários.
+
+A [seleção FVP do valor efetivo](newtime-fvp-effective-hzc2.md) fecha o
+máximo unsigned de pedido/+8/+12 e o limite condicional posterior.
+Indicador/espelho são anteriores ao limite e não certificam a relação do
+valor final com o anterior. O helper relê S+0 e transmite ponteiros;
+resultado não zero não desfaz as stores locais selecionadas. Próxima
+fronteira complementar: corpo DVFS0x59be4 e origens runtime dos campos.

@@ -62,6 +62,9 @@ O caso6/domain0 grava o valor solicitado em core0x120f4 por `0x3f4b0`.
 A seleção posterior combina campos +4/+8/+12 do estado e políticas/caps
 runtime; o valor efetivo encaminhado não foi igualado sempre ao solicitado.
 Essas stores no estado ACPM ficam fora da restauração do buffer B pelo BL2.
+A [continuação da seleção](newtime-fvp-effective-hzc2.md) reconstrói esse
+máximo unsigned e o limite posterior para comando6/domínio0, incluindo
+indicador anterior ao limite e retorno sem rollback local selecionado.
 
 ## Serviço DVFS e próxima função
 

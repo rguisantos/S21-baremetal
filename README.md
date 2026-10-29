@@ -37,6 +37,8 @@ O [método +56 e a fila](docs/newtime-method56-hzc2.md) agora têm uma resoluç�
 
 O [destinatário do comando6](docs/newtime-command6-hzc2.md) foi ligado nominalmente ao canal1, plugin FVP e serviço DVFS. O publicador projeta o header da resposta e remove o resultado baixo; o zero esperado pelo BL2 não comprova sucesso físico. A próxima função concreta é 0x59be4.
 
+A [seleção do valor efetivo FVP](docs/newtime-fvp-effective-hzc2.md) é máximo unsigned de três campos, seguido de limite condicional. Espelho/indicador são anteriores ao limite; o helper é selecionado mesmo sem mudança final. Retorno com erro não desfaz as stores locais selecionadas, e o cache relê o valor passado por ponteiro.
+
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
 A [busca específica por referências a BL2](docs/bl2-kernel-consumers-hzc2.md) encontrou um consumidor Linux de `0x02073600` que imprime a palavra DRAM, uma constante comum ao BL2 HZC2, parâmetros de tempo bootstat e o nome `main_rev` para o campo que condiciona a reescrita das bases. São ligações estáticas; o produtor e os valores reais do registro continuam abertos.

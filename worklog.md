@@ -2896,3 +2896,25 @@ Extrator do gate GNU534/121/63,24 testes novos; ASV GNU1027/169/69,24 testes.
 Sem execução Samsung ou ampliação QEMU.
 [Auditoria](docs/newtime-ect-gate-hzc2.md) e
 [validação](docs/references/newtime-ect-gate-validation-20261029.json).
+
+## 2026-10-29 — arbitragem FVP comando6/domínio0 antes do DVFS
+
+Base4d36dd1, PR #50. Caso6 3f38c passa por3f6a4 e grava pedido em
+core120f4. Máximo unsigned de pedido/+8/+12 forma M; limite em+16,
+habilitado por core120a0 não zero, forma E=min(M,cap). Espelho12208 e
+indicador12210 são anteriores ao limite. M>anterior pode gravar indicador0
+mesmo quando o cap reduz E abaixo do anterior; igualdade M=anterior
+preserva indicador. Gateauxiliar12214 não altera o caminho selecionado:
+R0continua0 e rejeita a condição R0==1. Helper3f0d0 é chamado mesmo se
+E=anterior, relê E e fornece ponteiros domínio/valor/modo0 ao relay7.
+Retorno não zero não desfaz stores locais selecionadas; retorno zero
+com índice signed>=0 relê frame+16 para cache, sem presumir que destinatário
+preserve o valor apontado. Initialindex5 produz candidato core12714.
+Arquivo S+16zero separado da escrita ffffffff do inicializador condicional.
+GNU830instruções/983halfwords/150alvos/64operandos;28testes novos com4096
+combinações limite e512fixtures determinísticas em interpretador cru Thumb.
+410NEWTIME, JSONexato, recusas CLI, links e baseline registrados na validação.
+Corpo59be4 segue frente complementar GLM; unidades, fontes físicas,
+aliases, retornos dos plugins e slot47/X0 abertos. Sem execução Samsung.
+[Análise](docs/newtime-fvp-effective-hzc2.md) e
+[validação](docs/references/newtime-fvp-effective-validation-20261029.json).

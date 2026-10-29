@@ -1,6 +1,6 @@
 # Roadmap e estado do S21-baremetal
 
-Atualizado em **2026-10-28 (Campo Grande)**. Base técnica revisada:
+Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
 [main após revisão/merge do PR #48, e9bcc87](https://github.com/rguisantos/S21-baremetal/commit/e9bcc87a2b5cc643364b4381b81d3c652ad27052),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
@@ -56,6 +56,12 @@ A [ponte ACPM/FVP/DVFS](newtime-command6-hzc2.md) liga o canal1 ao comando6
 e ao serviço plugin7, com próximo alvo 0x59be4. A projeção da resposta
 remove low16; o zero esperado pelo BL2 não prova sucesso físico. Filas e
 serviços continuam sujeitos a aliases/gates e preservação.
+
+A [seleção FVP](newtime-fvp-effective-hzc2.md) agora delimita máximo
+unsigned de três entradas e limite condicional posterior. Indicador e
+espelho usam o máximo anterior ao limite; erro do relay não desfaz as
+stores locais selecionadas. Próxima fronteira: corpo0x59be4 e origens
+runtime das entradas concorrentes/limites, sem inferir sucesso físico.
 
 O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
 e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;
