@@ -21,9 +21,25 @@ A [auditoria dos binários grandes](docs/binary-provenance.md) adiciona manifest
 
 A frente de memória tem [colunas NEWTIME](docs/newtime-columns-hzc2.md), [consumidores](docs/newtime-consumers-hzc2.md) e [recargas](docs/newtime-reloads-hzc2.md) delimitados por evidências estáticas e ensaios de laboratório. Um [binding nominal até SMC](docs/newtime-smc-binding-hzc2.md) foi identificado; aceitação pelo monitor, efeitos físicos e preservação permanecem abertos.
 
-A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de outra tabela. A [investigação de transportes](docs/newtime-transports-hzc2.md) afasta sete cópias fixas e tem suas 47 referências ao helper revistas na [continuação de argumentos](docs/newtime-copy-arguments-hzc2.md). Os [dois switches relativos](docs/newtime-jump-tables-hzc2.md) acrescentam 25 entradas enumeradas; chamadas e continuações seguem como fronteiras. O despacho verdadeiro de `0x31580` e a origem de X0 continuam sem solução; bases recebidas, aliases e efeitos das chamadas ainda precisam de evidência.
+A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de outra tabela. A [investigação de transportes](docs/newtime-transports-hzc2.md) afasta sete cópias fixas e tem suas 47 referências ao helper revistas na [continuação de argumentos](docs/newtime-copy-arguments-hzc2.md). Os [dois switches relativos](docs/newtime-jump-tables-hzc2.md) acrescentam 25 entradas enumeradas; a [continuação comum](docs/newtime-common-continuation-hzc2.md) delimita sete chamadas, campos packed e o layout do resultado, mantendo bases e efeitos de callees como fronteiras. O despacho verdadeiro de `0x31580` e a origem de X0 continuam sem solução; bases recebidas, aliases e efeitos das chamadas ainda precisam de evidência.
 
 O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido e mantém os consumidores externos ao callback fora do escopo de execução.
+
+A [auditoria ASV/GEN](docs/newtime-asv-gen-hzc2.md) confirma n=13 e as fórmulas condicionais de W19 para MIF/INTSCI. Corrige uma palavra de deslocamento no GEN externo: o caminho habilitado continua candidato e F+152 contém subkeys ASV 0/4 ou 0/2. Valores SMC e execução física seguem abertos.
+
+A [auditoria do gate ECT](docs/newtime-ect-gate-hzc2.md) confirma os ramos SMC/MMIO sob condições de retorno. Corrige a reserva do parser: descritor16 antes de total+4, cursor equivalente0x7a0d8; os onze bytes INTSCI após a matriz cabem nessa reserva maior. Pular o parser não prova preservar memória via monitor, nem garante alcançar as cópias/finalize posteriores.
+
+O [slot 38 e a máscara da coluna 13](docs/newtime-slot38-hzc2.md) foram ligados nominalmente: folha sem stores/calls, máscara 0x1ff nas três subtabelas e cinco chamadores selecionados com índice u8 sob preservação. O retorno controla a limpeza de bit1 de um byte no buffer; gates, aliases e slot 47/X0 continuam abertos.
+
+A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) ligam o destino às colunas 6/7: backup de 72 bytes antes da consulta e restauração posterior condicionada. O endereço calculado não alcança slots/binding nos perfis completos delimitados; a pilha e os efeitos do método dinâmico +56 continuam abertos.
+
+O [método +56 e a fila](docs/newtime-method56-hzc2.md) agora têm uma resolução condicional: pacote `{0, valor24, 6, 6}`, publicação e espera por resposta exata, sem timeout no corpo selecionado. O valor24 foi ligado ao vetor MIF sob roundtrip u16 válido; a restauração B não inclui os efeitos da fila e o consumo físico permanece aberto.
+
+O [destinatário do comando6](docs/newtime-command6-hzc2.md) foi ligado nominalmente ao canal1, plugin FVP e serviço DVFS. O publicador projeta o header da resposta e remove o resultado baixo; o zero esperado pelo BL2 não comprova sucesso físico. O corpo de `0x59be4` foi auditado na entrega do receptor DVFS abaixo; a próxima frente é o método +12 do plugin DMC, subcomandos 8/9.
+
+A [seleção do valor efetivo FVP](docs/newtime-fvp-effective-hzc2.md) é máximo unsigned de três campos, seguido de limite condicional. Espelho/indicador são anteriores ao limite; o helper é selecionado mesmo sem mudança final. Retorno com erro não desfaz as stores locais selecionadas, e o cache relê o valor passado por ponteiro.
+
+A [auditoria do receptor DVFS](docs/newtime-dvfs-receiver-hzc2.md) liga modo0 ao callback de duas etapas. O primeiro retorno não é testado; a chamada final relê o limiar B. O limiar da transição escolhe caminhos, e o broadcast visita quatro registradores. Estado inicial depende dos dados vivos após o handshake; retorno0 local não certifica os RPCs nem efeito físico.
 
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
@@ -272,4 +288,8 @@ O [inventário dos gates UART0](docs/uart-gates.md) distingue sincronizador de r
 - [Argumentos das cópias NEWTIME](docs/newtime-copy-arguments-hzc2.md): revisão estática das 47 referências e wrappers; índices dependem do chamador e ponteiros de canal/metadados seguem abertos, sem transporte comprovado do slot 47.
 - [Origem dos canais NEWTIME](docs/newtime-channel-origins-hzc2.md): inicializador das quatro bases, chamada nominal via slot 18 e diretório de cópia; exemplos condicionais de host, sem execução Samsung.
 - [Slot 20 NEWTIME e X5](docs/newtime-slot20-hzc2.md): nove chamadas com origens delimitadas para X5, construção e leitura do buffer de 64 bytes; slot 47 continua aberto.
+- [Cadeia MARGIN NEWTIME](docs/newtime-margin-hzc2.md): callback/handle ligados, nomes em 0x30930 e filtro de casos 0/19 sob preservação; não comprova soma dupla no conjunto MARGIN inicial.
+- [Resultado secundário NEWTIME](docs/newtime-secondary-result-hzc2.md): retorno B/Qnew, campos relativos u16 e adições condicionais quando Q=B.
+- [Chamada MIF e bins NEWTIME](docs/newtime-mif-bins-hzc2.md): folha de 53 palavras, três células e contrato corrigido; sem exclusão global de chamadores/escritores.
+- [Continuação comum NEWTIME](docs/newtime-common-continuation-hzc2.md): sete chamadas, leitor de campos de 16 bits e escritas condicionais do resultado.
 - [Dois switches NEWTIME e entradas relativas](docs/newtime-jump-tables-hzc2.md): 20/5 entradas, 12/4 destinos e fronteiras de chamadas; nenhum destino imediato é o slot 47.

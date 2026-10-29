@@ -35,6 +35,16 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 ## Evidências do aparelho e fontes externas
 
+- [ASV/GEN, n e W19](newtime-asv-gen-hzc2.md): GEN após dois u32, n=13, caminho habilitado candidato, subkeys e pedidos SMC corrigidos; posições e condições de preservação.
+- [Gate ECT, retorno e reserva corrigida](newtime-ect-gate-hzc2.md): testes X64/W32, SMC opacos, assinatura atual, continuidade condicional e descritor16 antes do incremento total+4.
+
+- [Slot 38 e máscara da coluna 13](newtime-slot38-hzc2.md): folha de 13 palavras, dois produtores nominais do ponteiro, máscara comum e cinco caminhos u8 condicionais; efeito de um byte e aliases abertos.
+- [Buffer do slot38 e restauração](newtime-slot38-buffers-hzc2.md): colunas 6/7, 88 perfis completos, janelas delimitadas e seis cópias; restauração condicional, sem excluir efeitos do método +56.
+- [Método +56, fila e resposta](newtime-method56-hzc2.md): binding nominal até comando6, palavra runtime low24, publicação/espera e limites da restauração; GNU207/14/107 e 32 testes.
+- [Comando6: ACPM, FVP e DVFS](newtime-command6-hzc2.md): canal1 e pares de filas, receptor FVP, serviço plugin7 e projeção do header; 25 testes e GNU814/932/112/10/96.
+- [Valor efetivo FVP](newtime-fvp-effective-hzc2.md): máximo unsigned, limite posterior, indicadores anteriores ao limite, releitura e retorno sem rollback local; 28 testes e4608 fixtures sobre palavras Thumb cruas.
+- [Receptor DVFS e auditoria GLM](newtime-dvfs-receiver-hzc2.md): modo0/callback, primeira falha não agregada, dados vivos do init, limiar sem recusa e broadcast exclusivo; 28 regressões próprias e47 externas reproduzidas com limites.
+
 - [Hardware](../EXYNOS2100_HARDWARE.md) e [firmware stock HZC2](stock-firmware-hzc2.md).
 - [Fontes Samsung e READMEs recebidos](samsung-reference.md).
 - [Kernel público xfwdrev/rebased-11](xfwdrev-kernel-reference.md): revisão fixada, comparação de fontes, três compilações DTS e dois overlays no host; sem build completo ou observação física.
@@ -52,6 +62,10 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Argumentos das cópias NEWTIME](newtime-copy-arguments-hzc2.md): 47 referências revisadas, wrappers e índices assinados; ponteiros de canal/metadados ainda abertos, sem transporte comprovado da célula.
 - [Origem dos canais NEWTIME](newtime-channel-origins-hzc2.md): escritor concreto das quatro bases, chamada nominal via slot 18 e descritores de registro/recuperação; preservação e metadados reais continuam abertos.
 - [Slot 20 e origem de X5](newtime-slot20-hzc2.md): nove chamadas nominais, sete X5 zero e duas com buffer calculado de 64 bytes; novas buscas limitadas não resolvem o slot 47.
+- [MARGIN e filtro dos consumidores](newtime-margin-hzc2.md): duas matrizes de 13×12, publicação do handle e tabela de nomes corrigida; tags 255 pulam a store em Q no caminho preservado.
+- [Resultado secundário de 0x1a804](newtime-secondary-result-hzc2.md): identidade Q=B nos caminhos rápidos, metadados u16 e interação das stores de correção.
+- [Chamada MIF e bins NEWTIME](newtime-mif-bins-hzc2.md): tabela de 13 limiares, X0/X1 na chamada e contrato de saída corrigido após auditoria dos anexos.
+- [Continuação comum NEWTIME](newtime-common-continuation-hzc2.md): 227 PCs, sete chamadas e layout de palavras/bytes; bases e efeitos numéricos ainda condicionais.
 - [Dois switches e entradas relativas](newtime-jump-tables-hzc2.md): arrays em 0x30108/0x30130, 25 entradas e 16 destinos distintos; continuação comum e callbacks preservados como fronteiras.
 - [Auditoria do slot 47](newtime-slot47-hzc2.md): candidatos de outra base descartados, cobertura LDR/LDP e semântica de X0 zero; origem verdadeira ainda aberta.
 - [Binding NEWTIME até a SMC](newtime-smc-binding-hzc2.md): inicializador concreto, método +72 e endereços candidatos pela convenção pública SFR_W; sem chamada ao monitor.

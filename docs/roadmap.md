@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
-Atualizado em **2026-10-28 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #48, e9bcc87](https://github.com/rguisantos/S21-baremetal/commit/e9bcc87a2b5cc643364b4381b81d3c652ad27052),
+Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge do PR #49, 054f5c8](https://github.com/rguisantos/S21-baremetal/commit/054f5c80c920bf602fe593361a83efcb5ce8447b),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -31,9 +31,54 @@ liga X5 a zero ou buffer local em nove chamadas selecionadas. O despacho e
 X0 do slot 47 continuam abertos, inclusive após buscas adicionais de
 encodings/endereço. O escopo QEMU continua igual.
 Os [dois switches relativos](newtime-jump-tables-hzc2.md) têm 25 entradas
-enumeradas, sem destino imediato no slot 47. O grafo local mantém a chamada
-`0x1a668`, a continuação comum `0x1aff0` e o callback nominal do slot 38
-como fronteiras; não é uma exclusão de chamador por toda a imagem.
+enumeradas, sem destino imediato no slot 47. A
+[continuação comum](newtime-common-continuation-hzc2.md) tem 227 PCs,
+sete chamadas e layout de resultado delimitado. A [folha MIF 0x1a668](newtime-mif-bins-hzc2.md)
+publica dois bins e um valor bruto em três células globais nominais. O
+[resultado de 0x1a804](newtime-secondary-result-hzc2.md) identifica retorno
+B/Qnew e campos u16. A [cadeia MARGIN](newtime-margin-hzc2.md) filtra os
+casos 0/19 com tag 255 sob preservação, restringindo a hipótese de soma
+dupla em Q=B. A [folha do slot 38](newtime-slot38-hzc2.md) liga a máscara
+da coluna 13 a uma store de byte, com cinco caminhos u8 condicionais.
+O [buffer e sua restauração](newtime-slot38-buffers-hzc2.md) vêm das colunas
+6/7; o endereço B calculado fica fora dos slots nos perfis completos fixados.
+Backup de 72 bytes e restauração não excluem efeitos transitórios do método +56.
+Limites ASV de n/W19, bases dinâmicas e gates/aliases permanecem fronteiras; não há
+exclusão de chamador por toda a imagem.
+
+O [método +56](newtime-method56-hzc2.md) agora está ligado nominalmente a
+uma publicação de comando6 e ao poll sem timeout sintático. O dado foi
+ligado ao vetor MIF sob raízes estáveis/roundtrip u16. O destinatário
+nominal está descrito abaixo; valores físicos e BR posterior seguem abertos.
+A restauração do buffer B não cobre essas stores.
+
+A [ponte ACPM/FVP/DVFS](newtime-command6-hzc2.md) liga o canal1 ao comando6
+e ao serviço plugin7; o receptor 0x59be4 está auditado abaixo. A projeção da resposta
+remove low16; o zero esperado pelo BL2 não prova sucesso físico. Filas e
+serviços continuam sujeitos a aliases/gates e preservação.
+
+A [seleção FVP](newtime-fvp-effective-hzc2.md) agora delimita máximo
+unsigned de três entradas e limite condicional posterior. Indicador e
+espelho usam o máximo anterior ao limite; erro do relay não desfaz as
+stores locais selecionadas. Permanecem abertas as origens runtime das
+entradas concorrentes/limites, sem inferir sucesso físico.
+
+A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) confirma
+modo0→callback, mas a primeira transição não tem retorno testado antes da
+final, que relê B. Init avança sub por52 e depende de dados após handshake;
+limiar seleciona caminhos, broadcast tem limite exclusivo/quatro registros.
+Próxima frente: método+12 DMC/subcomandos8/9, sem tratar retorno0 local
+como agregação de aceitação ou aplicação física.
+
+O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
+e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;
+os onze bytes INTSCI adjacentes cabem na reserva maior. Monitoração opaca,
+preservação e alcance real das cópias/callbacks seguem condicionais.
+
+A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) agora delimita n=13 e W19 sob
+inicialização/preservação para MIF/INTSCI. A leitura GEN externa estava uma
+palavra adiante; caminho habilitado, subkeys reais e pedidos SMC foram
+corrigidos. Valores físicos e preservação, além de slot47/X0, seguem abertos.
 
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas
 e o encaminhamento de bytes. A [origem dinâmica foi encontrada](lk-rdx-memory-origin-hzc2.md):

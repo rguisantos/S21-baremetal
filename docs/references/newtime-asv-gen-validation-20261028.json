@@ -1,0 +1,154 @@
+{
+  "date": "2026-10-28 (America/Campo_Grande)",
+  "base_commit": "3e3a868aee37c8ef6150f79cf699108f27a86397",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "Samsung_firmware_executed": false,
+  "qemu_scope_extended": false,
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 972,
+    "relative_targets": 159,
+    "selected_operands": 61
+  },
+  "host_tests": 298,
+  "new_host_tests": 21,
+  "host_test_status": "passed",
+  "report_reproduced_byte_for_byte": true,
+  "invalid_firmware_refusals": [
+    {
+      "input": "short",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "long",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "changed",
+      "exit": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "inputs": [
+    {
+      "name": "asv-gen-w19-hzc2.json",
+      "bytes": 49899,
+      "sha256": "e3b99285e8b52dc5232d819d8d1c2a9fac1874599786b568ea784f2fe55a06c4"
+    },
+    {
+      "name": "asv-gen-w19-hzc2 (1).json",
+      "bytes": 49899,
+      "sha256": "e3b99285e8b52dc5232d819d8d1c2a9fac1874599786b568ea784f2fe55a06c4"
+    },
+    {
+      "name": "margin-chain-hzc2 (3).json",
+      "bytes": 61301,
+      "sha256": "ebc507765dbcc61a7f634e7acaa14b1443ab4eab71c0fddc9746787939304d59"
+    },
+    {
+      "name": "margin-chain-hzc2 (4).json",
+      "bytes": 61301,
+      "sha256": "ebc507765dbcc61a7f634e7acaa14b1443ab4eab71c0fddc9746787939304d59"
+    },
+    {
+      "name": "inspect_margin_chain_hzc2 (2).py",
+      "bytes": 32833,
+      "sha256": "6801c6a0948feca5a9816a41abfc022e67fb58feb435e715b549b19890f5a9d8"
+    },
+    {
+      "name": "test_margin_chain_hzc2 (2).py",
+      "bytes": 23211,
+      "sha256": "25fd978c463c75ea98c2f320f7c81a283cc4ae3c283b53de2a943bbc1eb5a914"
+    },
+    {
+      "name": "inspect_call_1adcc_1a668_hzc2 (1).py",
+      "bytes": 29163,
+      "sha256": "2fe80b18e8bdcc421dc5b2e70cd7e9665fee5048d10ef3c2c9a09f413731d707"
+    },
+    {
+      "name": "test_call_1adcc_1a668_hzc2 (1).py",
+      "bytes": 16265,
+      "sha256": "7fa25aec88c572835759b59006ddf427319c71038da240dffd9344d8a81bd263"
+    },
+    {
+      "name": "call-1adcc-1a668-evidence (1).json",
+      "bytes": 9112,
+      "sha256": "bb0edb2fe15c356c50570ee65cbbf3b08582616f18d759cea262913519098feb"
+    }
+  ],
+  "external_ASV_JSONs_identical": true,
+  "external_ASV_analyzer_in_attachments": false,
+  "external95_tests_reproduced": false,
+  "external_exact332_GNU_set_reproduced": false,
+  "source_sha256": {
+    "scripts/inspect_newtime_asv_gen_hzc2.py": "951097f59b42597a1b683d46f1bcc6a53556e44a3b2b342609656885e2ea47e1",
+    "scripts/test_newtime_asv_gen.py": "8c5257abe84b60106c25ef43da6667a0c08cf8ee447272181477dfd492c261f4"
+  },
+  "report_sha256": "c7feeece7129dd91a04248b9996debe7f29417ccd87cb4be38b178f2bb15f490",
+  "findings": [
+    "GEN data starts at body+8; external rows shifted one word",
+    "VMIF enables candidate keys0..12; VINTSCI keys2..12, conditional on preserved payload",
+    "F152 subkeys0/4 or0/2 match ASV keys; forced fallback argument invalid",
+    "n13 and conditional W19 signed[-8,22] supported; monitor values unknown",
+    "selected MOVN/MOVK requests are ffffffffc4002400/2401/2402",
+    "11 adjacent addresses, first4 of INTSCI fit allocation total+4, remaining7 beyond it",
+    "NULL D may be read before n0 loop skip"
+  ],
+  "local_markdown_links": 1122,
+  "baseline": {
+    "status": "passed",
+    "summary": "build/baseline-newtime-asv-gen-20261028/summary.json",
+    "summary_sha256": "9f1e8106272835fb13e282ec01d2016e652f09fe3b2928520f04a6b7cf0aa97e",
+    "elf_sha256": "169029d2c742a37a61ec339f4c1a8f9ffb4647435d4572cc4629d1a5fedaac3e",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "bb8cc2c27573a64975b72a8cd807541cf6e2288c95f15e282e7d05cec3d0067e"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "8876e3f06779a517c80b0fb28a14124678cd19c20c06f7b97e6dbc4d4681627d"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "236c394ee093c2cc5e2f5546f806027d8f8b623bef107550ebb258fc63a0b75f"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "6a286c18bc949da2dfbc26acdf6f95df6c9e35ccfe962f3bf3d9d8ef0e02a00f"
+      }
+    ]
+  },
+  "unrelated_magiskboot_sha256": "d3e545f475aea87bbc45328334e2d158c0a5a2307166c157941e1203cf168d0c"
+}

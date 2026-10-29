@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Campo_Grande",
+  "base_local_commit": "607bf3498d284dcfd46421b12883bfe4b05e2706",
+  "base_remote_commit": "2abb0e65c82e369346a76d0c7fd826a8a53b722c",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "own_extractor": {
+    "script_sha256": "6f2b40f7ba6a081f1db187cf0481974a3e796a5564b68e3df6cee76d2c3190e5",
+    "report_sha256": "d04249038ee76bcaed3eea827499acf2e674e8c732bd9f5bfc4ac7d8472fdf8d",
+    "exact_reproduction": true,
+    "gnu": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 482,
+      "relative_targets": 47,
+      "selected_operands": 91
+    },
+    "local_pcs": 172,
+    "calls": 3,
+    "invalid_inputs": [
+      {
+        "case": "short",
+        "exit_code": 2
+      },
+      {
+        "case": "long",
+        "exit_code": 2
+      },
+      {
+        "case": "changed",
+        "exit_code": 2
+      }
+    ]
+  },
+  "newtime_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 192,
+    "new_in_this_component": 25,
+    "failures": 0
+  },
+  "synthetic_examples": {
+    "alias_B_equals_Q": {
+      "initial_byte": 10,
+      "margin": 3,
+      "tag": 0,
+      "final_byte": 16
+    },
+    "disjoint": {
+      "primary": 10,
+      "secondary": 20,
+      "margin": 3,
+      "primary_final": 13,
+      "secondary_final": 23
+    },
+    "not_observed_on_device": true
+  },
+  "firmware_executed": false,
+  "qemu_scope_extended": false,
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-secondary-20261028",
+    "status": "passed",
+    "report_sha256": "4132fd16d0985e0fdc99824855aa88d5cd2dfbe9e3a1a6021cdb5a3ccf19cde0"
+  },
+  "local_markdown_links_checked": 1069
+}

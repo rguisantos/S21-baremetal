@@ -1,0 +1,168 @@
+{
+  "date_local": "2026-10-29",
+  "source_remote_head": "ed48cbaf99a4405bbcdc9750017fe62b0fbd2e3b",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "external": {
+    "attachments": {
+      "inspect_dvfs_0x59be4_hzc2.py": {
+        "size": 44709,
+        "sha256": "99d943706af992816e779c0d8ac7f5639a6a6ab9e0b9f97068fc515caa5237ad"
+      },
+      "test_dvfs_0x59be4_hzc2.py": {
+        "size": 19013,
+        "sha256": "5d51c40312930ce47176ec99ee856f680fc5545a7455d71fd49e34e3fe0896cd"
+      },
+      "dvfs-0x59be4-hzc2.json": {
+        "size": 301422,
+        "sha256": "bbb95496bee0f0b5c3dfbcd58c44f7ea85a45dee8777b7c83472470c12608395"
+      },
+      "disas_thumb.sh": {
+        "size": 769,
+        "sha256": "b577a3f26a23e94e19f0653c6e98281488fbd3f8e3666f20206d0c18cba3cfff"
+      }
+    },
+    "tests_passed": 47,
+    "environment_adaptations": [
+      "temporary copies only; firmware path SB",
+      "DEFAULT_OBJDUMP points to repository cross-run wrapper",
+      "DEFAULT_LIBPATH=None; system GNU2.42 replaced by repository GNU2.44"
+    ],
+    "original_GNU": "GNU objdump (GNU Binutils for Ubuntu) 2.42",
+    "reproduced_GNU": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "json_equal_except_GNU_version": true,
+    "instruction_records_bytes_matched": 2341,
+    "unique_PCs": 2314,
+    "windows": 40,
+    "includes_overlaps_and_literal_pool_decodes": true,
+    "regex_instruction_claims": 40,
+    "literal_claims": 80,
+    "curated_MMIO_rows_not_all_individually_validated": true,
+    "projection_test_is_semantically_wrong": "fvp_projection(10)==10 in external test; published actual stable-header-zero projection is0"
+  },
+  "duplicate_ECT_attachment": {
+    "sha256": "e04fdaa68bf4fbb3e88efaf24223ba4613a214a3c94faf4310ef73dd3b921fdd",
+    "same_as_previously_audited": true
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 438,
+    "new": 28,
+    "external47_not_added_to_this_total": true
+  },
+  "raw_Thumb_regressions": {
+    "callback_combinations": 216,
+    "first_failure_continues_and_B_reload": true,
+    "first_init_loop_rows": 29,
+    "threshold_status_combinations": 8,
+    "handler_return_fixtures": 3,
+    "broadcast_stores": 4,
+    "host_budget_is_firmware_timeout": false
+  },
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "instructions": 994,
+    "halfwords": 1050,
+    "relative_targets": 159,
+    "literal_xrefs": 78,
+    "selected_operands": 82
+  },
+  "json_byte_exact": true,
+  "CLI_refusals": [
+    {
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_dvfs_receiver_hzc2: unsupported image short.bin: 4194303 bytes, sha256 4e577b1b1508d1ff6cb59f4775c31a6b700648deb8fa19889e3f00ba6e5708ed"
+    },
+    {
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_dvfs_receiver_hzc2: unsupported image long.bin: 4194305 bytes, sha256 bc64559118f8bc37d2fd18a58778842417a7342aad577cf43615c83e0ef816fe"
+    },
+    {
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_dvfs_receiver_hzc2: unsupported image changed.bin: 4194304 bytes, sha256 ccf2b08739e262e16a0ca75d1f951e213ad3c34a18074ddbfcf5a159140f59f2"
+    }
+  ],
+  "python_compile": "passed",
+  "baseline": {
+    "summary": "build/baseline-dvfs-receiver-20261029/summary.json",
+    "summary_sha256": "98128555733346ff4f13ed60efd83ed20df603b10b44b0ad5604383517d7621d",
+    "status": "passed",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "6c0224f446ddbae69df7faab4cb8930a3e34af4ab8bdedfaa54f54276caa3976"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "323585008fdfaf876e9dd088766711651fedd673ed8124f481ac5c9f066fcd91"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "8e06fa9931db8b6818b0e6a4ad9e0aca9bbb8db35de2b02f8f59459ea0bde47d"
+      }
+    ]
+  },
+  "artifacts": {
+    "scripts/inspect_newtime_dvfs_receiver_hzc2.py": {
+      "size": 13161,
+      "sha256": "0018a41a532e5c9ee984b530b3581bc8038673e5f5e1d74963e206eb097d1051"
+    },
+    "scripts/test_newtime_dvfs_receiver.py": {
+      "size": 13459,
+      "sha256": "a1e087d193f0ebafa6dcb31666b4574478443305e85063330d4683e05983a938"
+    },
+    "docs/newtime-dvfs-receiver-hzc2.md": {
+      "size": 7754,
+      "sha256": "6b433881b2c08bbed5ca28a6870ed80e7922f653cd2ab91bd3a5898aecb05f65"
+    },
+    "docs/references/newtime-dvfs-receiver-hzc2.json": {
+      "size": 112342,
+      "sha256": "e5748ebca6536b11c03830bbba23bbd6caf0d3d99d6b89fa7cc46fa4829431cf"
+    }
+  },
+  "firmware_executed": false,
+  "hardware_alias_verified": false,
+  "local_markdown_links": {
+    "scope": "project Markdown excluding bundled tools/kernel",
+    "checked": 1191,
+    "missing": []
+  }
+}

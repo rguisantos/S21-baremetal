@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-28 (America/Campo_Grande)",
+  "base_commit": "8b1dabdb14d1132f2858e1f8df399c2fccd0b7e4",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "Samsung_firmware_executed": false,
+  "qemu_scope_extended": false,
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 363,
+    "relative_targets": 35,
+    "selected_operands": 73
+  },
+  "host_tests": 245,
+  "new_host_tests": 28,
+  "host_test_status": "passed",
+  "decoded_leaf_word_fixture_matches_firmware": true,
+  "host_leaf_combinations": 3922,
+  "report_reproduced_byte_for_byte": true,
+  "invalid_firmware_refusals": [
+    {
+      "input": "short",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "long",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "changed",
+      "exit": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "source_sha256": {
+    "scripts/inspect_newtime_slot38_hzc2.py": "e9bf4d753191cd51f5a1d4ba9b05f87f6f7108894804073588bc8d2d9c9703f9",
+    "scripts/test_newtime_slot38.py": "a41dcd294db5a004f207333e592f49a8ac27a68d0d2855cd88dd76a94ba17611"
+  },
+  "report_sha256": "6667756fd173fa21ab13243b4a56eb28693391fda1d57f46e4810cb0c768077f",
+  "limits": [
+    "nominal table bindings and intermediates must be preserved",
+    "no MMIO, gate or live pointer observed",
+    "raw negative-index behavior not demonstrated through five selected u8 call sites",
+    "slot47 caller and X0 unresolved"
+  ],
+  "local_markdown_links": 1097,
+  "baseline": {
+    "status": "passed",
+    "summary": "build/baseline-newtime-slot38-20261028/summary.json",
+    "summary_sha256": "da2a9f9ab05bd644740ee4504ce495819322a47eb38e598130e75d6e3231c18e",
+    "elf_sha256": "169029d2c742a37a61ec339f4c1a8f9ffb4647435d4572cc4629d1a5fedaac3e",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "f92f95b1de660cc4d94038fb81837b7feb78c640f65d4ed0a2e0200eb3d23fb4"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "6699c7e4b9d984ff34659f19f68384d176149f2717e91df093da05f3e4190f2f"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "8a0033f6b808f0f1e417f1ec6c7220088c3078ebf36ad044731d997dc9bd5985"
+      }
+    ]
+  },
+  "unrelated_magiskboot_sha256": "d3e545f475aea87bbc45328334e2d158c0a5a2307166c157941e1203cf168d0c"
+}

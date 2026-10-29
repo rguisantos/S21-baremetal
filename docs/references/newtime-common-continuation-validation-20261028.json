@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Campo_Grande",
+  "base_commit": "054f5c80c920bf602fe593361a83efcb5ce8447b",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_only_for_Samsung_firmware": true,
+  "own_extractor": {
+    "script_sha256": "b0c693c6c0feeb1d1d470fe85b7b3d0255afa046f73dd0463358db241a49425d",
+    "report_sha256": "352abd67a6aaa69c40c8cd98f37bae5a90d9f3cfe8d54f93a76b75e8ae60315d",
+    "exact_reproduction": true,
+    "gnu": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 784,
+      "relative_targets": 111,
+      "selected_operands": 56
+    },
+    "local_pcs": 227,
+    "direct_calls": 7,
+    "invalid_inputs": [
+      {
+        "case": "short",
+        "exit_code": 2
+      },
+      {
+        "case": "long",
+        "exit_code": 2
+      },
+      {
+        "case": "changed",
+        "exit_code": 2
+      }
+    ]
+  },
+  "newtime_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 167,
+    "new": 36,
+    "failures": 0,
+    "new_in_this_component": 20
+  },
+  "local_markdown_links_checked": 1036,
+  "firmware_executed": false,
+  "qemu_scope_extended": false,
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-continuation-20261028",
+    "status": "passed",
+    "report_sha256": "ad41c01a5fbae638570e580a25bd539efa2f4fc0914e8944b55b1caa91291b72"
+  },
+  "revision_note": "X26 origin corrected: conditional MARGIN rebind at 0x1ad74/0x1ad78; exact report and 3 refusals repeated; full NEWTIME suite now 167"
+}

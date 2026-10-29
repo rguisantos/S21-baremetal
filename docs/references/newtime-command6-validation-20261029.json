@@ -1,0 +1,112 @@
+{
+  "date_local": "2026-10-29",
+  "source_remote_head": "a2b02e29b62705e739d2c97d4a78b450912c5e48",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "instructions": 814,
+    "halfwords": 932,
+    "relative_targets": 112,
+    "literal_xrefs": 10,
+    "selected_operands": 96
+  },
+  "json_byte_exact": true,
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 355,
+    "new": 25
+  },
+  "reply_projection_low16_cases": 65536,
+  "CLI_refusals": [
+    {
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_command6_hzc2: unsupported image short.bin: 4194303 bytes, sha256 4e577b1b1508d1ff6cb59f4775c31a6b700648deb8fa19889e3f00ba6e5708ed"
+    },
+    {
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_command6_hzc2: unsupported image long.bin: 4194305 bytes, sha256 bc64559118f8bc37d2fd18a58778842417a7342aad577cf43615c83e0ef816fe"
+    },
+    {
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_command6_hzc2: unsupported image changed.bin: 4194304 bytes, sha256 ccf2b08739e262e16a0ca75d1f951e213ad3c34a18074ddbfcf5a159140f59f2"
+    }
+  ],
+  "python_compile": "passed",
+  "local_markdown_links": {
+    "scope": "project Markdown excluding bundled tools/",
+    "checked": 1151,
+    "missing": []
+  },
+  "baseline": {
+    "summary": "build/baseline-newtime-command6-20261029/summary.json",
+    "summary_sha256": "a84e225936eb2b7e91a87965f1406e20485e920971d24131505ad6ede22d7688",
+    "status": "passed",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "4ab7658650921da468216b2699247472b2972f505081289d593f4d432392d7c8"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "6681e0227bfb2558ae719f32d205e0b5523278fe4e534747d1f748f4cdd2cb79"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "abc26ac941bfc19c6fae4297323d04cf65e269e79eb560aff8398e1134e1fb47"
+      }
+    ]
+  },
+  "artifacts": {
+    "scripts/inspect_newtime_command6_hzc2.py": "a648a0e1de4327eaa43fbc844ea31a11e496352b67134b65247a0dc6eb9379fd",
+    "scripts/test_newtime_command6.py": "c670827f6b2042c7e159a37206f1798dc26e1384c392e410134bb25856ba68e9",
+    "docs/references/newtime-command6-hzc2.json": "34423d78a2ef57404c496a310f8ac4e947e7e4a6c959eff0bf365e18f681c846",
+    "docs/newtime-command6-hzc2.md": "efd7b092c115e00b86b6dbb54c6ae55c84f7c90723527bd0b8ebf030f73ec0bc"
+  },
+  "firmware_executed": false,
+  "firmware_QEMU_scope_extended": false,
+  "baseline_scope": "fresh source-only R10 lab, no Samsung firmware or physical MMIO/SMC executed",
+  "limits": [
+    "selected singleton event route and initial channel allocation, no runtime indices observed",
+    "static provider/callback/API pointers and access masks require preservation",
+    "header projection does not prove DVFS success; next target0x59be4 effects remain open"
+  ]
+}

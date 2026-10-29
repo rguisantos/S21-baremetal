@@ -1,0 +1,116 @@
+{
+  "date_local": "2026-10-28",
+  "source_remote_head": "e00c9b1c1c58467b0fb6656c402a89691b4c22e5",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 207,
+    "relative_targets": 14,
+    "selected_operands": 107
+  },
+  "json_byte_exact": true,
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 330,
+    "new": 32
+  },
+  "independent_real_word_cases": {
+    "ADD_UXTW": 5,
+    "MADD_W": 27,
+    "UDIV_MSUB_W": 16,
+    "LSLV_W": 64
+  },
+  "upper_byte_projection_host_combinations": 1024,
+  "CLI_refusals": [
+    {
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_method56_hzc2: unsupported image short.bin: 4194303 bytes, sha256 4e577b1b1508d1ff6cb59f4775c31a6b700648deb8fa19889e3f00ba6e5708ed"
+    },
+    {
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_method56_hzc2: unsupported image long.bin: 4194305 bytes, sha256 bc64559118f8bc37d2fd18a58778842417a7342aad577cf43615c83e0ef816fe"
+    },
+    {
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_method56_hzc2: unsupported image changed.bin: 4194304 bytes, sha256 ccf2b08739e262e16a0ca75d1f951e213ad3c34a18074ddbfcf5a159140f59f2"
+    }
+  ],
+  "python_compile": "passed",
+  "local_markdown_links": {
+    "scope": "project Markdown excluding bundled tools/",
+    "checked": 1137,
+    "missing": []
+  },
+  "baseline": {
+    "summary": "build/baseline-newtime-method56-20261028/summary.json",
+    "summary_sha256": "e45d2532bb512181afe13b508918c49e61be1d8620641b45060408960dd4f7ec",
+    "status": "passed",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "641265948c21991f3247de809e4e136a8588372c9fb44669d27020146237b78d"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "32399bceed95342bed150a47a1e39c7311cf5061f5e2959d7f3e7834e1efd930"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "6fec0223e3ff2a18b55e2000c69dfde373a1bb4d08fa70de6c66428a5a5470af"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "ddaa358769b2a4a62f56359fd3303b56b691ad6b758fa54f6424e86c71976360"
+      }
+    ]
+  },
+  "artifacts": {
+    "scripts/inspect_newtime_method56_hzc2.py": "6c77e0f20579eafa12d3360d4d75b867e26966ef7d75067514a4afa6f2c0ae11",
+    "scripts/test_newtime_method56.py": "e656c1f8b185dc7922ceb35240f5d119b82664e0bb9985e97ae59f7b11da6f37",
+    "docs/references/newtime-method56-hzc2.json": "e0d8cebf02ab59e15fed423c3f22a5298a79d46b16d5de7cf9a5e6db06067845",
+    "docs/newtime-method56-hzc2.md": "e0b6515356bf0b563b63d1d8b0b128d8b34e81571e7182ddfdb2966d1fa2d424"
+  },
+  "firmware_executed": false,
+  "firmware_QEMU_scope_extended": false,
+  "baseline_scope": "fresh source-only R10 laboratory baseline; no Samsung/MMIO/SMC firmware execution",
+  "limits": [
+    "static selected provider and preserved runtime words, no physical feasibility claim",
+    "u16 serialization must roundtrip before identifying the MIF vector",
+    "queue and MMIO effects are outside B restore; destination and aliases unresolved"
+  ]
+}

@@ -45,6 +45,18 @@
 - `inspect_newtime_slot20_hzc2.py` e `test_newtime_slot20.py`: chamadores
   selecionados, X5 local/nulo, aritmética e buscas limitadas de endereço;
   [relatório](../docs/newtime-slot20-hzc2.md).
+- `inspect_newtime_margin_hzc2.py` e `test_newtime_margin.py`: payload MARGIN, handles simbólicos, nomes/casos e regressões de largura/count; [auditoria](../docs/newtime-margin-hzc2.md).
+- `inspect_newtime_asv_gen_hzc2.py` e `test_newtime_asv_gen.py`: n, GEN com cabeçalho de dois u32, subkeys, pedidos SMC e posições; GNU1027/169/69 e 24 testes ASV/GEN. [Auditoria](../docs/newtime-asv-gen-hzc2.md).
+- `inspect_newtime_ect_gate_hzc2.py` e `test_newtime_ect_gate.py`: gate/finalize, SMC W/X, efeitos delimitados e reserva corrigida; GNU534/121/63 e 24 testes. [Auditoria](../docs/newtime-ect-gate-hzc2.md).
+- `inspect_newtime_slot38_hzc2.py` e `test_newtime_slot38.py`: folha, coluna 13, cadeia selecionada dos slots 19/22/38 e store de byte; GNU363/35/73 e 28 testes novos, sem executar firmware. [Auditoria](../docs/newtime-slot38-hzc2.md).
+- `inspect_newtime_slot38_buffers_hzc2.py` e `test_newtime_slot38_buffers.py`: destino das colunas 6/7, footprint de B, backups/restauração e fronteira +56; GNU193/15/94 e 32 testes novos. [Limites](../docs/newtime-slot38-buffers-hzc2.md).
+- `inspect_newtime_method56_hzc2.py` e `test_newtime_method56.py`: método +56, pacote comando6, fila e resposta exata; GNU207/14/107 e 32 testes novos. [Condições](../docs/newtime-method56-hzc2.md).
+- `inspect_newtime_command6_hzc2.py` e `test_newtime_command6.py`: ponte Thumb canal1/FVP/DVFS, filas candidatas e resposta projetada; GNU814/932/112/10/96 e 25 testes novos. [Limites](../docs/newtime-command6-hzc2.md).
+- `inspect_newtime_fvp_effective_hzc2.py` e `test_newtime_fvp_effective.py`: máximo/limite FVP comando6/domínio0, releitura do valor e cache; GNU830/983/150/64,28 testes e4608 fixtures cruas. [Condições](../docs/newtime-fvp-effective-hzc2.md).
+- `inspect_newtime_dvfs_receiver_hzc2.py` e `test_newtime_dvfs_receiver.py`: modo0, callback com recarga/retorno parcial, init vivo, limiares e broadcast de quatro registradores; 28 testes próprios. [Auditoria e limites dos47 testes externos](../docs/newtime-dvfs-receiver-hzc2.md).
+- `inspect_newtime_secondary_result_hzc2.py` e `test_newtime_secondary_result.py`: retorno do buffer secundário, gates/tags, offsets u16 e stores com alias exato; [escopo](../docs/newtime-secondary-result-hzc2.md).
+- `inspect_newtime_mif_bins_hzc2.py` e `test_newtime_mif_bins.py`: folha de 53 palavras, tabela/células, X2/X3 de saída e liveness do retorno; [auditoria](../docs/newtime-mif-bins-hzc2.md).
+- `inspect_newtime_common_continuation_hzc2.py` e `test_newtime_common_continuation.py`: grafo de 0x1aff0, argumentos de sete chamadas e modelos W/byte, com aliases abertos; [reprodução](../docs/newtime-common-continuation-hzc2.md).
 - `inspect_newtime_jump_tables_hzc2.py` e `test_newtime_jump_tables.py`:
   20 entradas halfword e cinco byte, anchors separados dos arrays,
   guard unsigned e grafos locais com callees opacos;

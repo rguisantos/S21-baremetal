@@ -592,3 +592,10 @@ Head `031f20bbd3e2a1e4f9cb755128db37fdfd43c0fa`, revisão automática
 6460337574 completed sem achados/pendências, zero threads e CI40630026017
 success antes do merge `e9bcc87a2b5cc643364b4381b81d3c652ad27052`.
 CI pós-merge40630230469 conferido success nesta continuação.
+
+## PR #49 — switches NEWTIME com entradas relativas
+
+Head `f970279582b60084bb48aa1a0f610bd79fb25119`, revisão automática
+6478683930 completed sem achados/pendências, zero threads e CI40755475497
+success antes do merge `054f5c80c920bf602fe593361a83efcb5ce8447b`.
+CI pós-merge40756548650 conferido success nesta continuação.

@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-28 (America/Campo_Grande)",
+  "base_commit": "0eae442d93b82cda5c0118978a95a2f9748e86fb",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "Samsung_firmware_executed": false,
+  "qemu_scope_extended": false,
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 193,
+    "relative_targets": 15,
+    "selected_operands": 94
+  },
+  "host_tests": 277,
+  "new_host_tests": 32,
+  "host_test_status": "passed",
+  "decoded_word_fixtures_match_firmware": true,
+  "decoded_row_boundary_comparisons": 90,
+  "report_reproduced_byte_for_byte": true,
+  "invalid_firmware_refusals": [
+    {
+      "input": "short",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "long",
+      "exit": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "input": "changed",
+      "exit": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "construction_plan_counts": {
+    "complete": 8512,
+    "missing_key": 2752
+  },
+  "distinct_profiles": 88,
+  "compressed_path_counts": {
+    "u8_control_path_cases": 33264,
+    "outside_payload_cases": 31504,
+    "overlap_selected_slots_cache_binding_cases": 0,
+    "slot38_accepted_cases": 880,
+    "accepted_outside_payload_cases": 0
+  },
+  "source_byte_cases": 36,
+  "source_sha256": {
+    "scripts/inspect_newtime_slot38_buffers_hzc2.py": "832839332c1dcf7714cf64e7e597930b34e19a9d7639b439130f72e26bbda2aa",
+    "scripts/test_newtime_slot38_buffers.py": "0226eb5a6a0a55f0e25d679289a602dbb68eeae793f8e8a04c7cbd7a975c5569"
+  },
+  "report_sha256": "ae115c2a0342dc663d4ec98a3005b92e7086c5e93950710058e066553e306f61",
+  "limits": [
+    "buffer B windows only; no alias exclusion for stack, A/C or opaque callees",
+    "complete fixed-base preserved record plans, no physical feasibility claim",
+    "restoration requires preserved backup/bases, compatible counts and normal return",
+    "dynamic binding method+56 and slot47/X0 unresolved"
+  ],
+  "local_markdown_links": 1110,
+  "baseline": {
+    "status": "passed",
+    "summary": "build/baseline-newtime-slot38-buffers-20261028/summary.json",
+    "summary_sha256": "3a95978a124c12775b10f21b8628892b4647cf3c2cc5ef0b0f8310d870032e07",
+    "elf_sha256": "169029d2c742a37a61ec339f4c1a8f9ffb4647435d4572cc4629d1a5fedaac3e",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "dbc6d21bb44f858d5659472239a1db5d41c83a602bfc55898d2a9c1d66205f32"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "264a024678f0675c3afaae58795af2a55afa784b323d5bd0620fbc61f884c9de"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "9871bc0117997f36290adbae30d124ccb806205a8c2647618dc8a93bd96f9d0e"
+      }
+    ]
+  },
+  "unrelated_magiskboot_sha256": "d3e545f475aea87bbc45328334e2d158c0a5a2307166c157941e1203cf168d0c"
+}

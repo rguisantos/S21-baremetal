@@ -125,8 +125,24 @@ nominais a zero ou buffer local de 64 bytes e delimita construção/leitura.
 Essa tabela é distinta; o despacho e X0 do slot 47 permanecem abertos.
 Dois [switches com entradas relativas](newtime-jump-tables-hzc2.md) agora
 têm 20/5 casos enumerados, com anchors e arrays separados. Os destinos
-imediatos não incluem o slot 47; `0x1a668`, a continuação `0x1aff0` e o
-callback nominal do slot 38 são fronteiras, sem execução adicional.
+imediatos não incluem o slot 47. A [continuação 0x1aff0](newtime-common-continuation-hzc2.md)
+delimita sete chamadas, campos packed e layout de resultado. A [folha MIF](newtime-mif-bins-hzc2.md)
+tem 53 palavras e três células de saída; não prova exclusividade global.
+O [resultado de 0x1a804](newtime-secondary-result-hzc2.md) separa B/Qnew e
+metadados u16. A [cadeia MARGIN](newtime-margin-hzc2.md) corrige os nomes
+e restringe essa interação: os registros iniciais MIF/INTSCI correspondem
+a tags 255, sem store em Q nesse caminho preservado. O
+[slot 38](newtime-slot38-hzc2.md) agora tem folha, máscara da coluna 13
+e store de byte delimitadas, com cinco caminhos u8 condicionais. n/W19,
+bases dinâmicas, gates/aliases e slot 47 continuam abertos, sem execução adicional.
+O [destino do byte e suas cópias](newtime-slot38-buffers-hzc2.md) ligam B
+às colunas 6/7 e uma restauração condicional de 72 bytes; a pilha e o método
+dinâmico +56 permanecem fronteiras.
+
+A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) sustenta n=13 e W19 condicional
+para MIF/INTSCI, mas corrige a alegação externa de caminho habilitado impossível:
+GEN começa após dois u32 e suas chaves0..12 permitem esse caminho. Pedidos
+SMC, subkeys e fronteiras de índices foram corrigidos; estado físico aberto.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 
@@ -163,3 +179,35 @@ hashes de trilha e 1355/1495 instruções coincidem com o ensaio anterior.
 31c30 e os 108 bytes de 31f30 permanecem ff, sem escritas sobre eles; a
 predição recebida de scratch zerado foi refutada pela inicialização do
 próprio arquivo. O preflight e todas as fronteiras continuam preservados.
+
+A [cadeia do método +56](newtime-method56-hzc2.md) resolve o provedor inicial
+para 0x17d84/0x17d1c e publicação `{0,valor24,6,6}`. O poll compara a palavra
+completa e não tem timeout sintático. Valor24 vem de R+offset16+4*k, sem
+ligação direta estabelecida ao buffer B. O produtor selecionado de R+20
+aponta ao vetor MIF sob roundtrip u16 válido. Preservação de R/configuração e BR posterior 0x2a24c permanecem abertos;
+o destinatário nominal foi ligado na ponte descrita abaixo.
+
+A [ponte do comando6](newtime-command6-hzc2.md) agora tem canal1, filas
+nominais e receptor FVP ligados ao serviço DVFS plugin7. O resultado baixo
+não sobrevive à projeção do header; não tratar o zero do poll BL2 como
+sucesso físico. A seleção FVP e o receptor 0x59be4 estão auditados abaixo.
+
+A [auditoria do gate ECT](newtime-ect-gate-hzc2.md) confirma a decisão sob
+retornos normais e separa efeitos diretos de efeitos opacos do monitor.
+Reserva ASV corrigida: alloc16 antes de total+4, cursor final equivalente
+0x7a0d8. Onze bytes INTSCI adjacentes ficam na reserva, ainda fora da matriz.
+Cópias/finalize posteriores dependem das chamadas/polls intermediários.
+
+A [seleção FVP do valor efetivo](newtime-fvp-effective-hzc2.md) fecha o
+máximo unsigned de pedido/+8/+12 e o limite condicional posterior.
+Indicador/espelho são anteriores ao limite e não certificam a relação do
+valor final com o anterior. O helper relê S+0 e transmite ponteiros;
+resultado não zero não desfaz as stores locais selecionadas. As origens
+runtime dos campos permanecem abertas; o receptor DVFS está descrito abaixo.
+
+O [receptor DVFS nominal](newtime-dvfs-receiver-hzc2.md) agora tem auditoria
+do wrapper, callback, primeiro laço do init e retornos. A primeira etapa
+do callback não aborta por retorno não zero; a final relê B e substitui o
+resultado anterior. Limiar não é recusa, e broadcast termina antes do
+limite superior. Próxima aresta complementar: interfaces DMC e subcmd8/9.
+Dados vivos, RPCs, polls e aliases impedem concluir aceitação física.

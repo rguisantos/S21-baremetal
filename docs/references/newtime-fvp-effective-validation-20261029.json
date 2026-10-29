@@ -1,0 +1,127 @@
+{
+  "date_local": "2026-10-29",
+  "source_remote_head": "4d36dd13de75eb118f78cd322e1867b16f920a75",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "instructions": 830,
+    "halfwords": 983,
+    "relative_targets": 150,
+    "selected_operands": 64
+  },
+  "json_byte_exact": true,
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+    "passed": 410,
+    "new": 28
+  },
+  "raw_Thumb_differential": {
+    "boundary_combinations": 4096,
+    "deterministic_random": 512,
+    "start": "0x3f6a4",
+    "stop_before": "0x3f2cc",
+    "semantics": "independent raw-halfword decoder; fails on absent words/memory or unsupported instructions; stable fixture RAM only",
+    "maximum_host_steps": 200,
+    "host_budget_is_firmware_timeout": false,
+    "includes_synthetic_request_values_above_transport_low24": true
+  },
+  "CLI_refusals": [
+    {
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_fvp_effective_hzc2: unsupported image short.bin: 4194303 bytes, sha256 4e577b1b1508d1ff6cb59f4775c31a6b700648deb8fa19889e3f00ba6e5708ed"
+    },
+    {
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_fvp_effective_hzc2: unsupported image long.bin: 4194305 bytes, sha256 bc64559118f8bc37d2fd18a58778842417a7342aad577cf43615c83e0ef816fe"
+    },
+    {
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "inspect_newtime_fvp_effective_hzc2: unsupported image changed.bin: 4194304 bytes, sha256 ccf2b08739e262e16a0ca75d1f951e213ad3c34a18074ddbfcf5a159140f59f2"
+    }
+  ],
+  "python_compile": "passed",
+  "baseline": {
+    "summary": "build/baseline-fvp-effective-20261029/summary.json",
+    "summary_sha256": "3a5f4be984889f9453c8544d3753a7cddf822ba900cabce680cf0418c4c68120",
+    "status": "passed",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "f6df293ab80971403a047f088bb712ff41f32f519cc368cb57b16c5c20ab787c"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "78dd395939b0621ac7b661ab1f4264fd0e93630f5a117fe86aa2438f6db1895e"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "2c092213a7d312f985a4436dd01517be3376268a6e5ecc7e8816dcb9ab4ac447"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "17000e632366ff1c97143df091208c960f7a128fc110c7f0b8694a7375113bba"
+      }
+    ]
+  },
+  "artifacts": {
+    "scripts/inspect_newtime_fvp_effective_hzc2.py": {
+      "size": 10659,
+      "sha256": "9ce34f6c27aa29d8d043c84306959cd551c65130821eeb26daf6fb844eeb47c7"
+    },
+    "scripts/test_newtime_fvp_effective.py": {
+      "size": 10887,
+      "sha256": "eb4d47bbe3b2fe5b65d447d4b07aadf590f8043856f19a085fb458487eee0213"
+    },
+    "docs/newtime-fvp-effective-hzc2.md": {
+      "size": 6195,
+      "sha256": "44e3591ad53a5bf9c439a9ea8b0a07652cf17d398c5028e426841ea00242b52c"
+    },
+    "docs/references/newtime-fvp-effective-hzc2.json": {
+      "size": 94905,
+      "sha256": "9e8f602a4faaaf7eb045d20394e660b9024a91de8c98d965ff4774e20b594bcc"
+    }
+  },
+  "firmware_executed": false,
+  "hardware_alias_verified": false,
+  "slot47_caller_resolved": false,
+  "local_markdown_links": {
+    "scope": "project Markdown excluding bundled tools/kernel",
+    "checked": 1176,
+    "missing": []
+  }
+}

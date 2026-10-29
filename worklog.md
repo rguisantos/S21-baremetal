@@ -2697,3 +2697,260 @@ GNU 256/26/26, 131 testes NEWTIME (23 novos), 1023 links e baseline
 aprovados; sem executar firmware Samsung ou
 ampliar QEMU. [Análise](docs/newtime-jump-tables-hzc2.md) e
 [validação](docs/references/newtime-jump-tables-validation-20261028.json).
+
+## 2026-10-28 — continuação comum NEWTIME
+
+Base `054f5c8`, CI pós-merge do PR #49 aprovado. Seguido o grafo local de
+`0x1aff0`: 227 PCs, sete BLs e RET 0x1b378. Leitor 0x1a26c extrai quatro
+campos de 16 bits; os seletores dos 20 casos cobrem 24 palavras sob
+preservação, sem limite demonstrado no default. Delimitados layout de
+quatro bytes, low24, correções de byte e argumentos; helpers numéricos
+permanecem opacos. Contagem signed<=0 e Q zero preservados como endereços
+sintáticos possíveis, sem declarar fault/alcançabilidade. Bases dinâmicas
+não excluem aliases de 0x31580/0x31998; slot 47 e X0 continuam abertos.
+GNU 784/111/52, 151 testes NEWTIME (20 novos), reprodução exata, três
+recusas, 1036 links e baseline aprovados. Sem execução Samsung ou avanço
+QEMU. [Análise](docs/newtime-common-continuation-hzc2.md) e
+[validação](docs/references/newtime-common-continuation-validation-20261028.json).
+
+## 2026-10-28 — auditoria da folha MIF e anexos GLM
+
+Complemento no PR #50 sobre head remoto a6013d1 (árvore equivalente ao
+commit local 18c3ec2). Reproduzidos 29 testes, JSON byte a byte e 49 encodings
+GNU dos anexos, após adaptação de caminhos/runtime locais. Confirmados
+53 palavras, 13 limiares e stores globais 31a70/74/78. Corrigido contrato:
+X2/X3 são limiares carregados, não X2=13; CMP do switch é 0x13; ADR não
+deriva base absoluta. Scan externo tem falso positivo W/X e não demonstra
+exclusividade de escritores/chamadores. X2..X7 não conservam argumentos
+iniciais através de chamadas; exemplo condicional MARGIN handle zero deixa
+X2=0. Dois overwrites de retorno conferidos por caminhos. Modelo próprio
+comparado em 144 estados sintéticos nos quatro GPRs de saída, sem executar
+no aparelho/QEMU. Extrator GNU 203/37/34, 167 testes NEWTIME (16 novos),
+reprodução exata, três recusas, links locais e baseline aprovados. Slot 47
+permanece aberto. [Auditoria](docs/newtime-mif-bins-hzc2.md) e
+[validação](docs/references/newtime-mif-bins-validation-20261028.json).
+
+Correção ao cruzar os dois extratores: o E/X26 da continuação pode ser
+substituído pelo lookup MARGIN em 0x1ad74/0x1ad78 quando o handle de
+0x1ad68 não é zero; a descrição anterior só registrava a busca inicial.
+Extrator/JSON/validação corrigidos, reprodução e três recusas repetidas,
+167 testes aprovados. O conjunto GNU da continuação agora é 784/111/56.
+
+## 2026-10-28 — resultado secundário e identidade Q=B
+
+Base remota `2abb0e6` no PR #50. Prompt entregue para a frente paralela
+MARGIN/callback nominal 0x1b96c/handle 0x30a48. Nesta frente, seguido
+0x1a804: 172 PCs, três BLs e um RET. O alocador antecede os gates; seletores
+2/3 com gate zero retornam B, caso contrário retorna Qnew. Campos u16 em
+Rentry+0x420/+0x422 transportam low16(ponteiro-Rlate), sem reconstrução
+integral. Ajustes Y por campos de dois bits, contagem unsigned UMULL e
+layout da palavra delimitados; FP/dados dinâmicos continuam opacos.
+Casos 2/3 copiam o mesmo bit para tag W27 e gate; o helper restaura X27
+no epílogo. Sob preservação, tag/gate zero dá Q=B; se o laço E executa com
+byte estável, as duas stores somam duas vezes ao mesmo byte módulo 256.
+Não é observação no aparelho nem conclusão física/vulnerabilidade.
+GNU 482/47/91, 192 testes NEWTIME (25 novos), JSON exato, três recusas,
+links e baseline aprovados. Sem avanço QEMU; slot 47/X0 ainda abertos.
+[Análise](docs/newtime-secondary-result-hzc2.md) e
+[validação](docs/references/newtime-secondary-result-validation-20261028.json).
+
+## 2026-10-28 — MARGIN e correção da tabela de nomes
+
+Base remota `4065cfe` no PR #50. Reproduzidos 44 testes, JSON byte a byte
+(dois anexos idênticos) e 200 checks GNU. Confirmados callback 0x1b96c,
+publicação 0x30a48 e payload MARGIN de 368 bytes, com MIF/INTSCI e matrizes
+13×12. Corrigido o endereço derivado de 0x1825c: 0x30930, não 0x31930;
+nomes são estáticos no arquivo. Os casos que casam são 0/19 e derivam tag
+255 dos respectivos destinos da jump table. Sob o driver, nomes/registros
+preservados e handles zero/construídos, a store em Q é pulada; E é zero nos
+casos Q=B 2/3. O modelo anterior de soma dupla permanece condicional ao
+código, mas não é demonstrado por esse dataset preservado. Modelos externos
+não respeitavam o limite positivo count, wrap W no skip de nomes e wrap X
+no bump; três contraexemplos registrados. H/R mantidos simbólicos porque
+as alocações anteriores não foram modeladas. Ordenação é de programa, sem
+prova de gates/sucesso real. GNU 595/111/62, 217 testes NEWTIME (25 novos),
+JSON exato, três recusas, links e baseline aprovados. Sem avanço QEMU.
+[Análise](docs/newtime-margin-hzc2.md) e
+[validação](docs/references/newtime-margin-validation-20261028.json).
+
+## 2026-10-28 — slot 38, coluna 13 e índice u8
+
+Base remota `8b1dabd`, PR #50. Frente ASV/GEN n/W19 delegada pelo usuário
+ao GLM; esta continuação segue a folha nominal 0x2d2e4. Treze palavras,
+sem stores/calls, duas cargas anteriores ao retorno antecipado, comparação
+signed, ASRV W e retorno index/-1 delimitados. Dois produtores de 0x318f0
+somam offset W antes de SXTW, sob alias fixo da coluna 13 NEWTIME. As 22
+linhas usam três subtabelas com mask=0x1ff. Nove chamadas diretas a 0x22370
+enumeradas; cinco têm seletor 0 e LDRB -> slot22 nominal RET -> W1, levando
+índice u8 ao slot38 sob preservação de slots/registros/frame. Só 0..7 passam;
+8 é rejeitado mesmo com bit8 ligado. Índices negativos do contrato geral
+não foram demonstrados nesses cinco caminhos. Retorno controla RMW byte
+em X2+1 do dispatcher, limpando bit1; destino/aliases/gate não observados.
+GNU363/35/73, 245 testes NEWTIME (28 novos) e comparação independente das
+13 palavras em 3922 combinações. JSON reproduzido, três recusas CLI,
+1097 links e baseline R10 recompilado aprovados. Sem execução de firmware
+Samsung ou ampliação QEMU nesta análise; slot47/X0
+continuam abertos. [Análise](docs/newtime-slot38-hzc2.md) e
+[validação](docs/references/newtime-slot38-validation-20261028.json).
+
+## 2026-10-28 — buffers do slot38 e restauração condicional
+
+Base remota `0eae442`, continuação estática sem sobreposição com ASV/GEN
+do GLM. X20/B vem de linhas das colunas 6/7; k u8 e controle low16 escolhem
+ramo baixo/superior. 8512 planos completos (2752 com chave ausente excluídos)
+formam 88 perfis das colunas 4..9. Em 33264 caminhos de host comprimidos,
+as janelas B de 72 bytes ficam em [0x02074600,0x0207925c), sem alcançar a
+tabela A/cache/binding nominais. Exclusão não cobre pilha/A/C/callees.
+Os 880 caminhos aceitos por slot38 ficam nas linhas; 36 pares chave/linha
+têm bit9 do primeiro u32 ligado na fonte preservada. Backup B em F+256
+antecede a consulta, e restauração ocorre depois de três chamadas indiretas.
+Retorno -1 não aborta o wrapper nem protege cópias anteriores. Seis cópias
+e helper byte-a-byte delimitados; N inicial 16/17 cabe no frame de 448,
+mas é relido. Backup alterado, alias de pilha, falha de retorno e N diferente
+refutam a restauração incondicional. Slot20 nominal segue método dinâmico
+[binding31998+56], mantido opaco. GNU193/15/94, 277 testes NEWTIME (32 novos)
+e 90 casos dos produtores X20 decodificados independentemente. JSON exato,
+três recusas CLI, 1110 links e baseline R10 recompilado aprovados. Sem execução Samsung
+ou ampliação QEMU; slot47/X0 ainda abertos.
+[Análise](docs/newtime-slot38-buffers-hzc2.md) e
+[validação](docs/references/newtime-slot38-buffers-validation-20261028.json).
+
+## 2026-10-28 — auditoria do retorno ASV/GEN do GLM
+
+Base remota `3e3a868`. Recebidos dois JSONs ASV idênticos, mas sem o extrator
+ASV ou a suíte anunciada de95 testes. Arquivos MARGIN/MIF anteriores não
+substituem esses entregáveis. Auditoria própria confirma n13 e fórmulas
+condicionais W19, mas encontra células GEN deslocadas um u32: corpo+8, não+12.
+VMIF pode habilitar chaves0..12, VINTSCI2..12. F152 contém subkeys0/4 ou0/2,
+não421/141; argumentos de fallback obrigatório não conferem. Compactação MIF
+condicional modelada. Pedidos X1 corretos ffffffffc4002400/2401/2402.
+Onze endereços após a matriz,13 leituras por W19 fixo; reserva total+4 é
+distinta de matriz e origem copiada. NULL D pode ser lido antes da saída n0.
+Extrator próprio GNU972/159/61, 298 testes NEWTIME (21 novos), JSON exato,
+três recusas CLI, 1122 links e baseline R10 recompilado aprovados. Sem
+execução Samsung ou ampliação QEMU nesta análise.
+[Auditoria](docs/newtime-asv-gen-hzc2.md) e
+[validação](docs/references/newtime-asv-gen-validation-20261028.json).
+
+## 2026-10-28 — método +56, comando6 e fila antes da restauração
+
+Base remota e00c9b1, PR #50. Slot20 nominal 2f488 usa binding31998+56;
+provedor307e0 aponta por30818 para17d84. Wrapper chama17d1c, que lê low24
+de M32[R+M16[R+20]+4*u32(k)] e publica {0,valor24,6,6}, distinguindo o
+frame local {0,valor24,6,0}. Envio e espera são folhas; registradores
+transportados conferidos por GNU, com reloads de base/passo explícitos.
+Índices e endereços W32, shift W em cinco bits, UDIV zero e recarga P
+delimitados. Poll exige status low4 não zero e palavra completa igual a0
+nesse pacote; sem timeout sintático ou cópia de corpo da resposta.
+Restaurar B não restaura fila/MMIO. Não demonstrada ligação de valor24 a
+B ou consumo físico; retorno posterior via31040/2a24c ainda aberto.
+Produtor do u16 ligado a1912c: primeiro domínio MIF, vetor U retornado
+pela continuação ASV. Sob raízes/roundtrip preservados, valor24 é
+level[k]*1000 mascarado; byte MARGIN superior é removido. Truncamento
+u16 pode impedir roundtrip, e aliases U/B não foram excluídos.
+Extrator próprio GNU207/14/107, 32 testes novos e 330 NEWTIME aprovados.
+JSON reproduzido, três recusas CLI, links e baseline R10 recompilado
+registrados na validação. Sem execução Samsung ou ampliação QEMU.
+[Análise](docs/newtime-method56-hzc2.md) e
+[validação](docs/references/newtime-method56-validation-20261028.json).
+
+## 2026-10-29 — comando6, canal1, FVP e ponte para DVFS
+
+Base a2b02e2, PR #50. Inicializador Thumb publica tabela73c0 em8008;
+canal1 de passo72 corresponde aos campos BL2. Alocador15 canais, origem
+8800 e primeiros dois registros preservados produzem TX8a50/RX8a10,
+count3/stride16; não são amostras físicas ou índices iniciais atribuídos.
+Evento128/máscaraexatamente2 seleciona plugin2 FVP. Inicializador3f000
+publica receptor3f16c, comando na terceira palavra leva ao caso6 3f38c.
+Domínio0 grava solicitação120f4; políticas dinâmicas formam valor efetivo.
+API28/38b04 aplica gates de habilitação/callback/máscara; bitcaller2 é
+permitido no mask inicialb34 do plugin7 DVFS. Método nominal5bb6c/modo0
+chega à função59be4, mantida como próxima fronteira.
+FVP escreve resultado interno low16 no header, mas publicação38738
+readquire slot e remove low16 antes da sinalização. Para header alto0,
+65536 resultados baixos projetam palavra0=0 sob slot/config preservados;
+match BL2 não prova sucesso físico. Fila cheia do alocador pode entrar
+no WFI local; sem execução do poll ou do firmware.
+Extrator GNU814 instruções/932 halfwords/112 alvos/10 literais/96 operandos;
+25 testes novos e355 NEWTIME aprovados, JSON exato, recusas CLI, links e
+baseline R10 recompilado registrados na validação. Sem ampliação QEMU.
+[Análise](docs/newtime-command6-hzc2.md) e
+[validação](docs/references/newtime-command6-validation-20261029.json).
+
+## 2026-10-29 — auditoria do gate ECT e correção da reserva ASV
+
+Base45f316f. Recebido somente JSON do GLM (21913 bytes, SHA e04fdaa6...),
+sem extrator/suíte52; as44 palavras presentes conferem. Árvore principal
+confirmada sob retornos normais. Assinatura compara PARA e três bytes
+atuais da origem, não constante007 diante de fonte alterada. Ramo de pulo
+não faz store global direta selecionada, mas monitor e aliases são opacos.
+Cópia/finalize posteriores são ordem de programa, não execução garantida.
+Finalize ressample-233, testa W32, escreve metadados em e7ffe000 antes de
+SMC-230 e zera a palavra MMIO inteira depois de seu retorno W0zero.
+Auditoria encontrou erro próprio anterior: parser aloca/alinha16 antes de
+somar total+4; cursor equivalente0x7a0d8, não7a0c8. Todos os11 bytes INTSCI
+após a matriz ficam na reserva maior sob preservação, ainda fora da matriz
+e do campo total. ASVscript/JSON/documentação corrigidos, três regressões.
+Extrator do gate GNU534/121/63,24 testes novos; ASV GNU1027/169/69,24 testes.
+382 NEWTIME, JSONs exatos, recusas, links e baseline registrados na validação.
+Sem execução Samsung ou ampliação QEMU.
+[Auditoria](docs/newtime-ect-gate-hzc2.md) e
+[validação](docs/references/newtime-ect-gate-validation-20261029.json).
+
+## 2026-10-29 — arbitragem FVP comando6/domínio0 antes do DVFS
+
+Base4d36dd1, PR #50. Caso6 3f38c passa por3f6a4 e grava pedido em
+core120f4. Máximo unsigned de pedido/+8/+12 forma M; limite em+16,
+habilitado por core120a0 não zero, forma E=min(M,cap). Espelho12208 e
+indicador12210 são anteriores ao limite. M>anterior pode gravar indicador0
+mesmo quando o cap reduz E abaixo do anterior; igualdade M=anterior
+preserva indicador. Gateauxiliar12214 não altera o caminho selecionado:
+R0continua0 e rejeita a condição R0==1. Helper3f0d0 é chamado mesmo se
+E=anterior, relê E e fornece ponteiros domínio/valor/modo0 ao relay7.
+Retorno não zero não desfaz stores locais selecionadas; retorno zero
+com índice signed>=0 relê frame+16 para cache, sem presumir que destinatário
+preserve o valor apontado. Initialindex5 produz candidato core12714.
+Arquivo S+16zero separado da escrita ffffffff do inicializador condicional.
+GNU830instruções/983halfwords/150alvos/64operandos;28testes novos com4096
+combinações limite e512fixtures determinísticas em interpretador cru Thumb.
+410NEWTIME, JSONexato, recusas CLI, links e baseline registrados na validação.
+Corpo59be4 segue frente complementar GLM; unidades, fontes físicas,
+aliases, retornos dos plugins e slot47/X0 abertos. Sem execução Samsung.
+[Análise](docs/newtime-fvp-effective-hzc2.md) e
+[validação](docs/references/newtime-fvp-effective-validation-20261029.json).
+
+## 2026-10-29 — auditoria da entrega GLM do receptor DVFS
+
+Base ed48cba, PR #50. Recebidos extrator,47 testes,JSON e helper Thumb.
+47 testes reproduzidos em cópia temporária com caminhos/GNU adaptados;
+JSON idêntico normalizando somente GNU2.42→2.44.2341 registros em bytes
+conferem,2314 PCs únicos incluindo sobreposições/pools, sem concluir
+cobertura executável por essa contagem. Corrigido o teste externo que
+preserva low16 apesar de declarar removê-los: interno10 publica0.
+Modo0 liga5bb6c→59be4→598dc. Callback ignora primeiro retorno, relê B e
+devolve apenas resultado final. Init: primeiros29 sub_i=38e00+52*i e
+corrente de dados vivos depois do handshake; mais8 registros derivados.
+Limiar2f230 escolhe caminhos2/3/1, não recusa. Broadcast587a4 tem quatro
+registros e limite superior exclusivo; final usa máscaraf1/dadof0, limpa
+bit24. Notificação usa célula direta2eccc+16. Localreturn0 não agrega
+aceitação dos RPCs; estado terminal literaldom0, fontes/aliases abertos.
+28 testes próprios incluem216 casos crus do callback, falha intermediária,
+recarga B, init29 não zero, gates de limiar e quatro stores do broadcast.
+438 NEWTIME, JSON exato, recusas, hashes/links e baseline registrados na
+validação. Próxima frente: DMC método+12/subcmd8/9; FVP já auditado.
+Sem execução Samsung, ampliação QEMU ou resolução do slot47/X0.
+[Análise](docs/newtime-dvfs-receiver-hzc2.md) e
+[validação](docs/references/newtime-dvfs-receiver-validation-20261029.json).
+
+## 2026-10-29 — consolidação da PR #50 antes da integração
+
+Reconciliados README, roadmap, plano NEWTIME e documento do comando6:
+0x59be4 deixou de aparecer como tarefa futura após a auditoria do receptor;
+próxima frente é DMC método+12/subcomandos8/9. Base do roadmap corrigida
+para main após PR49 (054f5c8). Preservadas as fronteiras de valores vivos,
+interfaces e slot47/X0. Nenhuma mudança de código ou evidência binária.
+
+Na conferência do head6a237c0, CI R10 completed/success e zero threads;
+revisão automática ainda running no head antigo a6013d1, e Entire registra
+aprovação ausente e revisão do head atual pendente. Integração não registrada
+como concluída: permanece dependente dos critérios de AGENTS.md.
