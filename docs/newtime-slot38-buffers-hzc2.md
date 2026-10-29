@@ -109,8 +109,10 @@ callees satisfazem essas condições no aparelho.
 
 O slot20 inicial aponta a `0x2f488`. Seu BLR `0x2f498` usa
 `M64[M64[nominal(0x31998)]+56]` com k/0; depois há BR por `0x31040` com W0=4.
-**O método dinâmico +56 e seus efeitos permanecem abertos.** Restaurar RAM
-não prova desfazer o que esse método possa ter consumido ou programado.
+A [análise do método +56](newtime-method56-hzc2.md) resolve condicionalmente
+o provedor inicial para um pedido comando6 e uma espera por resposta. O dado
+low24 é obtido de uma raiz runtime, sem ligação direta demonstrada a B.
+Restaurar RAM não prova desfazer o que o destinatário possa ter consumido.
 
 ## Reprodução e limites
 
@@ -125,5 +127,5 @@ python3 -m unittest discover -s scripts -p 'test_newtime*.py'
 [validação](references/newtime-slot38-buffers-validation-20261028.json).
 GNU: 193 palavras, 15 alvos relativos e 94 operandos selecionados.
 Os modelos são de host e seus budgets/bounds não são guards do firmware.
-Gates, valores físicos, preservação, aliases transitivos, método +56 e
-despacho/X0 do slot47 continuam sem resolução.
+Gates, valores físicos, preservação, aliases transitivos, consumo do pedido
++56, seu BR posterior e despacho/X0 do slot47 continuam sem resolução.

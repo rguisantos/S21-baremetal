@@ -46,6 +46,12 @@ Backup de 72 bytes e restauração não excluem efeitos transitórios do método
 Limites ASV de n/W19, bases dinâmicas e gates/aliases permanecem fronteiras; não há
 exclusão de chamador por toda a imagem.
 
+O [método +56](newtime-method56-hzc2.md) agora está ligado nominalmente a
+uma publicação de comando6 e ao poll sem timeout sintático. O dado foi
+ligado ao vetor MIF sob raízes estáveis/roundtrip u16; destinatário,
+valores físicos e BR posterior seguem abertos.
+A restauração do buffer B não cobre essas stores.
+
 A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) agora delimita n=13 e W19 sob
 inicialização/preservação para MIF/INTSCI. A leitura GEN externa estava uma
 palavra adiante; caminho habilitado, subkeys reais e pedidos SMC foram

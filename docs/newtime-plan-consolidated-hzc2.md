@@ -179,3 +179,10 @@ hashes de trilha e 1355/1495 instruções coincidem com o ensaio anterior.
 31c30 e os 108 bytes de 31f30 permanecem ff, sem escritas sobre eles; a
 predição recebida de scratch zerado foi refutada pela inicialização do
 próprio arquivo. O preflight e todas as fronteiras continuam preservados.
+
+A [cadeia do método +56](newtime-method56-hzc2.md) resolve o provedor inicial
+para 0x17d84/0x17d1c e publicação `{0,valor24,6,6}`. O poll compara a palavra
+completa e não tem timeout sintático. Valor24 vem de R+offset16+4*k, sem
+ligação direta estabelecida ao buffer B. O produtor selecionado de R+20
+aponta ao vetor MIF sob roundtrip u16 válido. Preservação de R/configuração,
+destinatário do comando e BR posterior 0x2a24c são as próximas arestas.

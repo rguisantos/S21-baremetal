@@ -2831,3 +2831,25 @@ três recusas CLI, 1122 links e baseline R10 recompilado aprovados. Sem
 execução Samsung ou ampliação QEMU nesta análise.
 [Auditoria](docs/newtime-asv-gen-hzc2.md) e
 [validação](docs/references/newtime-asv-gen-validation-20261028.json).
+
+## 2026-10-28 — método +56, comando6 e fila antes da restauração
+
+Base remota e00c9b1, PR #50. Slot20 nominal 2f488 usa binding31998+56;
+provedor307e0 aponta por30818 para17d84. Wrapper chama17d1c, que lê low24
+de M32[R+M16[R+20]+4*u32(k)] e publica {0,valor24,6,6}, distinguindo o
+frame local {0,valor24,6,0}. Envio e espera são folhas; registradores
+transportados conferidos por GNU, com reloads de base/passo explícitos.
+Índices e endereços W32, shift W em cinco bits, UDIV zero e recarga P
+delimitados. Poll exige status low4 não zero e palavra completa igual a0
+nesse pacote; sem timeout sintático ou cópia de corpo da resposta.
+Restaurar B não restaura fila/MMIO. Não demonstrada ligação de valor24 a
+B ou consumo físico; retorno posterior via31040/2a24c ainda aberto.
+Produtor do u16 ligado a1912c: primeiro domínio MIF, vetor U retornado
+pela continuação ASV. Sob raízes/roundtrip preservados, valor24 é
+level[k]*1000 mascarado; byte MARGIN superior é removido. Truncamento
+u16 pode impedir roundtrip, e aliases U/B não foram excluídos.
+Extrator próprio GNU207/14/107, 32 testes novos e 330 NEWTIME aprovados.
+JSON reproduzido, três recusas CLI, links e baseline R10 recompilado
+registrados na validação. Sem execução Samsung ou ampliação QEMU.
+[Análise](docs/newtime-method56-hzc2.md) e
+[validação](docs/references/newtime-method56-validation-20261028.json).

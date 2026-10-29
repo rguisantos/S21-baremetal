@@ -31,6 +31,8 @@ O [slot 38 e a máscara da coluna 13](docs/newtime-slot38-hzc2.md) foram ligados
 
 A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) ligam o destino às colunas 6/7: backup de 72 bytes antes da consulta e restauração posterior condicionada. O endereço calculado não alcança slots/binding nos perfis completos delimitados; a pilha e os efeitos do método dinâmico +56 continuam abertos.
 
+O [método +56 e a fila](docs/newtime-method56-hzc2.md) agora têm uma resolução condicional: pacote `{0, valor24, 6, 6}`, publicação e espera por resposta exata, sem timeout no corpo selecionado. O valor24 foi ligado ao vetor MIF sob roundtrip u16 válido; a restauração B não inclui os efeitos da fila e o consumo físico permanece aberto.
+
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
 A [busca específica por referências a BL2](docs/bl2-kernel-consumers-hzc2.md) encontrou um consumidor Linux de `0x02073600` que imprime a palavra DRAM, uma constante comum ao BL2 HZC2, parâmetros de tempo bootstat e o nome `main_rev` para o campo que condiciona a reescrita das bases. São ligações estáticas; o produtor e os valores reais do registro continuam abertos.
