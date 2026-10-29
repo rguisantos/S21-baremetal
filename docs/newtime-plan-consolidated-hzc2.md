@@ -184,13 +184,13 @@ A [cadeia do método +56](newtime-method56-hzc2.md) resolve o provedor inicial
 para 0x17d84/0x17d1c e publicação `{0,valor24,6,6}`. O poll compara a palavra
 completa e não tem timeout sintático. Valor24 vem de R+offset16+4*k, sem
 ligação direta estabelecida ao buffer B. O produtor selecionado de R+20
-aponta ao vetor MIF sob roundtrip u16 válido. Preservação de R/configuração,
-destinatário do comando e BR posterior 0x2a24c são as próximas arestas.
+aponta ao vetor MIF sob roundtrip u16 válido. Preservação de R/configuração e BR posterior 0x2a24c permanecem abertos;
+o destinatário nominal foi ligado na ponte descrita abaixo.
 
 A [ponte do comando6](newtime-command6-hzc2.md) agora tem canal1, filas
 nominais e receptor FVP ligados ao serviço DVFS plugin7. O resultado baixo
 não sobrevive à projeção do header; não tratar o zero do poll BL2 como
-sucesso físico. Próximo: 0x59be4 e consumidores do valor efetivo.
+sucesso físico. A seleção FVP e o receptor 0x59be4 estão auditados abaixo.
 
 A [auditoria do gate ECT](newtime-ect-gate-hzc2.md) confirma a decisão sob
 retornos normais e separa efeitos diretos de efeitos opacos do monitor.
@@ -202,8 +202,8 @@ A [seleção FVP do valor efetivo](newtime-fvp-effective-hzc2.md) fecha o
 máximo unsigned de pedido/+8/+12 e o limite condicional posterior.
 Indicador/espelho são anteriores ao limite e não certificam a relação do
 valor final com o anterior. O helper relê S+0 e transmite ponteiros;
-resultado não zero não desfaz as stores locais selecionadas. Próxima
-fronteira complementar: corpo DVFS0x59be4 e origens runtime dos campos.
+resultado não zero não desfaz as stores locais selecionadas. As origens
+runtime dos campos permanecem abertas; o receptor DVFS está descrito abaixo.
 
 O [receptor DVFS nominal](newtime-dvfs-receiver-hzc2.md) agora tem auditoria
 do wrapper, callback, primeiro laço do init e retornos. A primeira etapa

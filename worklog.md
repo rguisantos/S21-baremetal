@@ -2941,3 +2941,16 @@ validação. Próxima frente: DMC método+12/subcmd8/9; FVP já auditado.
 Sem execução Samsung, ampliação QEMU ou resolução do slot47/X0.
 [Análise](docs/newtime-dvfs-receiver-hzc2.md) e
 [validação](docs/references/newtime-dvfs-receiver-validation-20261029.json).
+
+## 2026-10-29 — consolidação da PR #50 antes da integração
+
+Reconciliados README, roadmap, plano NEWTIME e documento do comando6:
+0x59be4 deixou de aparecer como tarefa futura após a auditoria do receptor;
+próxima frente é DMC método+12/subcomandos8/9. Base do roadmap corrigida
+para main após PR49 (054f5c8). Preservadas as fronteiras de valores vivos,
+interfaces e slot47/X0. Nenhuma mudança de código ou evidência binária.
+
+Na conferência do head6a237c0, CI R10 completed/success e zero threads;
+revisão automática ainda running no head antigo a6013d1, e Entire registra
+aprovação ausente e revisão do head atual pendente. Integração não registrada
+como concluída: permanece dependente dos critérios de AGENTS.md.

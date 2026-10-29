@@ -35,7 +35,7 @@ A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) lig
 
 O [método +56 e a fila](docs/newtime-method56-hzc2.md) agora têm uma resolução condicional: pacote `{0, valor24, 6, 6}`, publicação e espera por resposta exata, sem timeout no corpo selecionado. O valor24 foi ligado ao vetor MIF sob roundtrip u16 válido; a restauração B não inclui os efeitos da fila e o consumo físico permanece aberto.
 
-O [destinatário do comando6](docs/newtime-command6-hzc2.md) foi ligado nominalmente ao canal1, plugin FVP e serviço DVFS. O publicador projeta o header da resposta e remove o resultado baixo; o zero esperado pelo BL2 não comprova sucesso físico. A próxima função concreta é 0x59be4.
+O [destinatário do comando6](docs/newtime-command6-hzc2.md) foi ligado nominalmente ao canal1, plugin FVP e serviço DVFS. O publicador projeta o header da resposta e remove o resultado baixo; o zero esperado pelo BL2 não comprova sucesso físico. O corpo de `0x59be4` foi auditado na entrega do receptor DVFS abaixo; a próxima frente é o método +12 do plugin DMC, subcomandos 8/9.
 
 A [seleção do valor efetivo FVP](docs/newtime-fvp-effective-hzc2.md) é máximo unsigned de três campos, seguido de limite condicional. Espelho/indicador são anteriores ao limite; o helper é selecionado mesmo sem mudança final. Retorno com erro não desfaz as stores locais selecionadas, e o cache relê o valor passado por ponteiro.
 

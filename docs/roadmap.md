@@ -1,7 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
 Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #48, e9bcc87](https://github.com/rguisantos/S21-baremetal/commit/e9bcc87a2b5cc643364b4381b81d3c652ad27052),
+[main após revisão/merge do PR #49, 054f5c8](https://github.com/rguisantos/S21-baremetal/commit/054f5c80c920bf602fe593361a83efcb5ce8447b),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -48,20 +48,20 @@ exclusão de chamador por toda a imagem.
 
 O [método +56](newtime-method56-hzc2.md) agora está ligado nominalmente a
 uma publicação de comando6 e ao poll sem timeout sintático. O dado foi
-ligado ao vetor MIF sob raízes estáveis/roundtrip u16; destinatário,
-valores físicos e BR posterior seguem abertos.
+ligado ao vetor MIF sob raízes estáveis/roundtrip u16. O destinatário
+nominal está descrito abaixo; valores físicos e BR posterior seguem abertos.
 A restauração do buffer B não cobre essas stores.
 
 A [ponte ACPM/FVP/DVFS](newtime-command6-hzc2.md) liga o canal1 ao comando6
-e ao serviço plugin7, com próximo alvo 0x59be4. A projeção da resposta
+e ao serviço plugin7; o receptor 0x59be4 está auditado abaixo. A projeção da resposta
 remove low16; o zero esperado pelo BL2 não prova sucesso físico. Filas e
 serviços continuam sujeitos a aliases/gates e preservação.
 
 A [seleção FVP](newtime-fvp-effective-hzc2.md) agora delimita máximo
 unsigned de três entradas e limite condicional posterior. Indicador e
 espelho usam o máximo anterior ao limite; erro do relay não desfaz as
-stores locais selecionadas. Próxima fronteira: corpo0x59be4 e origens
-runtime das entradas concorrentes/limites, sem inferir sucesso físico.
+stores locais selecionadas. Permanecem abertas as origens runtime das
+entradas concorrentes/limites, sem inferir sucesso físico.
 
 A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) confirma
 modo0→callback, mas a primeira transição não tem retorno testado antes da

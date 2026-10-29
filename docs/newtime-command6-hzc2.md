@@ -66,7 +66,7 @@ A [continuação da seleção](newtime-fvp-effective-hzc2.md) reconstrói esse
 máximo unsigned e o limite posterior para comando6/domínio0, incluindo
 indicador anterior ao limite e retorno sem rollback local selecionado.
 
-## Serviço DVFS e próxima função
+## Serviço DVFS e receptor auditado
 
 Antes de chamar os plugins, `0x38e46` instala a API core0x710c em +8 de
 cada descritor. FVP usa API+28 → core0x4b05 → arquivo **0x38b04**.
@@ -86,7 +86,7 @@ O inicializador do plugin7 em `0x56e04` instala interface core0x2e828;
 seu método +12 contém core0x2e36d → arquivo **0x5bb6c**. O relay repassa
 ponteiros para domínio0, valor efetivo e modo0 (frame privado inicializado).
 A tabela de modos em core0x2f400 tem slot0 core0x2c3e5 → arquivo
-**0x59be4**. Essa função e seus efeitos são a próxima fronteira.
+**0x59be4**. Seu fluxo selecionado foi auditado na continuação abaixo.
 O resultado do relay continua opaco, incluindo seus retornos por gates.
 A [auditoria posterior do receptor](newtime-dvfs-receiver-hzc2.md) agora
 delimita wrapper/callback/init e corrige a interpretação do limiar e do
@@ -132,6 +132,6 @@ semântica Thumb de shifts e todos os resultados baixos da projeção.
 
 Mapa/aliases, chamadas intermediárias, registradores transportados,
 frames, filas, configuração e interfaces precisam permanecer compatíveis
-com as arestas mostradas. O corpo de 0x59be4, hardware e unidade física,
+com as arestas mostradas. Interfaces DMC, hardware e unidade física,
 consumo do B temporário NEWTIME, BR posterior do slot20 e slot47/X0 seguem
 abertos. A chegada nominal ao plugin não demonstra uma operação no aparelho.
