@@ -76,7 +76,9 @@ Nesse BLR, ADRP `0x2fa64` e LDR `0x2fa74` selecionam nominalmente a
 célula `0x31538`, **slot 38** de `0x31408`. O valor inicial
 `0x021172e4` corresponde a `0x2d2e4`; `0x2fa68` passa o W4 recebido em
 W0. Não é o slot 47. O valor efetivo da célula, o bit de gate e os efeitos
-do callback não foram observados. Não se explorou o corpo do callee.
+do callback não foram observados. A [continuação do slot 38](newtime-slot38-hzc2.md)
+agora delimita a folha e sua máscara da coluna 13, os caminhos de índice
+u8 e a store de um byte no chamador, sob preservação.
 
 ## Reprodução e procedência
 

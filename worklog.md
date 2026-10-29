@@ -2772,3 +2772,23 @@ prova de gates/sucesso real. GNU 595/111/62, 217 testes NEWTIME (25 novos),
 JSON exato, três recusas, links e baseline aprovados. Sem avanço QEMU.
 [Análise](docs/newtime-margin-hzc2.md) e
 [validação](docs/references/newtime-margin-validation-20261028.json).
+
+## 2026-10-28 — slot 38, coluna 13 e índice u8
+
+Base remota `8b1dabd`, PR #50. Frente ASV/GEN n/W19 delegada pelo usuário
+ao GLM; esta continuação segue a folha nominal 0x2d2e4. Treze palavras,
+sem stores/calls, duas cargas anteriores ao retorno antecipado, comparação
+signed, ASRV W e retorno index/-1 delimitados. Dois produtores de 0x318f0
+somam offset W antes de SXTW, sob alias fixo da coluna 13 NEWTIME. As 22
+linhas usam três subtabelas com mask=0x1ff. Nove chamadas diretas a 0x22370
+enumeradas; cinco têm seletor 0 e LDRB -> slot22 nominal RET -> W1, levando
+índice u8 ao slot38 sob preservação de slots/registros/frame. Só 0..7 passam;
+8 é rejeitado mesmo com bit8 ligado. Índices negativos do contrato geral
+não foram demonstrados nesses cinco caminhos. Retorno controla RMW byte
+em X2+1 do dispatcher, limpando bit1; destino/aliases/gate não observados.
+GNU363/35/73, 245 testes NEWTIME (28 novos) e comparação independente das
+13 palavras em 3922 combinações. JSON reproduzido, três recusas CLI,
+1097 links e baseline R10 recompilado aprovados. Sem execução de firmware
+Samsung ou ampliação QEMU nesta análise; slot47/X0
+continuam abertos. [Análise](docs/newtime-slot38-hzc2.md) e
+[validação](docs/references/newtime-slot38-validation-20261028.json).

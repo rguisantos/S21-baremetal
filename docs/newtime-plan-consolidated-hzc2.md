@@ -131,8 +131,10 @@ tem 53 palavras e três células de saída; não prova exclusividade global.
 O [resultado de 0x1a804](newtime-secondary-result-hzc2.md) separa B/Qnew e
 metadados u16. A [cadeia MARGIN](newtime-margin-hzc2.md) corrige os nomes
 e restringe essa interação: os registros iniciais MIF/INTSCI correspondem
-a tags 255, sem store em Q nesse caminho preservado. n/W19, bases
-dinâmicas e callback nominal do slot 38 ficam abertos, sem execução adicional.
+a tags 255, sem store em Q nesse caminho preservado. O
+[slot 38](newtime-slot38-hzc2.md) agora tem folha, máscara da coluna 13
+e store de byte delimitadas, com cinco caminhos u8 condicionais. n/W19,
+bases dinâmicas, gates/aliases e slot 47 continuam abertos, sem execução adicional.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

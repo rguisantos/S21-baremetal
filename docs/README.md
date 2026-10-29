@@ -35,6 +35,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 ## Evidências do aparelho e fontes externas
 
+- [Slot 38 e máscara da coluna 13](newtime-slot38-hzc2.md): folha de 13 palavras, dois produtores nominais do ponteiro, máscara comum e cinco caminhos u8 condicionais; efeito de um byte e aliases abertos.
+
 - [Hardware](../EXYNOS2100_HARDWARE.md) e [firmware stock HZC2](stock-firmware-hzc2.md).
 - [Fontes Samsung e READMEs recebidos](samsung-reference.md).
 - [Kernel público xfwdrev/rebased-11](xfwdrev-kernel-reference.md): revisão fixada, comparação de fontes, três compilações DTS e dois overlays no host; sem build completo ou observação física.
