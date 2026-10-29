@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Setters de política FVP](newtime-policy-writers-hzc2.md): limites, habilitação u32 e recomputação em nova invocação comando6.
+
 - [Conclusão do dispatcher ACPM](newtime-dispatch-completion-hzc2.md): logging, avanço do índice e saída sem agregação de erros.
 
 - [Retornos FVP e cache](newtime-return-planes-hzc2.md): resultado u32, low16 construído e header publicado; nova invocação após falha.

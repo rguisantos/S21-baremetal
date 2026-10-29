@@ -2979,3 +2979,16 @@ Sem inferir retry automático, efeitos físicos ou preservação pelos hooks.
 Validação desta continuação:456 testes NEWTIME, JSON reproduzido exatamente,
 três recusas CLI sem JSON parcial, GNU151 instruções/167 halfwords/13 alvos/
 19 operandos e505 links locais válidos.
+
+## 2026-10-29 — setters de limite/habilitação FVP
+
+Base2d80c18. Comando4/canal1 grava cap por domínio low16; comando5 com
+palavra3=2 grava habilitação u32 global, sem normalização booleana nem
+o mesmo guard de canal. Trajetos selecionados respondem sem chamada
+direta ao helper/relay ou store ao efetivo/cache; efeitos opacos e eventos
+externos continuam abertos. Fixtures de palavras cruas encadeiam setters
+com nova invocação comando6, que relê a política. Dez testes adicionados.
+[Documento](docs/newtime-policy-writers-hzc2.md).
+Validação:466 testes NEWTIME, JSON exato, três recusas CLI sem JSON parcial,
+25 operandos adicionais e511 links locais válidos. Escopo GNU
+reutilizado FVP830 instruções/983 halfwords/150 alvos.

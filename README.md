@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+Os [setters de política FVP](docs/newtime-policy-writers-hzc2.md) gravam limite/habilitação e respondem sem chamada direta ao relay DVFS nos caminhos selecionados. Uma invocação posterior do comando6 relê essas políticas.
+
 A [conclusão do dispatcher ACPM](docs/newtime-dispatch-completion-hzc2.md) guarda o retorno FVP para logging, avança o índice sem teste local desse erro e devolve0 na saída normal selecionada; hooks e estado vivo permanecem condições.
 
 A [separação dos retornos FVP](docs/newtime-return-planes-hzc2.md) distingue resultado completo, decisão do cache e header publicado; pedido repetido ainda seleciona o helper sob estado preservado.
