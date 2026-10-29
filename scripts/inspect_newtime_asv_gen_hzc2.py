@@ -17,10 +17,15 @@ from inspect_newtime_jump_tables_hzc2 import u32
 from inspect_newtime_margin_hzc2 import name_skip, parse_margin
 
 RANGES = ((0x16428, 0x1643c), (0x19070, 0x19124), (0x19d04, 0x19e74),
+          (0x1b3d8, 0x1b420), (0x1c87c, 0x1c910),
           (0x1a26c, 0x1a5b0), (0x1a668, 0x1a73c), (0x1aab4, 0x1add4),
           (0x1ae0c, 0x1ae30), (0x1aff0, 0x1b148), (0x1b6c0, 0x1b900),
           (0x1c19c, 0x1c2bc), (0x1c690, 0x1c700), (0x1c770, 0x1c7e4))
 SELECTED = {
+    0x1b408: ('add', 'x0, x3, w0, uxtw'), 0x1b40c: ('str', 'x0, [x1, #3080]'),
+    0x1c8ac: ('mov', 'w0, #0x10'), 0x1c8b0: ('bl', '0x1b3f8'),
+    0x1c8fc: ('ldr', 'w0, [x0, #8]'), 0x1c900: ('add', 'x0, x0, #0x4'),
+    0x1c904: ('add', 'x0, x1, x0'), 0x1c908: ('str', 'x0, [x20, #3080]'),
     0x16430: ('smc', '#0x0'), 0x16434: ('mov', 'x0, x2'),
     0x190f4: ('mov', 'x1, x26'), 0x19108: ('mov', 'x2, x25'),
     0x1911c: ('bl', '0x1aab4'),
@@ -121,7 +126,19 @@ def w19(column_nibble, adjustment_nibble):
     return (column_nibble + adjust) & 0xffffffff
 
 
-def position_survey(rows, columns, matrix_file, data, ect_field_end):
+def parser_reservation(origin, total):
+    """Selected allocator16, alignment, then ADD X(total+4) and alignment."""
+    if type(origin) is not int or not 0 <= origin < 1 << 64:
+        raise ValueError('expected host u64 origin')
+    u32(total)
+    mask = (1 << 64)-1
+    after_header = (((origin+16)&mask)+7)&~7&mask
+    before_align = (after_header+total+4)&mask
+    return dict(after_header=after_header, after_total_plus4=before_align,
+                end=(before_align+7)&~7&mask)
+
+
+def position_survey(rows, columns, matrix_file, data, ect_field_end, *, bump_end=None):
     u32(rows); u32(columns)
     size = rows * columns
     if not 0 < rows <= 128 or not 0 < columns <= 128 or not 0 <= matrix_file <= len(data) - size:
@@ -140,7 +157,8 @@ def position_survey(rows, columns, matrix_file, data, ect_field_end):
                 at = matrix_file + index
                 adjacent.append(dict(W19=value, i=i, index=index, source_file=hex(at),
                     byte=hex(data[at]) if at < len(data) else None,
-                    within_header_total_plus4=at < ect_field_end + 4))
+                    within_header_total_plus4=at < ect_field_end + 4,
+                    within_parser_bump_reservation=None if bump_end is None else at < bump_end))
     return dict(n=rows, columns=columns, matrix_file=hex(matrix_file), matrix_bytes=size,
         possible_W19_patterns=[hex(v) for v in patterns], per_fixed_W19_reads=rows,
         union_distinct_inside_bytes=len(inside), pair_counts=dict(counts),
@@ -213,7 +231,8 @@ def inspect(path):
             enabled_byte_keys=[k for k, s in enumerate(normal) if s['enabled']],
             F152_for_byte_key={str(k): s['F152'] for k, s in enumerate(normal)},
             MIF_optional_key0_compaction=selected_gen(m['cells'], v['cells'], 0, True) if name == 'MIF' else None,
-            positions=position_survey(n, mr['columns'], mat_file, data, origin + ect['header_total']))
+            positions=position_survey(n, mr['columns'], mat_file, data, origin + ect['header_total'],
+                bump_end=parser_reservation(origin, ect['header_total'])['end']))
     word = lambda p: struct.unpack_from('<I', data, p)[0]
     return dict(mode='independent_ASV_GEN_MARGIN_audit_hzc2', sboot_sha256=IMAGES['sboot'][1],
         GEN=dict(header_bytes=8, directory_version=gv, count=len(gen), callback='0x1c19c',
@@ -226,7 +245,10 @@ def inspect(path):
                    result='X2 returned in X0, unknown') for pc, a, b in (
                        (0x19d8c, 0x19d10, 0x19d14), (0x19ddc, 0x19dcc, 0x19dd4), (0x19e2c, 0x19e18, 0x19e20))]),
         ect_extent=dict(header_field_end=hex(origin + ect['header_total']),
-            parser_reservation_total_plus4_end=hex(origin + ect['header_total'] + 4), copied_source_end='0x7d000'),
+            raw_header_total_plus4_end=hex(origin + ect['header_total'] + 4),
+            parser_bump_reserved_end=hex(parser_reservation(origin, ect['header_total'])['end']),
+            allocation_order='allocate16/align8, then add total+4 to advanced cursor and align8',
+            copied_source_end='0x7d000'),
         corrections=['GEN cells start after two u32 fields, not three; enabled branch not excluded',
             'F152 uses GEN column1 (ASV subkey), not column2 (421/141)',
             'MOVK replaces low16 in the selected MOVN X1, not the high part of the literal',
@@ -239,7 +261,7 @@ def inspect(path):
             'GEN MIF optional first-row compaction is modeled separately; arbitrary other writers remain open'],
         limits=['no assertion of globally unreachable enabled path, safe NULL input, all G writers or hardware OOB',
             'nibble combinations conservatively overapproximate unknown responses; physical feasibility not shown',
-            'total+4 is the parser allocation formula, not a demonstrated read-bound guard',
+            'total+4 is an increment after the header allocation, not the whole reservation or a read guard',
             'source ASV analyzer and its claimed95 tests were not among current attachments',
             'no incoming X0 or caller of slot47 established'],
         gnu=dict(version=subprocess.check_output(cmd + ['--version'], text=True).splitlines()[0],

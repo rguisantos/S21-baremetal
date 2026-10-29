@@ -2876,3 +2876,23 @@ Extrator GNU814 instruções/932 halfwords/112 alvos/10 literais/96 operandos;
 baseline R10 recompilado registrados na validação. Sem ampliação QEMU.
 [Análise](docs/newtime-command6-hzc2.md) e
 [validação](docs/references/newtime-command6-validation-20261029.json).
+
+## 2026-10-29 — auditoria do gate ECT e correção da reserva ASV
+
+Base45f316f. Recebido somente JSON do GLM (21913 bytes, SHA e04fdaa6...),
+sem extrator/suíte52; as44 palavras presentes conferem. Árvore principal
+confirmada sob retornos normais. Assinatura compara PARA e três bytes
+atuais da origem, não constante007 diante de fonte alterada. Ramo de pulo
+não faz store global direta selecionada, mas monitor e aliases são opacos.
+Cópia/finalize posteriores são ordem de programa, não execução garantida.
+Finalize ressample-233, testa W32, escreve metadados em e7ffe000 antes de
+SMC-230 e zera a palavra MMIO inteira depois de seu retorno W0zero.
+Auditoria encontrou erro próprio anterior: parser aloca/alinha16 antes de
+somar total+4; cursor equivalente0x7a0d8, não7a0c8. Todos os11 bytes INTSCI
+após a matriz ficam na reserva maior sob preservação, ainda fora da matriz
+e do campo total. ASVscript/JSON/documentação corrigidos, três regressões.
+Extrator do gate GNU534/121/63,24 testes novos; ASV GNU1027/169/69,24 testes.
+382 NEWTIME, JSONs exatos, recusas, links e baseline registrados na validação.
+Sem execução Samsung ou ampliação QEMU.
+[Auditoria](docs/newtime-ect-gate-hzc2.md) e
+[validação](docs/references/newtime-ect-gate-validation-20261029.json).

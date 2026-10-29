@@ -635,7 +635,8 @@
             "index": 156,
             "source_file": "0x7a020",
             "byte": "0xc",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 13,
@@ -643,7 +644,8 @@
             "index": 157,
             "source_file": "0x7a021",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 14,
@@ -651,7 +653,8 @@
             "index": 158,
             "source_file": "0x7a022",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 15,
@@ -659,7 +662,8 @@
             "index": 159,
             "source_file": "0x7a023",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 16,
@@ -667,7 +671,8 @@
             "index": 160,
             "source_file": "0x7a024",
             "byte": "0xd",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 17,
@@ -675,7 +680,8 @@
             "index": 161,
             "source_file": "0x7a025",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 18,
@@ -683,7 +689,8 @@
             "index": 162,
             "source_file": "0x7a026",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 19,
@@ -691,7 +698,8 @@
             "index": 163,
             "source_file": "0x7a027",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 20,
@@ -699,7 +707,8 @@
             "index": 164,
             "source_file": "0x7a028",
             "byte": "0x8",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 21,
@@ -707,7 +716,8 @@
             "index": 165,
             "source_file": "0x7a029",
             "byte": "0x8",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 22,
@@ -715,7 +725,8 @@
             "index": 166,
             "source_file": "0x7a02a",
             "byte": "0x8",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           }
         ],
         "actual_W19_observed": false
@@ -1315,7 +1326,8 @@
             "index": 156,
             "source_file": "0x7a0c4",
             "byte": "0x69",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 13,
@@ -1323,7 +1335,8 @@
             "index": 157,
             "source_file": "0x7a0c5",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 14,
@@ -1331,7 +1344,8 @@
             "index": 158,
             "source_file": "0x7a0c6",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 15,
@@ -1339,7 +1353,8 @@
             "index": 159,
             "source_file": "0x7a0c7",
             "byte": "0x0",
-            "within_header_total_plus4": true
+            "within_header_total_plus4": true,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 16,
@@ -1347,7 +1362,8 @@
             "index": 160,
             "source_file": "0x7a0c8",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 17,
@@ -1355,7 +1371,8 @@
             "index": 161,
             "source_file": "0x7a0c9",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 18,
@@ -1363,7 +1380,8 @@
             "index": 162,
             "source_file": "0x7a0ca",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 19,
@@ -1371,7 +1389,8 @@
             "index": 163,
             "source_file": "0x7a0cb",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 20,
@@ -1379,7 +1398,8 @@
             "index": 164,
             "source_file": "0x7a0cc",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 21,
@@ -1387,7 +1407,8 @@
             "index": 165,
             "source_file": "0x7a0cd",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           },
           {
             "W19": 22,
@@ -1395,7 +1416,8 @@
             "index": 166,
             "source_file": "0x7a0ce",
             "byte": "0x0",
-            "within_header_total_plus4": false
+            "within_header_total_plus4": false,
+            "within_parser_bump_reservation": true
           }
         ],
         "actual_W19_observed": false
@@ -1433,7 +1455,9 @@
   },
   "ect_extent": {
     "header_field_end": "0x7a0c4",
-    "parser_reservation_total_plus4_end": "0x7a0c8",
+    "raw_header_total_plus4_end": "0x7a0c8",
+    "parser_bump_reserved_end": "0x7a0d8",
+    "allocation_order": "allocate16/align8, then add total+4 to advanced cursor and align8",
     "copied_source_end": "0x7d000"
   },
   "corrections": [
@@ -1453,15 +1477,15 @@
   "limits": [
     "no assertion of globally unreachable enabled path, safe NULL input, all G writers or hardware OOB",
     "nibble combinations conservatively overapproximate unknown responses; physical feasibility not shown",
-    "total+4 is the parser allocation formula, not a demonstrated read-bound guard",
+    "total+4 is an increment after the header allocation, not the whole reservation or a read guard",
     "source ASV analyzer and its claimed95 tests were not among current attachments",
     "no incoming X0 or caller of slot47 established"
   ],
   "gnu": {
     "version": "GNU objdump (GNU Binutils for Debian) 2.44",
-    "words": 972,
-    "relative_targets": 159,
-    "selected_operands": 61
+    "words": 1027,
+    "relative_targets": 169,
+    "selected_operands": 69
   },
   "witnesses": [
     {
@@ -5659,6 +5683,114 @@
       "args": "0x1b0ec"
     },
     {
+      "pc": "0x1b3d8",
+      "word": "d00000a1",
+      "op": "adrp",
+      "args": "x1, 0x31000"
+    },
+    {
+      "pc": "0x1b3dc",
+      "word": "f9460420",
+      "op": "ldr",
+      "args": "x0, [x1, #3080]"
+    },
+    {
+      "pc": "0x1b3e0",
+      "word": "f2400802",
+      "op": "ands",
+      "args": "x2, x0, #0x7"
+    },
+    {
+      "pc": "0x1b3e4",
+      "word": "54000080",
+      "op": "b.eq",
+      "args": "0x1b3f4"
+    },
+    {
+      "pc": "0x1b3e8",
+      "word": "cb020000",
+      "op": "sub",
+      "args": "x0, x0, x2"
+    },
+    {
+      "pc": "0x1b3ec",
+      "word": "91002000",
+      "op": "add",
+      "args": "x0, x0, #0x8"
+    },
+    {
+      "pc": "0x1b3f0",
+      "word": "f9060420",
+      "op": "str",
+      "args": "x0, [x1, #3080]"
+    },
+    {
+      "pc": "0x1b3f4",
+      "word": "d65f03c0",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x1b3f8",
+      "word": "d00000a1",
+      "op": "adrp",
+      "args": "x1, 0x31000"
+    },
+    {
+      "pc": "0x1b3fc",
+      "word": "a9bf7bfd",
+      "op": "stp",
+      "args": "x29, x30, [sp, #-16]!"
+    },
+    {
+      "pc": "0x1b400",
+      "word": "910003fd",
+      "op": "mov",
+      "args": "x29, sp"
+    },
+    {
+      "pc": "0x1b404",
+      "word": "f9460423",
+      "op": "ldr",
+      "args": "x3, [x1, #3080]"
+    },
+    {
+      "pc": "0x1b408",
+      "word": "8b204060",
+      "op": "add",
+      "args": "x0, x3, w0, uxtw"
+    },
+    {
+      "pc": "0x1b40c",
+      "word": "f9060420",
+      "op": "str",
+      "args": "x0, [x1, #3080]"
+    },
+    {
+      "pc": "0x1b410",
+      "word": "97fffff2",
+      "op": "bl",
+      "args": "0x1b3d8"
+    },
+    {
+      "pc": "0x1b414",
+      "word": "aa0303e0",
+      "op": "mov",
+      "args": "x0, x3"
+    },
+    {
+      "pc": "0x1b418",
+      "word": "a8c17bfd",
+      "op": "ldp",
+      "args": "x29, x30, [sp], #16"
+    },
+    {
+      "pc": "0x1b41c",
+      "word": "d65f03c0",
+      "op": "ret",
+      "args": ""
+    },
+    {
       "pc": "0x1b6c0",
       "word": "a9bb7bfd",
       "op": "stp",
@@ -7295,6 +7427,228 @@
       "word": "aa0003e7",
       "op": "mov",
       "args": "x7, x0"
+    },
+    {
+      "pc": "0x1c87c",
+      "word": "a9ba7bfd",
+      "op": "stp",
+      "args": "x29, x30, [sp, #-96]!"
+    },
+    {
+      "pc": "0x1c880",
+      "word": "910003fd",
+      "op": "mov",
+      "args": "x29, sp"
+    },
+    {
+      "pc": "0x1c884",
+      "word": "a90153f3",
+      "op": "stp",
+      "args": "x19, x20, [sp, #16]"
+    },
+    {
+      "pc": "0x1c888",
+      "word": "b00000b4",
+      "op": "adrp",
+      "args": "x20, 0x31000"
+    },
+    {
+      "pc": "0x1c88c",
+      "word": "91302284",
+      "op": "add",
+      "args": "x4, x20, #0xc08"
+    },
+    {
+      "pc": "0x1c890",
+      "word": "a9025bf5",
+      "op": "stp",
+      "args": "x21, x22, [sp, #32]"
+    },
+    {
+      "pc": "0x1c894",
+      "word": "a90363f7",
+      "op": "stp",
+      "args": "x23, x24, [sp, #48]"
+    },
+    {
+      "pc": "0x1c898",
+      "word": "f9400480",
+      "op": "ldr",
+      "args": "x0, [x4, #8]"
+    },
+    {
+      "pc": "0x1c89c",
+      "word": "f9002fa0",
+      "op": "str",
+      "args": "x0, [x29, #88]"
+    },
+    {
+      "pc": "0x1c8a0",
+      "word": "b5000060",
+      "op": "cbnz",
+      "args": "x0, 0x1c8ac"
+    },
+    {
+      "pc": "0x1c8a4",
+      "word": "12800016",
+      "op": "mov",
+      "args": "w22, #0xffffffff"
+    },
+    {
+      "pc": "0x1c8a8",
+      "word": "1400004d",
+      "op": "b",
+      "args": "0x1c9dc"
+    },
+    {
+      "pc": "0x1c8ac",
+      "word": "52800200",
+      "op": "mov",
+      "args": "w0, #0x10"
+    },
+    {
+      "pc": "0x1c8b0",
+      "word": "97fffad2",
+      "op": "bl",
+      "args": "0x1b3f8"
+    },
+    {
+      "pc": "0x1c8b4",
+      "word": "f9000880",
+      "op": "str",
+      "args": "x0, [x4, #16]"
+    },
+    {
+      "pc": "0x1c8b8",
+      "word": "aa0003e1",
+      "op": "mov",
+      "args": "x1, x0"
+    },
+    {
+      "pc": "0x1c8bc",
+      "word": "910163a0",
+      "op": "add",
+      "args": "x0, x29, #0x58"
+    },
+    {
+      "pc": "0x1c8c0",
+      "word": "97fffad8",
+      "op": "bl",
+      "args": "0x1b420"
+    },
+    {
+      "pc": "0x1c8c4",
+      "word": "f9400881",
+      "op": "ldr",
+      "args": "x1, [x4, #16]"
+    },
+    {
+      "pc": "0x1c8c8",
+      "word": "910163a0",
+      "op": "add",
+      "args": "x0, x29, #0x58"
+    },
+    {
+      "pc": "0x1c8cc",
+      "word": "91001021",
+      "op": "add",
+      "args": "x1, x1, #0x4"
+    },
+    {
+      "pc": "0x1c8d0",
+      "word": "97fffad4",
+      "op": "bl",
+      "args": "0x1b420"
+    },
+    {
+      "pc": "0x1c8d4",
+      "word": "f9400881",
+      "op": "ldr",
+      "args": "x1, [x4, #16]"
+    },
+    {
+      "pc": "0x1c8d8",
+      "word": "910163a0",
+      "op": "add",
+      "args": "x0, x29, #0x58"
+    },
+    {
+      "pc": "0x1c8dc",
+      "word": "91002021",
+      "op": "add",
+      "args": "x1, x1, #0x8"
+    },
+    {
+      "pc": "0x1c8e0",
+      "word": "97fffad0",
+      "op": "bl",
+      "args": "0x1b420"
+    },
+    {
+      "pc": "0x1c8e4",
+      "word": "f9400881",
+      "op": "ldr",
+      "args": "x1, [x4, #16]"
+    },
+    {
+      "pc": "0x1c8e8",
+      "word": "910163a0",
+      "op": "add",
+      "args": "x0, x29, #0x58"
+    },
+    {
+      "pc": "0x1c8ec",
+      "word": "91003021",
+      "op": "add",
+      "args": "x1, x1, #0xc"
+    },
+    {
+      "pc": "0x1c8f0",
+      "word": "97fffacc",
+      "op": "bl",
+      "args": "0x1b420"
+    },
+    {
+      "pc": "0x1c8f4",
+      "word": "f9400880",
+      "op": "ldr",
+      "args": "x0, [x4, #16]"
+    },
+    {
+      "pc": "0x1c8f8",
+      "word": "f9460681",
+      "op": "ldr",
+      "args": "x1, [x20, #3080]"
+    },
+    {
+      "pc": "0x1c8fc",
+      "word": "b9400800",
+      "op": "ldr",
+      "args": "w0, [x0, #8]"
+    },
+    {
+      "pc": "0x1c900",
+      "word": "91001000",
+      "op": "add",
+      "args": "x0, x0, #0x4"
+    },
+    {
+      "pc": "0x1c904",
+      "word": "8b000020",
+      "op": "add",
+      "args": "x0, x1, x0"
+    },
+    {
+      "pc": "0x1c908",
+      "word": "f9060680",
+      "op": "str",
+      "args": "x0, [x20, #3080]"
+    },
+    {
+      "pc": "0x1c90c",
+      "word": "97fffab3",
+      "op": "bl",
+      "args": "0x1b3d8"
     }
   ],
   "firmware_executed": false,

@@ -63,9 +63,14 @@ física dessas combinações de respostas.
 
 Os índices 156..166 são 11 endereços candidatos em i=12. No MIF, são
 `0x7a020..0x7a02a`: cabeçalho INTSCI de 8 bytes e 3 bytes da matriz seguinte.
-No INTSCI, `0x7a0c4..0x7a0ce`: quatro dentro da reserva total+4 e sete além;
-todos dentro da origem copiada `[0x69000,0x7d000)`. Esses limites não são
-intercambiáveis. total+4 é uma fórmula de alocação, não guard de leitura.
+No INTSCI, `0x7a0c4..0x7a0ce`: onze fora da matriz/campo total e todos
+dentro da reserva bump selecionada, que termina em0x7a0d8. A classificação
+anterior de quatro dentro/sete além da reserva estava errada: alloc(16)
+avança primeiro o cursor e só depois o parser soma total+4 e alinha.
+A soma bruta O+total+4=0x7a0c8 não é a reserva inteira. Todos os onze também
+ficam na origem copiada `[0x69000,0x7d000)`. Esses limites não são guards
+de leitura; a [auditoria do gate/parser](newtime-ect-gate-hzc2.md) delimita
+a ordem das operações.
 
 Não se provou entrada ASV nula segura: `0x1b044` dereferencia D antes de
 uma eventual saída n=0. Não se concluiu OOB físico nem bilhões de iterações

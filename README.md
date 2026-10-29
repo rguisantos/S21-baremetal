@@ -27,6 +27,8 @@ O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o re
 
 A [auditoria ASV/GEN](docs/newtime-asv-gen-hzc2.md) confirma n=13 e as fórmulas condicionais de W19 para MIF/INTSCI. Corrige uma palavra de deslocamento no GEN externo: o caminho habilitado continua candidato e F+152 contém subkeys ASV 0/4 ou 0/2. Valores SMC e execução física seguem abertos.
 
+A [auditoria do gate ECT](docs/newtime-ect-gate-hzc2.md) confirma os ramos SMC/MMIO sob condições de retorno. Corrige a reserva do parser: descritor16 antes de total+4, cursor equivalente0x7a0d8; os onze bytes INTSCI após a matriz cabem nessa reserva maior. Pular o parser não prova preservar memória via monitor, nem garante alcançar as cópias/finalize posteriores.
+
 O [slot 38 e a máscara da coluna 13](docs/newtime-slot38-hzc2.md) foram ligados nominalmente: folha sem stores/calls, máscara 0x1ff nas três subtabelas e cinco chamadores selecionados com índice u8 sob preservação. O retorno controla a limpeza de bit1 de um byte no buffer; gates, aliases e slot 47/X0 continuam abertos.
 
 A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) ligam o destino às colunas 6/7: backup de 72 bytes antes da consulta e restauração posterior condicionada. O endereço calculado não alcança slots/binding nos perfis completos delimitados; a pilha e os efeitos do método dinâmico +56 continuam abertos.

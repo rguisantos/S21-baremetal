@@ -57,6 +57,11 @@ e ao serviço plugin7, com próximo alvo 0x59be4. A projeção da resposta
 remove low16; o zero esperado pelo BL2 não prova sucesso físico. Filas e
 serviços continuam sujeitos a aliases/gates e preservação.
 
+O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
+e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;
+os onze bytes INTSCI adjacentes cabem na reserva maior. Monitoração opaca,
+preservação e alcance real das cópias/callbacks seguem condicionais.
+
 A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) agora delimita n=13 e W19 sob
 inicialização/preservação para MIF/INTSCI. A leitura GEN externa estava uma
 palavra adiante; caminho habilitado, subkeys reais e pedidos SMC foram

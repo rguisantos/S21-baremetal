@@ -2,7 +2,7 @@ import struct
 import unittest
 
 from inspect_newtime_asv_gen_hzc2 import (
-    gen_table, named_directory, position_survey, request_tag, selected_gen, w19,
+    gen_table, named_directory, parser_reservation, position_survey, request_tag, selected_gen, w19,
 )
 
 
@@ -107,9 +107,21 @@ class NibbleAndPositionTests(unittest.TestCase):
         self.assertEqual([v['index'] for v in r['adjacent']], list(range(156, 167)))
         self.assertTrue(all(v['i'] == 12 for v in r['adjacent']))
 
-    def test_first_four_adjacent_bytes_fit_parser_total_plus4(self):
+    def test_header_plus4_boundary_is_not_the_full_bump_reservation(self):
         r = position_survey(13, 12, 0, bytes(512), 156)
         self.assertEqual(sum(v['within_header_total_plus4'] for v in r['adjacent']), 4)
+
+    def test_header_is_allocated_before_the_total_plus4_increment(self):
+        p = parser_reservation(0x69000, 0x110c4)
+        self.assertEqual(p, dict(after_header=0x69010, after_total_plus4=0x7a0d8, end=0x7a0d8))
+
+    def test_all11_adjacent_bytes_fit_selected_bump_but_not_matrix(self):
+        r = position_survey(13, 12, 0, bytes(512), 156, bump_end=parser_reservation(0, 156)['end'])
+        self.assertEqual(sum(v['within_parser_bump_reservation'] for v in r['adjacent']), 11)
+        self.assertEqual(r['pair_counts']['past_matrix'], 11)
+
+    def test_total_ffffffff_is_added_in_X_after_LDR_W(self):
+        self.assertEqual(parser_reservation(0, 0xffffffff)['end'], 0x100000018)
 
     def test_nibble_host_bounds_do_not_silently_mask_bad_inputs(self):
         for v in (-1, 16, True):

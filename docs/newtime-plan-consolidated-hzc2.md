@@ -191,3 +191,9 @@ A [ponte do comando6](newtime-command6-hzc2.md) agora tem canal1, filas
 nominais e receptor FVP ligados ao serviço DVFS plugin7. O resultado baixo
 não sobrevive à projeção do header; não tratar o zero do poll BL2 como
 sucesso físico. Próximo: 0x59be4 e consumidores do valor efetivo.
+
+A [auditoria do gate ECT](newtime-ect-gate-hzc2.md) confirma a decisão sob
+retornos normais e separa efeitos diretos de efeitos opacos do monitor.
+Reserva ASV corrigida: alloc16 antes de total+4, cursor final equivalente
+0x7a0d8. Onze bytes INTSCI adjacentes ficam na reserva, ainda fora da matriz.
+Cópias/finalize posteriores dependem das chamadas/polls intermediários.

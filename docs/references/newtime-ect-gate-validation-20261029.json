@@ -1,0 +1,158 @@
+{
+  "date_local": "2026-10-29",
+  "source_remote_head": "45f316fa77a1431e90866cc92f5be76cfb52919c",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "external": {
+    "name": "ect-gate-hzc2.json",
+    "size": 21913,
+    "sha256": "e04fdaa68bf4fbb3e88efaf24223ba4613a214a3c94faf4310ef73dd3b921fdd",
+    "attached_opcode_words_checked": 44,
+    "attached_scenarios_matched": 6,
+    "registry_entries_checked": 12,
+    "ECT_directory_entries_checked": 9,
+    "announced_tests52_reproduced": false,
+    "announced_GNU185_reproduced": false,
+    "reason": "source analyzer and test suite not attached"
+  },
+  "own_tests": {
+    "total_NEWTIME_passed": 382,
+    "new_gate": 24,
+    "new_reservation_regressions": 3
+  },
+  "jsons_byte_exact": true,
+  "gnu": {
+    "docs/references/newtime-ect-gate-hzc2.json": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 534,
+      "relative_targets": 121,
+      "selected_operands": 63
+    },
+    "docs/references/newtime-asv-gen-hzc2.json": {
+      "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+      "words": 1027,
+      "relative_targets": 169,
+      "selected_operands": 69
+    }
+  },
+  "CLI_refusals": [
+    {
+      "script": "scripts/inspect_newtime_ect_gate_hzc2.py",
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "script": "scripts/inspect_newtime_asv_gen_hzc2.py",
+      "case": "short",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "script": "scripts/inspect_newtime_ect_gate_hzc2.py",
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "script": "scripts/inspect_newtime_asv_gen_hzc2.py",
+      "case": "long",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "script": "scripts/inspect_newtime_ect_gate_hzc2.py",
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    },
+    {
+      "script": "scripts/inspect_newtime_asv_gen_hzc2.py",
+      "case": "changed",
+      "exit_code": 2,
+      "stdout_bytes": 0
+    }
+  ],
+  "python_compile": "passed",
+  "corrected_ASV_extent": {
+    "header_field_end": "0x7a0c4",
+    "raw_header_total_plus4_end": "0x7a0c8",
+    "parser_bump_reserved_end": "0x7a0d8",
+    "allocation_order": "allocate16/align8, then add total+4 to advanced cursor and align8",
+    "copied_source_end": "0x7d000"
+  },
+  "previous_ASV_report_sha256": "c7feeece7129dd91a04248b9996debe7f29417ccd87cb4be38b178f2bb15f490",
+  "local_markdown_links": {
+    "scope": "project Markdown excluding bundled tools/",
+    "checked": 1164,
+    "missing": []
+  },
+  "baseline": {
+    "summary": "build/baseline-newtime-ect-gate-20261029/summary.json",
+    "summary_sha256": "c2cba538fcec055dfb3bd25106e7bbd0d3d8a8d193d92ba325fb6b5988b27bd0",
+    "status": "passed",
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "log_sha256": "6d1b9334c26e39b038a271066ccd85653c9a77f9c898fd4582a001fdcf2edf77"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "log_sha256": "b8a9df9ff9b9711e3c155b5c7261d03323c65e7948a43dbc5220287b124f3ed7"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "log_sha256": "143359b40cad77d045d515002ce42b0ec4ee4c92cb7de0c4cd4f64232687cae1"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "log_sha256": "cbf84ca2cbd372cfb524210c712ea99b655e1e5138a896ed88f77c924b49fb18"
+      }
+    ]
+  },
+  "artifacts": {
+    "scripts/inspect_newtime_ect_gate_hzc2.py": "9f0de6dfc9e10e5376d38804e7a5aaed67c5ee69e60f3c01f97b139a156a3b20",
+    "scripts/inspect_newtime_asv_gen_hzc2.py": "c5d32de7863591b3a903d0be47d6b5bddf2be781ccb508ada57e2e8417a3300c",
+    "docs/references/newtime-ect-gate-hzc2.json": "920e5cb180e99140ee5279a1be299b24e08fa89e6573e8afa59fbb45257f66a0",
+    "docs/references/newtime-asv-gen-hzc2.json": "eb3c43060d9aaa58a2bf841eb628d382309a3528d91ab5f2273d1d64741d34af",
+    "scripts/test_newtime_ect_gate.py": "aea5c95bdcb320c639f778af0428631be115250bf5b12fb9617d4424fae79d5e",
+    "scripts/test_newtime_asv_gen.py": "14e9252ae330a3688e4c295e902d315005f3b6fe3e9e3f55dd1d9c7f7b3ac547",
+    "docs/newtime-ect-gate-hzc2.md": "6e130a677ebb0a3455dd6300edb41221564d0b193376f4757ebcfd56d782d8f8",
+    "docs/newtime-asv-gen-hzc2.md": "5deb0dc1c71526bcfb36bd9e3894072ee1c9210dc1e0180d680227c4298db42a"
+  },
+  "firmware_executed": false,
+  "firmware_QEMU_scope_extended": false,
+  "limits": [
+    "all physical SMC/MMIO/SRAM values and monitor effects opaque; gate edge not parser success",
+    "call scans are aligned B/BL only and main copies/finalize require intermediate normal returns",
+    "ASV adjacent positions outside matrix but inside selected larger bump; no physical OOB claim"
+  ]
+}
