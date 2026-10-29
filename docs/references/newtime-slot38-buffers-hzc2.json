@@ -1,0 +1,7581 @@
+{
+  "mode": "static_newtime_slot38_buffer_lifecycle_hzc2",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "nominal_delta": "0x20ea000",
+  "function": {
+    "entry": "0x22370",
+    "frame_bytes": 448,
+    "walk": {
+      "visited": [
+        "0x22370",
+        "0x22374",
+        "0x22378",
+        "0x2237c",
+        "0x22380",
+        "0x22384",
+        "0x22388",
+        "0x2238c",
+        "0x22390",
+        "0x22394",
+        "0x22398",
+        "0x2239c",
+        "0x223a0",
+        "0x223a4",
+        "0x223a8",
+        "0x223ac",
+        "0x223b0",
+        "0x223b4",
+        "0x223b8",
+        "0x223bc",
+        "0x223c0",
+        "0x223c4",
+        "0x223c8",
+        "0x223cc",
+        "0x223d0",
+        "0x223d4",
+        "0x223d8",
+        "0x223dc",
+        "0x223e0",
+        "0x223e4",
+        "0x223e8",
+        "0x223ec",
+        "0x223f0",
+        "0x223f4",
+        "0x223f8",
+        "0x223fc",
+        "0x22400",
+        "0x22404",
+        "0x22408",
+        "0x2240c",
+        "0x22410",
+        "0x22414",
+        "0x22418",
+        "0x2241c",
+        "0x22420",
+        "0x22424",
+        "0x22428",
+        "0x2242c",
+        "0x22430",
+        "0x22434",
+        "0x22438",
+        "0x2243c",
+        "0x22440",
+        "0x22444",
+        "0x22448",
+        "0x2244c",
+        "0x22450",
+        "0x22454",
+        "0x22458",
+        "0x2245c",
+        "0x22460",
+        "0x22464",
+        "0x22468",
+        "0x2246c",
+        "0x22470",
+        "0x22474",
+        "0x22478",
+        "0x2247c",
+        "0x22480",
+        "0x22484",
+        "0x22488",
+        "0x2248c",
+        "0x22490",
+        "0x22494",
+        "0x22498",
+        "0x2249c",
+        "0x224a0",
+        "0x224a4",
+        "0x224a8",
+        "0x224ac",
+        "0x224b0",
+        "0x224b4",
+        "0x224b8",
+        "0x224bc",
+        "0x224c0",
+        "0x224c4",
+        "0x224c8",
+        "0x224cc",
+        "0x224d0",
+        "0x224d4",
+        "0x224d8",
+        "0x224dc",
+        "0x224e0",
+        "0x224e4",
+        "0x224e8",
+        "0x224ec",
+        "0x224f0",
+        "0x224f4",
+        "0x224f8",
+        "0x224fc",
+        "0x22500",
+        "0x22504",
+        "0x22508",
+        "0x2250c",
+        "0x22510",
+        "0x22514",
+        "0x22518",
+        "0x2251c",
+        "0x22520",
+        "0x22524",
+        "0x22528",
+        "0x2252c",
+        "0x22530",
+        "0x22534",
+        "0x22538",
+        "0x2253c",
+        "0x22540",
+        "0x22544",
+        "0x22548",
+        "0x2254c",
+        "0x22550",
+        "0x22554",
+        "0x22558",
+        "0x2255c",
+        "0x22560",
+        "0x22564",
+        "0x22568",
+        "0x2256c",
+        "0x22570",
+        "0x22574",
+        "0x22578",
+        "0x2257c",
+        "0x22580",
+        "0x22584",
+        "0x22588",
+        "0x2258c",
+        "0x22590",
+        "0x22594",
+        "0x22598",
+        "0x2259c",
+        "0x225a0",
+        "0x225a4",
+        "0x225a8",
+        "0x225ac",
+        "0x225b0",
+        "0x225b4",
+        "0x225b8",
+        "0x225bc",
+        "0x225c0",
+        "0x225c4",
+        "0x225c8",
+        "0x225cc"
+      ],
+      "calls": [
+        {
+          "pc": "0x223a8",
+          "kind": "blr",
+          "register": 2,
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x223d8",
+          "kind": "bl",
+          "target_file": "0x1fdb8",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x224f4",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x22504",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x22518",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x22538",
+          "kind": "blr",
+          "register": 5,
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x22558",
+          "kind": "blr",
+          "register": 2,
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x2256c",
+          "kind": "blr",
+          "register": 2,
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x2257c",
+          "kind": "blr",
+          "register": 2,
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x2258c",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x2259c",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        },
+        {
+          "pc": "0x225b0",
+          "kind": "bl",
+          "target_file": "0x1fcc4",
+          "continuation_requires_normal_return": true
+        }
+      ],
+      "exits": [
+        {
+          "pc": "0x225cc",
+          "reason": "ret"
+        }
+      ],
+      "conditions_tested": false,
+      "callees_explored": false
+    }
+  },
+  "buffers": {
+    "A": "X25, column4 low / column5 upper",
+    "B": "X20, column6 low / column7 upper",
+    "C": "X19, column8 low / column9 upper",
+    "upper_condition": "signed32(k)>5 and bit(M32[AP0x158609bc]&0xffff,k&31)==1",
+    "B_formula": "SXTW(u32(0x02073600+descriptor.offset)) + SXTW(u32(u32(columns<<2)*row)), X64 wrap",
+    "row": "k on low path; u32(k-6) on upper path"
+  },
+  "copies": [
+    {
+      "backup": "0x224f4",
+      "restore": "0x2258c",
+      "buffer": "A",
+      "frame_offset": 96,
+      "bytes": 160
+    },
+    {
+      "backup": "0x22504",
+      "restore": "0x2259c",
+      "buffer": "B",
+      "frame_offset": 256,
+      "bytes": 72
+    },
+    {
+      "backup": "0x22518",
+      "restore": "0x225b0",
+      "buffer": "C",
+      "frame_offset": 328,
+      "bytes": "4*M8[nominal(0x31688)], reloaded separately before backup/restore"
+    }
+  ],
+  "copy_helper": {
+    "entry": "0x1fcc4",
+    "words": 9,
+    "forward_byte_order": true,
+    "signed_W_guard": true,
+    "overlap_is_not_memmove": true,
+    "X0_X1_X2_and_X19_through_X30_not_written": true,
+    "partial_stores_not_rolled_back": true
+  },
+  "intervening_calls": [
+    {
+      "pc": "0x22538",
+      "initial_slot": 19,
+      "effect": "selected slot38 byte edit"
+    },
+    {
+      "pc": "0x22558",
+      "cell": "0x31048",
+      "W0": 4,
+      "W1": 0,
+      "opaque": true
+    },
+    {
+      "pc": "0x2256c",
+      "cell": "0x314a8",
+      "W0": "k",
+      "W1": 0,
+      "opaque": true
+    },
+    {
+      "pc": "0x2257c",
+      "cell": "0x31048",
+      "W0": 4,
+      "W1": "saved bit23 of M32[M64(0x30fc0)+176]",
+      "opaque": true
+    }
+  ],
+  "initial_bindings": {
+    "0x31040": {
+      "initial_pointer": "0x211424c",
+      "target_if_initial": "0x2a24c"
+    },
+    "0x31048": {
+      "initial_pointer": "0x2115f24",
+      "target_if_initial": "0x2bf24"
+    },
+    "0x314a8": {
+      "initial_pointer": "0x2119488",
+      "target_if_initial": "0x2f488"
+    }
+  },
+  "slot20": {
+    "code": [
+      "0x2f488",
+      "0x2f4b0"
+    ],
+    "call": "0x2f498",
+    "target": "M64[M64[nominal(0x31998)]+56]",
+    "arguments": {
+      "W0": "k",
+      "W1": 0
+    },
+    "tail": "0x2f4ac through initial cell0x31040 with W0=4 after normal return",
+    "dynamic_method_and_transitive_effects_resolved": false
+  },
+  "survey": {
+    "construction_choices": {
+      "complete": 8512,
+      "missing_key": 2752
+    },
+    "distinct_six_column_profiles": 88,
+    "profiles": [
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x10",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x18",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x20",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x28",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x30",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x38",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x40",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x48",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x50",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x58",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x60",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x68",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x70",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x78",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x80",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x88",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x90",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x98",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xa0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xa8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xb0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xb8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xc0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xc8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xd0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xd8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xe0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xe8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xf0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0xf8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x100",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x108",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x110",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x118",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x120",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x128",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x130",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x138",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x140",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x148",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x150",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x158",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x160",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x168",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x170",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x178",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x504b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x180",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x188",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x190",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x198",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1a0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1a8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1b0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1b8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1c0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1c8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1d0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1d8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x404b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1e0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1e8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 6652,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7484,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1f0",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x304b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 0,
+        "first_construction_choices": "0x1f8",
+        "multiplicity": 128,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x3048",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x4048",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x5048",
+            "payload_offset": 5536,
+            "columns": 16,
+            "rows": 13,
+            "bytes": 832
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6368,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x0",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x10",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x40",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x50",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x100",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x110",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x140",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 17,
+        "first_construction_choices": "0x150",
+        "multiplicity": 24,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x534b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x0",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x10",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x40",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x50",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x100",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x110",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x140",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 19,
+        "first_construction_choices": "0x150",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x424b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x514b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x0",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x10",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x40",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x50",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x502b",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x100",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x110",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x402b",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x140",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x302b",
+            "payload_offset": 4092,
+            "columns": 40,
+            "rows": 7,
+            "bytes": 1120
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 5212,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 6148,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 6652,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 7536,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074a5c",
+          "max_end_exclusive": "0x207925c"
+        }
+      },
+      {
+        "first_row": 21,
+        "first_construction_choices": "0x150",
+        "multiplicity": 8,
+        "columns": [
+          {
+            "column": 4,
+            "key": "0x324b",
+            "payload_offset": 2012,
+            "columns": 40,
+            "rows": 13,
+            "bytes": 2080
+          },
+          {
+            "column": 5,
+            "key": "0x3028",
+            "payload_offset": 4092,
+            "columns": 1,
+            "rows": 1,
+            "bytes": 4
+          },
+          {
+            "column": 6,
+            "key": "0x434b",
+            "payload_offset": 4096,
+            "columns": 18,
+            "rows": 13,
+            "bytes": 936
+          },
+          {
+            "column": 7,
+            "key": "0x4028",
+            "payload_offset": 5032,
+            "columns": 18,
+            "rows": 7,
+            "bytes": 504
+          },
+          {
+            "column": 8,
+            "key": "0x524b",
+            "payload_offset": 5536,
+            "columns": 17,
+            "rows": 13,
+            "bytes": 884
+          },
+          {
+            "column": 9,
+            "key": "0x5028",
+            "payload_offset": 6420,
+            "columns": 16,
+            "rows": 7,
+            "bytes": 448
+          }
+        ],
+        "B_footprint": {
+          "u8_control_path_cases": 378,
+          "outside_payload_cases": 358,
+          "overlap_selected_slots_cache_binding_cases": 0,
+          "slot38_accepted_cases": 10,
+          "accepted_outside_payload_cases": 0,
+          "min_start": "0x2074600",
+          "max_end_exclusive": "0x2078e00"
+        }
+      }
+    ],
+    "compressed_host_path_counts": {
+      "u8_control_path_cases": 33264,
+      "outside_payload_cases": 31504,
+      "overlap_selected_slots_cache_binding_cases": 0,
+      "slot38_accepted_cases": 880,
+      "accepted_outside_payload_cases": 0
+    },
+    "all_u8_B_windows_envelope": [
+      "0x2074600",
+      "0x207925c"
+    ],
+    "protected_nominal_windows": [
+      {
+        "start": "0x211b408",
+        "bytes": 384
+      },
+      {
+        "start": "0x211b8f0",
+        "bytes": 8
+      },
+      {
+        "start": "0x211b998",
+        "bytes": 8
+      }
+    ],
+    "copy_count_values": [
+      16,
+      17
+    ],
+    "stack_backups": [
+      {
+        "count": 16,
+        "third_end": 392,
+        "inside_448_byte_frame": true
+      },
+      {
+        "count": 17,
+        "third_end": 396,
+        "inside_448_byte_frame": true
+      }
+    ],
+    "preserved_source_byte_effects": [
+      {
+        "key": "0x4028",
+        "payload_row": 0,
+        "first_word_file": "0x74ca8",
+        "byte_file": "0x74ca9",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x60350a06",
+        "word_if_cleared": "0x60350806"
+      },
+      {
+        "key": "0x4028",
+        "payload_row": 1,
+        "first_word_file": "0x74cf0",
+        "byte_file": "0x74cf1",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54840a06",
+        "word_if_cleared": "0x54840806"
+      },
+      {
+        "key": "0x402b",
+        "payload_row": 0,
+        "first_word_file": "0x74eac",
+        "byte_file": "0x74ead",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x60350a07",
+        "word_if_cleared": "0x60350807"
+      },
+      {
+        "key": "0x402b",
+        "payload_row": 1,
+        "first_word_file": "0x74ef4",
+        "byte_file": "0x74ef5",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54840a07",
+        "word_if_cleared": "0x54840807"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 0,
+        "first_word_file": "0x74540",
+        "byte_file": "0x74541",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0xc6449f46",
+        "word_if_cleared": "0xc6449d46"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 1,
+        "first_word_file": "0x74588",
+        "byte_file": "0x74589",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0xaaa41f46",
+        "word_if_cleared": "0xaaa41d46"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 2,
+        "first_word_file": "0x745d0",
+        "byte_file": "0x745d1",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0x9e741f46",
+        "word_if_cleared": "0x9e741d46"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 3,
+        "first_word_file": "0x74618",
+        "byte_file": "0x74619",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0x8f039f46",
+        "word_if_cleared": "0x8f039d46"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 4,
+        "first_word_file": "0x74660",
+        "byte_file": "0x74661",
+        "byte_before": "0x4a",
+        "byte_if_cleared": "0x48",
+        "word_before": "0x7ec34a06",
+        "word_if_cleared": "0x7ec34806"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 5,
+        "first_word_file": "0x746a8",
+        "byte_file": "0x746a9",
+        "byte_before": "0xca",
+        "byte_if_cleared": "0xc8",
+        "word_before": "0x6b42ca06",
+        "word_if_cleared": "0x6b42c806"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 6,
+        "first_word_file": "0x746f0",
+        "byte_file": "0x746f1",
+        "byte_before": "0x8a",
+        "byte_if_cleared": "0x88",
+        "word_before": "0x60328a06",
+        "word_if_cleared": "0x60328806"
+      },
+      {
+        "key": "0x4048",
+        "payload_row": 7,
+        "first_word_file": "0x74738",
+        "byte_file": "0x74739",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54820a06",
+        "word_if_cleared": "0x54820806"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 0,
+        "first_word_file": "0x748f4",
+        "byte_file": "0x748f5",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0xc6449f46",
+        "word_if_cleared": "0xc6449d46"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 1,
+        "first_word_file": "0x7493c",
+        "byte_file": "0x7493d",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0xaaa41f46",
+        "word_if_cleared": "0xaaa41d46"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 2,
+        "first_word_file": "0x74984",
+        "byte_file": "0x74985",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0x9e741f46",
+        "word_if_cleared": "0x9e741d46"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 3,
+        "first_word_file": "0x749cc",
+        "byte_file": "0x749cd",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0x8f039f46",
+        "word_if_cleared": "0x8f039d46"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 4,
+        "first_word_file": "0x74a14",
+        "byte_file": "0x74a15",
+        "byte_before": "0x4a",
+        "byte_if_cleared": "0x48",
+        "word_before": "0x7ec34a06",
+        "word_if_cleared": "0x7ec34806"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 5,
+        "first_word_file": "0x74a5c",
+        "byte_file": "0x74a5d",
+        "byte_before": "0xca",
+        "byte_if_cleared": "0xc8",
+        "word_before": "0x6b42ca06",
+        "word_if_cleared": "0x6b42c806"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 6,
+        "first_word_file": "0x74aa4",
+        "byte_file": "0x74aa5",
+        "byte_before": "0x8a",
+        "byte_if_cleared": "0x88",
+        "word_before": "0x60328a07",
+        "word_if_cleared": "0x60328807"
+      },
+      {
+        "key": "0x404b",
+        "payload_row": 7,
+        "first_word_file": "0x74aec",
+        "byte_file": "0x74aed",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54820a07",
+        "word_if_cleared": "0x54820807"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 0,
+        "first_word_file": "0x75464",
+        "byte_file": "0x75465",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0xc6449f46",
+        "word_if_cleared": "0xc6449d46"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 1,
+        "first_word_file": "0x754ac",
+        "byte_file": "0x754ad",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0xaaa41f46",
+        "word_if_cleared": "0xaaa41d46"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 2,
+        "first_word_file": "0x754f4",
+        "byte_file": "0x754f5",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0x9e741f46",
+        "word_if_cleared": "0x9e741d46"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 3,
+        "first_word_file": "0x7553c",
+        "byte_file": "0x7553d",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0x8f039f46",
+        "word_if_cleared": "0x8f039d46"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 4,
+        "first_word_file": "0x75584",
+        "byte_file": "0x75585",
+        "byte_before": "0x4a",
+        "byte_if_cleared": "0x48",
+        "word_before": "0x7ec34a06",
+        "word_if_cleared": "0x7ec34806"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 5,
+        "first_word_file": "0x755cc",
+        "byte_file": "0x755cd",
+        "byte_before": "0xca",
+        "byte_if_cleared": "0xc8",
+        "word_before": "0x6b42ca06",
+        "word_if_cleared": "0x6b42c806"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 6,
+        "first_word_file": "0x75614",
+        "byte_file": "0x75615",
+        "byte_before": "0x8a",
+        "byte_if_cleared": "0x88",
+        "word_before": "0x60328a07",
+        "word_if_cleared": "0x60328807"
+      },
+      {
+        "key": "0x424b",
+        "payload_row": 7,
+        "first_word_file": "0x7565c",
+        "byte_file": "0x7565d",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54820a07",
+        "word_if_cleared": "0x54820807"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 0,
+        "first_word_file": "0x75818",
+        "byte_file": "0x75819",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0xc6449f46",
+        "word_if_cleared": "0xc6449d46"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 1,
+        "first_word_file": "0x75860",
+        "byte_file": "0x75861",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0xaaa41f46",
+        "word_if_cleared": "0xaaa41d46"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 2,
+        "first_word_file": "0x758a8",
+        "byte_file": "0x758a9",
+        "byte_before": "0x1f",
+        "byte_if_cleared": "0x1d",
+        "word_before": "0x9e741f46",
+        "word_if_cleared": "0x9e741d46"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 3,
+        "first_word_file": "0x758f0",
+        "byte_file": "0x758f1",
+        "byte_before": "0x9f",
+        "byte_if_cleared": "0x9d",
+        "word_before": "0x8f039f46",
+        "word_if_cleared": "0x8f039d46"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 4,
+        "first_word_file": "0x75938",
+        "byte_file": "0x75939",
+        "byte_before": "0x4a",
+        "byte_if_cleared": "0x48",
+        "word_before": "0x7ec34a06",
+        "word_if_cleared": "0x7ec34806"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 5,
+        "first_word_file": "0x75980",
+        "byte_file": "0x75981",
+        "byte_before": "0xca",
+        "byte_if_cleared": "0xc8",
+        "word_before": "0x6b42ca06",
+        "word_if_cleared": "0x6b42c806"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 6,
+        "first_word_file": "0x759c8",
+        "byte_file": "0x759c9",
+        "byte_before": "0x8a",
+        "byte_if_cleared": "0x88",
+        "word_before": "0x60328a07",
+        "word_if_cleared": "0x60328807"
+      },
+      {
+        "key": "0x434b",
+        "payload_row": 7,
+        "first_word_file": "0x75a10",
+        "byte_file": "0x75a11",
+        "byte_before": "0xa",
+        "byte_if_cleared": "0x8",
+        "word_before": "0x54820a07",
+        "word_if_cleared": "0x54820807"
+      }
+    ],
+    "source_effects_all_change_bit1": true,
+    "physical_feasibility_of_scenarios_tested": false,
+    "excluding_failed_or_partial_record_constructions": true
+  },
+  "conclusions": {
+    "B_copied_before_mask_check": true,
+    "rejected_slot38_result_does_not_abort_wrapper": true,
+    "B_original_bytes_restored_if_backups_bases_and_counts_preserved": true,
+    "preservation_of_intermediate_hardware_effects_not_excluded": true,
+    "whole_transaction_memory_safety_proved": false,
+    "global_slot47_alias_exclusion": false
+  },
+  "conditions": [
+    "nominal fixed record base AP0x02073600, complete construction and preserved metadata/payloads",
+    "u8 k comes from the five selected initial slot22/slot19/slot38 paths; other callers not covered",
+    "construction gate choices and wrapper control bits are separate supplied host possibilities",
+    "normal intermediate returns, preserved bases/callee-saved registers and private valid stack",
+    "backup bytes and early/late C count preserved; no uncontrolled writer changes restored bytes afterward"
+  ],
+  "limits": [
+    "only computed B windows excluded from selected nominal slots/cache/binding",
+    "stack destinations, other buffers and opaque callees do not inherit that exclusion",
+    "32-bit arithmetic and fixed-base assumptions cannot be replaced with arbitrary live descriptors",
+    "the 2752 failed host plans do not prove that partially built records cannot be consumed",
+    "slot47 caller/X0 and runtime bindings remain unresolved"
+  ],
+  "gnu": {
+    "version": "GNU objdump (GNU Binutils for Debian) 2.44",
+    "words": 193,
+    "relative_targets": 15,
+    "selected_operands": 94
+  },
+  "witnesses": [
+    {
+      "pc": "0x1fcc4",
+      "word": "d2800003",
+      "op": "mov",
+      "args": "x3, #0x0"
+    },
+    {
+      "pc": "0x1fcc8",
+      "word": "4b030044",
+      "op": "sub",
+      "args": "w4, w2, w3"
+    },
+    {
+      "pc": "0x1fccc",
+      "word": "6b1f009f",
+      "op": "cmp",
+      "args": "w4, wzr"
+    },
+    {
+      "pc": "0x1fcd0",
+      "word": "540000ad",
+      "op": "b.le",
+      "args": "0x1fce4"
+    },
+    {
+      "pc": "0x1fcd4",
+      "word": "38636824",
+      "op": "ldrb",
+      "args": "w4, [x1, x3]"
+    },
+    {
+      "pc": "0x1fcd8",
+      "word": "38236804",
+      "op": "strb",
+      "args": "w4, [x0, x3]"
+    },
+    {
+      "pc": "0x1fcdc",
+      "word": "91000463",
+      "op": "add",
+      "args": "x3, x3, #0x1"
+    },
+    {
+      "pc": "0x1fce0",
+      "word": "17fffffa",
+      "op": "b",
+      "args": "0x1fcc8"
+    },
+    {
+      "pc": "0x1fce4",
+      "word": "d65f03c0",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x22370",
+      "word": "a9a453f3",
+      "op": "stp",
+      "args": "x19, x20, [sp, #-448]!"
+    },
+    {
+      "pc": "0x22374",
+      "word": "a9015bf5",
+      "op": "stp",
+      "args": "x21, x22, [sp, #16]"
+    },
+    {
+      "pc": "0x22378",
+      "word": "a90263f7",
+      "op": "stp",
+      "args": "x23, x24, [sp, #32]"
+    },
+    {
+      "pc": "0x2237c",
+      "word": "f0000076",
+      "op": "adrp",
+      "args": "x22, 0x31000"
+    },
+    {
+      "pc": "0x22380",
+      "word": "f0000077",
+      "op": "adrp",
+      "args": "x23, 0x31000"
+    },
+    {
+      "pc": "0x22384",
+      "word": "2a0003f8",
+      "op": "mov",
+      "args": "w24, w0"
+    },
+    {
+      "pc": "0x22388",
+      "word": "911022e2",
+      "op": "add",
+      "args": "x2, x23, #0x408"
+    },
+    {
+      "pc": "0x2238c",
+      "word": "911a22c0",
+      "op": "add",
+      "args": "x0, x22, #0x688"
+    },
+    {
+      "pc": "0x22390",
+      "word": "f9002bfe",
+      "op": "str",
+      "args": "x30, [sp, #80]"
+    },
+    {
+      "pc": "0x22394",
+      "word": "a9036bf9",
+      "op": "stp",
+      "args": "x25, x26, [sp, #48]"
+    },
+    {
+      "pc": "0x22398",
+      "word": "a90473fb",
+      "op": "stp",
+      "args": "x27, x28, [sp, #64]"
+    },
+    {
+      "pc": "0x2239c",
+      "word": "2a0103f5",
+      "op": "mov",
+      "args": "w21, w1"
+    },
+    {
+      "pc": "0x223a0",
+      "word": "394b8400",
+      "op": "ldrb",
+      "args": "w0, [x0, #737]"
+    },
+    {
+      "pc": "0x223a4",
+      "word": "f9406042",
+      "op": "ldr",
+      "args": "x2, [x2, #192]"
+    },
+    {
+      "pc": "0x223a8",
+      "word": "d63f0040",
+      "op": "blr",
+      "args": "x2"
+    },
+    {
+      "pc": "0x223ac",
+      "word": "d286c200",
+      "op": "mov",
+      "args": "x0, #0x3610"
+    },
+    {
+      "pc": "0x223b0",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x223b4",
+      "word": "b9400001",
+      "op": "ldr",
+      "args": "w1, [x0]"
+    },
+    {
+      "pc": "0x223b8",
+      "word": "5286c000",
+      "op": "mov",
+      "args": "w0, #0x3600"
+    },
+    {
+      "pc": "0x223bc",
+      "word": "72a040e0",
+      "op": "movk",
+      "args": "w0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x223c0",
+      "word": "0b000020",
+      "op": "add",
+      "args": "w0, w1, w0"
+    },
+    {
+      "pc": "0x223c4",
+      "word": "528b3fe1",
+      "op": "mov",
+      "args": "w1, #0x59ff"
+    },
+    {
+      "pc": "0x223c8",
+      "word": "72a040e1",
+      "op": "movk",
+      "args": "w1, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x223cc",
+      "word": "6b01001f",
+      "op": "cmp",
+      "args": "w0, w1"
+    },
+    {
+      "pc": "0x223d0",
+      "word": "5400006d",
+      "op": "b.le",
+      "args": "0x223dc"
+    },
+    {
+      "pc": "0x223d4",
+      "word": "52800080",
+      "op": "mov",
+      "args": "w0, #0x4"
+    },
+    {
+      "pc": "0x223d8",
+      "word": "97fff678",
+      "op": "bl",
+      "args": "0x1fdb8"
+    },
+    {
+      "pc": "0x223dc",
+      "word": "710016bf",
+      "op": "cmp",
+      "args": "w21, #0x5"
+    },
+    {
+      "pc": "0x223e0",
+      "word": "5400048d",
+      "op": "b.le",
+      "args": "0x22470"
+    },
+    {
+      "pc": "0x223e4",
+      "word": "d2813780",
+      "op": "mov",
+      "args": "x0, #0x9bc"
+    },
+    {
+      "pc": "0x223e8",
+      "word": "f2a2b0c0",
+      "op": "movk",
+      "args": "x0, #0x1586, lsl #16"
+    },
+    {
+      "pc": "0x223ec",
+      "word": "b9400000",
+      "op": "ldr",
+      "args": "w0, [x0]"
+    },
+    {
+      "pc": "0x223f0",
+      "word": "53003c00",
+      "op": "uxth",
+      "args": "w0, w0"
+    },
+    {
+      "pc": "0x223f4",
+      "word": "1ad52800",
+      "op": "asr",
+      "args": "w0, w0, w21"
+    },
+    {
+      "pc": "0x223f8",
+      "word": "360003c0",
+      "op": "tbz",
+      "args": "w0, #0, 0x22470"
+    },
+    {
+      "pc": "0x223fc",
+      "word": "d286fc00",
+      "op": "mov",
+      "args": "x0, #0x37e0"
+    },
+    {
+      "pc": "0x22400",
+      "word": "51001aa2",
+      "op": "sub",
+      "args": "w2, w21, #0x6"
+    },
+    {
+      "pc": "0x22404",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x22408",
+      "word": "5286c001",
+      "op": "mov",
+      "args": "w1, #0x3600"
+    },
+    {
+      "pc": "0x2240c",
+      "word": "72a040e1",
+      "op": "movk",
+      "args": "w1, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x22410",
+      "word": "29408019",
+      "op": "ldp",
+      "args": "w25, w0, [x0, #4]"
+    },
+    {
+      "pc": "0x22414",
+      "word": "531e7400",
+      "op": "lsl",
+      "args": "w0, w0, #2"
+    },
+    {
+      "pc": "0x22418",
+      "word": "0b010339",
+      "op": "add",
+      "args": "w25, w25, w1"
+    },
+    {
+      "pc": "0x2241c",
+      "word": "1b027c00",
+      "op": "mul",
+      "args": "w0, w0, w2"
+    },
+    {
+      "pc": "0x22420",
+      "word": "93407c00",
+      "op": "sxtw",
+      "args": "x0, w0"
+    },
+    {
+      "pc": "0x22424",
+      "word": "8b39c019",
+      "op": "add",
+      "args": "x25, x0, w25, sxtw"
+    },
+    {
+      "pc": "0x22428",
+      "word": "d2870000",
+      "op": "mov",
+      "args": "x0, #0x3800"
+    },
+    {
+      "pc": "0x2242c",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x22430",
+      "word": "29408014",
+      "op": "ldp",
+      "args": "w20, w0, [x0, #4]"
+    },
+    {
+      "pc": "0x22434",
+      "word": "531e7400",
+      "op": "lsl",
+      "args": "w0, w0, #2"
+    },
+    {
+      "pc": "0x22438",
+      "word": "0b010294",
+      "op": "add",
+      "args": "w20, w20, w1"
+    },
+    {
+      "pc": "0x2243c",
+      "word": "1b027c00",
+      "op": "mul",
+      "args": "w0, w0, w2"
+    },
+    {
+      "pc": "0x22440",
+      "word": "93407c42",
+      "op": "sxtw",
+      "args": "x2, w2"
+    },
+    {
+      "pc": "0x22444",
+      "word": "93407c00",
+      "op": "sxtw",
+      "args": "x0, w0"
+    },
+    {
+      "pc": "0x22448",
+      "word": "8b34c014",
+      "op": "add",
+      "args": "x20, x0, w20, sxtw"
+    },
+    {
+      "pc": "0x2244c",
+      "word": "d2870400",
+      "op": "mov",
+      "args": "x0, #0x3820"
+    },
+    {
+      "pc": "0x22450",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x22454",
+      "word": "b9400413",
+      "op": "ldr",
+      "args": "w19, [x0, #4]"
+    },
+    {
+      "pc": "0x22458",
+      "word": "0b010261",
+      "op": "add",
+      "args": "w1, w19, w1"
+    },
+    {
+      "pc": "0x2245c",
+      "word": "395a22d3",
+      "op": "ldrb",
+      "args": "w19, [x22, #1672]"
+    },
+    {
+      "pc": "0x22460",
+      "word": "d37ef673",
+      "op": "lsl",
+      "args": "x19, x19, #2"
+    },
+    {
+      "pc": "0x22464",
+      "word": "9b027e62",
+      "op": "mul",
+      "args": "x2, x19, x2"
+    },
+    {
+      "pc": "0x22468",
+      "word": "8b21c053",
+      "op": "add",
+      "args": "x19, x2, w1, sxtw"
+    },
+    {
+      "pc": "0x2246c",
+      "word": "1400001c",
+      "op": "b",
+      "args": "0x224dc"
+    },
+    {
+      "pc": "0x22470",
+      "word": "d286fa00",
+      "op": "mov",
+      "args": "x0, #0x37d0"
+    },
+    {
+      "pc": "0x22474",
+      "word": "5286c002",
+      "op": "mov",
+      "args": "w2, #0x3600"
+    },
+    {
+      "pc": "0x22478",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x2247c",
+      "word": "72a040e2",
+      "op": "movk",
+      "args": "w2, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x22480",
+      "word": "395a22c1",
+      "op": "ldrb",
+      "args": "w1, [x22, #1672]"
+    },
+    {
+      "pc": "0x22484",
+      "word": "29408019",
+      "op": "ldp",
+      "args": "w25, w0, [x0, #4]"
+    },
+    {
+      "pc": "0x22488",
+      "word": "d37ef421",
+      "op": "lsl",
+      "args": "x1, x1, #2"
+    },
+    {
+      "pc": "0x2248c",
+      "word": "531e7400",
+      "op": "lsl",
+      "args": "w0, w0, #2"
+    },
+    {
+      "pc": "0x22490",
+      "word": "0b020339",
+      "op": "add",
+      "args": "w25, w25, w2"
+    },
+    {
+      "pc": "0x22494",
+      "word": "1b157c00",
+      "op": "mul",
+      "args": "w0, w0, w21"
+    },
+    {
+      "pc": "0x22498",
+      "word": "93407c00",
+      "op": "sxtw",
+      "args": "x0, w0"
+    },
+    {
+      "pc": "0x2249c",
+      "word": "8b39c019",
+      "op": "add",
+      "args": "x25, x0, w25, sxtw"
+    },
+    {
+      "pc": "0x224a0",
+      "word": "d286fe00",
+      "op": "mov",
+      "args": "x0, #0x37f0"
+    },
+    {
+      "pc": "0x224a4",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x224a8",
+      "word": "29408014",
+      "op": "ldp",
+      "args": "w20, w0, [x0, #4]"
+    },
+    {
+      "pc": "0x224ac",
+      "word": "531e7400",
+      "op": "lsl",
+      "args": "w0, w0, #2"
+    },
+    {
+      "pc": "0x224b0",
+      "word": "0b020294",
+      "op": "add",
+      "args": "w20, w20, w2"
+    },
+    {
+      "pc": "0x224b4",
+      "word": "1b157c00",
+      "op": "mul",
+      "args": "w0, w0, w21"
+    },
+    {
+      "pc": "0x224b8",
+      "word": "93407c00",
+      "op": "sxtw",
+      "args": "x0, w0"
+    },
+    {
+      "pc": "0x224bc",
+      "word": "8b34c014",
+      "op": "add",
+      "args": "x20, x0, w20, sxtw"
+    },
+    {
+      "pc": "0x224c0",
+      "word": "d2870200",
+      "op": "mov",
+      "args": "x0, #0x3810"
+    },
+    {
+      "pc": "0x224c4",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x224c8",
+      "word": "b9400413",
+      "op": "ldr",
+      "args": "w19, [x0, #4]"
+    },
+    {
+      "pc": "0x224cc",
+      "word": "0b020262",
+      "op": "add",
+      "args": "w2, w19, w2"
+    },
+    {
+      "pc": "0x224d0",
+      "word": "93407eb3",
+      "op": "sxtw",
+      "args": "x19, w21"
+    },
+    {
+      "pc": "0x224d4",
+      "word": "9b137c21",
+      "op": "mul",
+      "args": "x1, x1, x19"
+    },
+    {
+      "pc": "0x224d8",
+      "word": "8b22c033",
+      "op": "add",
+      "args": "x19, x1, w2, sxtw"
+    },
+    {
+      "pc": "0x224dc",
+      "word": "aa1903e1",
+      "op": "mov",
+      "args": "x1, x25"
+    },
+    {
+      "pc": "0x224e0",
+      "word": "52801402",
+      "op": "mov",
+      "args": "w2, #0xa0"
+    },
+    {
+      "pc": "0x224e4",
+      "word": "910183e0",
+      "op": "add",
+      "args": "x0, sp, #0x60"
+    },
+    {
+      "pc": "0x224e8",
+      "word": "910403fc",
+      "op": "add",
+      "args": "x28, sp, #0x100"
+    },
+    {
+      "pc": "0x224ec",
+      "word": "910523fb",
+      "op": "add",
+      "args": "x27, sp, #0x148"
+    },
+    {
+      "pc": "0x224f0",
+      "word": "911022f7",
+      "op": "add",
+      "args": "x23, x23, #0x408"
+    },
+    {
+      "pc": "0x224f4",
+      "word": "97fff5f4",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x224f8",
+      "word": "aa1403e1",
+      "op": "mov",
+      "args": "x1, x20"
+    },
+    {
+      "pc": "0x224fc",
+      "word": "52800902",
+      "op": "mov",
+      "args": "w2, #0x48"
+    },
+    {
+      "pc": "0x22500",
+      "word": "aa1c03e0",
+      "op": "mov",
+      "args": "x0, x28"
+    },
+    {
+      "pc": "0x22504",
+      "word": "97fff5f0",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x22508",
+      "word": "395a22c2",
+      "op": "ldrb",
+      "args": "w2, [x22, #1672]"
+    },
+    {
+      "pc": "0x2250c",
+      "word": "aa1303e1",
+      "op": "mov",
+      "args": "x1, x19"
+    },
+    {
+      "pc": "0x22510",
+      "word": "aa1b03e0",
+      "op": "mov",
+      "args": "x0, x27"
+    },
+    {
+      "pc": "0x22514",
+      "word": "531e7442",
+      "op": "lsl",
+      "args": "w2, w2, #2"
+    },
+    {
+      "pc": "0x22518",
+      "word": "97fff5eb",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x2251c",
+      "word": "f9404ee5",
+      "op": "ldr",
+      "args": "x5, [x23, #152]"
+    },
+    {
+      "pc": "0x22520",
+      "word": "2a1503e4",
+      "op": "mov",
+      "args": "w4, w21"
+    },
+    {
+      "pc": "0x22524",
+      "word": "aa1303e3",
+      "op": "mov",
+      "args": "x3, x19"
+    },
+    {
+      "pc": "0x22528",
+      "word": "aa1403e2",
+      "op": "mov",
+      "args": "x2, x20"
+    },
+    {
+      "pc": "0x2252c",
+      "word": "aa1903e1",
+      "op": "mov",
+      "args": "x1, x25"
+    },
+    {
+      "pc": "0x22530",
+      "word": "2a1803e0",
+      "op": "mov",
+      "args": "w0, w24"
+    },
+    {
+      "pc": "0x22534",
+      "word": "d0000078",
+      "op": "adrp",
+      "args": "x24, 0x30000"
+    },
+    {
+      "pc": "0x22538",
+      "word": "d63f00a0",
+      "op": "blr",
+      "args": "x5"
+    },
+    {
+      "pc": "0x2253c",
+      "word": "913fa318",
+      "op": "add",
+      "args": "x24, x24, #0xfe8"
+    },
+    {
+      "pc": "0x22540",
+      "word": "d0000060",
+      "op": "adrp",
+      "args": "x0, 0x30000"
+    },
+    {
+      "pc": "0x22544",
+      "word": "52800001",
+      "op": "mov",
+      "args": "w1, #0x0"
+    },
+    {
+      "pc": "0x22548",
+      "word": "f9403302",
+      "op": "ldr",
+      "args": "x2, [x24, #96]"
+    },
+    {
+      "pc": "0x2254c",
+      "word": "f947e000",
+      "op": "ldr",
+      "args": "x0, [x0, #4032]"
+    },
+    {
+      "pc": "0x22550",
+      "word": "b940b01a",
+      "op": "ldr",
+      "args": "w26, [x0, #176]"
+    },
+    {
+      "pc": "0x22554",
+      "word": "52800080",
+      "op": "mov",
+      "args": "w0, #0x4"
+    },
+    {
+      "pc": "0x22558",
+      "word": "d63f0040",
+      "op": "blr",
+      "args": "x2"
+    },
+    {
+      "pc": "0x2255c",
+      "word": "d3575f5a",
+      "op": "ubfx",
+      "args": "x26, x26, #23, #1"
+    },
+    {
+      "pc": "0x22560",
+      "word": "f94052e2",
+      "op": "ldr",
+      "args": "x2, [x23, #160]"
+    },
+    {
+      "pc": "0x22564",
+      "word": "2a1503e0",
+      "op": "mov",
+      "args": "w0, w21"
+    },
+    {
+      "pc": "0x22568",
+      "word": "52800001",
+      "op": "mov",
+      "args": "w1, #0x0"
+    },
+    {
+      "pc": "0x2256c",
+      "word": "d63f0040",
+      "op": "blr",
+      "args": "x2"
+    },
+    {
+      "pc": "0x22570",
+      "word": "f9403302",
+      "op": "ldr",
+      "args": "x2, [x24, #96]"
+    },
+    {
+      "pc": "0x22574",
+      "word": "2a1a03e1",
+      "op": "mov",
+      "args": "w1, w26"
+    },
+    {
+      "pc": "0x22578",
+      "word": "52800080",
+      "op": "mov",
+      "args": "w0, #0x4"
+    },
+    {
+      "pc": "0x2257c",
+      "word": "d63f0040",
+      "op": "blr",
+      "args": "x2"
+    },
+    {
+      "pc": "0x22580",
+      "word": "910183e1",
+      "op": "add",
+      "args": "x1, sp, #0x60"
+    },
+    {
+      "pc": "0x22584",
+      "word": "52801402",
+      "op": "mov",
+      "args": "w2, #0xa0"
+    },
+    {
+      "pc": "0x22588",
+      "word": "aa1903e0",
+      "op": "mov",
+      "args": "x0, x25"
+    },
+    {
+      "pc": "0x2258c",
+      "word": "97fff5ce",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x22590",
+      "word": "aa1c03e1",
+      "op": "mov",
+      "args": "x1, x28"
+    },
+    {
+      "pc": "0x22594",
+      "word": "52800902",
+      "op": "mov",
+      "args": "w2, #0x48"
+    },
+    {
+      "pc": "0x22598",
+      "word": "aa1403e0",
+      "op": "mov",
+      "args": "x0, x20"
+    },
+    {
+      "pc": "0x2259c",
+      "word": "97fff5ca",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x225a0",
+      "word": "395a22c2",
+      "op": "ldrb",
+      "args": "w2, [x22, #1672]"
+    },
+    {
+      "pc": "0x225a4",
+      "word": "aa1b03e1",
+      "op": "mov",
+      "args": "x1, x27"
+    },
+    {
+      "pc": "0x225a8",
+      "word": "aa1303e0",
+      "op": "mov",
+      "args": "x0, x19"
+    },
+    {
+      "pc": "0x225ac",
+      "word": "531e7442",
+      "op": "lsl",
+      "args": "w2, w2, #2"
+    },
+    {
+      "pc": "0x225b0",
+      "word": "97fff5c5",
+      "op": "bl",
+      "args": "0x1fcc4"
+    },
+    {
+      "pc": "0x225b4",
+      "word": "f9402bfe",
+      "op": "ldr",
+      "args": "x30, [sp, #80]"
+    },
+    {
+      "pc": "0x225b8",
+      "word": "a9415bf5",
+      "op": "ldp",
+      "args": "x21, x22, [sp, #16]"
+    },
+    {
+      "pc": "0x225bc",
+      "word": "a94263f7",
+      "op": "ldp",
+      "args": "x23, x24, [sp, #32]"
+    },
+    {
+      "pc": "0x225c0",
+      "word": "a9436bf9",
+      "op": "ldp",
+      "args": "x25, x26, [sp, #48]"
+    },
+    {
+      "pc": "0x225c4",
+      "word": "a94473fb",
+      "op": "ldp",
+      "args": "x27, x28, [sp, #64]"
+    },
+    {
+      "pc": "0x225c8",
+      "word": "a8dc53f3",
+      "op": "ldp",
+      "args": "x19, x20, [sp], #448"
+    },
+    {
+      "pc": "0x225cc",
+      "word": "d65f03c0",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x2d5cc",
+      "word": "390ac040",
+      "op": "strb",
+      "args": "w0, [x2, #688]"
+    },
+    {
+      "pc": "0x2d5d0",
+      "word": "d2870200",
+      "op": "mov",
+      "args": "x0, #0x3810"
+    },
+    {
+      "pc": "0x2d5d4",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x2d5d8",
+      "word": "b9400800",
+      "op": "ldr",
+      "args": "w0, [x0, #8]"
+    },
+    {
+      "pc": "0x2d5dc",
+      "word": "391a20c0",
+      "op": "strb",
+      "args": "w0, [x6, #1672]"
+    },
+    {
+      "pc": "0x2f488",
+      "word": "d0000002",
+      "op": "adrp",
+      "args": "x2, 0x31000"
+    },
+    {
+      "pc": "0x2f48c",
+      "word": "f81f0ffe",
+      "op": "str",
+      "args": "x30, [sp, #-16]!"
+    },
+    {
+      "pc": "0x2f490",
+      "word": "f944cc42",
+      "op": "ldr",
+      "args": "x2, [x2, #2456]"
+    },
+    {
+      "pc": "0x2f494",
+      "word": "f9401c42",
+      "op": "ldr",
+      "args": "x2, [x2, #56]"
+    },
+    {
+      "pc": "0x2f498",
+      "word": "d63f0040",
+      "op": "blr",
+      "args": "x2"
+    },
+    {
+      "pc": "0x2f49c",
+      "word": "d0000000",
+      "op": "adrp",
+      "args": "x0, 0x31000"
+    },
+    {
+      "pc": "0x2f4a0",
+      "word": "f84107fe",
+      "op": "ldr",
+      "args": "x30, [sp], #16"
+    },
+    {
+      "pc": "0x2f4a4",
+      "word": "f9402001",
+      "op": "ldr",
+      "args": "x1, [x0, #64]"
+    },
+    {
+      "pc": "0x2f4a8",
+      "word": "52800080",
+      "op": "mov",
+      "args": "w0, #0x4"
+    },
+    {
+      "pc": "0x2f4ac",
+      "word": "d61f0020",
+      "op": "br",
+      "args": "x1"
+    },
+    {
+      "pc": "0x2fa54",
+      "word": "d286d300",
+      "op": "mov",
+      "args": "x0, #0x3698"
+    },
+    {
+      "pc": "0x2fa58",
+      "word": "f2a040e0",
+      "op": "movk",
+      "args": "x0, #0x207, lsl #16"
+    },
+    {
+      "pc": "0x2fa5c",
+      "word": "b9400000",
+      "op": "ldr",
+      "args": "w0, [x0]"
+    },
+    {
+      "pc": "0x2fa60",
+      "word": "3667f700",
+      "op": "tbz",
+      "args": "w0, #12, 0x2f940"
+    },
+    {
+      "pc": "0x2fa64",
+      "word": "d0000001",
+      "op": "adrp",
+      "args": "x1, 0x31000"
+    },
+    {
+      "pc": "0x2fa68",
+      "word": "2a0403e0",
+      "op": "mov",
+      "args": "w0, w4"
+    },
+    {
+      "pc": "0x2fa6c",
+      "word": "a9bf7bf3",
+      "op": "stp",
+      "args": "x19, x30, [sp, #-16]!"
+    },
+    {
+      "pc": "0x2fa70",
+      "word": "aa0203f3",
+      "op": "mov",
+      "args": "x19, x2"
+    },
+    {
+      "pc": "0x2fa74",
+      "word": "f9429c21",
+      "op": "ldr",
+      "args": "x1, [x1, #1336]"
+    },
+    {
+      "pc": "0x2fa78",
+      "word": "d63f0020",
+      "op": "blr",
+      "args": "x1"
+    },
+    {
+      "pc": "0x2fa7c",
+      "word": "3100041f",
+      "op": "cmn",
+      "args": "w0, #0x1"
+    },
+    {
+      "pc": "0x2fa80",
+      "word": "54000080",
+      "op": "b.eq",
+      "args": "0x2fa90"
+    },
+    {
+      "pc": "0x2fa84",
+      "word": "39400660",
+      "op": "ldrb",
+      "args": "w0, [x19, #1]"
+    },
+    {
+      "pc": "0x2fa88",
+      "word": "121e7800",
+      "op": "and",
+      "args": "w0, w0, #0xfffffffd"
+    },
+    {
+      "pc": "0x2fa8c",
+      "word": "39000660",
+      "op": "strb",
+      "args": "w0, [x19, #1]"
+    },
+    {
+      "pc": "0x2fa90",
+      "word": "a8c17bf3",
+      "op": "ldp",
+      "args": "x19, x30, [sp], #16"
+    },
+    {
+      "pc": "0x2fa94",
+      "word": "d65f03c0",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "firmware_executed": false,
+  "qemu_scope_extended": false,
+  "incoming_X0_of_slot47_resolved": false
+}

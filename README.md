@@ -27,6 +27,8 @@ O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o re
 
 O [slot 38 e a máscara da coluna 13](docs/newtime-slot38-hzc2.md) foram ligados nominalmente: folha sem stores/calls, máscara 0x1ff nas três subtabelas e cinco chamadores selecionados com índice u8 sob preservação. O retorno controla a limpeza de bit1 de um byte no buffer; gates, aliases e slot 47/X0 continuam abertos.
 
+A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) ligam o destino às colunas 6/7: backup de 72 bytes antes da consulta e restauração posterior condicionada. O endereço calculado não alcança slots/binding nos perfis completos delimitados; a pilha e os efeitos do método dinâmico +56 continuam abertos.
+
 A [branch pública rebased-11 do kernel Exynos 2100](docs/xfwdrev-kernel-reference.md) foi conferida na revisão `756951a`: Linux 5.4.304-openela e config p3s. Três DTS compilaram e dois overlays foram aplicados no host; continuam sem nós RAM. O driver UART coincide com a referência Samsung recebida. A árvore é candidata para futura instrumentação Linux, com build completo e execução física ainda pendentes.
 
 A [busca específica por referências a BL2](docs/bl2-kernel-consumers-hzc2.md) encontrou um consumidor Linux de `0x02073600` que imprime a palavra DRAM, uma constante comum ao BL2 HZC2, parâmetros de tempo bootstat e o nome `main_rev` para o campo que condiciona a reescrita das bases. São ligações estáticas; o produtor e os valores reais do registro continuam abertos.

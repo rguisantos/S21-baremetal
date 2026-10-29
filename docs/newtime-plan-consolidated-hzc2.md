@@ -135,6 +135,9 @@ a tags 255, sem store em Q nesse caminho preservado. O
 [slot 38](newtime-slot38-hzc2.md) agora tem folha, máscara da coluna 13
 e store de byte delimitadas, com cinco caminhos u8 condicionais. n/W19,
 bases dinâmicas, gates/aliases e slot 47 continuam abertos, sem execução adicional.
+O [destino do byte e suas cópias](newtime-slot38-buffers-hzc2.md) ligam B
+às colunas 6/7 e uma restauração condicional de 72 bytes; a pilha e o método
+dinâmico +56 permanecem fronteiras.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

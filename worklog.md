@@ -2792,3 +2792,25 @@ GNU363/35/73, 245 testes NEWTIME (28 novos) e comparação independente das
 Samsung ou ampliação QEMU nesta análise; slot47/X0
 continuam abertos. [Análise](docs/newtime-slot38-hzc2.md) e
 [validação](docs/references/newtime-slot38-validation-20261028.json).
+
+## 2026-10-28 — buffers do slot38 e restauração condicional
+
+Base remota `0eae442`, continuação estática sem sobreposição com ASV/GEN
+do GLM. X20/B vem de linhas das colunas 6/7; k u8 e controle low16 escolhem
+ramo baixo/superior. 8512 planos completos (2752 com chave ausente excluídos)
+formam 88 perfis das colunas 4..9. Em 33264 caminhos de host comprimidos,
+as janelas B de 72 bytes ficam em [0x02074600,0x0207925c), sem alcançar a
+tabela A/cache/binding nominais. Exclusão não cobre pilha/A/C/callees.
+Os 880 caminhos aceitos por slot38 ficam nas linhas; 36 pares chave/linha
+têm bit9 do primeiro u32 ligado na fonte preservada. Backup B em F+256
+antecede a consulta, e restauração ocorre depois de três chamadas indiretas.
+Retorno -1 não aborta o wrapper nem protege cópias anteriores. Seis cópias
+e helper byte-a-byte delimitados; N inicial 16/17 cabe no frame de 448,
+mas é relido. Backup alterado, alias de pilha, falha de retorno e N diferente
+refutam a restauração incondicional. Slot20 nominal segue método dinâmico
+[binding31998+56], mantido opaco. GNU193/15/94, 277 testes NEWTIME (32 novos)
+e 90 casos dos produtores X20 decodificados independentemente. JSON exato,
+três recusas CLI, 1110 links e baseline R10 recompilado aprovados. Sem execução Samsung
+ou ampliação QEMU; slot47/X0 ainda abertos.
+[Análise](docs/newtime-slot38-buffers-hzc2.md) e
+[validação](docs/references/newtime-slot38-buffers-validation-20261028.json).

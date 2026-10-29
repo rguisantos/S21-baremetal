@@ -116,6 +116,11 @@ destino do byte pertence a um buffer calculado: não se provou ausência de
 alias com slots/globais. Também não se resolveu preservação física de P,
 dos slots ou do gate. Não há exclusão global de uma ligação ao slot 47.
 
+A [continuação dos buffers](newtime-slot38-buffers-hzc2.md) delimita agora
+B pelas colunas 6/7 nos perfis completos e mostra o backup/restauração de
+72 bytes. A exclusão do endereço calculado não cobre a pilha nem os
+efeitos do método +56 chamado antes da restauração.
+
 ## Reprodução
 
 ```sh

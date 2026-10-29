@@ -40,6 +40,9 @@ B/Qnew e campos u16. A [cadeia MARGIN](newtime-margin-hzc2.md) filtra os
 casos 0/19 com tag 255 sob preservação, restringindo a hipótese de soma
 dupla em Q=B. A [folha do slot 38](newtime-slot38-hzc2.md) liga a máscara
 da coluna 13 a uma store de byte, com cinco caminhos u8 condicionais.
+O [buffer e sua restauração](newtime-slot38-buffers-hzc2.md) vêm das colunas
+6/7; o endereço B calculado fica fora dos slots nos perfis completos fixados.
+Backup de 72 bytes e restauração não excluem efeitos transitórios do método +56.
 Limites ASV de n/W19, bases dinâmicas e gates/aliases permanecem fronteiras; não há
 exclusão de chamador por toda a imagem.
 
