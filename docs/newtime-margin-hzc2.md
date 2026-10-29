@@ -142,3 +142,8 @@ GNU: 595 palavras, 111 alvos relativos e 62 operandos selecionados.
 Os bounds do parser de host protegem as fixtures; não são guards atribuídos
 ao firmware. Permanecem abertos n/W19, limites ASV, gates e estado runtime,
 além do chamador e X0 do slot 47.
+
+A [continuação ASV/GEN](newtime-asv-gen-hzc2.md) confirma n=13 e delimita
+W19 sob os produtores selecionados, corrigindo uma palavra de deslocamento
+na leitura GEN externa. O caminho habilitado não foi excluído; valores
+SMC e condições físicas continuam abertos.

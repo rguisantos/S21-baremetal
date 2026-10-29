@@ -2814,3 +2814,20 @@ três recusas CLI, 1110 links e baseline R10 recompilado aprovados. Sem execuç�
 ou ampliação QEMU; slot47/X0 ainda abertos.
 [Análise](docs/newtime-slot38-buffers-hzc2.md) e
 [validação](docs/references/newtime-slot38-buffers-validation-20261028.json).
+
+## 2026-10-28 — auditoria do retorno ASV/GEN do GLM
+
+Base remota `3e3a868`. Recebidos dois JSONs ASV idênticos, mas sem o extrator
+ASV ou a suíte anunciada de95 testes. Arquivos MARGIN/MIF anteriores não
+substituem esses entregáveis. Auditoria própria confirma n13 e fórmulas
+condicionais W19, mas encontra células GEN deslocadas um u32: corpo+8, não+12.
+VMIF pode habilitar chaves0..12, VINTSCI2..12. F152 contém subkeys0/4 ou0/2,
+não421/141; argumentos de fallback obrigatório não conferem. Compactação MIF
+condicional modelada. Pedidos X1 corretos ffffffffc4002400/2401/2402.
+Onze endereços após a matriz,13 leituras por W19 fixo; reserva total+4 é
+distinta de matriz e origem copiada. NULL D pode ser lido antes da saída n0.
+Extrator próprio GNU972/159/61, 298 testes NEWTIME (21 novos), JSON exato,
+três recusas CLI, 1122 links e baseline R10 recompilado aprovados. Sem
+execução Samsung ou ampliação QEMU nesta análise.
+[Auditoria](docs/newtime-asv-gen-hzc2.md) e
+[validação](docs/references/newtime-asv-gen-validation-20261028.json).

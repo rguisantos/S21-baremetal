@@ -46,6 +46,7 @@
   selecionados, X5 local/nulo, aritmética e buscas limitadas de endereço;
   [relatório](../docs/newtime-slot20-hzc2.md).
 - `inspect_newtime_margin_hzc2.py` e `test_newtime_margin.py`: payload MARGIN, handles simbólicos, nomes/casos e regressões de largura/count; [auditoria](../docs/newtime-margin-hzc2.md).
+- `inspect_newtime_asv_gen_hzc2.py` e `test_newtime_asv_gen.py`: n, GEN com cabeçalho de dois u32, subkeys, pedidos SMC e posições; GNU972/159/61 e 21 testes novos. [Auditoria](../docs/newtime-asv-gen-hzc2.md).
 - `inspect_newtime_slot38_hzc2.py` e `test_newtime_slot38.py`: folha, coluna 13, cadeia selecionada dos slots 19/22/38 e store de byte; GNU363/35/73 e 28 testes novos, sem executar firmware. [Auditoria](../docs/newtime-slot38-hzc2.md).
 - `inspect_newtime_slot38_buffers_hzc2.py` e `test_newtime_slot38_buffers.py`: destino das colunas 6/7, footprint de B, backups/restauração e fronteira +56; GNU193/15/94 e 32 testes novos. [Limites](../docs/newtime-slot38-buffers-hzc2.md).
 - `inspect_newtime_secondary_result_hzc2.py` e `test_newtime_secondary_result.py`: retorno do buffer secundário, gates/tags, offsets u16 e stores com alias exato; [escopo](../docs/newtime-secondary-result-hzc2.md).

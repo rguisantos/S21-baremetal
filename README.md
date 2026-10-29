@@ -25,6 +25,8 @@ A [auditoria do slot47](docs/newtime-slot47-hzc2.md) separa quatro candidatos de
 
 O [plano NEWTIME consolidado](docs/newtime-plan-consolidated-hzc2.md) adota o relatório de consumidores como substituto das seções 2.8–2.13 do plano recebido e mantém os consumidores externos ao callback fora do escopo de execução.
 
+A [auditoria ASV/GEN](docs/newtime-asv-gen-hzc2.md) confirma n=13 e as fórmulas condicionais de W19 para MIF/INTSCI. Corrige uma palavra de deslocamento no GEN externo: o caminho habilitado continua candidato e F+152 contém subkeys ASV 0/4 ou 0/2. Valores SMC e execução física seguem abertos.
+
 O [slot 38 e a máscara da coluna 13](docs/newtime-slot38-hzc2.md) foram ligados nominalmente: folha sem stores/calls, máscara 0x1ff nas três subtabelas e cinco chamadores selecionados com índice u8 sob preservação. O retorno controla a limpeza de bit1 de um byte no buffer; gates, aliases e slot 47/X0 continuam abertos.
 
 A [origem e restauração desse buffer](docs/newtime-slot38-buffers-hzc2.md) ligam o destino às colunas 6/7: backup de 72 bytes antes da consulta e restauração posterior condicionada. O endereço calculado não alcança slots/binding nos perfis completos delimitados; a pilha e os efeitos do método dinâmico +56 continuam abertos.

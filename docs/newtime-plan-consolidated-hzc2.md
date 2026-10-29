@@ -138,6 +138,11 @@ bases dinâmicas, gates/aliases e slot 47 continuam abertos, sem execução adic
 O [destino do byte e suas cópias](newtime-slot38-buffers-hzc2.md) ligam B
 às colunas 6/7 e uma restauração condicional de 72 bytes; a pilha e o método
 dinâmico +56 permanecem fronteiras.
+
+A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) sustenta n=13 e W19 condicional
+para MIF/INTSCI, mas corrige a alegação externa de caminho habilitado impossível:
+GEN começa após dois u32 e suas chaves0..12 permitem esse caminho. Pedidos
+SMC, subkeys e fronteiras de índices foram corrigidos; estado físico aberto.
 Os demais itens permanecem pendentes. Nenhum depende
 de ampliar o escopo QEMU.
 

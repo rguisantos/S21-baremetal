@@ -46,6 +46,11 @@ Backup de 72 bytes e restauração não excluem efeitos transitórios do método
 Limites ASV de n/W19, bases dinâmicas e gates/aliases permanecem fronteiras; não há
 exclusão de chamador por toda a imagem.
 
+A [auditoria ASV/GEN](newtime-asv-gen-hzc2.md) agora delimita n=13 e W19 sob
+inicialização/preservação para MIF/INTSCI. A leitura GEN externa estava uma
+palavra adiante; caminho habilitado, subkeys reais e pedidos SMC foram
+corrigidos. Valores físicos e preservação, além de slot47/X0, seguem abertos.
+
 O [levantamento RDX](lk-dump-export-hzc2.md) delimitou quatro regiões fixas
 e o encaminhamento de bytes. A [origem dinâmica foi encontrada](lk-rdx-memory-origin-hzc2.md):
 `0xee370` constrói bancos de 512 MiB; o primeiro par conservado cobre a
