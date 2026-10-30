@@ -1,8 +1,18 @@
 # Roadmap e estado do S21-baremetal
 
-Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e DMC8/9 permanecem abertos.
+A [rota direta do canal3](newtime-fast-channel-hzc2.md) chega ao método +0 DVFS. Seu gate compara0xa590010c com0xabcd1234, diferente do0x1234abcd de init7; o trecho local não lê0x104. Próximo: produtor desse outro magic e efeitos transitivos de0x5a938. O clear AP0x15900104 ainda não foi ligado a uma barreira DMC.
 
-A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; DMC8/9 continua a próxima frente.
+A [ordem selecionada BL2/ACPM](newtime-dmc-init-order-hzc2.md) mostra o ACK0x108 antes da entrada tardia de publicação das máscaras. O magic0x10c marca outra etapa; init9 e as stores tardias seguem sem ordem demonstrada.
+
+A [ponte BL2→DMC](newtime-dmc-bl2-producer-hzc2.md) identifica os produtores de AP0x02073660/64/68 e o diretório NEWTIME correspondente ao core. Os valores condicionais vêm das tabelas0x81/82/83 e0xa1. Próximo: ordem/alcançabilidade real e alias, mantendo as origens físicas em aberto.
+
+A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. A origem nominal do cabeçalho/diretório está ligada ao BL2 na continuação acima; alias e valores vivos, ordem efetiva e recebimento desse comando permanecem condicionais.
+
+A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. Próxima frente: stores calculadas do carregador de configuração e origem das máscaras/base core 0x3a660/0x3a664/0x3a668. O valor vivo e o efeito físico continuam abertos.
+
+Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e valores runtime do DMC permanecem abertos.
+
+A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; valores runtime do DMC continuam abertos.
 
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
@@ -73,8 +83,8 @@ A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) confirma
 modo0→callback, mas a primeira transição não tem retorno testado antes da
 final, que relê B. Init avança sub por52 e depende de dados após handshake;
 limiar seleciona caminhos, broadcast tem limite exclusivo/quatro registros.
-Próxima frente: método+12 DMC/subcomandos8/9, sem tratar retorno0 local
-como agregação de aceitação ou aplicação física.
+O método+12 DMC/subcomandos8/9 está ligado na auditoria acima, sem tratar
+retorno0 local como agregação de aceitação ou aplicação física.
 
 O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
 e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;

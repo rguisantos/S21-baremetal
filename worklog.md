@@ -2992,3 +2992,129 @@ com nova invocação comando6, que relê a política. Dez testes adicionados.
 Validação:466 testes NEWTIME, JSON exato, três recusas CLI sem JSON parcial,
 25 operandos adicionais e511 links locais válidos. Escopo GNU
 reutilizado FVP830 instruções/983 halfwords/150 alvos.
+
+## 2026-10-29 — auditoria independente DMC método +12 / 8/9
+
+- Base `f1524a3` (PR #51). Material GLM original: 65 testes passaram e
+  JSON reproduzido byte a byte com GNU 2.44. Hashes originais registrados no
+  JSON revisado; fontes originais preservadas fora da árvore versionada.
+- Ligados wrappers 0x581fc/0x58214 → relay → método 0x5f758 → handlers
+  0x5fadc/0x5fbbc, sob instalação/preservação das raízes. Retorno 8 de
+  0x59572 ignorado antes do 9; arg2 do 9 salvo/copiado mas não consumido
+  posteriormente no corpo selecionado. Polls 0xa5863a30 sem timeout local.
+- Corrigidos precedência do erro -11, low8 do shift, despacho por índice
+  após wrap, resultado de memória/h desconhecido. Retirada exclusão global
+  de escritores: stores calculadas/aliases continuam abertos.
+- Interpretador: memória ausente agora falha; fixtures explícitas; PUSH/LR,
+  POP/SP, MOVW/flags, ADD/shift flags corrigidos; ASR não implementado
+  recusado em vez de tratado como CMP. 13 novas regressões, 78 testes DMC.
+- Validação final: 544 testes NEWTIME passaram. 1494 instruções GNU,
+  147 alvos relativos, 100 literais distintos e 172 operandos selecionados.
+  JSON revisado reproduzido exatamente; imagens curta/longa/alterada
+  recusadas exit2 sem JSON. Links dos documentos alterados conferidos.
+- README, índice, roadmap e ligação DVFS atualizados. Sem aparelho/QEMU,
+  sem resolver slot47/X0 ou atribuir unidades/efeitos físicos. Próxima
+  frente: descritores e stores calculadas do carregador DMC.
+- PR #51 ainda pendente; manter auditoria DMC em branch/PR dependente.
+  Nenhum merge sem revisão automática do head exato e gates aprovados.
+
+## 2026-10-29 — DMC comando20, store por descritor e cache h/g2
+
+- Base `60f291a` (PR #52). Método+0 sob gate core0x37d3c==0 usa
+  low16(packet.word0); entrada20 aponta para0x5fd38. Handler extrai
+  bytes7/6/5/4 e word8, chama0x60148 e método da tabela0x38038+104,
+  inicialmente0x64c68. A rota de recebimento e os guards vivos seguem abertos.
+- A store0x64c94 usa base capturada0x3a600+offset do descritor, stride
+  recarregado e endereço u32(base+4*(stride*linha+coluna)). Modo1 cobre
+  linhas0..12. Aliases ao próprio stride alteram iterações posteriores.
+  Fixtures alcançam0x3a660/64/68 sob offsets explícitos; nenhum valor vivo
+  desses descritores foi atribuído ao firmware/aparelho.
+- Cache h/g2 core0x38404 é compartilhado. Carregador0x648be instala
+  0x3a600+M32[0x3a884]; helpers só usam fallback M32[0x3a664] quando cache
+  zero. Origem do cabeçalho/diretório e ordem física continuam abertas.
+- Novo extrator/JSON:440 instruções GNU,458 halfwords,22 alvos relativos,
+  37 literais e48 operandos selecionados. 16 testes novos usam palavras
+  reais, incluindo handler/wrapper/helper,80 casos aleatórios,alias de
+  stride,cache,gate ocupado e orçamento host. Avaliador parcial ganhou
+  MULS u32/NZ com preservação de CV. Suíte NEWTIME:560 testes passaram.
+- JSON reproduzido exatamente, três recusas por tamanho/hash com exit2 sem
+  JSON. Links alterados e diff conferidos. Documentação/índices/roadmap
+  atualizados. Sem execução Samsung, ampliação QEMU ou resolução slot47.
+- Gates remotos dos PRs51/52: baseline e findings aprovados; aprovação de
+  revisor Entire ausente. Integração permanece condicionada às regras AGENTS.
+
+## 2026-10-29 — produtor BL2 nominal das máscaras e base DMC
+
+- Base `aab7d05`. Encontradas STR W0x2d82c/0x2d840/0x2d850 para
+  AP0x02073664/60/68. Fontes: payload14 AP menos0x02039000 e palavras
+  +60/+88 do payload12. Ponteiros passam pelas células S+744/S+616,
+  publicadas em0x2d764/0x2d734. O call0x2d810 e sua preservação global
+  continuam condições; as fatias selecionadas não o executam.
+- Diretório BL2 R+0x1a0 concorda com core0x3a7a0 sob R/alias. Fonte do
+  descritor12 são tabelas0x81/82/83 (1x23); descritor14 é0xa1 (2x44).
+  Nas8512 construções completas:4096 pares1ff0/1fff,4352 pares1fc0/0,
+  64 pares0/0. 2752 construções parciais excluídas, sem probabilidades.
+- Fallback header0x3a664 e cache instalado pelo loader concordam como
+  u32(0x3a600+offset14) se o mesmo descritor estiver preservado. Fonte h/g2
+  ligada às segundas palavras das linhas18..30/31..43 da tabela0xa1.
+  As28 variantes de offset formam34 perfis combinados com as máscaras.
+- Novo extrator/JSON e13 testes:34 palavras A64/20 operandos,55 instruções
+  Thumb/6 alvos/8 literais. Fatias cruas cobrem SXTW/W32,recarga de estado,
+  34 perfis,80 offsets aleatórios,máscaras/cache/tabelas e memória ausente.
+  573 testes NEWTIME passaram. JSON exato e três recusas exit2 sem saída.
+- Índices,documentação,roadmap e worklog atualizados. Produtor nominal
+  identificado, sem exclusividade,alias físico observado,aparelho ou novo
+  QEMU. Ordem/alcançabilidade efetiva e slot47/X0 seguem abertos.
+- PRs51/52: checks e findings sem bloqueadores; gate Entire ainda requer
+  aprovação de revisor. Nenhuma integração que ignore esse gate.
+
+## 2026-10-29 — ordem selecionada do ACK e publicação DMC
+
+- Base `faed93b`. O ACK AP0x17a50 zera0x15900108 antes do retorno de
+  0x17eb0. O chamador ainda espera0x1234abcd em0x1590010c, passa por
+  outros gates/calls e só então chama0x1dc90 em0x18000. As stores de
+  máscaras da cadeia selecionada são posteriores a essa entrada.
+- ACPM publica0x38e00 em0xa5900108, espera zero, publica as duas bases e
+  depois init7 escreve o magic0x1234abcd em0xa590010c antes de retornar.
+  Loop preservado chama init9 após retorno de7. ACK inicial não certifica
+  a publicação tardia do header0x3a600; área DVFS0x38e00 é distinta.
+- Modelo parcial não ordena init9 e máscaras tardias. Duas ordens
+  abstratas conferem as arestas e invertem o par; não são execuções nem
+  prova de corrida. Correlação fresca dos sinais/alias e retornos são
+  condições; clear inicial0x179a8 não foi confundido com ACK0x17a50.
+- AP0x18018 zera0x15900104 após0x1dc90; consumidor ACPM dessa store não
+  demonstrado. Próximo: seguir esse leitor e outras liberações de consumo.
+- Novo extrator/JSON:76 palavras A64/9 alvos e115 instruções Thumb/19
+  alvos,14 literais,30 operandos. 13 regressões cruas: polls,magic,ACK,
+  raízes,loop de inicializadores/hooks e modelo parcial. 586 testes
+  NEWTIME passaram. JSON exato; três recusas exit2 sem saída; links e diff
+  conferidos. Índices/README/roadmap/documentação atualizados.
+- Sem novo QEMU,aparelho,barreira física provada ou resolução slot47/X0.
+  Reviews/checks dos heads anteriores51/52 sem achados bloqueantes;
+  gate Entire ainda exige aprovação de revisor,sem bypass para merge.
+
+## 2026-10-29 — canal direto3 e gate local DVFS +0
+
+- Base `a3610ff`. Dataset canal3 em core0x7498 é tipo2, com ponteiros
+  0xa5900100/0xa5900108; alocador0x398e8 pula a entrada preenchida.
+  Evento128/máscara exatamente8 seleciona canal3/plugin7 no fallback do
+  decoder. Dispatcher direto0x3933c passa &ponteiro_pedido para método+0,
+  que a interface DVFS liga nominalmente a0x56e98.
+- Callback lê0xa590010c uma vez e compara0xabcd1234. Magic de init7
+  é0x1234abcd e não satisfaz essa igualdade. Diferente: pula0x5a938;
+  igual: chama o helper. Se retornar, R0 é zerado em ambos os caminhos,
+  sem teste do resultado do helper. Cauda isolada0x5a994 zera0x10c.
+- Clear AP0x18018 em0x15900104 corresponde à palavra1 do buffer direto
+  sob alias. Prefixo selecionado e corpo local do callback não a leem;
+  teste deixa esses bytes sem mapeamento. Não há censo global de leitores
+  nem análise transitiva completa de0x5a938 ou barreira DMC demonstrada.
+  Os candidatos diretos com+0x104 usam bases0xa591/0xa596, distintas.
+- Extrator/JSON:392 instruções Thumb/52 alvos,3 literais,7 palavras A64,
+  25 operandos. 17 testes novos com bytes reais,memória explícita e hooks
+  que alteram voláteis;603 testes NEWTIME passaram. JSON exato e três
+  recusas CLI (curto,longo,alterado),exit2 sem JSON/stdout. Sem novo QEMU
+  ou firmware Samsung executado. Índices/README/roadmap atualizados.
+- Próxima frente: produtor do magic0xabcd1234 e efeitos transitivos do
+  helper0x5a938. Ordem init9/máscaras e slot47/X0 seguem abertos.
+  Heads anteriores51/52:CI/review sem achados bloqueantes,mas gate Entire
+  exige aprovação de revisor;nenhum bypass de merge.

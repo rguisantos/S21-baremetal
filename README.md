@@ -1,5 +1,15 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [rota direta do canal3](docs/newtime-fast-channel-hzc2.md) chega ao método +0 DVFS, cujo gate local compara0xa590010c com0xabcd1234. Esse valor difere do magic de init7; o clear AP0x15900104 ainda não foi demonstrado como barreira de consumo DMC.
+
+A [ordem dos handshakes BL2/ACPM](docs/newtime-dmc-init-order-hzc2.md) separa o ACK inicial da publicação posterior das máscaras DMC. A inicialização DMC e essa publicação ainda não estão ordenadas pelas evidências selecionadas.
+
+O [produtor BL2 das máscaras/base DMC](docs/newtime-dmc-bl2-producer-hzc2.md) foi ligado ao registro NEWTIME sob alias/preservação. As três stores usam os payloads dos descritores12/14; conteúdo físico e ordem de execução continuam abertos.
+
+A [escrita DMC por descritor e o cache h/g2](docs/newtime-dmc-config-hzc2.md) agora têm fórmula e rota de comando20 delimitadas. Os aliases às máscaras dependem dos descritores vivos; o cache também recebe base do carregador.
+
+A [auditoria DMC 8/9](docs/newtime-dmc-method12-hzc2.md) liga os wrappers aos handlers e confirma retorno 8 descartado antes do 9. Modelos e testes foram corrigidos; máscaras, tabela e escritores por endereços calculados permanecem abertos.
+
 Os [setters de política FVP](docs/newtime-policy-writers-hzc2.md) gravam limite/habilitação e respondem sem chamada direta ao relay DVFS nos caminhos selecionados. Uma invocação posterior do comando6 relê essas políticas.
 
 A [conclusão do dispatcher ACPM](docs/newtime-dispatch-completion-hzc2.md) guarda o retorno FVP para logging, avança o índice sem teste local desse erro e devolve0 na saída normal selecionada; hooks e estado vivo permanecem condições.
