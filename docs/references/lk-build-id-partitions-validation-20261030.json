@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "e8cecfb9191778f3040a3356bb684aea1a3c5072",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "dc4179728d9107c0e4ce8c3b0e9b3ac685bd40a8b8d9c31689b9bcecb9852ef5",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 1497,
+    "gnu_relative_targets": 375,
+    "selected_operand_checks": 85,
+    "instruction_index_sha256": "1c2be43c69ee7cfa516c0e1a6e91ec8770bbf519effdbad8abf9e2a323736a73"
+  },
+  "literal_checks": 18,
+  "local_graphs": 16,
+  "binding": {
+    "vbmeta_build_id_relative_address": "0xd05890",
+    "selected_producer_relative_address": "0xd05890",
+    "super_sign_info_cache_relative_address": "0xcd62a0",
+    "super_build_id_offset": 16,
+    "policy_word_relative_address": "0xaaa70c",
+    "runtime_alias_preservation_and_freshness_established": false
+  },
+  "partition_local_exits": {
+    "return_pcs": [
+      "0x17eb08"
+    ],
+    "fixed_self_loops": [
+      "0x17ee2c",
+      "0x17f2dc"
+    ],
+    "post_assertion_guard": {
+      "pc": "0x17f374",
+      "word": "00000000",
+      "kind": "udf"
+    }
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_build_id.py -v",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_avb*.py'",
+      "tests": 48,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_payload_return.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_build_id.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-build-id-partitions",
+      "status": "passed",
+      "summary_sha256": "a8bb8a86934dbbb77ba66cb166dd02033bd88e25006ae983ae3d53aedb8ca0d6",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Tests exercise synthetic operand decoding, address binding and refusals, not Samsung firmware execution.",
+    "Cache pointer, local prefix equality and a zero checker return do not certify freshness, authentication or physical image acceptance.",
+    "Storage backend and cryptographic/policy callees remain opaque; live Build-id/policy contents were not acquired."
+  ],
+  "documentation_file_links": {
+    "checked": 1319,
+    "missing": 0
+  }
+}

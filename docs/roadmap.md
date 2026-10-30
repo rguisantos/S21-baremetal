@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-O [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm corpo local e retornos delimitados: red nominal leva a laço; retorno normal é o resultado do slot, descartado no chamador. Isso não estabelece bypass ou carga física. Próximo: verificação adicional 0x17deb0, processamento 0x17e920/0x17e828, origem da continuação tolerada e fornecedor seguro da chave; contratos físicos de carga/memória/captura continuam pendentes.
+A [conferência de Build-id e os helpers de partições](lk-build-id-partitions-hzc2.md) estão delimitados localmente: comparação de prefixo, cache vbmeta/super, palavra de política e caminhos com efeitos de estado. Retorno zero não certifica leitura nova ou aceitação física. Próximo: verificadores 0x1526f8/0x150aa8/0x1516b8, origem da política 0xaaa70c, preservação dos caches e fornecedor seguro da chave.
+
+O [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm corpo local e retornos delimitados: red nominal leva a laço; retorno normal é o resultado do slot, descartado no chamador. Isso não estabelece bypass ou carga física. A conferência de Build-id e os corpos locais de partições têm continuação acima; origem da continuação tolerada e fornecedor seguro da chave seguem abertos; contratos físicos de carga/memória/captura continuam pendentes.
 
 O [verificador vbmeta](lk-avb-signature-hzc2.md) distingue cabeçalho, hash e assinatura RSA; tabelas de algoritmos e conversão para erros do slot conferidas. Sucesso criptográfico permanece separado da confiança na chave. O wrapper tem continuação na análise acima; origem da continuação tolerada e fornecedor seguro da chave seguem abertos. Carga, memória e captura do diagnóstico físico continuam pendentes.
 

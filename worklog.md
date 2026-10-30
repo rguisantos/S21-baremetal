@@ -3474,3 +3474,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos1.308links locais de arquivos, sem destinos ausentes.
 - Atualizados índices, roadmap, matriz Samsung e análises AVB anteriores.
   Próximo:0x17deb0,0x17e920/0x17e828, origem do flag tolerado e chave segura.
+
+
+## 2026-10-30 — Build-id de vbmeta/super e helpers de partições
+
+- Base main e8cecfb após PR #61. Continuação offline; telefone sem operações.
+- Identificado 0x17deb0 como conferência de Build-id: cache vbmeta relativo
+  0xd05890 ligado ao escritor selecionado em 0x17ea54, referência super no
+  cache 0xcd62a0 +16 e palavra de política u32 em 0xaaa70c.
+- Teste inicial compara16 bytes a zeros e também pode falhar por alocação;
+  qualquer não zero vira erro. SignerVer01/02/03 é classificado por prefixo11
+  sem distinção de caixa ASCII; a comparação posterior de Build-id é
+  sensível a caixa e usa strlen(vbmeta), sem igualdade integral garantida.
+- Checker retorna0/−1 nos caminhos locais. Política não zero permite0
+  também para divergência/Signer de super não reconhecido. Valor ativo e
+  procedência da política permanecem abertos, sem bypass declarado.
+- Getter de super retorna endereço do cache mesmo em falha de alocação ou
+  seleção; status da leitura é ignorado. O leitor copia dados sem testar o
+  retorno do backend e pode retornar1 sem prova de I/O concluído.
+- Produtor selecionado copia strlen(SignInfo+16) ao cache sem incluir NUL;
+  capacidade, terminação, histórico e preservação dos bytes seguem abertos.
+- Incluídos corpos locais de extração, relatório e processador de partições:
+  laços recovery0x17ee2c/0x17f2dc, retorno único0x17eb08 e guard UDF após assert.
+  Verificadores0x1526f8/0x150aa8/0x1516b8 e políticas continuam fronteiras.
+- inspect_lk_build_id.py:1.497 palavras GNU,375 destinos relativos,
+  85 operandos,18 literais,16 grafos e binding produtor/consumidor conferidos.
+  Relatório reproduzido byte a byte;14 testes novos incluídos no CI passaram.
+- Regressões AVB48 e grafos14 passaram; baseline completo de nove etapas passou.
+  Resumo SHA-256 a8bb8a86934dbbb77ba66cb166dd02033bd88e25006ae983ae3d53aedb8ca0d6.
+- Conferidos 1319 links locais de arquivos, sem destinos ausentes.
+- Atualizados índices, roadmap, matriz Samsung e continuação do wrapper.
+  Nenhuma execução/emulação de firmware Samsung, SMC, desbloqueio ou flash.
