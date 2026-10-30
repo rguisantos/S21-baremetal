@@ -1,6 +1,6 @@
 # Guia da documentação
 
-A [verificação LK anterior à cópia](lk-precopy-measurement-hzc2.md) foi delimitada: marcador SEANDROIDENFORCE, política por byte e pedido nominal de SHA ao monitor. Retorno local não certifica autenticação; 261 palavras GNU e 12 testes do verificador.
+A [entrada inicial do pedido de SHA](lk-embedded-avb-key-hzc2.md) foi identificada como uma chave pública AVB RSA-4096 embutida de 1.032 bytes. Layout e parâmetros matemáticos conferem; 17 testes novos passaram. Preservação em execução, confiança da chave e autenticação da Image continuam pendentes.
 
 - [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, acumulador ID18, aliases e publicador por entrada0→entrada4; 21 testes.
 

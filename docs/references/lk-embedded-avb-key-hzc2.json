@@ -1,0 +1,112 @@
+{
+  "mode": "static_embedded_avb_key_identification",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "firmware_executed": false,
+  "hardware_observed": false,
+  "image_authentication_established": false,
+  "source_reference": {
+    "repository": "AndroidBootloader/platform_external_avb",
+    "commit": "b27a9aa53d2db7720e4d88d6950dcd979da97de3",
+    "path": "libavb/avb_crypto.h",
+    "sha256": "5aa8c148e0951a241080446456ff8ed32364918273f8b771683dcad51519c07a",
+    "purpose": "AVB serialization reference; not the corresponding Samsung source"
+  },
+  "gnu_words": 9,
+  "gnu_relative_targets": 1,
+  "selected_operand_checks": 9,
+  "instruction_index_sha256": "fc921866f599d922f65ce5af253f04d5ccd27bd7ea43b0ae7070f0dbfd680722",
+  "instructions": {
+    "0x151a74": {
+      "word": "90000e61",
+      "op": "adrp",
+      "args": "x1, 0x31d000"
+    },
+    "0x151a78": {
+      "word": "b0005c23",
+      "op": "adrp",
+      "args": "x3, 0xcd6000"
+    },
+    "0x151a7c": {
+      "word": "91090063",
+      "op": "add",
+      "args": "x3, x3, #0x240"
+    },
+    "0x151a80": {
+      "word": "90000e60",
+      "op": "adrp",
+      "args": "x0, 0x31d000"
+    },
+    "0x151a84": {
+      "word": "91004063",
+      "op": "add",
+      "args": "x3, x3, #0x10"
+    },
+    "0x151a88": {
+      "word": "52800022",
+      "op": "mov",
+      "args": "w2, #0x1"
+    },
+    "0x151a8c": {
+      "word": "b9473821",
+      "op": "ldr",
+      "args": "w1, [x1, #1848]"
+    },
+    "0x151a90": {
+      "word": "911d0000",
+      "op": "add",
+      "args": "x0, x0, #0x740"
+    },
+    "0x151a94": {
+      "word": "9400b015",
+      "op": "bl",
+      "args": "0x17dae8"
+    }
+  },
+  "branches": {
+    "0x151a94": {
+      "kind": "bl",
+      "target": "0x17dae8"
+    }
+  },
+  "input_binding": {
+    "blob_file_offset": "0x31d740",
+    "length_field_file_offset": "0x31d738",
+    "length_field_byte_order": "little",
+    "length_field_width_bytes": 4,
+    "length_field_hex": "08040000",
+    "length_value": 1032,
+    "blob_end_exclusive": "0x31db48",
+    "binding": "initial file bytes plus the selected PC-relative consumer",
+    "preservation_until_call_established": false
+  },
+  "key": {
+    "format": "AVB_serialized_RSA_public_key",
+    "serialized_bytes": 1032,
+    "key_num_bits": 4096,
+    "modulus_bit_length": 4096,
+    "implicit_exponent_from_format": 65537,
+    "exponent_stored_in_blob": false,
+    "header_byte_order": "big",
+    "modulus_bytes": 512,
+    "rr_bytes": 512,
+    "n0inv": "0x41f3e7a3",
+    "n_times_n0inv_mod_2_to_32": "0xffffffff",
+    "rr_matches_r_squared_mod_n": true,
+    "host_blob_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+    "modulus_sha256": "c39ea07469d64d5a253cb86152b750d72b254df84c1a7cbf9ed312d894905c5b",
+    "rr_sha256": "9fb127090135b4a978c8dadfb683ea4d4bbbeb591b56fe943ab96ac2d3e4b6dc",
+    "modulus_factorization_verified": false,
+    "signature_verified": false,
+    "key_trust_established": false,
+    "runtime_bytes_observed": false
+  },
+  "interpretation": "The initial nominal SHA input is a 1032-byte AVB RSA-4096 public key object embedded in LK, conditional on its preservation until the call.",
+  "limits": [
+    "host hashes identify received bytes; they are not monitor output or a signature check",
+    "no exhaustive writer/alias census or observation of the active input was performed",
+    "format compatibility does not prove use as the trusted key for a live vbmeta image",
+    "the implicit exponent is a format assumption, not a separate field measured in the blob",
+    "this does not identify the monitor SHA algorithm, output or persistence",
+    "image acceptance, physical load, owned RAM, entry state and record acquisition remain open"
+  ]
+}

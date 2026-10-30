@@ -1,6 +1,6 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-A [verificação LK anterior à cópia](docs/lk-precopy-measurement-hzc2.md) foi delimitada: marcador SEANDROIDENFORCE, política por byte e pedido nominal de SHA ao monitor. Retorno local não certifica autenticação; 261 palavras GNU e 12 testes do verificador.
+A [entrada inicial do pedido de SHA](docs/lk-embedded-avb-key-hzc2.md) foi identificada como uma chave pública AVB RSA-4096 embutida de 1.032 bytes. Layout e parâmetros matemáticos conferem; 17 testes novos passaram. Preservação em execução, confiança da chave e autenticação da Image continuam pendentes.
 
 Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local; o ID18 usa um acumulador que preserva o bit4 após limpar a flag. São 684 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
 
