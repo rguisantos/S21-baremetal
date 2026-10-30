@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [verificação LK anterior à cópia](lk-precopy-measurement-hzc2.md) foi delimitada: marcador SEANDROIDENFORCE, política por byte e pedido nominal de SHA ao monitor. Retorno local não certifica autenticação; 261 palavras GNU e 12 testes do verificador.
+
 - [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, acumulador ID18, aliases e publicador por entrada0→entrada4; 21 testes.
 
 - [Carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md): comparação sem aborto, linhas por argumentos distintos, publicações e releituras de controle; 20 testes.
