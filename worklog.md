@@ -3275,3 +3275,33 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   sonda no Mint do usuário continua pendente após o workaround LC_ALL=C.
 - README, índices, diagnóstico e roadmap atualizados. Carregamento Samsung,
   memória/coerência e aquisição física do registro continuam pendentes.
+
+## 2026-10-30 — canal Download/PIT observado no aparelho
+
+- Base main 770e59d, PR #54 integrada. O usuário atualizou a cópia no Mint e
+  forneceu os 12 PASS da sonda: seis entradas EL1/EL2 e seis recusas M/C.
+  A correção de locale foi confirmada nesse ambiente; execução Samsung não.
+- Opção OEM relatada ativa, ADB locked/1/green e tela Download OEM LOCK ON(U).
+  KG COMPLETED, binário Samsung Official, Secure Download, DDR12G e Warranty
+  Void1(0x0e03) são campos transcritos; FRP não foi informado e o código Knox
+  não foi decodificado. A enumeração física foi 04e8:685d.
+- Heimdall negociou a sessão, leu PIT com 48 entradas, encerrou sessão e liberou interface.
+  Texto recebido: 15.301 bytes, SHA-256
+  d418207fe970c4a6d19c7cf17f7980e3256e3dc4315e40da68fb2c144054b973.
+  Versão/código de saída não aparecem; PIT binária não recebida. O comando
+  solicitado foi print-pit --no-reboot, sem instruções de flash/desbloqueio.
+- Novo relatório Download/PIT e JSON sanitizado conservam 576 campos de 48
+  entradas, índices consecutivos e nomes/IDs únicos. BOOT ID13, VENDOR_BOOT
+  ID14, RECOVERY ID15, DTBO ID11, VBMETA ID23 e VBMETA_SYSTEM ID24. Contagens
+  cruas preservadas; unidade em bytes não medida. Zero em UL_KEYS/USERDATA
+  não comprova tamanho nulo. File Offset(Obsolete) não foi decodificado.
+- A comparação com arquivos stock 64/64/8 MiB é condicionada a unidade de 4096 bytes;
+  não é limite de gravação certificado. Entry47 SSP não é slot47 NEWTIME.
+- Conferência do JSON com o texto: 576 campos e cinco marcadores coincidem;
+  15 linhas da tabela documental e 433 links locais conferidos. Sem mudança
+  de código executável; o baseline obrigatório será conferido pelo CI.
+- Matriz Samsung, coleta, roadmap e índices atualizados: consulta PIT física
+  demonstrada, mas upload/aceitação de imagem, aquisição RAM e recuperação
+  do registro continuam abertos. Consulta concluída; não pedir repetição das
+  mesmas leituras. Próximo: contrato de carga/validação e recuperação antes
+  de propor desbloqueio ou gravação. Nenhuma mudança de código executável.

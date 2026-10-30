@@ -135,6 +135,7 @@ não mudam o estado de validação no telefone.
 | SEC_PGTBL/LDFW | **Campos LK observados; provedor aberto** | [Bugreport de 27/10](bugreport-boot-hzc2.md): SEC_PGTBL 0xe0000000/0x1300000; SEC_DRAM 0xb8a00000/0x7600000. Valores formatados pelo LK, não registradores brutos do provedor. FDT final e DRM candidato cifrado seguem abertos |
 | UART e recuperação de logs | **Log stock recuperado; canal do diagnóstico ainda pendente** | Bugreport via rish/Shizuku fornecido pelo usuário contém log do bootloader; UART/pinmux/clock e recuperação dos 128 bytes do diagnóstico próprio continuam sem medição |
 | Primeiro diagnóstico físico | **Pendente** | Depende dos critérios de carregamento, região da imagem, entrada e leitura do registro abaixo |
+| Consulta USB Download no Mint | **PIT lida no aparelho** | [Sessão Heimdall concluída e 48 entradas](download-pit-observation-hzc2.md), com BOOT/VENDOR_BOOT/RECOVERY identificados. Bootloader ainda informado como travado; carga própria e leitura de RAM não demonstradas |
 | XNU/Darwin no QEMU | **Init próprio e referência iOS gráfica executados** | SpringBoard, Ajustes e Geral conferidos em PNG nativo 1125×2436; quatro CPUs, kernel prebuilt e imagens APFS identificados; sem hardware Samsung |
 | Contrato/adaptador XNU | **X2 parcial; recursos e memória UEFI conferidos no QEMU** | Loader recompilado, payload/janela reservados, quatro mapas completos; 22 critérios positivos, oito recusas, 22 testes de memória/evidência e 16 de recursos; falta contrato físico Samsung |
 | Display ramfb QEMU | **Contrato e reserva executados com XNU** | 25 critérios gráficos, 22 sem display, três recusas e 62 testes de host; interface local reproduzida no ensaio de referência separado |
@@ -368,6 +369,12 @@ dumpstate recuperou texto de boot stock, como documentado nas coletas de
 **UNREADABLE**, sem conteúdo capturado. Não repetir as mesmas coletas,
 pedir um log inexistente ou pressupor root. Uma nova coleta deve primeiro
 demonstrar uma mudança relevante de acesso/canal.
+
+Em 30/10, uma interface distinta foi observada: [Download pelo Heimdall](download-pit-observation-hzc2.md)
+negociou a sessão USB, leu 48 entradas PIT e liberou a interface no Mint.
+A consulta está concluída e não requer repetição. Isso identifica destinos
+de armazenamento, sem fornecer FDT final, mapa de RAM, aceitação de imagem
+própria ou canal do registro de entrada. OEM LOCK permanece informado ON(U).
 
 ## Evidências que sustentam este estado
 

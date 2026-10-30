@@ -79,3 +79,22 @@ permissão de ausência por esse resultado. [Hash, evidência e decisão](boot-l
 Não solicitar binários, repetir o procedimento ou concluir que não há log
 preservado na RAM. O acesso por essas interfaces encerra-se como indisponível
 nas condições atuais.
+
+## Mint/ADB e consulta Download concluídos — 2026-10-30
+
+O usuário autorizou ADB por USB no Mint 22.3/x86_64 e confirmou novamente
+SM-G998B/p3s, HZC2, uid=2000(shell), `flash.locked=1`, estado vbmeta `locked`
+e verified boot `green`. A opção OEM ativa nas configurações não foi tratada
+como desbloqueio; a tela Download foi transcrita com `OEM LOCK: ON(U)`.
+
+O USB enumerou `04e8:685d`. O [relatório Download/PIT](download-pit-observation-hzc2.md)
+documenta inicialização e encerramento da sessão Heimdall, leitura de 48
+entradas e extrato sem identificadores pessoais. O texto recebido foi
+identificado por SHA-256; não foi recebido o arquivo PIT binário. A versão
+do cliente e o código de saída não aparecem na transcrição.
+
+Isso acrescenta um canal físico de consulta de armazenamento, sem conceder
+novos privilégios ao shell. FDT, iomem, logs Harx e registro do diagnóstico
+continuam indisponíveis pelos caminhos já negados. Não repetir essas leituras
+como consequência da conexão do PC. A leitura da PIT está concluída e não
+demonstra aceitação de um payload ou aquisição de RAM.

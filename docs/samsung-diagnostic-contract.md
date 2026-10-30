@@ -18,6 +18,11 @@ não uma nova medição. Rish/Shizuku operou como uid=2000 e várias leituras
 foram negadas; o bugreport posterior recuperou logs stock. Estado Knox não
 substitui a comprovação de um caminho que aceite uma imagem própria.
 
+**Atualização de 30/10:** propriedades ADB e tela Download reconfirmaram o
+bloqueio informado. Uma [sessão Heimdall leu a PIT com 48 entradas](download-pit-observation-hzc2.md)
+e encerrou a interface. A consulta física Download agora está observada para
+essa operação; não demonstrou carga própria, leitura de RAM ou retorno da sonda.
+
 A documentação [AOSP sobre estado do dispositivo](https://source.android.com/docs/security/features/verifiedboot/device-state)
 descreve verificação da raiz de confiança no estado LOCKED. É uma regra de
 referência Android, não uma reconstrução de todos os validadores Samsung.
@@ -34,7 +39,7 @@ quando não houver observação explícita. Não foram relidos registradores fí
 
 | Requisito | Evidência disponível | Lacuna para execução física |
 |---|---|---|
-| Identidade e acesso | [Relato/coleta shell](runtime-collection.md), [bugreport HZC2](dram-observed-hzc2.md); último estado sem root/travado | Nenhum acesso novo ou caminho de imagem própria demonstrado |
+| Identidade e acesso | [Coleta shell](runtime-collection.md), [bugreport HZC2](dram-observed-hzc2.md), ADB/tela Download e [PIT lida em 30/10](download-pit-observation-hzc2.md); shell/travado | Consulta Download demonstrada para PIT; caminho de imagem própria ainda não demonstrado |
 | Artefato | [Diagnóstico](entry-diagnostic.md): Image ARM64 bruto, registro final de 128 bytes, sem EFI/Android/assinatura Samsung | Header ARM64 não é um boot.img aceito pelo telefone |
 | Contêiner/cópia | [Stock v3](stock-firmware-hzc2.md), [cópia LK](lk-kernel-copy.md): 0x12e88c copia kernel_size de boot+header arredondado | Autenticação, todos os ramos e efeitos de 0x151b10 ainda não encerrados; nenhum contêiner próprio validado |
 | Destino | Contexto em 0xfba18 e BLR 0xfbe14 ligam nominalmente 0x80080000+deslocamento_u32 | Não estabelece endereço efetivo desta Image no aparelho ou RAM livre |
@@ -61,13 +66,15 @@ O R10 exige EL2; a Image de diagnóstico aceita EL1/EL2. Os contratos são disti
 | Percurso | O que já se sabe | Estado nesta entrega |
 |---|---|---|
 | Boot stock + bugreport | Recuperou texto do bootloader via dumpstate | Observação stock; não executa a Image própria nem lê uma faixa arbitrária de RAM |
+| Download + Heimdall, consulta PIT | Sessão física negociada e 48 entradas recebidas no Mint; interface liberada | Leitura da tabela de partições observada. Não demonstra upload, aceitação de imagem própria, leitura de partição ou aquisição de RAM |
 | Imagem Android própria via cadeia Samsung | Formato e trecho de cópia têm modelos; [instalador Proton](loader-contract.md) altera boot/vendor_boot | Não disponível como percurso demonstrado sob o último estado travado; nem pacote do diagnóstico nem aceitação/retorno validados |
 | Chainload a partir de Linux | Shim antigo desativado; [referência pública](xfwdrev-kernel-reference.md) tem kexec e /dev/mem desativados | Não é um carregador existente; config de referência não prova config stock ou controle de EL2 |
 | GDB QEMU | Carrega a Image bruta e lê registros/snapshot antes de continuar/resetar | Disponível somente no laboratório; não é conexão GDB do telefone |
 
-Desbloqueio, root, recovery personalizado, protocolo Download e leitura de
-memória não são presumidos disponíveis. Nenhuma transição, instalação, flash,
-comando de dump OEM ou alteração de partição foi feita ou fornecida.
+Desbloqueio, root, recovery personalizado e leitura de memória continuam sem
+demonstração. Download foi observado apenas na consulta PIT acima. O comando
+solicitado foi de leitura; não foram fornecidos comandos de instalação de
+imagem, flash, dump OEM, reparticionamento ou desbloqueio neste procedimento.
 
 ## Canais de recuperação
 
