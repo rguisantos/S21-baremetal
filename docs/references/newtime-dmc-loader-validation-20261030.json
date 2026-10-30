@@ -1,0 +1,132 @@
+{
+ "source_head": "65732506b9af16dc7e506194f93a09829cf83d27",
+ "date": "2026-10-30",
+ "timezone": "America/Campo_Grande",
+ "tests": {
+  "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+  "passed": 663,
+  "new_in_this_continuation": 20,
+  "new_since_main": 60,
+  "byte_indices_exercised": 256
+ },
+ "exact_reproduction": "newtime-dmc-loader-hzc2.json",
+ "refusals": [
+  {
+   "case": "short",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "long",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "altered",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  }
+ ],
+ "gnu": {
+  "instructions": 479,
+  "halfwords": 499,
+  "relative_targets": 20,
+  "literals": 32,
+  "selected_operands": 33
+ },
+ "baseline": {
+  "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-dmc-loader-20261030",
+  "status": "passed",
+  "steps": [
+   {
+    "name": "01-runner-contract",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "e39f4fce27a52339fade4d9cb4f128412fb89a9445ebcbecaa40ac6f8b6fd299"
+   },
+   {
+    "name": "02-tool-versions",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+   },
+   {
+    "name": "03-build-r10",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "3cc2cb1c09e743971eed41c9b3192447cf35e8ed5ed8c1b60c9f095adac6baed"
+   },
+   {
+    "name": "04-fdt",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+   },
+   {
+    "name": "05-payload",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+   },
+   {
+    "name": "06-payload-stage",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+   },
+   {
+    "name": "07-entry-diag",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+   },
+   {
+    "name": "08-payload-loader",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "3d3b74ed49fc4e6d98acf1951fbd0aa4af2786501104a6ffefc0524e58bdca27"
+   },
+   {
+    "name": "09-entry-record",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "dac70b34a67cbace34491d42eb0c9f489f85c374dc292236f2bf972987a81385"
+   }
+  ]
+ },
+ "previous_validation": {
+  "path": "newtime-domain0-callees-validation-20261030.json",
+  "historical_validated_tree": "9868e5c0c897c481dae503c24736b7d4f2a9adeb"
+ },
+ "local_links_checked": 497,
+ "sha256": {
+  "scripts/inspect_newtime_dmc_loader_hzc2.py": "0ea473f4c8d718646bb1372c6d4faabe80dc319ed3bb8d4bc28a0e45fb64aebc",
+  "scripts/test_newtime_dmc_loader.py": "88d3a4c845e2e811706c6028fa2603720d00911cad51374ca3b5344f371f7a17",
+  "scripts/test_newtime_dmc_method12.py": "5b8de14a749edbf23ed9716de9626b7fee6573f4bb043dca2255f95ba9bad077",
+  "docs/references/newtime-dmc-loader-hzc2.json": "4d35343a94377cfde1d45c83c8b7c98ddc0d2643e6cdd45667603cfc99d7dbe3"
+ },
+ "samsung_execution": false,
+ "qemu_firmware_scope_expanded": false,
+ "slot47_resolved": false
+}

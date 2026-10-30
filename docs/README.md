@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md): comparação sem aborto, linhas por argumentos distintos, publicações e releituras de controle; 20 testes.
+
 - [Callback0, truncamento de índice e DMC17](newtime-domain0-callees-hzc2.md): duas folhas com stores, count0→255, carregador e segundo método por raízes distintas; 20 testes.
 
 - [Helper DVFS e dependências do canal direto](newtime-fast-apply-hzc2.md): quinze entradas, retorno/clear sem agregação de erros e seleção transitiva de domínio0; 20 testes.

@@ -3180,3 +3180,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Documentação/índices/roadmap reconciliados. Restam restante de0x5a2b8,
   carregador0x647ac,produtor0xabcd1234,ordem init9/máscaras e slot47/X0.
   Sem execução Samsung ou ampliação QEMU do firmware.
+
+## 2026-10-30 — carregador DMC17, seleção de linhas e cauda
+
+- Base6573250, PR53 permanece sem merge: revisão do head anterior completed
+  sem achados,CI success e Entire exige aprovação de revisor. Continuação
+  técnica na mesma PR; aprovação não substituída por revisão própria.
+- Teste de tamanho usa comparação signed de u32(3a600+M32[3a610]) com3c9ff.
+  Caso maior chama0x60c6c(R0=4), uma folha BX LR, e continua. Fixtures de
+  limite/wrap não interrompem as publicações. Nenhuma segurança global
+  de memória ou ocorrência física foi atribuída a esse resultado local.
+- Máscara0xa58609bc: indicador superior exclui bit31 e usa ASR low8(k).
+  Grupo alternativo exige s32(k)>5 e bit k da metade baixa; ajusta j=k-6.
+  Nos256 índices u8, alternativa só6..15; k255 usa grupo comum. Os campos
+  state+1e8/+1ec selecionam linhas pelo primeiro argumento e por j,
+  respectivamente. Cache e demais ponteiros são publicados antes da cauda.
+- Corpo completo0x64a64 conferido: controles0xa58609a8/ac são relidos;
+  descritor apontado por state+1ec pode ser editado. Serviços indiretos
+  +16/+40 da tabela37fb4 continuam hooks,sem efeitos físicos fabricados.
+  Retornos dos leitores viram dados; não há agregação local dos resultados.
+  Loader retorna0 após a cauda retornar; interrupção mantém stores prévias.
+- Integração crua wrapper→loader→cauda→segundo método usa raízes explícitas.
+  Teste de alias altera stride3 antes da publicação posterior. Novo
+  extrator:GNU479 instruções/499 halfwords/20 alvos/32 literais/33 operandos.
+  20 testes novos;663 NEWTIME aprovados. ASR register/UXTH/STRH imediato
+  implementados no avaliador,com flags,low8,zero-extension e wrap conferidos.
+- JSON reproduzido exatamente;três imagens inválidas recusadas exit2 sem
+  stdout/JSON. Baseline novo aprovado nas nove etapas,host43/60/17,
+  diagnóstico12,loader1+5,leitor17. Sem execução Samsung ou ampliar QEMU.
+- README/índices/roadmap reconciliados. Próximo: serviços0x641a4/0x641d0,
+  restante do modo2 em0x5a2b8 e produtor do magic0xabcd1234. Ordem física
+  init9/máscaras e slot47/X0 seguem abertos.

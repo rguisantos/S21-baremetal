@@ -206,8 +206,12 @@ class RawThumb:
                     shift = self.r[s] & 255
                     self.r[d] = self.shift(self.r[d], shift, False)
                     self.nz(self.r[d])
-                elif op == 4:                                          # ASR register not covered
-                    raise ValueError('ASR register is outside this slice evaluator')
+                elif op == 4:                                          # ASR register, low8 count
+                    count, value = self.r[s] & 255, self.r[d]
+                    if count:
+                        self.c = bool(value & (1 << 31)) if count >= 32 else bool(value & (1 << (count - 1)))
+                        self.r[d] = (self.sgn(value, 32) >> min(count, 32)) & U32
+                    self.nz(self.r[d])
                 elif op == 8:                                          # TST
                     self.nz(self.r[d] & self.r[s])
                 elif op == 9:                                          # NEGS
@@ -295,6 +299,8 @@ class RawThumb:
                     raise ValueError(f'unsupported 0101 op {op} at {p:#x}')
             elif h & 0xFFC0 == 0xB2C0:                                 # UXTB, flags unchanged
                 self.r[h & 7] = self.r[(h >> 3) & 7] & 255
+            elif h & 0xFFC0 == 0xB280:                                 # UXTH, flags unchanged
+                self.r[h & 7] = self.r[(h >> 3) & 7] & 65535
             elif family == 0xC800:                                     # LDMIA, base outside list
                 n, registers = (h >> 8) & 7, h & 255
                 if not registers or registers & (1 << n):
@@ -305,6 +311,10 @@ class RawThumb:
                         self.r[i] = self._load(address)
                         address = (address + 4) & U32
                 self.r[n] = address
+            elif family == 0x8000:                                     # STRH imm5
+                d, n = h & 7, (h >> 3) & 7
+                a = (self.r[n] + ((h >> 6) & 31) * 2) & U32
+                self._store(a, self.r[d], half=True)
             elif family == 0x8800:                                     # LDRH imm5
                 d, n = h & 7, (h >> 3) & 7
                 a = (self.r[n] + ((h >> 6) & 31) * 2) & U32
@@ -1163,9 +1173,10 @@ class AuditRegressionTests(unittest.TestCase):
         m=RawThumb(load());m.n,m.z,m.c,m.v=True,True,False,True
         m.run(0x38b06,{0x38b0a});self.assertEqual((m.n,m.z,m.c,m.v),(True,True,False,True))
 
-    def test_unimplemented_asr_fails_instead_of_being_cmp(self):
-        m=RawThumb(load());m.code[0]=bytes.fromhex('0841')
-        with self.assertRaisesRegex(ValueError,'ASR'):m.run(0,{2})
+    def test_asr_is_not_confused_with_cmp(self):
+        m=RawThumb(load());m.code[0]=bytes.fromhex('0841');m.r[:2]=[0x80000000,1]
+        m.run(0,{2});self.assertEqual(m.r[0],0xc0000000)
+        self.assertTrue(m.n);self.assertFalse(m.z);self.assertFalse(m.c)
 
     def test_add_carry_and_overflow_from_encoded_words(self):
         for a,result,carry,overflow in ((U32,0,True,False),(0x7fffffff,0x80000000,False,True)):

@@ -129,7 +129,9 @@ novo. Sem execução Samsung ou ampliação QEMU do firmware. O relatório
 anterior de 623 testes permanece histórico da árvore `82d7fe0`; esta
 validação cobre as extensões do avaliador e os artefatos atuais.
 
-Próximo: restante do corpo `0x5a2b8` e do carregador `0x647ac`, incluindo
-consumidores dos argumentos e gates. Produtor de `0xabcd1234`, ordem init9
+Os corpos locais do carregador `0x647ac` e de sua cauda foram delimitados
+na [continuação DMC17](newtime-dmc-loader-hzc2.md), com seleção distinta
+dos argumentos e publicações anteriores à cauda. Restam os serviços
+indiretos e o restante de `0x5a2b8`. Produtor de `0xabcd1234`, ordem init9
 versus máscaras, valores/aliases físicos e slot47/X0 continuam abertos.
 Identificar DMC17 não prova a ausência global de DMC8/9 ou outros efeitos.

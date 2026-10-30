@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [continuação do callback0](newtime-domain0-callees-hzc2.md) fecha as duas folhas0x59e34/0x5a004, delimita count0→índice255 e liga o modo2 ao DMC17→carregador0x647ac→método0x65124, sob gates/bindings preservados. Próximo: restante de0x5a2b8/0x647ac e produtor de0xabcd1234. Valores vivos e ordem física continuam abertos.
+O [carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md) têm seus corpos locais delimitados. O teste de tamanho não aborta; publicações precedem a cauda, que relê controles e pode editar descritores/chamar serviços. Próximo: serviços0x641a4/0x641d0, restante de0x5a2b8 e produtor de0xabcd1234. Alcançabilidade, valores vivos e ordem física seguem abertos.
+
+A [continuação do callback0](newtime-domain0-callees-hzc2.md) fecha as duas folhas0x59e34/0x5a004, delimita count0→índice255 e liga o modo2 ao DMC17→carregador0x647ac→método0x65124, sob gates/bindings preservados.
 
 O [helper do canal direto](newtime-fast-apply-hzc2.md) percorre1–7/11–18, despacha dependências sem os skips externos e termina com clear/retorno0 sem agregar erros dos callees. O clear AP0x15900104 continua sem ligação a uma barreira DMC; não foi demonstrada liberação de DMC8/9 pelo canal direto.
 

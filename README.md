@@ -1,6 +1,8 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-A [continuação do callback0](docs/newtime-domain0-callees-hzc2.md) identifica duas folhas com stores e uma rota nominal ao DMC17, que chama o carregador de configuração e outro método. Lookup com count0 vira índice255 sem guard local antes da linha. São 643 testes NEWTIME aprovados; valores vivos, efeitos completos e produtor do magic continuam abertos.
+O [carregador DMC17 e sua cauda](docs/newtime-dmc-loader-hzc2.md) têm os corpos locais delimitados: comparação de tamanho chama uma folha sem ação, dois argumentos selecionam linhas distintas e a cauda pode alterar descritores após a publicação. São 663 testes NEWTIME aprovados; serviços indiretos, condições físicas e produtor do magic continuam abertos.
+
+A [continuação do callback0](docs/newtime-domain0-callees-hzc2.md) identifica duas folhas com stores e uma rota nominal ao DMC17. Lookup com count0 vira índice255 sem guard local antes da linha; valores vivos e produtor do magic continuam abertos.
 
 O [helper DVFS do canal direto](docs/newtime-fast-apply-hzc2.md) visita quinze entradas e limpa o sinal após seus callees retornarem, sem agregar erros. Dependências podem selecionar domínio0 apesar do skip externo. PRs #51/#52 integradas; o produtor do magic e os efeitos transitivos continuam abertos.
 
