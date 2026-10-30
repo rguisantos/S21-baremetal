@@ -84,8 +84,9 @@ A frase “nenhum escritor em toda a imagem” foi retirada. As células core
 `0x3a660/0x3a664/0x3a668` estão além da segunda cópia; leitores foram
 identificados, mas stores calculadas e aliases ainda precisam de análise.
 A hipótese do carregador de configuração `0x647ac..0x65170` não é uma
-prova de ausência. Próxima tarefa: reconstruir a origem dos descritores
-e os destinos calculados dessas stores, antes de procurar um escritor AP.
+prova de ausência. A [continuação de configuração](newtime-dmc-config-hzc2.md)
+agora liga uma store calculada ao comando20 e uma origem adicional do cache;
+a origem dos descritores vivos continua aberta.
 O chamador/X0 do slot 47 BL2 continua aberto.
 
 ## Reprodução

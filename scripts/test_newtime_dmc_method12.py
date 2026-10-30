@@ -217,6 +217,9 @@ class RawThumb:
                 elif op == 12:
                     self.r[d] |= self.r[s]
                     self.nz(self.r[d])
+                elif op == 13:                                         # MULS, C/V preserved
+                    self.r[d] = (self.r[d] * self.r[s]) & U32
+                    self.nz(self.r[d])
                 elif op == 15:
                     self.r[d] = U32 ^ self.r[s]
                     self.nz(self.r[d])

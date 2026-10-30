@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [escrita DMC por descritor e o cache h/g2](docs/newtime-dmc-config-hzc2.md) agora têm fórmula e rota de comando20 delimitadas. Os aliases às máscaras dependem dos descritores vivos; o cache também recebe base do carregador.
+
 A [auditoria DMC 8/9](docs/newtime-dmc-method12-hzc2.md) liga os wrappers aos handlers e confirma retorno 8 descartado antes do 9. Modelos e testes foram corrigidos; máscaras, tabela e escritores por endereços calculados permanecem abertos.
 
 Os [setters de política FVP](docs/newtime-policy-writers-hzc2.md) gravam limite/habilitação e respondem sem chamada direta ao relay DVFS nos caminhos selecionados. Uma invocação posterior do comando6 relê essas políticas.

@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. Próxima fronteira: produtor do cabeçalho/diretório vivo e recebimento desse comando; aliases às máscaras permanecem condicionais.
+
 A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. Próxima frente: stores calculadas do carregador de configuração e origem das máscaras/base core 0x3a660/0x3a664/0x3a668. O valor vivo e o efeito físico continuam abertos.
 
 Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e valores runtime do DMC permanecem abertos.

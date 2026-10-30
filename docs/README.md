@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Escrita DMC por descritor e cache h/g2](newtime-dmc-config-hzc2.md): comando20, store calculada, aliases condicionais e duas origens do cache; 16 testes.
+
 - [DMC método +12 e subcomandos 8/9](newtime-dmc-method12-hzc2.md): cadeia nominal, retornos, polls e correções dos modelos/testes GLM; 78 testes.
 
 - [Setters de política FVP](newtime-policy-writers-hzc2.md): limites, habilitação u32 e recomputação em nova invocação comando6.

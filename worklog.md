@@ -3017,3 +3017,28 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   frente: descritores e stores calculadas do carregador DMC.
 - PR #51 ainda pendente; manter auditoria DMC em branch/PR dependente.
   Nenhum merge sem revisão automática do head exato e gates aprovados.
+
+## 2026-10-29 — DMC comando20, store por descritor e cache h/g2
+
+- Base `60f291a` (PR #52). Método+0 sob gate core0x37d3c==0 usa
+  low16(packet.word0); entrada20 aponta para0x5fd38. Handler extrai
+  bytes7/6/5/4 e word8, chama0x60148 e método da tabela0x38038+104,
+  inicialmente0x64c68. A rota de recebimento e os guards vivos seguem abertos.
+- A store0x64c94 usa base capturada0x3a600+offset do descritor, stride
+  recarregado e endereço u32(base+4*(stride*linha+coluna)). Modo1 cobre
+  linhas0..12. Aliases ao próprio stride alteram iterações posteriores.
+  Fixtures alcançam0x3a660/64/68 sob offsets explícitos; nenhum valor vivo
+  desses descritores foi atribuído ao firmware/aparelho.
+- Cache h/g2 core0x38404 é compartilhado. Carregador0x648be instala
+  0x3a600+M32[0x3a884]; helpers só usam fallback M32[0x3a664] quando cache
+  zero. Origem do cabeçalho/diretório e ordem física continuam abertas.
+- Novo extrator/JSON:440 instruções GNU,458 halfwords,22 alvos relativos,
+  37 literais e48 operandos selecionados. 16 testes novos usam palavras
+  reais, incluindo handler/wrapper/helper,80 casos aleatórios,alias de
+  stride,cache,gate ocupado e orçamento host. Avaliador parcial ganhou
+  MULS u32/NZ com preservação de CV. Suíte NEWTIME:560 testes passaram.
+- JSON reproduzido exatamente, três recusas por tamanho/hash com exit2 sem
+  JSON. Links alterados e diff conferidos. Documentação/índices/roadmap
+  atualizados. Sem execução Samsung, ampliação QEMU ou resolução slot47.
+- Gates remotos dos PRs51/52: baseline e findings aprovados; aprovação de
+  revisor Entire ausente. Integração permanece condicionada às regras AGENTS.
