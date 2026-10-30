@@ -3416,3 +3416,32 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos 1281 links locais; atualizados índices, roadmap e matriz Samsung.
   Próximo: verificador0x1262b0 e ações/retorno completos do wrapper0x17f5d0.
   Nenhum firmware, SMC, flash, desbloqueio, root ou apagamento foi executado.
+
+
+## 2026-10-30 — verificador vbmeta, tabelas SHA/RSA e tradução para o slot
+
+- Continuação da PR #59, base main fbbcd3f. Sem operações no telefone.
+- Delimitado 0x1262b0: saídas da chave zeradas, verificações locais de
+  cabeçalho/intervalos, resultado1 para não assinado,4 para hash e5 para
+  assinatura. Sucesso0 publica chave candidata, ainda sujeito a confiança.
+- Tabela0x305be0 e dispatch0x230740 conferidos: seis combinações SHA256/512
+  com RSA2048/4096/8192, comprimentos e todos os prefixos PKCS#1 v1.5.
+  Hash nominal cobre cabeçalho original256 + auxiliar, não autenticação.
+- Helper RSA0x126b30: limites de chave/assinatura, sequência Montgomery
+  correspondente a65537 e comparações separadas de padding/digest. Não
+  certifica aritmética ou recusa de todas as falhas de alocação.
+- Dispatch0x230708 traduz vbmeta1/4/5 em erro de verificação do slot3,
+  com continuação condicionada ao frame+248; vbmeta2→slot6, vbmeta3→slot7.
+  Sucesso vbmeta0 ainda exige chave não nula antes dos próximos controles.
+- Novo inspect_lk_avb_signature.py: 1.147 palavras GNU,232 destinos relativos,
+  74 operandos selecionados,9 grafos locais,2 dispatches signed byte×4,
+  seis nomes de resultados e seis registros/prefixos de algoritmo.
+- 18 testes novos passaram, incluídos no CI; regressões13/17/12 passaram.
+  Relatório reproduzido byte a byte. Baseline completo de nove etapas passou;
+  resumo SHA-2563cb0206e7b7e71c7cf44629252b90429610d6996a7e558319f742d50ea83207c.
+- Referência de formato/algoritmos fixada em b27a9aa; hashes de quatro fontes
+  primárias no relatório, sem atribuí-los como fonte correspondente Samsung.
+- Conferidos 1.296 links locais de arquivos, sem destinos ausentes.
+- Atualizados índices, roadmap e matriz Samsung. Próximo: wrapper0x17f5d0
+  após0x17f724, origem da continuação tolerada e fornecedor seguro da chave.
+  Nenhuma execução/emulação de firmware Samsung, SMC, desbloqueio ou flash.

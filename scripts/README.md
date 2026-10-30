@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+O [verificador vbmeta e caminho RSA](../docs/lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
+
 O [callback de confiança AVB](../docs/lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.
 
 - `inspect_newtime_dmc_table_services_hzc2.py` / `test_newtime_dmc_table_services.py`: tabela da cauda, acumulador ID18, consumidor selecionado e publicador por raízes distintas; 21 testes e [limites](../docs/newtime-dmc-table-services-hzc2.md).
@@ -248,3 +250,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_embedded_key.py` / `test_lk_embedded_key.py`: endereço do consumidor decodificado, comprimento u32 e chave pública serializada AVB com parâmetros Montgomery conferidos; 17 testes sem firmware, referência de formato fixada e recusa de imagem não identificada. Não executa SHA no monitor nem verifica confiança/assinatura. [Identificação e limites](../docs/lk-embedded-avb-key-hzc2.md).
 
 - `inspect_lk_avb_trust.py` / `test_lk_avb_trust.py`: tabela AvbOps, slots +48/+72, consulta nominal da chave `vbmeta`, separação status/confiança e rótulos locais do wrapper. Treze testes de binding e recusa, sem executar firmware ou SMC. [Evidência e limites](../docs/lk-avb-key-trust-hzc2.md).
+
+- `inspect_lk_avb_signature.py` / `test_lk_avb_signature.py`: caminho vbmeta/RSA, tabelas de algoritmos/padding, dois dispatches signed byte e conversão de resultados para o slot. Dezoito testes sintéticos de decodificação/recusa, sem executar firmware. [Evidência e limites](../docs/lk-avb-signature-hzc2.md).
