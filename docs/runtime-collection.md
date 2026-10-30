@@ -98,3 +98,40 @@ novos privilégios ao shell. FDT, iomem, logs Harx e registro do diagnóstico
 continuam indisponíveis pelos caminhos já negados. Não repetir essas leituras
 como consequência da conexão do PC. A leitura da PIT está concluída e não
 demonstra aceitação de um payload ou aquisição de RAM.
+
+## Links de armazenamento e sete leituras negadas — 2026-10-30
+
+Duas mensagens inline do usuário forneceram a listagem por nome e a consulta
+explícita posterior. O [extrato](references/storage-shell-access-20261030.json)
+conserva 40 links: cinco dispositivos completos e 35 partições cujos nomes
+correspondem à PIT, comparados sem distinguir maiúsculas/minúsculas.
+
+| Nome Android | Destino informado | Identifier na PIT |
+|---|---|---:|
+| boot | /dev/block/sda13 | 13 |
+| vendor_boot | /dev/block/sda14 | 14 |
+| recovery | /dev/block/sda15 | 15 |
+| dtbo | /dev/block/sda11 | 11 |
+| vbmeta | /dev/block/sda23 | 23 |
+| cpefs | /dev/block/sdd1 | 35 |
+
+A presença de cpefs em sdd1 impede generalizar Identifier como número de
+partição sda. O symlink sda em sysfs aponta ao caminho contendo
+`13100000.ufs/host0/target0:0:0/0:0:0:0/block/sda`. O nome do nó é observação
+de caminho, sem acrescentar endereço de RAM livre ou posição de payload.
+
+O primeiro laço não produziu valores. A consulta explícita mostrou os links
+de sysfs e **Permission denied** para sete atributos: logical_block_size
+de sda e start/size de sda13, sda14 e sda15. Nenhum número foi obtido.
+Os modos dos arquivos de destino não foram coletados; DAC e SELinux não
+foram isolados como causa. Permissões/visibilidade de symlinks não concedem
+acesso ao conteúdo dos atributos ou dispositivos.
+
+**Coleta encerrada nessas condições.** Não pedir os mesmos sete arquivos
+por aliases, blockdev, root ADB ou comandos de alteração de permissões.
+Tamanho lógico e geometria efetiva permanecem sem medição; a comparação
+PIT/arquivos stock sob unidade de 4096 bytes continua condicionada.
+
+Uma análise estática separada do [handler de transição de estado](lk-device-state-switch-hzc2.md)
+encontrou o pedido de wipe ao recovery antes do setter. Não é um caminho
+de consulta de geometria e não foi executado para contornar a negação.

@@ -23,6 +23,12 @@ bloqueio informado. Uma [sessão Heimdall leu a PIT com 48 entradas](download-pi
 e encerrou a interface. A consulta física Download agora está observada para
 essa operação; não demonstrou carga própria, leitura de RAM ou retorno da sonda.
 
+A continuação [por shell Android](runtime-collection.md#links-de-armazenamento-e-sete-leituras-negadas--2026-10-30)
+obteve nomes/destinos de 35 partições, mas negou sete atributos de geometria.
+Essas leituras estão encerradas sob o mesmo acesso. A análise do
+[handler de transição](lk-device-state-switch-hzc2.md) identifica um pedido
+de wipe ao recovery; ele não foi executado ou proposto como consulta.
+
 A documentação [AOSP sobre estado do dispositivo](https://source.android.com/docs/security/features/verifiedboot/device-state)
 descreve verificação da raiz de confiança no estado LOCKED. É uma regra de
 referência Android, não uma reconstrução de todos os validadores Samsung.

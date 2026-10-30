@@ -376,6 +376,14 @@ A consulta está concluída e não requer repetição. Isso identifica destinos
 de armazenamento, sem fornecer FDT final, mapa de RAM, aceitação de imagem
 própria ou canal do registro de entrada. OEM LOCK permanece informado ON(U).
 
+A [continuação Android](runtime-collection.md#links-de-armazenamento-e-sete-leituras-negadas--2026-10-30)
+obteve 40 links (35 partições correspondentes à PIT e cinco dispositivos),
+mas os sete atributos de geometria solicitados foram negados. Não repetir
+essa coleta sem mudança relevante de acesso. A análise estática do
+[handler de transição](lk-device-state-switch-hzc2.md) delimitou cópia do
+pedido de wipe e despacho de armazenamento antes do setter; não houve
+execução ou preparação de uma confirmação destrutiva no telefone.
+
 ## Evidências que sustentam este estado
 
 | Área | Referências |
