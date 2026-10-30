@@ -133,7 +133,7 @@ O [registro anterior da geometria](docs/bl2-geometry-record-hzc2.md) agora liga 
 | R9 | EL0, SVC, tarefas, troca de contexto e preempção | QEMU PASS |
 | R10 | Entrada EL2 → EL1, FDT, GIC herdado, timer e exceções fatais | Compilação; modelos host; integração com carregador sintético no QEMU |
 | Carregador de teste EL2 | Contêiner → main R10 real, UART QEMU | Materialização conferida por GDB; timer IRQ; cinco recusas; uma CPU |
-| Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; sem execução no telefone |
+| Diagnóstico de entrada | Image independente, captura EL1/EL2 sem periféricos | [12 casos QEMU PASS](docs/entry-diagnostic.md), seis entradas aceitas e seis recusas; leitor de símbolos com cinco regressões de locale; sem execução no telefone |
 | Shim | Legado em quarentena; inspeção S21R10 v1 | Compilação; entrada padrão estaciona; handoff desativado |
 | Laboratório XNU | XNU prebuilt + init próprio; referência HackiOS com userland iOS | Consumidor validado com interface iOS em uma CPU e referência em quatro CPUs; sem teste Samsung |
 

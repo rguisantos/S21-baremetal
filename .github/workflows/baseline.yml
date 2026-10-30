@@ -27,6 +27,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3
           dpkg-query -W gcc gcc-aarch64-linux-gnu binutils binutils-aarch64-linux-gnu qemu-system-arm python3
+      - name: Check ELF symbol reader with localized headers
+        run: python3 scripts/test_elf_symbols.py
       - name: Build and validate the required baseline
         run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
       - name: Preserve logs and summary
