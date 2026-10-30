@@ -1,5 +1,13 @@
 # Catálogo de scripts
 
+- `inspect_newtime_dmc_table_services_hzc2.py` / `test_newtime_dmc_table_services.py`: tabela da cauda, acumulador ID18, consumidor selecionado e publicador por raízes distintas; 21 testes e [limites](../docs/newtime-dmc-table-services-hzc2.md).
+
+- `inspect_newtime_dmc_loader_hzc2.py` / `test_newtime_dmc_loader.py`: corpos locais do carregador DMC17 e cauda, ASR/UXTH/STRH e publicações condicionais; 20 testes e [condições](../docs/newtime-dmc-loader-hzc2.md).
+
+- `inspect_newtime_domain0_callees_hzc2.py` / `test_newtime_domain0_callees.py`: folhas do callback0, índice low8, rota DMC17 e dois métodos; 20 testes e [escopo](../docs/newtime-domain0-callees-hzc2.md).
+
+- `inspect_newtime_fast_apply_hzc2.py` / `test_newtime_fast_apply.py`: laço do helper direto, callbacks/dependências e retorno/clear condicionados; 20 testes e [limites](../docs/newtime-fast-apply-hzc2.md).
+
 - `inspect_newtime_policy_writers_hzc2.py` / `test_newtime_policy_writers.py`: setters FVP comando4 e comando5/subseletor2, dez regressões de palavras Thumb e sequência com comando6.
 
 - `inspect_newtime_dispatch_completion_hzc2.py` / `test_newtime_dispatch_completion.py`: consumidor do retorno FVP e avanço circular condicionado, nove testes.

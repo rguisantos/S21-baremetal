@@ -453,7 +453,7 @@ def inspect(path):
                      arg2='same 0x5adb0 result',return_tested='ble 0x59826 skips only notify cmd4'),
                 dict(pc='0x59828',wrapper='0x581fc',cmd=8,packed='(idxA<<8)|idxB',sel=0,
                      return_tested='ble 0x59842 skips only notify cmd5')],
-            level_indices='idxA=0x5acec(A,entry), idxB=0x5acec(B,entry); count0/lookup-miss reach the -1 returns 0x59896/0x5989c before any DMC call'),
+            level_indices='idxA=0x5acec(A,entry), idxB=0x5acec(B,entry); count0 returns-1 and reaches 0x59896/0x5989c before any DMC call; nonempty lookup selects first low24(level)<=value, or last index if none'),
         generic_relay=dict(
             file='0x38b04',plugin_table='core0x8000: +0 descriptor array (0x7150), +20 count (13)',
             gates=dict(count='M32[core0x8014] > target (unsigned bls)',enabled='u8[desc+32] != 0',

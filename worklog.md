@@ -3118,3 +3118,137 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   helper0x5a938. Ordem init9/máscaras e slot47/X0 seguem abertos.
   Heads anteriores51/52:CI/review sem achados bloqueantes,mas gate Entire
   exige aprovação de revisor;nenhum bypass de merge.
+
+## 2026-10-30 — integração PR51/52 e helper DVFS do canal direto
+
+- PR51: revisão automática refeita no head exato f1524a3, completed sem
+  achados/threads, baseline remoto aprovado; merge b76d0fe. PR52 retargetada
+  para main, revisão refeita no head f7caa3e, completed sem achados/threads
+  e CI aprovado; merge 3ab54d1. Nenhuma aprovação foi substituída por revisão
+  própria nem se usou bypass de merge.
+- Continuação: helper0x5a938 visita1–7/11–18, testa halfword header+22,
+  chama wrapper direto ou dependências, relê entry+32 e chama folha BX LR.
+  Após os callees retornarem, limpa0xa590010c e retorna0 sem agregar erros.
+  Interrupção por memória/callee sem retorno não alcança esse clear.
+- Dependências capturam count u8 uma vez, recarregam ponteiro/ID, preservam
+  duplicatas e passam valor u32 inteiro de header-alvo+24. Sem os skips
+  externos; ID0 alcança callback inicial0x599ec sob preservação. Integração
+  com palavras reais percorre método0→helper→dependência→wrapper→callback0.
+  Os corpos0x59e34/0x5a004/0x5a2b8 continuam fronteiras, não prova de DMC8/9.
+- Busca exata dos quatro bytes do magic0xabcd1234 no sboot inteiro só
+  encontrou o literal comparador0x56eb0. Produtor não resolvido; valores
+  calculados/externos não excluídos. Ordem init9/máscaras, alias físico,
+  barreira de0x104 e slot47/X0 permanecem abertos.
+- Novo extrator/JSON: GNU383 instruções/420 halfwords/68 alvos/17 literais/
+  36 operandos. 20 testes novos,80 listas aleatórias,voláteis alterados,
+  releituras,IDs extremos e clear condicional. Avaliador ganhou LDRH imediato
+  com carga de16 bits,zero-extension e endereço u32; ausência de memória
+  continua falhando. 623 testes NEWTIME aprovados; JSON exato e três recusas
+  CLI exit2 sem stdout/JSON. Baseline novo aprovado nas nove etapas,
+  host43/60/17,diagnóstico12,loader1+5 e leitor17. Sem ampliar QEMU Samsung.
+- README/índices/roadmap reconciliados. Próximo: produtor do outro magic e
+  os três callees do callback0, mantendo as fronteiras explícitas.
+
+## 2026-10-30 — callback0, índice low8 e DMC17
+
+- Base3d3eeaa, PR53 ainda aberta: revisão automática do head completed sem
+  achados e CI success; Entire Gates falha somente por aprovação de revisor
+  ausente. Continuação na mesma PR, sem ignorar esse bloqueador de merge.
+- Delimitadas folhas0x59e34/0x5a004: três/cinco stores constantes e três
+  RMW em cada corpo. Sem calls/polls locais; primeira preserva R0, segunda
+  deixa a palavra antiga de0xa0020600 em R0. Efeitos físicos não atribuídos.
+- Modo2 de0x5a2b8 usa lookup0x5acec e UXTB: count0 retorna-1, vira255 e
+  calcula linha sem guard desse erro antes de ler linha+2/+5. Memória ausente
+  falha; fixture de linha255 explícita confirma stores sem afirmar OOB vivo.
+  Corrigida descrição antiga: lookup não vazio sem limiar satisfeito usa
+  último índice; não retorna-1 por ausência de coincidência.
+- Chamada0x5a43c→wrapper0x5822c publica plugin9/subcmd17 e dois u32. Sob
+  gates/bindings, método12→handler0x5faac→wrapper0x60198. Este chama método96
+  nominal0x647ac e depois relê método192 nominal0x65124, sem testar retorno
+  anterior. Integração crua inclui dispatcher/handler/wrapper/segundo método;
+  carregador é hook explícito, com voláteis alterados. Handler retorna0.
+- Método0x65124 lê fonte e escreve destino por raízes distintas; atualiza
+  low4 e copia palavra de ponteiro+128 para outro destino+0x504. Teste de
+  alias mostra primeira store mudando o ponteiro relido posteriormente.
+  Registradores físicos/unidades/retorno de sucesso não foram atribuídos.
+- Novo extrator: GNU466 instruções/493 halfwords/41 alvos/47 literais/
+  45 operandos. 20 testes novos, três conjuntos de80 casos. Avaliador ganhou
+  UXTB/BICS/LDMIA base fora da lista, com flags/wrap/memória ausente conferidos.
+  643 testes NEWTIME passaram. Dois JSONs reproduzidos exatamente; novo
+  extrator recusa três imagens inválidas exit2 sem stdout/JSON. Baseline
+  novo aprovado nas nove etapas:host43/60/17,diag12,loader1+5,leitor17.
+- Documentação/índices/roadmap reconciliados. Restam restante de0x5a2b8,
+  carregador0x647ac,produtor0xabcd1234,ordem init9/máscaras e slot47/X0.
+  Sem execução Samsung ou ampliação QEMU do firmware.
+
+## 2026-10-30 — carregador DMC17, seleção de linhas e cauda
+
+- Base6573250, PR53 permanece sem merge: revisão do head anterior completed
+  sem achados,CI success e Entire exige aprovação de revisor. Continuação
+  técnica na mesma PR; aprovação não substituída por revisão própria.
+- Teste de tamanho usa comparação signed de u32(3a600+M32[3a610]) com3c9ff.
+  Caso maior chama0x60c6c(R0=4), uma folha BX LR, e continua. Fixtures de
+  limite/wrap não interrompem as publicações. Nenhuma segurança global
+  de memória ou ocorrência física foi atribuída a esse resultado local.
+- Máscara0xa58609bc: indicador superior exclui bit31 e usa ASR low8(k).
+  Grupo alternativo exige s32(k)>5 e bit k da metade baixa; ajusta j=k-6.
+  Nos256 índices u8, alternativa só6..15; k255 usa grupo comum. Os campos
+  state+1e8/+1ec selecionam linhas pelo primeiro argumento e por j,
+  respectivamente. Cache e demais ponteiros são publicados antes da cauda.
+- Corpo completo0x64a64 conferido: controles0xa58609a8/ac são relidos;
+  descritor apontado por state+1ec pode ser editado. Serviços indiretos
+  +16/+40 da tabela37fb4 continuam hooks,sem efeitos físicos fabricados.
+  Retornos dos leitores viram dados; não há agregação local dos resultados.
+  Loader retorna0 após a cauda retornar; interrupção mantém stores prévias.
+- Integração crua wrapper→loader→cauda→segundo método usa raízes explícitas.
+  Teste de alias altera stride3 antes da publicação posterior. Novo
+  extrator:GNU479 instruções/499 halfwords/20 alvos/32 literais/33 operandos.
+  20 testes novos;663 NEWTIME aprovados. ASR register/UXTH/STRH imediato
+  implementados no avaliador,com flags,low8,zero-extension e wrap conferidos.
+- JSON reproduzido exatamente;três imagens inválidas recusadas exit2 sem
+  stdout/JSON. Baseline novo aprovado nas nove etapas,host43/60/17,
+  diagnóstico12,loader1+5,leitor17. Sem execução Samsung ou ampliar QEMU.
+- README/índices/roadmap reconciliados. Próximo: serviços0x641a4/0x641d0,
+  restante do modo2 em0x5a2b8 e produtor do magic0xabcd1234. Ordem física
+  init9/máscaras e slot47/X0 seguem abertos.
+
+## 2026-10-30 — serviços da tabela e consumidor de publicação
+
+- Base296bc4a, PR53 permanece sem merge: revisão automática e CI do head
+  anterior aprovados; Entire continua exigindo aprovação de revisor.
+- Serviços0x641a4/0x641d0 delimitados: registros de4 bytes,valor+0/ID+1.
+  Getter captura count/ponteiro e retorna primeira coincidência ou-1;
+  setter captura ponteiro,relê count,altera todas as duplicatas com low8
+  e retorna o ID intacto,inclusive sem matches. Sem calls/polls locais.
+  Aliases alterando count ou célula do ponteiro têm fixtures próprias.
+- Cauda integrada aos serviços reais: prepara a tabela sem invocar o
+  publicador. Chamada separada explícita0x63fb0 publica valores preparados.
+  Essa ordem é fixture,não evento físico nem prova de aplicação automática.
+- Consumidor relê count/ponteiro;ID16 é pulado,ID18 usa resultado inicial
+  capturado eID21 exige low3==7 de leitor indireto0x61c70. ID30 permanece
+  fronteira. R0 final depende do caminho,sem agregação de status. Chamador
+  nominal0x640e8 tem publicação inicial de ID16 e BL direto0x64120.
+- Método+100 aponta nominalmente0x615ec: canal4 lê entrada0 e escreve
+  entrada4 distinta,configura campos e faz stores+0/+0x38/+8/+4.
+  Retorna0 sem poll/leitura de confirmação local. Outros canais>4 retornam-1.
+  Nenhuma função elétrica ou aceitação física foi atribuída ao protocolo.
+- Novo extrator:GNU258 instruções/267 halfwords/33 alvos/12 literais/
+  32 operandos.20 testes novos,80 tabelas aleatórias e integrações cruas;
+  ADCS ganhou carry/overflow/carry de entrada conferidos.683 NEWTIME
+  passaram. JSON exato e três recusas exit2 sem stdout/JSON. R10 não foi
+  alterado; seu baseline obrigatório será conferido no CI do novo head.
+- README/índices/roadmap atualizados. Restam aplicação real da tabela em
+  relação à cauda,ID30/leitor0x61c70,restante0x5a2b8,produtor0xabcd1234,
+  ordem física init9/máscaras e slot47/X0. Sem execução Samsung/novo QEMU.
+
+## 2026-10-30 — correção da revisão: acumulador ID18
+
+- Revisão automática de74a859a encontrou P2 na descrição do consumidor:
+  o OR0x10 é salvo emframe+8 e persiste depois que a flag passa de1 para0.
+  A fórmula anterior tratava o payload como recomputado do lookup inicial.
+- Extrator/JSON/documentação corrigidos: acumulador A inicia com lookup18,
+  recebe A|=0x10 quando flag==1 e publica low8(A),sem reset local no flag0.
+  Duas testemunhas GNU adicionais conferem carga/store emframe+8.
+- Nova regressão crua:flags1→0 geram0x31/0x31 e0→1→0 geram0x21/0x31/0x31
+  para lookup0x21. Store noframe também conferida.684 testes NEWTIME passaram;
+  JSON corrigido reproduzido exatamente. Sem mudança de firmware/R10.

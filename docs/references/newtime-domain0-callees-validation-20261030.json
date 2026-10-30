@@ -1,0 +1,136 @@
+{
+ "source_head": "3d3eeaac2dd86edf452762aef17105657942fb36",
+ "date": "2026-10-30",
+ "timezone": "America/Campo_Grande",
+ "tests": {
+  "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+  "passed": 643,
+  "new_in_this_continuation": 20,
+  "new_since_main": 40
+ },
+ "exact_reproductions": [
+  "newtime-domain0-callees-hzc2.json",
+  "newtime-dmc-method12-hzc2.json"
+ ],
+ "refusals": [
+  {
+   "case": "short",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "long",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "altered",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  }
+ ],
+ "gnu": {
+  "instructions": 466,
+  "halfwords": 493,
+  "relative_targets": 41,
+  "literals": 47,
+  "selected_operands": 45
+ },
+ "baseline": {
+  "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-domain0-callees-20261030",
+  "status": "passed",
+  "steps": [
+   {
+    "name": "01-runner-contract",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "0c2480539cef8effeac2335e63f20be014829860b017496a903b98371dcb8de5"
+   },
+   {
+    "name": "02-tool-versions",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+   },
+   {
+    "name": "03-build-r10",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "f6b1807f46d17dc8e973aee0958099dafe1cf0d84a50d690f1f0c4209b45ef9c"
+   },
+   {
+    "name": "04-fdt",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+   },
+   {
+    "name": "05-payload",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+   },
+   {
+    "name": "06-payload-stage",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+   },
+   {
+    "name": "07-entry-diag",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+   },
+   {
+    "name": "08-payload-loader",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "e70ee9950186d7f08d47e70b6a11ba57534f65e58d446f1e28b514fe5f2cf3e8"
+   },
+   {
+    "name": "09-entry-record",
+    "status": "passed",
+    "returncode": 0,
+    "timed_out": false,
+    "missing_markers": [],
+    "log_sha256": "eea68bc68b86ded91a3606f6116bebaf6869eef926494f241a015bc2d08ed579"
+   }
+  ]
+ },
+ "previous_validation": {
+  "path": "newtime-fast-apply-validation-20261030.json",
+  "historical_validated_tree": "82d7fe0526a06a1a3601669371649ad040f767cc"
+ },
+ "local_links_checked": 494,
+ "sha256": {
+  "scripts/inspect_newtime_domain0_callees_hzc2.py": "67f34a2bb80a144af6347700f0607d4f5cfa16b267325cf5faca8f9bf77eb25b",
+  "scripts/test_newtime_domain0_callees.py": "0d8021c03166ac51d214590d3c321c16fb277edd29aa54920a112f803f87d9c5",
+  "scripts/test_newtime_dmc_method12.py": "03440c3291e57f30a7e4ed0fe003ad6113fae414a7d4190562d8fee1293f4f79",
+  "scripts/inspect_newtime_dmc_method12_hzc2.py": "8b823971e986b8c3b539f1694620c0f28c83b7c1973f7b00e69576e62e59ddbd",
+  "docs/references/newtime-domain0-callees-hzc2.json": "1762ce018aeb58eaa1fd0f6e0397f8f1728ce6fedd6b415c765d11e9805910bc",
+  "docs/references/newtime-dmc-method12-hzc2.json": "d48774c50f0e2480dc6aeaa6e4d23460c626add8eb699bd364fecf85fd5e1a06"
+ },
+ "samsung_execution": false,
+ "qemu_firmware_scope_expanded": false,
+ "slot47_resolved": false
+}

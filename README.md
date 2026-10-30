@@ -1,5 +1,13 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local; o ID18 usa um acumulador que preserva o bit4 após limpar a flag. São 684 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
+
+O [carregador DMC17 e sua cauda](docs/newtime-dmc-loader-hzc2.md) têm os corpos locais delimitados: comparação de tamanho chama uma folha sem ação, dois campos selecionam linhas por argumentos diferentes e a cauda pode alterar descritores após a publicação. Condições físicas e produtor do magic continuam abertos.
+
+A [continuação do callback0](docs/newtime-domain0-callees-hzc2.md) identifica duas folhas com stores e uma rota nominal ao DMC17. Lookup com count0 vira índice255 sem guard local antes da linha; valores vivos e produtor do magic continuam abertos.
+
+O [helper DVFS do canal direto](docs/newtime-fast-apply-hzc2.md) visita quinze entradas e limpa o sinal após seus callees retornarem, sem agregar erros. Dependências podem selecionar domínio0 apesar do skip externo. PRs #51/#52 integradas; o produtor do magic e os efeitos transitivos continuam abertos.
+
 A [rota direta do canal3](docs/newtime-fast-channel-hzc2.md) chega ao método +0 DVFS, cujo gate local compara0xa590010c com0xabcd1234. Esse valor difere do magic de init7; o clear AP0x15900104 ainda não foi demonstrado como barreira de consumo DMC.
 
 A [ordem dos handshakes BL2/ACPM](docs/newtime-dmc-init-order-hzc2.md) separa o ACK inicial da publicação posterior das máscaras DMC. A inicialização DMC e essa publicação ainda não estão ordenadas pelas evidências selecionadas.

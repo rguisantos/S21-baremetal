@@ -85,6 +85,11 @@ A [continuação BL2](newtime-dmc-bl2-producer-hzc2.md) identifica o produtor
 nominal do diretório e das palavras0x3a660/64/68 sob alias. Ordem/preservação
 física e recebimento do comando20 continuam abertos. Slot47/X0 permanece aberto.
 
+A [auditoria do carregador DMC17](newtime-dmc-loader-hzc2.md) delimita os
+corpos locais de0x647ac/0x64a64 e as publicações anteriores à cauda.
+O cache acima pode ser instalado antes de efeitos posteriores; não se
+afirma preservação automática de todos os dados até o retorno.
+
 ## Reprodução e validação
 
 ```sh

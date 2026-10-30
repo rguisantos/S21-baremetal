@@ -75,6 +75,9 @@ nenhuma nova aresta ordena init9 contra as stores tardias das máscaras.
 Aliases, visibilidade, estado físico, chamadas intermediárias e slot47/X0
 seguem abertos. Próximo: encontrar um produtor do magic 0xabcd1234 e
 rastrear os efeitos transitivos de 0x5a938, incluindo seus consumidores DMC.
+A [continuação de 30/10](newtime-fast-apply-hzc2.md) delimita o laço completo,
+wrapper e dependências, incluindo uma seleção condicional de domínio0.
+O produtor do magic e os efeitos dos callees indicados continuam abertos.
 
 ## Reprodução
 

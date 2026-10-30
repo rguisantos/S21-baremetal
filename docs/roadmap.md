@@ -1,6 +1,14 @@
 # Roadmap e estado do S21-baremetal
 
-A [rota direta do canal3](newtime-fast-channel-hzc2.md) chega ao método +0 DVFS. Seu gate compara0xa590010c com0xabcd1234, diferente do0x1234abcd de init7; o trecho local não lê0x104. Próximo: produtor desse outro magic e efeitos transitivos de0x5a938. O clear AP0x15900104 ainda não foi ligado a uma barreira DMC.
+Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 e produtor de0xabcd1234 seguem abertos.
+
+O [carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md) têm seus corpos locais delimitados. O teste de tamanho não aborta; publicações precedem a cauda, que relê controles e pode editar descritores/chamar serviços. Alcançabilidade, valores vivos e ordem física seguem abertos.
+
+A [continuação do callback0](newtime-domain0-callees-hzc2.md) fecha as duas folhas0x59e34/0x5a004, delimita count0→índice255 e liga o modo2 ao DMC17→carregador0x647ac→método0x65124, sob gates/bindings preservados.
+
+O [helper do canal direto](newtime-fast-apply-hzc2.md) percorre1–7/11–18, despacha dependências sem os skips externos e termina com clear/retorno0 sem agregar erros dos callees. O clear AP0x15900104 continua sem ligação a uma barreira DMC; não foi demonstrada liberação de DMC8/9 pelo canal direto.
+
+A [rota direta do canal3](newtime-fast-channel-hzc2.md) chega ao método +0 DVFS. Seu gate compara0xa590010c com0xabcd1234, diferente do0x1234abcd de init7; o trecho local não lê0x104.
 
 A [ordem selecionada BL2/ACPM](newtime-dmc-init-order-hzc2.md) mostra o ACK0x108 antes da entrada tardia de publicação das máscaras. O magic0x10c marca outra etapa; init9 e as stores tardias seguem sem ordem demonstrada.
 
@@ -8,7 +16,7 @@ A [ponte BL2→DMC](newtime-dmc-bl2-producer-hzc2.md) identifica os produtores d
 
 A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. A origem nominal do cabeçalho/diretório está ligada ao BL2 na continuação acima; alias e valores vivos, ordem efetiva e recebimento desse comando permanecem condicionais.
 
-A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. Próxima frente: stores calculadas do carregador de configuração e origem das máscaras/base core 0x3a660/0x3a664/0x3a668. O valor vivo e o efeito físico continuam abertos.
+A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. As stores por descritor e as origens BL2 das máscaras/base foram ligadas nas continuações acima. O valor vivo e o efeito físico continuam abertos.
 
 Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e valores runtime do DMC permanecem abertos.
 
@@ -16,8 +24,8 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
-Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #49, 054f5c8](https://github.com/rguisantos/S21-baremetal/commit/054f5c80c920bf602fe593361a83efcb5ce8447b),
+Atualizado em **2026-10-30 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge das PRs #51/#52, 3ab54d1](https://github.com/rguisantos/S21-baremetal/commit/3ab54d126446869e47a00d4039a271286f48e2a0),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.

@@ -1,5 +1,13 @@
 # Guia da documentação
 
+- [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, acumulador ID18, aliases e publicador por entrada0→entrada4; 21 testes.
+
+- [Carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md): comparação sem aborto, linhas por argumentos distintos, publicações e releituras de controle; 20 testes.
+
+- [Callback0, truncamento de índice e DMC17](newtime-domain0-callees-hzc2.md): duas folhas com stores, count0→255, carregador e segundo método por raízes distintas; 20 testes.
+
+- [Helper DVFS e dependências do canal direto](newtime-fast-apply-hzc2.md): quinze entradas, retorno/clear sem agregação de erros e seleção transitiva de domínio0; 20 testes.
+
 - [Canal direto3 e gate DVFS +0](newtime-fast-channel-hzc2.md): evento128/máscara8, dois magics distintos e17 testes; clear0x104 sem barreira demonstrada.
 - [Ordem dos handshakes e publicação DMC](newtime-dmc-init-order-hzc2.md): ACK0x108, magic0x10c e entrada tardia BL2; ordem parcial e 13 testes.
 
