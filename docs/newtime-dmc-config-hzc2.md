@@ -81,8 +81,9 @@ O cache é core `0x38404` (`0x381c8+0x23c`):
 Logo, a base usada por 8/9 não depende sempre de ler0x3a664. Ordem de
 execução, preservação do cache e conteúdo da região0x3a600/0x3a7a0 seguem
 abertos. Essa região está além da segunda cópia presente no arquivo.
-Próxima frente: produtor do cabeçalho/diretório e rota de recebimento do
-comando20. Slot47/X0 permanece aberto.
+A [continuação BL2](newtime-dmc-bl2-producer-hzc2.md) identifica o produtor
+nominal do diretório e das palavras0x3a660/64/68 sob alias. Ordem/preservação
+física e recebimento do comando20 continuam abertos. Slot47/X0 permanece aberto.
 
 ## Reprodução e validação
 

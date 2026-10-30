@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. Próxima fronteira: produtor do cabeçalho/diretório vivo e recebimento desse comando; aliases às máscaras permanecem condicionais.
+A [ponte BL2→DMC](newtime-dmc-bl2-producer-hzc2.md) identifica os produtores de AP0x02073660/64/68 e o diretório NEWTIME correspondente ao core. Os valores condicionais vêm das tabelas0x81/82/83 e0xa1. Próximo: ordem/alcançabilidade real e alias, mantendo as origens físicas em aberto.
+
+A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. A origem nominal do cabeçalho/diretório está ligada ao BL2 na continuação acima; alias e valores vivos, ordem efetiva e recebimento desse comando permanecem condicionais.
 
 A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. Próxima frente: stores calculadas do carregador de configuração e origem das máscaras/base core 0x3a660/0x3a664/0x3a668. O valor vivo e o efeito físico continuam abertos.
 

@@ -86,7 +86,8 @@ identificados, mas stores calculadas e aliases ainda precisam de análise.
 A hipótese do carregador de configuração `0x647ac..0x65170` não é uma
 prova de ausência. A [continuação de configuração](newtime-dmc-config-hzc2.md)
 agora liga uma store calculada ao comando20 e uma origem adicional do cache;
-a origem dos descritores vivos continua aberta.
+a [ponte ao produtor BL2](newtime-dmc-bl2-producer-hzc2.md) fornece uma
+origem nominal sob alias; dados vivos e preservação continuam abertos.
 O chamador/X0 do slot 47 BL2 continua aberto.
 
 ## Reprodução

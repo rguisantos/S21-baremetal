@@ -3042,3 +3042,28 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   atualizados. Sem execução Samsung, ampliação QEMU ou resolução slot47.
 - Gates remotos dos PRs51/52: baseline e findings aprovados; aprovação de
   revisor Entire ausente. Integração permanece condicionada às regras AGENTS.
+
+## 2026-10-29 — produtor BL2 nominal das máscaras e base DMC
+
+- Base `aab7d05`. Encontradas STR W0x2d82c/0x2d840/0x2d850 para
+  AP0x02073664/60/68. Fontes: payload14 AP menos0x02039000 e palavras
+  +60/+88 do payload12. Ponteiros passam pelas células S+744/S+616,
+  publicadas em0x2d764/0x2d734. O call0x2d810 e sua preservação global
+  continuam condições; as fatias selecionadas não o executam.
+- Diretório BL2 R+0x1a0 concorda com core0x3a7a0 sob R/alias. Fonte do
+  descritor12 são tabelas0x81/82/83 (1x23); descritor14 é0xa1 (2x44).
+  Nas8512 construções completas:4096 pares1ff0/1fff,4352 pares1fc0/0,
+  64 pares0/0. 2752 construções parciais excluídas, sem probabilidades.
+- Fallback header0x3a664 e cache instalado pelo loader concordam como
+  u32(0x3a600+offset14) se o mesmo descritor estiver preservado. Fonte h/g2
+  ligada às segundas palavras das linhas18..30/31..43 da tabela0xa1.
+  As28 variantes de offset formam34 perfis combinados com as máscaras.
+- Novo extrator/JSON e13 testes:34 palavras A64/20 operandos,55 instruções
+  Thumb/6 alvos/8 literais. Fatias cruas cobrem SXTW/W32,recarga de estado,
+  34 perfis,80 offsets aleatórios,máscaras/cache/tabelas e memória ausente.
+  573 testes NEWTIME passaram. JSON exato e três recusas exit2 sem saída.
+- Índices,documentação,roadmap e worklog atualizados. Produtor nominal
+  identificado, sem exclusividade,alias físico observado,aparelho ou novo
+  QEMU. Ordem/alcançabilidade efetiva e slot47/X0 seguem abertos.
+- PRs51/52: checks e findings sem bloqueadores; gate Entire ainda requer
+  aprovação de revisor. Nenhuma integração que ignore esse gate.

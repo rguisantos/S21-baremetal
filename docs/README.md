@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Produtor BL2 das máscaras e base DMC](newtime-dmc-bl2-producer-hzc2.md): três stores concretas, fonte ECT e concordância condicional de cache/fallback; 13 testes.
+
 - [Escrita DMC por descritor e cache h/g2](newtime-dmc-config-hzc2.md): comando20, store calculada, aliases condicionais e duas origens do cache; 16 testes.
 
 - [DMC método +12 e subcomandos 8/9](newtime-dmc-method12-hzc2.md): cadeia nominal, retornos, polls e correções dos modelos/testes GLM; 78 testes.
