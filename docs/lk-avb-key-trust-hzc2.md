@@ -154,3 +154,5 @@ memória e aquisição dos 128 bytes continuam pendentes na
 [Validação local](references/lk-avb-key-trust-validation-20261030.json): relatório reproduzido byte a byte, 13 testes novos, regressões 17/12 e baseline completo de nove etapas aprovados; links de arquivos conferidos.
 
 Continuação: o [verificador vbmeta e caminho RSA](lk-avb-signature-hzc2.md) foi delimitado estaticamente, incluindo hash, padding e tradução dos resultados para o slot. Confiança e decisão final do wrapper continuam separadas.
+
+Continuação: o [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados, incluindo laço red e descarte imediato do resultado no chamador. Isso não resolve os serviços seguros ou demonstra aceitação física.

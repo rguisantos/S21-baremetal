@@ -3445,3 +3445,32 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Atualizados índices, roadmap e matriz Samsung. Próximo: wrapper0x17f5d0
   após0x17f724, origem da continuação tolerada e fornecedor seguro da chave.
   Nenhuma execução/emulação de firmware Samsung, SMC, desbloqueio ou flash.
+
+
+## 2026-10-30 — wrapper AVB completo localmente e descarte no chamador
+
+- Base main3eda261 após PR #60; telefone preservado, sem firmware executado.
+- Delimitado corpo0x17f5d0..0x17fcb8: retorno normal W0=W24 (resultado do
+  slot), retorno alternativo0xfdaa4002 e laço red0x17fb40 antes do epílogo.
+- Dispatch por primeiro byte usa19signed bytes em0x258328; códigos nominais
+  green0/yellow1/orange2/red3. Callees e estado preservado são premissas.
+- Helper0x17f378 prepara informações e pede serviços0xc200101d com sub3,
+  10,17,4,9,18,11. Fragmentos SMC e diagnósticos conferidos; efeitos seguros
+  e conteúdo ativo não observados. Pedido3 não resolve fornecedor de leitura16.
+- Erros do helper são impressos pelo wrapper, que converge para publicação
+  de metadados e teste red. Resultado do pedido de bloqueio de comandos é
+  sobrescrito pelo status salvo no helper. Não há prova de recusa universal.
+- Busca B/BL alinhada[0xec000,0x20c630) encontra BL0xfbc68 como referência
+  direta do wrapper; retorno é sobrescrito por ADRP X0 em0xfbc6c. Chamadas
+  indiretas e dependências persistentes ficam fora dessa enumeração.
+- Retorno ignorado não estabelece bypass: red nominal ainda não retorna,
+  há processamento de partições, verificação adicional0x17deb0 e serviços
+  seguros. Contratos físicos de carga/memória/captura continuam abertos.
+- inspect_lk_avb_boot.py confere847palavras GNU,220destinos,86operandos,
+  20literais,13grafos e sete pedidos. Relatório reproduzido byte a byte.
+- 17testes novos passaram e foram incluídos no CI;48testes AVB combinados
+  e14testes de grafos de retorno passaram. Baseline completo9etapas passou;
+  resumo SHA-25618f9bb166956e54b21c84209a38529600c7c606ebc63db03c7eb562031dd00d1.
+- Conferidos1.308links locais de arquivos, sem destinos ausentes.
+- Atualizados índices, roadmap, matriz Samsung e análises AVB anteriores.
+  Próximo:0x17deb0,0x17e920/0x17e828, origem do flag tolerado e chave segura.

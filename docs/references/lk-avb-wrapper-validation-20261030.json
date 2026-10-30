@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "3eda26137c35acf599a7c63570a664fdb66c11cf",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "878c77b2e25a00e0f483bd1915626b73d22a54788225f372b864ba0988e4c47a",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 847,
+    "gnu_relative_targets": 220,
+    "selected_operand_checks": 86,
+    "instruction_index_sha256": "2a479f54defa1626c98e9e6779d7508b7d6893dc4e510771eb6ddfe2fb827f07"
+  },
+  "literal_checks": 20,
+  "local_graphs": 13,
+  "color_dispatch": {
+    "table": "0x258328",
+    "base": "0x17fa34",
+    "first_character": 103,
+    "targets": {
+      "g": "0x17fbe8",
+      "h": "0x17f938",
+      "i": "0x17f938",
+      "j": "0x17f938",
+      "k": "0x17f938",
+      "l": "0x17f938",
+      "m": "0x17f938",
+      "n": "0x17f938",
+      "o": "0x17fbe0",
+      "p": "0x17f938",
+      "q": "0x17f938",
+      "r": "0x17fbb0",
+      "s": "0x17f938",
+      "t": "0x17f938",
+      "u": "0x17f938",
+      "v": "0x17f938",
+      "w": "0x17f938",
+      "x": "0x17f938",
+      "y": "0x17fa38"
+    }
+  },
+  "wrapper_custom_error": {
+    "unsigned": "0xfdaa4002",
+    "signed": -39174142
+  },
+  "direct_reference_scan": {
+    "low": "0xec000",
+    "high_exclusive": "0x20c630",
+    "references": [
+      {
+        "pc": "0xfbc68",
+        "kind": "bl"
+      }
+    ],
+    "indirect_calls_and_unaligned_encodings_excluded": true
+  },
+  "secure_requests": {
+    "key": {
+      "x0": "0xc200101d",
+      "x1": 3,
+      "monitor_implementation_and_result_observed": false
+    },
+    "hash": {
+      "x0": "0xc200101d",
+      "x1": 18,
+      "monitor_implementation_and_result_observed": false
+    },
+    "os_version": {
+      "x0": "0xc200101d",
+      "x1": 10,
+      "monitor_implementation_and_result_observed": false
+    },
+    "patch_levels": {
+      "x0": "0xc200101d",
+      "x1": 17,
+      "monitor_implementation_and_result_observed": false
+    },
+    "lock": {
+      "x0": "0xc200101d",
+      "x1": 4,
+      "monitor_implementation_and_result_observed": false
+    },
+    "color": {
+      "x0": "0xc200101d",
+      "x1": 9,
+      "monitor_implementation_and_result_observed": false
+    },
+    "block_commands_request": {
+      "x0": "0xc200101d",
+      "x1": 11,
+      "monitor_implementation_and_result_observed": false
+    }
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_avb_boot.py -v",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_avb*.py'",
+      "tests": 48,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_payload_return.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_avb_boot.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-avb-wrapper",
+      "status": "passed",
+      "summary_sha256": "18f9bb166956e54b21c84209a38529600c7c606ebc63db03c7eb562031dd00d1",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Tests decode synthetic instructions/references and do not execute Samsung firmware or monitor calls.",
+    "Red-loop and return conclusions require nominal labels, state preservation and normal returns from intervening callees.",
+    "Ignored return does not establish an authentication bypass or physical image acceptance."
+  ],
+  "documentation_file_links": {
+    "checked": 1308,
+    "missing": 0
+  }
+}
