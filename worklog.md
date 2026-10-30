@@ -3067,3 +3067,28 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   QEMU. Ordem/alcançabilidade efetiva e slot47/X0 seguem abertos.
 - PRs51/52: checks e findings sem bloqueadores; gate Entire ainda requer
   aprovação de revisor. Nenhuma integração que ignore esse gate.
+
+## 2026-10-29 — ordem selecionada do ACK e publicação DMC
+
+- Base `faed93b`. O ACK AP0x17a50 zera0x15900108 antes do retorno de
+  0x17eb0. O chamador ainda espera0x1234abcd em0x1590010c, passa por
+  outros gates/calls e só então chama0x1dc90 em0x18000. As stores de
+  máscaras da cadeia selecionada são posteriores a essa entrada.
+- ACPM publica0x38e00 em0xa5900108, espera zero, publica as duas bases e
+  depois init7 escreve o magic0x1234abcd em0xa590010c antes de retornar.
+  Loop preservado chama init9 após retorno de7. ACK inicial não certifica
+  a publicação tardia do header0x3a600; área DVFS0x38e00 é distinta.
+- Modelo parcial não ordena init9 e máscaras tardias. Duas ordens
+  abstratas conferem as arestas e invertem o par; não são execuções nem
+  prova de corrida. Correlação fresca dos sinais/alias e retornos são
+  condições; clear inicial0x179a8 não foi confundido com ACK0x17a50.
+- AP0x18018 zera0x15900104 após0x1dc90; consumidor ACPM dessa store não
+  demonstrado. Próximo: seguir esse leitor e outras liberações de consumo.
+- Novo extrator/JSON:76 palavras A64/9 alvos e115 instruções Thumb/19
+  alvos,14 literais,30 operandos. 13 regressões cruas: polls,magic,ACK,
+  raízes,loop de inicializadores/hooks e modelo parcial. 586 testes
+  NEWTIME passaram. JSON exato; três recusas exit2 sem saída; links e diff
+  conferidos. Índices/README/roadmap/documentação atualizados.
+- Sem novo QEMU,aparelho,barreira física provada ou resolução slot47/X0.
+  Reviews/checks dos heads anteriores51/52 sem achados bloqueantes;
+  gate Entire ainda exige aprovação de revisor,sem bypass para merge.

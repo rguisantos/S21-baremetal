@@ -96,6 +96,7 @@ atribuir endereços válidos ao aparelho. Memória ausente falha.
 
 Este é um produtor **condicional**, sem exclusividade: outras stores,
 comandos de configuração, fontes alteradas, construção parcial e chamadas
-opacas podem mudar o registro. Próximo: ordem/alcançabilidade efetiva da
-publicação BL2 versus init/leitura DMC e aliases por fonte correspondente.
+opacas podem mudar o registro. A [continuação de ordem](newtime-dmc-init-order-hzc2.md) separa ACK inicial,
+magic e publicação tardia; não determina a cronologia física nem exclui
+outras barreiras. Próximo: leitor do clear0x104 e consumo DMC posterior.
 Slot47/X0, efeito físico e dados vivos permanecem abertos. Sem novo QEMU.

@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [ordem dos handshakes BL2/ACPM](docs/newtime-dmc-init-order-hzc2.md) separa o ACK inicial da publicação posterior das máscaras DMC. A inicialização DMC e essa publicação ainda não estão ordenadas pelas evidências selecionadas.
+
 O [produtor BL2 das máscaras/base DMC](docs/newtime-dmc-bl2-producer-hzc2.md) foi ligado ao registro NEWTIME sob alias/preservação. As três stores usam os payloads dos descritores12/14; conteúdo físico e ordem de execução continuam abertos.
 
 A [escrita DMC por descritor e o cache h/g2](docs/newtime-dmc-config-hzc2.md) agora têm fórmula e rota de comando20 delimitadas. Os aliases às máscaras dependem dos descritores vivos; o cache também recebe base do carregador.

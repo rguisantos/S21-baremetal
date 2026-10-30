@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Ordem dos handshakes e publicação DMC](newtime-dmc-init-order-hzc2.md): ACK0x108, magic0x10c e entrada tardia BL2; ordem parcial e 13 testes.
+
 - [Produtor BL2 das máscaras e base DMC](newtime-dmc-bl2-producer-hzc2.md): três stores concretas, fonte ECT e concordância condicional de cache/fallback; 13 testes.
 
 - [Escrita DMC por descritor e cache h/g2](newtime-dmc-config-hzc2.md): comando20, store calculada, aliases condicionais e duas origens do cache; 16 testes.

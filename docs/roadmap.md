@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [ordem selecionada BL2/ACPM](newtime-dmc-init-order-hzc2.md) mostra o ACK0x108 antes da entrada tardia de publicação das máscaras. O magic0x10c marca outra etapa; init9 e as stores tardias seguem sem ordem demonstrada. Próximo: leitor do clear AP0x15900104 e liberação do consumo DMC.
+
 A [ponte BL2→DMC](newtime-dmc-bl2-producer-hzc2.md) identifica os produtores de AP0x02073660/64/68 e o diretório NEWTIME correspondente ao core. Os valores condicionais vêm das tabelas0x81/82/83 e0xa1. Próximo: ordem/alcançabilidade real e alias, mantendo as origens físicas em aberto.
 
 A [continuação DMC de configuração](newtime-dmc-config-hzc2.md) liga comando20 a uma store por descritor e demonstra a base alternativa do cache h/g2. A origem nominal do cabeçalho/diretório está ligada ao BL2 na continuação acima; alias e valores vivos, ordem efetiva e recebimento desse comando permanecem condicionais.
