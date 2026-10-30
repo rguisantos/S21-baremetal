@@ -34,6 +34,8 @@ O [roadmap atualizado](docs/roadmap.md) organiza o estado por frente e os crité
 
 O [contrato do diagnóstico Samsung](docs/samsung-diagnostic-contract.md) reúne os bloqueios de carga e recuperação sob o último estado informado, sem root/bootloader travado. O leitor offline valida os 128 bytes e, opcionalmente, a Image inteira; passou com capturas QEMU EL1/EL2, sem provar origem, frescor ou execução no telefone.
 
+Em 30/10, a [consulta física Download no Mint](docs/download-pit-observation-hzc2.md) concluiu a sessão Heimdall e leu 48 entradas PIT. BOOT, VENDOR_BOOT e RECOVERY estão identificados na tabela fornecida; o bootloader continua informado como travado. A leitura não demonstra aceitação de imagem própria, leitura de RAM ou execução do diagnóstico no S21.
+
 A [análise estática RDX](docs/lk-dump-export-hzc2.md) identificou quatro regiões fixas e um encaminhamento nominal de bytes. `boot_ram` corresponde à janela da imagem LK; a entrada `log` não inclui o cabeçalho debug-snapshot. A [origem dos descritores de RAM foi encontrada](docs/lk-rdx-memory-origin-hzc2.md): `0xee370` constrói bancos de 512 MiB e o primeiro par conservado cobre a janela candidata do diagnóstico. O backend tem binding nominal DWC3. A sonda atual termina em WFE sem retorno cooperativo ao LK; retenção após reset e aquisição física continuam sem demonstração.
 
 A [continuação de retorno da Image](docs/lk-payload-return-hzc2.md) também foi rastreada: o LK descarta seu valor retornado, volta ao wrapper `sbl_boot` e chama `thread_exit()`. Os blocos selecionados não transferem diretamente ao RDX. A existência do link BLR não valida a pilha, o estado de execução ou um retorno físico; a sonda permanece inalterada.
