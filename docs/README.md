@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [Helper DVFS e dependências do canal direto](newtime-fast-apply-hzc2.md): quinze entradas, retorno/clear sem agregação de erros e seleção transitiva de domínio0; 20 testes.
+
 - [Canal direto3 e gate DVFS +0](newtime-fast-channel-hzc2.md): evento128/máscara8, dois magics distintos e17 testes; clear0x104 sem barreira demonstrada.
 - [Ordem dos handshakes e publicação DMC](newtime-dmc-init-order-hzc2.md): ACK0x108, magic0x10c e entrada tardia BL2; ordem parcial e 13 testes.
 

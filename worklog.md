@@ -3118,3 +3118,33 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   helper0x5a938. Ordem init9/máscaras e slot47/X0 seguem abertos.
   Heads anteriores51/52:CI/review sem achados bloqueantes,mas gate Entire
   exige aprovação de revisor;nenhum bypass de merge.
+
+## 2026-10-30 — integração PR51/52 e helper DVFS do canal direto
+
+- PR51: revisão automática refeita no head exato f1524a3, completed sem
+  achados/threads, baseline remoto aprovado; merge b76d0fe. PR52 retargetada
+  para main, revisão refeita no head f7caa3e, completed sem achados/threads
+  e CI aprovado; merge 3ab54d1. Nenhuma aprovação foi substituída por revisão
+  própria nem se usou bypass de merge.
+- Continuação: helper0x5a938 visita1–7/11–18, testa halfword header+22,
+  chama wrapper direto ou dependências, relê entry+32 e chama folha BX LR.
+  Após os callees retornarem, limpa0xa590010c e retorna0 sem agregar erros.
+  Interrupção por memória/callee sem retorno não alcança esse clear.
+- Dependências capturam count u8 uma vez, recarregam ponteiro/ID, preservam
+  duplicatas e passam valor u32 inteiro de header-alvo+24. Sem os skips
+  externos; ID0 alcança callback inicial0x599ec sob preservação. Integração
+  com palavras reais percorre método0→helper→dependência→wrapper→callback0.
+  Os corpos0x59e34/0x5a004/0x5a2b8 continuam fronteiras, não prova de DMC8/9.
+- Busca exata dos quatro bytes do magic0xabcd1234 no sboot inteiro só
+  encontrou o literal comparador0x56eb0. Produtor não resolvido; valores
+  calculados/externos não excluídos. Ordem init9/máscaras, alias físico,
+  barreira de0x104 e slot47/X0 permanecem abertos.
+- Novo extrator/JSON: GNU383 instruções/420 halfwords/68 alvos/17 literais/
+  36 operandos. 20 testes novos,80 listas aleatórias,voláteis alterados,
+  releituras,IDs extremos e clear condicional. Avaliador ganhou LDRH imediato
+  com carga de16 bits,zero-extension e endereço u32; ausência de memória
+  continua falhando. 623 testes NEWTIME aprovados; JSON exato e três recusas
+  CLI exit2 sem stdout/JSON. Baseline novo aprovado nas nove etapas,
+  host43/60/17,diagnóstico12,loader1+5 e leitor17. Sem ampliar QEMU Samsung.
+- README/índices/roadmap reconciliados. Próximo: produtor do outro magic e
+  os três callees do callback0, mantendo as fronteiras explícitas.

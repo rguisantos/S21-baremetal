@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+- `inspect_newtime_fast_apply_hzc2.py` / `test_newtime_fast_apply.py`: laço do helper direto, callbacks/dependências e retorno/clear condicionados; 20 testes e [limites](../docs/newtime-fast-apply-hzc2.md).
+
 - `inspect_newtime_policy_writers_hzc2.py` / `test_newtime_policy_writers.py`: setters FVP comando4 e comando5/subseletor2, dez regressões de palavras Thumb e sequência com comando6.
 
 - `inspect_newtime_dispatch_completion_hzc2.py` / `test_newtime_dispatch_completion.py`: consumidor do retorno FVP e avanço circular condicionado, nove testes.

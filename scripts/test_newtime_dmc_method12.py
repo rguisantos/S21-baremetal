@@ -290,6 +290,10 @@ class RawThumb:
                     self.r[d] = self._load(a, byte=True)
                 else:
                     raise ValueError(f'unsupported 0101 op {op} at {p:#x}')
+            elif family == 0x8800:                                     # LDRH imm5
+                d, n = h & 7, (h >> 3) & 7
+                a = (self.r[n] + ((h >> 6) & 31) * 2) & U32
+                self.r[d] = self._load(a, half=True)
             elif family == 0x9000:                                     # STR sp imm8
                 a = (self.r[13] + (h & 255) * 4) & U32
                 self._store(a, self.r[(h >> 8) & 7])
