@@ -35,6 +35,8 @@ jobs:
         run: python3 scripts/test_lk_embedded_key.py
       - name: Check AVB key-trust callback bindings
         run: python3 scripts/test_lk_avb_trust.py
+      - name: Check AVB signature tables and bounded dispatch decoding
+        run: python3 scripts/test_lk_avb_signature.py
       - name: Build and validate the required baseline
         run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
       - name: Preserve logs and summary

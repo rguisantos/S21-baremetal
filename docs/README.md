@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [verificador vbmeta e caminho RSA](lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
+
 O [callback de confiança AVB](lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.
 
 - [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, acumulador ID18, aliases e publicador por entrada0→entrada4; 21 testes.

@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "fbbcd3f0131ffde825aa6dd227aa787ea927138d",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "1f1a08b84f6514b9b66f83bfc6a41439ddf1b26980a8306925a08cf50bc37e42",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 1147,
+    "gnu_relative_targets": 232,
+    "selected_operand_checks": 74,
+    "instruction_index_sha256": "42bae0871fd88c83c9e4b1b046e8ee9d4ceb9c339b3222253b3f268e7d3ea04b"
+  },
+  "table_locations": {
+    "algorithms": "0x305be0",
+    "hash_switch": "0x230740",
+    "slot_switch": "0x230708",
+    "result_names": "0x230748",
+    "hash_base": "0x126814",
+    "slot_base": "0x122d10"
+  },
+  "algorithm_records_checked": 6,
+  "pkcs1_prefixes_checked": 6,
+  "result_name_literals_checked": 6,
+  "signed_byte_dispatch_tables_checked": 2,
+  "local_graphs": 9,
+  "source_reference": {
+    "repository": "AndroidBootloader/platform_external_avb",
+    "commit": "b27a9aa53d2db7720e4d88d6950dcd979da97de3",
+    "files": {
+      "libavb/avb_vbmeta_image.c": "7d31dd9f0157d966e034e42de94066a242bb745e993904fe3f373d201a5a2c56",
+      "libavb/avb_vbmeta_image.h": "0979deac8902cbcbd0ec1d2f94af6692ab954fe698b1bd2e8b193b7eec3a3607",
+      "libavb/avb_rsa.c": "9e7d6c0b0daa3d5ea502202476d9628cb3af9a7f668f7cfd9742dfa8890fa306",
+      "libavb/avb_crypto.c": "c467f2962a7aeabc62c46727be7d112db15e9eac7d909186f06734906168989c"
+    },
+    "scope": "format/algorithm/result correspondence, not corresponding Samsung source"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_avb_signature.py -v",
+      "tests": 18,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_avb_trust.py",
+      "tests": 13,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_embedded_key.py",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_precopy_measurement.py",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_avb_signature.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-avb-signature",
+      "status": "passed",
+      "summary_sha256": "3cb0206e7b7e71c7cf44629252b90429610d6996a7e558319f742d50ea83207c",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Host tests exercise synthetic table decoding and refusal logic, not Samsung cryptographic execution.",
+    "GNU words and table correspondence do not certify arithmetic, all allocation failures or physical image acceptance.",
+    "Complete wrapper actions/return and live monitor key remain unobserved."
+  ],
+  "documentation_file_links": {
+    "checked": 1296,
+    "missing": 0
+  }
+}

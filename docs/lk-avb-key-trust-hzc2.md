@@ -152,3 +152,5 @@ memória e aquisição dos 128 bytes continuam pendentes na
 [matriz Samsung](samsung-diagnostic-contract.md).
 
 [Validação local](references/lk-avb-key-trust-validation-20261030.json): relatório reproduzido byte a byte, 13 testes novos, regressões 17/12 e baseline completo de nove etapas aprovados; links de arquivos conferidos.
+
+Continuação: o [verificador vbmeta e caminho RSA](lk-avb-signature-hzc2.md) foi delimitado estaticamente, incluindo hash, padding e tradução dos resultados para o slot. Confiança e decisão final do wrapper continuam separadas.
