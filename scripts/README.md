@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+Os [verificadores Samsung chamados pelas partições](../docs/lk-samsung-checks-hzc2.md) agora têm papéis separados: seleção/pedido de assinatura ao monitor, comparação de revisão para rollback e política de binário personalizado. São 801 palavras GNU e 16 testes novos. Retornos zero, fallbacks e efeitos de política foram distinguidos da aceitação física de uma Image.
+
 A [conferência de Build-id e os helpers de partições](../docs/lk-build-id-partitions-hzc2.md) estão delimitados localmente. O checker compara um prefixo entre caches atribuídos a vbmeta/super; atualização, terminação e valor da política permanecem sem medição. São 1.497 palavras GNU e 14 testes novos, sem execução de firmware Samsung.
 
 O [wrapper AVB e seu chamador](../docs/lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados: red conserva um laço antes do epílogo; o retorno normal preserva o resultado do slot e é descartado imediatamente pelo chamador. Pedidos de metadados ao monitor foram identificados. São 847 palavras GNU e 17 testes novos; aceitação física e efeitos dos serviços seguros continuam abertos.
@@ -260,3 +262,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_avb_boot.py` / `test_lk_avb_boot.py`: wrapper AVB completo localmente, laço red, códigos/retornos, referência B/BL e descarte no chamador, além de sete fragmentos de pedidos seguros. Dezessete testes sintéticos, sem executar firmware. [Escopo e evidências](../docs/lk-avb-wrapper-hzc2.md).
 
 - `inspect_lk_build_id.py` / `test_lk_build_id.py`: checker Build-id, ligação do produtor/leitor de cache, getter de super e corpos locais de processamento/relatório de partições. Quatorze testes de operandos/binding/recusa; sem firmware executado. [Escopo e reprodução](../docs/lk-build-id-partitions-hzc2.md).
+
+- `inspect_lk_samsung_checks.py` / `test_lk_samsung_checks.py`: tabela exata de nomes, pedido de assinatura ao monitor, rollback e política custom, com 16 testes sintéticos de ponteiros/descritor/recusa. Sem execução de firmware ou SMC. [Escopo e reprodução](../docs/lk-samsung-checks-hzc2.md).

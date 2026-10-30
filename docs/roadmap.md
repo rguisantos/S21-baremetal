@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [conferência de Build-id e os helpers de partições](lk-build-id-partitions-hzc2.md) estão delimitados localmente: comparação de prefixo, cache vbmeta/super, palavra de política e caminhos com efeitos de estado. Retorno zero não certifica leitura nova ou aceitação física. Próximo: verificadores 0x1526f8/0x150aa8/0x1516b8, origem da política 0xaaa70c, preservação dos caches e fornecedor seguro da chave.
+Os [verificadores Samsung](lk-samsung-checks-hzc2.md) estão delimitados localmente: seleção/pedido ao monitor 0xffffffffffffff10, revisão para rollback e efeitos de política custom. O zero local inclui skip/fallback e não prova aceitação física. Próximo: implementação segura do serviço, backend/persistência de contadores, predicados vivos de política e fornecedor da chave AVB; contratos físicos de carga/memória/captura continuam pendentes.
+
+A [conferência de Build-id e os helpers de partições](lk-build-id-partitions-hzc2.md) estão delimitados localmente: comparação de prefixo, cache vbmeta/super, palavra de política e caminhos com efeitos de estado. Retorno zero não certifica leitura nova ou aceitação física. Os verificadores têm continuação acima; origem da política 0xaaa70c, preservação dos caches e fornecedor seguro da chave seguem abertos.
 
 O [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm corpo local e retornos delimitados: red nominal leva a laço; retorno normal é o resultado do slot, descartado no chamador. Isso não estabelece bypass ou carga física. A conferência de Build-id e os corpos locais de partições têm continuação acima; origem da continuação tolerada e fornecedor seguro da chave seguem abertos; contratos físicos de carga/memória/captura continuam pendentes.
 

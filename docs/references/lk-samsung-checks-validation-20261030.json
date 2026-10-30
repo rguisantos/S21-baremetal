@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "bf3930024fa5972e4d8709a231d2aaa306fa86ac",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "6177f4fae3e7271a8ffdcfb11568624478789ce401801f87ee6d5915d921702b",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 801,
+    "gnu_relative_targets": 211,
+    "selected_operand_checks": 75,
+    "instruction_index_sha256": "e6166b90db62307807aa947c26ae33c6da034ceb9831b09c8825d98e7daf9648"
+  },
+  "literal_checks": 19,
+  "local_graphs": 14,
+  "name_table": {
+    "file_offset": "0x23e298",
+    "bytes": 208,
+    "count": 26,
+    "last_entry": {
+      "index": 25,
+      "pointer": "0xe8154548",
+      "file_offset": "0x240548",
+      "name": "VDDCAL_FWINIT_BOOT"
+    },
+    "names_normalized_or_repaired": false
+  },
+  "monitor_request": {
+    "x0": "0xffffffffffffff10",
+    "x1": "u32 mode 14 or 16",
+    "x2": "128-byte-aligned stack descriptor",
+    "x3": 0,
+    "fields": {
+      "40": "original X0: image pointer (u64)",
+      "48": "original X1: sign-extended W length represented as u64",
+      "56": "original X2: signature/trailer pointer (u64)"
+    },
+    "descriptor_cache_clean_bytes": 192,
+    "signature_cache_clean_bytes": 528,
+    "remaining_descriptor_bytes_initialization_established": false,
+    "monitor_implementation_and_result_observed": false
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_samsung_checks.py -v",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_avb*.py'",
+      "tests": 48,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_build_id.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_samsung_checks.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-samsung-checks",
+      "status": "passed",
+      "summary_sha256": "53cafceea72b076834ec72b80f9db277e3ddb521efbc3f88c17c3627ae04b4dd",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Synthetic host tests validate pointer tables, descriptor decoding and refusals, not Samsung secure execution.",
+    "Monitor low32 result translation, counter fallbacks and policy diagnostics do not establish live chip state or physical acceptance.",
+    "No complete memory-safety, counter-persistence or secure-service implementation proof is claimed."
+  ],
+  "documentation_file_links": {
+    "checked": 1330,
+    "missing": 0
+  }
+}
