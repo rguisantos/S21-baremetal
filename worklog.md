@@ -3148,3 +3148,35 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   host43/60/17,diagnóstico12,loader1+5 e leitor17. Sem ampliar QEMU Samsung.
 - README/índices/roadmap reconciliados. Próximo: produtor do outro magic e
   os três callees do callback0, mantendo as fronteiras explícitas.
+
+## 2026-10-30 — callback0, índice low8 e DMC17
+
+- Base3d3eeaa, PR53 ainda aberta: revisão automática do head completed sem
+  achados e CI success; Entire Gates falha somente por aprovação de revisor
+  ausente. Continuação na mesma PR, sem ignorar esse bloqueador de merge.
+- Delimitadas folhas0x59e34/0x5a004: três/cinco stores constantes e três
+  RMW em cada corpo. Sem calls/polls locais; primeira preserva R0, segunda
+  deixa a palavra antiga de0xa0020600 em R0. Efeitos físicos não atribuídos.
+- Modo2 de0x5a2b8 usa lookup0x5acec e UXTB: count0 retorna-1, vira255 e
+  calcula linha sem guard desse erro antes de ler linha+2/+5. Memória ausente
+  falha; fixture de linha255 explícita confirma stores sem afirmar OOB vivo.
+  Corrigida descrição antiga: lookup não vazio sem limiar satisfeito usa
+  último índice; não retorna-1 por ausência de coincidência.
+- Chamada0x5a43c→wrapper0x5822c publica plugin9/subcmd17 e dois u32. Sob
+  gates/bindings, método12→handler0x5faac→wrapper0x60198. Este chama método96
+  nominal0x647ac e depois relê método192 nominal0x65124, sem testar retorno
+  anterior. Integração crua inclui dispatcher/handler/wrapper/segundo método;
+  carregador é hook explícito, com voláteis alterados. Handler retorna0.
+- Método0x65124 lê fonte e escreve destino por raízes distintas; atualiza
+  low4 e copia palavra de ponteiro+128 para outro destino+0x504. Teste de
+  alias mostra primeira store mudando o ponteiro relido posteriormente.
+  Registradores físicos/unidades/retorno de sucesso não foram atribuídos.
+- Novo extrator: GNU466 instruções/493 halfwords/41 alvos/47 literais/
+  45 operandos. 20 testes novos, três conjuntos de80 casos. Avaliador ganhou
+  UXTB/BICS/LDMIA base fora da lista, com flags/wrap/memória ausente conferidos.
+  643 testes NEWTIME passaram. Dois JSONs reproduzidos exatamente; novo
+  extrator recusa três imagens inválidas exit2 sem stdout/JSON. Baseline
+  novo aprovado nas nove etapas:host43/60/17,diag12,loader1+5,leitor17.
+- Documentação/índices/roadmap reconciliados. Restam restante de0x5a2b8,
+  carregador0x647ac,produtor0xabcd1234,ordem init9/máscaras e slot47/X0.
+  Sem execução Samsung ou ampliação QEMU do firmware.

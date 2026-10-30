@@ -169,7 +169,7 @@
     "return_tested": "ble 0x59842 skips only notify cmd5"
    }
   ],
-  "level_indices": "idxA=0x5acec(A,entry), idxB=0x5acec(B,entry); count0/lookup-miss reach the -1 returns 0x59896/0x5989c before any DMC call"
+  "level_indices": "idxA=0x5acec(A,entry), idxB=0x5acec(B,entry); count0 returns-1 and reaches 0x59896/0x5989c before any DMC call; nonempty lookup selects first low24(level)<=value, or last index if none"
  },
  "generic_relay": {
   "file": "0x38b04",

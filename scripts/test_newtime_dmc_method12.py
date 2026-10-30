@@ -220,6 +220,9 @@ class RawThumb:
                 elif op == 13:                                         # MULS, C/V preserved
                     self.r[d] = (self.r[d] * self.r[s]) & U32
                     self.nz(self.r[d])
+                elif op == 14:                                         # BICS, C/V preserved
+                    self.r[d] &= U32 ^ self.r[s]
+                    self.nz(self.r[d])
                 elif op == 15:
                     self.r[d] = U32 ^ self.r[s]
                     self.nz(self.r[d])
@@ -290,6 +293,18 @@ class RawThumb:
                     self.r[d] = self._load(a, byte=True)
                 else:
                     raise ValueError(f'unsupported 0101 op {op} at {p:#x}')
+            elif h & 0xFFC0 == 0xB2C0:                                 # UXTB, flags unchanged
+                self.r[h & 7] = self.r[(h >> 3) & 7] & 255
+            elif family == 0xC800:                                     # LDMIA, base outside list
+                n, registers = (h >> 8) & 7, h & 255
+                if not registers or registers & (1 << n):
+                    raise ValueError('LDMIA empty/base-in-list outside evaluator')
+                address = self.r[n]
+                for i in range(8):
+                    if registers & (1 << i):
+                        self.r[i] = self._load(address)
+                        address = (address + 4) & U32
+                self.r[n] = address
             elif family == 0x8800:                                     # LDRH imm5
                 d, n = h & 7, (h >> 3) & 7
                 a = (self.r[n] + ((h >> 6) & 31) * 2) & U32

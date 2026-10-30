@@ -80,9 +80,11 @@ memória/MMIO. O caso de uma etapa devolve o único resultado.
 ## O limiar escolhe caminhos; não é uma recusa
 
 `0x5acec` lê contagem u8 em sub+1 e offset u16 em sub+20; compara low24 das
-palavras da tabela ao valor completo u32. Contagem zero retorna-1; a busca
-sem coincidência usa o último índice. As duas falhas de lookup em
-`0x594a8/0x594ae` chegam aos retornos-1 `0x59896/0x5989c`.
+palavras da tabela ao valor completo u32. Seleciona o primeiro índice cujo
+low24 é menor ou igual ao pedido; se nenhum satisfizer, usa o último índice.
+Contagem zero retorna-1. Os testes desse retorno em `0x594a8/0x594ae`
+chegam aos retornos-1 `0x59896/0x5989c`; uma tabela não vazia sem limiar
+satisfeito não produz-1 apenas por esse motivo.
 
 As comparações com M32[core0x2f230], em `0x59614..0x5961c`, **não são
 retornos de erro**. A>limiar desvia para0x59692 e continua; E>limiar chega

@@ -1,6 +1,8 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-O [helper DVFS do canal direto](docs/newtime-fast-apply-hzc2.md) visita quinze entradas e limpa o sinal após seus callees retornarem, sem agregar erros. Dependências podem selecionar domínio0 apesar do skip externo. PRs #51/#52 integradas; continuação com 623 testes NEWTIME e baseline completo aprovado. O produtor do magic e os efeitos transitivos continuam abertos.
+A [continuação do callback0](docs/newtime-domain0-callees-hzc2.md) identifica duas folhas com stores e uma rota nominal ao DMC17, que chama o carregador de configuração e outro método. Lookup com count0 vira índice255 sem guard local antes da linha. São 643 testes NEWTIME aprovados; valores vivos, efeitos completos e produtor do magic continuam abertos.
+
+O [helper DVFS do canal direto](docs/newtime-fast-apply-hzc2.md) visita quinze entradas e limpa o sinal após seus callees retornarem, sem agregar erros. Dependências podem selecionar domínio0 apesar do skip externo. PRs #51/#52 integradas; o produtor do magic e os efeitos transitivos continuam abertos.
 
 A [rota direta do canal3](docs/newtime-fast-channel-hzc2.md) chega ao método +0 DVFS, cujo gate local compara0xa590010c com0xabcd1234. Esse valor difere do magic de init7; o clear AP0x15900104 ainda não foi demonstrado como barreira de consumo DMC.
 

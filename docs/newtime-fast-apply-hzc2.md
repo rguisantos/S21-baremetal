@@ -92,7 +92,9 @@ continua aberto. O clear AP `0x15900104` continua sem ligação demonstrada
 a uma barreira de consumo DMC; os testes integrados não precisam mapear
 os bytes locais de `0xa5900104`.
 
-Próxima frente: seguir `0x59e34`, `0x5a004` e `0x5a2b8`, além de procurar
+Os corpos `0x59e34`/`0x5a004` e trechos de `0x5a2b8` foram delimitados
+na [continuação do callback0](newtime-domain0-callees-hzc2.md), incluindo
+uma rota nominal ao DMC17. Restam o restante de `0x5a2b8`, o carregador e
 o produtor do magic com evidência de store e origem. Permanecem abertos
 alias/frescor/visibilidade físicos, ordem init9 versus máscaras tardias,
 efeitos transitivos e slot47/X0. Sem execução Samsung ou ampliação QEMU
