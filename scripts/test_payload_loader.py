@@ -58,9 +58,12 @@ class Remote:
     def close(self):self.writer.close();self.reader.close()
 
 def symbols(elf):
-    listing=subprocess.check_output(['readelf','-sW',str(elf)],text=True)
+    listing=subprocess.check_output(['readelf','-sW',str(elf)],text=True,
+                                    env=dict(os.environ,LC_ALL='C'))
+    # Identify numbered symbol rows, never translated column headings.
     return {fields[-1]:int(fields[1],16) for line in listing.splitlines()
-            if len(fields:=line.split())>=8 and fields[0].endswith(':') and fields[1]!='Value'}
+            if len(fields:=line.split())>=8 and fields[0].endswith(':')
+            and fields[0][:-1].isdigit()}
 
 def expected_memory(elf,blob):
     # Independently read ELF PT_LOADs, not the C consumer's plan.

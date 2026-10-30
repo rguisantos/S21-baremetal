@@ -84,6 +84,27 @@ leitura do FDT. MPIDR é capturado, mas sua topologia não é validada neste tes
 A matriz original não exercitava as recusas. A recusa por C ligado foi
 coberta na atualização abaixo; M ligado foi coberto na atualização de MMU abaixo; EL não suportado continua sem teste. Não há teste SMP, Samsung ou preservação após reset.
 
+### Leitura de símbolos com locale português — 2026-10-30
+
+No Mint 22.3 do usuário, o diagnóstico parou antes de iniciar o QEMU:
+o leitor compartilhado tentou converter `Tamanho`, parte do cabeçalho
+traduzido do `readelf`, em hexadecimal. A compilação da sonda havia terminado.
+O leitor agora executa somente o `readelf` com `LC_ALL=C`, preserva o locale
+do processo principal e seleciona as linhas pelo índice numérico do símbolo.
+O teste `python3 scripts/test_elf_symbols.py` cobre cinco casos, incluindo
+um cabeçalho traduzido sintético que reproduz o erro e um ELF real novo.
+O CI executa essas regressões antes do baseline. O baseline completo também
+passou localmente com `LC_ALL=pt_BR.UTF-8`, incluindo os 12 casos da sonda
+e o handoff R10 com cinco recusas. Em uma revisão anterior à correção,
+`LC_ALL=C USE_SYSTEM_TOOLS=1 python3 scripts/test_entry_diag.py`
+contorna esse erro de locale.
+
+A saída fornecida pelo usuário também mostra o R10 sintético chegando a
+BOOT/FDT/TIMER PASS e à exceção fatal intencional no QEMU 8.2.2 do Mint,
+com serial explícita e limite de 20 segundos. A falha anterior do script
+de oito segundos é separada: sua causa continua sem isolamento. Esses
+resultados são do computador; não houve execução da sonda no Samsung.
+
 ## Próximo bloqueio concreto
 
 O registro permanece apenas na RAM; não há transporte funcional de saída no

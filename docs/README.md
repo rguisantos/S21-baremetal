@@ -41,7 +41,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Interface pelo loader de referência](hackios-userland-qemu.md): imagens preparadas, checkpoint e ensaio de quatro CPUs.
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
-- [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão.
+- [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
 - [Contrato do diagnóstico Samsung](samsung-diagnostic-contract.md): matriz de carga/recuperação, condições pendentes e leitor offline de registros/capturas QEMU.
 - [Perfis de dump e encaminhamento RDX](lk-dump-export-hzc2.md): quatro regiões fixas, descritores dinâmicos e envio nominal; disponibilidade e retenção ainda pendentes.
 - [Origem da memória RDX e conclusão para a sonda](lk-rdx-memory-origin-hzc2.md): produtor `0xee370`, bancos de 16 bytes agrupados em pares, cobertura nominal da janela candidata e binding DWC3; a sonda atual não retorna cooperativamente ao LK.

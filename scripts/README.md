@@ -170,6 +170,8 @@ O empacotador atual está em `../tools/mkpayload.py`; não confundir com versõe
 
 - `test_entry_diag.py`: 12 casos do diagnóstico Image em QEMU (seis entradas EL1/EL2 em três endereços e seis recusas M/C); [contrato e limites](../docs/entry-diagnostic.md).
 
+- `test_elf_symbols.py`: cinco regressões do leitor compartilhado por `test_entry_diag.py` e `test_payload_loader.py`: cabeçalhos em inglês/traduzido, locale do subprocesso, valor inválido e ELF recém-compilado. Executado pelo CI antes do baseline; não requer QEMU ou firmware Samsung.
+
 - `inspect_uart_reference.py`: leitura somente do Kernel.tar.gz identificado por hash; cruza UART0/UART1, pinctrl e syscon sem extrair o pacote.
 
 - `collect_uart_state.sh`: coleta atributos UART/MUIC candidatos pelo shell Android/rish, sem writes no sysfs; cria relatório sem sobrescrever.

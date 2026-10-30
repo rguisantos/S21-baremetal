@@ -3252,3 +3252,26 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Nova regressão crua:flags1→0 geram0x31/0x31 e0→1→0 geram0x21/0x31/0x31
   para lookup0x21. Store noframe também conferida.684 testes NEWTIME passaram;
   JSON corrigido reproduzido exatamente. Sem mudança de firmware/R10.
+
+## 2026-10-30 — leitor de símbolos independente de locale no Mint
+
+- Main sincronizada com e5c4a0f, merge da PR #53. O usuário preparou Mint
+  22.3/x86_64 e ADB autorizado; propriedades mantêm HZC2, shell/SELinux e
+  bootloader travado. A nova conexão não demonstra mais privilégios.
+- A saída do usuário mostra BOOT/FDT/TIMER PASS e fatal intencional no
+  R10 sintético com QEMU 8.2.2, serial explícita e limite de 20 s. O script
+  anterior de 8 s saiu sem esses marcadores; a causa ainda não foi isolada.
+- A sonda falhou antes do QEMU: symbols() reconhecia cabeçalho pelo texto
+  inglês Value e tentou converter Tamanho em hexadecimal. Regressão
+  sintética reproduziu exatamente o ValueError antes da correção.
+- O subprocesso readelf agora recebe LC_ALL=C sem modificar o ambiente
+  principal; o parser identifica linhas por índice numérico, não cabeçalho.
+  Cinco testes cobrem inglês/tradução, ambiente, valor inválido e ELF real.
+  O CI os executa antes do baseline. Nenhuma alteração na Image/firmware.
+- Cinco regressões passaram, assim como os 12 casos da sonda com captura
+  local. Baseline completo passou com locale pt_BR.UTF-8: host 43/60/17,
+  diagnóstico 12, handoff R10 1+5 e leitor de registro 17; nove etapas PASS.
+  Logs locais em build/baseline-readelf-ptbr/summary.json. A validação da
+  sonda no Mint do usuário continua pendente após o workaround LC_ALL=C.
+- README, índices, diagnóstico e roadmap atualizados. Carregamento Samsung,
+  memória/coerência e aquisição física do registro continuam pendentes.
