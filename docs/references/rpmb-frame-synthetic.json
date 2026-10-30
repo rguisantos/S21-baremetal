@@ -1,0 +1,104 @@
+{
+  "fixture_origin": "synthetic host bytes; no phone capture",
+  "input_frame_sha256": "ff623d2d0e0caaeeb4ba42df34f67ddf4e6e166589d6df01528ab40ab615f036",
+  "wire_report": {
+    "mode": "offline_single_rpmb_frame",
+    "input_order": "wire",
+    "input_sha256": "ff623d2d0e0caaeeb4ba42df34f67ddf4e6e166589d6df01528ab40ab615f036",
+    "wire_sha256": "ff623d2d0e0caaeeb4ba42df34f67ddf4e6e166589d6df01528ab40ab615f036",
+    "scalars": {
+      "request": 22136,
+      "result": 17767,
+      "count": 13398,
+      "address": 9029,
+      "write_counter": 305419896
+    },
+    "arrays": {
+      "nonce": {
+        "wire_offset": 484,
+        "bytes": 16,
+        "wire_sha256": "503563c1bda45327ff4617750a06bd8143fcd4e7929934b7cf1e826c1ba60c90"
+      },
+      "data": {
+        "wire_offset": 228,
+        "bytes": 256,
+        "wire_sha256": "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880"
+      },
+      "Key_MAC": {
+        "wire_offset": 196,
+        "bytes": 32,
+        "wire_sha256": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd"
+      },
+      "stuff": {
+        "wire_offset": 0,
+        "bytes": 196,
+        "wire_sha256": "d904e1f1e028ba9058a128a6fd724f0f9892ae8fe49c8f7dc2613183f7f8bbca"
+      }
+    },
+    "authenticated_region": {
+      "wire_offset": 228,
+      "bytes": 284,
+      "sha256": "1d38a5249710cba2331d18958a50d0f1d069181f3e60126ff80d277367c2cc34"
+    },
+    "authentication_verified": false,
+    "capture_provenance_verified": false,
+    "device_io_established": false,
+    "counter_persistence_established": false,
+    "limits": [
+      "scalar values are decoded bytes, not authenticated device state",
+      "wire array hashes preserve transmitted byte order; local arrays reverse that order",
+      "local-materialized input is a caller assertion; frontend pointer/count placeholders cannot be distinguished by these bytes alone",
+      "no HMAC key, verification, transport, multi-frame aggregation or freshness proof is provided"
+    ]
+  },
+  "materialized_local_report": {
+    "mode": "offline_single_rpmb_frame",
+    "input_order": "local-materialized",
+    "input_sha256": "335c1f884c06a32999209230f1ce09adf43453799b46d34b5ff3da6899ec59aa",
+    "wire_sha256": "ff623d2d0e0caaeeb4ba42df34f67ddf4e6e166589d6df01528ab40ab615f036",
+    "scalars": {
+      "request": 22136,
+      "result": 17767,
+      "count": 13398,
+      "address": 9029,
+      "write_counter": 305419896
+    },
+    "arrays": {
+      "nonce": {
+        "wire_offset": 484,
+        "bytes": 16,
+        "wire_sha256": "503563c1bda45327ff4617750a06bd8143fcd4e7929934b7cf1e826c1ba60c90"
+      },
+      "data": {
+        "wire_offset": 228,
+        "bytes": 256,
+        "wire_sha256": "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880"
+      },
+      "Key_MAC": {
+        "wire_offset": 196,
+        "bytes": 32,
+        "wire_sha256": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd"
+      },
+      "stuff": {
+        "wire_offset": 0,
+        "bytes": 196,
+        "wire_sha256": "d904e1f1e028ba9058a128a6fd724f0f9892ae8fe49c8f7dc2613183f7f8bbca"
+      }
+    },
+    "authenticated_region": {
+      "wire_offset": 228,
+      "bytes": 284,
+      "sha256": "1d38a5249710cba2331d18958a50d0f1d069181f3e60126ff80d277367c2cc34"
+    },
+    "authentication_verified": false,
+    "capture_provenance_verified": false,
+    "device_io_established": false,
+    "counter_persistence_established": false,
+    "limits": [
+      "scalar values are decoded bytes, not authenticated device state",
+      "wire array hashes preserve transmitted byte order; local arrays reverse that order",
+      "local-materialized input is a caller assertion; frontend pointer/count placeholders cannot be distinguished by these bytes alone",
+      "no HMAC key, verification, transport, multi-frame aggregation or freshness proof is provided"
+    ]
+  }
+}

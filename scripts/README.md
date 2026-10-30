@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+A [referência FlopKernel Exynos2100](../docs/flop-kernel-reference.md) confirma o layout RPMB com probe C do host e acrescenta um leitor offline de frames, com 26 testes novos. Revisão fixada em `4553117`; suporte de fonte para p3s confirmado. Interfaces Linux/monitor/LK e estado do aparelho permanecem separados.
+
 O [backend RPMB dos contadores](../docs/lk-rpmb-hzc2.md) está ligado aos pacotes locais, callbacks `scsirpmb` e pedidos seguros de nonce/MAC. A análise confere 1.156 palavras GNU e 16 testes novos; distingue revisões de rollback, contador de escrita e efeitos anteriores aos testes de autenticação. Persistência e implementação segura continuam abertas.
 
 Os [verificadores Samsung chamados pelas partições](../docs/lk-samsung-checks-hzc2.md) agora têm papéis separados: seleção/pedido de assinatura ao monitor, comparação de revisão para rollback e política de binário personalizado. São 801 palavras GNU e 16 testes novos. Retornos zero, fallbacks e efeitos de política foram distinguidos da aceitação física de uma Image.
@@ -268,3 +270,6 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_samsung_checks.py` / `test_lk_samsung_checks.py`: tabela exata de nomes, pedido de assinatura ao monitor, rollback e política custom, com 16 testes sintéticos de ponteiros/descritor/recusa. Sem execução de firmware ou SMC. [Escopo e reprodução](../docs/lk-samsung-checks-hzc2.md).
 
 - `inspect_lk_rpmb.py` / `test_lk_rpmb.py`: backend dos contadores, switch signed halfword, descritor MAC e gates, com 16 testes sintéticos. Análise estática sem pacotes ou SMC executados. [Escopo e reprodução](../docs/lk-rpmb-hzc2.md).
+
+- `inspect_rpmb_frame.py` / `test_rpmb_frame.py`: leitor de um arquivo regular de512 bytes, com ordem explícita e hashes dos arrays transmitidos; 14 testes, sem autenticação ou I/O de dispositivo.
+- `inspect_flop_reference.py` / `test_flop_reference.py`: valida19 fontes fixadas, constantes/config e o layout C de RPMB no host; 12 testes e nenhuma execução do kernel. [Referência e reprodução](../docs/flop-kernel-reference.md).

@@ -188,3 +188,5 @@ Continuação de 30/10: a [conferência de Build-id](lk-build-id-partitions-hzc2
 Continuação de 30/10: os [verificadores Samsung](lk-samsung-checks-hzc2.md) foram delimitados localmente, incluindo o pedido seguro 0xffffffffffffff10 e a tradução de seus retornos. Fallback de contador e retorno zero não foram promovidos a estado medido ou aceitação física. Predicados, backend seguro e fornecedores de chave permanecem abertos; não houve operação no aparelho.
 
 Continuação de 30/10: o [backend RPMB](lk-rpmb-hzc2.md) liga os contadores aos pacotes locais, callbacks de armazenamento e pedidos seguros de nonce/MAC. Foram delimitadas cópias anteriores aos testes e continuação local após erro de MAC; isso não comprova I/O, autenticação, persistência ou aceitação física. Destinos vivos dos callbacks e implementação segura seguem pendentes.
+
+Continuação de 30/10: a [referência FlopKernel](flop-kernel-reference.md) acrescenta confirmação do layout RPMB e leitor offline, sem executar kernel, firmware ou operações no aparelho. Fontes p3s e flags do defconfig não satisfazem os contratos físicos de carga, memória ou captura.

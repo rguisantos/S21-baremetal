@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+O [FlopKernel Exynos2100](flop-kernel-reference.md) foi conferido em revisão fixa: há fontes p3s e layout RPMB compatível com a interpretação local do LK. Entregues leitor offline e probe C, com26 testes. O transporte Linux via WSM/IRQ não identifica os callbacks do LK; esses destinos e a implementação segura permanecem próximos.
+
 O [backend dos contadores](lk-rpmb-hzc2.md) chega a `scsirpmb` e aos pedidos seguros `0xc2001018`/`0xc200101c`. Ordem de dados/resultados e limites de autenticação estão delimitados localmente; retorno zero não prova persistência. Próximo: registro/destinos dos callbacks, origem dos gates e fonte validada do serviço seguro.
 
 Os [verificadores Samsung](lk-samsung-checks-hzc2.md) estão delimitados localmente: seleção/pedido ao monitor 0xffffffffffffff10, revisão para rollback e efeitos de política custom. O zero local inclui skip/fallback e não prova aceitação física. O backend tem continuação acima; implementação segura, persistência, predicados vivos de política e fornecedor da chave AVB permanecem abertos; contratos físicos de carga/memória/captura continuam pendentes.
