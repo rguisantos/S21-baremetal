@@ -79,8 +79,10 @@ releituras do mesmo controle; não se modelou uma fotografia única.
 Outro controle, `0xa58609ac`, é relido para gates dos bits24..28. As
 sequências podem chamar os métodos+16/+40 da tabela core `0x37fb4`, com
 IDs11,41,18,17 e3. Seus alvos iniciais são core `0x369a5`/`0x369d1`,
-arquivos `0x641a4`/`0x641d0`. **Esses serviços permanecem opacos**: fixtures
-substituem seus retornos e alteram registradores voláteis.
+arquivos `0x641a4`/`0x641d0`. Na entrega inicial, fixtures substituíam seus
+retornos e alteravam registradores voláteis. A [continuação dos serviços](newtime-dmc-table-services-hzc2.md)
+agora delimita ambos como operações sobre tabela e identifica um consumidor
+separado, sem estabelecer sua ordem real de aplicação depois da cauda.
 
 Não há agregação local de erros dos serviços. Valores devolvidos pelos
 leitores são tratados como dados; a cauda termina com R0=0, e o próprio
@@ -114,6 +116,6 @@ permanecem históricos das suas árvores; este registra os hashes atuais.
 JSON reproduzido exatamente e três imagens inválidas recusadas exit2 sem
 stdout/JSON. Sem execução Samsung ou ampliação QEMU do firmware.
 
-Restam os serviços0x641a4/0x641d0, o restante de0x5a2b8, produtor do magic
+Restam outros serviços/caminhos do consumidor, o restante de0x5a2b8, produtor do magic
 0xabcd1234, ordem init9/máscaras e slot47/X0. As condições físicas e de
 alcançabilidade continuam separadas dos resultados do modelo de host.

@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-O [carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md) têm seus corpos locais delimitados. O teste de tamanho não aborta; publicações precedem a cauda, que relê controles e pode editar descritores/chamar serviços. Próximo: serviços0x641a4/0x641d0, restante de0x5a2b8 e produtor de0xabcd1234. Alcançabilidade, valores vivos e ordem física seguem abertos.
+Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 e produtor de0xabcd1234 seguem abertos.
+
+O [carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md) têm seus corpos locais delimitados. O teste de tamanho não aborta; publicações precedem a cauda, que relê controles e pode editar descritores/chamar serviços. Alcançabilidade, valores vivos e ordem física seguem abertos.
 
 A [continuação do callback0](newtime-domain0-callees-hzc2.md) fecha as duas folhas0x59e34/0x5a004, delimita count0→índice255 e liga o modo2 ao DMC17→carregador0x647ac→método0x65124, sob gates/bindings preservados.
 

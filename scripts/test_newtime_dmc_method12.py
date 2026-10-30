@@ -55,8 +55,8 @@ class RawThumb:
         self.v = bool((a ^ b) & (a ^ x) & (1 << 31))
         return x
 
-    def add(self, a, b):
-        value = a + b
+    def add(self, a, b, carry=0):
+        value = a + b + carry
         x = value & U32
         self.nz(x)
         self.c = value > U32
@@ -212,6 +212,8 @@ class RawThumb:
                         self.c = bool(value & (1 << 31)) if count >= 32 else bool(value & (1 << (count - 1)))
                         self.r[d] = (self.sgn(value, 32) >> min(count, 32)) & U32
                     self.nz(self.r[d])
+                elif op == 5:                                          # ADCS register
+                    self.r[d] = self.add(self.r[d], self.r[s], int(self.c))
                 elif op == 8:                                          # TST
                     self.nz(self.r[d] & self.r[s])
                 elif op == 9:                                          # NEGS

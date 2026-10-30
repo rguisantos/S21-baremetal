@@ -3211,3 +3211,32 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - README/índices/roadmap reconciliados. Próximo: serviços0x641a4/0x641d0,
   restante do modo2 em0x5a2b8 e produtor do magic0xabcd1234. Ordem física
   init9/máscaras e slot47/X0 seguem abertos.
+
+## 2026-10-30 — serviços da tabela e consumidor de publicação
+
+- Base296bc4a, PR53 permanece sem merge: revisão automática e CI do head
+  anterior aprovados; Entire continua exigindo aprovação de revisor.
+- Serviços0x641a4/0x641d0 delimitados: registros de4 bytes,valor+0/ID+1.
+  Getter captura count/ponteiro e retorna primeira coincidência ou-1;
+  setter captura ponteiro,relê count,altera todas as duplicatas com low8
+  e retorna o ID intacto,inclusive sem matches. Sem calls/polls locais.
+  Aliases alterando count ou célula do ponteiro têm fixtures próprias.
+- Cauda integrada aos serviços reais: prepara a tabela sem invocar o
+  publicador. Chamada separada explícita0x63fb0 publica valores preparados.
+  Essa ordem é fixture,não evento físico nem prova de aplicação automática.
+- Consumidor relê count/ponteiro;ID16 é pulado,ID18 usa resultado inicial
+  capturado eID21 exige low3==7 de leitor indireto0x61c70. ID30 permanece
+  fronteira. R0 final depende do caminho,sem agregação de status. Chamador
+  nominal0x640e8 tem publicação inicial de ID16 e BL direto0x64120.
+- Método+100 aponta nominalmente0x615ec: canal4 lê entrada0 e escreve
+  entrada4 distinta,configura campos e faz stores+0/+0x38/+8/+4.
+  Retorna0 sem poll/leitura de confirmação local. Outros canais>4 retornam-1.
+  Nenhuma função elétrica ou aceitação física foi atribuída ao protocolo.
+- Novo extrator:GNU258 instruções/267 halfwords/33 alvos/12 literais/
+  32 operandos.20 testes novos,80 tabelas aleatórias e integrações cruas;
+  ADCS ganhou carry/overflow/carry de entrada conferidos.683 NEWTIME
+  passaram. JSON exato e três recusas exit2 sem stdout/JSON. R10 não foi
+  alterado; seu baseline obrigatório será conferido no CI do novo head.
+- README/índices/roadmap atualizados. Restam aplicação real da tabela em
+  relação à cauda,ID30/leitor0x61c70,restante0x5a2b8,produtor0xabcd1234,
+  ordem física init9/máscaras e slot47/X0. Sem execução Samsung/novo QEMU.

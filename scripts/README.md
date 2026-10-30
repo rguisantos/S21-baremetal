@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+- `inspect_newtime_dmc_table_services_hzc2.py` / `test_newtime_dmc_table_services.py`: tabela da cauda, consumidor selecionado e publicador por raízes distintas; 20 testes e [limites](../docs/newtime-dmc-table-services-hzc2.md).
+
 - `inspect_newtime_dmc_loader_hzc2.py` / `test_newtime_dmc_loader.py`: corpos locais do carregador DMC17 e cauda, ASR/UXTH/STRH e publicações condicionais; 20 testes e [condições](../docs/newtime-dmc-loader-hzc2.md).
 
 - `inspect_newtime_domain0_callees_hzc2.py` / `test_newtime_domain0_callees.py`: folhas do callback0, índice low8, rota DMC17 e dois métodos; 20 testes e [escopo](../docs/newtime-domain0-callees-hzc2.md).

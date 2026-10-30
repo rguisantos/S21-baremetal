@@ -1,0 +1,58 @@
+{
+ "source_head": "296bc4af02ac921dd98f4eaaf15d6ed11cb54193",
+ "date": "2026-10-30",
+ "timezone": "America/Campo_Grande",
+ "tests": {
+  "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+  "passed": 683,
+  "new_in_this_continuation": 20,
+  "new_since_main": 80,
+  "random_tables": 80
+ },
+ "exact_reproduction": "newtime-dmc-table-services-hzc2.json",
+ "refusals": [
+  {
+   "case": "short",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "long",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  },
+  {
+   "case": "altered",
+   "exit_code": 2,
+   "stdout_empty": true,
+   "json_created": false
+  }
+ ],
+ "gnu": {
+  "instructions": 258,
+  "halfwords": 267,
+  "relative_targets": 33,
+  "literals": 12,
+  "selected_operands": 32
+ },
+ "r10": {
+  "source_unchanged": true,
+  "baseline": "required remote CI check for final published head; no redundant local baseline run"
+ },
+ "previous_validation": {
+  "path": "newtime-dmc-loader-validation-20261030.json",
+  "historical_validated_tree": "f4261afeced938e5a7fa2ec9c7373f28ea391e0c"
+ },
+ "local_links_checked": 493,
+ "sha256": {
+  "scripts/inspect_newtime_dmc_table_services_hzc2.py": "9c49a130e8e5c8b06ca19f49c9681afb6734b9cc57e26434df3d0791ea6a62d6",
+  "scripts/test_newtime_dmc_table_services.py": "7dd8ac675ef097f7c0d0ac640d1c773c6dfa63631a2781dd05d5c365ac77e9ad",
+  "scripts/test_newtime_dmc_method12.py": "b1aec2aa535d0ce9e54568b05ae42496c9747f5a292bc264cadcc587a3450a9e",
+  "docs/references/newtime-dmc-table-services-hzc2.json": "591b551855c27cd9da176d5a7ae8182c9c64fbe74a8cacd2d4bd36d71819b2e8"
+ },
+ "samsung_execution": false,
+ "qemu_firmware_scope_expanded": false,
+ "slot47_resolved": false
+}

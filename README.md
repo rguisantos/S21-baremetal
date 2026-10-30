@@ -1,6 +1,8 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-O [carregador DMC17 e sua cauda](docs/newtime-dmc-loader-hzc2.md) têm os corpos locais delimitados: comparação de tamanho chama uma folha sem ação, dois campos selecionam linhas por argumentos diferentes e a cauda pode alterar descritores após a publicação. São 663 testes NEWTIME aprovados; serviços indiretos, condições físicas e produtor do magic continuam abertos.
+Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local. São 683 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
+
+O [carregador DMC17 e sua cauda](docs/newtime-dmc-loader-hzc2.md) têm os corpos locais delimitados: comparação de tamanho chama uma folha sem ação, dois campos selecionam linhas por argumentos diferentes e a cauda pode alterar descritores após a publicação. Condições físicas e produtor do magic continuam abertos.
 
 A [continuação do callback0](docs/newtime-domain0-callees-hzc2.md) identifica duas folhas com stores e uma rota nominal ao DMC17. Lookup com count0 vira índice255 sem guard local antes da linha; valores vivos e produtor do magic continuam abertos.
 
