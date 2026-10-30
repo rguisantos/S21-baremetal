@@ -1,5 +1,7 @@
 # Guia da documentação
 
+- [DMC método +12 e subcomandos 8/9](newtime-dmc-method12-hzc2.md): cadeia nominal, retornos, polls e correções dos modelos/testes GLM; 78 testes.
+
 - [Setters de política FVP](newtime-policy-writers-hzc2.md): limites, habilitação u32 e recomputação em nova invocação comando6.
 
 - [Conclusão do dispatcher ACPM](newtime-dispatch-completion-hzc2.md): logging, avanço do índice e saída sem agregação de erros.

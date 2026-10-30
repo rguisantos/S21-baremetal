@@ -2992,3 +2992,28 @@ com nova invocação comando6, que relê a política. Dez testes adicionados.
 Validação:466 testes NEWTIME, JSON exato, três recusas CLI sem JSON parcial,
 25 operandos adicionais e511 links locais válidos. Escopo GNU
 reutilizado FVP830 instruções/983 halfwords/150 alvos.
+
+## 2026-10-29 — auditoria independente DMC método +12 / 8/9
+
+- Base `f1524a3` (PR #51). Material GLM original: 65 testes passaram e
+  JSON reproduzido byte a byte com GNU 2.44. Hashes originais registrados no
+  JSON revisado; fontes originais preservadas fora da árvore versionada.
+- Ligados wrappers 0x581fc/0x58214 → relay → método 0x5f758 → handlers
+  0x5fadc/0x5fbbc, sob instalação/preservação das raízes. Retorno 8 de
+  0x59572 ignorado antes do 9; arg2 do 9 salvo/copiado mas não consumido
+  posteriormente no corpo selecionado. Polls 0xa5863a30 sem timeout local.
+- Corrigidos precedência do erro -11, low8 do shift, despacho por índice
+  após wrap, resultado de memória/h desconhecido. Retirada exclusão global
+  de escritores: stores calculadas/aliases continuam abertos.
+- Interpretador: memória ausente agora falha; fixtures explícitas; PUSH/LR,
+  POP/SP, MOVW/flags, ADD/shift flags corrigidos; ASR não implementado
+  recusado em vez de tratado como CMP. 13 novas regressões, 78 testes DMC.
+- Validação final: 544 testes NEWTIME passaram. 1494 instruções GNU,
+  147 alvos relativos, 100 literais distintos e 172 operandos selecionados.
+  JSON revisado reproduzido exatamente; imagens curta/longa/alterada
+  recusadas exit2 sem JSON. Links dos documentos alterados conferidos.
+- README, índice, roadmap e ligação DVFS atualizados. Sem aparelho/QEMU,
+  sem resolver slot47/X0 ou atribuir unidades/efeitos físicos. Próxima
+  frente: descritores e stores calculadas do carregador DMC.
+- PR #51 ainda pendente; manter auditoria DMC em branch/PR dependente.
+  Nenhum merge sem revisão automática do head exato e gates aprovados.

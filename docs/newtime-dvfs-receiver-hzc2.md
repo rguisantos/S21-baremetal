@@ -137,7 +137,8 @@ do despacho e broadcast com limite exclusivo. Hooks dos callees são opacos
 e explícitos; orçamento de host não é timeout de firmware.
 
 Esta auditoria não substitui um mapa completo dos38 acessos/polls externos.
-Interfaces dos plugins DMC/DD/sci, origens das tabelas vivas, aliases e
-aplicação física permanecem abertos. A seleção FVP já foi feita; a frente
-complementar útil agora é o método+12 do plugin_DMC e os consumidores dos
-subcomandos8/9, mantendo slot47/X0 e os demais caminhos indiretos abertos.
+A [interface DMC +12 e os subcomandos 8/9](newtime-dmc-method12-hzc2.md)
+foram ligados na continuação. Interfaces DD/sci, origens das tabelas vivas,
+aliases e aplicação física permanecem abertos. A próxima frente DMC é o
+carregador de configuração e seus destinos calculados, mantendo slot47/X0
+aberto.

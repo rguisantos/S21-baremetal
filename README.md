@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [auditoria DMC 8/9](docs/newtime-dmc-method12-hzc2.md) liga os wrappers aos handlers e confirma retorno 8 descartado antes do 9. Modelos e testes foram corrigidos; máscaras, tabela e escritores por endereços calculados permanecem abertos.
+
 Os [setters de política FVP](docs/newtime-policy-writers-hzc2.md) gravam limite/habilitação e respondem sem chamada direta ao relay DVFS nos caminhos selecionados. Uma invocação posterior do comando6 relê essas políticas.
 
 A [conclusão do dispatcher ACPM](docs/newtime-dispatch-completion-hzc2.md) guarda o retorno FVP para logging, avança o índice sem teste local desse erro e devolve0 na saída normal selecionada; hooks e estado vivo permanecem condições.

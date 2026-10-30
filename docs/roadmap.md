@@ -1,8 +1,10 @@
 # Roadmap e estado do S21-baremetal
 
-Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e DMC8/9 permanecem abertos.
+A [auditoria DMC 8/9](newtime-dmc-method12-hzc2.md) fecha a cadeia nominal de despacho, condicionada à instalação/preservação das raízes. Próxima frente: stores calculadas do carregador de configuração e origem das máscaras/base core 0x3a660/0x3a664/0x3a668. O valor vivo e o efeito físico continuam abertos.
 
-A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; DMC8/9 continua a próxima frente.
+Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e valores runtime do DMC permanecem abertos.
+
+A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; valores runtime do DMC continuam abertos.
 
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
@@ -73,8 +75,8 @@ A [auditoria do receptor DVFS](newtime-dvfs-receiver-hzc2.md) confirma
 modo0→callback, mas a primeira transição não tem retorno testado antes da
 final, que relê B. Init avança sub por52 e depende de dados após handshake;
 limiar seleciona caminhos, broadcast tem limite exclusivo/quatro registros.
-Próxima frente: método+12 DMC/subcomandos8/9, sem tratar retorno0 local
-como agregação de aceitação ou aplicação física.
+O método+12 DMC/subcomandos8/9 está ligado na auditoria acima, sem tratar
+retorno0 local como agregação de aceitação ou aplicação física.
 
 O [gate ECT](newtime-ect-gate-hzc2.md) tem decisão delimitada por SMC X64
 e finalize W32. A reserva corrigida inclui o descritor16 antes de total+4;
