@@ -1,6 +1,6 @@
 # Catálogo de scripts
 
-A [verificação LK anterior à cópia](../docs/lk-precopy-measurement-hzc2.md) foi delimitada: marcador SEANDROIDENFORCE, política por byte e pedido nominal de SHA ao monitor. Retorno local não certifica autenticação; 261 palavras GNU e 12 testes do verificador.
+A [entrada inicial do pedido de SHA](../docs/lk-embedded-avb-key-hzc2.md) foi identificada como uma chave pública AVB RSA-4096 embutida de 1.032 bytes. Layout e parâmetros matemáticos conferem; 17 testes novos passaram. Preservação em execução, confiança da chave e autenticação da Image continuam pendentes.
 
 - `inspect_newtime_dmc_table_services_hzc2.py` / `test_newtime_dmc_table_services.py`: tabela da cauda, acumulador ID18, consumidor selecionado e publicador por raízes distintas; 21 testes e [limites](../docs/newtime-dmc-table-services-hzc2.md).
 
@@ -244,3 +244,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - [Alteração PSCI no FDT pelo LK](../docs/lk-psci-final-edit-hzc2.md): edição condicional smc→hvc, mensagem observada no boot e 24 casos QEMU; método da base estática não é o método final certificado.
 
 - [Observação NEWTIME no gate](../docs/newtime-gate-observation-scope-hzc2.md): snapshots no runner com preflight preservado; ponteiro e scratch ff inalterados, predição de scratch zero refutada, sem execução após o gate.
+
+- `inspect_lk_embedded_key.py` / `test_lk_embedded_key.py`: endereço do consumidor decodificado, comprimento u32 e chave pública serializada AVB com parâmetros Montgomery conferidos; 17 testes sem firmware, referência de formato fixada e recusa de imagem não identificada. Não executa SHA no monitor nem verifica confiança/assinatura. [Identificação e limites](../docs/lk-embedded-avb-key-hzc2.md).

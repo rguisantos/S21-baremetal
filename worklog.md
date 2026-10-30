@@ -3363,3 +3363,29 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   Relatório/validação em docs/references; firmware privado continua fora do Git.
 - Próximo: produtores de 0x31d738/0x31d740 e validadores de imagem de outra etapa.
   Carga física, propriedade/coerência e recuperação dos 128 bytes seguem pendentes.
+
+
+## 2026-10-30 — origem inicial SHA identificada como chave AVB embutida
+
+- Continuação da PR #57, base main cd7f304. Telefone de uso pessoal permanece
+  fora dos ensaios: nenhuma execução de firmware, desbloqueio, root ou flash.
+- ADRP/ADD e ADRP/LDR W ligam o pedido a bytes de arquivo: comprimento u32
+  little-endian 0x408 em 0x31d738 e objeto [0x31d740,0x31db48).
+- Identificado layout AVB RSA-4096: header big-endian, módulo ímpar de 512 bytes
+  e rr de 512 bytes. n0inv=0x41f3e7a3 satisfaz n*n0inv mod2^32=0xffffffff;
+  rr=2^8192 modn também passou. Expoente65537 é implícito no formato.
+- Objeto de 1032 bytes, SHA-256 no host
+  d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6.
+  Não é digest recuperado do monitor, assinatura verificada ou confiança da chave.
+- Referência AOSP/mirror AndroidBootloader fixada em b27a9aa, avb_crypto.h
+  SHA-256 5aa8c148e0951a241080446456ff8ed32364918273f8b771683dcad51519c07a.
+  Layout corroborado; não se atribui esse fonte ao fork Samsung.
+- Novo inspect_lk_embedded_key.py: identidade do sboot antes de GNU, nove
+  palavras/um alvo/nove operandos, decoders limitados e parser matemático.
+  17 testes novos sem firmware passaram; 12 regressões da PR #57 passaram.
+- Relatório reproduzido byte a byte e baseline de nove etapas aprovado.
+  SHA-256 do resumo: c55389b75d25d2d5cda7b1a899c287d3c3e909fc09ae4beac236239fe4b99336.
+  Conferidos 1274 links locais de arquivos. Testes novos incluídos no CI.
+- Atualizados índices, roadmap, matriz Samsung e continuação da análise pré-cópia.
+  Resolvida a origem inicial; ainda faltam preservação ao vivo, ligação ao
+  consumidor de autenticação e carga/aquisição física do diagnóstico.

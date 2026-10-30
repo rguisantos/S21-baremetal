@@ -175,4 +175,4 @@ Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como d
 
 Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga workspace+0x29f68 → response+0x120 → 0xcd6618 → 0x157230. O produtor é get_token_mode; produção do workspace, token ativo e autenticação da Image seguem abertos.
 
-Continuação de 30/10: [marcador pré-cópia e SHA](lk-precopy-measurement-hzc2.md) ligam 0x151a10 a um pedido pelo monitor, com fonte nominal 0x31d740 e comprimento de 0x31d738. Esses produtores e a autenticação em outra etapa permanecem abertos; os retornos selecionados não certificam aceitação.
+Continuação de 30/10: [marcador pré-cópia e SHA](lk-precopy-measurement-hzc2.md) ligam 0x151a10 a um pedido pelo monitor, com fonte nominal 0x31d740 e comprimento de 0x31d738. A [continuação identifica os bytes iniciais como chave pública AVB RSA-4096 embutida](lk-embedded-avb-key-hzc2.md), com comprimento de 1.032 bytes. Preservação ao vivo, confiança da chave e autenticação do contêiner continuam abertas; os retornos selecionados não certificam aceitação.

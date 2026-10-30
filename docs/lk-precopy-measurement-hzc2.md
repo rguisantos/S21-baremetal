@@ -59,8 +59,9 @@ O caminho de SHA chama `0x17dae8` em `0x151a94`, com estes argumentos:
 | X3 | Ponteiro relativo `0xcd6250` |
 
 **Não foi demonstrado que esse buffer seja a Image bruta ou o contêiner
-boot inteiro.** Os produtores do buffer e do comprimento são uma próxima
-fronteira concreta. Encontrar o marcador não estabelece essa igualdade.
+boot inteiro.** A [continuação](lk-embedded-avb-key-hzc2.md) identifica a
+origem inicial desses bytes como uma chave pública AVB embutida, com comprimento
+de 1.032 bytes. Preservação em execução e consumidor de autenticação continuam abertos.
 
 ## Wrapper SHA e efeitos ainda externos
 
@@ -135,8 +136,9 @@ operandos divergentes, PC duplicado e recusa de arquivo não identificado.
 O CI executa esses testes antes do baseline R10. Eles validam o verificador,
 não simulam a política Samsung ou a execução do monitor.
 
-Próximo: localizar a produção de `0x31d738`/`0x31d740` e separar essa medição
-nominal dos validadores de imagem chamados em outra etapa. A implementação
+Continuação: a [chave pública embutida](lk-embedded-avb-key-hzc2.md) resolve
+a origem inicial de `0x31d738`/`0x31d740`. Próximo: preservação em execução e
+consumidor que decide autenticação do contêiner. A implementação
 segura permanece uma fronteira; não é necessário repetir leituras ADB negadas
 nem mudar o bloqueio do aparelho para continuar a análise.
 

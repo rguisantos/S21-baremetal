@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "cd7f304e59f9695cf0ab959afcc6359639873821",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "219b8a803fd38f564c8f3339d9e26b4e2beb98de791006d0f16e86b7e88b7c8f",
+  "report_reproduced_byte_for_byte": true,
+  "gnu_words": 9,
+  "gnu_relative_targets": 1,
+  "selected_operand_checks": 9,
+  "key_blob_bytes": 1032,
+  "key_blob_host_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+  "key_num_bits": 4096,
+  "n0inv_congruence_passed": true,
+  "rr_congruence_passed": true,
+  "source_reference": {
+    "repository": "AndroidBootloader/platform_external_avb",
+    "commit": "b27a9aa53d2db7720e4d88d6950dcd979da97de3",
+    "path": "libavb/avb_crypto.h",
+    "sha256": "5aa8c148e0951a241080446456ff8ed32364918273f8b771683dcad51519c07a",
+    "purpose": "AVB serialization reference; not the corresponding Samsung source"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_embedded_key.py -v",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_precopy_measurement.py",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_embedded_key.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-embedded-avb-key",
+      "status": "passed",
+      "summary_sha256": "c55389b75d25d2d5cda7b1a899c287d3c3e909fc09ae4beac236239fe4b99336",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "documentation_file_links": {
+    "checked": 1274,
+    "missing": 0
+  },
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Math checks establish serialized format consistency, not trust or signature acceptance.",
+    "The source bytes and length are initial file data; active values and preservation were not observed.",
+    "Host SHA-256 fingerprints are not recovered monitor digests."
+  ]
+}

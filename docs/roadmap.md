@@ -1,6 +1,6 @@
 # Roadmap e estado do S21-baremetal
 
-A [etapa LK anterior à cópia](lk-precopy-measurement-hzc2.md) separa marcador SEANDROIDENFORCE de pedido de SHA e de aceitação criptográfica. O resultado não é testado pelos dois chamadores selecionados; não constitui bypass ou caminho físico. Próximo: produtores de 0x31d738/0x31d740 e validadores de outra etapa. O aparelho é de uso pessoal; o desenvolvimento continua offline, sem transição de bloqueio.
+A [entrada inicial do pedido SHA](lk-embedded-avb-key-hzc2.md) está identificada: chave pública AVB RSA-4096 embutida de 1.032 bytes, com layout e parâmetros Montgomery conferidos. A [etapa pré-cópia](lk-precopy-measurement-hzc2.md) não usa o retorno como certificado de aceitação. Próximo: consumidor que decide autenticação do contêiner e preservação da chave em execução. O aparelho é de uso pessoal; o desenvolvimento continua offline.
 
 Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 e produtor de0xabcd1234 seguem abertos.
 
