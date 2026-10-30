@@ -152,3 +152,5 @@ A próxima fronteira é `0x17deb0` e o processamento de partições
 `0x17e920/0x17e828`, além do fornecedor seguro da chave e da origem da
 continuação tolerada no slot. O corpo local do wrapper e seu retorno
 imediato deixam de ser lacunas; a aceitação física continua sem prova.
+
+Continuação: a [conferência de Build-id e os helpers de partições](lk-build-id-partitions-hzc2.md) estão delimitados localmente. Prefixo, caches e política foram distinguidos dos verificadores transitivos e de uma aquisição física válida.

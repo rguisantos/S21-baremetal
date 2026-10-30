@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+A [conferência de Build-id e os helpers de partições](../docs/lk-build-id-partitions-hzc2.md) estão delimitados localmente. O checker compara um prefixo entre caches atribuídos a vbmeta/super; atualização, terminação e valor da política permanecem sem medição. São 1.497 palavras GNU e 14 testes novos, sem execução de firmware Samsung.
+
 O [wrapper AVB e seu chamador](../docs/lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados: red conserva um laço antes do epílogo; o retorno normal preserva o resultado do slot e é descartado imediatamente pelo chamador. Pedidos de metadados ao monitor foram identificados. São 847 palavras GNU e 17 testes novos; aceitação física e efeitos dos serviços seguros continuam abertos.
 
 O [verificador vbmeta e caminho RSA](../docs/lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
@@ -256,3 +258,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_avb_signature.py` / `test_lk_avb_signature.py`: caminho vbmeta/RSA, tabelas de algoritmos/padding, dois dispatches signed byte e conversão de resultados para o slot. Dezoito testes sintéticos de decodificação/recusa, sem executar firmware. [Evidência e limites](../docs/lk-avb-signature-hzc2.md).
 
 - `inspect_lk_avb_boot.py` / `test_lk_avb_boot.py`: wrapper AVB completo localmente, laço red, códigos/retornos, referência B/BL e descarte no chamador, além de sete fragmentos de pedidos seguros. Dezessete testes sintéticos, sem executar firmware. [Escopo e evidências](../docs/lk-avb-wrapper-hzc2.md).
+
+- `inspect_lk_build_id.py` / `test_lk_build_id.py`: checker Build-id, ligação do produtor/leitor de cache, getter de super e corpos locais de processamento/relatório de partições. Quatorze testes de operandos/binding/recusa; sem firmware executado. [Escopo e reprodução](../docs/lk-build-id-partitions-hzc2.md).

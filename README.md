@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [conferência de Build-id e os helpers de partições](docs/lk-build-id-partitions-hzc2.md) estão delimitados localmente. O checker compara um prefixo entre caches atribuídos a vbmeta/super; atualização, terminação e valor da política permanecem sem medição. São 1.497 palavras GNU e 14 testes novos, sem execução de firmware Samsung.
+
 O [wrapper AVB e seu chamador](docs/lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados: red conserva um laço antes do epílogo; o retorno normal preserva o resultado do slot e é descartado imediatamente pelo chamador. Pedidos de metadados ao monitor foram identificados. São 847 palavras GNU e 17 testes novos; aceitação física e efeitos dos serviços seguros continuam abertos.
 
 O [verificador vbmeta e caminho RSA](docs/lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
