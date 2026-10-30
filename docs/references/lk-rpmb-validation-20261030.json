@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "c8ac96c6f3953617dab82784e354a2198254bf45",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "15943f2e91a7f38164ca2d0c263096d98c8651826193310c7f31b57309617160",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 1156,
+    "gnu_relative_targets": 225,
+    "selected_operand_checks": 133,
+    "instruction_index_sha256": "c16f75c197d6fe0ab9a1203e927d0d744a138c2c8712bb96dba49a1f45a933b7"
+  },
+  "literal_checks": 20,
+  "local_graphs": 12,
+  "dispatch": {
+    "table": "0x226018",
+    "base": "0x109f30",
+    "entry_bytes": 2,
+    "signed": true,
+    "scale": 4,
+    "command_bias": 1,
+    "routes": [
+      {
+        "command": 1,
+        "index": 0,
+        "signed_halfword": 218,
+        "target": "0x10a298"
+      },
+      {
+        "command": 2,
+        "index": 1,
+        "signed_halfword": 0,
+        "target": "0x109f30"
+      },
+      {
+        "command": 3,
+        "index": 2,
+        "signed_halfword": 86,
+        "target": "0x10a088"
+      },
+      {
+        "command": 4,
+        "index": 3,
+        "signed_halfword": 280,
+        "target": "0x10a390"
+      }
+    ],
+    "command_outside_1_to_4": "returns local 0 without I/O"
+  },
+  "gate_relative_addresses": {
+    "read": "0x8a6368",
+    "write": "0x8a6368"
+  },
+  "mac_request": {
+    "x0": "0xc2001018",
+    "x1": 3,
+    "x2": "128-byte-aligned stack descriptor",
+    "x3": 0,
+    "fields": {
+      "0": "original X0: input pointer u64",
+      "8": "original X1: input length u64",
+      "16": "original X2: output MAC pointer u64"
+    },
+    "retry_low32": "0x20000",
+    "max_smc_attempts": 20480,
+    "exhausted_return_low32": "0x80100",
+    "output_mac_bytes": 32,
+    "implementation_key_and_result_observed": false
+  },
+  "nonce_request": {
+    "x0": "0xc200101c",
+    "x1": 0,
+    "x2": 0,
+    "x3": 0,
+    "selected_request_bytes": 16,
+    "data_return_registers": [
+      "X1",
+      "X2"
+    ],
+    "full_x0_test": true,
+    "frontend_tests_low32": true,
+    "generator_quality_and_result_observed": false
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_rpmb.py -v",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_avb*.py'",
+      "tests": 48,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_samsung_checks.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_build_id.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_rpmb.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-rpmb",
+      "status": "passed",
+      "summary_sha256": "0a0e7dbee1cad11a2d5022a509a74c80ed8f0c2c1af488356a1e297b19d3b497",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Synthetic host tests validate decoder bounds and request bindings, not RPMB or secure execution.",
+    "Revision cells, device write counter, frontend status and persistence are separate.",
+    "No runtime callback targets, key source, successful I/O, counter value or physical acceptance was acquired."
+  ],
+  "documentation_file_links": {
+    "checked": 1390,
+    "missing": 0
+  }
+}

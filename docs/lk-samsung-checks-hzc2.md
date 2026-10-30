@@ -156,3 +156,5 @@ contadores, os predicados de política e o fornecedor da chave AVB. Carga,
 memória e captura do [diagnóstico físico](samsung-diagnostic-contract.md)
 permanecem sem prova. Nenhuma conclusão desta entrega é autorização para
 gravar ou executar firmware no aparelho de uso pessoal.
+
+Continuação: o [backend dos contadores e pedidos RPMB](lk-rpmb-hzc2.md) liga `0x10ada0`/`0x10ade0` ao dispositivo `scsirpmb` e aos pedidos seguros de nonce/MAC. Distingue a célula de revisão do contador de escrita e documenta a ordem dos resultados; persistência permanece sem prova.

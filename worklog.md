@@ -3536,3 +3536,33 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Índices, roadmap, matriz Samsung e continuação de partições atualizados.
   Próximo: serviço seguro, backend/persistência de contadores, predicados vivos
   de política e fornecedor da chave AVB; contratos físicos continuam abertos.
+
+
+## 2026-10-30 — backend RPMB, ordem dos resultados e pedidos seguros
+
+- Base main c8ac96c após PR #63; continuação estática sem operação no telefone.
+- Getter/setter de rollback selecionam bloco1 de256 bytes; revisão u32
+  interna é distinta do contador de escrita recebido em pacote+8. Setter
+  pode pular índices0..5 por bit17; não comprova readback/persistência.
+- Gate relativo8a6368 dos frontends é distinto de8a6370. Leitura/escrita
+  chegam ao dispatcher109ed8 e aos métodos+144/+152 do objeto scsirpmb;
+  destinos vivos e sucesso dos I/Os continuam abertos.
+- Switch de quatro halfwords signed×4 em226018 conferido; frames512 são
+  reversão integral do pacote local. Ponteiros/índices truncados a32/16bits.
+- Resultados são publicados antes dos testes de nonce; escrita inicial não
+  testa resultado u16; leitura copia dados antes de conferir status/MAC.
+  Erro inicial do helper MAC no comando3 registra log e prossegue ao I/O.
+  Nenhuma dessas propriedades foi promovida a bypass ou aceitação física.
+- Pedido MAC c2001018/sub3 usa descritor de três u64 e saída32bytes;
+  busy20000 tem até20480 tentativas, esgotamento80100. Pedido nonce
+  c200101c fornece X1/X2 sob status X0 inteiro zero; frontend testa low32.
+- Fonte/algoritmo/chave do serviço seguro permanecem opacos. Monitor EL3
+  candidato não tem plaintext validado; TZSW TEEGRIS é outra fronteira.
+- inspect_lk_rpmb.py confere1156 palavras GNU,225 destinos,133 operandos,
+  20 literais e12 grafos; relatório compacto reproduzido byte a byte.
+- 16 testes novos incluídos no CI passaram; regressões AVB48/Samsung16/
+  Build-id14 passaram. Baseline completo9 etapas aprovado, SHA-256
+  0a0e7dbee1cad11a2d5022a509a74c80ed8f0c2c1af488356a1e297b19d3b497.
+- Conferidos 1390 links locais de arquivos, sem destinos ausentes.
+- Índices, roadmap, matriz Samsung e continuação de rollback atualizados.
+  Próximo: registro/destinos dos callbacks, origem dos gates e serviço seguro.

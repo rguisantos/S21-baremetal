@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+O [backend RPMB dos contadores](docs/lk-rpmb-hzc2.md) está ligado aos pacotes locais, callbacks `scsirpmb` e pedidos seguros de nonce/MAC. A análise confere 1.156 palavras GNU e 16 testes novos; distingue revisões de rollback, contador de escrita e efeitos anteriores aos testes de autenticação. Persistência e implementação segura continuam abertas.
+
 Os [verificadores Samsung chamados pelas partições](docs/lk-samsung-checks-hzc2.md) agora têm papéis separados: seleção/pedido de assinatura ao monitor, comparação de revisão para rollback e política de binário personalizado. São 801 palavras GNU e 16 testes novos. Retornos zero, fallbacks e efeitos de política foram distinguidos da aceitação física de uma Image.
 
 A [conferência de Build-id e os helpers de partições](docs/lk-build-id-partitions-hzc2.md) estão delimitados localmente. O checker compara um prefixo entre caches atribuídos a vbmeta/super; atualização, terminação e valor da política permanecem sem medição. São 1.497 palavras GNU e 14 testes novos, sem execução de firmware Samsung.
