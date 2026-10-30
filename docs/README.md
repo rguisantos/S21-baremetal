@@ -59,6 +59,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 ## Evidências do aparelho e fontes externas
 
 - [Download USB e PIT observados](download-pit-observation-hzc2.md): sessão Heimdall concluída no Mint, 48 entradas e destinos boot/vendor_boot/recovery identificados; sem carga própria ou aquisição de RAM.
+- [Transição de estado LK e pedido de wipe](lk-device-state-switch-hzc2.md): 238 palavras GNU, literal completa e chamada de armazenamento antes do setter; [links Android e geometria negada](runtime-collection.md#links-de-armazenamento-e-sete-leituras-negadas--2026-10-30), sem executar transição.
 
 - [ASV/GEN, n e W19](newtime-asv-gen-hzc2.md): GEN após dois u32, n=13, caminho habilitado candidato, subkeys e pedidos SMC corrigidos; posições e condições de preservação.
 - [Gate ECT, retorno e reserva corrigida](newtime-ect-gate-hzc2.md): testes X64/W32, SMC opacos, assinatura atual, continuidade condicional e descritor16 antes do incremento total+4.

@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "repository_base_commit": "baaa64a1ed7f9596fff5c5fb931e113a3f1e5592",
+  "evidence_type": "inline_user_reports",
+  "received_date_local": "2026-10-30",
+  "source_upload_hash": null,
+  "source_hash_note": "observations transcribed from inline messages; no original uploaded file hash claimed",
+  "by_name_links": {
+    "blcmd": "/dev/block/sda12",
+    "boot": "/dev/block/sda13",
+    "bota": "/dev/block/sda7",
+    "cache": "/dev/block/sda31",
+    "cp_debug": "/dev/block/sda17",
+    "cpefs": "/dev/block/sdd1",
+    "dqmdbg": "/dev/block/sda22",
+    "dtbo": "/dev/block/sda11",
+    "efs": "/dev/block/sda1",
+    "fmp_selftest": "/dev/block/sda26",
+    "harx": "/dev/block/sda8",
+    "keyrefuge": "/dev/block/sda21",
+    "keystorage": "/dev/block/sda6",
+    "metadata": "/dev/block/sda25",
+    "misc": "/dev/block/sda20",
+    "nad_refer": "/dev/block/sda18",
+    "omr": "/dev/block/sda32",
+    "optics": "/dev/block/sda30",
+    "param": "/dev/block/sda4",
+    "persistent": "/dev/block/sda19",
+    "prism": "/dev/block/sda29",
+    "radio": "/dev/block/sda16",
+    "recovery": "/dev/block/sda15",
+    "reserved": "/dev/block/sda27",
+    "sda": "/dev/block/sda",
+    "sdb": "/dev/block/sdb",
+    "sdc": "/dev/block/sdc",
+    "sdd": "/dev/block/sdd",
+    "sde": "/dev/block/sde",
+    "sec_efs": "/dev/block/sda2",
+    "spu": "/dev/block/sda33",
+    "steady": "/dev/block/sda3",
+    "super": "/dev/block/sda28",
+    "uh": "/dev/block/sda9",
+    "uhcfg": "/dev/block/sda10",
+    "up_param": "/dev/block/sda5",
+    "userdata": "/dev/block/sda34",
+    "vbmeta": "/dev/block/sda23",
+    "vbmeta_system": "/dev/block/sda24",
+    "vendor_boot": "/dev/block/sda14"
+  },
+  "pit_name_matches": [
+    {
+      "linux_name": "blcmd",
+      "linux_device": "/dev/block/sda12",
+      "pit_entry_index": 20,
+      "pit_identifier": 12
+    },
+    {
+      "linux_name": "boot",
+      "linux_device": "/dev/block/sda13",
+      "pit_entry_index": 21,
+      "pit_identifier": 13
+    },
+    {
+      "linux_name": "bota",
+      "linux_device": "/dev/block/sda7",
+      "pit_entry_index": 15,
+      "pit_identifier": 7
+    },
+    {
+      "linux_name": "cache",
+      "linux_device": "/dev/block/sda31",
+      "pit_entry_index": 39,
+      "pit_identifier": 31
+    },
+    {
+      "linux_name": "cp_debug",
+      "linux_device": "/dev/block/sda17",
+      "pit_entry_index": 25,
+      "pit_identifier": 17
+    },
+    {
+      "linux_name": "cpefs",
+      "linux_device": "/dev/block/sdd1",
+      "pit_entry_index": 43,
+      "pit_identifier": 35
+    },
+    {
+      "linux_name": "dqmdbg",
+      "linux_device": "/dev/block/sda22",
+      "pit_entry_index": 30,
+      "pit_identifier": 22
+    },
+    {
+      "linux_name": "dtbo",
+      "linux_device": "/dev/block/sda11",
+      "pit_entry_index": 19,
+      "pit_identifier": 11
+    },
+    {
+      "linux_name": "efs",
+      "linux_device": "/dev/block/sda1",
+      "pit_entry_index": 9,
+      "pit_identifier": 1
+    },
+    {
+      "linux_name": "fmp_selftest",
+      "linux_device": "/dev/block/sda26",
+      "pit_entry_index": 34,
+      "pit_identifier": 26
+    },
+    {
+      "linux_name": "harx",
+      "linux_device": "/dev/block/sda8",
+      "pit_entry_index": 16,
+      "pit_identifier": 8
+    },
+    {
+      "linux_name": "keyrefuge",
+      "linux_device": "/dev/block/sda21",
+      "pit_entry_index": 29,
+      "pit_identifier": 21
+    },
+    {
+      "linux_name": "keystorage",
+      "linux_device": "/dev/block/sda6",
+      "pit_entry_index": 14,
+      "pit_identifier": 6
+    },
+    {
+      "linux_name": "metadata",
+      "linux_device": "/dev/block/sda25",
+      "pit_entry_index": 33,
+      "pit_identifier": 25
+    },
+    {
+      "linux_name": "misc",
+      "linux_device": "/dev/block/sda20",
+      "pit_entry_index": 28,
+      "pit_identifier": 20
+    },
+    {
+      "linux_name": "nad_refer",
+      "linux_device": "/dev/block/sda18",
+      "pit_entry_index": 26,
+      "pit_identifier": 18
+    },
+    {
+      "linux_name": "omr",
+      "linux_device": "/dev/block/sda32",
+      "pit_entry_index": 40,
+      "pit_identifier": 32
+    },
+    {
+      "linux_name": "optics",
+      "linux_device": "/dev/block/sda30",
+      "pit_entry_index": 38,
+      "pit_identifier": 30
+    },
+    {
+      "linux_name": "param",
+      "linux_device": "/dev/block/sda4",
+      "pit_entry_index": 12,
+      "pit_identifier": 4
+    },
+    {
+      "linux_name": "persistent",
+      "linux_device": "/dev/block/sda19",
+      "pit_entry_index": 27,
+      "pit_identifier": 19
+    },
+    {
+      "linux_name": "prism",
+      "linux_device": "/dev/block/sda29",
+      "pit_entry_index": 37,
+      "pit_identifier": 29
+    },
+    {
+      "linux_name": "radio",
+      "linux_device": "/dev/block/sda16",
+      "pit_entry_index": 24,
+      "pit_identifier": 16
+    },
+    {
+      "linux_name": "recovery",
+      "linux_device": "/dev/block/sda15",
+      "pit_entry_index": 23,
+      "pit_identifier": 15
+    },
+    {
+      "linux_name": "reserved",
+      "linux_device": "/dev/block/sda27",
+      "pit_entry_index": 35,
+      "pit_identifier": 27
+    },
+    {
+      "linux_name": "sec_efs",
+      "linux_device": "/dev/block/sda2",
+      "pit_entry_index": 10,
+      "pit_identifier": 2
+    },
+    {
+      "linux_name": "spu",
+      "linux_device": "/dev/block/sda33",
+      "pit_entry_index": 41,
+      "pit_identifier": 33
+    },
+    {
+      "linux_name": "steady",
+      "linux_device": "/dev/block/sda3",
+      "pit_entry_index": 11,
+      "pit_identifier": 3
+    },
+    {
+      "linux_name": "super",
+      "linux_device": "/dev/block/sda28",
+      "pit_entry_index": 36,
+      "pit_identifier": 28
+    },
+    {
+      "linux_name": "uh",
+      "linux_device": "/dev/block/sda9",
+      "pit_entry_index": 17,
+      "pit_identifier": 9
+    },
+    {
+      "linux_name": "uhcfg",
+      "linux_device": "/dev/block/sda10",
+      "pit_entry_index": 18,
+      "pit_identifier": 10
+    },
+    {
+      "linux_name": "up_param",
+      "linux_device": "/dev/block/sda5",
+      "pit_entry_index": 13,
+      "pit_identifier": 5
+    },
+    {
+      "linux_name": "userdata",
+      "linux_device": "/dev/block/sda34",
+      "pit_entry_index": 42,
+      "pit_identifier": 34
+    },
+    {
+      "linux_name": "vbmeta",
+      "linux_device": "/dev/block/sda23",
+      "pit_entry_index": 31,
+      "pit_identifier": 23
+    },
+    {
+      "linux_name": "vbmeta_system",
+      "linux_device": "/dev/block/sda24",
+      "pit_entry_index": 32,
+      "pit_identifier": 24
+    },
+    {
+      "linux_name": "vendor_boot",
+      "linux_device": "/dev/block/sda14",
+      "pit_entry_index": 22,
+      "pit_identifier": 14
+    }
+  ],
+  "sysfs_metadata": {
+    "/sys/class/block": "directory listed, mode drwxr-xr-x",
+    "/sys/block/sda": "../devices/platform/13100000.ufs/host0/target0:0:0/0:0:0:0/block/sda",
+    "/sys/class/block/sda": "../../devices/platform/13100000.ufs/host0/target0:0:0/0:0:0:0/block/sda"
+  },
+  "reads": [
+    {
+      "path": "/sys/block/sda/queue/logical_block_size",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda13/start",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda13/size",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda14/start",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda14/size",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda15/start",
+      "result": "Permission denied",
+      "value": null
+    },
+    {
+      "path": "/sys/block/sda/sda15/size",
+      "result": "Permission denied",
+      "value": null
+    }
+  ],
+  "limits": {
+    "logical_block_size_bytes": null,
+    "partition_start_and_size": null,
+    "permission_mechanism": "DAC versus SELinux not isolated; target file modes not collected",
+    "aliases": "symlink visibility does not prove target attribute or block content access",
+    "repeat_collection": "closed for these seven reads under the same shell access",
+    "ufs_path_label": "13100000.ufs is a reported path component, not a new RAM map or payload load address",
+    "writes_or_privilege_changes": "not_requested"
+  }
+}

@@ -98,3 +98,13 @@ mesmas entradas. O próximo trabalho é vincular os destinos observados ao
 contrato de contêiner/validação e a um plano verificável de carga e recuperação,
 antes de propor desbloqueio ou gravação. Não foram solicitados comandos de
 flash, reparticionamento, limpeza ou desbloqueio neste procedimento.
+
+## Continuação Android: nomes acessíveis, geometria negada
+
+O [mapeamento posterior por nome](runtime-collection.md#links-de-armazenamento-e-sete-leituras-negadas--2026-10-30)
+correspondeu a 35 partições da PIT, incluindo boot/sda13, vendor_boot/sda14
+e recovery/sda15. Sete leituras explícitas de tamanho lógico/start/size
+retornaram Permission denied. As unidades e capacidades não ganharam nova
+medição; a coleta desses atributos está encerrada sob o mesmo acesso.
+O [handler de transição de estado](lk-device-state-switch-hzc2.md) prepara
+um pedido de wipe ao recovery e não foi usado como ferramenta de diagnóstico.

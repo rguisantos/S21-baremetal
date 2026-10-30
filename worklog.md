@@ -3305,3 +3305,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   do registro continuam abertos. Consulta concluída; não pedir repetição das
   mesmas leituras. Próximo: contrato de carga/validação e recuperação antes
   de propor desbloqueio ou gravação. Nenhuma mudança de código executável.
+
+## 2026-10-30 — limite do shell e pedido de wipe no handler de estado
+
+- Base main baaa64a após a PR #55. Duas mensagens inline do usuário deram
+  40 links por nome: 35 partições correspondentes à PIT e cinco dispositivos.
+  BOOT/VENDOR_BOOT/RECOVERY apontam a sda13/14/15; CPEFS ID35 aponta a sdd1,
+  portanto não generalizar Identifier como número de partição Linux.
+- O laço inicial não deu valores. A consulta explícita mostrou symlinks
+  sysfs, mas negou logical_block_size de sda e start/size de sda13/14/15.
+  Sete Permission denied, sem números. Não isolada causa DAC/SELinux.
+  Coleta encerrada nessas condições; não pedir aliases ou contornar via
+  permissões/root ADB. JSON novo distingue relato inline de arquivo com hash.
+- Análise estática HZC2: caller12f42c chama handler151c00. Getter e XOR1
+  antecedem poll: retorno1 confirma,16 cancela; teclas físicas não mapeadas.
+  O literal23fff8 é uma única string de64 bytes com NUL e quatro linhas:
+  recovery, --wipe_data, --reason=bootloader_unlock, --locale=en_US.
+- Copy1b2570 é byte a byte até NUL. Handler passa buffer frame+0x40,
+  com pedido em+64 eW3=0x440, ao wrapper11b350; lookup anterior usa MISC.
+  Wrapper obtém descritor por11b060 e faz BR método+176; ramo de erro é
+  identificado por blk_bwrite. Binding/conclusão físicos não demonstrados.
+- Retorno dessa chamada não é testado antes de outros helpers e do setter
+  10b930(old XOR1). Não foi demonstrada inicialização dos demais bytes do
+  buffer nem aceitação da escrita ou execução do recovery. Nenhum wipe ou
+  mudança de estado foi executado no telefone ou emulado nesta entrega.
+- JSON GNU: 238 palavras/62 alvos relativos/18 palavras selecionadas
+  conferidos contra sboot com hash obrigatório. Relatório, coleta, matriz,
+  README/índices/roadmap atualizados. Sem mudança de código executável;
+  permanecem carga própria, provedor de estado e recuperação física.
+- Conferência posterior dos JSONs: palavras/alvos/literais coincidem com
+  o firmware; 40 links/35 nomes PIT e sete negações consistentes, além de
+  447 links documentais válidos. Baseline obrigatório será conferido no CI.
