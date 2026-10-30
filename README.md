@@ -1,6 +1,6 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local. São 683 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
+Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local; o ID18 usa um acumulador que preserva o bit4 após limpar a flag. São 684 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
 
 O [carregador DMC17 e sua cauda](docs/newtime-dmc-loader-hzc2.md) têm os corpos locais delimitados: comparação de tamanho chama uma folha sem ação, dois campos selecionam linhas por argumentos diferentes e a cauda pode alterar descritores após a publicação. Condições físicas e produtor do magic continuam abertos.
 

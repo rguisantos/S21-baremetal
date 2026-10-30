@@ -163,6 +163,20 @@ class TableServiceTests(unittest.TestCase):
             m.run(0x63fb0,set(),hook)
             self.assertEqual(payloads(m),[1] if change=='count' else [1,0xcc])
 
+    def test_id18_accumulator_keeps_bit4_after_flag_clears(self):
+        for flags,want in (([1,0],[0x31,0x31]),([0,1,0],[0x21,0x31,0x31])):
+            m=fixture([(0x21 if i==0 else 0x99,18) for i in range(len(flags))])
+            m.mem[S+0x229]=flags[0];m.r[0]=0
+            def hook(sim,pc,to):
+                nested(sim,pc,to)
+                count=len(payloads(sim))
+                if pc==0x64016 and count<len(flags):sim.mem[S+0x229]=flags[count]
+            m.run(0x63fb0,set(),hook)
+            self.assertEqual(payloads(m),want)
+            accumulated=[(a,v) for pc,a,v in m.stores if pc==0x64004]
+            self.assertEqual(len(accumulated),1);self.assertEqual(accumulated[0][1],0x31)
+            self.assertEqual(m.word(accumulated[0][0]),0x31)
+
     def test_nonzero_argument_enables_ordinary_id_filter(self):
         for argument,want in ((0,[11,13]),(1,[11])):
             m=fixture([(7,11),(8,13)]);m.r[0]=argument;m.run(0x63fb0,set(),nested)

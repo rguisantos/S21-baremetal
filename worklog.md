@@ -3240,3 +3240,15 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - README/índices/roadmap atualizados. Restam aplicação real da tabela em
   relação à cauda,ID30/leitor0x61c70,restante0x5a2b8,produtor0xabcd1234,
   ordem física init9/máscaras e slot47/X0. Sem execução Samsung/novo QEMU.
+
+## 2026-10-30 — correção da revisão: acumulador ID18
+
+- Revisão automática de74a859a encontrou P2 na descrição do consumidor:
+  o OR0x10 é salvo emframe+8 e persiste depois que a flag passa de1 para0.
+  A fórmula anterior tratava o payload como recomputado do lookup inicial.
+- Extrator/JSON/documentação corrigidos: acumulador A inicia com lookup18,
+  recebe A|=0x10 quando flag==1 e publica low8(A),sem reset local no flag0.
+  Duas testemunhas GNU adicionais conferem carga/store emframe+8.
+- Nova regressão crua:flags1→0 geram0x31/0x31 e0→1→0 geram0x21/0x31/0x31
+  para lookup0x21. Store noframe também conferida.684 testes NEWTIME passaram;
+  JSON corrigido reproduzido exatamente. Sem mudança de firmware/R10.

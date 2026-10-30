@@ -1,5 +1,5 @@
 {
- "source_base": "296bc4af02ac921dd98f4eaaf15d6ed11cb54193",
+ "source_base": "74a859a949806c6224f3cc423fdd6a7d9ab5a4aa",
  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
  "scope": "complete local table getter/setter, selected consumer paths and publisher; no physical execution",
  "table": {
@@ -20,10 +20,18 @@
  "consumer": {
   "entry": "0x63fb0",
   "caller": "0x64120 ->0x63fb0 with R0=0, inside nominal method0x640e8",
-  "initial_lookup": "getter(id18), result captured once in frame+8 even if0xffffffff",
+  "initial_lookup": "getter(id18), initializes u32 accumulator A in frame+8 even if0xffffffff",
   "loop": "reload count and table pointer each iteration; records processed in order",
   "id16": "skip",
-  "id18": "low8(captured lookup18 | (state+0x229==1 ?0x10:0)) ->publisher channel4",
+  "id18": "if state+0x229==1, A|=0x10 and store back to frame+8; publish low8(A) on channel4",
+  "id18_accumulator": {
+   "initial": "getter(id18)",
+   "storage": "frame+8",
+   "update": "0x63ffe..0x64004: when flag==1, load A, OR0x10, store A",
+   "when_flag_clears": "no reset; previously accumulated bit4 persists absent other writes",
+   "payload": "low8(A)",
+   "lookup_repeated": false
+  },
   "ordinary": "if argument0==0 or filter(id) nonzero: publish(4,M8[state+0x209],id,M8[record])",
   "id21": "read method+104(0,1,21); publish record only if low3(return)==7",
   "id30": "special nested path remains a frontier in host tests; static bytes exported",
@@ -1676,7 +1684,7 @@
   "halfwords": 267,
   "relative_targets": 33,
   "literals": 12,
-  "selected_operands": 32
+  "selected_operands": 34
  },
  "firmware_executed": false,
  "slot47_resolved": false

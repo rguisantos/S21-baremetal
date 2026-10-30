@@ -47,7 +47,7 @@ do método+0 da tabela core `0x37fb4`.
 | Tipo de registro | Caminho local |
 |---|---|
 | ID16 | Pula o registro |
-| ID18 | Usa low8 do resultado inicial de leitura18, com OR0x10 quando M8[S+0x229]==1; duplicatas usam o mesmo resultado capturado |
+| ID18 | Usa acumulador A em frame+8, iniciado pela leitura18; quando M8[S+0x229]==1, faz A\|=0x10 e salva o acumulador; publica low8(A) |
 | ID21 | Chama método+104 de core0x37d40 com (0,1,21); publica somente se low3 do retorno forem7 |
 | ID30 | Tem subcaminho especial ainda não interpretado nesta entrega; bytes estáticos exportados |
 | Demais | Publica o byte do registro se argumento0 for zero ou o filtro local do ID retornar não zero |
@@ -57,6 +57,13 @@ Com argumento zero, os registros ordinários não passam por ele. Outros
 valores do argumento habilitam o filtro. O retorno low3=7 do ID21 é um
 teste de bits, não uma classificação de sucesso:0xffffffff também passa.
 O alvo inicial desse leitor é core0x34471 → arquivo0x61c70 e permanece hook.
+
+O acumulador do ID18 não é recalculado do lookup original em cada registro.
+As instruções `0x63ffe..0x64004` salvam o OR de volta no frame. Sem outras
+escritas nesse slot, limpar a flag depois da primeira publicação não remove
+o bit4 acumulado: flags1→0 produzem0x31/0x31 para lookup inicial0x21.
+Flags0→1→0 produzem0x21/0x31/0x31. A regressão usa os corpos reais e
+confere também a store no frame; a descrição inicial foi corrigida após revisão.
 
 As chamadas de publicação usam o método+100 da mesma tabela, inicialmente
 core0x33ded → arquivo0x615ec, com argumentos
@@ -103,11 +110,11 @@ python3 -m unittest discover -s scripts -p 'test_newtime*.py'
 ```
 
 [Extrator](../scripts/inspect_newtime_dmc_table_services_hzc2.py),
-[20 testes](../scripts/test_newtime_dmc_table_services.py),
+[21 testes](../scripts/test_newtime_dmc_table_services.py),
 [JSON](references/newtime-dmc-table-services-hzc2.json) e
 [validação](references/newtime-dmc-table-services-validation-20261030.json).
-GNU:258 instruções/267 halfwords/33 alvos/12 literais/32 operandos.
-Suíte NEWTIME: **683 testes aprovados**, com80 tabelas aleatórias,
+GNU:258 instruções/267 halfwords/33 alvos/12 literais/34 operandos.
+Suíte NEWTIME: **684 testes aprovados**, com80 tabelas aleatórias,
 duplicatas, aliases, raízes distintas, releituras e retornos do consumidor.
 ADCS foi adicionado ao avaliador com carry/overflow e carry de entrada
 conferidos. JSON reproduzido exatamente e três imagens inválidas recusadas

@@ -1,12 +1,12 @@
 {
- "source_head": "296bc4af02ac921dd98f4eaaf15d6ed11cb54193",
+ "source_head": "74a859a949806c6224f3cc423fdd6a7d9ab5a4aa",
  "date": "2026-10-30",
  "timezone": "America/Campo_Grande",
  "tests": {
   "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
-  "passed": 683,
-  "new_in_this_continuation": 20,
-  "new_since_main": 80,
+  "passed": 684,
+  "new_in_this_continuation": 21,
+  "new_since_main": 81,
   "random_tables": 80
  },
  "exact_reproduction": "newtime-dmc-table-services-hzc2.json",
@@ -35,7 +35,7 @@
   "halfwords": 267,
   "relative_targets": 33,
   "literals": 12,
-  "selected_operands": 32
+  "selected_operands": 34
  },
  "r10": {
   "source_unchanged": true,
@@ -47,12 +47,42 @@
  },
  "local_links_checked": 493,
  "sha256": {
-  "scripts/inspect_newtime_dmc_table_services_hzc2.py": "9c49a130e8e5c8b06ca19f49c9681afb6734b9cc57e26434df3d0791ea6a62d6",
-  "scripts/test_newtime_dmc_table_services.py": "7dd8ac675ef097f7c0d0ac640d1c773c6dfa63631a2781dd05d5c365ac77e9ad",
+  "scripts/inspect_newtime_dmc_table_services_hzc2.py": "c807a83fff16bc482856c6decdaa14501c2f960f0ee20609a9ef052fbcc17999",
+  "scripts/test_newtime_dmc_table_services.py": "ff1be067d2bd2e656fb9c49f7bc00b154d73dedeeee1003be637f0293254db6b",
   "scripts/test_newtime_dmc_method12.py": "b1aec2aa535d0ce9e54568b05ae42496c9747f5a292bc264cadcc587a3450a9e",
-  "docs/references/newtime-dmc-table-services-hzc2.json": "591b551855c27cd9da176d5a7ae8182c9c64fbe74a8cacd2d4bd36d71819b2e8"
+  "docs/references/newtime-dmc-table-services-hzc2.json": "176bf39e0bf8605869f041d160f13d8b9dcfd30a3eb1eccbf7fbff2afd443c76"
  },
  "samsung_execution": false,
  "qemu_firmware_scope_expanded": false,
- "slot47_resolved": false
+ "slot47_resolved": false,
+ "review_correction": {
+  "thread": "PRRT_kwDOVPqMNc6yCfKA",
+  "finding": "ID18 frame+8 is an accumulator, not a recomputed initial lookup",
+  "cases": [
+   {
+    "flags": [
+     1,
+     0
+    ],
+    "lookup": 33,
+    "payloads": [
+     49,
+     49
+    ]
+   },
+   {
+    "flags": [
+     0,
+     1,
+     0
+    ],
+    "lookup": 33,
+    "payloads": [
+     33,
+     49,
+     49
+    ]
+   }
+  ]
+ }
 }

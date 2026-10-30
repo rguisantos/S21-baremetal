@@ -1,6 +1,6 @@
 # Guia da documentação
 
-- [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, aliases e publicador por entrada0→entrada4; 20 testes.
+- [Serviços da tabela DMC17 e consumidor](newtime-dmc-table-services-hzc2.md): primeiro resultado/todas as escritas, acumulador ID18, aliases e publicador por entrada0→entrada4; 21 testes.
 
 - [Carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md): comparação sem aborto, linhas por argumentos distintos, publicações e releituras de controle; 20 testes.
 
