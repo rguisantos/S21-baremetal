@@ -1,6 +1,6 @@
 # Roadmap e estado do S21-baremetal
 
-A [entrada inicial do pedido SHA](lk-embedded-avb-key-hzc2.md) está identificada: chave pública AVB RSA-4096 embutida de 1.032 bytes, com layout e parâmetros Montgomery conferidos. A [etapa pré-cópia](lk-precopy-measurement-hzc2.md) não usa o retorno como certificado de aceitação. Próximo: consumidor que decide autenticação do contêiner e preservação da chave em execução. O aparelho é de uso pessoal; o desenvolvimento continua offline.
+O [callback AVB de confiança](lk-avb-key-trust-hzc2.md) está ligado nominalmente ao pedido `vbmeta` por SMC, com status de I/O separado do byte de confiança. Tabela AvbOps, consulta de desbloqueio e classificação local green/yellow/orange/red conferidas. A [chave embutida](lk-embedded-avb-key-hzc2.md) permanece distinta até prova de igualdade com a fornecida pelo monitor. Próximo: verificador criptográfico 0x1262b0 e ações/retorno posteriores do wrapper 0x17f5d0; aparelho de uso pessoal permanece fora dos ensaios.
 
 Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 e produtor de0xabcd1234 seguem abertos.
 

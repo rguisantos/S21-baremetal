@@ -3389,3 +3389,30 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Atualizados índices, roadmap, matriz Samsung e continuação da análise pré-cópia.
   Resolvida a origem inicial; ainda faltam preservação ao vivo, ligação ao
   consumidor de autenticação e carga/aquisição física do diagnóstico.
+
+
+## 2026-10-30 — callback AVB de confiança e fornecedor imediato da chave
+
+- Base main6ea0c37 após PR #58; aparelho de uso pessoal continua fora dos ensaios.
+- Ligados nominalmente inicializador0x180de8, exportador0x180e70 e tabela
+  relativa0xd05900: slot+48→callback0x180d50, chamado por0x122880; slot+72→
+  read_unlocked0x17ffd0, chamado pelo wrapper em0x17f694.
+- Callback pede chave ao monitor via0x180c50 com nome vbmeta e compara os
+  bytes com a chave candidata. Pedido SMC0xc200101d/sub16; conteúdo ativo,
+  provedor seguro e igualdade com a chave embutida0x31d740 permanecem abertos.
+- Separados retorno I/O e byte de confiança. A comparação pode sobrescrever
+  o byte depois de erro, mas o consumidor testa o retorno primeiro: não foi
+  identificado bypass de confiança por esse byte isolado. O ramo de rejeição
+  seleciona erro5, com continuação local condicionada a outro flag.
+- Callback read_unlocked inicia estado local1, consulta gates/cache e retorna
+  bool(estado!=1); retorno do getter não é testado. Sem nova medição OEM/KG/FRP.
+- Wrapper passa o byte como flags e classifica resultados em strings
+  green/yellow/orange/red. Os rótulos não foram promovidos a boot permitido.
+- Novo inspect_lk_avb_trust.py: 342 palavras GNU, 58 destinos relativos,
+  44 operandos, 11 literais e17grafos locais. Relatório reproduzido byte a byte.
+- 13 testes novos passaram; regressões17/12 passaram; testes incluídos no CI.
+  Baseline completo de nove etapas passou; resumo SHA-256
+  8bb7c11d9500ae270e23d7c5ce8d61271c4a9759a15cb87cf132a93a980fbd44.
+- Conferidos 1281 links locais; atualizados índices, roadmap e matriz Samsung.
+  Próximo: verificador0x1262b0 e ações/retorno completos do wrapper0x17f5d0.
+  Nenhum firmware, SMC, flash, desbloqueio, root ou apagamento foi executado.
