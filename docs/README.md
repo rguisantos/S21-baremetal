@@ -1,5 +1,11 @@
 # Guia da documentação
 
+- [Setters de política FVP](newtime-policy-writers-hzc2.md): limites, habilitação u32 e recomputação em nova invocação comando6.
+
+- [Conclusão do dispatcher ACPM](newtime-dispatch-completion-hzc2.md): logging, avanço do índice e saída sem agregação de erros.
+
+- [Retornos FVP e cache](newtime-return-planes-hzc2.md): resultado u32, low16 construído e header publicado; nova invocação após falha.
+
 A entrada do projeto é o [README principal](../README.md). Este índice separa implementação, evidências e histórico. Os documentos descrevem testes de software; nenhum registra execução R10 no telefone.
 
 ## Implementação e testes atuais

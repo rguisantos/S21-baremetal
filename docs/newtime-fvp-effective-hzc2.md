@@ -39,6 +39,9 @@ domínios, **se executado**. Assim, o zero do arquivo em S+16 não estabelece
 um limite ativo zero. Escritores selecionados posteriores incluem comando4
 no canal1 (`0x3f5aa`, limite) e comando5/subseletor2 (`0x3f69c`, habilitação).
 Isso não é inventário exaustivo de escritores, eventos ou aliases.
+A [continuação dos setters](newtime-policy-writers-hzc2.md) agora delimita
+os gates e as respostas desses dois escritores, sem chamada direta ao
+relay nos trajetos selecionados.
 
 ## Máximo, indicador e limite
 

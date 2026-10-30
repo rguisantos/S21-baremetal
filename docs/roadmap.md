@@ -1,5 +1,11 @@
 # Roadmap e estado do S21-baremetal
 
+Os [setters FVP de limite/habilitação](newtime-policy-writers-hzc2.md) não selecionam diretamente o relay nos caminhos delimitados. O comando6 posterior relê as políticas. Outros produtores/eventos, estado físico e DMC8/9 permanecem abertos.
+
+A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não usa o retorno FVP como guard local do avanço da fila; sua saída normal selecionada devolve0. Políticas externas e hooks permanecem abertos; DMC8/9 continua a próxima frente.
+
+A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
+
 Atualizado em **2026-10-29 (Campo Grande)**. Base técnica revisada:
 [main após revisão/merge do PR #49, 054f5c8](https://github.com/rguisantos/S21-baremetal/commit/054f5c80c920bf602fe593361a83efcb5ce8447b),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e

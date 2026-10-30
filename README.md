@@ -1,5 +1,11 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+Os [setters de política FVP](docs/newtime-policy-writers-hzc2.md) gravam limite/habilitação e respondem sem chamada direta ao relay DVFS nos caminhos selecionados. Uma invocação posterior do comando6 relê essas políticas.
+
+A [conclusão do dispatcher ACPM](docs/newtime-dispatch-completion-hzc2.md) guarda o retorno FVP para logging, avança o índice sem teste local desse erro e devolve0 na saída normal selecionada; hooks e estado vivo permanecem condições.
+
+A [separação dos retornos FVP](docs/newtime-return-planes-hzc2.md) distingue resultado completo, decisão do cache e header publicado; pedido repetido ainda seleciona o helper sob estado preservado.
+
 Kit de bring-up AArch64 com MMU, níveis de exceção, GICv3, timer e microkernel didático. A frente R10 investiga um payload para o Galaxy S21 Ultra **SM-G998B / p3s**, com evidências das imagens originais **G998BXXSJHZC2** fornecidas pelo usuário, que usa Android 15.
 
 **Estado em 2026-10-26 (Campo Grande):** R8/R9 passam a regressão em QEMU; R10 compila e tem testes de componentes e integração em QEMU, mas ainda não foi executado no telefone. PRs #2 e #3 foram consolidadas na main. O DTS recebido, com três listas de CPUs corrigidas, reproduz o DTB base HZC2 byte a byte. Essa base confirma recursos do SoC, mas não descreve a RAM disponível após o bootloader.
