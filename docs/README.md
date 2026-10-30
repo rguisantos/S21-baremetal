@@ -1,5 +1,6 @@
 # Guia da documentação
 
+- [Canal direto3 e gate DVFS +0](newtime-fast-channel-hzc2.md): evento128/máscara8, dois magics distintos e17 testes; clear0x104 sem barreira demonstrada.
 - [Ordem dos handshakes e publicação DMC](newtime-dmc-init-order-hzc2.md): ACK0x108, magic0x10c e entrada tardia BL2; ordem parcial e 13 testes.
 
 - [Produtor BL2 das máscaras e base DMC](newtime-dmc-bl2-producer-hzc2.md): três stores concretas, fonte ECT e concordância condicional de cache/fallback; 13 testes.

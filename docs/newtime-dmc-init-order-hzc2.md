@@ -50,6 +50,10 @@ execuções observadas nem prova de que ambas sejam viáveis no hardware.
 Em0x18018, o AP ainda zera **0x15900104**, após retornar de0x1dc90.
 Nenhum consumidor ACPM dessa store foi demonstrado nesta entrega. Não se
 converte esse endereço numa barreira final sem seguir o seu leitor.
+A [continuação do canal direto3](newtime-fast-channel-hzc2.md) identifica
+esse endereço como palavra1 do buffer candidato, mas o método +0 DVFS
+consulta0x10c e compara outro magic. O trecho local não estabelece uma
+dependência do clear0x104 para o consumo DMC.
 As chamadas intermediárias, outros sinais e efeitos opacos podem impor
 restrições adicionais. Tampouco foi provada corrida entre os núcleos.
 
@@ -65,8 +69,8 @@ posterior também não são garantidamente iguais.
 Assim, o resultado positivo é a separação das etapas e a ordem local
 selecionada. Alias físico, correlação das amostras, coerência/visibilidade,
 alcançabilidade completa, frescor das máscaras até comandos8/9 e
-slot47/X0 continuam abertos. Próximo: rastrear o leitor do clear0x104 e
-outras condições que liberam o consumo posterior do DMC.
+slot47/X0 continuam abertos. A continuação investiga o gate do canal3;
+outras condições que liberam o consumo posterior DMC permanecem abertas.
 
 ## Reprodução
 

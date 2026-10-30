@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [ordem selecionada BL2/ACPM](newtime-dmc-init-order-hzc2.md) mostra o ACK0x108 antes da entrada tardia de publicação das máscaras. O magic0x10c marca outra etapa; init9 e as stores tardias seguem sem ordem demonstrada. Próximo: leitor do clear AP0x15900104 e liberação do consumo DMC.
+A [rota direta do canal3](newtime-fast-channel-hzc2.md) chega ao método +0 DVFS. Seu gate compara0xa590010c com0xabcd1234, diferente do0x1234abcd de init7; o trecho local não lê0x104. Próximo: produtor desse outro magic e efeitos transitivos de0x5a938. O clear AP0x15900104 ainda não foi ligado a uma barreira DMC.
+
+A [ordem selecionada BL2/ACPM](newtime-dmc-init-order-hzc2.md) mostra o ACK0x108 antes da entrada tardia de publicação das máscaras. O magic0x10c marca outra etapa; init9 e as stores tardias seguem sem ordem demonstrada.
 
 A [ponte BL2→DMC](newtime-dmc-bl2-producer-hzc2.md) identifica os produtores de AP0x02073660/64/68 e o diretório NEWTIME correspondente ao core. Os valores condicionais vêm das tabelas0x81/82/83 e0xa1. Próximo: ordem/alcançabilidade real e alias, mantendo as origens físicas em aberto.
 

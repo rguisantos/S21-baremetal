@@ -3092,3 +3092,29 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Sem novo QEMU,aparelho,barreira física provada ou resolução slot47/X0.
   Reviews/checks dos heads anteriores51/52 sem achados bloqueantes;
   gate Entire ainda exige aprovação de revisor,sem bypass para merge.
+
+## 2026-10-29 — canal direto3 e gate local DVFS +0
+
+- Base `a3610ff`. Dataset canal3 em core0x7498 é tipo2, com ponteiros
+  0xa5900100/0xa5900108; alocador0x398e8 pula a entrada preenchida.
+  Evento128/máscara exatamente8 seleciona canal3/plugin7 no fallback do
+  decoder. Dispatcher direto0x3933c passa &ponteiro_pedido para método+0,
+  que a interface DVFS liga nominalmente a0x56e98.
+- Callback lê0xa590010c uma vez e compara0xabcd1234. Magic de init7
+  é0x1234abcd e não satisfaz essa igualdade. Diferente: pula0x5a938;
+  igual: chama o helper. Se retornar, R0 é zerado em ambos os caminhos,
+  sem teste do resultado do helper. Cauda isolada0x5a994 zera0x10c.
+- Clear AP0x18018 em0x15900104 corresponde à palavra1 do buffer direto
+  sob alias. Prefixo selecionado e corpo local do callback não a leem;
+  teste deixa esses bytes sem mapeamento. Não há censo global de leitores
+  nem análise transitiva completa de0x5a938 ou barreira DMC demonstrada.
+  Os candidatos diretos com+0x104 usam bases0xa591/0xa596, distintas.
+- Extrator/JSON:392 instruções Thumb/52 alvos,3 literais,7 palavras A64,
+  25 operandos. 17 testes novos com bytes reais,memória explícita e hooks
+  que alteram voláteis;603 testes NEWTIME passaram. JSON exato e três
+  recusas CLI (curto,longo,alterado),exit2 sem JSON/stdout. Sem novo QEMU
+  ou firmware Samsung executado. Índices/README/roadmap atualizados.
+- Próxima frente: produtor do magic0xabcd1234 e efeitos transitivos do
+  helper0x5a938. Ordem init9/máscaras e slot47/X0 seguem abertos.
+  Heads anteriores51/52:CI/review sem achados bloqueantes,mas gate Entire
+  exige aprovação de revisor;nenhum bypass de merge.

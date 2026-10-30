@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [rota direta do canal3](docs/newtime-fast-channel-hzc2.md) chega ao método +0 DVFS, cujo gate local compara0xa590010c com0xabcd1234. Esse valor difere do magic de init7; o clear AP0x15900104 ainda não foi demonstrado como barreira de consumo DMC.
+
 A [ordem dos handshakes BL2/ACPM](docs/newtime-dmc-init-order-hzc2.md) separa o ACK inicial da publicação posterior das máscaras DMC. A inicialização DMC e essa publicação ainda não estão ordenadas pelas evidências selecionadas.
 
 O [produtor BL2 das máscaras/base DMC](docs/newtime-dmc-bl2-producer-hzc2.md) foi ligado ao registro NEWTIME sob alias/preservação. As três stores usam os payloads dos descritores12/14; conteúdo físico e ordem de execução continuam abertos.
