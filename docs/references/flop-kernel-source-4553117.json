@@ -1,0 +1,139 @@
+{
+  "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/README.md",
+      "bytes": 5770,
+      "blob_sha1": "7012373fe98dac62b32fe6790d31c3c85d7f0505",
+      "sha256": "3f0b62d2b2a55baea16b8dad86c58da6c972e98adf39b93af5b1052fcaac32a7"
+    },
+    {
+      "path": "Makefile",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/Makefile",
+      "bytes": 66523,
+      "blob_sha1": "118bada7abbb4a1dc295d123dc3d772be3a07f0e",
+      "sha256": "5b86a049ec660347c0174a548dd0c8c18cec94e04f9c6484decee34568761f89"
+    },
+    {
+      "path": "do_build.sh",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/do_build.sh",
+      "bytes": 102,
+      "blob_sha1": "ef83e96d4a74c77e1554734976540adb905a10c8",
+      "sha256": "f85850a154ca0a90569d1d034d3982718aac4c5dd3fb2b37de03b6241e4d0086"
+    },
+    {
+      "path": "build_kernel.sh",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/build_kernel.sh",
+      "bytes": 196,
+      "blob_sha1": "c96eff27b9df0a11162a504e5eea54e424396f0b",
+      "sha256": "153e18c00789351059f9a038b333f8a0c0001bf4bf6afcba77c18c0c53e9ace5"
+    },
+    {
+      "path": "drivers/scsi/scsi_srpmb.h",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/scsi_srpmb.h",
+      "bytes": 2717,
+      "blob_sha1": "29e8032f7b4b4193b1b0fd2f7a263cf7a358de87",
+      "sha256": "98bb5000fb6e26c67af0e688c1071d641e517d84aa744f443ad4590b941326fa"
+    },
+    {
+      "path": "drivers/scsi/scsi_srpmb.c",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/scsi_srpmb.c",
+      "bytes": 17814,
+      "blob_sha1": "3e0ce8c92e835742e38e4d0ac1ebf15473a17eba",
+      "sha256": "4782fb4cea5c3e87b823c39eb82b4b128aff063ca043191a656593fa7faa2884"
+    },
+    {
+      "path": "drivers/scsi/ufs/ufs-exynos-srpmb.c",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/ufs-exynos-srpmb.c",
+      "bytes": 680,
+      "blob_sha1": "cc58a771000c026d8a78a897e60ae3aae93aa05b",
+      "sha256": "5413dc5fee69980aae1e5ffce3a0308fc838c2afcc0b2e08ce9c83124ff04e6c"
+    },
+    {
+      "path": "include/soc/samsung/exynos-smc.h",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/include/soc/samsung/exynos-smc.h",
+      "bytes": 8105,
+      "blob_sha1": "45c8d284835868ed8e9970340590c3294aba9fbd",
+      "sha256": "c896ed8086009ae3055c6ac6b3164744c9e7cf7286a0ad993eba2b4792b7db49"
+    },
+    {
+      "path": "arch/arm64/configs/exynos2100-unified_defconfig",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/configs/exynos2100-unified_defconfig",
+      "bytes": 198552,
+      "blob_sha1": "9bcde1059f8e71e9ad652520fb015eac351fd880",
+      "sha256": "d5e7a97788ac2aad0ba769ae845aede495380a5d9031b8a8e848d2ce664c40f5"
+    },
+    {
+      "path": "drivers/scsi/Kconfig",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/Kconfig",
+      "bytes": 52736,
+      "blob_sha1": "28d4562cece41e9b66bc55dfbca17f5712336daf",
+      "sha256": "391868572606bf7681b2d8d688e20164dd984c8c56adbf22b8a24add7efdffac"
+    },
+    {
+      "path": "drivers/scsi/Makefile",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/Makefile",
+      "bytes": 7932,
+      "blob_sha1": "6c8867888c847a5765f763d1396bfefcc5037630",
+      "sha256": "5077c984fba6f34f76c7027f4d42cd1f953e3239cb5bcf0b04c3ddd1c286af9c"
+    },
+    {
+      "path": "drivers/scsi/ufs/Kconfig",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/Kconfig",
+      "bytes": 7725,
+      "blob_sha1": "723948b5138971a74db8554e16cfe95af2fea487",
+      "sha256": "54989bd5afd5343c5e92220027cdc2b806758d685845e4858e8bd5d4a600e7fe"
+    },
+    {
+      "path": "drivers/scsi/ufs/Makefile",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/Makefile",
+      "bytes": 1071,
+      "blob_sha1": "9c15a04b59d3da4ff244d8c2adcc4b301a9c082d",
+      "sha256": "0b1923df1ac64a40afccdde6da6ddcdf29e50cb7ee5813176dddc1738f854b26"
+    },
+    {
+      "path": "build/ckbuild.sh",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/build/ckbuild.sh",
+      "bytes": 7273,
+      "blob_sha1": "8c5a85e593e6d8e941114b8407701308de192806",
+      "sha256": "e5c5a43c4f085186003c2f1842bdd3c5d6007873cb98fb2ba0eb097a43ade161"
+    },
+    {
+      "path": "arch/arm64/boot/dts/exynos/samsung/p3s/Makefile",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/boot/dts/exynos/samsung/p3s/Makefile",
+      "bytes": 304,
+      "blob_sha1": "0fd957fead376d11a57e74a4f49fe31ce9364ac6",
+      "sha256": "2cabd64de92736809570658c2147edfad6f4155bb17fc4d1663e1b157e254f9f"
+    },
+    {
+      "path": "build/dtconfigs/p3s.cfg",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/build/dtconfigs/p3s.cfg",
+      "bytes": 559,
+      "blob_sha1": "f6756bbed50544d0c6e55f98486fd032511d8341",
+      "sha256": "010e6cda23b88d44890ec0290792c72a53e37251e6950cd4efd5fce97984fd74"
+    },
+    {
+      "path": "build/scripts/dtbo.sh",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/build/scripts/dtbo.sh",
+      "bytes": 956,
+      "blob_sha1": "ced26bae4da6bffb38c2029a7ce704217a50476b",
+      "sha256": "1355f371f5c93baa268821965a34ae4176cd0c642fa2ce25c6ec19cc046f922a"
+    },
+    {
+      "path": "build/scripts/pack.sh",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/build/scripts/pack.sh",
+      "bytes": 3936,
+      "blob_sha1": "3705e9fe009f4115675479eee1246c90a3762309",
+      "sha256": "f55e64d8bbc53fbb3615b5e3661713743f55a3162721f20b8a859af710f1de95"
+    },
+    {
+      "path": "include/linux/sec_detect.h",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/include/linux/sec_detect.h",
+      "bytes": 2587,
+      "blob_sha1": "51303975e691d7dbfb3573973753b0cbcdfb3e92",
+      "sha256": "c536eadb5a0249dc58697fbdb67046709fe5ccc7aa6b94911ee849432ab9e5e8"
+    }
+  ]
+}

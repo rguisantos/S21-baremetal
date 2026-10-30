@@ -176,3 +176,5 @@ e [validação](references/lk-rpmb-validation-20261030.json).
 Próximo: registro/destinos concretos dos callbacks `scsirpmb`, origem dos
 gates e fonte validada do serviço seguro. Revisões vivas, readback e os
 contratos físicos do diagnóstico continuam pendentes.
+
+Continuação: a [referência FlopKernel](flop-kernel-reference.md) confirma offsets/sizeof com probe C e fornece leitor offline de frames. O transporte Linux WSM/IRQ e seus IDs não foram confundidos com os métodos ou serviços do LK; ligação concreta e persistência continuam abertas.

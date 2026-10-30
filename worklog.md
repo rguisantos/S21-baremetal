@@ -3566,3 +3566,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos 1390 links locais de arquivos, sem destinos ausentes.
 - Índices, roadmap, matriz Samsung e continuação de rollback atualizados.
   Próximo: registro/destinos dos callbacks, origem dos gates e serviço seguro.
+
+
+## 2026-10-30 — referência FlopKernel e leitor offline RPMB
+
+- Base main d60ea14 após PR #64. Repositório indicado pelo usuário consultado
+  via GitHub e fixado em4553117a5014928dff55595f46627e0d77bcf133.
+- Makefile declara Linux5.4.304; há fontes/overlays p3s r02/r16–r22.
+  Fluxo principal usa unified_defconfig, distinto do auxiliar r9s e dos
+  anexos README_Kernel/Platform, relidos sem executar scripts.
+- 19 arquivos selecionados conferidos por tamanho/SHA-256/blob Git. Não é
+  auditoria integral, equivalência HZC2 ou comprovação de bootabilidade.
+- Probe C do host confirma sizeof512 e offsets de rpmb_packet, cruzados
+  com a reversão integral já observada no LK. Arrays também invertem ordem.
+- Interface kernel WSM/IRQ/workqueue com SMC82003811 separada dos pedidos
+  LK c2001018/c200101c. Tipos1/2/3 do worker, seletores7/8 e comandos de
+  frame/dispatcher mantidos em namespaces distintos.
+- RPMB_PASSED=baba pode seguir resultado não zero apenas registrado;
+  worker testa ret<0 e não calcula/compara HMAC no corpo selecionado.
+- inspect_rpmb_frame.py lê um arquivo regular512 bytes, com ordem wire
+  ou local-materialized explícita, limites e hashes de arrays. Nunca
+  transforma resultado zero em autenticação/procedência/I/O/persistência.
+- inspect_flop_reference.py valida as fontes antes de compilar somente a
+  declaração C restrita; kernel, Makefiles e scripts não foram executados.
+- 14 testes do leitor,12 da referência/probe e16 de regressão LK passaram.
+  Relatório de fonte/probe reproduzido byte a byte; fixture sintética salva.
+- Baseline completo9 etapas aprovado, resumo SHA-256
+  bd347b13a51fa6cbad7b732a0e9ec571f064523fa69bf773f6efd2b2ab04d5e6.
+- Conferidos 1404 links locais de arquivos, nenhum destino ausente.
+  Índices, roadmap, referência Samsung e contrato físico atualizados.
+- Próximo: registro/destinos scsirpmb e origem dos gates no LK, mantendo
+  implementação segura e contratos físicos em aberto. Telefone sem operações.

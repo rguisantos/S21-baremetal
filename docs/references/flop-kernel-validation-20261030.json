@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "d60ea14d567a2fa34a2d0c66061511e6b0ed5895",
+  "external_repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "external_commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "source_files_verified": 19,
+  "kernel_built": false,
+  "host_probe_only": true,
+  "report_reproduced_byte_for_byte": true,
+  "artifacts_sha256": {
+    "docs/references/flop-kernel-source-4553117.json": "98f17ccaae3a34f357ae9278967f573bacc68c0ba3aa610dff6fbd9313ea917e",
+    "docs/references/flop-kernel-rpmb-4553117.json": "53f0d4e3f7eef6cabb1fdc1ac4ca1267caed1713b248f0148423ea6bb092ac5b",
+    "docs/references/rpmb-frame-synthetic.json": "e303402632c853fc29e30ae3b4cfe7e40f18da7857a77d3add399bb5af9e54dc"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_rpmb_frame.py -v",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_flop_reference.py -v",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_rpmb.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_flop_reference.py /path/to/pinned-source",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-flop-reference",
+      "status": "passed",
+      "summary_sha256": "bd347b13a51fa6cbad7b732a0e9ec571f064523fa69bf773f6efd2b2ab04d5e6",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "kernel_executed": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Only selected source files were reviewed, not the whole kernel.",
+    "The C compiler ran a host layout probe, not a kernel build.",
+    "Synthetic frames demonstrate decoding only; no authenticated capture or hardware state was acquired.",
+    "LK callback identity, secure implementation and counter persistence remain open."
+  ],
+  "documentation_file_links": {
+    "checked": 1404,
+    "missing": 0
+  }
+}
