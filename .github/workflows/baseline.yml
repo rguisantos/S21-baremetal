@@ -43,6 +43,8 @@ jobs:
         run: python3 scripts/test_lk_build_id.py
       - name: Check Samsung selector names and request fields
         run: python3 scripts/test_lk_samsung_checks.py
+      - name: Check RPMB dispatch tables and MAC request bindings
+        run: python3 scripts/test_lk_rpmb.py
       - name: Build and validate the required baseline
         run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
       - name: Preserve logs and summary

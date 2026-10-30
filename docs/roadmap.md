@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-Os [verificadores Samsung](lk-samsung-checks-hzc2.md) estão delimitados localmente: seleção/pedido ao monitor 0xffffffffffffff10, revisão para rollback e efeitos de política custom. O zero local inclui skip/fallback e não prova aceitação física. Próximo: implementação segura do serviço, backend/persistência de contadores, predicados vivos de política e fornecedor da chave AVB; contratos físicos de carga/memória/captura continuam pendentes.
+O [backend dos contadores](lk-rpmb-hzc2.md) chega a `scsirpmb` e aos pedidos seguros `0xc2001018`/`0xc200101c`. Ordem de dados/resultados e limites de autenticação estão delimitados localmente; retorno zero não prova persistência. Próximo: registro/destinos dos callbacks, origem dos gates e fonte validada do serviço seguro.
+
+Os [verificadores Samsung](lk-samsung-checks-hzc2.md) estão delimitados localmente: seleção/pedido ao monitor 0xffffffffffffff10, revisão para rollback e efeitos de política custom. O zero local inclui skip/fallback e não prova aceitação física. O backend tem continuação acima; implementação segura, persistência, predicados vivos de política e fornecedor da chave AVB permanecem abertos; contratos físicos de carga/memória/captura continuam pendentes.
 
 A [conferência de Build-id e os helpers de partições](lk-build-id-partitions-hzc2.md) estão delimitados localmente: comparação de prefixo, cache vbmeta/super, palavra de política e caminhos com efeitos de estado. Retorno zero não certifica leitura nova ou aceitação física. Os verificadores têm continuação acima; origem da política 0xaaa70c, preservação dos caches e fornecedor seguro da chave seguem abertos.
 
