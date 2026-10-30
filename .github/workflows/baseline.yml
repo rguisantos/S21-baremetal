@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/test_lk_precopy_measurement.py
       - name: Check embedded AVB key format and consumer decoding
         run: python3 scripts/test_lk_embedded_key.py
+      - name: Check AVB key-trust callback bindings
+        run: python3 scripts/test_lk_avb_trust.py
       - name: Build and validate the required baseline
         run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
       - name: Preserve logs and summary

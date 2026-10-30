@@ -1,6 +1,6 @@
 # Catálogo de scripts
 
-A [entrada inicial do pedido de SHA](../docs/lk-embedded-avb-key-hzc2.md) foi identificada como uma chave pública AVB RSA-4096 embutida de 1.032 bytes. Layout e parâmetros matemáticos conferem; 17 testes novos passaram. Preservação em execução, confiança da chave e autenticação da Image continuam pendentes.
+O [callback de confiança AVB](../docs/lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.
 
 - `inspect_newtime_dmc_table_services_hzc2.py` / `test_newtime_dmc_table_services.py`: tabela da cauda, acumulador ID18, consumidor selecionado e publicador por raízes distintas; 21 testes e [limites](../docs/newtime-dmc-table-services-hzc2.md).
 
@@ -246,3 +246,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - [Observação NEWTIME no gate](../docs/newtime-gate-observation-scope-hzc2.md): snapshots no runner com preflight preservado; ponteiro e scratch ff inalterados, predição de scratch zero refutada, sem execução após o gate.
 
 - `inspect_lk_embedded_key.py` / `test_lk_embedded_key.py`: endereço do consumidor decodificado, comprimento u32 e chave pública serializada AVB com parâmetros Montgomery conferidos; 17 testes sem firmware, referência de formato fixada e recusa de imagem não identificada. Não executa SHA no monitor nem verifica confiança/assinatura. [Identificação e limites](../docs/lk-embedded-avb-key-hzc2.md).
+
+- `inspect_lk_avb_trust.py` / `test_lk_avb_trust.py`: tabela AvbOps, slots +48/+72, consulta nominal da chave `vbmeta`, separação status/confiança e rótulos locais do wrapper. Treze testes de binding e recusa, sem executar firmware ou SMC. [Evidência e limites](../docs/lk-avb-key-trust-hzc2.md).

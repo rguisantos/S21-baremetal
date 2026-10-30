@@ -82,9 +82,10 @@ por um validador de vbmeta, nem que o serviço aceite o pedido ou execute um
 algoritmo específico. A semântica criptográfica do monitor e o percurso de
 autenticação/carga da Image continuam separados dessa identificação.
 
-O próximo alvo é ligar a chave ao consumidor de verificação que decide a
-aceitação do contêiner e delimitar suas políticas. A preservação do objeto
-até a chamada também precisa de prova própria. O Marco A continua exigindo
+A [continuação do callback de confiança](lk-avb-key-trust-hzc2.md) liga o
+consumidor AVB a um pedido de chave ao monitor, sem demonstrar igualdade com
+este objeto embutido. Próximo: verificador criptográfico e ações/retorno do
+wrapper. A preservação do objeto até a chamada também precisa de prova própria. O Marco A continua exigindo
 carga compatível, região própria/coerente, entrada e aquisição dos 128 bytes;
 desbloquear o aparelho não resolve automaticamente esses requisitos.
 

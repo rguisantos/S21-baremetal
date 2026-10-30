@@ -1,6 +1,6 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-A [entrada inicial do pedido de SHA](docs/lk-embedded-avb-key-hzc2.md) foi identificada como uma chave pública AVB RSA-4096 embutida de 1.032 bytes. Layout e parâmetros matemáticos conferem; 17 testes novos passaram. Preservação em execução, confiança da chave e autenticação da Image continuam pendentes.
+O [callback de confiança AVB](docs/lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.
 
 Os [serviços da cauda DMC17](docs/newtime-dmc-table-services-hzc2.md) leem e alteram uma tabela em memória. Um consumidor separado pode publicar seus valores por quatro stores, sem confirmação local; o ID18 usa um acumulador que preserva o bit4 após limpar a flag. São 684 testes NEWTIME aprovados; ordem real de aplicação, condições físicas e produtor do magic continuam abertos.
 

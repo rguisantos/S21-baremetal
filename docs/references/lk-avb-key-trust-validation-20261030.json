@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "6ea0c374ac504455cd4677a8c98d7b7d54176f4d",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "800ecc102c7c95b68e12a2a68cfb3d8fba6ee077450f5d53e6f56f1e2bc8266a",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 342,
+    "gnu_relative_targets": 58,
+    "selected_operand_checks": 44,
+    "instruction_index_sha256": "31a51092133f8031921a169dddad755b467ed2d4d4f53e11cd5765e198d05394"
+  },
+  "string_checks": 11,
+  "local_graphs": 17,
+  "binding": {
+    "ops_relative_address": "0xd05900",
+    "exported_ops_relative_address": "0xd05900",
+    "validate_key_slot": 48,
+    "validate_key_target_file_offset": "0x180d50",
+    "read_unlocked_slot": 72,
+    "read_unlocked_target_file_offset": "0x17ffd0",
+    "runtime_binding_and_preservation_established": false
+  },
+  "source_reference": {
+    "repository": "AndroidBootloader/platform_external_avb",
+    "commit": "b27a9aa53d2db7720e4d88d6950dcd979da97de3",
+    "files": {
+      "libavb/avb_ops.h": "04e2adaaf6aae58073376afebbd6e9d699d44557681374905561e93a479f0774",
+      "libavb/avb_slot_verify.h": "21bd02f65875e7cbdbd7166cee8a50d099bd9564883a50eb5342229ed7900ed4"
+    },
+    "scope": "ABI/result-name reference, not corresponding Samsung source"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_avb_trust.py -v",
+      "tests": 13,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_embedded_key.py",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_precopy_measurement.py",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_avb_trust.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-avb-key-trust",
+      "status": "passed",
+      "summary_sha256": "8bb7c11d9500ae270e23d7c5ce8d61271c4a9759a15cb87cf132a93a980fbd44",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "documentation_file_links": {
+    "checked": 1281,
+    "missing": 0
+  },
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Binding and decision tables are static and conditional; no runtime trusted key was acquired.",
+    "New tests exercise word decoding and binding/refusal logic, not secure firmware.",
+    "R10 host/QEMU baseline does not execute Samsung firmware or prove physical image acceptance."
+  ]
+}
