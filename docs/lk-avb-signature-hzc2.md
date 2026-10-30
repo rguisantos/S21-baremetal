@@ -162,3 +162,5 @@ Próxima fronteira: ações e retorno completos do wrapper `0x17f5d0` após
 `0x17f724`, origem da continuação tolerada no slot e implementação do
 fornecedor seguro da chave. Os contratos de carga, memória e captura do
 [diagnóstico físico](samsung-diagnostic-contract.md) continuam pendentes.
+
+Continuação: o [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados, incluindo laço red e descarte imediato do resultado no chamador. Isso não resolve os serviços seguros ou demonstra aceitação física.

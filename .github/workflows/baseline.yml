@@ -37,6 +37,8 @@ jobs:
         run: python3 scripts/test_lk_avb_trust.py
       - name: Check AVB signature tables and bounded dispatch decoding
         run: python3 scripts/test_lk_avb_signature.py
+      - name: Check AVB wrapper immediates and direct reference decoding
+        run: python3 scripts/test_lk_avb_boot.py
       - name: Build and validate the required baseline
         run: python3 scripts/validate_baseline.py --system-tools --output-dir build/baseline-ci
       - name: Preserve logs and summary

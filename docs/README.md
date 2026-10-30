@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [wrapper AVB e seu chamador](lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados: red conserva um laço antes do epílogo; o retorno normal preserva o resultado do slot e é descartado imediatamente pelo chamador. Pedidos de metadados ao monitor foram identificados. São 847 palavras GNU e 17 testes novos; aceitação física e efeitos dos serviços seguros continuam abertos.
+
 O [verificador vbmeta e caminho RSA](lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
 
 O [callback de confiança AVB](lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.

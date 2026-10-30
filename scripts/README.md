@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+O [wrapper AVB e seu chamador](../docs/lk-avb-wrapper-hzc2.md) têm os retornos locais delimitados: red conserva um laço antes do epílogo; o retorno normal preserva o resultado do slot e é descartado imediatamente pelo chamador. Pedidos de metadados ao monitor foram identificados. São 847 palavras GNU e 17 testes novos; aceitação física e efeitos dos serviços seguros continuam abertos.
+
 O [verificador vbmeta e caminho RSA](../docs/lk-avb-signature-hzc2.md) agora tem resultados separados de cabeçalho, hash e assinatura, com seis combinações SHA/RSA e padding PKCS#1 v1.5 conferidos. São 1.147 palavras GNU e 18 testes novos. A conversão desses resultados para o slot foi delimitada; confiança da chave e autorização final de boot continuam etapas distintas.
 
 O [callback de confiança AVB](../docs/lk-avb-key-trust-hzc2.md) foi ligado nominalmente ao pedido de chave `vbmeta` no monitor. O consumidor separa status de I/O e confiança; consulta de desbloqueio e classificação local dos rótulos também foram delimitadas. São 342 palavras GNU e 13 testes novos; aceitação final e igualdade com a chave embutida continuam abertas.
@@ -252,3 +254,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_avb_trust.py` / `test_lk_avb_trust.py`: tabela AvbOps, slots +48/+72, consulta nominal da chave `vbmeta`, separação status/confiança e rótulos locais do wrapper. Treze testes de binding e recusa, sem executar firmware ou SMC. [Evidência e limites](../docs/lk-avb-key-trust-hzc2.md).
 
 - `inspect_lk_avb_signature.py` / `test_lk_avb_signature.py`: caminho vbmeta/RSA, tabelas de algoritmos/padding, dois dispatches signed byte e conversão de resultados para o slot. Dezoito testes sintéticos de decodificação/recusa, sem executar firmware. [Evidência e limites](../docs/lk-avb-signature-hzc2.md).
+
+- `inspect_lk_avb_boot.py` / `test_lk_avb_boot.py`: wrapper AVB completo localmente, laço red, códigos/retornos, referência B/BL e descarte no chamador, além de sete fragmentos de pedidos seguros. Dezessete testes sintéticos, sem executar firmware. [Escopo e evidências](../docs/lk-avb-wrapper-hzc2.md).
