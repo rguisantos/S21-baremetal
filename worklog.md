@@ -3505,3 +3505,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos 1319 links locais de arquivos, sem destinos ausentes.
 - Atualizados índices, roadmap, matriz Samsung e continuação do wrapper.
   Nenhuma execução/emulação de firmware Samsung, SMC, desbloqueio ou flash.
+
+
+## 2026-10-30 — pedidos Samsung, rollback e política custom delimitados
+
+- Base main bf39300 após PR #62; nenhum firmware Samsung/SMC/aparelho executado.
+- 0x1526f8 seleciona26 nomes exatos de tabela0x23e298. Miss retorna0 sem esse
+  pedido; último literal é VDDCAL_FWINIT_BOOT, preservado como uma string.
+- Nome correspondente passa por pré-checagem de binaryname, signed tamanho>512
+  e caller0x1525f8. Ponteiro SignInfo é formado antes do guard de tamanho;
+  não foi demonstrada validação completa de intervalos.
+- 0x17dbc0 prepara descritor alinhado128 com três u64 em+40/+48/+56 e chama
+  SMC X0=0xffffffffffffff10,modo14/16,X2=descritor,X3=0. Inicialização dos
+  demais bytes e implementação/retorno vivo do monitor continuam abertos.
+- Caller traduz low32 0 effffffff em0; este último imprime non-secure skip.
+  Outros não zero viram−1. Mensagem não foi usada para medir segurança do chip
+  ou concluir ECDSA executado, bypass ou aceitação física.
+- 0x150aa8 é rollback: bytes136..138 formam revisão u32 sem guard de dígitos;
+  comparação unsigned com contador. Atualização solicitada tem status ignorado.
+  Fallback19 do getter para índices0..5 não é nova medição de RPMB/efuse.
+- 0x1516b8 executa política/diagnósticos custom, consulta estados e prefixos
+  KG, contém loop de entrada e cauda0x150330. Diagnósticos EFUSE/warranty bit
+  e chamadas opacas de efeitos persistentes foram registrados sem execução.
+- Novo inspect_lk_samsung_checks.py confere801 palavras GNU,211 destinos,
+  75 operandos,19 literais,14 grafos e26 nomes. Relatório reproduzido byte a byte.
+- 16 testes novos de tabela/descritor/recusa incluídos no CI passaram;
+  regressões AVB48 e Build-id14 passaram. Baseline completo9 etapas aprovado;
+  resumo SHA-25653cafceea72b076834ec72b80f9db277e3ddb521efbc3f88c17c3627ae04b4dd.
+- Conferidos 1330 links locais de arquivos, sem destinos ausentes.
+- Índices, roadmap, matriz Samsung e continuação de partições atualizados.
+  Próximo: serviço seguro, backend/persistência de contadores, predicados vivos
+  de política e fornecedor da chave AVB; contratos físicos continuam abertos.

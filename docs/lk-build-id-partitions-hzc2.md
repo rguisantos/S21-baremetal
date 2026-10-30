@@ -143,3 +143,5 @@ Próxima fronteira: verificadores `0x1526f8/0x150aa8/0x1516b8`, procedência
 da palavra `0xaaa70c`, aquisição/preservação dos caches e fornecedor seguro
 da chave. Carga, memória e captura do [diagnóstico físico](samsung-diagnostic-contract.md)
 continuam pendentes. O telefone permanece fora desses ensaios.
+
+Continuação: os [verificadores Samsung](lk-samsung-checks-hzc2.md) têm corpos locais e papéis separados: pedido ao monitor, rollback e política custom. Backend seguro, contadores e predicados vivos continuam fronteiras.
