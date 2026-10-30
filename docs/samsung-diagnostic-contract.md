@@ -47,7 +47,7 @@ quando não houver observação explícita. Não foram relidos registradores fí
 |---|---|---|
 | Identidade e acesso | [Coleta shell](runtime-collection.md), [bugreport HZC2](dram-observed-hzc2.md), ADB/tela Download e [PIT lida em 30/10](download-pit-observation-hzc2.md); shell/travado | Consulta Download demonstrada para PIT; caminho de imagem própria ainda não demonstrado |
 | Artefato | [Diagnóstico](entry-diagnostic.md): Image ARM64 bruto, registro final de 128 bytes, sem EFI/Android/assinatura Samsung | Header ARM64 não é um boot.img aceito pelo telefone |
-| Contêiner/cópia | [Stock v3](stock-firmware-hzc2.md), [cópia LK](lk-kernel-copy.md): 0x12e88c copia kernel_size de boot+header arredondado | Autenticação, todos os ramos e efeitos de 0x151b10 ainda não encerrados; nenhum contêiner próprio validado |
+| Contêiner/cópia | [Stock v3](stock-firmware-hzc2.md), [cópia LK](lk-kernel-copy.md): 0x12e88c copia kernel_size de boot+header arredondado | [Marcador e pedido de SHA anteriores à cópia](lk-precopy-measurement-hzc2.md) delimitados; autenticação completa, serviços seguros e aceitação de contêiner próprio continuam abertos |
 | Destino | Contexto em 0xfba18 e BLR 0xfbe14 ligam nominalmente 0x80080000+deslocamento_u32 | Não estabelece endereço efetivo desta Image no aparelho ou RAM livre |
 | Propriedade | A própria Image inclui o registro; não precisa de outro buffer de saída | Região completa gravável/executável, reservas e ausência de concorrentes ainda não demonstradas |
 | Coerência | [Helper LK](lk-cache-handoff.md): M=1 limpa M/C no EL atual; M=0/C=1 conserva C. Há chamadas depois | Cache da Image, outros agentes, traps e estado após callbacks não observados |
@@ -174,3 +174,5 @@ etapa automática desta matriz.
 Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.
 
 Continuação: [origem imediata do bitmap](lk-policy-bitmap-hzc2.md) liga workspace+0x29f68 → response+0x120 → 0xcd6618 → 0x157230. O produtor é get_token_mode; produção do workspace, token ativo e autenticação da Image seguem abertos.
+
+Continuação de 30/10: [marcador pré-cópia e SHA](lk-precopy-measurement-hzc2.md) ligam 0x151a10 a um pedido pelo monitor, com fonte nominal 0x31d740 e comprimento de 0x31d738. Esses produtores e a autenticação em outra etapa permanecem abertos; os retornos selecionados não certificam aceitação.

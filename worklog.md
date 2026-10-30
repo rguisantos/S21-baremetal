@@ -3336,3 +3336,30 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferência posterior dos JSONs: palavras/alvos/literais coincidem com
   o firmware; 40 links/35 nomes PIT e sete negações consistentes, além de
   447 links documentais válidos. Baseline obrigatório será conferido no CI.
+
+
+## 2026-10-30 — marcador pré-cópia e pedido nominal de SHA
+
+- Contexto confirmado pelo usuário: o S21 é aparelho de uso pessoal.
+  Continuação inteiramente offline, sem desbloqueio, root, flash ou apagamento.
+- Delimitado 0x151a10, chamado por v2/v3 antes das cópias: a metade alta do
+  argumento empacotado escolhe o offset do marcador sobre staging 0x94000000.
+  Compara 16 bytes SEANDROIDENFORCE; falha textual ainda chega ao gate de política.
+- Getter por byte relativo 0xcd563c separa pedido SHA e pedido nominal de apagar
+  chave pública; não foi identificado como estado OEM/FRP/KG/Knox. A SMC não
+  foi executada e seus efeitos reais continuam desconhecidos.
+- O pedido SHA usa fonte nominal 0x31d740, comprimento de 0x31d738 e saída
+  0xcd6250. Conferidos limite unsigned 60 MiB, quatro campos de pedido,
+  cache clean/invalidate e wrapper SMC. Não atribuído algoritmo ao modo1,
+  digest de 64 bytes ou equivalência entre a fonte e a Image.
+- Ambos os chamadores selecionados não testam o retorno antes de sobrescrever
+  W0; zero local e marcador não certificam autenticação ou possibilidade de boot.
+- Novo inspect_lk_precopy_measurement.py e relatório hash-bound: GNU261 palavras,
+  47 alvos relativos, 41 operandos e nove literais; 11 grafos locais.
+- Doze testes do verificador passaram e foram incluídos no CI. Regressões de
+  grafos 14/15 passaram; baseline local completo de nove etapas passou.
+  SHA-256 do resumo: 9dbe8cef80566f6bb147d912b5de24f22d9483c33cf069d18efba6ed663ab669.
+- Atualizados README, índices, roadmap, cópia/layout v3 e matriz Samsung.
+  Relatório/validação em docs/references; firmware privado continua fora do Git.
+- Próximo: produtores de 0x31d738/0x31d740 e validadores de imagem de outra etapa.
+  Carga física, propriedade/coerência e recuperação dos 128 bytes seguem pendentes.

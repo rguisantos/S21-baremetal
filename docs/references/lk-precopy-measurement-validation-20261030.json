@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "dcba0d32ca2ef56625fcdc69efabc32e0c960525",
+  "mode": "static_firmware_inspection_and_host_qemu_regression",
+  "firmware_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "641176f0905ab386212e23cb7efb8f608cba9267c587d906c6285479c542e4ee",
+  "static_checks": {
+    "gnu_words": 261,
+    "gnu_relative_targets": 47,
+    "selected_operand_checks": 41,
+    "instruction_index_sha256": "c9d7f93dc137448887fa1d90b096c82bf11b7c9f24c989023ddeca77ec6386ea"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/inspect_lk_precopy_measurement.py /private/path/sboot.bin",
+      "result": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_precopy_measurement.py -v",
+      "tests": 12,
+      "result": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_payload_return.py'",
+      "tests": 14,
+      "result": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_final_edges.py'",
+      "tests": 15,
+      "result": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-precopy-measurement",
+      "result": "passed",
+      "summary_sha256": "9dbe8cef80566f6bb147d912b5de24f22d9483c33cf069d18efba6ed663ab669",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "documentation_file_links": {
+    "checked": 1265,
+    "missing": 0
+  },
+  "firmware_executed": false,
+  "phone_modified": false,
+  "physical_probe_executed": false,
+  "limits": [
+    "New tests check the witness verifier with synthetic A64 text/words, not Samsung policy execution.",
+    "The baseline executes project code in QEMU, not the Samsung firmware.",
+    "Image acceptance, owned RAM, entry state and physical acquisition remain pending."
+  ]
+}

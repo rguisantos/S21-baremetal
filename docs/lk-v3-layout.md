@@ -106,3 +106,5 @@ foi rastreado na [seleção DTB e merges DTBO/DPM](lk-dtb-pipeline.md).
 As [escritas de initrd e os escritores condicionais de reservas](lk-dynamic-fdt.md)
 também foram rastreados. Restam os valores de serviços e ramos que definem
 o mapa efetivo, além dos checks posteriores até o salto.
+
+Continuação de 30/10: o [helper anterior às cópias](lk-precopy-measurement-hzc2.md), 0x151a10, compara o marcador SEANDROIDENFORCE e consulta política para pedido nominal de SHA ou de apagar chave pública. Não é um verificador completo de assinatura; os chamadores selecionados não testam seu retorno antes de sobrescrever W0.

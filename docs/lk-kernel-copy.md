@@ -129,3 +129,5 @@ não depende de Capstone. Para desassemblar, usar o snippet de
 0x12e540:0x12e590, 0x12e764:0x12e894 e 0x1af3c0:0x1af488.
 
 Continuação de 27/10: [0x151b10 delimitada](lk-postcopy-policy-hzc2.md) como dispatcher com configuração CP/fingerprint via SMC. Retorno zero local não certifica aceitação; serviços seguros e demais efeitos transitivos permanecem abertos. Próxima fronteira: consultas de política 0x157230 e validação anterior à cópia.
+
+Continuação de 30/10: o [helper anterior às cópias](lk-precopy-measurement-hzc2.md), 0x151a10, compara o marcador SEANDROIDENFORCE e consulta política para pedido nominal de SHA ou de apagar chave pública. Não é um verificador completo de assinatura; os chamadores selecionados não testam seu retorno antes de sobrescrever W0.
