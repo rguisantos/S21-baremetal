@@ -1,8 +1,10 @@
 # Roadmap e estado do S21-baremetal
 
+A [construção da tradução do pool UFS](lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
+
 O [pool que abastece o heap UFS](lk-heap-pool-hzc2.md) foi ligado ao provedor de páginas: faixa nominal `[0xe8c1d000,0xe9800000)`, com 3043 páginas. São 28 casos do código original em QEMU, incluindo falha que mantém o host publicado sem buffers; 17 testes novos. Estado físico e identidade DMA continuam pendentes.
 
-A [origem do host/buffers UFS](lk-ufs-host-memory-hzc2.md) agora liga alocação, publicação, configuração e programação de bases. A [leitura ampliada do FlopKernel](flop-ufs-dma-reference.md) esclarece granularidade PRDT, DMA/IOCC e driver UART. O backend/pool tem continuação acima; atributos/tradução, produtor da configuração e gates RPMB seguem abertos.
+A [origem do host/buffers UFS](lk-ufs-host-memory-hzc2.md) agora liga alocação, publicação, configuração e programação de bases. A [leitura ampliada do FlopKernel](flop-ufs-dma-reference.md) esclarece granularidade PRDT, DMA/IOCC e driver UART. O backend/pool e a construção de tradução têm continuação acima; granule herdado, coerência DMA, produtor da configuração e gates RPMB seguem abertos.
 
 A [conclusão UFS local](lk-ufs-completion-hzc2.md) liga descritores, espera e origem do byte SCSI ao consumidor RPMB. LUN68→0xc4 conferida; OCS zero e status SCSI permanecem planos separados. A origem do host/buffers tem continuação acima; backend/atributos, posse/coerência e gates RPMB, serviço seguro e persistência física continuam abertos.
 

@@ -3729,3 +3729,36 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   contrato Samsung atualizados.
 - Próximo: atributos/tradução do pool, produtor de cd31c8 e gates RPMB.
   Captura, carregamento e persistência físicos continuam pendentes.
+
+
+## 2026-10-30 — construção de tradução e atributos do pool LK
+
+- Base main c7aa567 após PR #69. [Mapper do pool](docs/lk-pool-mmu-hzc2.md)
+  ligado ao registro LK31fdc8 e à sequência ee738→18a390→18a1f0.
+  No trecho selecionado, a chamada de board init precede o init do heap.
+- Registro LK fornece VA/PA e8000000, fim e9800000 e flags0020000000000745.
+  Mapper189f68 cria páginas4KiB na janela LK e blocos2MiB fora dela.
+  Raiz322000, L2 323000 e L3 353000 ligados às publicações/instalação.
+- Perfil EL1/4KiB produz identidade de estágio1 para3043 páginas do pool,
+  AttrIndx1→MAIRff, SH3, AF1, AP01 e PXN1. Texto e tabelas têm tratamento
+  RO/PXN distinto. UXN0 foi conservado; não se declarou XN em todo EL.
+- Instalador pede MAIRff44/TCR11b51c351c/TTBR0 e TTBR1 com mesma raiz.
+  O tamanho de página vem do TCR herdado antes da instalação do novo:
+  o perfil4KiB foi fornecido, não adquirido do aparelho.
+- Três registros de atualização posterior cobrem RAM alta sem atingir
+  o pool nominal; não constituem censo de todos os escritores/aliases.
+- Extrator confere292 palavras GNU,66 destinos,99 operandos,14 registros
+  de mapeamento/atualização e12 grafos. Três fontes ARM64 FlopKernel
+  fixadas por blob/SHA-256 conferem bits e bytes MAIR, sem copiar MT_NORMAL.
+- Fragmento original de raiz e mapper executados em QEMU: seis casos em
+  duas posições, com EL1/4096 fornecidos. Os quatro casos LK conferem3043
+  páginas cada, inclusive controle PA alterado; dois controles fora do
+  LK traduzem80001234→90001234 por bloco. Guardas/ABI/código preservados.
+  Tabelas não foram instaladas; nenhum hardware Samsung foi acessado.
+- Relatórios estático e QEMU reproduzidos byte a byte. 21 testes novos
+  e50 regressões passaram; baseline completo9 etapas aprovado, SHA-256
+  5870b87790b5d627547dd42e6837b1d1cb032a08110e9ceda21c0a6df99bf24e.
+- Conferidos 1486 links locais, nenhum ausente; índices, CI, roadmap e
+  contratos físicos atualizados.
+- Próximo: origem do granule herdado, coerência/DMA, produtor de cd31c8
+  e gates RPMB. Identidade CPU construída não prova estado vivo ou DMA.

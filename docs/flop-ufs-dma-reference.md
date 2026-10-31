@@ -76,3 +76,5 @@ testes de binding do host. O material serial permanece referência para
 uma futura conferência de saída física, sem reproduzir escritas MMIO
 do driver. A árvore custom continua distinta das fontes stock/HZC2 e
 não resolve sozinha carregamento, memória livre ou captura do diagnóstico.
+
+A [tradução do pool LK](lk-pool-mmu-hzc2.md) agora acrescenta três fontes ARM64 fixadas para bits de descritores e bytes MAIR. O perfil EL1/4KiB gera identidade/cacheável, sem importar o índice Linux de MT_NORMAL ou certificar coerência DMA.

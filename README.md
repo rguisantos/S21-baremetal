@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [construção da tradução do pool UFS](docs/lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
+
 O [pool que abastece o heap UFS](docs/lk-heap-pool-hzc2.md) foi ligado ao provedor de páginas: faixa nominal `[0xe8c1d000,0xe9800000)`, com 3043 páginas. São 28 casos do código original em QEMU, incluindo falha que mantém o host publicado sem buffers; 17 testes novos. Estado físico e identidade DMA continuam pendentes.
 
 A [origem do host e buffers UFS](docs/lk-ufs-host-memory-hzc2.md) está ligada nominalmente ao alocador e às tabelas locais, com 19 testes novos. O cruzamento ampliado com FlopKernel esclarece PRDT em bytes, DMA e seleção de driver UART. Alinhamento e stores de endereços permanecem separados da coerência física.

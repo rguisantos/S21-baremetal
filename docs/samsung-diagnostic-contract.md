@@ -198,3 +198,5 @@ Continuação de 30/10: [descritores/espera/resposta UFS](lk-ufs-completion-hzc2
 Continuação de 30/10: [host/buffers UFS](lk-ufs-host-memory-hzc2.md) têm publicação e configuração ligadas nominalmente. O [cruzamento FlopKernel](flop-ufs-dma-reference.md) acrescenta contratos DMA e referências UART, sem medir coerência, memória livre, persistência ou satisfazer a captura do diagnóstico físico.
 
 Continuação de 30/10: o [pool nominal do heap UFS](lk-heap-pool-hzc2.md) foi delimitado e o alocador executado em QEMU com entradas fornecidas. Essa memória é usada pelo LK; não é RAM livre para a sonda nem prova de tradução física, DMA ou captura no aparelho.
+
+Continuação de 30/10: a [construção de tradução do pool](lk-pool-mmu-hzc2.md) foi delimitada no perfil EL1/4KiB e executada em QEMU sem instalar as tabelas. Isso não é captura de registradores/tabelas do S21 nem identifica RAM livre, DMA coerente ou entrada/captura do diagnóstico físico.

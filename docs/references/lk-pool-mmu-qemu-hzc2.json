@@ -1,0 +1,199 @@
+{
+  "mode": "original_lk_root_and_mapper_qemu",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_instruction_index_sha256": "88690f1712f47e2d3e749d609331e1f8e9fc59d364bc900715fa124089abd7ee",
+  "case_count": 6,
+  "cases": [
+    {
+      "case": "LK_record",
+      "laboratory_delta": "0x3ff14000",
+      "supplied_pa_start": "0x40000000",
+      "pool_pages_walked": 3043,
+      "pool_identity": true,
+      "pool_attributes": {
+        "attr_index": 1,
+        "mair_byte": "0xff",
+        "memory": "normal_write_back",
+        "shareability": 3,
+        "access_flag": true,
+        "ap_bits": 1,
+        "read_only": false,
+        "privileged_execute_never": true,
+        "user_execute_never": false
+      },
+      "table_sha256": "1f7a4c12363ef019d45b6d0d75955442b7d5816bb4d96e2e3be661e161b25ffd",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "case": "LK_changed_PA_control",
+      "laboratory_delta": "0x3ff14000",
+      "supplied_pa_start": "0x40200000",
+      "pool_pages_walked": 3043,
+      "pool_identity": true,
+      "pool_attributes": {
+        "attr_index": 1,
+        "mair_byte": "0xff",
+        "memory": "normal_write_back",
+        "shareability": 3,
+        "access_flag": true,
+        "ap_bits": 1,
+        "read_only": false,
+        "privileged_execute_never": true,
+        "user_execute_never": false
+      },
+      "table_sha256": "1f7a4c12363ef019d45b6d0d75955442b7d5816bb4d96e2e3be661e161b25ffd",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "case": "non_LK_nonidentity_block",
+      "laboratory_delta": "0x3ff14000",
+      "supplied_va": "0x80000000",
+      "supplied_pa": "0x90000000",
+      "walk": {
+        "level": 2,
+        "physical_address": "0x90001234",
+        "descriptor": "0x20000090000745",
+        "attributes": {
+          "attr_index": 1,
+          "mair_byte": "0xff",
+          "memory": "normal_write_back",
+          "shareability": 3,
+          "access_flag": true,
+          "ap_bits": 1,
+          "read_only": false,
+          "privileged_execute_never": true,
+          "user_execute_never": false
+        }
+      },
+      "table_sha256": "24cf0b90d1c8ed5fa5807b69e3bbc09f309a753bb0652d0672d1a35306b887e7",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "case": "LK_record",
+      "laboratory_delta": "0x41f14000",
+      "supplied_pa_start": "0x42000000",
+      "pool_pages_walked": 3043,
+      "pool_identity": true,
+      "pool_attributes": {
+        "attr_index": 1,
+        "mair_byte": "0xff",
+        "memory": "normal_write_back",
+        "shareability": 3,
+        "access_flag": true,
+        "ap_bits": 1,
+        "read_only": false,
+        "privileged_execute_never": true,
+        "user_execute_never": false
+      },
+      "table_sha256": "15a1321a13af8ef674f50eba8af43de87c213120a94059949e433f97e2dc8599",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "case": "LK_changed_PA_control",
+      "laboratory_delta": "0x41f14000",
+      "supplied_pa_start": "0x42200000",
+      "pool_pages_walked": 3043,
+      "pool_identity": true,
+      "pool_attributes": {
+        "attr_index": 1,
+        "mair_byte": "0xff",
+        "memory": "normal_write_back",
+        "shareability": 3,
+        "access_flag": true,
+        "ap_bits": 1,
+        "read_only": false,
+        "privileged_execute_never": true,
+        "user_execute_never": false
+      },
+      "table_sha256": "15a1321a13af8ef674f50eba8af43de87c213120a94059949e433f97e2dc8599",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "case": "non_LK_nonidentity_block",
+      "laboratory_delta": "0x41f14000",
+      "supplied_va": "0x80000000",
+      "supplied_pa": "0x90000000",
+      "walk": {
+        "level": 2,
+        "physical_address": "0x90001234",
+        "descriptor": "0x20000090000745",
+        "attributes": {
+          "attr_index": 1,
+          "mair_byte": "0xff",
+          "memory": "normal_write_back",
+          "shareability": 3,
+          "access_flag": true,
+          "ap_bits": 1,
+          "read_only": false,
+          "privileged_execute_never": true,
+          "user_execute_never": false
+        }
+      },
+      "table_sha256": "30dcecd2f8e619d64040483e05289fe8b46505d56333ad74b298b5551f0feb78",
+      "substitutions": {
+        "0x189404": 1,
+        "0x189e50": 2
+      },
+      "guards_and_abi_preserved": true
+    }
+  ],
+  "root_fragment_runs": [
+    {
+      "laboratory_delta": "0x3ff14000",
+      "root_sha256": "bd39f5ffeae2066c1fd0e9375ab4e545281b98b54b0926c758e8705afc4a6dc9",
+      "substitutions": {
+        "0x189e50": 561
+      }
+    },
+    {
+      "laboratory_delta": "0x41f14000",
+      "root_sha256": "23201892531c54c3cd0f09b2de2431411c529f3f4ff243ebd0b4f44edc0310c1",
+      "substitutions": {
+        "0x189e50": 561
+      }
+    }
+  ],
+  "segments": [
+    {
+      "start": "0x189f68",
+      "end_exclusive": "0x18a164",
+      "sha256": "79033bc1aed4e4a7bf62a2c2e3023407e822ce0e928c47e9e11e1151961e28f7"
+    },
+    {
+      "start": "0x18a22c",
+      "end_exclusive": "0x18a28c",
+      "sha256": "162a9483e7e10024e7369ade3b8595457e4bee93d406eb319115bb5bb52aea89"
+    }
+  ],
+  "original_code_segments_unchanged": true,
+  "el1_and_4k_granule_supplied": true,
+  "generated_tables_installed": false,
+  "physical_samsung_state_observed": false,
+  "dma_coherence_established": false,
+  "limits": [
+    "Original builder writes QEMU RAM; system-register installation, MMU enable and Samsung startup are not executed.",
+    "EL1 and 4096-byte granule are substituted inputs; no inherited TCR was acquired from the phone.",
+    "L2/L3 storage starts zero; only the selected LK record and deliberately changed controls are executed.",
+    "Software walks of generated bytes are not physical AT results, DMA mappings or a live page-table capture."
+  ]
+}
