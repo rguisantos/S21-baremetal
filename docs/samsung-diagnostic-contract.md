@@ -192,3 +192,5 @@ Continuação de 30/10: o [backend RPMB](lk-rpmb-hzc2.md) liga os contadores aos
 Continuação de 30/10: a [referência FlopKernel](flop-kernel-reference.md) acrescenta confirmação do layout RPMB e leitor offline, sem executar kernel, firmware ou operações no aparelho. Fontes p3s e flags do defconfig não satisfazem os contratos físicos de carga, memória ou captura.
 
 Continuação de 30/10: [registro e callbacks RPMB do LK](lk-rpmb-transport-hzc2.md) foram ligados nominalmente até a entrada UFS. Configuração ativa do host, resposta/DMA e persistência não foram observadas; essa ligação não satisfaz os contratos físicos de carga, memória ou captura.
+
+Continuação de 30/10: [descritores/espera/resposta UFS](lk-ufs-completion-hzc2.md) foram delimitados localmente, com origem nominal do status SCSI. Sem configuração ativa, posse/coerência e resposta física adquiridas, isso não comprova persistência nem satisfaz carga, memória ou captura do diagnóstico.

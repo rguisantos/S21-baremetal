@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [preparação e conclusão UFS do LK](docs/lk-ufs-completion-hzc2.md) agora liga LUN68→0xc4, descritores, polling e publicação do status SCSI. São635 palavras GNU e21 testes novos. Os retornos de espera, OCS, SCSI e autenticação RPMB foram separados; conclusão física e persistência seguem sem observação.
+
 O [registro e transporte RPMB do LK](docs/lk-rpmb-transport-hzc2.md) agora ligam nominalmente `scsirpmb` aos wrappers, callbacks SCSI IN/OUT e entrada UFS. São992 palavras GNU e16 testes novos. Instalação ativa, host, completion e persistência continuam sem observação física.
 
 A [referência FlopKernel Exynos2100](docs/flop-kernel-reference.md) confirma o layout RPMB com probe C do host e acrescenta um leitor offline de frames, com 26 testes novos. Revisão fixada em `4553117`; suporte de fonte para p3s confirmado. Interfaces Linux/monitor/LK e estado do aparelho permanecem separados.

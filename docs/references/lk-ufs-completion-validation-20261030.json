@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "f1e6f7199a00c076cd067beb32ba0c908492aa67",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "cd71c40d2c636107f4e3e55386b4a9652cdbfe9145780c879652a8e7eb86f37d",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 635,
+    "gnu_relative_targets": 121,
+    "selected_operand_checks": 135,
+    "instruction_index_sha256": "2fc19291aa1bc3101eb30f2c019ef3041299d08c97f48e2d709996e93023b1ee"
+  },
+  "literal_checks": 8,
+  "local_graphs": 8,
+  "response_status_binding": {
+    "request_pointer_host_offset": 96,
+    "command_descriptor_host_offset": 144,
+    "transfer_descriptor_host_offset": 152,
+    "status_source_command_descriptor_offset": 1031,
+    "status_destination_request_offset": 96,
+    "consumer_relative_address": "0x8a73e0",
+    "ocs_transfer_descriptor_offset": 8,
+    "ocs_checked_bytes": 4,
+    "status_store_precedes_ocs_test": true,
+    "live_freshness_established": false
+  },
+  "constants": {
+    "mode1_other_opcode_budget": 10000000,
+    "mode1_opcode4_budget": 600000000,
+    "mode0_budget": 30000,
+    "mode22_budget": 1500000,
+    "fatal_mask": 198784
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_ufs_completion.py -v",
+      "tests": 21,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_rpmb_transport.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_rpmb.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_rpmb_frame.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_ufs_completion.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-ufs-completion",
+      "status": "passed",
+      "summary_sha256": "85db31778b715903129429f893e0535b0ed5a433f043f688f54d091dcd59c8ee",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Synthetic polling/descriptor/response models summarize selected local branches and are not hardware traces.",
+    "The nominal response-byte source does not establish DMA completion, coherence, ownership or physical freshness.",
+    "Host configuration, buffer provenance, RPMB gate origins, secure implementation and counter persistence remain open."
+  ],
+  "documentation_file_links": {
+    "checked": 1432,
+    "missing": 0
+  }
+}

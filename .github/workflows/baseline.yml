@@ -47,6 +47,8 @@ jobs:
         run: python3 scripts/test_lk_rpmb.py
       - name: Check LK RPMB callback registration and SCSI operand bindings
         run: python3 scripts/test_lk_rpmb_transport.py
+      - name: Check LK UFS completion snapshots and response status bindings
+        run: python3 scripts/test_lk_ufs_completion.py
       - name: Check offline RPMB frames and pinned-source layout probe
         run: |
           python3 scripts/test_rpmb_frame.py

@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [ligação nominal scsirpmb→SCSI→UFS](lk-rpmb-transport-hzc2.md) foi fechada no caminho selecionado, incluindo registro, métodos e classificador de status. Próximo: descritores, espera/resposta UFS, origem do host/índice e gates RPMB; instalação ativa e persistência continuam abertas.
+A [conclusão UFS local](lk-ufs-completion-hzc2.md) liga descritores, espera e origem do byte SCSI ao consumidor RPMB. LUN68→0xc4 conferida; OCS zero e status SCSI permanecem planos separados. Próximo: origem/configuração do host e buffers, posse/coerência e gates RPMB; serviço seguro e persistência física continuam abertos.
+
+A [ligação nominal scsirpmb→SCSI→UFS](lk-rpmb-transport-hzc2.md) foi fechada no caminho selecionado, incluindo registro, métodos e classificador de status. Descritores/espera/resposta têm continuação acima; origem do host/índice, gates, instalação ativa e persistência continuam abertas.
 
 O [FlopKernel Exynos2100](flop-kernel-reference.md) foi conferido em revisão fixa: há fontes p3s e layout RPMB compatível com a interpretação local do LK. Entregues leitor offline e probe C, com26 testes. O transporte Linux via WSM/IRQ permanece distinto; os callbacks do LK têm continuação acima e a implementação segura segue aberta.
 

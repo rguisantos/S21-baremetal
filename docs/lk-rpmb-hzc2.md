@@ -180,3 +180,5 @@ contratos físicos do diagnóstico continuam pendentes.
 Continuação: a [referência FlopKernel](flop-kernel-reference.md) confirma offsets/sizeof com probe C e fornece leitor offline de frames. O transporte Linux WSM/IRQ e seus IDs não foram confundidos com os métodos ou serviços do LK; ligação concreta e persistência continuam abertas.
 
 Continuação: o [registro e transporte LK](lk-rpmb-transport-hzc2.md) liga nominalmente o nome scsirpmb a wrappers e callbacks concretos SCSI/UFS. Instalação ativa, completion e persistência continuam sem medição.
+
+Continuação do transporte: [descritores e conclusão UFS](lk-ufs-completion-hzc2.md) ligam a origem do byte SCSI e delimitam os retornos de polling/OCS. Verificações RPMB e persistência continuam separadas.
