@@ -155,3 +155,5 @@ segue sem contêiner aceito, memória de entrada/captura comprovada ou
 diagnóstico executado no S21.
 
 Continuação no firmware: o [binding scsirpmb/SCSI/UFS](lk-rpmb-transport-hzc2.md) foi delimitado nominalmente no LK HZC2. Isso usa as instruções do bootloader, sem atribuir ao kernel a identidade de seus callbacks ou serviços seguros.
+
+Continuação da revisão: [UFS, DMA e UART](flop-ufs-dma-reference.md) acrescenta nove fontes fixadas, com granularidade PRDT em bytes, contrato de memória DMA, IOCC dependente do DT e distinção de drivers seriais.

@@ -3659,3 +3659,38 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos 1432 links locais, nenhum destino ausente; índices, roadmap,
   análises RPMB e contrato físico atualizados. Próximo: origem/configuração
   do host e buffers, posse/coerência e gates; serviço seguro segue aberto.
+
+
+## 2026-10-30 — origem do host/buffers UFS e referências FlopKernel
+
+- Base main e4d6ba0 após PR #67; análise estática sem execução de firmware,
+  MMIO, SMC, DMA ou operações no telefone.
+- [Alocador/host UFS](docs/lk-ufs-host-memory-hzc2.md): publicação relativa
+  8a7718 ligada ao inicializador e gateway, índice8a7710 zerado nas stores
+  selecionadas. Publicação antes de NULL não foi promovida a host pronto.
+- Host8176, metadados32 e buffers comando8192/transferência64/tarefa160
+  delimitados. Três buffers pedem alinhamento4096 e conferem low12 zero.
+  Objetos3072 e scratch8192 separados; retorno local de falha não desfaz
+  publicações anteriores, sem inferência sobre recuperação transitiva.
+- Wrappers18fd50/18fd90 seguem para backend20c098, possivelmente após
+  helper18fbf0. Atributos/mapeamento do backend permanecem opacos.
+- Tabelas303198/3038d8 e cinco cópias para campos do host conferidas.
+  Escolha por consultas147ea8 sem pressupor estabilidade ou revisão.
+- Bases tarefa/transferência programadas em low32 com high32 zero;
+  comando também fornece só low32 ao descritor. Projeção sintética acima
+  de4GiB não corresponde a ponteiro real nem prova mapeamento DMA válido.
+- [FlopKernel ampliado](docs/flop-ufs-dma-reference.md): nove fontes
+  adicionais fixadas em4553117, bytes/SHA-256/blob Git conferidos.
+  Quirk Exynos PRDT_BYTE_GRAN sustenta leitura em bytes do campo16 LK;
+  stride Linux depende de FMP. API DMA separa ponteiro CPU/endereço DMA;
+  IOCC depende do DT. Makefile/config distinguem samsung_tty/exynos_tty,
+  e reset/clock USI permanece referência, sem rota física de captura nova.
+- Extrator confere432 palavras GNU,93 destinos,112 operandos,7 literais
+  e5 grafos; relatório reproduzido byte a byte.
+- 19 testes novos e37 regressões passaram; baseline completo9 etapas
+  aprovado, resumo SHA-256
+  4b607bae21ad4013c17a3102f36b356f3a268f9d5da57c1f09376a76ec842524.
+- Conferidos 1458 links locais, nenhum ausente; índices, CI, roadmap e
+  contrato Samsung atualizados.
+- Próximo: backend/atributos do alocador, helpers de configuração e
+  gates RPMB; posse/coerência, captura e persistência físicas abertas.

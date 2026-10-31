@@ -194,3 +194,5 @@ Continuação de 30/10: a [referência FlopKernel](flop-kernel-reference.md) acr
 Continuação de 30/10: [registro e callbacks RPMB do LK](lk-rpmb-transport-hzc2.md) foram ligados nominalmente até a entrada UFS. Configuração ativa do host, resposta/DMA e persistência não foram observadas; essa ligação não satisfaz os contratos físicos de carga, memória ou captura.
 
 Continuação de 30/10: [descritores/espera/resposta UFS](lk-ufs-completion-hzc2.md) foram delimitados localmente, com origem nominal do status SCSI. Sem configuração ativa, posse/coerência e resposta física adquiridas, isso não comprova persistência nem satisfaz carga, memória ou captura do diagnóstico.
+
+Continuação de 30/10: [host/buffers UFS](lk-ufs-host-memory-hzc2.md) têm publicação e configuração ligadas nominalmente. O [cruzamento FlopKernel](flop-ufs-dma-reference.md) acrescenta contratos DMA e referências UART, sem medir coerência, memória livre, persistência ou satisfazer a captura do diagnóstico físico.

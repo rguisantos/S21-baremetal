@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "e4d6ba00cdeed08164cb38a61c855925567bcae1",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "50af6d480a78fcada12e01732bf26b71fb8c2436956e5521d9c45da8a23cc9f6",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 432,
+    "gnu_relative_targets": 93,
+    "selected_operand_checks": 112,
+    "instruction_index_sha256": "1942603477573b6284e0dfda2e4e1f027f933a48a6dcdf23388c70d5d2c8c12e"
+  },
+  "literal_checks": 7,
+  "local_graphs": 5,
+  "bindings": {
+    "host_table_relative_address": "0x8a7718",
+    "initialized_slot": 0,
+    "host_index_relative_address": "0x8a7710",
+    "selected_reset_value": 0,
+    "allocator_publication_precedes_null_check": true,
+    "active_host_established": false
+  },
+  "allocations": [
+    {
+      "name": "metadata",
+      "bytes": 32,
+      "alignment_argument": null,
+      "host_pointer_offset": 8112,
+      "allocator": "0x18fd50"
+    },
+    {
+      "name": "command",
+      "bytes": 8192,
+      "alignment_argument": 4096,
+      "host_pointer_offset": 144,
+      "allocator": "0x18fd90"
+    },
+    {
+      "name": "transfer",
+      "bytes": 64,
+      "alignment_argument": 4096,
+      "host_pointer_offset": 152,
+      "allocator": "0x18fd90"
+    },
+    {
+      "name": "task",
+      "bytes": 160,
+      "alignment_argument": 4096,
+      "host_pointer_offset": 160,
+      "allocator": "0x18fd90"
+    }
+  ],
+  "external_sources": {
+    "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+    "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+    "files_verified": 9,
+    "manifest_sha256": "7497144262e322c86ff77b136bdd4312b5c88e6045d709846ca948167dc26bb1",
+    "git_blob_and_sha256_verified": true,
+    "kernel_built_or_executed": false
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_ufs_host.py -v",
+      "tests": 19,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_ufs_completion.py",
+      "tests": 21,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_rpmb_transport.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_ufs_host.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-ufs-host",
+      "status": "passed",
+      "summary_sha256": "4b607bae21ad4013c17a3102f36b356f3a268f9d5da57c1f09376a76ec842524",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "dma_coherence_established": false,
+  "limitations": [
+    "Selected static bindings are not a census of runtime writes, aliases or active host state.",
+    "Allocator backend, memory attributes, address translation, buffer ownership and physical freshness remain open.",
+    "Low32 projection models address bits only; it establishes neither DMA mapping nor extent safety.",
+    "Linux PRDT/DMA/IOCC/UART sources provide pinned reference context, not an acquired LK hardware configuration.",
+    "RPMB gate origins, secure implementation and counter persistence remain unproved."
+  ],
+  "documentation_file_links": {
+    "checked": 1458,
+    "missing": 0
+  }
+}
