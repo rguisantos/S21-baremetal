@@ -120,3 +120,5 @@ Evidências: [relatório](references/lk-ufs-host-hzc2.json) e
 Próximo: backend de alocação/atributos de memória, helpers de escolha da
 configuração e origem dos gates RPMB. A implementação segura, posse dos
 buffers, frescura física e persistência permanecem abertas.
+
+Continuação: o [pool do heap](lk-heap-pool-hzc2.md) foi ligado nominalmente a 3043 páginas abaixo de4GiB, com ensaios do código original em QEMU. A falha UFS preservando host parcial foi reproduzida; identidade DMA e estado físico continuam abertos.

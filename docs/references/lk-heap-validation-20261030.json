@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "45f4821e36ecb1feaa2ad9af42045afe00bea724",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_report_sha256": "49535a08057a1f2f915e21678964ee9be4f3e8f2ed5b2cef764dbd03fc3a9b13",
+  "static_report_reproduced_byte_for_byte": true,
+  "qemu_report_sha256": "b58d414bd06374123e99e9ffa3fd59e92baaeca9d28e60b9bacc535492f44770",
+  "static_checks": {
+    "gnu_words": 562,
+    "gnu_relative_targets": 105,
+    "selected_operand_checks": 111,
+    "instruction_index_sha256": "a3d49c0779df7e7182ae9246d6adc710427ef22e7c97b1dcdbe45c1530a389df"
+  },
+  "literal_checks": 4,
+  "local_graphs": 15,
+  "pool": {
+    "nominal_va_minus_file": "0xe7f14000",
+    "relative_base": "0xd09000",
+    "nominal_base": "0xe8c1d000",
+    "end_exclusive": "0xe9800000",
+    "bytes": 12464128,
+    "pages": 3043,
+    "page_bytes": 4096,
+    "context_relative": "0xd07910",
+    "bitmap_relative": "0xd06110",
+    "bitmap_capacity_bytes": 6144,
+    "bitmap_bytes_used": 3043,
+    "below_4g_nominally": true,
+    "physical_or_dma_identity_established": false
+  },
+  "bindings": {
+    "heap_context_relative": "0xd089b8",
+    "page_context_relative": "0xd07910",
+    "configuration_word_relative": "0xcd31c8",
+    "configuration_word_runtime_value_acquired": false
+  },
+  "qemu": {
+    "cases": 28,
+    "arithmetic_cases": 24,
+    "ufs_cases": 4,
+    "original_code_segments_unchanged": true,
+    "two_laboratory_placements_match": true,
+    "synthetic_pool": {
+      "base": "0x41000000",
+      "bytes": 131072,
+      "pages": 32
+    },
+    "supplied_pool_exhaustion_preserves_partial_host": true,
+    "substituted_helpers": [
+      "mutex_init",
+      "mutex_acquire",
+      "mutex_release",
+      "bounded_memset",
+      "diagnostic_printf"
+    ]
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_heap.py -v",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_ufs_host.py",
+      "tests": 19,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_ufs_completion.py",
+      "tests": 21,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_heap.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/emulate_lk_heap_qemu.py /private/path/sboot.bin",
+      "cases": 28,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-lk-heap",
+      "status": "passed",
+      "summary_sha256": "806f8be876059fd9e8cb041c957d88559b247f8efdcb23806d0ba47486949b17",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed_on_phone": false,
+  "original_allocator_executed_in_qemu": true,
+  "dma_mapping_or_coherence_established": false,
+  "limitations": [
+    "Nominal link delta and page pool are static context, not a physical/free-memory measurement.",
+    "QEMU uses a supplied small pool, zeroed contexts and empty deferred list; mutexes and bounded memset are substituted.",
+    "Guard/ABI/code preservation applies to the 28 supplied laboratory cases only.",
+    "Active bitmap/ownership, cache attributes, address translation, configuration producer and RPMB gates remain open."
+  ],
+  "documentation_file_links": {
+    "checked": 1471,
+    "missing": 0
+  }
+}

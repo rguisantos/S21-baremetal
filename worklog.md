@@ -3694,3 +3694,38 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   contrato Samsung atualizados.
 - Próximo: backend/atributos do alocador, helpers de configuração e
   gates RPMB; posse/coerência, captura e persistência físicas abertas.
+
+
+## 2026-10-30 — origem concreta do pool do heap UFS e execução isolada
+
+- Base main45f4821 após PR #68. [Pool do heap](docs/lk-heap-pool-hzc2.md)
+  ligado ao provedor18d918, semente18da28 e heap20c098/20c410/20bf58.
+- Binding18d8e8 fornece base relativa d09000 e fim literal e9800000.
+  Com delta nominal e7f14000: [e8c1d000,e9800000),3043 páginas4096,
+  extensão be3000. Bitmap externo d06110 comporta3043 bytes de6144.
+  Região pertence ao LK; não declarada RAM livre ou identidade física/DMA.
+- Registro init29b190 nível1ffff/flags1/nome novm/func18d8e8 é elegível
+  na faixa10000..1ffff antes de fa9c8→18fd30 no percurso selecionado.
+  Nome novm não foi convertido em prova de estado MMU.
+- Contexto do pool d07910 ligado à semente e pedidos de páginas;
+  contexto d089b8 ligado ao construtor/alocador/free. Getter147ea8
+  é load u32 de cd31c8; produtor e valor vivos continuam abertos.
+- Cargas arredondadas, metadados de16 bytes, alinhamento e crescimento
+  por páginas delimitados; modelo mantém wrap A64 e não certifica extensão.
+- Extrator confere562 palavras GNU,105 destinos,111 operandos,4 literais,
+  registro init e15 grafos. Relatório estático reproduzido byte a byte.
+- Código original dos alocadores executado em28 casos QEMU:24 pedidos
+  e4 inicializações UFS, em duas posições. Pool, contextos e lista vazia
+  são fornecidos; locks/memset/printf substituídos. Não houve execução
+  no telefone, acesso a hardware Samsung, MMIO ou serviço seguro.
+- Pool32 páginas produz host41000010, buffers41003000/41006000/41007000
+  e9 páginas marcadas. Pool4 páginas retorna−1, marca3 e mantém host e
+  metadados publicados com os três buffers nulos. Host não nulo não
+  estabelece prontidão. Guardas, ABI e bytes de código preservados nos casos.
+- 17 testes novos e40 regressões passaram. Baseline completo9 etapas
+  aprovado, resumo SHA-256
+  806f8be876059fd9e8cb041c957d88559b247f8efdcb23806d0ba47486949b17.
+- Conferidos 1471 links locais, nenhum ausente; índices, roadmap, CI e
+  contrato Samsung atualizados.
+- Próximo: atributos/tradução do pool, produtor de cd31c8 e gates RPMB.
+  Captura, carregamento e persistência físicos continuam pendentes.
