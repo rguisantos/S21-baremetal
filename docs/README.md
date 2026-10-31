@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [registro e transporte RPMB do LK](lk-rpmb-transport-hzc2.md) agora ligam nominalmente `scsirpmb` aos wrappers, callbacks SCSI IN/OUT e entrada UFS. São992 palavras GNU e16 testes novos. Instalação ativa, host, completion e persistência continuam sem observação física.
+
 A [referência FlopKernel Exynos2100](flop-kernel-reference.md) confirma o layout RPMB com probe C do host e acrescenta um leitor offline de frames, com 26 testes novos. Revisão fixada em `4553117`; suporte de fonte para p3s confirmado. Interfaces Linux/monitor/LK e estado do aparelho permanecem separados.
 
 O [backend RPMB dos contadores](lk-rpmb-hzc2.md) está ligado aos pacotes locais, callbacks `scsirpmb` e pedidos seguros de nonce/MAC. A análise confere 1.156 palavras GNU e 16 testes novos; distingue revisões de rollback, contador de escrita e efeitos anteriores aos testes de autenticação. Persistência e implementação segura continuam abertas.

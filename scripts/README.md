@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+O [registro e transporte RPMB do LK](../docs/lk-rpmb-transport-hzc2.md) agora ligam nominalmente `scsirpmb` aos wrappers, callbacks SCSI IN/OUT e entrada UFS. São992 palavras GNU e16 testes novos. Instalação ativa, host, completion e persistência continuam sem observação física.
+
 A [referência FlopKernel Exynos2100](../docs/flop-kernel-reference.md) confirma o layout RPMB com probe C do host e acrescenta um leitor offline de frames, com 26 testes novos. Revisão fixada em `4553117`; suporte de fonte para p3s confirmado. Interfaces Linux/monitor/LK e estado do aparelho permanecem separados.
 
 O [backend RPMB dos contadores](../docs/lk-rpmb-hzc2.md) está ligado aos pacotes locais, callbacks `scsirpmb` e pedidos seguros de nonce/MAC. A análise confere 1.156 palavras GNU e 16 testes novos; distingue revisões de rollback, contador de escrita e efeitos anteriores aos testes de autenticação. Persistência e implementação segura continuam abertas.
@@ -273,3 +275,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 
 - `inspect_rpmb_frame.py` / `test_rpmb_frame.py`: leitor de um arquivo regular de512 bytes, com ordem explícita e hashes dos arrays transmitidos; 14 testes, sem autenticação ou I/O de dispositivo.
 - `inspect_flop_reference.py` / `test_flop_reference.py`: valida19 fontes fixadas, constantes/config e o layout C de RPMB no host; 12 testes e nenhuma execução do kernel. [Referência e reprodução](../docs/flop-kernel-reference.md).
+
+- `inspect_lk_rpmb_transport.py` / `test_lk_rpmb_transport.py`: construtor/registro scsirpmb, binding de métodos, CDBs SCSI e entrada UFS; 16 testes de operandos/recusa e992 palavras GNU. [Escopo](../docs/lk-rpmb-transport-hzc2.md).

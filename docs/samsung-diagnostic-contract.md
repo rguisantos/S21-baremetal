@@ -190,3 +190,5 @@ Continuação de 30/10: os [verificadores Samsung](lk-samsung-checks-hzc2.md) fo
 Continuação de 30/10: o [backend RPMB](lk-rpmb-hzc2.md) liga os contadores aos pacotes locais, callbacks de armazenamento e pedidos seguros de nonce/MAC. Foram delimitadas cópias anteriores aos testes e continuação local após erro de MAC; isso não comprova I/O, autenticação, persistência ou aceitação física. Destinos vivos dos callbacks e implementação segura seguem pendentes.
 
 Continuação de 30/10: a [referência FlopKernel](flop-kernel-reference.md) acrescenta confirmação do layout RPMB e leitor offline, sem executar kernel, firmware ou operações no aparelho. Fontes p3s e flags do defconfig não satisfazem os contratos físicos de carga, memória ou captura.
+
+Continuação de 30/10: [registro e callbacks RPMB do LK](lk-rpmb-transport-hzc2.md) foram ligados nominalmente até a entrada UFS. Configuração ativa do host, resposta/DMA e persistência não foram observadas; essa ligação não satisfaz os contratos físicos de carga, memória ou captura.

@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "8fe014ead19d431912a9feb349723939c9415072",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "68c6375592d7c97c21cd871099cc9f1c700b580ae0e17768841a6d9477eea928",
+  "report_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 992,
+    "gnu_relative_targets": 133,
+    "selected_operand_checks": 194,
+    "instruction_index_sha256": "c771695a33e0ac7a11543fd826f0cc7d99650ab7d56f36c8660de0fa7d0877aa"
+  },
+  "literal_checks": 13,
+  "local_graphs": 16,
+  "bindings": {
+    "registry_relative_address": "0x31ff78",
+    "device_methods": {
+      "144": "0x18e8a8",
+      "152": "0x18e650"
+    },
+    "underlying_methods": {
+      "192": "0x10c018",
+      "200": "0x10c0d0"
+    },
+    "live_installation_and_preservation_established": false
+  },
+  "security_cdb": {
+    "read": {
+      "workspace_relative_address": "0x8a7380",
+      "opcode": "0xa2",
+      "protocol": "0xec",
+      "protocol_specific": 1,
+      "cdb_zeroed_bytes": 16,
+      "transfer_length": "u32(count <<9), big-endian at bytes6..9; byte9 explicitly zero",
+      "payload_length": "u32(count * object_u64_at40), stored at workspace+16",
+      "payload_pointer_offset": 24,
+      "parent_pointer_offset": 104,
+      "callback_offset_in_parent": 368,
+      "original_block_index_used_in_cdb": false
+    },
+    "write": {
+      "workspace_relative_address": "0x8a7380",
+      "opcode": "0xb5",
+      "protocol": "0xec",
+      "protocol_specific": 1,
+      "cdb_zeroed_bytes": 16,
+      "transfer_length": "u32(count <<9), big-endian at bytes6..9; byte9 explicitly zero",
+      "payload_length": "u32(count * object_u64_at40), stored at workspace+16",
+      "payload_pointer_offset": 24,
+      "parent_pointer_offset": 104,
+      "callback_offset_in_parent": 368,
+      "original_block_index_used_in_cdb": false
+    }
+  },
+  "status_table_entries": 65,
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_rpmb_transport.py -v",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_rpmb.py",
+      "tests": 16,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_rpmb_frame.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_flop_reference.py",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_rpmb_transport.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-rpmb-transport",
+      "status": "passed",
+      "summary_sha256": "8f39fefeba76c4413dd8f9abaf4c43d549c8e60e875f8d61c3e30ce9b171004a",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "firmware_executed": false,
+  "limitations": [
+    "Nominal callback installation is conditional on selected initialization and preservation, not a live observation.",
+    "Host selection, descriptor/response/completion implementations and RPMB gate origins remain open.",
+    "No device response, counter value, authenticated acquisition or persistence was established."
+  ],
+  "documentation_file_links": {
+    "checked": 1419,
+    "missing": 0
+  }
+}
