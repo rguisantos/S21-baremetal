@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+O [produtor local do magic DVFS](newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
+
 A [construção da tradução do pool UFS](lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
 
 O [pool que abastece o heap UFS](lk-heap-pool-hzc2.md) foi ligado ao provedor de páginas: faixa nominal `[0xe8c1d000,0xe9800000)`, com 3043 páginas. São 28 casos do código original em QEMU, incluindo falha que mantém o host publicado sem buffers; 17 testes novos. Estado físico e identidade DMA continuam pendentes.
@@ -24,7 +26,7 @@ O [verificador vbmeta](lk-avb-signature-hzc2.md) distingue cabeçalho, hash e as
 
 O [callback AVB de confiança](lk-avb-key-trust-hzc2.md) está ligado nominalmente ao pedido `vbmeta` por SMC, com status de I/O separado do byte de confiança. Tabela AvbOps, consulta de desbloqueio e classificação local green/yellow/orange/red conferidas. A [chave embutida](lk-embedded-avb-key-hzc2.md) permanece distinta até prova de igualdade com a fornecida pelo monitor. O verificador criptográfico tem continuação na análise acima; o wrapper está delimitado na continuação acima; aparelho de uso pessoal permanece fora dos ensaios.
 
-Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 e produtor de0xabcd1234 seguem abertos.
+Os [serviços da tabela DMC17](newtime-dmc-table-services-hzc2.md) foram delimitados: leitura do primeiro ID, escrita em todas as duplicatas e consumidor separado por método+100→0x615ec. Esse publicador faz quatro stores e retorna0 sem ACK local. Próximo: ID30/leitor0x61c70 e aplicação real da tabela em relação à cauda; restante de0x5a2b8 segue aberto; um produtor local de0xabcd1234 foi delimitado na continuação acima, sem prova de unicidade global.
 
 O [carregador DMC17 e cauda](newtime-dmc-loader-hzc2.md) têm seus corpos locais delimitados. O teste de tamanho não aborta; publicações precedem a cauda, que relê controles e pode editar descritores/chamar serviços. Alcançabilidade, valores vivos e ordem física seguem abertos.
 

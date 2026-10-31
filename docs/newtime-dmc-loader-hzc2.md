@@ -119,3 +119,5 @@ stdout/JSON. Sem execução Samsung ou ampliação QEMU do firmware.
 Restam outros serviços/caminhos do consumidor, o restante de0x5a2b8, produtor do magic
 0xabcd1234, ordem init9/máscaras e slot47/X0. As condições físicas e de
 alcançabilidade continuam separadas dos resultados do modelo de host.
+
+Continuação de31/10: o [produtor local do magic](newtime-dmc-magic-hzc2.md) foi delimitado em0x369a0, com publicação/campainha/poll e sem alegação de escritor global único ou EL3 efetivo. Aliases físicos, ordem ACPM e slot47/X0 continuam abertos.

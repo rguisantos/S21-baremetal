@@ -6,7 +6,7 @@ confirma o layout RPMB usado para interpretar o [backend do LK](lk-rpmb-hzc2.md)
 e entrega um leitor offline de um frame. Não identifica os callbacks do
 LK nem fornece a implementação segura de MAC/nonce.
 
-Revisão em30/10/2026, base do projeto `d60ea14d567a2fa34a2d0c66061511e6b0ed5895`
+Revisão em 30/10/2026, base do projeto `d60ea14d567a2fa34a2d0c66061511e6b0ed5895`
 (PR #64). Fonte externa fixada em
 [`4553117a5014928dff55595f46627e0d77bcf133`](https://github.com/FlopKernel-Series/flop_exynos2100_kernel/tree/4553117a5014928dff55595f46627e0d77bcf133),
 head de `floppy-main` no momento da consulta. A avaliação cobre os arquivos
@@ -157,3 +157,5 @@ diagnóstico executado no S21.
 Continuação no firmware: o [binding scsirpmb/SCSI/UFS](lk-rpmb-transport-hzc2.md) foi delimitado nominalmente no LK HZC2. Isso usa as instruções do bootloader, sem atribuir ao kernel a identidade de seus callbacks ou serviços seguros.
 
 Continuação da revisão: [UFS, DMA e UART](flop-ufs-dma-reference.md) acrescenta nove fontes fixadas, com granularidade PRDT em bytes, contrato de memória DMA, IOCC dependente do DT e distinção de drivers seriais.
+
+Continuação de31/10: a [referência ACPM/ECT](flop-acpm-reference.md) confere oito fontes fixadas, ABI SRAM48/72, direção AP/firmware dos buffers e registros de mailbox. O [publicador local do magic](newtime-dmc-magic-hzc2.md) foi reproduzido separadamente; fonte compatível não prova entrega física.

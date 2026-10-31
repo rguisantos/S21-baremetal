@@ -120,3 +120,5 @@ imediato, com zero-extension e memória ausente recusada.
 JSON reproduzido exatamente; imagens curta, longa e alterada recusadas
 com exit 2, stdout vazio e nenhum JSON criado. Baseline completo passou
 nas nove etapas: host 43/60/17, diagnóstico 12, loader 1+5 e leitor 17.
+
+Continuação de31/10: o [produtor local do magic](newtime-dmc-magic-hzc2.md) foi delimitado em0x369a0, com publicação/campainha/poll e sem alegação de escritor global único ou EL3 efetivo. Aliases físicos, ordem ACPM e slot47/X0 continuam abertos.
