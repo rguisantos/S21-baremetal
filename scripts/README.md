@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+A [origem do host e buffers UFS](../docs/lk-ufs-host-memory-hzc2.md) está ligada nominalmente ao alocador e às tabelas locais, com 19 testes novos. O cruzamento ampliado com FlopKernel esclarece PRDT em bytes, DMA e seleção de driver UART. Alinhamento e stores de endereços permanecem separados da coerência física.
+
 A [preparação e conclusão UFS do LK](../docs/lk-ufs-completion-hzc2.md) agora liga LUN68→0xc4, descritores, polling e publicação do status SCSI. São635 palavras GNU e21 testes novos. Os retornos de espera, OCS, SCSI e autenticação RPMB foram separados; conclusão física e persistência seguem sem observação.
 
 O [registro e transporte RPMB do LK](../docs/lk-rpmb-transport-hzc2.md) agora ligam nominalmente `scsirpmb` aos wrappers, callbacks SCSI IN/OUT e entrada UFS. São992 palavras GNU e16 testes novos. Instalação ativa, host, completion e persistência continuam sem observação física.
@@ -281,3 +283,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_rpmb_transport.py` / `test_lk_rpmb_transport.py`: construtor/registro scsirpmb, binding de métodos, CDBs SCSI e entrada UFS; 16 testes de operandos/recusa e992 palavras GNU. [Escopo](../docs/lk-rpmb-transport-hzc2.md).
 
 - `inspect_lk_ufs_completion.py` / `test_lk_ufs_completion.py`: descritores UFS, polling por amostra, publicação de status e binding até o consumidor SCSI; 21 testes e635 palavras GNU, sem firmware executado. [Escopo](../docs/lk-ufs-completion-hzc2.md).
+
+- `inspect_lk_ufs_host.py` / `test_lk_ufs_host.py`: publicação do host, alocações, tabelas MMIO e projeção low32 de bases; 19 testes e 432 palavras GNU, sem firmware executado. [Escopo](../docs/lk-ufs-host-memory-hzc2.md).

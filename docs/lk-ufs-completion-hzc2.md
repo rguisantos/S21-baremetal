@@ -160,3 +160,5 @@ wrap do orçamento/arredondamento, status publicado com OCS não zero,
 larguras de acesso e mutações de bindings. Evidências:
 [relatório](references/lk-ufs-completion-hzc2.json) e
 [validação](references/lk-ufs-completion-validation-20261030.json).
+
+Continuação: [origem do host e buffers](lk-ufs-host-memory-hzc2.md) liga alocações, tabelas e stores de bases. A [referência Exynos ampliada](flop-ufs-dma-reference.md) sustenta a interpretação PRDT em bytes, mantendo tamanho de entrada e configuração separados do estado físico.
