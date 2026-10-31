@@ -138,3 +138,5 @@ python3 scripts/validate_baseline.py --output-dir build/baseline-lk-heap
 Próximo: atributos/tradução do pool e produtor de `0xcd31c8`, além dos
 gates RPMB. O resultado fecha a origem nominal da memória; não fecha os
 contratos físicos de carga e captura do diagnóstico.
+
+A [construção de tradução/atributos](lk-pool-mmu-hzc2.md) agora liga o pool ao mapper EL1/4KiB, com seis casos originais QEMU. Identidade de estágio1 e atributos cacheáveis foram delimitados; granule herdado e tradução/coerência DMA permanecem abertos.

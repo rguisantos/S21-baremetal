@@ -156,3 +156,5 @@ de SCTLR_EL1.M em locks/preenchimento, DC ZVA condicional e UART sem timeout.
 Não há MSR na forma de registrador ou ERET/SMC/HVC nos nós expandidos; isso
 não limita mutações da tabela/lista ou efeitos do serviço anterior. O estado
 físico final continua pendente. Relatórios e 29 testes de host no novo guia.
+
+A [construção inicial das tabelas LK](lk-pool-mmu-hzc2.md) tem continuação para EL1/4KiB, distinta deste helper final de desativação. Registros pedidos, tabelas modeladas/geradas e estado físico permanecem separados.

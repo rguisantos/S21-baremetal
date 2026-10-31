@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-30",
+  "timezone": "America/Campo_Grande",
+  "source_base": "c7aa567bf683cad48b173b173a0cb5c4427a8dc1",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_report_sha256": "9b181f4c827405f57ffd281ea93fc2de8730f9847d8a30aa3d6e52ea8af39dd7",
+  "qemu_report_sha256": "2f7e70b5724cc730a35def239d8369ce390f7a5b002221d4ba0ba0033e2ecf81",
+  "both_reports_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 292,
+    "gnu_relative_targets": 66,
+    "selected_operand_checks": 99,
+    "instruction_index_sha256": "88690f1712f47e2d3e749d609331e1f8e9fc59d364bc900715fa124089abd7ee"
+  },
+  "mapping_and_update_records": 14,
+  "local_graphs": 12,
+  "register_bindings": {
+    "root_relative": "0x322000",
+    "l2_relative": "0x323000",
+    "l3_relative": "0x353000",
+    "lk_start_relative": "0xec000",
+    "lk_end_relative": "0x18ec000",
+    "mair": "0xff44",
+    "tcr": "0x11b51c351c",
+    "t0sz": 28,
+    "tg0": 0,
+    "ips": 1,
+    "active_registers_observed": false
+  },
+  "selected_pool_attributes": {
+    "attr_index": 1,
+    "mair_byte": "0xff",
+    "memory": "normal_write_back",
+    "shareability": 3,
+    "access_flag": true,
+    "ap_bits": 1,
+    "read_only": false,
+    "privileged_execute_never": true,
+    "user_execute_never": false
+  },
+  "qemu": {
+    "mapping_cases": 6,
+    "root_fragment_runs": 2,
+    "code_placements": 2,
+    "pool_pages_per_lk_case": 3043,
+    "lk_cases": 4,
+    "nonidentity_block_controls": 2,
+    "original_code_segments_unchanged": true,
+    "generated_tables_installed": false,
+    "el1_and_4k_granule_supplied": true
+  },
+  "source_reference": {
+    "manifest": "flop-mmu-source-reference.json",
+    "manifest_sha256": "58081ed6a84d66f05dc940da0fbb0297d81f1f47350b6b903e43c1067dcacf3a",
+    "files_verified": 3,
+    "git_blob_and_sha256_verified": true
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_pool_mmu.py -v",
+      "tests": 21,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_heap.py",
+      "tests": 17,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_ufs_host.py",
+      "tests": 19,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_lk_cache_handoff.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_lk_pool_mmu.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/emulate_lk_pool_mmu_qemu.py /private/path/sboot.bin",
+      "cases": 6,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-lk-pool-mmu",
+      "status": "passed",
+      "summary_sha256": "5870b87790b5d627547dd42e6837b1d1cb032a08110e9ceda21c0a6df99bf24e",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "original_builder_executed_in_qemu": true,
+  "physical_tables_or_registers_acquired": false,
+  "dma_coherence_established": false,
+  "limitations": [
+    "EL1 and inherited 4K granule are selected inputs; the later TCR constant alone does not establish the inherited granule.",
+    "Generated tables cover the selected LK record with other L2/L3 entries supplied zero; no live table image or AT result was acquired.",
+    "Requested MAIR/TCR/TTBR writes and subsequent preservation/activation were not executed in this QEMU harness.",
+    "CPU stage1 identity is distinct from bus/SMMU translation, IOCC, ownership and physical device-write freshness."
+  ],
+  "documentation_file_links": {
+    "checked": 1486,
+    "missing": 0
+  }
+}

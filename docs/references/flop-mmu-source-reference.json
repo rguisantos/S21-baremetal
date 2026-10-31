@@ -1,0 +1,27 @@
+{
+  "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "files": [
+    {
+      "path": "arch/arm64/include/asm/pgtable-hwdef.h",
+      "git_blob_sha1": "3df60f97da1f2c86d3287ac02c1122d46ea1ef24",
+      "sha256": "731e21466163ebebe9339d235c38396cae55e40c307d7a9f36225393ad1be403",
+      "bytes": 10439,
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/include/asm/pgtable-hwdef.h"
+    },
+    {
+      "path": "arch/arm64/include/asm/memory.h",
+      "git_blob_sha1": "037857495b2426fac2fd19fb039a8e3ad34a87dd",
+      "sha256": "c03b9a9ab08b014acf98cdefbf724d47abf97264931a7f515ad6c64ade3e9f91",
+      "bytes": 11761,
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/include/asm/memory.h"
+    },
+    {
+      "path": "arch/arm64/mm/proc.S",
+      "git_blob_sha1": "06d4b4a00b9d691a660941aaea4a5c6e074a85c9",
+      "sha256": "2b14b9db64c454b87ccc1f6f446ffb98c55cf0049e3571cb12a6b4734ee502c0",
+      "bytes": 11329,
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/mm/proc.S"
+    }
+  ]
+}
