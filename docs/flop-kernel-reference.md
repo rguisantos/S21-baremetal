@@ -153,3 +153,5 @@ aos métodos concretos e à origem dos gates. A referência Linux reduz a
 ambiguidade de formato/transporte, sem fechar essa ligação. O projeto
 segue sem contêiner aceito, memória de entrada/captura comprovada ou
 diagnóstico executado no S21.
+
+Continuação no firmware: o [binding scsirpmb/SCSI/UFS](lk-rpmb-transport-hzc2.md) foi delimitado nominalmente no LK HZC2. Isso usa as instruções do bootloader, sem atribuir ao kernel a identidade de seus callbacks ou serviços seguros.

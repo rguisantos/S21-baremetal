@@ -3597,3 +3597,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   Índices, roadmap, referência Samsung e contrato físico atualizados.
 - Próximo: registro/destinos scsirpmb e origem dos gates no LK, mantendo
   implementação segura e contratos físicos em aberto. Telefone sem operações.
+
+
+## 2026-10-30 — registro scsirpmb e callbacks SCSI/UFS do LK
+
+- Base main8fe014e após PR #65. Etapa estática sem firmware/SMC/I/O executados.
+- Chamador selecionado passa LU68, sufixo rpmb, limite128 e transporte
+  10e758 ao construtor10c3c8, que forma scsirpmb com scsi%s.
+- Caminho não negativo prepara unidade512, campos/flags do objeto e
+  registro18f4a8 na mesma raiz31ff78 consultada por18eb08.
+- Bindings conferidos: métodos144/152→18e8a8/18e650, que para um frame
+  e unidade512 chegam aos métodos192/200→10c018/10c0d0.
+- CDB16 é zerado e recebe opcodes a2/b5, protocoloec, específico1 e
+  comprimento u32(count<<9) big-endian. Workspace relativo8a7380,
+  payload+24, comprimento+16, pai+104 e método do pai+368.
+- Transporte não zero retorna diretamente; zero leva ao classificador
+  do byte workspace+96. Tabela65 signed×4 conferida: só low8zero→0;
+  demais valores→−43. Frescura/origem desse byte permanecem abertas.
+- Entrada UFS10e758 seleciona host por índice8a7710/tabela8a7718 e
+  segue10e568. Host nulo registra log e é reutilizado sem guard local.
+- Corpo executor local tem preparação, publicação MMIO, espera/resposta
+  e retries condicionais. Descritores/completion e estado ativo não foram
+  fechados; ligação nominal não foi promovida a sucesso físico.
+- Novo extrator confere992 palavras GNU,133 destinos,194 operandos,
+  13 literais e16 grafos; relatório reproduzido byte a byte.
+- 16 testes novos e42 regressões RPMB/leitor/probe passaram; baseline
+  completo9 etapas aprovado, resumo SHA-256
+  8f39fefeba76c4413dd8f9abaf4c43d549c8e60e875f8d61c3e30ce9b171004a.
+- Conferidos 1419 links locais, nenhum destino ausente; índices, roadmap,
+  análises de RPMB/Flop e contrato Samsung atualizados.
+- Próximo: descritores/resposta/completion UFS, origem do host/índice e
+  gates RPMB; implementação segura e contratos físicos permanecem abertos.
