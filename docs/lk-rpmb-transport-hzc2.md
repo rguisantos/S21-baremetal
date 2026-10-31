@@ -158,3 +158,5 @@ Os16 testes novos alteram registros, offsets, raízes e larguras para
 conferir recusas e exercitam constantes MOVN/STRB. Não executam firmware.
 [Relatório](references/lk-rpmb-transport-hzc2.json) e
 [validação](references/lk-rpmb-transport-validation-20261030.json).
+
+Continuação: a [conclusão UFS](lk-ufs-completion-hzc2.md) fecha o caminho local de descritores/espera/resposta e a conversão LUN68→0xc4. O byte SCSI é publicado antes da checagem OCS; origem nominal não estabelece frescura física.

@@ -3628,3 +3628,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   análises de RPMB/Flop e contrato Samsung atualizados.
 - Próximo: descritores/resposta/completion UFS, origem do host/índice e
   gates RPMB; implementação segura e contratos físicos permanecem abertos.
+
+
+## 2026-10-30 — descritores, polling e resposta UFS do LK
+
+- Base mainf1e6f71 após PR #66; etapa estática sem firmware/SMC/MMIO/DMA executados.
+- Preparação10c7f8 liga pedido/host e confirma, para A2/B5 selecionados,
+  a tradução LU68→c4. Construção10cab8 copia CDB16 e comprimento esperado.
+- PRD em comando+2048: stride16, endereços avançados4096 e segmento4096,
+  sem redução da última entrada para o frame512. Arredondamento W32 pode
+  envolver; campo codificado trunca contagem. Sem conclusão de overrun físico.
+- Espera RPMB modo1 entra no polling interno0: conclusão bit0 + doorbell
+  bit0 limpo + máscara30880 limpa seleciona0; erro2, pendente3 e timeout1.
+  Máscara não foi ampliada para outros bits conhecidos do header Linux.
+- Orçamento é decrementado antes do teste antigo-zero e pode armazenar
+  ffffffff ao expirar. Contadores10m/600m/30000/1500000 extraídos, sem
+  atribuir unidades de tempo ao helper de delay ou prazo físico.
+- Parser10c888 publica comando+407→pedido+96 antes de testar OCS32.
+  Binding até consumidor relativo8a73e0 conferido; área é zerada antes
+  de cada tentativa, sem prova de escrita física nova. OCS zero retorna0
+  nesse helper sem exigir SCSI status zero; camadas superiores separadas.
+- OCS não zero entra em diagnósticos e retorna−1 sob retorno normal dos
+  callees; ramo21 copia sense18 antes da checagem posterior de ponteiro.
+- Novo extrator confere635 palavras GNU,121 destinos,135 operandos,8
+  literais e8 grafos. Relatório reproduzido byte a byte; dois headers Flop
+  adicionais fixados por blob/SHA-256 para nomenclatura de referência.
+- 21 testes novos e46 regressões passaram; baseline completo9 etapas
+  aprovado, resumo SHA-256
+  85db31778b715903129429f893e0535b0ed5a433f043f688f54d091dcd59c8ee.
+- Conferidos 1432 links locais, nenhum destino ausente; índices, roadmap,
+  análises RPMB e contrato físico atualizados. Próximo: origem/configuração
+  do host e buffers, posse/coerência e gates; serviço seguro segue aberto.

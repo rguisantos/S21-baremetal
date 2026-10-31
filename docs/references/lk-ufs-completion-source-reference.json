@@ -1,0 +1,20 @@
+{
+  "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "files": [
+    {
+      "path": "drivers/scsi/ufs/ufshci.h",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/ufshci.h",
+      "git_blob_sha1": "abb7672f7bbaeeb15c1be8e9d4b3000dd2c762ba",
+      "bytes": 15609,
+      "sha256": "fc378ba1cb57b4fea49608f66033961dc78a0ab4f6d5d8ffe484c4b1fa983d7e"
+    },
+    {
+      "path": "drivers/scsi/ufs/ufs.h",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/ufs.h",
+      "git_blob_sha1": "f77e9d30cc61bc0af41975964c619651a1b68af0",
+      "bytes": 18342,
+      "sha256": "1f9bd851637385c5ebb2ea5e8029cabe4317b11a5cfead95c0d23d65bef01694"
+    }
+  ]
+}
