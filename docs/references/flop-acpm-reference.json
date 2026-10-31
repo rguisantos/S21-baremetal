@@ -1,0 +1,131 @@
+{
+  "mode": "pinned_flop_acpm_sram_abi_reference",
+  "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "source_files": 8,
+  "source_manifest_sha256": "bea2b002e247a3e2378f43e94a30f5e903bc7b2948679a2705625429fb166e05",
+  "host_probe_only": true,
+  "kernel_or_firmware_executed": false,
+  "layout": {
+    "timer_desc.bytes": 8,
+    "timer_desc.period": 0,
+    "timer_desc.multiplier": 4,
+    "plugin.bytes": 48,
+    "plugin.id": 0,
+    "plugin.base_addr": 4,
+    "plugin.acpm_ops": 8,
+    "plugin.plugin_ops": 12,
+    "plugin.secure_func_mask": 16,
+    "plugin.extern_func_mask": 20,
+    "plugin.timer": 24,
+    "plugin.is_attached": 32,
+    "plugin.size": 36,
+    "plugin.stay_attached": 40,
+    "plugin.fw_name": 44,
+    "channel_info.bytes": 52,
+    "channel_info.rx_rear": 0,
+    "channel_info.rx_front": 4,
+    "channel_info.rx_base": 8,
+    "channel_info.rx_indr_buf": 12,
+    "channel_info.rx_indr_buf_base": 16,
+    "channel_info.rx_indr_buf_size": 20,
+    "channel_info.tx_rear": 24,
+    "channel_info.tx_front": 28,
+    "channel_info.tx_base": 32,
+    "channel_info.q_len": 36,
+    "channel_info.q_elem_size": 40,
+    "channel_info.credit": 44,
+    "channel_info.mbox_addr": 48,
+    "ipc_channel.bytes": 72,
+    "ipc_channel.id": 0,
+    "ipc_channel.field": 4,
+    "ipc_channel.owner": 8,
+    "ipc_channel.type": 12,
+    "ipc_channel.ch": 16,
+    "ipc_channel.ap_poll": 68
+  },
+  "mailbox_constants": {
+    "INTGR0": 8,
+    "INTSR1": 40,
+    "INTCR1": 32
+  },
+  "channel3": {
+    "file_offset": "0x3b498",
+    "fields": {
+      "id": "0x3",
+      "field": "0x8",
+      "type": "0x2",
+      "rx_base": "0xa5900100",
+      "tx_base": "0xa5900108",
+      "q_len": "0x1",
+      "q_elem_size": "0x10",
+      "mbox_addr": "0xa5900000"
+    },
+    "offsets": {
+      "rx_base": 24,
+      "tx_base": 48,
+      "q_len": 52,
+      "q_elem_size": 56,
+      "mbox_addr": 64
+    },
+    "local_magic": "0xa590010c",
+    "candidate_ap_magic": "0x1590010c",
+    "magic": "0xabcd1234",
+    "physical_alias_verified": false
+  },
+  "plugins": {
+    "stride": 48,
+    "selected_ids": [
+      7,
+      9
+    ]
+  },
+  "kernel_buffer_orientation": {
+    "ap_tx_uses_firmware_rx": true,
+    "ap_rx_uses_firmware_tx": true
+  },
+  "ect": {
+    "signature": "PARA",
+    "binary_directory_names": [
+      "GEN",
+      "ASV",
+      "NEWTIME",
+      "THERMAL",
+      "PIDTM",
+      "DVFS",
+      "PLL",
+      "MINLOCK",
+      "MARGIN"
+    ],
+    "source_namespace": {
+      "BLOCK_HEADER": "HEADER",
+      "BLOCK_AP_THERMAL": "THERMAL",
+      "BLOCK_MIF_THERMAL": "MR4",
+      "BLOCK_DVFS": "DVFS",
+      "BLOCK_ASV": "ASV",
+      "BLOCK_TIMING_PARAM": "TIMING",
+      "BLOCK_RCC": "RCC",
+      "BLOCK_PLL": "PLL",
+      "BLOCK_MARGIN": "MARGIN",
+      "BLOCK_MINLOCK": "MINLOCK",
+      "BLOCK_GEN_PARAM": "GEN",
+      "BLOCK_BIN": "BIN",
+      "BLOCK_NEW_TIMING_PARAM": "NEWTIME",
+      "BLOCK_PIDTM": "PIDTM"
+    },
+    "namespace_agrees": true,
+    "same_runtime_parser_or_data_version_proven": false
+  },
+  "bounded_magic_text_search": {
+    "files": 8,
+    "matching_files": [],
+    "absence_across_repository_proven": false
+  },
+  "limits": [
+    "Eight fixed source files, distinct from the unavailable sixteen-file external round.",
+    "Fixed-width SRAM declarations only; host compiler probe does not build or run kernel/ACPM.",
+    "Struct/offset/mailbox/namespace agreement is reference context, not proof of identical firmware implementation.",
+    "Plugin ids, channel data, alias, clocks, interrupt delivery and service results are not live device observations."
+  ]
+}

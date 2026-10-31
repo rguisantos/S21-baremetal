@@ -124,3 +124,5 @@ Sem execução Samsung ou ampliação QEMU do firmware. Próximo: caminho ID30,
 leitor0x61c70 e quem aplica a tabela em relação à cauda. Restante de0x5a2b8,
 produtor de0xabcd1234, ordem init9/máscaras, condições físicas e slot47/X0
 continuam abertos. Validações anteriores permanecem históricas das suas árvores.
+
+Continuação de31/10: o [produtor local do magic](newtime-dmc-magic-hzc2.md) foi delimitado em0x369a0, com publicação/campainha/poll e sem alegação de escritor global único ou EL3 efetivo. Aliases físicos, ordem ACPM e slot47/X0 continuam abertos.

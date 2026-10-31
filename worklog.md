@@ -3762,3 +3762,40 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   contratos físicos atualizados.
 - Próximo: origem do granule herdado, coerência/DMA, produtor de cd31c8
   e gates RPMB. Identidade CPU construída não prova estado vivo ou DMA.
+
+
+## 2026-10-31 — reprodução independente do produtor do magic DVFS
+
+- Base main20c472c após PR #70. Resumo externo referia basee4d6ba0 e
+  artefatos não disponíveis na árvore/branches/títulos consultados. As
+  contagens externas não foram adotadas; a evidência foi reconstruída.
+- [Publicador local](docs/newtime-dmc-magic-hzc2.md) confirmado:369a0
+  gravaabcd1234 em AP1590010c;369ac publica80000 em AP15900008,
+  convenção(1<<3)<<16. Poll369b0/369b4 só sai na leitura low32zero.
+- PMU15863b50 é salvo antes da publicação e relido do frame após o poll,
+  antes de chamar36934. A entrada36084 e continuação36088→3624c
+  foram ligadas; serviço−232 com X1/X2zero e X3bffff000 para antes doSMC.
+- Corrigido o alcance do resumo:36000 fica no candidatoBL2 e consulta
+  CurrentEL com caminhosEL1/2/3; não foi identificado como entradaEL3
+  efetiva nem confundido com o contêiner candidato36c000.
+- Um literal LE e um candidato MOVKabcd foram encontrados nos escopos
+  declarados; nenhum MOVW1234 na janela Thumb. Isso não demonstra
+  escritor único global nem exclui valores calculados/cópias/aliases.
+- 22 testes novos usam palavras reais e limpeza externa na terceira
+  leitura via timed_word. Um teste demonstra que hook deBL posterior
+  não pode liberar o poll; gate/cauda Thumb conferidos com alias explícito.
+- Extrator confere112 palavrasA64,27 destinos,54 operandos,4 literais;
+  rota herdada tem392 instruçõesThumb/52 destinos,7 palavrasA64.
+- [Referência Flop ACPM/ECT](docs/flop-acpm-reference.md): oito fontes
+  fixadas4553117, tamanho/SHA256/blob conferidos. ProbeC mede plugin48,
+  channel_info52 e ipc_channel72. Canal3 e INTGR0/INTSR1/INTCR1 ligados;
+  TX AP usa RX firmware e vice-versa. Namespace ECT/PARA compatível,
+  sem prova de mesma implementação, versão ou ausência no repo inteiro.
+- 14 testes novos da referência; suítes completas706 NEWTIME e26 Flop
+  passaram, incluindo os novos36 testes. Relatórios reproduzidos byte a
+  byte. Baseline completo9 etapas aprovado, resumo SHA-256
+  762c8d9818240516ab5415b2e92634792aa47818ab15aac440921892fe9c74e7.
+- Conferidos 1511 links locais, nenhum ausente; CI, índices, roadmap e
+  continuações NEWTIME/Flop atualizados.
+- Slot47/X0, implementação−232, estado PMU/MMIO e entrega/visibilidade
+  entre núcleos seguem abertos. Nenhuma operação no telefone ou SMC executado.

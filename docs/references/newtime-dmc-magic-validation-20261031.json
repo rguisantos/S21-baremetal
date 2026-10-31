@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-31",
+  "timezone": "America/Campo_Grande",
+  "source_base": "20c472c0a03d5ad9a6f409e5f8adab1bfefb6897",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "report_sha256": "e97687294e7fcd7746492c67f6444b4bf9a67629ced0c1c859b8808c54de8e72",
+  "reference_report_sha256": "5a27676b79be80a351b91768132aa04ed80f878f161780a3586e7fcb65101e0d",
+  "both_reports_reproduced_byte_for_byte": true,
+  "gnu": {
+    "a64_words": 112,
+    "a64_relative_targets": 27,
+    "selected_a64_operands": 54,
+    "entry_literals": 4,
+    "inherited_thumb": {
+      "thumb_instructions": 392,
+      "relative_targets": 52,
+      "literals": 3,
+      "a64_words": 7,
+      "selected_operands": 25
+    },
+    "instruction_index_sha256": "24b272b701fe9210da42344e0a869f79a0fd5118402b2808b4ecf48315455cff"
+  },
+  "local_writer_confirmed": true,
+  "global_writer_uniqueness_proven": false,
+  "actual_el3_entry_established": false,
+  "external_summary": {
+    "original_round_artifacts_available_in_checked_sources": false,
+    "original_test_counts_reproduced": false,
+    "sixteen_file_reference_reproduced": false,
+    "reproduction_is_independent": true,
+    "adopted_poll_fix": "read-timed external clear, not a later BL hook"
+  },
+  "reference": {
+    "fixed_source_files": 8,
+    "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+    "manifest_sha256": "bea2b002e247a3e2378f43e94a30f5e903bc7b2948679a2705625429fb166e05",
+    "source_blob_and_sha256_verified": true,
+    "plugin_stride": 48,
+    "channel_stride": 72,
+    "host_C_probe_only": true,
+    "kernel_or_firmware_built": false
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_newtime_dmc_magic.py -v",
+      "tests": 22,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_flop_acpm_reference.py -v",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_newtime*.py'",
+      "tests": 706,
+      "includes_new_magic_tests": true,
+      "status": "passed",
+      "log_sha256": "51f598faa292b30367db659827ebb70af1916ba242dd346b697ff956c2ec80d3"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_flop*.py'",
+      "tests": 26,
+      "includes_new_reference_tests": true,
+      "status": "passed",
+      "log_sha256": "d270ed0ce19802a0f35dcb3b5c42e2ba55248551a9278cf9134c037f5f852255"
+    },
+    {
+      "command": "python3 scripts/inspect_newtime_dmc_magic_hzc2.py /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/inspect_flop_acpm_reference.py /path/to/pinned-sources /private/path/sboot.bin",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-newtime-magic",
+      "status": "passed",
+      "summary_sha256": "762c8d9818240516ab5415b2e92634792aa47818ab15aac440921892fe9c74e7",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "qemu_scope_extended": false,
+  "smc_executed": false,
+  "limitations": [
+    "The local A64 writer is confirmed, but literal/immediate scans do not establish global uniqueness.",
+    "The 0x36000 trampoline is within candidate BL2 and handles multiple ELs; it is distinct from the 0x36c000 EL3 candidate.",
+    "Timed-word clearing, AP/local alias and opaque clock callees are supplied host fixtures, not measured ACPM behavior.",
+    "Eight pinned kernel source files provide ABI/mailbox/ECT context, not identical secure firmware or live state.",
+    "Slot47/X0, the minus232 service, physical PMU/MMIO values, event delivery and cross-core visibility remain open."
+  ],
+  "documentation_file_links": {
+    "checked": 1511,
+    "missing": 0
+  }
+}

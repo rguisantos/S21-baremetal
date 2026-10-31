@@ -173,3 +173,5 @@ UBRDIV BL2=LK=71**. Entradas com fonte modificada e firmware incorreto foram
 recusadas. O resultado marca `runtime_observed=false` e mantém gates e estado
 final como pendências. É auditoria de evidência estática, sem emulação do SoC,
 leitura física, cálculo automático de um plano de writes ou teste UART.
+
+Continuação de31/10: o [publicador local do magic DVFS](newtime-dmc-magic-hzc2.md) liga a chamada0x369bc→0x36934 à saída do poll zero. O trecho em0x36000 permanece candidato BL2 com caminhos por CurrentEL, sem prova de fase/EL físico ou resultado dos clocks.

@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+O [produtor local do magic DVFS](../docs/newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
+
 A [construção da tradução do pool UFS](../docs/lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
 
 O [pool que abastece o heap UFS](../docs/lk-heap-pool-hzc2.md) foi ligado ao provedor de páginas: faixa nominal `[0xe8c1d000,0xe9800000)`, com 3043 páginas. São 28 casos do código original em QEMU, incluindo falha que mantém o host publicado sem buffers; 17 testes novos. Estado físico e identidade DMA continuam pendentes.
@@ -293,3 +295,6 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_lk_heap.py` / `test_lk_heap.py` / `emulate_lk_heap_qemu.py`: pool nominal, heap e provedor de páginas que abastecem os buffers UFS; 562 palavras GNU, 17 testes e 28 casos originais em QEMU com pool fornecido. [Escopo](../docs/lk-heap-pool-hzc2.md).
 
 - `inspect_lk_pool_mmu.py` / `test_lk_pool_mmu.py` / `emulate_lk_pool_mmu_qemu.py`: construção selecionada EL1/4KiB da tradução e atributos do pool; 292 palavras GNU, 21 testes e seis casos originais QEMU, sem instalar tabelas. [Escopo](../docs/lk-pool-mmu-hzc2.md).
+
+- `inspect_newtime_dmc_magic_hzc2.py` / `test_newtime_dmc_magic.py`: produtor local de0xabcd1234, campainha, poll com limpeza externa e continuação−232; 22 testes e112 palavras A64, com rota Thumb herdada. [Escopo](../docs/newtime-dmc-magic-hzc2.md).
+- `inspect_flop_acpm_reference.py` / `test_flop_acpm_reference.py`: oito fontes fixadas, probe C seguro de ABI SRAM, mailbox e namespace ECT; 14 testes. [Escopo](../docs/flop-acpm-reference.md).

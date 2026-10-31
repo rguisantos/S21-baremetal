@@ -96,3 +96,5 @@ Os avaliadores usam palavras reais, memória explícita e hooks opacos;
 registradores voláteis são alterados nos hooks de integração. Os testes
 cobrem o decoder, skip da alocação, encaminhamento do ponteiro, magics,
 argumento não desreferenciado, retorno e clear da cauda isolada.
+
+Continuação de31/10: o [produtor local do magic](newtime-dmc-magic-hzc2.md) foi delimitado em0x369a0, com publicação/campainha/poll e sem alegação de escritor global único ou EL3 efetivo. Aliases físicos, ordem ACPM e slot47/X0 continuam abertos.
