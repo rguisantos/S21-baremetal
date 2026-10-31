@@ -1,0 +1,757 @@
+{
+  "mode": "original_lk_heap_pages_and_ufs_allocator_qemu",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_instruction_index_sha256": "a3d49c0779df7e7182ae9246d6adc710427ef22e7c97b1dcdbe45c1530a389df",
+  "segments": [
+    {
+      "start": "0x18d808",
+      "end_exclusive": "0x18d8e8",
+      "sha256": "8f27e8c42f1d369a7aef2865a58c992cd4ccc091e55f525622d52131c198bc06"
+    },
+    {
+      "start": "0x18d918",
+      "end_exclusive": "0x18d9ec",
+      "sha256": "60f7d56bb31a465e7e1858d1aa9f9722132e32f094acb50aadff031062fc2cbe"
+    },
+    {
+      "start": "0x18d9f0",
+      "end_exclusive": "0x18da28",
+      "sha256": "2753c8bb1189c4d9fb1e6b3ce6cf7381966794a31f9fc13cb4176ddf4f711232"
+    },
+    {
+      "start": "0x18da28",
+      "end_exclusive": "0x18da64",
+      "sha256": "1b19ae596fe8293c6a94a91d617617d774db0477aea38628254d056ebcff434c"
+    },
+    {
+      "start": "0x18fd30",
+      "end_exclusive": "0x18fd50",
+      "sha256": "8e1bfbd3a2a5907e53c6b1662652509fcfdcd60aac55c286128616fcc251dc25"
+    },
+    {
+      "start": "0x18fd50",
+      "end_exclusive": "0x18fde8",
+      "sha256": "be27ee1fadbbdd6c0e95b5a9d62fde43560b3e3d38f6052607e70a9835f45ada"
+    },
+    {
+      "start": "0x18fef0",
+      "end_exclusive": "0x18fef4",
+      "sha256": "00617b23237408ec6e25ebd0537f069fb3867989e53efdf45b3d6af471a0a676"
+    },
+    {
+      "start": "0x18fef8",
+      "end_exclusive": "0x18fefc",
+      "sha256": "ad8ca0dd19782d885f30bacd84992f6e64c08feed73591df19c1e92e0c9dfd1d"
+    },
+    {
+      "start": "0x20bf58",
+      "end_exclusive": "0x20c094",
+      "sha256": "ce0c846cafef75b519a3808ccf7ece2d23c15a9db32f372a549b41b6cfdcd430"
+    },
+    {
+      "start": "0x20c098",
+      "end_exclusive": "0x20c340",
+      "sha256": "26c9199130d60b9c64ffb3faa2f8d63e6daa96001db394d740191d63c4c14272"
+    },
+    {
+      "start": "0x20c410",
+      "end_exclusive": "0x20c478",
+      "sha256": "15533190397f25c75befe6d1262ab479e9a6dca1a256664a1316434e0dde1324"
+    },
+    {
+      "start": "0x10ec98",
+      "end_exclusive": "0x10ede8",
+      "sha256": "3935c828f345fdb78369cbad4fbb6d2b6de69aec88f70bae700efffa5f161145"
+    }
+  ],
+  "case_count": 28,
+  "arithmetic_cases": [
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x0",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x1",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x8",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x9",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 32
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 32,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x1000",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4112
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 4112,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x2000",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 12304
+      },
+      "pages_marked": 5,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 12304,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x40",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4176
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 4176,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0xa0",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4272
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 4272,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x40",
+      "alignment": 1,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 96
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 16,
+        "requested_chunk_bytes": 96,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x40",
+      "alignment": 3,
+      "pointer": "0x0",
+      "header": null,
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": false,
+        "reason": "alignment_not_power_of_two_or_zero"
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 2,
+        "0x119e28": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0x40",
+      "alignment": 268435456,
+      "pointer": "0x0",
+      "header": null,
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 268435456,
+        "requested_chunk_bytes": 268435536,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "size": "0xfffffffffffffff0",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": true,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x0",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x1",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x8",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x9",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 32
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 32,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x1000",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4112
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 4112,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x2000",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 12304
+      },
+      "pages_marked": 5,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 12304,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x40",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4176
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 4176,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0xa0",
+      "alignment": 4096,
+      "pointer": "0x41001000",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 4272
+      },
+      "pages_marked": 3,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 4096,
+        "requested_chunk_bytes": 4272,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 3,
+        "0x119d90": 6,
+        "0x119e28": 6
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x40",
+      "alignment": 1,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 96
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 16,
+        "requested_chunk_bytes": 96,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x40",
+      "alignment": 3,
+      "pointer": "0x0",
+      "header": null,
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": false,
+        "reason": "alignment_not_power_of_two_or_zero"
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 2,
+        "0x119e28": 2
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0x40",
+      "alignment": 268435456,
+      "pointer": "0x0",
+      "header": null,
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 268435456,
+        "requested_chunk_bytes": 268435536,
+        "size_addition_wrapped": false,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3,
+        "0x1b1658": 1
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "size": "0xfffffffffffffff0",
+      "alignment": 0,
+      "pointer": "0x41000010",
+      "header": {
+        "chunk": "0x41000000",
+        "charged": 24
+      },
+      "pages_marked": 1,
+      "arithmetic": {
+        "accepted": true,
+        "effective_alignment": 0,
+        "requested_chunk_bytes": 24,
+        "size_addition_wrapped": true,
+        "dma_mapping_or_extent_established": false
+      },
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 2,
+        "0x119d90": 3,
+        "0x119e28": 3
+      },
+      "guards_and_abi_preserved": true
+    }
+  ],
+  "ufs_cases": [
+    {
+      "laboratory_delta": "0x40000000",
+      "pool_pages": 32,
+      "return_w0": "0x0",
+      "host": "0x41000010",
+      "field_pointers": {
+        "8112": "0x41002010",
+        "144": "0x41003000",
+        "152": "0x41006000",
+        "160": "0x41007000"
+      },
+      "objects": "0x41007150",
+      "pages_marked": 9,
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 6,
+        "0x119d90": 17,
+        "0x119e28": 17
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40000000",
+      "pool_pages": 4,
+      "return_w0": "0xffffffff",
+      "host": "0x41000010",
+      "field_pointers": {
+        "8112": "0x41002010",
+        "144": "0x0",
+        "152": "0x0",
+        "160": "0x0"
+      },
+      "objects": "0x0",
+      "pages_marked": 3,
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 4,
+        "0x119d90": 9,
+        "0x119e28": 9,
+        "0x1b1658": 3
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "pool_pages": 32,
+      "return_w0": "0x0",
+      "host": "0x41000010",
+      "field_pointers": {
+        "8112": "0x41002010",
+        "144": "0x41003000",
+        "152": "0x41006000",
+        "160": "0x41007000"
+      },
+      "objects": "0x41007150",
+      "pages_marked": 9,
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 6,
+        "0x119d90": 17,
+        "0x119e28": 17
+      },
+      "guards_and_abi_preserved": true
+    },
+    {
+      "laboratory_delta": "0x40200000",
+      "pool_pages": 4,
+      "return_w0": "0xffffffff",
+      "host": "0x41000010",
+      "field_pointers": {
+        "8112": "0x41002010",
+        "144": "0x0",
+        "152": "0x0",
+        "160": "0x0"
+      },
+      "objects": "0x0",
+      "pages_marked": 3,
+      "substitutions": {
+        "0x119d60": 2,
+        "0x1af540": 4,
+        "0x119d90": 9,
+        "0x119e28": 9,
+        "0x1b1658": 3
+      },
+      "guards_and_abi_preserved": true
+    }
+  ],
+  "original_code_segments_unchanged": true,
+  "both_placements_match": true,
+  "synthetic_pool": {
+    "base": "0x41000000",
+    "bytes": 131072,
+    "pages": 32
+  },
+  "physical_samsung_state_observed": false,
+  "dma_mapping_or_coherence_established": false,
+  "limits": [
+    "Synthetic fresh pool, bitmap and empty deferred list; no Samsung startup or nominal pool binding execution.",
+    "Mutex helpers and bounded memset are debugger substitutions; no contention/cache/DMA semantics.",
+    "All callees execute only inside the laboratory QEMU VM; no phone, MMIO or secure service is accessed.",
+    "Two laboratory relocations and supplied inputs do not establish runtime heap state or free RAM."
+  ]
+}

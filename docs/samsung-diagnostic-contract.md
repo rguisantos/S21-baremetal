@@ -196,3 +196,5 @@ Continuação de 30/10: [registro e callbacks RPMB do LK](lk-rpmb-transport-hzc2
 Continuação de 30/10: [descritores/espera/resposta UFS](lk-ufs-completion-hzc2.md) foram delimitados localmente, com origem nominal do status SCSI. Sem configuração ativa, posse/coerência e resposta física adquiridas, isso não comprova persistência nem satisfaz carga, memória ou captura do diagnóstico.
 
 Continuação de 30/10: [host/buffers UFS](lk-ufs-host-memory-hzc2.md) têm publicação e configuração ligadas nominalmente. O [cruzamento FlopKernel](flop-ufs-dma-reference.md) acrescenta contratos DMA e referências UART, sem medir coerência, memória livre, persistência ou satisfazer a captura do diagnóstico físico.
+
+Continuação de 30/10: o [pool nominal do heap UFS](lk-heap-pool-hzc2.md) foi delimitado e o alocador executado em QEMU com entradas fornecidas. Essa memória é usada pelo LK; não é RAM livre para a sonda nem prova de tradução física, DMA ou captura no aparelho.

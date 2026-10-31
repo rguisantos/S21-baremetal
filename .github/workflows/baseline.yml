@@ -51,6 +51,8 @@ jobs:
         run: python3 scripts/test_lk_ufs_completion.py
       - name: Check LK UFS host allocation and DMA address bindings
         run: python3 scripts/test_lk_ufs_host.py
+      - name: Check LK heap page-pool bindings and arithmetic
+        run: python3 scripts/test_lk_heap.py
       - name: Check offline RPMB frames and pinned-source layout probe
         run: |
           python3 scripts/test_rpmb_frame.py

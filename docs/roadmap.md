@@ -1,6 +1,8 @@
 # Roadmap e estado do S21-baremetal
 
-A [origem do host/buffers UFS](lk-ufs-host-memory-hzc2.md) agora liga alocação, publicação, configuração e programação de bases. A [leitura ampliada do FlopKernel](flop-ufs-dma-reference.md) esclarece granularidade PRDT, DMA/IOCC e driver UART. Próximo: backend/atributos do alocador, helpers de configuração e gates RPMB; posse/coerência físicas seguem abertas.
+O [pool que abastece o heap UFS](lk-heap-pool-hzc2.md) foi ligado ao provedor de páginas: faixa nominal `[0xe8c1d000,0xe9800000)`, com 3043 páginas. São 28 casos do código original em QEMU, incluindo falha que mantém o host publicado sem buffers; 17 testes novos. Estado físico e identidade DMA continuam pendentes.
+
+A [origem do host/buffers UFS](lk-ufs-host-memory-hzc2.md) agora liga alocação, publicação, configuração e programação de bases. A [leitura ampliada do FlopKernel](flop-ufs-dma-reference.md) esclarece granularidade PRDT, DMA/IOCC e driver UART. O backend/pool tem continuação acima; atributos/tradução, produtor da configuração e gates RPMB seguem abertos.
 
 A [conclusão UFS local](lk-ufs-completion-hzc2.md) liga descritores, espera e origem do byte SCSI ao consumidor RPMB. LUN68→0xc4 conferida; OCS zero e status SCSI permanecem planos separados. A origem do host/buffers tem continuação acima; backend/atributos, posse/coerência e gates RPMB, serviço seguro e persistência física continuam abertos.
 
