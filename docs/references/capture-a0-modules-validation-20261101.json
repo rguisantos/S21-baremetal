@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Etc/UTC",
+  "source_base": "d7938fa9f38498da1b352fb174eced3f29ce582a",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 92,
+    "status": "passed"
+  },
+  "private_input_analysis": {
+    "command": "python3 scripts/check_capture_a0_modules.py --vendor-boot INPUT/vendor_boot.img --source INPUT/Kernel.tar.gz --output NEW-FILE.json",
+    "returncode": 2,
+    "report_sha256": "76fbc6e96cd0310fdc83e501acc39ae1eec955714cbb2e6698b7ff7240267e0b",
+    "module_count": 274,
+    "version_records": 13995,
+    "distinct_version_requirements": 2763,
+    "stock_crc_conflicts": 0,
+    "second_execution_byte_identical": true
+  },
+  "independent_section_check": {
+    "tool": "GNU readelf (GNU Binutils for Ubuntu) 2.42",
+    "command": "readelf -x __versions MODULE.ko",
+    "modules_checked": 274,
+    "records_checked": 13995,
+    "section_bytes_identical": true
+  },
+  "candidate_symvers_compared": false,
+  "crcs_recomputed_from_candidate": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links": 1637,
+  "missing_local_links": []
+}

@@ -3982,3 +3982,14 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Preservar bytes originais é o controle sem alterações. Kernel modificado exige metadados coerentes e rota de aceitação demonstrada; zerar o bloco coberto também invalidaria o hash original. Nenhum packer de payload modificado foi entregue, nem assinatura/compatibilidade de módulo demonstrada.
 - A0 permanece aberto: build/KMI/módulos, CRCs e perfil completo, além do contêiner. A1 pendente. Nenhuma operação no telefone. Revisão automática do head exato e CI são gates antes do merge.
 - Relatório reproduzido byte a byte em segunda execução; 1622 links locais Markdown conferidos, sem ausentes.
+
+## 2026-11-01 — A0: módulos stock e requisitos de CRC extraídos
+
+- Continuação do PR #77, base `d7938fa`, com [inventário dos módulos](docs/capture-a0-modules-hzc2.md). README_Kernel/README_Platform relidos: instruções de build não equivalem a compatibilidade. Arquivo Samsung recuperado e conferido por hash, sem executar seus scripts.
+- Vendor_boot original contém 274 módulos AArch64 ET_REL. modules.load lista exatamente esse conjunto; modules.dep cobre os 274 e suas referências existem no ramdisk. São arquivos do firmware, não observação de módulos carregados no aparelho ou inventário de todas as partições.
+- Extraídos 13995 registros __versions, 2763 nomes distintos, zero CRCs conflitantes entre consumidores. Todos declaram vermagic HZC2 e module_layout=0x1e5b7ab7. Conferência independente via GNU readelf 2.42 recuperou os mesmos bytes de seção nos 274 módulos. CRCs extraídos, não calculados de novo nem comparados a build candidato.
+- Leitor gzip/newc/ELF limitado sem extração de caminhos; runner exige hashes exatos de vendor_boot e fonte. Fontes module.h/moduleparam.h/modpost/module.c/vermagic fixadas no relatório; não se publicam módulos, ramdisk ou fontes completas.
+- Comparador opcional de Module.symvers distingue ausência, diferença e conflito; duplicatas/má formação são recusadas. Igualdade cobre apenas CRCs, sem resolver fornecedor, GPL/namespace, CFI, assinatura, relocação ou ABI. O arquivo deve representar a combinação kernel/módulos pretendida.
+- 25 testes novos e 67 anteriores passaram (92 A0), com controles de truncamento, limites, caminhos/links, identidades e comparações sintéticas. CI inclui o novo conjunto. Não foi fornecido Module.symvers candidato; runner retorna 2 e mantém A0 aberto.
+- Próximo: perfil de build p3s completo, insumos KMI pendentes, exports/Module.symvers e comparação real. Contêiner modificado continua bloqueio separado. A1 não iniciado; nenhuma ação física. Revisão automática do head exato e CI precedem o merge.
+- Relatório reproduzido byte a byte; 1637 links locais Markdown conferidos, sem ausentes.

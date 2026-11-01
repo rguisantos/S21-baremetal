@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_modules.py` inventaria os módulos do vendor_boot original e compara seus requisitos de CRC com um Module.symvers opcional. `capture_a0_modules.py` lê gzip/CPIO/ELF sem extrair arquivos nem carregar módulos; 25 controles em `test_capture_a0_modules.py`. [Guia](../docs/capture-a0-modules-hzc2.md).
+
 `check_capture_a0_repack.py` repete o repack fixado com três mtimes por imagem e separa diferenças dentro/fora do hash original. Recusa inputs sem os hashes fixados; retorno 2 mantém o gate reprovado. `test_capture_a0_repack.py` cobre os limites com 12 testes sintéticos. [Guia](../docs/capture-a0-repack-extent-hzc2.md).
 
 `check_capture_a0_kmi.py` confere arquivo Samsung/IKCONFIG por hash, faz censo
