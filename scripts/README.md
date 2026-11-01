@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_repack.py` repete o repack fixado com três mtimes por imagem e separa diferenças dentro/fora do hash original. Recusa inputs sem os hashes fixados; retorno 2 mantém o gate reprovado. `test_capture_a0_repack.py` cobre os limites com 12 testes sintéticos. [Guia](../docs/capture-a0-repack-extent-hzc2.md).
+
 `check_capture_a0_kmi.py` confere arquivo Samsung/IKCONFIG por hash, faz censo
 literal de identificadores e compara listas KMI/whitelist; seis controles com
 gerador/headers originais usam fixtures host próprias. `test_capture_a0_kmi.py`

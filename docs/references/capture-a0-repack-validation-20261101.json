@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Etc/UTC",
+  "source_base": "ffc202696826d974a5fe688a67c0484b7f638a04",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 67,
+    "status": "passed"
+  },
+  "private_input_analysis": {
+    "command": "python3 scripts/check_capture_a0_repack.py --stock-dir INPUT --magiskboot scripts/magiskboot/magiskboot --output-dir NEW-DIRECTORY",
+    "returncode": 2,
+    "trials_per_image": 3,
+    "input_mtimes": [
+      1,
+      1700000000,
+      1790000000
+    ],
+    "report_sha256": "2539a68ad0cb4aa14329fe6656d25fb01951d91445f315b8915be56aa6676627",
+    "second_execution_byte_identical": true
+  },
+  "magisk_source_git_blob": "d5a4e3f2dd8c325d018e7074be1172dd92ea8825",
+  "a0_complete": false,
+  "a1_implemented": false,
+  "signature_verified": false,
+  "physical_action": false,
+  "local_markdown_links": 1622,
+  "missing_local_links": []
+}

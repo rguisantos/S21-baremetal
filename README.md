@@ -6,6 +6,8 @@ O [A0 offline HZC2](docs/capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configu
 
 A [conferência das duas chaves KMI](docs/capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; CRCs e módulos reais ainda não foram comparados. A compatibilidade continua aberta em A0.
 
+A [repetição do repack](docs/capture-a0-repack-extent-hzc2.md) produziu três saídas idênticas por imagem mesmo com mtimes diferentes. A extensão `SignerVer03` é omitida nesse percurso; o rodapé AVB fica fora do hash. Dos 586/3474 bytes alterados, 584/651 ficam dentro do intervalo original. Isso explica o controle reprovado, sem fornecer um packer de payload modificado.
+
 O [caminho candidato IOCC do UFS](docs/lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
