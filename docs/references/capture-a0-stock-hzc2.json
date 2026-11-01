@@ -1,0 +1,826 @@
+{
+  "schema": "S21-CAPTURE-A0-v1",
+  "inputs_verified": true,
+  "images": {
+    "boot.img": {
+      "inventory": {
+        "kind": "boot_v3",
+        "bytes": 67108864,
+        "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+        "page_size": 4096,
+        "body_end": 30179328,
+        "parts": [
+          {
+            "name": "header",
+            "start": 0,
+            "end": 1580,
+            "kind": "header",
+            "bytes": 1580,
+            "sha256": "f7010ae441562db0f93270b2ea250d36003a2ab82573622f6ca8c871704cb198"
+          },
+          {
+            "name": "header_padding",
+            "start": 1580,
+            "end": 4096,
+            "kind": "padding",
+            "bytes": 2516,
+            "sha256": "4330d0001ec7082bb5bc85059c5c88b7d41138ec33e6c1527ba9edf67b7dc935"
+          },
+          {
+            "name": "kernel",
+            "start": 4096,
+            "end": 29473280,
+            "kind": "payload",
+            "bytes": 29469184,
+            "sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0"
+          },
+          {
+            "name": "kernel_padding",
+            "start": 29473280,
+            "end": 29474816,
+            "kind": "padding",
+            "bytes": 1536,
+            "sha256": "80422bc3d307b4a25bdafcc84ac7fb01cb55a09810e8b0f37bb12e0edb5c48ca"
+          },
+          {
+            "name": "ramdisk",
+            "start": 29474816,
+            "end": 30176374,
+            "kind": "payload",
+            "bytes": 701558,
+            "sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+          },
+          {
+            "name": "ramdisk_padding",
+            "start": 30176374,
+            "end": 30179328,
+            "kind": "padding",
+            "bytes": 2954,
+            "sha256": "96259fd625750ebed75c540a6743e7535fce16a9b942633466bb31403ed970cc"
+          },
+          {
+            "name": "opaque_extension",
+            "start": 30179328,
+            "end": 30183424,
+            "kind": "opaque",
+            "bytes": 4096,
+            "sha256": "7e8643bb2414d4d42e21a220e84feda995b4d76a6b4e4e6172d0c0017dc02af8"
+          },
+          {
+            "name": "vbmeta",
+            "start": 30183424,
+            "end": 30185536,
+            "kind": "opaque",
+            "bytes": 2112,
+            "sha256": "22ff32cbc9c2270d0789683b69a9e11f5ed36111503c9caa048699775cc476c4"
+          },
+          {
+            "name": "tail_padding",
+            "start": 30185536,
+            "end": 67108800,
+            "kind": "padding",
+            "bytes": 36923264,
+            "sha256": "685a4a754ca82352d5b7172fb976f22f268ff515d4f42834e3b5cf73384af681"
+          },
+          {
+            "name": "avb_footer",
+            "start": 67108800,
+            "end": 67108864,
+            "kind": "opaque",
+            "bytes": 64,
+            "sha256": "32ec6fae250cd69987691aadb5c9bcae9906e7c181662b509c1bfed153c237ad"
+          }
+        ],
+        "avb": {
+          "offset": 30183424,
+          "bytes": 2112,
+          "original_image_size": 30180128,
+          "vbmeta_sha256": "22ff32cbc9c2270d0789683b69a9e11f5ed36111503c9caa048699775cc476c4",
+          "footer_sha256": "32ec6fae250cd69987691aadb5c9bcae9906e7c181662b509c1bfed153c237ad",
+          "hash_descriptors": [
+            {
+              "partition": "boot",
+              "image_size": 30180128,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "computed_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "matches": true,
+              "extent_matches_footer": true,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": true,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "dtb_contents_interpreted": false
+      },
+      "unpack_returncode": 0,
+      "magisk_no_change": {
+        "byte_identical": false,
+        "before_bytes": 67108864,
+        "after_bytes": 67108864,
+        "after_sha256": "e121314da768a7d31574ff6d4693c6025de81fde7817708d1e6727c2fb756067",
+        "header_and_payloads_identical": true,
+        "vbmeta_blob_identical": true,
+        "avb_after": {
+          "offset": 30183424,
+          "bytes": 2112,
+          "original_image_size": 30179344,
+          "vbmeta_sha256": "22ff32cbc9c2270d0789683b69a9e11f5ed36111503c9caa048699775cc476c4",
+          "footer_sha256": "47b55ebdfd4e996bf3c5c2405de784fff9ec969e4b1f87fac97e2dab8ef4a0da",
+          "hash_descriptors": [
+            {
+              "partition": "boot",
+              "image_size": 30180128,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "computed_digest": "feee6e004a409bda86993c2044ffb88ba03e1aa4e1740f97adc6a0b0c28cf41b",
+              "matches": false,
+              "extent_matches_footer": false,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": false,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "different_bytes_in_common_extent": 586,
+        "different_range_count": 21,
+        "first_ranges": [
+          [
+            30179344,
+            30179355
+          ],
+          [
+            30179360,
+            30179370
+          ],
+          [
+            30179376,
+            30179389
+          ],
+          [
+            30179408,
+            30179422
+          ],
+          [
+            30179424,
+            30179445
+          ],
+          [
+            30179456,
+            30179467
+          ],
+          [
+            30179472,
+            30179483
+          ],
+          [
+            30179488,
+            30179491
+          ],
+          [
+            30179492,
+            30179495
+          ],
+          [
+            30179496,
+            30179499
+          ],
+          [
+            30179500,
+            30179508
+          ],
+          [
+            30179600,
+            30179601
+          ],
+          [
+            30179604,
+            30179605
+          ],
+          [
+            30179608,
+            30179609
+          ],
+          [
+            30179612,
+            30179616
+          ],
+          [
+            30179636,
+            30179684
+          ],
+          [
+            30179704,
+            30179919
+          ],
+          [
+            30179920,
+            30179979
+          ],
+          [
+            30179980,
+            30180106
+          ],
+          [
+            30180107,
+            30180128
+          ],
+          [
+            67108818,
+            67108820
+          ]
+        ],
+        "no_change_gate_passed": false,
+        "signature_or_boot_acceptance_established": false
+      },
+      "lossless_inventory_control": {
+        "byte_identical": true,
+        "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+        "opaque_bytes_preserved": true,
+        "modified_payloads_supported": false
+      }
+    },
+    "vendor_boot.img": {
+      "inventory": {
+        "kind": "vendor_boot_v3",
+        "bytes": 67108864,
+        "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+        "page_size": 4096,
+        "body_end": 12414976,
+        "parts": [
+          {
+            "name": "header",
+            "start": 0,
+            "end": 2112,
+            "kind": "header",
+            "bytes": 2112,
+            "sha256": "3561b602e4c12285773d4efd9097dd543db0fe7ca17ae0bf628eac63c24b9879"
+          },
+          {
+            "name": "header_padding",
+            "start": 2112,
+            "end": 4096,
+            "kind": "padding",
+            "bytes": 1984,
+            "sha256": "5b4a97decc57a48382234b6f23e27a26357ea1855d3c052ff4db94e6f91e37ee"
+          },
+          {
+            "name": "ramdisk",
+            "start": 4096,
+            "end": 12021353,
+            "kind": "payload",
+            "bytes": 12017257,
+            "sha256": "2d926b819764ff7c985db7dc75d7a46152dc14ee3189f2c13c91123b5c807857"
+          },
+          {
+            "name": "ramdisk_padding",
+            "start": 12021353,
+            "end": 12021760,
+            "kind": "padding",
+            "bytes": 407,
+            "sha256": "f5d3f822a8435f91f7a5d54b720aa637f8b8f8102c7670d1b52d98f2d0123beb"
+          },
+          {
+            "name": "dtb",
+            "start": 12021760,
+            "end": 12411700,
+            "kind": "payload",
+            "bytes": 389940,
+            "sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f"
+          },
+          {
+            "name": "dtb_padding",
+            "start": 12411700,
+            "end": 12414976,
+            "kind": "padding",
+            "bytes": 3276,
+            "sha256": "2800e236158e52067481144f50de2731ac0ef377f5da900642738c6c26c01c59"
+          },
+          {
+            "name": "opaque_extension",
+            "start": 12414976,
+            "end": 12419072,
+            "kind": "opaque",
+            "bytes": 4096,
+            "sha256": "f0d4430f193e5564e6145b5881ff8f2cd4009f7a0c47b4994e4a36248385ad49"
+          },
+          {
+            "name": "vbmeta",
+            "start": 12419072,
+            "end": 12421184,
+            "kind": "opaque",
+            "bytes": 2112,
+            "sha256": "d1ed9c6958a7a8acf6648d05e5e6c7e248732d798f071d4781f6360fedebc722"
+          },
+          {
+            "name": "tail_padding",
+            "start": 12421184,
+            "end": 67108800,
+            "kind": "padding",
+            "bytes": 54687616,
+            "sha256": "2e63eca541c4ad8dbfb844978a85219494b7e29ae8fc0df50dddb1f16ee11c27"
+          },
+          {
+            "name": "avb_footer",
+            "start": 67108800,
+            "end": 67108864,
+            "kind": "opaque",
+            "bytes": 64,
+            "sha256": "48a6e30c1dcf5ee566d2cd50e7281e1626a188b454bd1cf2a501e40ccd50be55"
+          }
+        ],
+        "avb": {
+          "offset": 12419072,
+          "bytes": 2112,
+          "original_image_size": 12415760,
+          "vbmeta_sha256": "d1ed9c6958a7a8acf6648d05e5e6c7e248732d798f071d4781f6360fedebc722",
+          "footer_sha256": "48a6e30c1dcf5ee566d2cd50e7281e1626a188b454bd1cf2a501e40ccd50be55",
+          "hash_descriptors": [
+            {
+              "partition": "vendor_boot",
+              "image_size": 12415760,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "computed_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "matches": true,
+              "extent_matches_footer": true,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": true,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "dtb_contents_interpreted": false
+      },
+      "unpack_returncode": 3,
+      "magisk_no_change": {
+        "byte_identical": false,
+        "before_bytes": 67108864,
+        "after_bytes": 67108864,
+        "after_sha256": "76b01725c3a845cca53e0f54b9a8947dbcebfb6eff9b6495928142f96fa63cef",
+        "header_and_payloads_identical": true,
+        "vbmeta_blob_identical": true,
+        "avb_after": {
+          "offset": 12414976,
+          "bytes": 2112,
+          "original_image_size": 12414976,
+          "vbmeta_sha256": "d1ed9c6958a7a8acf6648d05e5e6c7e248732d798f071d4781f6360fedebc722",
+          "footer_sha256": "57a3050c5c10bc6b37f600cb6380970d88010dcedb129eeb6bfab8c7767db387",
+          "hash_descriptors": [
+            {
+              "partition": "vendor_boot",
+              "image_size": 12415760,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "computed_digest": "ce342293f118bccd17208ff0d20c42d62abd62058a23807f6bd9a1cf81e26643",
+              "matches": false,
+              "extent_matches_footer": false,
+              "extent_before_vbmeta": false
+            }
+          ],
+          "all_hashes_match": false,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "different_bytes_in_common_extent": 3474,
+        "different_range_count": 57,
+        "first_ranges": [
+          [
+            12414976,
+            12414987
+          ],
+          [
+            12414992,
+            12415003
+          ],
+          [
+            12415007,
+            12415021
+          ],
+          [
+            12415023,
+            12415024
+          ],
+          [
+            12415031,
+            12415032
+          ],
+          [
+            12415038,
+            12415039
+          ],
+          [
+            12415040,
+            12415077
+          ],
+          [
+            12415087,
+            12415099
+          ],
+          [
+            12415104,
+            12415117
+          ],
+          [
+            12415120,
+            12415123
+          ],
+          [
+            12415124,
+            12415127
+          ],
+          [
+            12415128,
+            12415131
+          ],
+          [
+            12415132,
+            12415147
+          ],
+          [
+            12415232,
+            12415306
+          ],
+          [
+            12415307,
+            12415621
+          ],
+          [
+            12415622,
+            12415772
+          ],
+          [
+            12415773,
+            12415776
+          ],
+          [
+            12415815,
+            12415816
+          ],
+          [
+            12415823,
+            12415824
+          ],
+          [
+            12415829,
+            12415838
+          ],
+          [
+            12415867,
+            12415868
+          ],
+          [
+            12415871,
+            12415872
+          ],
+          [
+            12415875,
+            12415876
+          ],
+          [
+            12415940,
+            12416015
+          ],
+          [
+            12416018,
+            12416019
+          ],
+          [
+            12416020,
+            12416365
+          ],
+          [
+            12416366,
+            12417048
+          ],
+          [
+            12419072,
+            12419076
+          ],
+          [
+            12419079,
+            12419080
+          ],
+          [
+            12419090,
+            12419092
+          ],
+          [
+            12419098,
+            12419099
+          ],
+          [
+            12419103,
+            12419104
+          ]
+        ],
+        "no_change_gate_passed": false,
+        "signature_or_boot_acceptance_established": false
+      },
+      "lossless_inventory_control": {
+        "byte_identical": true,
+        "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+        "opaque_bytes_preserved": true,
+        "modified_payloads_supported": false
+      }
+    },
+    "dtbo.img": {
+      "inventory": {
+        "kind": "dt_table_v0",
+        "bytes": 8388608,
+        "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34",
+        "page_size": 2048,
+        "body_end": 2356536,
+        "parts": [
+          {
+            "name": "header",
+            "start": 0,
+            "end": 32,
+            "kind": "header",
+            "bytes": 32,
+            "sha256": "3edc728dc548083069bfdc35b2e3f424b36ea7b4c1583f3ee8aafa6121a3e227"
+          },
+          {
+            "name": "entries",
+            "start": 32,
+            "end": 288,
+            "kind": "header",
+            "bytes": 256,
+            "sha256": "2e171c17aa5a2e05deb67b2180481e805d37b73dfb0c0e1b99c674ef08902259"
+          },
+          {
+            "name": "dtb_0",
+            "start": 288,
+            "end": 277584,
+            "kind": "payload",
+            "bytes": 277296,
+            "sha256": "afeaa18a812be45d0b17055a7fc2b57ed7a99cb5a0dbeeb06a452f76f2d69b45"
+          },
+          {
+            "name": "dtb_1",
+            "start": 277584,
+            "end": 566652,
+            "kind": "payload",
+            "bytes": 289068,
+            "sha256": "403bd95f025a9f2275d6e5dd5edbfa92f683eace43d7d336530d331ca6a4531c"
+          },
+          {
+            "name": "dtb_2",
+            "start": 566652,
+            "end": 862496,
+            "kind": "payload",
+            "bytes": 295844,
+            "sha256": "6046fd7ea6b39824a217ea5696185002e8667130e765a21dbaf75d61a8924f2b"
+          },
+          {
+            "name": "dtb_3",
+            "start": 862496,
+            "end": 1160144,
+            "kind": "payload",
+            "bytes": 297648,
+            "sha256": "385ea6efe831c5de1648b06220102bfd259c271d561aefc98bb9cef1290c3342"
+          },
+          {
+            "name": "dtb_4",
+            "start": 1160144,
+            "end": 1459516,
+            "kind": "payload",
+            "bytes": 299372,
+            "sha256": "3799edb9570a3f10165394c4f22d9b8e6e5a2904498aa74f66ccdda3a17d9cc3"
+          },
+          {
+            "name": "dtb_5",
+            "start": 1459516,
+            "end": 1758888,
+            "kind": "payload",
+            "bytes": 299372,
+            "sha256": "b99b7d1829ab25f6be2f171ba95b39f3cb0ae5ac26dec93caafb04b0ff3bcd9e"
+          },
+          {
+            "name": "dtb_6",
+            "start": 1758888,
+            "end": 2057712,
+            "kind": "payload",
+            "bytes": 298824,
+            "sha256": "69d2f86b58d442bd0e437256d689ef879aaa694a0788e1d79b4e176a1873ef9f"
+          },
+          {
+            "name": "dtb_7",
+            "start": 2057712,
+            "end": 2356536,
+            "kind": "payload",
+            "bytes": 298824,
+            "sha256": "a971b69465ca0da8454713ae402728116f715d942d2831df783e4ba6b308b6a8"
+          },
+          {
+            "name": "opaque_extension",
+            "start": 2356536,
+            "end": 2359296,
+            "kind": "opaque",
+            "bytes": 2760,
+            "sha256": "e42b6bb595855cefeda4070920c7df224e81dcdc3c9244417b17523773aca2cc"
+          },
+          {
+            "name": "vbmeta",
+            "start": 2359296,
+            "end": 2361408,
+            "kind": "opaque",
+            "bytes": 2112,
+            "sha256": "6c5acf241cc26b90d15a6ed5f0b656a45d2f261a18272553e179d62ce6f7714d"
+          },
+          {
+            "name": "tail_padding",
+            "start": 2361408,
+            "end": 8388544,
+            "kind": "padding",
+            "bytes": 6027136,
+            "sha256": "7f545be5eb7be6c95f22ce3128412038adbb79d8f6827c4073003c08d86ae5e3"
+          },
+          {
+            "name": "avb_footer",
+            "start": 8388544,
+            "end": 8388608,
+            "kind": "opaque",
+            "bytes": 64,
+            "sha256": "265239c0948ff99216c342a0e643aaabe2af0b8e8dce64fb7dca071a559bcbcd"
+          }
+        ],
+        "avb": {
+          "offset": 2359296,
+          "bytes": 2112,
+          "original_image_size": 2357320,
+          "vbmeta_sha256": "6c5acf241cc26b90d15a6ed5f0b656a45d2f261a18272553e179d62ce6f7714d",
+          "footer_sha256": "265239c0948ff99216c342a0e643aaabe2af0b8e8dce64fb7dca071a559bcbcd",
+          "hash_descriptors": [
+            {
+              "partition": "dtbo",
+              "image_size": 2357320,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "4de9c862e1714aabebe38c7af19ffb37c1c1f6a15ab31ca162f13b7e53fe46fd",
+              "computed_digest": "4de9c862e1714aabebe38c7af19ffb37c1c1f6a15ab31ca162f13b7e53fe46fd",
+              "matches": true,
+              "extent_matches_footer": true,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": true,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "dtb_contents_interpreted": false
+      },
+      "lossless_inventory_control": {
+        "byte_identical": true,
+        "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34",
+        "opaque_bytes_preserved": true,
+        "modified_payloads_supported": false
+      }
+    }
+  },
+  "magisk": {
+    "repository": "https://github.com/topjohnwu/Magisk",
+    "release": "v30.7",
+    "commit": "e8a58776f1d7bdf852072ad0baa6eceb9a1e4aac",
+    "asset": "app-debug.apk",
+    "apk": {
+      "bytes": 25278536,
+      "sha256": "40729525e298a11dad6e13586a29efa48a48e97cbf00203798e8047d1c710cb2"
+    },
+    "host_binary": {
+      "bytes": 1290792,
+      "sha256": "39c5278f3e8dcac26a507f37c1a8db02c53472bc4702411dc455d67332763946"
+    },
+    "bootimg_cpp_blob": "d5a4e3f2dd8c325d018e7074be1172dd92ea8825"
+  },
+  "toolchain_candidate": {
+    "repository": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86",
+    "commit": "f71cc7fa68ac644595257d6fdebc2e543cb7041c",
+    "directory": "clang-r383902",
+    "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+    "archive": {
+      "bytes": 342332211,
+      "sha256": "3e26bc04c15874724ce4236cfe5e3dc9fb58be8efee50fa3bc0ff6b14896d351"
+    },
+    "llvm_source": "b397f81060ce6d701042b782172ed13bee898b79",
+    "version": "Android (6443078 based on r383902) clang version 11.0.1",
+    "executables": {
+      "clang": {
+        "bytes": 2967775,
+        "sha256": "c3d0831fad23a7a73d41b66aad9cb7dc5f8fc09943dc90d473b06bd2521fa907"
+      },
+      "clang.real": {
+        "bytes": 65789456,
+        "sha256": "0b6a5b9293156103aa5e03ee1f75470b2cb70468f78cbf94f486bac9b783a7e9"
+      },
+      "ld.lld": {
+        "bytes": 35493584,
+        "sha256": "c8b3b0e4d4be9c9098034388d54bca4116fee62ae0751f7ee1ce24401495dc57"
+      }
+    },
+    "version_observed": true,
+    "full_kernel_build_completed": false
+  },
+  "analysis_completed": true,
+  "a0_complete": false,
+  "physical_action_authorized": false,
+  "source": {
+    "version": "5.4.242",
+    "members": {
+      "Makefile": {
+        "bytes": 65723,
+        "sha256": "9021bc5a2bf11176af99ec6979e87729aa6084272c38e1c7f6215794661b2ab3"
+      },
+      "arch/arm64/Makefile": {
+        "bytes": 6106,
+        "sha256": "df39efd244834e9f36ce0784201d0f570c336d0a9d5f121944d3a79ec3b4955f"
+      },
+      "arch/arm64/configs/exynos2100-p3sxxx_defconfig": {
+        "bytes": 202353,
+        "sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+      },
+      "arch/arm64/kernel/head.S": {
+        "bytes": 28272,
+        "sha256": "3ed01797b2e3a3060aa3177f09ae0c414665b78b50a2f15f68a4665a2d59f73e"
+      },
+      "arch/arm64/kernel/vmlinux.lds.S": {
+        "bytes": 6576,
+        "sha256": "a5c3a8fe52b5438fb45fc48304a4608885d098232d3087a3eb69f6f4085245ab"
+      },
+      "gki/abi_symbollist.raw": {
+        "bytes": 100827,
+        "sha256": "d4b2a906fa9ffc9fab9e1d3e463a2034b0386268d13c57401fc9db6fb1680f20"
+      },
+      "include/asm-generic/vmlinux.lds.h": {
+        "bytes": 31548,
+        "sha256": "5340d48b578a568e03ee4b7611074d88599ddc67aac9c1eeb14a14e2d3126f86"
+      },
+      "scripts/clang-android.sh": {
+        "bytes": 108,
+        "sha256": "8166044fa5eeec7f52a1462629f5c722cf109cf2abb262b55eb52b85d9706bb4"
+      },
+      "scripts/link-vmlinux.sh": {
+        "bytes": 9953,
+        "sha256": "ca4a90a665e7f6913f13f93aa999f8c499beacb48bf53480a05cd9cdc2a8385c"
+      }
+    },
+    "stock_ikconfig": {
+      "bytes": 203018,
+      "sha256": "55dde3bb7c52e99eccdb82b925a4b831c03fd32a19a2b64bdf7bda993e92a2e1",
+      "selected_settings": {
+        "CONFIG_EFI": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y"
+      }
+    },
+    "config_differences": [
+      {
+        "key": "CONFIG_KMI_SYMBOL_LISTS",
+        "source_value_sha256": null,
+        "stock_value_sha256": "14ef0943f13042a3a6ed1051e0ff589b581053e78a6e83b8c7c375fd09f4859f"
+      },
+      {
+        "key": "CONFIG_UNUSED_KSYMS_WHITELIST",
+        "source_value_sha256": "c01db76d1a0292f570b9568a03464878bdd3140de66da6973bd6f409e58533e6",
+        "stock_value_sha256": "6e52811a9f0663015c5c8205cfea18323f56aef761ec2169d537f4a24b9e4f21"
+      }
+    ],
+    "entry_source": "arch/arm64/kernel/head.S",
+    "entry_source_lines": {
+      "ENTRY(stext)": 113,
+      "bl\tpreserve_boot_args": 114,
+      "bl\tel2_setup": 115
+    },
+    "source_entry_order": [
+      "EFI MZ/add x13,x18,#0x16",
+      "b stext",
+      "ENTRY(stext)",
+      "bl preserve_boot_args",
+      "bl el2_setup"
+    ],
+    "final_elf_checked": false,
+    "capture_implemented": false,
+    "stock_binary_equivalence_established": false,
+    "module_abi_established": false
+  },
+  "magisk_no_change_gate_passed": false,
+  "remaining_gates": [
+    "compatible modified-image packer",
+    "complete kernel build profile",
+    "module/KMI compatibility",
+    "final ELF section/entry proof (A1)",
+    "ramdisk and read-policy delivery",
+    "installation and recovery route (A3)"
+  ]
+}

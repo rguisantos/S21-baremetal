@@ -1,0 +1,117 @@
+{
+  "schema": "S21-CAPTURE-A0-PINS-v1",
+  "firmware": "G998BXXSJHZC2",
+  "stock_lz4": {
+    "boot.img.lz4": {
+      "bytes": 20255202,
+      "sha256": "cb5f76269c71f5d643afdcda57ff1561b708b9fcb724876b59b0d407abb3477e"
+    },
+    "vendor_boot.img.lz4": {
+      "bytes": 12320188,
+      "sha256": "179c36e8fbcd9163f800dd9ab5a169cbbed702f1390bd45f05ed602b3916e736"
+    },
+    "dtbo.img.lz4": {
+      "bytes": 665696,
+      "sha256": "d2887b046ae6d533a8be830f30a483b6bc80cde772a07623573f6582ce24b672"
+    }
+  },
+  "stock_raw": {
+    "boot.img": {
+      "bytes": 67108864,
+      "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1"
+    },
+    "vendor_boot.img": {
+      "bytes": 67108864,
+      "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+    },
+    "dtbo.img": {
+      "bytes": 8388608,
+      "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34"
+    }
+  },
+  "samsung_source_archive": {
+    "bytes": 209261574,
+    "sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2"
+  },
+  "source_members": {
+    "Makefile": {
+      "bytes": 65723,
+      "sha256": "9021bc5a2bf11176af99ec6979e87729aa6084272c38e1c7f6215794661b2ab3"
+    },
+    "arch/arm64/Makefile": {
+      "bytes": 6106,
+      "sha256": "df39efd244834e9f36ce0784201d0f570c336d0a9d5f121944d3a79ec3b4955f"
+    },
+    "arch/arm64/configs/exynos2100-p3sxxx_defconfig": {
+      "bytes": 202353,
+      "sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+    },
+    "arch/arm64/kernel/head.S": {
+      "bytes": 28272,
+      "sha256": "3ed01797b2e3a3060aa3177f09ae0c414665b78b50a2f15f68a4665a2d59f73e"
+    },
+    "arch/arm64/kernel/vmlinux.lds.S": {
+      "bytes": 6576,
+      "sha256": "a5c3a8fe52b5438fb45fc48304a4608885d098232d3087a3eb69f6f4085245ab"
+    },
+    "gki/abi_symbollist.raw": {
+      "bytes": 100827,
+      "sha256": "d4b2a906fa9ffc9fab9e1d3e463a2034b0386268d13c57401fc9db6fb1680f20"
+    },
+    "include/asm-generic/vmlinux.lds.h": {
+      "bytes": 31548,
+      "sha256": "5340d48b578a568e03ee4b7611074d88599ddc67aac9c1eeb14a14e2d3126f86"
+    },
+    "scripts/clang-android.sh": {
+      "bytes": 108,
+      "sha256": "8166044fa5eeec7f52a1462629f5c722cf109cf2abb262b55eb52b85d9706bb4"
+    },
+    "scripts/link-vmlinux.sh": {
+      "bytes": 9953,
+      "sha256": "ca4a90a665e7f6913f13f93aa999f8c499beacb48bf53480a05cd9cdc2a8385c"
+    }
+  },
+  "magisk": {
+    "repository": "https://github.com/topjohnwu/Magisk",
+    "release": "v30.7",
+    "commit": "e8a58776f1d7bdf852072ad0baa6eceb9a1e4aac",
+    "asset": "app-debug.apk",
+    "apk": {
+      "bytes": 25278536,
+      "sha256": "40729525e298a11dad6e13586a29efa48a48e97cbf00203798e8047d1c710cb2"
+    },
+    "host_binary": {
+      "bytes": 1290792,
+      "sha256": "39c5278f3e8dcac26a507f37c1a8db02c53472bc4702411dc455d67332763946"
+    },
+    "bootimg_cpp_blob": "d5a4e3f2dd8c325d018e7074be1172dd92ea8825"
+  },
+  "toolchain": {
+    "repository": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86",
+    "commit": "f71cc7fa68ac644595257d6fdebc2e543cb7041c",
+    "directory": "clang-r383902",
+    "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+    "archive": {
+      "bytes": 342332211,
+      "sha256": "3e26bc04c15874724ce4236cfe5e3dc9fb58be8efee50fa3bc0ff6b14896d351"
+    },
+    "llvm_source": "b397f81060ce6d701042b782172ed13bee898b79",
+    "version": "Android (6443078 based on r383902) clang version 11.0.1",
+    "executables": {
+      "clang": {
+        "bytes": 2967775,
+        "sha256": "c3d0831fad23a7a73d41b66aad9cb7dc5f8fc09943dc90d473b06bd2521fa907"
+      },
+      "clang.real": {
+        "bytes": 65789456,
+        "sha256": "0b6a5b9293156103aa5e03ee1f75470b2cb70468f78cbf94f486bac9b783a7e9"
+      },
+      "ld.lld": {
+        "bytes": 35493584,
+        "sha256": "c8b3b0e4d4be9c9098034388d54bca4116fee62ae0751f7ee1ce24401495dc57"
+      }
+    },
+    "version_observed": true,
+    "full_kernel_build_completed": false
+  }
+}
