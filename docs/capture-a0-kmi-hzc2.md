@@ -129,3 +129,7 @@ do packer permanece independente. A1 e a prova no ELF/Image final continuam
 pendentes; nenhuma decisão OEM ou ação no telefone foi solicitada/executada.
 
 [Validação desta rodada](references/capture-a0-kmi-validation-20261101.json).
+
+## Continuação — repetibilidade e cobertura AVB, 01/11/2026
+
+A [análise delimitada do repack](capture-a0-repack-extent-hzc2.md) reproduziu saídas idênticas em três processos por imagem, alterando os mtimes dos arquivos extraídos. A extensão omitida está dentro do hash, mas o rodapé AVB está fora. As diferenças internas são 584 bytes em boot e 651 em vendor_boot; os demais bytes alterados ficam fora. O controle sem alterações exige preservação integral; payload modificado exige metadados coerentes e rota de aceitação demonstrada. A0 continua aberto.

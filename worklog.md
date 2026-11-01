@@ -3972,3 +3972,13 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   autorização OEM ou alegação de prova no ELF final. Revisão automática do
   head exato e CI permanecem gates antes do merge.
 - Conferidos 1603 links locais Markdown do projeto, sem ausentes.
+
+## 2026-11-01 — A0: repack repetível e limites exatos do hash
+
+- Continuação do PR #76, base `ffc2026`, com [análise focada](docs/capture-a0-repack-extent-hzc2.md). Três processos por imagem com mtimes 1/1700000000/1790000000 produziram bytes idênticos para boot e vendor_boot, nos hashes já observados em A0.
+- Fonte Magisk v30.7 fixada por commit/blob conferida: caudas reconhecidas são reconstruídas, vbmeta copiado e campos do footer atualizados. Boot preserva SEANDROIDENFORCE (16 bytes) e perde o bloco seguinte de 784 bytes; vendor perde bloco de 784 bytes e move vbmeta. Ambos os blocos originais começam com SignerVer03; formato completo/assinatura não foram decodificados.
+- Contagem em coordenadas originais: boot 584 dentro + 2 fora do hash; vendor 651 dentro + 2823 fora. O rodapé AVB de 64 bytes está fora de ambos os intervalos; vbmeta vendor movido sobrepõe 784 bytes do intervalo original. Não há evidência de aleatoriedade nessa rota.
+- Runner exige binário/inputs fixados antes da execução nativa, separa extents e mantém o gate reprovado. 12 controles sintéticos novos + 55 anteriores passaram; CI inclui o novo conjunto. Relatório e validação publicados sem firmware.
+- Preservar bytes originais é o controle sem alterações. Kernel modificado exige metadados coerentes e rota de aceitação demonstrada; zerar o bloco coberto também invalidaria o hash original. Nenhum packer de payload modificado foi entregue, nem assinatura/compatibilidade de módulo demonstrada.
+- A0 permanece aberto: build/KMI/módulos, CRCs e perfil completo, além do contêiner. A1 pendente. Nenhuma operação no telefone. Revisão automática do head exato e CI são gates antes do merge.
+- Relatório reproduzido byte a byte em segunda execução; 1622 links locais Markdown conferidos, sem ausentes.

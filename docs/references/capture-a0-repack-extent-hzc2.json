@@ -1,0 +1,326 @@
+{
+  "schema": "S21-CAPTURE-A0-REPACK-v1",
+  "magisk": {
+    "repository": "https://github.com/topjohnwu/Magisk",
+    "release": "v30.7",
+    "commit": "e8a58776f1d7bdf852072ad0baa6eceb9a1e4aac",
+    "asset": "app-debug.apk",
+    "apk": {
+      "bytes": 25278536,
+      "sha256": "40729525e298a11dad6e13586a29efa48a48e97cbf00203798e8047d1c710cb2"
+    },
+    "host_binary": {
+      "bytes": 1290792,
+      "sha256": "39c5278f3e8dcac26a507f37c1a8db02c53472bc4702411dc455d67332763946"
+    },
+    "bootimg_cpp_blob": "d5a4e3f2dd8c325d018e7074be1172dd92ea8825"
+  },
+  "trial_mtimes": [
+    1,
+    1700000000,
+    1790000000
+  ],
+  "unpack_options": [
+    "-n",
+    "-h"
+  ],
+  "repack_options": [
+    "-n"
+  ],
+  "native_environment_keys": [
+    "PATH",
+    "LC_ALL"
+  ],
+  "images": {
+    "boot.img": {
+      "trials": [
+        {
+          "input_file_mtime": 1,
+          "output_sha256": "e121314da768a7d31574ff6d4693c6025de81fde7817708d1e6727c2fb756067",
+          "byte_identical_to_first": true
+        },
+        {
+          "input_file_mtime": 1700000000,
+          "output_sha256": "e121314da768a7d31574ff6d4693c6025de81fde7817708d1e6727c2fb756067",
+          "byte_identical_to_first": true
+        },
+        {
+          "input_file_mtime": 1790000000,
+          "output_sha256": "e121314da768a7d31574ff6d4693c6025de81fde7817708d1e6727c2fb756067",
+          "byte_identical_to_first": true
+        }
+      ],
+      "all_trials_byte_identical": true,
+      "first_trial_analysis": {
+        "original_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+        "repacked_sha256": "e121314da768a7d31574ff6d4693c6025de81fde7817708d1e6727c2fb756067",
+        "original_hash_extent": [
+          0,
+          30180128
+        ],
+        "original_footer_extent": [
+          67108800,
+          67108864
+        ],
+        "footer_inside_original_hash": false,
+        "changed_inside_original_hash": 584,
+        "changed_outside_original_hash": 2,
+        "changed_bytes": 586,
+        "regions_in_original_coordinates": [
+          {
+            "name": "android_body",
+            "start": 0,
+            "end": 30179328,
+            "changed_bytes": 0
+          },
+          {
+            "name": "signed_extension",
+            "start": 30179328,
+            "end": 30180128,
+            "changed_bytes": 584
+          },
+          {
+            "name": "gap_before_original_vbmeta",
+            "start": 30180128,
+            "end": 30183424,
+            "changed_bytes": 0
+          },
+          {
+            "name": "original_vbmeta",
+            "start": 30183424,
+            "end": 30185536,
+            "changed_bytes": 0
+          },
+          {
+            "name": "tail_padding",
+            "start": 30185536,
+            "end": 67108800,
+            "changed_bytes": 0
+          },
+          {
+            "name": "avb_footer",
+            "start": 67108800,
+            "end": 67108864,
+            "changed_bytes": 2
+          }
+        ],
+        "header_and_payloads_identical": true,
+        "vbmeta_blob_identical": true,
+        "original_vbmeta_extent": [
+          30183424,
+          30185536
+        ],
+        "repacked_vbmeta_extent": [
+          30183424,
+          30185536
+        ],
+        "repacked_vbmeta_overlap_original_hash": 0,
+        "original_extension": {
+          "bytes": 800,
+          "original_seandroid_prefix_bytes": 16,
+          "seandroid_prefix_unchanged": true,
+          "remainder_bytes": 784,
+          "remainder_sha256": "0ffbc83a57359fd594ba558e33f970acac601d2c25818b8c3f8da9b30255223e",
+          "remainder_starts_signerver03": true,
+          "remainder_replaced_entirely_by_zero": true
+        },
+        "original_avb": {
+          "offset": 30183424,
+          "bytes": 2112,
+          "original_image_size": 30180128,
+          "vbmeta_sha256": "22ff32cbc9c2270d0789683b69a9e11f5ed36111503c9caa048699775cc476c4",
+          "footer_sha256": "32ec6fae250cd69987691aadb5c9bcae9906e7c181662b509c1bfed153c237ad",
+          "hash_descriptors": [
+            {
+              "partition": "boot",
+              "image_size": 30180128,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "computed_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "matches": true,
+              "extent_matches_footer": true,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": true,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "repacked_avb": {
+          "offset": 30183424,
+          "bytes": 2112,
+          "original_image_size": 30179344,
+          "vbmeta_sha256": "22ff32cbc9c2270d0789683b69a9e11f5ed36111503c9caa048699775cc476c4",
+          "footer_sha256": "47b55ebdfd4e996bf3c5c2405de784fff9ec969e4b1f87fac97e2dab8ef4a0da",
+          "hash_descriptors": [
+            {
+              "partition": "boot",
+              "image_size": 30180128,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "49151546375204f3e857954d061f4d341bfc2a6e0cafeb392c796b2ff60f2ffd",
+              "computed_digest": "feee6e004a409bda86993c2044ffb88ba03e1aa4e1740f97adc6a0b0c28cf41b",
+              "matches": false,
+              "extent_matches_footer": false,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": false,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "no_change_gate_passed": false,
+        "signature_verified": false,
+        "physical_acceptance_established": false
+      }
+    },
+    "vendor_boot.img": {
+      "trials": [
+        {
+          "input_file_mtime": 1,
+          "output_sha256": "76b01725c3a845cca53e0f54b9a8947dbcebfb6eff9b6495928142f96fa63cef",
+          "byte_identical_to_first": true
+        },
+        {
+          "input_file_mtime": 1700000000,
+          "output_sha256": "76b01725c3a845cca53e0f54b9a8947dbcebfb6eff9b6495928142f96fa63cef",
+          "byte_identical_to_first": true
+        },
+        {
+          "input_file_mtime": 1790000000,
+          "output_sha256": "76b01725c3a845cca53e0f54b9a8947dbcebfb6eff9b6495928142f96fa63cef",
+          "byte_identical_to_first": true
+        }
+      ],
+      "all_trials_byte_identical": true,
+      "first_trial_analysis": {
+        "original_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+        "repacked_sha256": "76b01725c3a845cca53e0f54b9a8947dbcebfb6eff9b6495928142f96fa63cef",
+        "original_hash_extent": [
+          0,
+          12415760
+        ],
+        "original_footer_extent": [
+          67108800,
+          67108864
+        ],
+        "footer_inside_original_hash": false,
+        "changed_inside_original_hash": 651,
+        "changed_outside_original_hash": 2823,
+        "changed_bytes": 3474,
+        "regions_in_original_coordinates": [
+          {
+            "name": "android_body",
+            "start": 0,
+            "end": 12414976,
+            "changed_bytes": 0
+          },
+          {
+            "name": "signed_extension",
+            "start": 12414976,
+            "end": 12415760,
+            "changed_bytes": 651
+          },
+          {
+            "name": "gap_before_original_vbmeta",
+            "start": 12415760,
+            "end": 12419072,
+            "changed_bytes": 1132
+          },
+          {
+            "name": "original_vbmeta",
+            "start": 12419072,
+            "end": 12421184,
+            "changed_bytes": 1688
+          },
+          {
+            "name": "tail_padding",
+            "start": 12421184,
+            "end": 67108800,
+            "changed_bytes": 0
+          },
+          {
+            "name": "avb_footer",
+            "start": 67108800,
+            "end": 67108864,
+            "changed_bytes": 3
+          }
+        ],
+        "header_and_payloads_identical": true,
+        "vbmeta_blob_identical": true,
+        "original_vbmeta_extent": [
+          12419072,
+          12421184
+        ],
+        "repacked_vbmeta_extent": [
+          12414976,
+          12417088
+        ],
+        "repacked_vbmeta_overlap_original_hash": 784,
+        "original_extension": {
+          "bytes": 784,
+          "original_seandroid_prefix_bytes": 0,
+          "seandroid_prefix_unchanged": true,
+          "remainder_bytes": 784,
+          "remainder_sha256": "c2e221c22f0c2b853fc6b924939c298ec6dbb130ea3a2872850727c3365435c5",
+          "remainder_starts_signerver03": true,
+          "remainder_replaced_entirely_by_zero": false
+        },
+        "original_avb": {
+          "offset": 12419072,
+          "bytes": 2112,
+          "original_image_size": 12415760,
+          "vbmeta_sha256": "d1ed9c6958a7a8acf6648d05e5e6c7e248732d798f071d4781f6360fedebc722",
+          "footer_sha256": "48a6e30c1dcf5ee566d2cd50e7281e1626a188b454bd1cf2a501e40ccd50be55",
+          "hash_descriptors": [
+            {
+              "partition": "vendor_boot",
+              "image_size": 12415760,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "computed_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "matches": true,
+              "extent_matches_footer": true,
+              "extent_before_vbmeta": true
+            }
+          ],
+          "all_hashes_match": true,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "repacked_avb": {
+          "offset": 12414976,
+          "bytes": 2112,
+          "original_image_size": 12414976,
+          "vbmeta_sha256": "d1ed9c6958a7a8acf6648d05e5e6c7e248732d798f071d4781f6360fedebc722",
+          "footer_sha256": "57a3050c5c10bc6b37f600cb6380970d88010dcedb129eeb6bfab8c7767db387",
+          "hash_descriptors": [
+            {
+              "partition": "vendor_boot",
+              "image_size": 12415760,
+              "algorithm": "sha256",
+              "flags": 0,
+              "stored_digest": "ef3455e744fcc1ac8b53fc57bfe1751e9dd04afc02093db5960fb24fb5524526",
+              "computed_digest": "ce342293f118bccd17208ff0d20c42d62abd62058a23807f6bd9a1cf81e26643",
+              "matches": false,
+              "extent_matches_footer": false,
+              "extent_before_vbmeta": false
+            }
+          ],
+          "all_hashes_match": false,
+          "signature_verified": false,
+          "trusted_key_established": false
+        },
+        "no_change_gate_passed": false,
+        "signature_verified": false,
+        "physical_acceptance_established": false
+      }
+    }
+  },
+  "a0_complete": false,
+  "modified_payload_packer_implemented": false,
+  "physical_action": false,
+  "all_no_change_gates_passed": false
+}

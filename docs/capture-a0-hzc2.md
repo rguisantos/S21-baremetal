@@ -187,3 +187,7 @@ o ELF final será seu próprio gate. Ramdisk/política e instalação/restauraç
 continuam pendentes; recovery/vbmeta stock separados não foram resolvidos
 nesta rodada. Nenhum acesso negado no shell foi repetido. A decisão OEM e
 as operações no aparelho continuam fora desta execução offline.
+
+## Continuação — repetibilidade e cobertura AVB, 01/11/2026
+
+A [análise delimitada do repack](capture-a0-repack-extent-hzc2.md) reproduziu saídas idênticas em três processos por imagem, alterando os mtimes dos arquivos extraídos. A extensão omitida está dentro do hash, mas o rodapé AVB está fora. As diferenças internas são 584 bytes em boot e 651 em vendor_boot; os demais bytes alterados ficam fora. O controle sem alterações exige preservação integral; payload modificado exige metadados coerentes e rota de aceitação demonstrada. A0 continua aberto.
