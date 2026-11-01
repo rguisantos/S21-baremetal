@@ -200,3 +200,5 @@ Continuação de 30/10: [host/buffers UFS](lk-ufs-host-memory-hzc2.md) têm publ
 Continuação de 30/10: o [pool nominal do heap UFS](lk-heap-pool-hzc2.md) foi delimitado e o alocador executado em QEMU com entradas fornecidas. Essa memória é usada pelo LK; não é RAM livre para a sonda nem prova de tradução física, DMA ou captura no aparelho.
 
 Continuação de 30/10: a [construção de tradução do pool](lk-pool-mmu-hzc2.md) foi delimitada no perfil EL1/4KiB e executada em QEMU sem instalar as tabelas. Isso não é captura de registradores/tabelas do S21 nem identifica RAM livre, DMA coerente ou entrada/captura do diagnóstico físico.
+
+Continuação de31/10: a [entrada LK e o getter TG0 originais](lk-entry-granule-hzc2.md) foram ensaiados em QEMU. EL2h→EL1h preserva o TCR fornecido e substitui X0 por SP; EL1t permanece EL1t. Isso delimita o helper inicial, sem adquirir o EL/TCR final do kernel, o granule físico ou o contrato DMA.

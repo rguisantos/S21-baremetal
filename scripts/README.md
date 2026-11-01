@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+A [entrada LK e o granule herdado](../docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
+
 O [produtor local do magic DVFS](../docs/newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
 
 A [construção da tradução do pool UFS](../docs/lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
@@ -298,3 +300,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 
 - `inspect_newtime_dmc_magic_hzc2.py` / `test_newtime_dmc_magic.py`: produtor local de0xabcd1234, campainha, poll com limpeza externa e continuação−232; 22 testes e112 palavras A64, com rota Thumb herdada. [Escopo](../docs/newtime-dmc-magic-hzc2.md).
 - `inspect_flop_acpm_reference.py` / `test_flop_acpm_reference.py`: oito fontes fixadas, probe C seguro de ABI SRAM, mailbox e namespace ECT; 14 testes. [Escopo](../docs/flop-acpm-reference.md).
+
+- `inspect_lk_entry_granule.py` / `test_lk_entry_granule.py` / `emulate_lk_entry_granule_qemu.py`: entrada por EL, getter TG0 original e censo limitado de writers TCR_EL1; 131 palavras GNU,14 testes,24 entradas e48 chamadas do getter. [Escopo](../docs/lk-entry-granule-hzc2.md).

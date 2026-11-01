@@ -55,6 +55,10 @@ jobs:
         run: python3 scripts/test_lk_heap.py
       - name: Check LK pool MMU bindings and bounded table walks
         run: python3 scripts/test_lk_pool_mmu.py
+      - name: Check inherited LK granule and build the QEMU state fixture
+        run: |
+          python3 scripts/test_lk_entry_granule.py
+          make -C r8 USE_SYSTEM_TOOLS=1 BUILD=build/entry-state-ci build/entry-state-ci/lk_entry_state.bin
       - name: Check DMC magic publisher and ACPM reference contracts
         run: |
           python3 scripts/test_newtime_dmc_magic.py
