@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+O [inventário de módulos stock](capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; nenhum Module.symvers candidato foi comparado. A0 continua aberto para build, compatibilidade e contêiner.
+
 A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
 
 O [A0 offline HZC2](capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.

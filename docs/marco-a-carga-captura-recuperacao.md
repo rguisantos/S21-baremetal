@@ -287,3 +287,7 @@ registra os ensaios offline posteriores; A1–A5 não foram executados.
 ## Continuação — repetibilidade e cobertura AVB, 01/11/2026
 
 A [análise delimitada do repack](capture-a0-repack-extent-hzc2.md) reproduziu saídas idênticas em três processos por imagem, alterando os mtimes dos arquivos extraídos. A extensão omitida está dentro do hash, mas o rodapé AVB está fora. As diferenças internas são 584 bytes em boot e 651 em vendor_boot; os demais bytes alterados ficam fora. O controle sem alterações exige preservação integral; payload modificado exige metadados coerentes e rota de aceitação demonstrada. A0 continua aberto.
+
+## Continuação — requisitos de módulos stock, 01/11/2026
+
+O [inventário do vendor ramdisk](capture-a0-modules-hzc2.md) agora identifica 274 módulos reais e 2763 nomes com CRC exigido. A extração de todos os 13995 registros foi conferida com GNU readelf. Isso fecha a identificação dos requisitos nesse conjunto, sem observar módulos carregados ou comparar um build candidato. O próximo passo é produzir o perfil completo e Module.symvers da combinação kernel/módulos; A0 permanece aberto.
