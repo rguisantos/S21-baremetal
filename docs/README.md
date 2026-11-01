@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
+
 O [caminho candidato IOCC do UFS](lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.

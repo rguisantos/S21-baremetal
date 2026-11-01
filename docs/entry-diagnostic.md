@@ -194,3 +194,5 @@ de escrever não estabelece por si só um carregamento Samsung funcional.
 As constantes de TCR foram conferidas nos arquivos do Kernel.tar.gz recebido:
 `arch/arm64/include/asm/kvm_arm.h` (TCR_EL2_RES1, PS_40B) e
 `arch/arm64/include/asm/pgtable-hwdef.h` (EPD1, granularidade e cacheability).
+
+Continuação de31/10/2026: a [proposta cooperativa em Linux](marco-a-carga-captura-recuperacao.md) exige um produtor e leitor novos, com captura e exportação no mesmo boot. Esta sonda WFE e S21ENTRY v1 permanecem inalterados; ADB não passa a estar disponível enquanto ela está parada.
