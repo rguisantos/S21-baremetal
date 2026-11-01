@@ -16,6 +16,15 @@ permanece independente: cabeçalho/código mais registro S21ENTRY v1 de
 128 bytes, seguida de WFE. Ela não passa a iniciar Android, retornar ao LK
 ou transmitir bytes pela existência desta proposta.
 
+## Continuação A0 — 31/10/2026
+
+O [inventário e a fonte candidata HZC2](capture-a0-hzc2.md) agora estão
+fixados por hash, incluindo o Clang correspondente. A0 permanece parcial:
+o round-trip magiskboot falha mesmo sem alterar payload, com hashes AVB
+inválidos. Build/KMI/módulos também seguem abertos. A1 não foi iniciado.
+A continuação `stext` foi localizada no fonte Samsung; seção, branches e
+ordem precisam de teste automatizado no ELF final, sem inferência a partir de C.
+
 ## Decisão e condições atuais
 
 | Item | Estado desta proposta |
@@ -262,9 +271,11 @@ orientar a adaptação posterior, mas não substitui o ensaio standalone.
 O Marco B continua exigindo FDT final/memória, entrada compatível e
 permissões GIC/timer, primeiro em uma CPU. O dual-boot continua posterior.
 
-**Próxima entrega concreta:** especificar e implementar A1 em laboratório,
-com fonte de referência escolhida em A0, sem operação no telefone. Falta de
-fonte/build compatível é motivo para parar e registrar o bloqueio de A0,
-não para voltar automaticamente a novas rodadas de engenharia reversa.
+**Próxima entrega concreta:** fechar as lacunas de build/KMI/módulos e de
+integridade do contêiner em A0. Só então implementar A1 em laboratório, com
+prova automatizada do ELF/continuação escolhida, sem operação no telefone.
+O bloqueio nomeado não reabre automaticamente outras frentes de engenharia reversa.
 
-[Validação documental desta entrega](references/marco-a-proposal-review-20261031.json). Os ensaios A0–A5 propostos não foram executados.
+[Validação documental original](references/marco-a-proposal-review-20261031.json),
+referente à versão entregue no PR #74. A [continuação A0](capture-a0-hzc2.md)
+registra os ensaios offline posteriores; A1–A5 não foram executados.

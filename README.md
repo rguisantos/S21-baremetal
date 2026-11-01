@@ -2,6 +2,8 @@
 
 A [proposta única de carga, captura e recuperação](docs/marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
 
+O [A0 offline HZC2](docs/capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.
+
 O [caminho candidato IOCC do UFS](docs/lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.

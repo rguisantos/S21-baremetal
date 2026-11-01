@@ -3897,3 +3897,40 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   fontes executáveis, nem repetidos ensaios de firmware/telefone.
   Revisão automática do head exato e CI continuam requisitos antes do merge.
 - Conferidos 1576 links locais Markdown do projeto, nenhum ausente.
+
+
+## 2026-10-31 — A0: fonte candidata HZC2 e round-trip stock reprovado
+
+- Continuação da proposta cooperativa do PR #74, base `ce93eb1`.
+  [A0 documentado](docs/capture-a0-hzc2.md), sem iniciar A1 nem operações
+  no telefone. NEWTIME/DMC/ASV, XNU e SMP seguem pausados.
+- Recuperados os quatro inputs privados por identidade/hash: boot,
+  vendor_boot, dtbo e arquivo Samsung. Makefile 5.4.242 e defconfig p3s
+  fixados; IKCONFIG do kernel stock difere em duas chaves de build/KMI,
+  com valores privados publicados apenas como hashes. Nove membros da
+  fonte, incluindo linker/entrada/whitelist, selecionados sem extração geral.
+- Clang AOSP 11.0.1/r383902 build6443078 localizado em commit fixo,
+  arquivo e executáveis conferidos; --version observado e smoke C produziu
+  ELF AArch64. Perfil completo GNU/compat32, KMI, módulos e build p3s abertos.
+  Flop 5.4.304/Clang23 permanece referência, sem rodar seus scripts.
+- Entrada primária localizada em head.S: header EFI → stext113 →
+  preserve_boot_args114 → el2_setup115. Não há patch ou PC final da cápsula.
+  A1 exigirá teste automatizado no ELF/Image para seção PROGBITS retida,
+  exclusão BSS/init, bytes carregados, relocações e branches/ordem reais.
+- Runner novo usa APK Magisk v30.7 conferido contra asset oficial, ambiente
+  reduzido e diretório novo. Inventário completo e hashes AVB originais
+  conferidos. Unpack vendor retorna3 com sucesso. Repack sem alterações
+  muda586/3474 bytes de boot/vendor_boot e invalida ambos os hash descriptors,
+  embora headers/payloads/vbmeta sejam idênticos; A0 fica bloqueado.
+- Controle independente conserva todos os bytes opacos e recompõe os três
+  arquivos byte a byte; não aceita payload modificado nem substitui um
+  packer compatível. Sem verificação RSA/confiança/aceitação física.
+  [Relatório](docs/references/capture-a0-stock-hzc2.json) reproduzido byte a
+  byte em segunda execução, com retorno2 esperado para gate reprovado.
+- 32 testes sintéticos passaram e foram incluídos na CI; baseline local
+  fresca9/9 passou. [Validação](docs/references/capture-a0-validation-20261031.json)
+  registra resultados e smoke do Clang. Nenhuma coleta uid2000 negada repetida.
+  Próximo: fechar build/KMI/módulos e contêiner em A0 antes de avançar a A1.
+- Conferidos 1589 links locais Markdown do projeto, sem ausentes; dependências
+  externas em tools não integram essa contagem. Revisão automática do head exato
+  e CI continuam gates obrigatórios antes do merge.

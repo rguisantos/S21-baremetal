@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-31",
+  "timezone": "America/Campo_Grande",
+  "source_base": "ce93eb1c9fd1acbf9acb0ce336cc7b44c27333cc",
+  "host_tests": {
+    "command": "python3 scripts/test_capture_a0.py",
+    "tests": 32,
+    "status": "passed"
+  },
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-capture-a0",
+    "steps": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed"
+      }
+    ],
+    "status": "passed"
+  },
+  "stock_analysis": {
+    "returncode": 2,
+    "analysis_completed": true,
+    "magisk_no_change_gate_passed": false,
+    "report_sha256": "a6298e379d9cf4d62cc38399de81bc194369107032574546583408469860d7d6",
+    "second_execution_byte_identical": true,
+    "lossless_inventory_controls_passed": 3
+  },
+  "clang_smoke": {
+    "target": "aarch64-linux-gnu",
+    "compile_returncode": 0,
+    "elf_machine": 183,
+    "source_sha256": "90be2136ffbf8186d29d33a97dfbd2cc84fafe835621f84c294a0b9a32db6c54",
+    "object_sha256": "cedd5982537cacd2fd7b652a1df44ee0180fb894805cff99c9e02e5d541e0a28",
+    "full_kernel_build": false
+  },
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links": 1589,
+  "missing_local_links": []
+}

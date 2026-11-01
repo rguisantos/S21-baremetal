@@ -2,6 +2,8 @@
 
 A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
 
+O [A0 offline HZC2](capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.
+
 O [caminho candidato IOCC do UFS](lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
@@ -74,6 +76,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
+- [A0: fonte e integridade stock HZC2](capture-a0-hzc2.md): pins Samsung/Clang, IKCONFIG, round-trip Magisk reprovado por AVB e controle de inventário sem alterações.
 - [Contrato do diagnóstico Samsung](samsung-diagnostic-contract.md): matriz de carga/recuperação, condições pendentes e leitor offline de registros/capturas QEMU.
 - [Perfis de dump e encaminhamento RDX](lk-dump-export-hzc2.md): quatro regiões fixas, descritores dinâmicos e envio nominal; disponibilidade e retenção ainda pendentes.
 - [Origem da memória RDX e conclusão para a sonda](lk-rdx-memory-origin-hzc2.md): produtor `0xee370`, bancos de 16 bytes agrupados em pares, cobertura nominal da janela candidata e binding DWC3; a sonda atual não retorna cooperativamente ao LK.
