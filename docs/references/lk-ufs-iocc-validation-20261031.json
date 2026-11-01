@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-31",
+  "timezone": "America/Campo_Grande",
+  "source_base": "ef20d23ae43aafd06bd07289e87e6c9947bc3d19",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "reports": {
+    "lk-ufs-iocc-hzc2.json": "79a026d6e57affc8ff981c101e8744bed93cf0750f4ac67d496322dedb8db05f",
+    "lk-ufs-iocc-qemu-hzc2.json": "84c620f118dc3b0b55d75b747982e828c05ae78a63b28c640ab0715061ef8d3f",
+    "flop-ufs-iocc-reference.json": "17544c9179f5f1ea5ad060b8bd8f430227e091698444970712e717731610963e"
+  },
+  "three_reports_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 29,
+    "gnu_relative_targets": 9,
+    "selected_operand_checks": 29,
+    "instruction_index_sha256": "f9410c5d0c5ff7cf7ec7e7dfda91519e42b5ce55bbc4e6eea973729d4de3674a"
+  },
+  "local_graphs": 5,
+  "source_reference": {
+    "manifest": "flop-ufs-iocc-source-reference.json",
+    "manifest_sha256": "b5b7214556a17b227345bd101ac3e68c5a1725a89ac94ba84e1da27ebc729a19",
+    "files_verified": 2,
+    "git_blob_and_sha256_verified": true,
+    "driver_witnesses": 9,
+    "dts_compiled": false
+  },
+  "qemu": {
+    "cases": 32,
+    "code_placements": 2,
+    "scenarios": 8,
+    "initial_cell_profiles": 2,
+    "native_getter_reads": 84,
+    "original_code_segments_unchanged": true,
+    "getter_result_substituted": false,
+    "samsung_mmio_executed": false,
+    "table_pointer_fields_replaced_with_ram": true
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_ufs_iocc.py",
+      "tests": 12,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_flop_ufs_iocc.py",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk*.py'",
+      "tests": 365,
+      "includes_new_tests": true,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_flop*.py'",
+      "tests": 40,
+      "includes_new_tests": true,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-lk-ufs-iocc",
+      "status": "passed",
+      "summary_sha256": "ed938fa59638cd27f0e2562f34d5e7f166ebb5edc1db3479f927b1806d1d5d15",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "documentation_file_links": {
+    "checked": 1564,
+    "missing": 0,
+    "scope": "repository Markdown excluding tool dependencies and build outputs"
+  },
+  "phone_modified": false,
+  "live_iocc_acquired": false,
+  "dma_coherence_established": false,
+  "limitations": [
+    "Selected local writes only; no census of all MMIO writers or preservation after initialization.",
+    "The three getter calls read the same u32 storage at different times; producer, live value and stability remain open.",
+    "The alternate address/mask can be cross-checked against a pinned kernel reference; primary address meaning is not established by that match.",
+    "Nominal OR stores are not readback, IOCC activation, cache snooping, SMMU bypass or proof of coherent DMA.",
+    "Pinned custom-kernel source declaration/driver intent, not the stock HZC2 DTB or device register state.",
+    "DTS parser supports flattened nodes and literal u32 cells only; opaque unrelated property values are not interpreted.",
+    "Source witnesses do not build or execute kernel code; regmap/exynos_pmu_update implementations and error effects are outside this cross-check.",
+    "Only the alternate address with query=1 is matched; unknown producer/stability can yield other table/mask combinations.",
+    "No proof of CPU/device ownership, snooping, cache freshness, SMMU/bus translation, preserved configuration or successful storage I/O.",
+    "QEMU RAM cells and modified data-table pointer fields replace Samsung MMIO; no cache/device/coherence model.",
+    "Selector, pointer pair load and RMW are executed as separate original fragments; intervening padding-control instructions and full initializer are omitted.",
+    "Debugger supplies cd31c8 storage immediately before each original getter read; mixed sequences are controls, not observed device behavior.",
+    "Null IOCC pointer is a synthetic skip control; both pinned data tables have nonzero pointers.",
+    "Guarded u32 RAM writes do not establish IOCC delivery/readback, SMMU/bus identity, ownership or successful UFS transfer."
+  ]
+}

@@ -59,6 +59,10 @@ jobs:
         run: |
           python3 scripts/test_lk_entry_granule.py
           make -C r8 USE_SYSTEM_TOOLS=1 BUILD=build/entry-state-ci build/entry-state-ci/lk_entry_state.bin
+      - name: Check LK UFS IOCC branches and pinned DTS reference parsing
+        run: |
+          python3 scripts/test_lk_ufs_iocc.py
+          python3 scripts/test_flop_ufs_iocc.py
       - name: Check DMC magic publisher and ACPM reference contracts
         run: |
           python3 scripts/test_newtime_dmc_magic.py

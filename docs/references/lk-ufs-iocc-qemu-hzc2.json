@@ -1,0 +1,582 @@
+{
+  "mode": "original_lk_ufs_iocc_fragments_qemu_ram",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_instruction_index_sha256": "f9410c5d0c5ff7cf7ec7e7dfda91519e42b5ce55bbc4e6eea973729d4de3674a",
+  "case_count": 32,
+  "cases": [
+    {
+      "case": "stable_zero",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_zero",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_two",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        2,
+        2
+      ],
+      "rmw_query": 2,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_two",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        2,
+        2
+      ],
+      "rmw_query": 2,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "primary_then_query_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "primary_then_query_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "alternate_then_query_zero",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "alternate_then_query_zero",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "zero_then_query_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "zero_then_query_one",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "other_u32_then_query_other",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        4294967295,
+        1
+      ],
+      "rmw_query": 4294967295,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "other_u32_then_query_other",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        4294967295,
+        1
+      ],
+      "rmw_query": 4294967295,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "synthetic_null_iocc_pointer",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": null,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x0",
+      "or_mask": "0x0",
+      "iocc_pointer_nonzero": false,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "synthetic_null_iocc_pointer",
+      "laboratory_delta": "0x3ff14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": null,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0x0",
+      "iocc_pointer_nonzero": false,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_zero",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_zero",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_two",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        2,
+        2
+      ],
+      "rmw_query": 2,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "stable_two",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        2,
+        2
+      ],
+      "rmw_query": 2,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "primary_then_query_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "primary_then_query_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "alternate_then_query_zero",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "alternate_then_query_zero",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": 0,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "zero_then_query_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x300000",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "zero_then_query_one",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        0
+      ],
+      "rmw_query": 1,
+      "selected_table_relative": "0x303198",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5f0a5a4",
+      "or_mask": "0x300000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "other_u32_then_query_other",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        4294967295,
+        1
+      ],
+      "rmw_query": 4294967295,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0xc00000",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "other_u32_then_query_other",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        4294967295,
+        1
+      ],
+      "rmw_query": 4294967295,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0xc00000",
+      "iocc_pointer_nonzero": true,
+      "native_getter_reads": 3,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "synthetic_null_iocc_pointer",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": null,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0x0",
+      "phy_after": "0x1",
+      "iocc_after": "0x0",
+      "or_mask": "0x0",
+      "iocc_pointer_nonzero": false,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    },
+    {
+      "case": "synthetic_null_iocc_pointer",
+      "laboratory_delta": "0x41f14000",
+      "selection_queries": [
+        1,
+        1
+      ],
+      "rmw_query": null,
+      "selected_table_relative": "0x3038d8",
+      "initial_cell": "0xa5c0a5a4",
+      "phy_after": "0xa5c0a5a5",
+      "iocc_after": "0xa5c0a5a4",
+      "or_mask": "0x0",
+      "iocc_pointer_nonzero": false,
+      "native_getter_reads": 2,
+      "ram_guards_and_unrelated_registers_preserved": true
+    }
+  ],
+  "segments": [
+    {
+      "start": "0x10e868",
+      "end_exclusive": "0x10e878",
+      "sha256": "da358b3835bad56327e34e77ad68e3ed948f359a272b2037c227c59ff8c7985a"
+    },
+    {
+      "start": "0x10e8a4",
+      "end_exclusive": "0x10e8ac",
+      "sha256": "a7f4183c3bba5c42b3ba53101598c8dd8acbfb00b0e3da4c482f20fa803ba611"
+    },
+    {
+      "start": "0x10e8c8",
+      "end_exclusive": "0x10e8f4",
+      "sha256": "952d0b48c287ab1ea6d9d2b65d709c6557518caa0323fac1df4e719f73051bbb"
+    },
+    {
+      "start": "0x10eba8",
+      "end_exclusive": "0x10ebcc",
+      "sha256": "fe614da8b88692716e00ac7a4dc106dbfac8122b94f0ec28ce7c51863a9a1ccb"
+    },
+    {
+      "start": "0x147ea8",
+      "end_exclusive": "0x147eb4",
+      "sha256": "415909891468f10211d0303eb6269969aec55c6e22ffd710fb919f19d5c58fa7"
+    }
+  ],
+  "original_code_segments_unchanged": true,
+  "getter_result_substituted": false,
+  "samsung_mmio_executed": false,
+  "dma_coherence_established": false,
+  "limits": [
+    "QEMU RAM cells and modified data-table pointer fields replace Samsung MMIO; no cache/device/coherence model.",
+    "Selector, pointer pair load and RMW are executed as separate original fragments; intervening padding-control instructions and full initializer are omitted.",
+    "Debugger supplies cd31c8 storage immediately before each original getter read; mixed sequences are controls, not observed device behavior.",
+    "Null IOCC pointer is a synthetic skip control; both pinned data tables have nonzero pointers.",
+    "Guarded u32 RAM writes do not establish IOCC delivery/readback, SMMU/bus identity, ownership or successful UFS transfer."
+  ]
+}

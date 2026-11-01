@@ -1,0 +1,108 @@
+{
+  "mode": "pinned_flop_ufs_phy_iocc_reference",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "source_files": 2,
+  "source_manifest_sha256": "b5b7214556a17b227345bd101ac3e68c5a1725a89ac94ba84e1da27ebc729a19",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "lk_instruction_index_sha256": "f9410c5d0c5ff7cf7ec7e7dfda91519e42b5ce55bbc4e6eea973729d4de3674a",
+  "dts": {
+    "ufs_node": "/ufs@0x13100000",
+    "ufs_line": 14381,
+    "ufs_reg_cells": [
+      "0x0",
+      "0x13100000",
+      "0x200",
+      "0x0",
+      "0x13101100",
+      "0x200",
+      "0x0",
+      "0x13180000",
+      "0x8000",
+      "0x0",
+      "0x132a0000",
+      "0x100",
+      "0x0",
+      "0x13104000",
+      "0x4000",
+      "0x0",
+      "0x13108000",
+      "0x804"
+    ],
+    "dma_coherent": true,
+    "phy_isolation": {
+      "node": "/ufs@0x13100000/ufs-phy-iso",
+      "syscon_node": "/system-controller@15860000",
+      "base": "0x15860000",
+      "offset": "0x728",
+      "address": "0x15860728",
+      "mask": "0x1",
+      "value": "0x1",
+      "line": 14419
+    },
+    "iocc": {
+      "node": "/ufs@0x13100000/ufs-iocc",
+      "syscon_node": "/sysreg_hsi1_ufs@11020000",
+      "base": "0x11020000",
+      "offset": "0x700",
+      "address": "0x11020700",
+      "mask": "0x300000",
+      "value": "0x300000",
+      "line": 14425
+    }
+  },
+  "driver_witnesses": {
+    "phy_context": {
+      "line": 224,
+      "snippet": "struct ext_cxt *cxt = &ufs->cxt_phy_iso;"
+    },
+    "phy_update": {
+      "line": 226,
+      "snippet": "exynos_pmu_update(cxt->offset, cxt->mask, (en ? 1 : 0) ? cxt->val : 0);"
+    },
+    "phy_before_iocc": {
+      "line": 442,
+      "snippet": "exynos_ufs_ctrl_phy_pwr(ufs, true);"
+    },
+    "iocc_context": {
+      "line": 445,
+      "snippet": "for (i = EXT_SYSREG, p = &ufs->regmap_sys, q = &ufs->cxt_iocc;"
+    },
+    "iocc_update": {
+      "line": 454,
+      "snippet": "regmap_update_bits(*p, q->offset, q->mask, q->val);"
+    },
+    "syscon_lookup": {
+      "line": 2234,
+      "snippet": "syscon_regmap_lookup_by_phandle(np, ufs_ext_blks[i][0]);"
+    },
+    "dma_flag": {
+      "line": 2213,
+      "snippet": "bool is_dma_coherent = !!of_find_property(dev->of_node, \"dma-coherent\", NULL);"
+    },
+    "disable_without_flag": {
+      "line": 2279,
+      "snippet": "if (!is_dma_coherent) { ufs->cxt_iocc.val = 0;"
+    },
+    "context_tokens": {
+      "line": 78,
+      "snippet": "{\"samsung,sysreg-phandle\", \"ufs-iocc\"}"
+    }
+  },
+  "match": {
+    "phy_bypass": "LK OR1 at15860728 agrees with reference PHY isolation bypass control",
+    "alternate_iocc": "alternate table11020700 with independent query=1 OR300000 agrees with reference enabled IOCC bits",
+    "primary_iocc_meaning_established": false,
+    "disable": "driver clears its IOCC mask when dma-coherent is absent; the selected LK fragment has OR/skip paths, no equivalent clear",
+    "query_stability_established": false
+  },
+  "kernel_or_firmware_executed": false,
+  "live_iocc_acquired": false,
+  "dma_coherence_established": false,
+  "limits": [
+    "Pinned custom-kernel source declaration/driver intent, not the stock HZC2 DTB or device register state.",
+    "DTS parser supports flattened nodes and literal u32 cells only; opaque unrelated property values are not interpreted.",
+    "Source witnesses do not build or execute kernel code; regmap/exynos_pmu_update implementations and error effects are outside this cross-check.",
+    "Only the alternate address with query=1 is matched; unknown producer/stability can yield other table/mask combinations.",
+    "No proof of CPU/device ownership, snooping, cache freshness, SMMU/bus translation, preserved configuration or successful storage I/O."
+  ]
+}

@@ -3830,3 +3830,36 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Próximo: fonte do estado herdado, caminho IOCC/DMA do host UFS,
   produtor cd31c8 e gates RPMB; entrada/carga/captura físicas continuam abertas.
 - Conferidos 1549 links locais Markdown do projeto, nenhum ausente.
+
+
+## 2026-10-31 — bypass PHY e caminho candidato IOCC do UFS
+
+- Base main ef20d23 após PR #72. O [cruzamento PHY/IOCC](docs/lk-ufs-iocc-hzc2.md)
+  separa OR1 em15860728 da operação no ponteiro de tabela+48. O primeiro
+  corresponde ao controle PHY da referência, não ao sysreg IOCC.
+- Tabela alternativa3038d8 fornece11020700; consulta posterior=1 seleciona
+  OR300000. Endereço e bits coincidem com DTS/driver Flop fixados4553117.
+  Tabela primária303198 fornece13020700, sem identificação pela referência.
+- Seletor consulta147ea8: primeiro0 escolhe primária; primeiro não zero
+  executa segunda consulta e só segundo1 escolhe alternativa. Nova consulta
+  no RMW escolhe máscara300000 se1, c00000 nos outros casos. Getter lê u32
+  do global relativo cd31c8; produtor/valor/estabilidade continuam abertos.
+- Stores são OR, sem limpar bits antigos. Ponteiro X4zero pula IOCC, mas
+  ambos os dados fixados são não nulos. Não se atribuiu revisão EVT ao getter.
+- Dois arquivos de fonte com tamanho/SHA256/blob conferidos: DTS501935
+  bytes e driver79454. Parser resolve phandles numéricos, base/offset/mask/val
+  e flag dma-coherent; nove testemunhas C, sem compilar/executar o kernel.
+- Extrator LK confere29 palavras GNU,9 destinos,29 operandos e5 grafos.
+  32 casos QEMU em duas posições executam seletor, LDP, getter e RMW
+  originais; células/tabelas em RAM e leituras fornecidas pelo debugger.
+  Controles mistos confirmam combinações distintas de tabela/máscara;
+  código, guardas, SP e registradores não envolvidos preservados.
+- Três relatórios reproduzidos byte a byte. 12 testes LK e14 de referência
+  novos; famílias completas365 LK e40 Flop OK, incluindo os26 novos.
+  Baseline completo9/9; resumo SHA-256 ed938fa59638cd27f0e2562f34d5e7f166ebb5edc1db3479f927b1806d1d5d15.
+- CI, índices, roadmap, referências e contrato Samsung atualizados.
+  Não houve MMIO Samsung, serviço seguro, pedido de armazenamento ou
+  operação no telefone. Correspondência nominal não certifica DMA coerente.
+- Próximo: produtor cd31c8 e estado/preservação físicos de IOCC; tradução
+  de barramento/SMMU, posse e frescor dos buffers continuam pendentes.
+- Conferidos 1564 links locais Markdown do projeto, nenhum ausente.

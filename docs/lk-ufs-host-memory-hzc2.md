@@ -122,3 +122,5 @@ configuração e origem dos gates RPMB. A implementação segura, posse dos
 buffers, frescura física e persistência permanecem abertas.
 
 Continuação: o [pool do heap](lk-heap-pool-hzc2.md) foi ligado nominalmente a 3043 páginas abaixo de4GiB, com ensaios do código original em QEMU. A falha UFS preservando host parcial foi reproduzida; identidade DMA e estado físico continuam abertos.
+
+Continuação de31/10/2026: O [cruzamento PHY/IOCC](lk-ufs-iocc-hzc2.md) identifica nominalmente o bypass em15860728 e o ramo alternativo11020700/OR300000. As consultas do seletor e da máscara são distintas;32 casos originais usam células de RAM no QEMU, sem medir configuração física.

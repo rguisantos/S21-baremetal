@@ -78,3 +78,5 @@ do driver. A árvore custom continua distinta das fontes stock/HZC2 e
 não resolve sozinha carregamento, memória livre ou captura do diagnóstico.
 
 A [tradução do pool LK](lk-pool-mmu-hzc2.md) agora acrescenta três fontes ARM64 fixadas para bits de descritores e bytes MAIR. O perfil EL1/4KiB gera identidade/cacheável, sem importar o índice Linux de MT_NORMAL ou certificar coerência DMA.
+
+Continuação de31/10/2026: O [cruzamento PHY/IOCC](lk-ufs-iocc-hzc2.md) agora resolve os phandles do DTS exynos2100 fixado: PMU15860000+728 para isolamento e sysreg11020000+700 para IOCC. Somente a tabela alternativa LK com consulta1 coincide com a máscara300000; isso não importa o contrato DMA Linux para o LK.

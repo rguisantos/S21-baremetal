@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+O [caminho candidato IOCC do UFS](lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
+
 A [entrada LK e o granule herdado](lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
 
 O [produtor local do magic DVFS](newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
@@ -53,7 +55,7 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
 Atualizado em **2026-10-31 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #71, a3f60b0](https://github.com/rguisantos/S21-baremetal/commit/a3f60b0e0e885dbfa111368eb228a73ded5ece68),
+[main após revisão/merge do PR #72, ef20d23](https://github.com/rguisantos/S21-baremetal/commit/ef20d23ae43aafd06bd07289e87e6c9947bc3d19),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
