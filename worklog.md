@@ -3799,3 +3799,34 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
   continuações NEWTIME/Flop atualizados.
 - Slot47/X0, implementação−232, estado PMU/MMIO e entrega/visibilidade
   entre núcleos seguem abertos. Nenhuma operação no telefone ou SMC executado.
+
+
+## 2026-10-31 — entrada LK e dependência do granule herdado
+
+- Base main a3f60b0 após PR #71. A [entrada/getter TG0](docs/lk-entry-granule-hzc2.md)
+  amplia a análise estática anterior de EL com execução dos bytes originais.
+- Helper f9b4c preserva EL1h/EL1t ou programa EL1h ao descer de EL2h.
+  Na descida, X0 recebe o SP de entrada; X1–X3 são preservados. TCR_EL1
+  e SCTLR_EL1 fornecidos permanecem intactos. Ramo EL3 não executado.
+- Getter189e50 chama o leitor189480 real: TG0 0/1/2 retorna4096/65536/16384.
+  TG0 reservado3 e argumento EL diferente de1 param na entrada do assert,
+  cujo corpo/retorno não foram executados ou presumidos.
+- Censo alinhado do opcode MSR TCR_EL1 em4MiB encontra edf5c (restauração
+  do contexto+280) e1894a0 (writer do instalador posterior). Não prova
+  unicidade global, valor inicial, ordem de restore ou ausência em outras imagens.
+- Novo TCR11b51c351c continua posterior às consultas do construtor;
+  o perfil4KiB do pool permanece condicionado ao TG0 herdado. Nenhum
+  registrador do telefone foi adquirido e nenhuma coerência DMA foi certificada.
+- Extrator confere131 palavras GNU,17 destinos,54 operandos e11 grafos.
+  QEMU:24 entradas e48 chamadas do getter em duas posições;18 tamanhos
+  retornados e30 fronteiras de assert. Sem hooks no getter/transição;
+  código preservado, guardas e ABI dos retornos conferidas.
+- Relatórios estático e QEMU reproduzidos byte a byte. 14 testes novos;
+  família completa LK353 OK (inclui os14). Baseline obrigatório9/9,
+  resumo SHA-256 71c281c291b2874d899adbc1b50249e5d397a34f607a7359b0ba6f1a90341598.
+- Fixture de estado separado em r8/tests, compilação acrescentada ao CI;
+  índices, roadmap e contrato Samsung atualizados. Nenhum MMIO Samsung,
+  serviço seguro, flash ou operação no telefone executado.
+- Próximo: fonte do estado herdado, caminho IOCC/DMA do host UFS,
+  produtor cd31c8 e gates RPMB; entrada/carga/captura físicas continuam abertas.
+- Conferidos 1549 links locais Markdown do projeto, nenhum ausente.

@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [entrada LK e o granule herdado](docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
+
 O [produtor local do magic DVFS](docs/newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
 
 A [construção da tradução do pool UFS](docs/lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.

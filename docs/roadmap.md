@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [entrada LK e o granule herdado](lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
+
 O [produtor local do magic DVFS](newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
 
 A [construção da tradução do pool UFS](lk-pool-mmu-hzc2.md) foi conferida: no perfil EL1/4KiB, as 3043 páginas têm identidade de estágio1 e atributos normais cacheáveis, RW/PXN. O código original gerou as tabelas previstas em seis casos QEMU; 21 testes novos. Granule herdado, estado vivo e coerência DMA continuam separados.
@@ -50,8 +52,8 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
-Atualizado em **2026-10-30 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge das PRs #51/#52, 3ab54d1](https://github.com/rguisantos/S21-baremetal/commit/3ab54d126446869e47a00d4039a271286f48e2a0),
+Atualizado em **2026-10-31 (Campo Grande)**. Base técnica revisada:
+[main após revisão/merge do PR #71, a3f60b0](https://github.com/rguisantos/S21-baremetal/commit/a3f60b0e0e885dbfa111368eb228a73ded5ece68),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.

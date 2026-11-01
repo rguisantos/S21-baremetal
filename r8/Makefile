@@ -246,6 +246,10 @@ $(BUILD)/entry_diag.elf: $(BUILD)/entry_diag.o entry_diag/linker.ld
 $(BUILD)/entry_diag.Image: $(BUILD)/entry_diag.elf
 	$(OBJCOPY) -O binary $< $@
 DIAG_VIRTUALIZATION ?= on
+$(BUILD)/lk_entry_state.o: tests/lk_entry_state.S | $(BUILD)
+	$(CC) $(ASFLAGS) -c $< -o $@
+$(BUILD)/lk_entry_state.bin: $(BUILD)/lk_entry_state.o
+	$(OBJCOPY) -O binary $< $@
 run_entry_diag: $(BUILD)/entry_diag.Image
 	$(QENV) $(QEMU) -L $(QDATA) -M virt,gic-version=3,virtualization=$(DIAG_VIRTUALIZATION) -cpu max -smp 1 \
 	    -nic none -display none -monitor none -serial none -S -gdb stdio -kernel $<

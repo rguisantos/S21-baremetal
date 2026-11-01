@@ -103,3 +103,5 @@ Validação: imagem HZC2 aceita; arquivo de quatro bytes, arquivo alterado mante
 A verificação não altera os resultados anteriores R8/R9/QEMU, não foi uma nova regressão do kernel e não prova SMP ou hardware. O próximo passo útil é conferir o caminho completo LK→kernel e preparar diagnóstico com entrada EL1/EL2 observável; não ampliar para SMP/DECON antes de resolver esse contrato.
 
 Atualização de 2026-10-23: a [auditoria das sete cópias fixas BL2](descriptor-provenance-hzc2.md) registra origem, destino, extensão e passos dos corpos selecionados. Seus destinos não intersectam a janela do descritor -0xe6; isso não é mapa de RAM livre ou validação da sequência física.
+
+Continuação de31/10/2026: o [ensaio da entrada original e do getter TG0](lk-entry-granule-hzc2.md) confirma EL2h→EL1h e explicita que EL1t continua EL1t no retorno imediato. Na descida, X0 recebe SP; TCR_EL1 é preservado. O estado físico herdado continua sem aquisição.

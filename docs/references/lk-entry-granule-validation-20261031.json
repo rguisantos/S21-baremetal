@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-31",
+  "timezone": "America/Campo_Grande",
+  "source_base": "a3f60b0e0e885dbfa111368eb228a73ded5ece68",
+  "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+  "static_report_sha256": "775ba89bb8f826128dd1587d35b2e33d1c5111e21ca15749e967f67e1d3aa841",
+  "qemu_report_sha256": "d79ae0ca428bbbacaf19ce5880e80b9341681735358412edb64b7477b35dba9a",
+  "both_reports_reproduced_byte_for_byte": true,
+  "static_checks": {
+    "gnu_words": 131,
+    "gnu_relative_targets": 17,
+    "selected_operand_checks": 54,
+    "instruction_index_sha256": "0a249e8513855707204c18f791f27e8cb1728e76412b490bf70a2bd37903ef8f"
+  },
+  "local_graphs": 11,
+  "tcr_writer_candidates": [
+    {
+      "file_offset": "0xedf5c",
+      "source_register": 4,
+      "word": "d5182044"
+    },
+    {
+      "file_offset": "0x1894a0",
+      "source_register": 0,
+      "word": "d5182040"
+    }
+  ],
+  "qemu": {
+    "entry_runs": 24,
+    "getter_runs": 48,
+    "successful_size_returns": 18,
+    "assertion_boundaries": 30,
+    "initial_modes": [
+      "EL1h",
+      "EL1t",
+      "EL2h"
+    ],
+    "code_placements": 2,
+    "original_code_segments_unchanged": true,
+    "getter_or_el_transition_substituted": false,
+    "fixture_sha256": "77b2333f37167a68fa0d6f8eeaf526b2b4d1f5d37c77c5c5d3aaeeaf3ae89f72"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/test_lk_entry_granule.py -v",
+      "tests": 14,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk*.py'",
+      "tests": 353,
+      "includes_new_tests": true,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-lk-entry-granule",
+      "status": "passed",
+      "summary_sha256": "71c281c291b2874d899adbc1b50249e5d397a34f607a7359b0ba6f1a90341598",
+      "stages": [
+        {
+          "name": "01-runner-contract",
+          "status": "passed"
+        },
+        {
+          "name": "02-tool-versions",
+          "status": "passed"
+        },
+        {
+          "name": "03-build-r10",
+          "status": "passed"
+        },
+        {
+          "name": "04-fdt",
+          "status": "passed"
+        },
+        {
+          "name": "05-payload",
+          "status": "passed"
+        },
+        {
+          "name": "06-payload-stage",
+          "status": "passed"
+        },
+        {
+          "name": "07-entry-diag",
+          "status": "passed"
+        },
+        {
+          "name": "08-payload-loader",
+          "status": "passed"
+        },
+        {
+          "name": "09-entry-record",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "phone_modified": false,
+  "physical_registers_acquired": false,
+  "dma_coherence_established": false,
+  "documentation_file_links": {
+    "checked": 1549,
+    "missing": 0,
+    "scope": "repository Markdown, excluding tool dependencies and build outputs"
+  },
+  "limitations": [
+    "The EL transition is a selected helper, not a complete startup execution or proof of later CurrentEL.",
+    "TCR_EL1 is inherited at the getter; the selected entry helper does not select TG0.",
+    "Aligned exact-opcode census covers this 4 MiB file only; it does not recover all boundaries or exclude other images, copied code, external agents or context restores.",
+    "TG0=0 remains an input condition of the earlier EL1/4K pool model; no phone register was captured.",
+    "EL3 path, exception/trap policy, physical tables, DMA and cache coherence remain unobserved.",
+    "QEMU virt, one CPU: initial EL1/EL2 and TCR_EL1 are supplied; no phone register is acquired.",
+    "EL3 path and complete Samsung startup are not executed. No Samsung MMIO or SMC is executed.",
+    "TCR is varied while SCTLR_EL1.M=0. No translation tables are installed or pool mapped by this test.",
+    "Reserved TG0 and other EL argument stop at the assertion helper entry; no assertion implementation or return is assumed.",
+    "Selected EL lowering preserves supplied TCR; it cannot establish the phone inherited granule or DMA coherence."
+  ]
+}
