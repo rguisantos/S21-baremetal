@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """Synthetic controls for build evidence; no Samsung package/toolchain required."""
 import gzip
-import hashlib
 import io
 import os
 from pathlib import Path
-import signal
 import struct
 import subprocess
 import sys
 import tarfile
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
-from capture_a0_build import (CRITICAL, archive_tree, directory_tree, tree_identity,
+from capture_a0_build import (CRITICAL, archive_tree, directory_tree,
     blob, profile, partial_versions, vdso, patch_tui)
 from check_capture_a0_build_profile import inspect, run
 
@@ -143,6 +142,20 @@ class BuildChecks(unittest.TestCase):
         self.assertEqual(run([sys.executable,'-c','raise SystemExit(7)'],env,log)['returncode'],7)
         r=run([sys.executable,'-c','import time;time.sleep(30)'],env,log,timeout=.1)
         self.assertTrue(r['timed_out']);self.assertNotEqual(r['returncode'],0)
+
+    def test_timeout_kills_child_that_ignores_term(self):
+        marker=self.root/'escaped'
+        code="""import os,signal,sys,time
+if os.fork()==0:
+    signal.signal(signal.SIGTERM,signal.SIG_IGN)
+    time.sleep(.7)
+    open(sys.argv[1],'w').write('escaped')
+    os._exit(0)
+time.sleep(30)
+"""
+        r=run([sys.executable,'-c',code,str(marker)],{'PATH':os.defpath},self.root/'log',timeout=.2)
+        self.assertTrue(r['timed_out']);time.sleep(.8)
+        self.assertFalse(marker.exists())
 
 
 if __name__=='__main__':unittest.main()

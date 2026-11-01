@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_build_profile.py` verifica fonte/toolchains antes de rodar Kconfig, preparação, CRCs parciais e controles TUI. `--compile` acrescenta uma tentativa limitada de vmlinux/módulos e comparação de Module.symvers. `capture_a0_build.py` verifica árvores Git, perfil crítico e artefatos; 20 testes em `test_capture_a0_build.py`, incluídos na CI. [Guia](../docs/capture-a0-build-profile-hzc2.md).
+
 `check_capture_a0_modules.py` inventaria os módulos do vendor_boot original e compara seus requisitos de CRC com um Module.symvers opcional. `capture_a0_modules.py` lê gzip/CPIO/ELF sem extrair arquivos nem carregar módulos; 25 controles em `test_capture_a0_modules.py`. [Guia](../docs/capture-a0-modules-hzc2.md).
 
 `check_capture_a0_repack.py` repete o repack fixado com três mtimes por imagem e separa diferenças dentro/fora do hash original. Recusa inputs sem os hashes fixados; retorno 2 mantém o gate reprovado. `test_capture_a0_repack.py` cobre os limites com 12 testes sintéticos. [Guia](../docs/capture-a0-repack-extent-hzc2.md).

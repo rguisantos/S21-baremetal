@@ -22,7 +22,9 @@ def profile(source, generated):
     values = config_values(generated)
     mismatches = {k:dict(expected=v, actual=values.get(k)) for k,v in CRITICAL.items()
                   if values.get(k) != v}
-    differences = config_diff(source, generated)
+    differences = [dict(key=row['key'],source_value_sha256=row['source_value_sha256'],
+                        generated_value_sha256=row['stock_value_sha256'])
+                   for row in config_diff(source, generated)]
     return dict(critical_profile_preserved=not mismatches, critical_mismatches=mismatches,
         selected_config={k:values.get(k) for k in CRITICAL},
         source_defconfig_equal=not differences, config_differences=differences,

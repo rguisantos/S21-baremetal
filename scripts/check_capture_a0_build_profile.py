@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import platform
 import re
 import signal
 import subprocess
@@ -22,10 +23,15 @@ CONFIG = 'arch/arm64/configs/exynos2100-p3sxxx_defconfig'
 
 def run(args, env, log, timeout=180):
     """Bound a process group so a timeout cannot leave compiler children running."""
-    with log.open('w') as f:
-        p = subprocess.Popen(args,env=env,stdout=f,stderr=subprocess.STDOUT,start_new_session=True)
-        try:return dict(returncode=p.wait(timeout=timeout),timed_out=False)
+    with log.open('wb') as f:
+        # One writer owns the log; concurrent make children share a pipe instead
+        # of potentially divergent seek offsets on transported filesystems.
+        p = subprocess.Popen(args,env=env,stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT,start_new_session=True)
+        timed_out=False
+        try:output,_=p.communicate(timeout=timeout)
         except subprocess.TimeoutExpired:
+            timed_out=True
             try:os.killpg(p.pid,signal.SIGTERM)
             except ProcessLookupError:pass
             try:p.wait(timeout=5)
@@ -33,8 +39,9 @@ def run(args, env, log, timeout=180):
             # A child may ignore TERM even after make has exited.
             try:os.killpg(p.pid,signal.SIGKILL)
             except ProcessLookupError:pass
-            p.wait()
-            return dict(returncode=p.returncode,timed_out=True)
+            output,_=p.communicate(timeout=5)
+        f.write(output)
+        return dict(returncode=p.returncode,timed_out=timed_out)
 
 
 def inspect(archive, toolchains, host, work, compile_kernel=False):
@@ -68,6 +75,21 @@ def inspect(archive, toolchains, host, work, compile_kernel=False):
     report=dict(schema='S21-CAPTURE-A0-BUILD-PROFILE-v2',
         source_archive_sha256=pins['samsung_source_archive']['sha256'],toolchain_trees=identities,
         stages={},profiles={},a0_complete=False,module_abi_established=False,physical_action=False)
+    names=('build_kernel.sh',CONFIG,'drivers/gpu/arm/Kconfig','arch/Kconfig',
+           'arch/arm64/Kconfig','drivers/misc/tui/Makefile')
+    report['source_members']={n:dict(bytes=(source/n).stat().st_size,
+        sha256=digest((source/n).read_bytes())) for n in names}
+    report['build_environment']={k:v for k,v in env.items() if k in (
+        'ARCH','PLATFORM_VERSION','ANDROID_MAJOR_VERSION','SEC_BUILD_CONF_VENDOR_BUILD_OS',
+        'LC_ALL','KBUILD_BUILD_USER','KBUILD_BUILD_HOST','KBUILD_BUILD_VERSION','KBUILD_BUILD_TIMESTAMP')}
+    report['host_machine']=platform.machine()
+    report['versions']={}
+    for name,command in [('clang',['clang','--version']),('lld',['ld.lld','--version']),
+        ('gnu64_as',['aarch64-linux-android-as','--version']),
+        ('gnu32_as',['arm-linux-androideabi-as','--version']),('host_gcc',['gcc','--version'])]:
+        r=run(command,env,logs/(name+'-version.log'))
+        require(r['returncode']==0 and not r['timed_out'],'tool version failed: '+name)
+        report['versions'][name]=(logs/(name+'-version.log')).read_text().splitlines()[0]
     def save():
         tmp=work/'report.tmp';tmp.write_text(json.dumps(report,indent=2)+'\n');tmp.replace(work/'report.json')
     def success(result):return result['returncode']==0 and not result['timed_out']
@@ -79,8 +101,9 @@ def inspect(archive, toolchains, host, work, compile_kernel=False):
     no_os=dict(env);no_os.pop('SEC_BUILD_CONF_VENDOR_BUILD_OS')
     report['stages']['no_vendor_os']=make(work/'no_vendor_os',['exynos2100-p3sxxx_defconfig'],'no_vendor_os',custom_env=no_os)
     require(not success(report['stages']['no_vendor_os']),'missing vendor OS was not refused')
-    require(not report['stages']['no_vendor_os']['timed_out'] and
-            'drivers/gpu/arm/Kconfig' in (logs/'no_vendor_os.log').read_text(),
+    require(not report['stages']['no_vendor_os']['timed_out'] and re.search(
+            r'drivers/gpu/arm/Kconfig:\d+: syntax error',
+            (logs/'no_vendor_os.log').read_text()) and not (work/'no_vendor_os/.config').exists(),
             'missing vendor OS control failed for a different reason')
     require(report['profiles']['complete']['critical_profile_preserved'],'critical profile lost')
     require(not report['profiles']['gnu_ld']['critical_profile_preserved'] and
@@ -106,11 +129,16 @@ def inspect(archive, toolchains, host, work, compile_kernel=False):
     report['stages']['tui_patched']=make(out,targets,'tui_patched')
     require(success(report['stages']['tui_patched']),'patched TUI targets failed')
     report['full_build_requested']=compile_kernel;report['full_build_completed']=False
+    report['build_result_state']='running' if compile_kernel else 'not_requested'
     report['candidate_comparison']=dict(supplied=False,crc_coverage_passed=False,module_abi_established=False)
     save()
     if compile_kernel:
         report['stages']['full_build']=make(out,['vmlinux','modules'],'full_build',timeout=1800)
+        report['build_result_state']='finished'
         report['full_build_completed']=success(report['stages']['full_build'])
+        report['final_profile']=profile(baseline,(out/'.config').read_text())
+        report['final_config_unchanged']=(report['final_profile']['generated_config_sha256'] ==
+            report['profiles']['complete']['generated_config_sha256'])
         if report['full_build_completed']:
             report['vmlinux_sha256']=digest((out/'vmlinux').read_bytes())
             report['candidate_comparison']=compare_symvers(stock['requirements'],(out/'Module.symvers').read_text())

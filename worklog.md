@@ -3993,3 +3993,12 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - 25 testes novos e 67 anteriores passaram (92 A0), com controles de truncamento, limites, caminhos/links, identidades e comparações sintéticas. CI inclui o novo conjunto. Não foi fornecido Module.symvers candidato; runner retorna 2 e mantém A0 aberto.
 - Próximo: perfil de build p3s completo, insumos KMI pendentes, exports/Module.symvers e comparação real. Contêiner modificado continua bloqueio separado. A1 não iniciado; nenhuma ação física. Revisão automática do head exato e CI precedem o merge.
 - Relatório reproduzido byte a byte; 1637 links locais Markdown conferidos, sem ausentes.
+
+## 2026-11-01 — A0: perfil nativo e preparação p3s
+
+- Continuação do PR #78, base `0b67d7b`, com [runner de build](docs/capture-a0-build-profile-hzc2.md). Fonte Samsung e árvores completas de Clang/GNU verificadas antes de executar ferramentas; pins publicados. Novo gzip Clang difere do transporte anterior, mas sua árvore Git e os três executáveis fixados coincidem. Revisões GNU são do candidato, sem prova de identidade stock.
+- Quatro controles Kconfig reais: ambiente completo passa; vendor OS ausente causa erro de sintaxe; GNU ld e ausência do compilador compat32 retornam zero, mas retiram LTO/CFI e COMPAT_VDSO respectivamente. Perfil crítico preservado no candidato; KMI_SYMBOL_LISTS vazio adicionado e SEC_AUTO_INPUT descartado permanecem discrepâncias explícitas.
+- Preparação/VDSOs ARM64 e ARM32 passaram. module.o gerou quatro CRCs, todos iguais aos requisitos stock, incluindo module_layout=0x1e5b7ab7 exigido pelos 274 módulos. São cálculos reais parciais, sem alegação de cobertura completa ou ABI.
+- Os headers TUI existem; três includes relativos falham em O=. Patch acrescenta srctree somente nesses três caminhos, com hashes antes/depois e prova de falha/sucesso dos dois objetos. Nenhum recurso de configuração foi desativado.
+- 20 testes novos e 92 anteriores passaram (112 A0). Baseline obrigatório: nove etapas aprovadas. CI inclui o conjunto novo. Este checkpoint preserva os controles enquanto vmlinux/modules ainda compilam; o estado final deve ser conferido no relatório.
+- A0 permanece aberto para KMI/configuração, conjunto/política de módulos e contêiner. A1 não implementado; nenhuma operação no aparelho. Revisão automática do head final e CI continuam obrigatórias antes do merge.
