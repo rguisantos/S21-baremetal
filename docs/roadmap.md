@@ -1,12 +1,14 @@
 # Roadmap e estado do S21-baremetal
 
-O [inventário de módulos stock](capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; nenhum Module.symvers candidato foi comparado. A0 continua aberto para build, compatibilidade e contêiner.
+O [build candidato p3s](capture-a0-build-profile-hzc2.md) preserva LTO/CFI e compat32 nos controles nativos. A preparação passou, quatro CRCs recalculados de `module.c` coincidiram com os requisitos stock e uma correção de três includes TUI removeu o bloqueio de build `O=`. A0 continua aberto para configuração/KMI, compatibilidade e contêiner; A1 não foi iniciado.
+
+O [inventário de módulos stock](capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; a continuação de build acima registra a comparação do candidato. A0 continua aberto para build, compatibilidade e contêiner.
 
 A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
 
 O [A0 offline HZC2](capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.
 
-A [conferência das duas chaves KMI](capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; CRCs e módulos reais ainda não foram comparados. A compatibilidade continua aberta em A0.
+A [conferência das duas chaves KMI](capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; A extração dos requisitos reais e a comparação do candidato têm continuação acima. A compatibilidade continua aberta em A0.
 
 A [repetição do repack](capture-a0-repack-extent-hzc2.md) produziu três saídas idênticas por imagem mesmo com mtimes diferentes. A extensão `SignerVer03` é omitida nesse percurso; o rodapé AVB fica fora do hash. Dos 586/3474 bytes alterados, 584/651 ficam dentro do intervalo original. Isso explica o controle reprovado, sem fornecer um packer de payload modificado.
 

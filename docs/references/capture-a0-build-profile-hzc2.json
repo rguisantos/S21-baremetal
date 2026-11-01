@@ -1,0 +1,373 @@
+{
+  "schema": "S21-CAPTURE-A0-BUILD-PROFILE-v2",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "toolchain_trees": {
+    "clang-r383902": {
+      "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+      "members": 5162,
+      "content_bytes": 1142896294
+    },
+    "aarch64-android49": {
+      "tree": "9959a53ab082bef137916638c48c9871c5d82cfd",
+      "members": 260,
+      "content_bytes": 73782326
+    },
+    "arm-android49": {
+      "tree": "91c70ff36200356813e0992c39b8b0d47d85aa0b",
+      "members": 184,
+      "content_bytes": 117494022
+    }
+  },
+  "stages": {
+    "complete": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "730dca530d121df0775c19fa11accc7d33efd876f43c51e25ddc930f84fcd9cc"
+    },
+    "gnu_ld": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "794c740a788b005bb0f1f189a45ce2327003365c55daf46fce7f22064b1a5c2b"
+    },
+    "no_compat": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "9bf00d8d8137236d5cb6de46603bd34ea2ace42f18f3e35c54a8ebc877743c88"
+    },
+    "no_vendor_os": {
+      "returncode": 2,
+      "timed_out": false,
+      "log_sha256": "c9b01d8c0ef0e2806148e64c95dbbe54bae6e95b542c4e08fda9a561ec978def"
+    },
+    "prepare": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "058dbd6485036907176abf31a297f51f6abbc51116b5a94b3e9213b4d488734f"
+    },
+    "module_object": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "bb9abba1f9e4cb30bb96acbcac25ecec211b372baf6c5d4df561e668a8a9976b"
+    },
+    "tui_original": {
+      "returncode": 2,
+      "timed_out": false,
+      "log_sha256": "d15bffccdf6fdd4c7f176ec9ce3c9a7e875bba0176acd63ee2a0184043c00d21"
+    },
+    "tui_patched": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "514b63ba4fa0a5692ce1005efcaa9d5c66d18286e18b36b76046fd3b9ea461a6"
+    }
+  },
+  "profiles": {
+    "complete": {
+      "critical_profile_preserved": true,
+      "critical_mismatches": {},
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_LD_IS_LLD": "y",
+        "CONFIG_LTO": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_CFI_CLANG_SHADOW": "y",
+        "CONFIG_CFI_PERMISSIVE": "n",
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y"
+      },
+      "source_defconfig_equal": false,
+      "config_differences": [
+        {
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null,
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+        },
+        {
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+          "generated_value_sha256": null
+        }
+      ],
+      "generated_config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+      "module_abi_established": false
+    },
+    "gnu_ld": {
+      "critical_profile_preserved": false,
+      "critical_mismatches": {
+        "CONFIG_LD_IS_LLD": {
+          "expected": "y",
+          "actual": null
+        },
+        "CONFIG_LTO": {
+          "expected": "y",
+          "actual": null
+        },
+        "CONFIG_LTO_CLANG": {
+          "expected": "y",
+          "actual": null
+        },
+        "CONFIG_CFI_CLANG": {
+          "expected": "y",
+          "actual": null
+        },
+        "CONFIG_CFI_CLANG_SHADOW": {
+          "expected": "y",
+          "actual": null
+        },
+        "CONFIG_CFI_PERMISSIVE": {
+          "expected": "n",
+          "actual": null
+        }
+      },
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_LD_IS_LLD": null,
+        "CONFIG_LTO": null,
+        "CONFIG_LTO_CLANG": null,
+        "CONFIG_CFI_CLANG": null,
+        "CONFIG_CFI_CLANG_SHADOW": null,
+        "CONFIG_CFI_PERMISSIVE": null,
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y"
+      },
+      "source_defconfig_equal": false,
+      "config_differences": [
+        {
+          "key": "CONFIG_CFI_CLANG",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_CFI_CLANG_SHADOW",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_CFI_PERMISSIVE",
+          "source_value_sha256": "1b16b1df538ba12dc3f97edbb85caa7050d46c148134290feba80f8236c83db9",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_HAVE_ARCH_PREL32_RELOCATIONS",
+          "source_value_sha256": null,
+          "generated_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null,
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+        },
+        {
+          "key": "CONFIG_LD_IS_LLD",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_LTO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_LTO_CLANG",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_LTO_NONE",
+          "source_value_sha256": "1b16b1df538ba12dc3f97edbb85caa7050d46c148134290feba80f8236c83db9",
+          "generated_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "key": "CONFIG_RELR",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_THINLTO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_TOOLS_SUPPORT_RELR",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        }
+      ],
+      "generated_config_sha256": "80cf57971b02ff37fa09db8c857396ce8c4f310bdbd42ed3a250bdb3fc140cb4",
+      "module_abi_established": false
+    },
+    "no_compat": {
+      "critical_profile_preserved": false,
+      "critical_mismatches": {
+        "CONFIG_COMPAT_VDSO": {
+          "expected": "y",
+          "actual": null
+        }
+      },
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_LD_IS_LLD": "y",
+        "CONFIG_LTO": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_CFI_CLANG_SHADOW": "y",
+        "CONFIG_CFI_PERMISSIVE": "n",
+        "CONFIG_COMPAT_VDSO": null,
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y"
+      },
+      "source_defconfig_equal": false,
+      "config_differences": [
+        {
+          "key": "CONFIG_COMPAT_VDSO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_GENERIC_COMPAT_VDSO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "generated_value_sha256": null
+        },
+        {
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null,
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+        },
+        {
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+          "generated_value_sha256": null
+        }
+      ],
+      "generated_config_sha256": "079cb3827c8b92ba89ffef5528acf1a52f5725eb2503aa9f7171b1decfefc0f2",
+      "module_abi_established": false
+    }
+  },
+  "a0_complete": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "source_members": {
+    "build_kernel.sh": {
+      "bytes": 196,
+      "sha256": "0e81c569d4f01485959e072944aa87030a04d6e73d9d3ce2d939a5e875133a4a"
+    },
+    "arch/arm64/configs/exynos2100-p3sxxx_defconfig": {
+      "bytes": 202353,
+      "sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+    },
+    "drivers/gpu/arm/Kconfig": {
+      "bytes": 2233,
+      "sha256": "30bf56e853a20b20d8b632640e49d689a3a5434c3a7bddcaaef90b9bd1f7ffc1"
+    },
+    "arch/Kconfig": {
+      "bytes": 32385,
+      "sha256": "13ed614794c347169b9787d9c1e830cd8c062390daac4cafd617220506d04b08"
+    },
+    "arch/arm64/Kconfig": {
+      "bytes": 62166,
+      "sha256": "2b31e7745b0f0f06282cf07e0bfe6ba2cd4c1778107d3920d962088b29607626"
+    },
+    "drivers/misc/tui/Makefile": {
+      "bytes": 667,
+      "sha256": "42c5595348f0670cf18f1e48f8f4fc532e000f9714d8bf75678763c3d45eb067"
+    }
+  },
+  "build_environment": {
+    "LC_ALL": "C",
+    "ARCH": "arm64",
+    "PLATFORM_VERSION": "11",
+    "ANDROID_MAJOR_VERSION": "r",
+    "SEC_BUILD_CONF_VENDOR_BUILD_OS": "15",
+    "KBUILD_BUILD_USER": "s21-a0",
+    "KBUILD_BUILD_HOST": "offline",
+    "KBUILD_BUILD_VERSION": "1",
+    "KBUILD_BUILD_TIMESTAMP": "Sun Nov 1 00:00:00 UTC 2026"
+  },
+  "host_machine": "x86_64",
+  "versions": {
+    "clang": "Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)",
+    "lld": "LLD 11.0.1 (/buildbot/tmp/tmp6_m7QH b397f81060ce6d701042b782172ed13bee898b79) (compatible with GNU linkers)",
+    "gnu64_as": "GNU assembler (binutils-2.27-bd24d23f) 2.27.0.20170315",
+    "gnu32_as": "GNU assembler (binutils-2.27-bd24d23f) 2.27.0.20170315",
+    "host_gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  },
+  "prepared_vdsos": {
+    "vdso": {
+      "bytes": 17936,
+      "sha256": "2a1dd3b0c84fe3b812d402ea68bf5a52e405d43f437d0e80377d222e7fda5174",
+      "elf_class": 2,
+      "machine": 183,
+      "elf_header_only": true,
+      "runtime_execution_tested": false
+    },
+    "vdso32": {
+      "bytes": 18472,
+      "sha256": "e74ecd4c2ce633e77b627fa58bb3a2f10ca05ea5a40a62b7d2d28ad137e4c555",
+      "elf_class": 1,
+      "machine": 40,
+      "elf_header_only": true,
+      "runtime_execution_tested": false
+    }
+  },
+  "module_c_partial_versions": {
+    "sha256": "42ae48cd1bd8c7a3e349bf73dd2d4ae43f3e9e994c85e74d3e7d5b556427c740",
+    "assignments": 4,
+    "compared": {
+      "__module_get": {
+        "candidate_crc": "0x02cbec78",
+        "stock_crcs": [
+          "0x02cbec78"
+        ],
+        "matches_stock": true
+      },
+      "module_layout": {
+        "candidate_crc": "0x1e5b7ab7",
+        "stock_crcs": [
+          "0x1e5b7ab7"
+        ],
+        "matches_stock": true
+      },
+      "module_put": {
+        "candidate_crc": "0xa503ed0d",
+        "stock_crcs": [
+          "0xa503ed0d"
+        ],
+        "matches_stock": true
+      },
+      "try_module_get": {
+        "candidate_crc": "0xd497d133",
+        "stock_crcs": [
+          "0xd497d133"
+        ],
+        "matches_stock": true
+      }
+    },
+    "full_module_symvers": false,
+    "module_abi_established": false
+  },
+  "tui_patch": {
+    "before_sha256": "42c5595348f0670cf18f1e48f8f4fc532e000f9714d8bf75678763c3d45eb067",
+    "after_sha256": "eedc69cb4c0b8e82561925badb1cd765ce266a99dd91ad2aa224a878320084d7"
+  },
+  "full_build_requested": true,
+  "full_build_completed": false,
+  "candidate_comparison": {
+    "supplied": false,
+    "crc_coverage_passed": false,
+    "module_abi_established": false
+  },
+  "build_result_state": "running"
+}
