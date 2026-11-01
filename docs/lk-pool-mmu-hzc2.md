@@ -131,3 +131,5 @@ além do produtor da configuração `0xcd31c8` e gates RPMB. A construção
 nominal de identidade não substitui os contratos físicos do diagnóstico.
 
 Continuação de31/10/2026: a [entrada e o getter TG0 originais](lk-entry-granule-hzc2.md) foram executados em QEMU. EL2h→EL1h conserva o TCR fornecido; EL1t é preservado. O censo encontra restauração de contexto e writer posterior, sem fornecer o granule inicial do telefone.
+
+Continuação de31/10/2026: O [caminho candidato IOCC UFS](lk-ufs-iocc-hzc2.md) acrescenta correspondência de fonte para a tabela alternativa e ensaios RMW em RAM. Coerência física, granule herdado e preservação continuam sem medição.

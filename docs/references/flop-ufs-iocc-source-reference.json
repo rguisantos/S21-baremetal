@@ -1,0 +1,20 @@
+{
+  "repository": "FlopKernel-Series/flop_exynos2100_kernel",
+  "commit": "4553117a5014928dff55595f46627e0d77bcf133",
+  "files": [
+    {
+      "path": "arch/arm64/boot/dts/exynos/exynos2100.dts",
+      "bytes": 501935,
+      "sha256": "bf32d3c103a1aaacaf61afc1989b19d821aaabdeff5c49803dcd5d022f5393a3",
+      "blob_sha1": "7d387b91fdfa3be7bc1b64b182fc86bc63392f3b",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/arch/arm64/boot/dts/exynos/exynos2100.dts"
+    },
+    {
+      "path": "drivers/scsi/ufs/ufs-exynos.c",
+      "bytes": 79454,
+      "sha256": "b53efe52b9402cda9837cf5f464ba42f0685efe915ea359f705d1e2cc9c0c3dd",
+      "blob_sha1": "bd0da6c39160231ca39c69102d5f535276080c1c",
+      "url": "https://github.com/FlopKernel-Series/flop_exynos2100_kernel/blob/4553117a5014928dff55595f46627e0d77bcf133/drivers/scsi/ufs/ufs-exynos.c"
+    }
+  ]
+}

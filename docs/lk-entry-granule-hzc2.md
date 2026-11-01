@@ -120,3 +120,5 @@ a byte. [Validação da rodada](references/lk-entry-granule-validation-20261031.
 Próximo: fonte do estado herdado e caminho IOCC/DMA do host UFS. A seleção
 de EL e a leitura real do registrador estão agora ensaiadas em laboratório;
 isso não resolve carregamento físico, coerência ou recuperação do diagnóstico.
+
+Continuação de31/10/2026: A [continuação PHY/IOCC](lk-ufs-iocc-hzc2.md) liga nominalmente a tabela alternativa ao controle da referência FlopKernel e separa as consultas do seletor/máscara. O estado herdado de CPU e a coerência física continuam abertos.

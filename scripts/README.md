@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+O [caminho candidato IOCC do UFS](../docs/lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
+
 A [entrada LK e o granule herdado](../docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
 
 O [produtor local do magic DVFS](../docs/newtime-dmc-magic-hzc2.md) foi confirmado em `0x369a0`: publica `0xabcd1234`, toca a campainha do canal3 e espera limpeza externa. A reprodução corrige a identificação do trecho como EL3 e limita a alegação de escritor único. São22 testes novos, mais14 da referência ACPM/ECT com oito fontes FlopKernel.
@@ -302,3 +304,5 @@ O teste `test_entry_diag.py` inclui seis recusas (C, M e M|C em EL1/EL2), com tr
 - `inspect_flop_acpm_reference.py` / `test_flop_acpm_reference.py`: oito fontes fixadas, probe C seguro de ABI SRAM, mailbox e namespace ECT; 14 testes. [Escopo](../docs/flop-acpm-reference.md).
 
 - `inspect_lk_entry_granule.py` / `test_lk_entry_granule.py` / `emulate_lk_entry_granule_qemu.py`: entrada por EL, getter TG0 original e censo limitado de writers TCR_EL1; 131 palavras GNU,14 testes,24 entradas e48 chamadas do getter. [Escopo](../docs/lk-entry-granule-hzc2.md).
+
+- `inspect_lk_ufs_iocc.py` / `emulate_lk_ufs_iocc_qemu.py` / `test_lk_ufs_iocc.py`: consultas distintas, tabelas, OR PHY/IOCC e32 casos de fragmentos originais com alvos em RAM. `inspect_flop_ufs_iocc.py` / `test_flop_ufs_iocc.py`: dois arquivos fixados, resolução numérica de phandles e nove testemunhas do driver;26 testes novos. [Escopo](../docs/lk-ufs-iocc-hzc2.md).
