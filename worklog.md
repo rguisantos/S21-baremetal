@@ -3934,3 +3934,41 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Conferidos 1589 links locais Markdown do projeto, sem ausentes; dependências
   externas em tools não integram essa contagem. Revisão automática do head exato
   e CI continuam gates obrigatórios antes do merge.
+
+
+## 2026-11-01 — A0: diferenças KMI, exports e insumos faltantes
+
+- Continuação do PR #75, base `35f3ae9`, sem mudar de frente ou avançar A1.
+  [Análise das duas chaves](docs/capture-a0-kmi-hzc2.md), fontes privadas
+  recuperadas por identidade/hash e README_Kernel/README_Platform relidos.
+- Censo dos 72523 membros regulares do arquivo Samsung, 1107809877 bytes,
+  sem arquivos regulares pulados; 39 symlinks não seguidos. A referência
+  literal KMI_SYMBOL_LISTS/CONFIG_KMI_SYMBOL_LISTS aparece só na declaração
+  init/Kconfig2293. Isso não resolve consumo dinâmico/build externo.
+- Whitelist ligada ao gen_autoksyms.sh23/25 e macros de export.h; não foi
+  identificada mudança direta de campos C por essas strings. Retenção de
+  exports com LTO e layout do binário são questões distintas dos layouts
+  de tipos; não foi declarada compatibilidade do candidato.
+- IKCONFIG stock conferido: 19 listas citadas, duas ausentes como arquivo
+  ou symlink (galaxy_presubmit e abi_greylist). As 17 disponíveis somam 4990
+  nomes distintos, todos na whitelist candidata de 5000. Dez nomes restantes
+  têm origem não demonstrada; não se atribuem automaticamente às listas
+  ausentes nem se classificam como símbolos faltantes do stock.
+- Runner novo faz seis controles com gerador/headers originais e valores
+  sintéticos inertes: relativo/absoluto iguais, string KMI isolada igual,
+  redução da lista retira um export com layout de fixture preservado,
+  caminho ausente recusado e mudança de tipo detectada. Host x86_64,
+  ramo de export sem PREL32; sem build p3s/LTO/CFI ou cálculo de CRC.
+- [Relatório](docs/references/capture-a0-kmi-hzc2.json) reproduzido byte a
+  byte em segunda execução (retorno 2 esperado). 23 testes de limites/recusas
+  novos e 32 anteriores passaram; incluídos na CI. Perfil/módulos reais,
+  Module.symvers/CRCs, interfaces e política de carregamento seguem abertos.
+- Precisão sobre o packer: headers Android/payloads mantidos, extensão opaca
+  e rodapé alterados. O conteúdo do intervalo hasheado muda; não se atribuiu
+  a falha à reescrita comprovada do header. O resultado se limita à versão,
+  opções e imagens ensaiadas, sem aprovar outro packer.
+- Próximo: resolver proveniência KMI/whitelist e fechar build/módulos e
+  contêiner em A0. Nenhuma operação no telefone, coleta negada repetida,
+  autorização OEM ou alegação de prova no ELF final. Revisão automática do
+  head exato e CI permanecem gates antes do merge.
+- Conferidos 1603 links locais Markdown do projeto, sem ausentes.

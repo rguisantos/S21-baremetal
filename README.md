@@ -4,6 +4,8 @@ A [proposta única de carga, captura e recuperação](docs/marco-a-carga-captura
 
 O [A0 offline HZC2](docs/capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.
 
+A [conferência das duas chaves KMI](docs/capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; CRCs e módulos reais ainda não foram comparados. A compatibilidade continua aberta em A0.
+
 O [caminho candidato IOCC do UFS](docs/lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](docs/lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.

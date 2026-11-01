@@ -25,6 +25,10 @@ inválidos. Build/KMI/módulos também seguem abertos. A1 não foi iniciado.
 A continuação `stext` foi localizada no fonte Samsung; seção, branches e
 ordem precisam de teste automatizado no ELF final, sem inferência a partir de C.
 
+A [continuação KMI](capture-a0-kmi-hzc2.md) identificou dois insumos de lista
+não presentes na fonte recebida. Exports/layout foram separados em controles
+host; CRCs e módulos p3s reais permanecem como gate de A0.
+
 ## Decisão e condições atuais
 
 | Item | Estado desta proposta |
