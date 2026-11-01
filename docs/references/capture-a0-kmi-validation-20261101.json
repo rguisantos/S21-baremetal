@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-01",
+  "timezone": "America/Campo_Grande",
+  "source_base": "35f3ae9a7d738c9b18d46fc9329ec98808849737",
+  "host_tests": [
+    {
+      "command": "python3 scripts/test_capture_a0_kmi.py",
+      "tests": 23,
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/test_capture_a0.py",
+      "tests": 32,
+      "status": "passed"
+    }
+  ],
+  "private_input_analysis": {
+    "command": "python3 scripts/check_capture_a0_kmi.py --source INPUT/Kernel.tar.gz --stock-config INPUT/stock.config --output-dir NEW-DIRECTORY",
+    "returncode": 2,
+    "second_execution_byte_identical": true,
+    "report_sha256": "faa2a77ca68df9af3e1545e36346c3926ab31556a751714fd01a322b034491fb",
+    "isolated_source_controls": 6,
+    "source_regular_files_scanned": 72523,
+    "skipped_regular_files": 0,
+    "stock_lists": 19,
+    "missing_list_inputs": [
+      "abi_greylist",
+      "android/abi_gki_aarch64_galaxy_presubmit"
+    ],
+    "module_abi_established": false,
+    "crcs_compared": false
+  },
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links": 1603,
+  "missing_local_links": []
+}

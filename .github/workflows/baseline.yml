@@ -30,7 +30,9 @@ jobs:
       - name: Check ELF symbol reader with localized headers
         run: python3 scripts/test_elf_symbols.py
       - name: Check A0 stock container integrity and offline execution refusals
-        run: python3 scripts/test_capture_a0.py
+        run: |
+          python3 scripts/test_capture_a0.py
+          python3 scripts/test_capture_a0_kmi.py
       - name: Check static pre-copy witness refusals
         run: python3 scripts/test_lk_precopy_measurement.py
       - name: Check embedded AVB key format and consumer decoding

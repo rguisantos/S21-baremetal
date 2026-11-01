@@ -1,0 +1,292 @@
+{
+  "schema": "S21-CAPTURE-A0-KMI-v1",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "stock_ikconfig_sha256": "55dde3bb7c52e99eccdb82b925a4b831c03fd32a19a2b64bdf7bda993e92a2e1",
+  "stock_kmi_value_sha256": "14ef0943f13042a3a6ed1051e0ff589b581053e78a6e83b8c7c375fd09f4859f",
+  "source_members": {
+    "Makefile": {
+      "bytes": 65723,
+      "sha256": "9021bc5a2bf11176af99ec6979e87729aa6084272c38e1c7f6215794661b2ab3"
+    },
+    "android/abi_gki_aarch64": {
+      "bytes": 78,
+      "sha256": "d09b32b4f8aefdd1afa8ef851adf623f3bb757300c7cdb90ce42398e3976cac8"
+    },
+    "android/abi_gki_aarch64_cuttlefish": {
+      "bytes": 19151,
+      "sha256": "65f0491da69f002cdd03432a54318c046af2389686226f26c0a1129026665988"
+    },
+    "android/abi_gki_aarch64_db845c": {
+      "bytes": 31374,
+      "sha256": "11fe2afe492b59181555b6a4c86454fe37d67c3cb6f96868516a937e7e3bb99f"
+    },
+    "android/abi_gki_aarch64_exynos": {
+      "bytes": 39181,
+      "sha256": "36d0d3017c5967b9ab708bff559efa052fcfb09bccb5378548281824333fe305"
+    },
+    "android/abi_gki_aarch64_exynosauto": {
+      "bytes": 33193,
+      "sha256": "ce2e62e1e596b6478b4181178c234abf034d9591fec54ab8493be6da3f0a11df"
+    },
+    "android/abi_gki_aarch64_galaxy": {
+      "bytes": 62546,
+      "sha256": "781c96544519e32f3011f26b97c89ad37950c1c457e0d8cd52f24d500b87d46a"
+    },
+    "android/abi_gki_aarch64_goldfish": {
+      "bytes": 22692,
+      "sha256": "05a03efe4211d00afcfa1b441c9baf41f6b425c5239b97eceb77fc244592c8df"
+    },
+    "android/abi_gki_aarch64_hikey960": {
+      "bytes": 29123,
+      "sha256": "66f7fa3d18b0eb0ee7dc65f7a6329b53bac05819beb91d5fe8fb63d344c72e3f"
+    },
+    "android/abi_gki_aarch64_imx": {
+      "bytes": 40253,
+      "sha256": "d902cabf78586dd458729ffea72a69a9f80d6fec3dfffdb4eb3532f2c95da67d"
+    },
+    "android/abi_gki_aarch64_oneplus": {
+      "bytes": 48110,
+      "sha256": "702c342c56be20ff2e715c25ff84d6c1b5f5996e682ad47c09540ca9224acf9d"
+    },
+    "android/abi_gki_aarch64_oplus": {
+      "bytes": 3894,
+      "sha256": "7b6dbfdf87b114b38c2c27c903bcee31ff059ce2c8b49cad3ca8336c5a45be21"
+    },
+    "android/abi_gki_aarch64_qcom": {
+      "bytes": 63623,
+      "sha256": "e58096b1283b6a75d89cf226e29b8221b200ad9d58013461fe94f7c7b1c273b6"
+    },
+    "android/abi_gki_aarch64_sony": {
+      "bytes": 3366,
+      "sha256": "e058afaebce171aae77301c1f1199356786f042f2a68a70071e10c46685b57d4"
+    },
+    "android/abi_gki_aarch64_sunxi": {
+      "bytes": 6432,
+      "sha256": "6a1ff6523d77a12e4bd8a73b98d2463602696ecbfe835036beae99c0d22a95fc"
+    },
+    "android/abi_gki_aarch64_unisoc": {
+      "bytes": 52547,
+      "sha256": "f8d714dbd9c9f493ff721b5d829dae97043faed5bada26e32d76bb1b45ca8086"
+    },
+    "android/abi_gki_aarch64_vivo": {
+      "bytes": 51039,
+      "sha256": "e29820f720d491d1aa73b4715baab8b04ee2e96e289311a57f8fb74c7734d5a9"
+    },
+    "android/abi_gki_aarch64_xiaomi": {
+      "bytes": 2079,
+      "sha256": "9f620f9babdfb4ce9e955dbc41d44a17b6fe58fb915e9f785ab962042ecbb58e"
+    },
+    "build.config.universal2100_r": {
+      "bytes": 2796,
+      "sha256": "c39c43e313cf8ad71bb7902e9867236a79fe1efcf7259edb0ab10aca6abc84f0"
+    },
+    "gki/abi_symbollist.raw": {
+      "bytes": 100827,
+      "sha256": "d4b2a906fa9ffc9fab9e1d3e463a2034b0386268d13c57401fc9db6fb1680f20"
+    },
+    "include/linux/export.h": {
+      "bytes": 6484,
+      "sha256": "68312dbabb84ecff19d72dc6a35d0934a2bc2d3a009034748691bfc2074b752d"
+    },
+    "include/linux/kconfig.h": {
+      "bytes": 2561,
+      "sha256": "de1e1e7978bd23a8658e46daf92090d11e321026fd6d0c61c77956d06b21238c"
+    },
+    "init/Kconfig": {
+      "bytes": 77398,
+      "sha256": "25625ec3145a4fca795e8a8f61c61709f01ecf2f52c2036a701fc2e9942fc300"
+    },
+    "kernel/module.c": {
+      "bytes": 125135,
+      "sha256": "3d5eaec1a1513fd10786a75f2b70903b34d655ded3b47596aadd26af9d0ffb9b"
+    },
+    "scripts/Makefile.build": {
+      "bytes": 19294,
+      "sha256": "c8c5cd8f80ea708e8b51191a4b6aaa1f913ae02053af5a318f007cfebf758e3d"
+    },
+    "scripts/Makefile.modpost": {
+      "bytes": 4101,
+      "sha256": "083ce8e6dc233be0cb4d347bd7e2de850639d7b9a05c3cdc707f6c1fe8dbac98"
+    },
+    "scripts/adjust_autoksyms.sh": {
+      "bytes": 2143,
+      "sha256": "dd47a033743f77f63bf12f2c6139eea7c5523f64b666bf03441eeafdfe3620f0"
+    },
+    "scripts/gen_autoksyms.sh": {
+      "bytes": 1329,
+      "sha256": "7984ee73bf5c80471210d6ce8c236b6dd8c86e43ae9d8d46e1980c5cf7c9bcc6"
+    },
+    "scripts/mod/modpost.c": {
+      "bytes": 71750,
+      "sha256": "33b677c83f4212246ed90a2362606c18fb91b57268c623bd0cc05598039dbd60"
+    }
+  },
+  "census": {
+    "regular_members": 72523,
+    "regular_bytes": 1107809877,
+    "directories": 4901,
+    "symlinks_not_followed": 39,
+    "skipped_regular_members": 0,
+    "wanted_nonregular": {},
+    "identifier_hits": {
+      "KMI_SYMBOL_LISTS": [
+        {
+          "file": "init/Kconfig",
+          "line": 2293
+        }
+      ],
+      "UNUSED_KSYMS_WHITELIST": [
+        {
+          "file": "arch/arm64/configs/exynos2100-p3sxxx_defconfig",
+          "line": 735
+        },
+        {
+          "file": "init/Kconfig",
+          "line": 2280
+        },
+        {
+          "file": "init/Kconfig",
+          "line": 2287
+        },
+        {
+          "file": "scripts/gen_autoksyms.sh",
+          "line": 23
+        },
+        {
+          "file": "scripts/gen_autoksyms.sh",
+          "line": 25
+        }
+      ]
+    }
+  },
+  "stock_list_paths": [
+    "android/abi_gki_aarch64",
+    "android/abi_gki_aarch64_exynos",
+    "android/abi_gki_aarch64_qcom",
+    "android/abi_gki_aarch64_sunxi",
+    "android/abi_gki_aarch64_unisoc",
+    "android/abi_gki_aarch64_hikey960",
+    "android/abi_gki_aarch64_cuttlefish",
+    "android/abi_gki_aarch64_db845c",
+    "android/abi_gki_aarch64_goldfish",
+    "android/abi_gki_aarch64_oneplus",
+    "android/abi_gki_aarch64_oplus",
+    "android/abi_gki_aarch64_vivo",
+    "android/abi_gki_aarch64_exynosauto",
+    "android/abi_gki_aarch64_imx",
+    "android/abi_gki_aarch64_sony",
+    "android/abi_gki_aarch64_xiaomi",
+    "android/abi_gki_aarch64_galaxy",
+    "android/abi_gki_aarch64_galaxy_presubmit",
+    "abi_greylist"
+  ],
+  "missing_list_inputs": [
+    "abi_greylist",
+    "android/abi_gki_aarch64_galaxy_presubmit"
+  ],
+  "available_list_symbols": {
+    "android/abi_gki_aarch64": 2,
+    "android/abi_gki_aarch64_exynos": 1884,
+    "android/abi_gki_aarch64_qcom": 2924,
+    "android/abi_gki_aarch64_sunxi": 223,
+    "android/abi_gki_aarch64_unisoc": 2269,
+    "android/abi_gki_aarch64_hikey960": 1295,
+    "android/abi_gki_aarch64_cuttlefish": 895,
+    "android/abi_gki_aarch64_db845c": 1343,
+    "android/abi_gki_aarch64_goldfish": 1075,
+    "android/abi_gki_aarch64_oneplus": 2068,
+    "android/abi_gki_aarch64_oplus": 193,
+    "android/abi_gki_aarch64_vivo": 2373,
+    "android/abi_gki_aarch64_exynosauto": 1455,
+    "android/abi_gki_aarch64_imx": 1680,
+    "android/abi_gki_aarch64_sony": 155,
+    "android/abi_gki_aarch64_xiaomi": 91,
+    "android/abi_gki_aarch64_galaxy": 2896
+  },
+  "available_union_symbols": 4990,
+  "raw_whitelist_symbols": 5000,
+  "raw_not_in_available_union": [
+    "five_hook_heads",
+    "ib_notifier_register",
+    "ib_notifier_unregister",
+    "load_trusted_app",
+    "mz_exynos_pmu_write",
+    "register_five_tee_driver",
+    "register_mz_tee_crypto_driver",
+    "unload_trusted_app",
+    "unregister_five_tee_driver",
+    "unregister_mz_tee_crypto_driver"
+  ],
+  "available_union_not_in_raw": [],
+  "kmi_inputs_accounted_for": false,
+  "controls": {
+    "cases": {
+      "relative": {
+        "autoksyms_sha256": "46597b9010bee0dd050b5e2d15ef451a6949efee1642a3e9a1ca365014ff13bc",
+        "fixture_size": 16,
+        "fixture_payload_offset": 8,
+        "exports": [
+          "__ksymtab_keep_symbol",
+          "__ksymtab_optional_symbol"
+        ],
+        "module_layout_kept": true,
+        "module_import_kept": true
+      },
+      "absolute": {
+        "autoksyms_sha256": "46597b9010bee0dd050b5e2d15ef451a6949efee1642a3e9a1ca365014ff13bc",
+        "fixture_size": 16,
+        "fixture_payload_offset": 8,
+        "exports": [
+          "__ksymtab_keep_symbol",
+          "__ksymtab_optional_symbol"
+        ],
+        "module_layout_kept": true,
+        "module_import_kept": true
+      },
+      "metadata_only": {
+        "autoksyms_sha256": "46597b9010bee0dd050b5e2d15ef451a6949efee1642a3e9a1ca365014ff13bc",
+        "fixture_size": 16,
+        "fixture_payload_offset": 8,
+        "exports": [
+          "__ksymtab_keep_symbol",
+          "__ksymtab_optional_symbol"
+        ],
+        "module_layout_kept": true,
+        "module_import_kept": true
+      },
+      "trimmed": {
+        "autoksyms_sha256": "58760b839344409d36d8fea551004aacf5e289145cf96ea9060e8507138e4a28",
+        "fixture_size": 16,
+        "fixture_payload_offset": 8,
+        "exports": [
+          "__ksymtab_keep_symbol"
+        ],
+        "module_layout_kept": true,
+        "module_import_kept": true
+      },
+      "missing": {
+        "missing_whitelist_refused": true
+      },
+      "type_change": {
+        "autoksyms_sha256": "46597b9010bee0dd050b5e2d15ef451a6949efee1642a3e9a1ca365014ff13bc",
+        "fixture_size": 8,
+        "fixture_payload_offset": 4,
+        "exports": [
+          "__ksymtab_keep_symbol",
+          "__ksymtab_optional_symbol"
+        ],
+        "module_layout_kept": true,
+        "module_import_kept": true
+      }
+    },
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "compiler_target": "x86_64-linux-gnu",
+    "scope": "isolated host fixture; non-PREL32 export branch; no p3s kernel build",
+    "crc_values_computed": false,
+    "real_kernel_struct_layouts_compared": false
+  },
+  "module_abi_established": false,
+  "a0_complete": false,
+  "final_elf_checked": false,
+  "physical_action": false
+}

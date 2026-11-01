@@ -1,5 +1,12 @@
 # Catálogo de scripts
 
+`check_capture_a0_kmi.py` confere arquivo Samsung/IKCONFIG por hash, faz censo
+literal de identificadores e compara listas KMI/whitelist; seis controles com
+gerador/headers originais usam fixtures host próprias. `test_capture_a0_kmi.py`
+tem 23 testes de limites/recusas na CI. O runner retorna 2 para lacunas de
+insumos e não afirma compatibilidade de CRC/módulo. [Guia](../docs/capture-a0-kmi-hzc2.md).
+
+
 O [A0 offline HZC2](../docs/capture-a0-hzc2.md) usa `check_capture_a0.py` e
 `capture_a0_formats.py`: inputs fixados por hash, inventário Android v3/DT-table,
 IKCONFIG e verificação de hash descriptors AVB, sem assinatura ou dispositivo.

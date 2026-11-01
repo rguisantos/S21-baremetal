@@ -75,6 +75,16 @@ seu Makefile declara 5.4.304 e seu perfil usa Clang 23, diferentes desta
 candidata Samsung. Nenhum build script Flop, downloader, opcional SU ou upload
 foi executado. Não se promove essa árvore a reprodução do kernel HZC2.
 
+## Continuação KMI — 01/11/2026
+
+A [conferência das duas diferenças](capture-a0-kmi-hzc2.md) localizou o
+consumidor da whitelist e delimitou a string KMI na árvore recebida. Duas
+listas citadas no IKCONFIG não estão no arquivo; a união das 17 disponíveis
+contém 4990 dos 5000 símbolos da whitelist candidata. Seis controles do gerador
+original separam caminho, conteúdo, exports e layout de uma fixture host.
+CRCs, estruturas reais e módulos p3s não foram comparados; a compatibilidade
+não foi promovida. O bloqueio de contêiner descrito abaixo permanece.
+
 ## Entrada e prova de linker exigida antes de A1
 
 Na fonte Samsung fixada, `arch/arm64/kernel/head.S` contém:
