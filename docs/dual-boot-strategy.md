@@ -1,5 +1,7 @@
 # Objetivo: escolha entre Android e XNU/userland iOS no S21
 
+Atualização de31/10/2026: a expansão desta frente fica pausada enquanto se prepara a [proposta de observação cooperativa](marco-a-carga-captura-recuperacao.md). O objetivo Android/XNU é preservado; este documento mantém o histórico e não autoriza mudança OEM ou instalação.
+
 Direção aprovada pelo usuário em **2026-10-22**. Queremos investigar uma
 forma de escolher qual ambiente iniciar no SM-G998B/p3s: o Android já
 utilizado e, futuramente, XNU com userland iOS adaptado. **A seleção de boot

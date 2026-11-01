@@ -3863,3 +3863,37 @@ reutilizado FVP830 instruções/983 halfwords/150 alvos.
 - Próximo: produtor cd31c8 e estado/preservação físicos de IOCC; tradução
   de barramento/SMMU, posse e frescor dos buffers continuam pendentes.
 - Conferidos 1564 links locais Markdown do projeto, nenhum ausente.
+
+
+## 2026-10-31 — proposta única de carga, captura e recuperação
+
+- Base main fbb867d após PR #73. Consolidada a [proposta](docs/marco-a-carga-captura-recuperacao.md)
+  em documento único: correções de OEM/Knox, tamanho do registro, memória
+  desde o Marco A e aquisição enquanto os bytes pertencem ao ensaio.
+- Rota escolhida para validação futura: Image Linux de diagnóstico com
+  captura primária cooperativa antes das alterações de entrada do kernel,
+  continuação normal e exportador limitado somente de leitura no mesmo boot.
+  Sem dependência de retenção em reset, retorno LK/RDX ou escrita UFS baremetal.
+- É um produtor novo, ainda não implementado. A sonda WFE/S21ENTRY v1 e
+  o Marco A standalone permanecem abertos; não se atribuiu autorização
+  OEM ou física ao trecho encaminhado de outro agente.
+- Cápsula proposta S21COOP1/256 com tag do ensaio e estado/argumentos;
+  seção fora de BSS/init, cópias/relocações e regras de leitura precisam
+  de validação. A tag associa artefato; não oferece atestação de frescor.
+- Interface candidata específica, limitada e sem endereços arbitrários;
+  inexistente hoje. DAC/SELinux e acesso do coletor são gates próprios,
+  sem root presumido ou política permissiva. Repack e recuperação ainda
+  não demonstrados. Restaurar stock não desfaz wipe ou efeitos Knox.
+- READMEs anexos relidos: kernel Android11 e módulos Android15 descrevem
+  build, sem comprovar equivalência HZC2 ou transporte. Referências oficiais
+  AOSP/Knox/boot ARM64 conferidas; comandos genéricos não foram convertidos
+  em instruções para Samsung.
+- Roadmap e índices atualizados: NEWTIME/DMC/ASV, expansão XNU/SMP e
+  periféricos alheios à captura pausados; LK/UFS/RPMB só por dependência
+  nomeada da rota. Definidos gates A0–A5 e parada da rota física travada
+  na ausência de mecanismo concreto/reproduzível de aceitação.
+- Entrega somente documental. Layout proposto conferido como256 bytes
+  contíguos, sem lacunas/sobreposição. Não foram escritos testes ou alterados
+  fontes executáveis, nem repetidos ensaios de firmware/telefone.
+  Revisão automática do head exato e CI continuam requisitos antes do merge.
+- Conferidos 1576 links locais Markdown do projeto, nenhum ausente.

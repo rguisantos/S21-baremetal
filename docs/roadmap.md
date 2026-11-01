@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
+
 O [caminho candidato IOCC do UFS](lk-ufs-iocc-hzc2.md) agora separa bypass PHY e coerência: a tabela alternativa com consulta1 usa endereço/máscara compatíveis com o FlopKernel. OR preserva bits antigos; consultas distintas podem combinar tabela e máscara. São32 casos originais em QEMU com alvos em RAM e26 testes novos, sem prova de DMA físico.
 
 A [entrada LK e o granule herdado](lk-entry-granule-hzc2.md) foram ensaiados com código original: EL2h desce para EL1h, EL1t é preservado e o TCR fornecido permanece intacto. O getter retorna4/64/16KiB conforme TG0; o perfil4KiB continua condicionado. São24 entradas,48 chamadas do getter em QEMU e14 testes novos.
@@ -55,7 +57,7 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
 Atualizado em **2026-10-31 (Campo Grande)**. Base técnica revisada:
-[main após revisão/merge do PR #72, ef20d23](https://github.com/rguisantos/S21-baremetal/commit/ef20d23ae43aafd06bd07289e87e6c9947bc3d19),
+[main após revisão/merge do PR #73, fbb867d](https://github.com/rguisantos/S21-baremetal/commit/fbb867d4144a204b71558cb0f5e3de9d57c495b3),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.
@@ -73,7 +75,7 @@ O comando único e CI foram integrados no PR #33. A matriz de carga/recuperaçã
 e o leitor offline dos 128 bytes estão implementados; o baseline exige também
 17 testes do leitor e sua integração QEMU. Próxima investigação principal:
 uma interface concreta de carga e aquisição, observando as restrições do
-último estado informado. NEWTIME permanece em paralelo.
+último estado informado. A proposta cooperativa no início desta página substitui a expansão paralela de NEWTIME como prioridade operacional; os resultados abaixo são históricos.
 
 Na frente NEWTIME, a [revisão de cópias parametrizadas](newtime-copy-arguments-hzc2.md)
 agora cobre as 47 referências e seus wrappers, incluindo as 44 pendentes.
@@ -206,8 +208,9 @@ o EL no salto final. Essa decisão depende da evidência de entrada.
 
 O contrato do R10 exige memória e reservas confiáveis suficientes para
 validar a região completa da imagem/pilhas e os demais buffers usados.
-Essa investigação pode avançar em paralelo ao Marco A, desde que a reserva
-da região inteira do diagnóstico seja demonstrada por outro meio verificável.
+Na prioridade atual, a investigação de memória se limita às dependências
+explicitadas na proposta cooperativa. A expansão NEWTIME permanece pausada;
+a região inteira de cada artefato exige posse e preservação demonstradas.
 Recuperar o código DRM em claro também não é requisito universal para o
 diagnóstico mínimo; é a lacuna específica da análise do handler seguro.
 
@@ -225,15 +228,15 @@ Isso ainda não resolve EL2, o registro de entrada ou o canal de recuperação.
 | Prioridade | Trabalho concreto | Critério de conclusão |
 |---|---|---|
 | **P0 — reprodução implementada** | Runner constrói ELF novo e exige host/QEMU com logs, resumo e timeout; workflow versionado em PRs/main | Baseline local passou, incluindo 60 casos de contêiner e sete controles do runner; conferir o check `R10 baseline` e a revisão automática do head exato em cada PR |
-| **P1 — percurso e observação** | [Origem RDX e cobertura nominal concluídas](lk-rdx-memory-origin-hzc2.md); [retorno nominal mapeado](lk-payload-return-hzc2.md) termina `sbl_boot`, sem ponte direta para RDX nos blocos selecionados. Selecionar aquisição independente ou especificar produtor/contexto de observação e preservação junto ao percurso de carga | Combinação sonda/RDX ainda bloqueada. Mudança de decisão exige percurso disponível e observação dos bytes enquanto preservados; RET isolado e reset não demonstram aquisição ou retenção |
-| **P1 — entrada e coerência** | Fechar a cópia e o salto final da rota escolhida, reserva da Image e estado EL/MMU/cache; seguir serviços/EPBL quando houver dependência demonstrada dessa rota | Contrato HZC2 correspondente ou observação verificável; hipóteses de outro SoC e logs stock não substituem estado do diagnóstico |
-| **P2 — memória dinâmica, em paralelo** | Construção NEWTIME e publicação condicional delimitadas. [Colunas 1/12](newtime-columns-hzc2.md) são chaves de subtabelas; quatro casos contínuos param antes do gate MMIO. Coluna 1 seguida estaticamente até cálculo 0/28 para AP0x0207365c; [coluna 12 seguida por 0x2cdb8](newtime-consumers-hzc2.md) até argumentos e escritas nominais; fluxo 108→162 bytes corrigido. Identificar semântica dos comandos, preservação/recargas e bindings; mapear ponteiros de vddcal antes de afirmar seu despacho. Palavra B/Samsung/D1Z observada só em log; slots reais, soc_info/SEC_PGTBL/Harx, efeitos transitivos da depuração e ajustes FDT abertos | Comprovar bindings e valores efetivos, eventual limite LK e bancos/reservas finais; a fórmula testada não fornece esses dados |
-| **P3 — carregamento do diagnóstico** | Definir artefato e percurso compatíveis com a cadeia Samsung, considerando suas verificações e condições reais de recuperação | Formato, destino, extensão reservada, coerência, entrada e canal de leitura conferidos; repetir testes apenas para mudanças concretas |
-| **P4 — primeiro diagnóstico no S21** | Executar a Image mínima pelo caminho estabelecido e recuperar o registro | Registro completo com marcador/versão e argumentos, EL/SCTLR/endereço interpretáveis; documentar recusas ou traps observados |
+| **P1 — percurso e observação** | Implementar A0–A2 da [proposta cooperativa](marco-a-carga-captura-recuperacao.md): fonte/build, produtor de entrada, continuação Linux e exportador limitado no mesmo boot | Captura preservada e adquirida em laboratório; fonte/política/instalação/restauração p3s e decisão física continuam gates separados; não adicionar RET à sonda WFE |
+| **P1 — entrada e coerência** | Validar estado aceito/recusado, contrato da continuação original, seção retida e extensão da Image da rota cooperativa | Argumentos/SP/estado preservados, memória não zerada/liberada e cópias/relocações cobertas; evidência QEMU não certifica o telefone |
+| **P2 — memória dinâmica** | Frentes NEWTIME/DMC/ASV pausadas; bancos/reservas/FDT só recebem trabalho imediato quando uma dependência nomeada da rota o exigir | Não inventar RAM livre a partir de DTB estático ou tabelas LK; retomada da engenharia reversa requer alvo e critério de parada ligados à captura |
+| **P3 — carregamento do diagnóstico** | A0/A3/A4 da proposta: pacote offline, fonte/configuração/módulos/política, aceitação e restauração | Nenhuma instalação antes de fechar as dependências e obter autorização específica; desbloqueio não é inferido |
+| **P4 — primeiro diagnóstico no S21** | Captura cooperativa física somente após gates; a sonda standalone mantém seu contrato próprio | Registro ligado à Image instrumentada/contexto e lido no mesmo boot; não generalizar para WFE, R10 ou XNU nem declarar Marco A standalone concluído |
 | **P5 — R10 em uma CPU** | Adaptar entrada ao observado; integrar FDT final, exceções, GIC herdado e timer | Boot e IRQs observados no aparelho, respeitando memória/reservas e sem falhas silenciosas |
-| **P6 — expansão** | Planejar PSCI/SMP e periféricos, com topologia e dependências reais | Critérios e testes próprios por recurso; não antecipar display/GPU/MCT ao funcionamento da base |
+| **P6 — expansão** | SMP, expansão XNU e periféricos não necessários à captura pausados | Retomar somente após observação/entrada/memória suficientes e funcionamento de uma CPU; critérios próprios por recurso |
 
-**Próxima entrega técnica na frente de memória: seguir
+**Registro histórico da frente de memória, agora pausada: seguir
 argumentos das cópias parametrizadas e wrappers que possam transportar 0x31580,
 a origem de X0 e preservação do binding/método,
 além dos leitores de AP0x0207365c e semântica dos campos candidatos.**
@@ -319,6 +322,9 @@ hipótese recusada nem transformar esse bloqueio em requisito universal do
 diagnóstico. Os READMEs de build anexos não fornecem o consumidor SVC.
 
 ## Frente XNU/Darwin em laboratório
+
+**Expansão pausada na prioridade atual.** Preservar os resultados abaixo;
+retomada exige vínculo com os marcos de observação física da proposta.
 
 Os dois projetos [HackiOS examinados por commit](hackios-xnu-reference.md)
 oferecem uma base XNU ARM genérica, carregador Mach-O/boot_args, APFS e

@@ -149,6 +149,8 @@ exige ambas as verificações. [Evidência](references/diagnostic-contract-20261
 
 ## Próxima investigação
 
+**Prioridade revista em31/10:** a [proposta única](marco-a-carga-captura-recuperacao.md) seleciona uma etapa cooperativa em Linux para validar captura/continuação/exportação no mesmo boot. Ela ainda não está implementada, não altera a sonda WFE nem satisfaz automaticamente o Marco A standalone descrito nesta matriz. Decisão OEM e autorização física permanecem pendentes. A seção abaixo conserva o estado das alternativas históricas.
+
 O próximo passo é delimitar **uma interface concreta de carga e aquisição**,
 com suas permissões e preservação, usando as imagens/fontes existentes.
 O [levantamento RDX](lk-dump-export-hzc2.md) já identificou um encaminhamento

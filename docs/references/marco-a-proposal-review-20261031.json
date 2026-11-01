@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-31",
+  "timezone": "America/Campo_Grande",
+  "source_base": "fbb867d4144a204b71558cb0f5e3de9d57c495b3",
+  "delivery": "documentation_only",
+  "proposal_file": "docs/marco-a-carga-captura-recuperacao.md",
+  "proposal_sha256": "5fda86ac6ccec1816039337361624e9d3b1ee4d59630fbcc49cbfbc10a790bb1",
+  "proposed_route": "cooperative_Linux_capture_export_same_boot",
+  "implementation_available": false,
+  "standalone_probe_changed": false,
+  "standalone_milestone_a_completed": false,
+  "oem_unlock_decision": "pending",
+  "physical_action_authorized": false,
+  "proposed_capsule": {
+    "marker": "S21COOP1",
+    "version": 1,
+    "bytes": 256,
+    "field_ranges": [
+      {
+        "offset": 0,
+        "bytes": 8
+      },
+      {
+        "offset": 8,
+        "bytes": 4
+      },
+      {
+        "offset": 12,
+        "bytes": 4
+      },
+      {
+        "offset": 16,
+        "bytes": 32
+      },
+      {
+        "offset": 48,
+        "bytes": 32
+      },
+      {
+        "offset": 80,
+        "bytes": 8
+      },
+      {
+        "offset": 88,
+        "bytes": 8
+      },
+      {
+        "offset": 96,
+        "bytes": 8
+      },
+      {
+        "offset": 104,
+        "bytes": 8
+      },
+      {
+        "offset": 112,
+        "bytes": 8
+      },
+      {
+        "offset": 120,
+        "bytes": 8
+      },
+      {
+        "offset": 128,
+        "bytes": 8
+      },
+      {
+        "offset": 136,
+        "bytes": 8
+      },
+      {
+        "offset": 144,
+        "bytes": 8
+      },
+      {
+        "offset": 152,
+        "bytes": 104
+      }
+    ],
+    "contiguous_and_nonoverlapping": true,
+    "implemented": false
+  },
+  "attached_build_instructions": [
+    {
+      "name": "README_Kernel.txt",
+      "bytes": 1885,
+      "sha256": "943e571a11d4ba2ff4f02736e587e2700c1265d939fcb63f49dd93174527ba08"
+    },
+    {
+      "name": "README_Platform.txt",
+      "bytes": 2234,
+      "sha256": "608870f35c667416e24a42749407191699ac583102552c3b632d0807162b8dd8"
+    }
+  ],
+  "local_runtime_tests": "not_rerun_documentation_only",
+  "documentation_file_links": {
+    "checked": 1576,
+    "missing": 0,
+    "scope": "repository Markdown excluding tool dependencies and build outputs"
+  },
+  "sources": [
+    "https://source.android.com/docs/core/architecture/bootloader/locking_unlocking",
+    "https://docs.samsungknox.com/admin/knox-platform-for-enterprise/faq/",
+    "https://www.kernel.org/doc/html/latest/arch/arm64/booting.html"
+  ],
+  "limits": [
+    "Documentation/offset checks do not implement or validate the proposed producer, reader, exporter, kernel build or physical route.",
+    "The current 128-byte S21ENTRY v1 probe and its reader are unchanged; no compatibility with the proposed capsule is claimed.",
+    "No phone operation, unlocking, flashing, storage write, new MMIO or firmware execution was performed."
+  ]
+}
