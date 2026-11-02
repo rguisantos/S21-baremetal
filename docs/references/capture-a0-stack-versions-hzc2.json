@@ -1,0 +1,329 @@
+{
+  "schema": "S21-CAPTURE-A0-STACK-VERSIONS-v1",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "candidate_archive_sha256": "9e6c4f7e93a332bc62ff7d39ada2c2eba6a474699c9e00795f316daeef504469",
+  "vendor_boot_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+  "source_members": {
+    "drivers/mfd/s2mpb02-irq.c": {
+      "bytes": 6021,
+      "sha256": "11c21bfc2bba997f24035955ac3a741bcfb35a01e0f30849617978807070f49a"
+    },
+    "include/linux/mod_devicetable.h": {
+      "bytes": 22437,
+      "sha256": "e260fd4efe90a1699ae317b76f4bb2d975a3ed932e341bb82fd6b90c5eb4b1e9"
+    },
+    "include/linux/license.h": {
+      "bytes": 374,
+      "sha256": "2437eb69a8dea1bffe677c3aa3d8fe949f68c45c2f31b4ca3d78f4716e9bc645"
+    },
+    "include/linux/kbuild.h": {
+      "bytes": 380,
+      "sha256": "a54a367e1316f26d7db2ea6d80eaea9e380e2fe0398c50e36a84ffd4c2c49ac7"
+    },
+    "scripts/mod/modpost.h": {
+      "bytes": 5228,
+      "sha256": "222b9ece55b17bcec81182f3ba08f0bd86dd0b8a99f700d44a17e12630a5f45f"
+    },
+    "scripts/mod/mk_elfconfig.c": {
+      "bytes": 1269,
+      "sha256": "aad47046d392789ea7eabe8b96b0ee23fc15149c808b79596eca524824444d3e"
+    },
+    "scripts/mod/file2alias.c": {
+      "bytes": 43216,
+      "sha256": "9fdeec26dac2dce79bb5cdf9154f8aba78388c0ab3cadccb640c018745bc5aa3"
+    },
+    "scripts/mod/devicetable-offsets.c": {
+      "bytes": 6645,
+      "sha256": "801e5e940a20f6eb5c32bd1374fa660ed0df9164a3a1a692edeaa7c12d932498"
+    },
+    "scripts/mod/sumversion.c": {
+      "bytes": 11691,
+      "sha256": "a8c77d5be863f5e9718de30045f722e07d07373c5a915e2c92389a6d9cdd646d"
+    },
+    "scripts/mod/modpost.c": {
+      "bytes": 71750,
+      "sha256": "33b677c83f4212246ed90a2362606c18fb91b57268c623bd0cc05598039dbd60"
+    },
+    "scripts/Makefile.modfinal": {
+      "bytes": 2413,
+      "sha256": "1e15175448b71986a7ee19aa3050cd8acf6385d7753778866532a23ad6f735eb"
+    },
+    "scripts/Makefile.modpost": {
+      "bytes": 4101,
+      "sha256": "083ce8e6dc233be0cb4d347bd7e2de850639d7b9a05c3cdc707f6c1fe8dbac98"
+    },
+    "scripts/module-lto.lds": {
+      "bytes": 816,
+      "sha256": "cc0a3ea03d81433a72c266ac3c848882bfe6f41c617621b1d3315740f9f1a029"
+    }
+  },
+  "native_versions": {
+    "clang": "Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)",
+    "host_cc": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  },
+  "native_stages": {
+    "clang-version": {
+      "returncode": 0,
+      "stdout_sha256": "46194853227a384cfaa5525ef35433bfc726cd19e54d0a63bd9266aa088e6e9d",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "host-version": {
+      "returncode": 0,
+      "stdout_sha256": "e412d6c932acaaea35c743bc158d4ba2400ca0e3df66df406a872b2ce0f8601b",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "target-offsets": {
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "build-elfconfig": {
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "elfconfig": {
+      "returncode": 0,
+      "stdout_sha256": "fd0b754d69fb78b16716c9345ad4ed8b80bf6693672eea8324dfcae510021208",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "build-modpost": {
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    },
+    "modpost-stock": {
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_stderr_sha256": "dff544cdf0830d4ac41466004767837bbc5af3df72f2fda6eb660b885d1524cf",
+      "warning_count": 2,
+      "normalized_diagnostics": "WARNING: <WORK>/probe/stock.o(.text+0x2b0): Section mismatch in reference from the function cleanup_module.cfi_jt() to the function .exit.text:cleanup_module()\nThe function cleanup_module.cfi_jt() references a function in an exit section.\nOften the function cleanup_module() has valid usage outside the exit section\nand the fix is to remove the __exit annotation of cleanup_module.\n\nWARNING: <WORK>/probe/stock.o(.text+0x2b4): Section mismatch in reference from the function init_module.cfi_jt() to the function .init.text:init_module()\nThe function init_module.cfi_jt() references\nthe function __init init_module().\nThis is often because init_module.cfi_jt lacks a __init \nannotation or the annotation of init_module is wrong.\n\n"
+    },
+    "modpost-candidate": {
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warning_count": 0,
+      "normalized_diagnostics": ""
+    }
+  },
+  "target_device_table_offset_definitions": 178,
+  "auxiliary_type_prelude_sha256": "8640bd36392cdc278cb44eb60f250942ac8e8a5b0fa40afb0c7629ed5464ec22",
+  "clang_sha256": "0b6a5b9293156103aa5e03ee1f75470b2cb70468f78cbf94f486bac9b783a7e9",
+  "libcpp": {
+    "bytes": 1233936,
+    "sha256": "b0157c4eccf705a00528728b4dc4797b56ac10d43829114cd3002dde763e7ccc"
+  },
+  "symvers_sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+  "sets": {
+    "stock": {
+      "module_sha256": "efaefd5a9b0a40fcd1ed9d3f2bacfb71640abf189635e8aaf6ebbb18b0214fb8",
+      "original_version_records": 35,
+      "final_imports": 36,
+      "generated_version_records": 37,
+      "generated_source_sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda",
+      "generated_version_rows": {
+        "module_layout": "0x1e5b7ab7",
+        "__stack_chk_guard": "0x8f678b07",
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "handle_nested_irq": "0x549525ef",
+        "irq_modify_status": "0x7522f3ba",
+        "irq_get_irq_data": "0x020dbdfb",
+        "irq_set_chip_and_handler_name": "0x71763828",
+        "gpiod_direction_input": "0xf862de65",
+        "gpio_to_desc": "0x9d4b265e",
+        "gpiod_to_irq": "0xaa42bf9e",
+        "free_irq": "0xc1514a3b",
+        "request_threaded_irq": "0x2072ee9b",
+        "handle_edge_irq": "0xd986800b",
+        "irq_set_chip_data": "0x20a789ac",
+        "gpio_free": "0xfe990052",
+        "gpio_request": "0x47229b5c",
+        "i2c_del_driver": "0x56c3221a",
+        "enable_irq": "0xfcec0987",
+        "irq_set_irq_wake": "0xce2840e7",
+        "disable_irq": "0x3ce4ca6f",
+        "mfd_remove_devices": "0x9867c420",
+        "of_find_property": "0x03d022de",
+        "of_get_named_gpio_flags": "0x52e88724",
+        "devm_kmalloc": "0x33d27980",
+        "device_init_wakeup": "0x75910378",
+        "mfd_add_devices": "0x97997a13",
+        "__mutex_init": "0x977f511b",
+        "__devm_irq_alloc_descs": "0x37c9494f",
+        "_dev_err": "0x7f64ecda",
+        "i2c_register_driver": "0xfdae9eb4",
+        "i2c_smbus_write_i2c_block_data": "0x405115f4",
+        "i2c_smbus_write_byte_data": "0xda462c5e",
+        "i2c_smbus_read_i2c_block_data": "0xf9695018",
+        "printk": "0xc5850110",
+        "mutex_unlock": "0x409bcb62",
+        "i2c_smbus_read_byte_data": "0x58c51172",
+        "mutex_lock": "0x2ab7989d"
+      },
+      "added_rows": {
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "__stack_chk_guard": "0x8f678b07"
+      },
+      "existing_rows_unchanged": true,
+      "elf_input_unchanged": true,
+      "stack_relocation_sites": [
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 275,
+          "text_offset": 2924,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 20,
+          "instruction": "0x90000008"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 286,
+          "text_offset": 2928,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 24,
+          "instruction": "0xf9400108"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 275,
+          "text_offset": 3012,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 108,
+          "instruction": "0x90000009"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 286,
+          "text_offset": 3020,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 116,
+          "instruction": "0xf9400129"
+        },
+        {
+          "symbol": "__stack_chk_fail",
+          "relocation": 283,
+          "text_offset": 3056,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 152,
+          "instruction": "0x94000000"
+        }
+      ]
+    },
+    "candidate": {
+      "module_sha256": "2ad7104cf50f13a94ad53e027bf0a567ba433123f6a09fbf5b3ef820969f1624",
+      "original_version_records": 35,
+      "final_imports": 36,
+      "generated_version_records": 37,
+      "generated_source_sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda",
+      "generated_version_rows": {
+        "module_layout": "0x1e5b7ab7",
+        "__stack_chk_guard": "0x8f678b07",
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "handle_nested_irq": "0x549525ef",
+        "irq_modify_status": "0x7522f3ba",
+        "irq_get_irq_data": "0x020dbdfb",
+        "irq_set_chip_and_handler_name": "0x71763828",
+        "gpiod_direction_input": "0xf862de65",
+        "gpio_to_desc": "0x9d4b265e",
+        "gpiod_to_irq": "0xaa42bf9e",
+        "free_irq": "0xc1514a3b",
+        "request_threaded_irq": "0x2072ee9b",
+        "handle_edge_irq": "0xd986800b",
+        "irq_set_chip_data": "0x20a789ac",
+        "gpio_free": "0xfe990052",
+        "gpio_request": "0x47229b5c",
+        "i2c_del_driver": "0x56c3221a",
+        "enable_irq": "0xfcec0987",
+        "irq_set_irq_wake": "0xce2840e7",
+        "disable_irq": "0x3ce4ca6f",
+        "mfd_remove_devices": "0x9867c420",
+        "of_find_property": "0x03d022de",
+        "of_get_named_gpio_flags": "0x52e88724",
+        "devm_kmalloc": "0x33d27980",
+        "device_init_wakeup": "0x75910378",
+        "mfd_add_devices": "0x97997a13",
+        "__mutex_init": "0x977f511b",
+        "__devm_irq_alloc_descs": "0x37c9494f",
+        "_dev_err": "0x7f64ecda",
+        "i2c_register_driver": "0xfdae9eb4",
+        "i2c_smbus_write_i2c_block_data": "0x405115f4",
+        "i2c_smbus_write_byte_data": "0xda462c5e",
+        "i2c_smbus_read_i2c_block_data": "0xf9695018",
+        "printk": "0xc5850110",
+        "mutex_unlock": "0x409bcb62",
+        "i2c_smbus_read_byte_data": "0x58c51172",
+        "mutex_lock": "0x2ab7989d"
+      },
+      "added_rows": {
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "__stack_chk_guard": "0x8f678b07"
+      },
+      "existing_rows_unchanged": true,
+      "elf_input_unchanged": true,
+      "stack_relocation_sites": [
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 275,
+          "text_offset": 2924,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 20,
+          "instruction": "0x90000008"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 286,
+          "text_offset": 2928,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 24,
+          "instruction": "0xf9400108"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 275,
+          "text_offset": 3012,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 108,
+          "instruction": "0x90000009"
+        },
+        {
+          "symbol": "__stack_chk_guard",
+          "relocation": 286,
+          "text_offset": 3020,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 116,
+          "instruction": "0xf9400129"
+        },
+        {
+          "symbol": "__stack_chk_fail",
+          "relocation": 283,
+          "text_offset": 3056,
+          "function": "s2mpb02_irq_thread",
+          "function_offset": 152,
+          "instruction": "0x94000000"
+        }
+      ]
+    }
+  },
+  "deliberate_modpost_helper_exemption_observed": false,
+  "preserved_pre_modpost_lto_objects_supplied": false,
+  "original_build_transition_reproduced": false,
+  "stock_build_cause_established": false,
+  "regenerated_source_compiled_into_modules": false,
+  "package_modified": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "a0_complete": false
+}

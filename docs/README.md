@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [reexecução de modpost sobre s2mpb02_mfd](capture-a0-stack-versions-hzc2.md) gerou os 37 registros esperados nos dois ELFs finais, preservando os 35 CRCs existentes. Os helpers de pilha têm usos de instrução confirmados; não há exclusão deliberada deles nesse ensaio. A origem da diferença no build original continua sem medição dos intermediários, e as lacunas dos módulos recebidos permanecem abertas.
+
 A [proposta de módulos HZC2](capture-a0-module-policy-hzc2.md) seleciona como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
 
 O [build p3s acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e 276 módulos com LTO/CFI/compat32 preservados. O Module.symvers final cobriu os 2763 requisitos de CRC stock, sem ausências ou divergências. Os seis CRCs antes ausentes chegaram aos agregados e ao linker; a falha anterior não se reproduziu. A0 segue aberto para compatibilidade/política de módulos, proveniência KMI e contêiner.
@@ -88,6 +90,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
+- [A0: helpers de pilha e modpost](capture-a0-stack-versions-hzc2.md): usos reais de SSP, geração nativa de 37 registros e fronteira da causa ainda não medida.
 - [A0: proposta e política de módulos](capture-a0-module-policy-hzc2.md): conjuntos de 274, metadados/fornecedores, vermagic e duas lacunas de versão permitidas com aviso.
 - [A0: build completo e rastro de CRCs](capture-a0-crc-trace-hzc2.md): vmlinux/276 módulos, 2763 requisitos stock cobertos e limites da amostragem.
 - [A0: fonte e integridade stock HZC2](capture-a0-hzc2.md): pins Samsung/Clang, IKCONFIG, round-trip Magisk reprovado por AVB e controle de inventário sem alterações.
