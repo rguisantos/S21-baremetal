@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce p3s Kconfig controls, preparation and a bounded offline build."""
 import argparse
+from contextlib import nullcontext
 import json
 import os
 from pathlib import Path
@@ -13,6 +14,7 @@ import tarfile
 from capture_a0_build import directory_tree, profile, vdso, partial_versions, patch_tui, link_failure
 from capture_a0_formats import digest, require
 from capture_a0_modules import compare_symvers
+from capture_a0_crc_trace import VersionTrace
 from check_capture_a0 import PINS, verify_file
 
 TREES = {'clang-r383902':'34feae7abc38fffe258af1842a4c19746368cec6',
@@ -44,7 +46,8 @@ def run(args, env, log, timeout=180):
         return dict(returncode=p.returncode,timed_out=timed_out)
 
 
-def inspect(archive, toolchains, host, work, compile_kernel=False):
+def inspect(archive, toolchains, host, work, compile_kernel=False, trace_versions=False):
+    require(not trace_versions or compile_kernel,'CRC tracing requires full compilation')
     pins=json.loads(PINS.read_text());verify_file(archive,pins['samsung_source_archive'])
     for path in (toolchains,host,work):
         require(re.fullmatch(r'/[A-Za-z0-9_./-]+',str(path.resolve())), 'unsafe build path')
@@ -133,7 +136,10 @@ def inspect(archive, toolchains, host, work, compile_kernel=False):
     report['candidate_comparison']=dict(supplied=False,crc_coverage_passed=False,module_abi_established=False)
     save()
     if compile_kernel:
-        report['stages']['full_build']=make(out,['vmlinux','modules'],'full_build',timeout=1800)
+        trace=VersionTrace(out,work/'crc-trace.jsonl',progress=True) if trace_versions else None
+        with trace if trace is not None else nullcontext():
+            report['stages']['full_build']=make(out,['vmlinux','modules'],'full_build',timeout=1800)
+        if trace is not None:report['crc_trace']=trace.summary()
         report['build_result_state']='finished'
         report['full_build_completed']=success(report['stages']['full_build'])
         report['final_profile']=profile(baseline,(out/'.config').read_text())
@@ -153,8 +159,10 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for n in ('source','toolchains','host-root','work-dir'):p.add_argument('--'+n,type=Path,required=True)
     p.add_argument('--compile',action='store_true')
+    p.add_argument('--trace-versions',action='store_true')
     a=p.parse_args()
-    try:r=inspect(a.source.resolve(),a.toolchains.resolve(),a.host_root.resolve(),a.work_dir.resolve(),a.compile)
+    if a.trace_versions and not a.compile:p.error('--trace-versions requires --compile')
+    try:r=inspect(a.source.resolve(),a.toolchains.resolve(),a.host_root.resolve(),a.work_dir.resolve(),a.compile,a.trace_versions)
     except (OSError,ValueError,tarfile.TarError,subprocess.SubprocessError) as exc:p.exit(1,'BUILD PROFILE REFUSED: '+str(exc)+'\n')
     print('Profile preserved:',r['profiles']['complete']['critical_profile_preserved'], '; full build:',r['full_build_completed'])
     print('A0 remains open; see report.json for CRC coverage and limits')
