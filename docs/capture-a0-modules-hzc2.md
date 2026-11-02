@@ -117,3 +117,10 @@ KMI pendentes e obter seus exports/Module.symvers para comparar estes CRCs.
 LTO/CFI/compat32, interfaces e política de módulos continuam requisitos
 separados. O [problema de contêiner](capture-a0-repack-extent-hzc2.md) também
 permanece aberto para payload modificado. A1 não foi iniciado.
+
+## Continuação A0 — perfil nativo p3s
+
+A [rodada de build](capture-a0-build-profile-hzc2.md) registra os controles
+de configuração, preparação com compat32, CRCs recalculados do candidato
+e a correção TUI para `O=`. Esses resultados complementam o estado
+histórico acima; não encerram A0 nem autorizam A1 ou uma ação física.

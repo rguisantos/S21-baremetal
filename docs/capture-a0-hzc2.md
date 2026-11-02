@@ -195,3 +195,10 @@ A [análise delimitada do repack](capture-a0-repack-extent-hzc2.md) reproduziu s
 ## Continuação — requisitos de módulos stock, 01/11/2026
 
 O [inventário do vendor ramdisk](capture-a0-modules-hzc2.md) agora identifica 274 módulos reais e 2763 nomes com CRC exigido. A extração de todos os 13995 registros foi conferida com GNU readelf. Isso fecha a identificação dos requisitos nesse conjunto, sem observar módulos carregados ou comparar um build candidato. O próximo passo é produzir o perfil completo e Module.symvers da combinação kernel/módulos; A0 permanece aberto.
+
+## Continuação A0 — perfil nativo p3s
+
+A [rodada de build](capture-a0-build-profile-hzc2.md) registra os controles
+de configuração, preparação com compat32, CRCs recalculados do candidato
+e a correção TUI para `O=`. Esses resultados complementam o estado
+histórico acima; não encerram A0 nem autorizam A1 ou uma ação física.

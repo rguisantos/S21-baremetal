@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-01",
+  "timezone": "America/Campo_Grande",
+  "source_base": "0b67d7bf31601943a75ec2ce1fedbc31adaa64b6",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 115,
+    "new_tests": 23,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_controls": {
+    "complete_profile_preserved": true,
+    "missing_vendor_os_make_returncode": 2,
+    "gnu_ld_make_returncode": 0,
+    "gnu_ld_lto_cfi_lost": true,
+    "missing_compat_make_returncode": 0,
+    "compat_vdso_lost": true,
+    "preparation_runs": 3,
+    "profile_partial_crcs_tui_semantically_equal": true,
+    "report_byte_identity_claimed": false
+  },
+  "native_artifacts": {
+    "vdso_elf_headers_checked": [
+      {
+        "class": 2,
+        "machine": 183
+      },
+      {
+        "class": 1,
+        "machine": 40
+      }
+    ],
+    "partial_crcs_recomputed": 4,
+    "partial_crcs_matching_stock": 4,
+    "module_layout": "0x1e5b7ab7",
+    "tui_original_objects_returncode": 2,
+    "tui_patched_objects_returncode": 0
+  },
+  "complete_build_attempt": {
+    "make_targets": [
+      "vmlinux",
+      "modules"
+    ],
+    "returncode": 2,
+    "timed_out": false,
+    "compiled_objects_observed": 3856,
+    "stopped_at": "LD .tmp_vmlinux.kallsyms1",
+    "unversioned_exports": 6,
+    "empty_symversion_files": 2,
+    "all_six_in_pinned_whitelist": true,
+    "final_vmlinux_completed": false,
+    "candidate_full_symvers_compared": false,
+    "final_profile_rechecked": false
+  },
+  "source_content_audit_before_link": {
+    "regular_members": 72523,
+    "symlinks": 39,
+    "regular_members_with_byte_changes": [
+      "drivers/misc/tui/Makefile"
+    ],
+    "normalized_symlink_targets": 2,
+    "normalized_targets_same_resolved_path": true,
+    "build_generated_files": [
+      "include/linux/olog.pb.h",
+      "include/linux/ologk.h",
+      "security/samsung/defex_lsm/defex_packed_rules.bin",
+      "security/samsung/defex_lsm/pack_rules"
+    ]
+  },
+  "a0_complete": false,
+  "module_abi_established": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "isolated_network_producers": {
+    "make_returncode": 0,
+    "critical_profile_preserved": true,
+    "assignments": 6,
+    "direct_quiet_genksyms_returncodes": [
+      0,
+      0
+    ],
+    "direct_outputs_equal_make_outputs": true,
+    "empty_files_reproduced": false,
+    "stock_consumer_crc_available_for_these_symbols": false,
+    "full_build_repeated": false,
+    "full_link_blocker_resolved": false
+  },
+  "local_markdown_links_checked": 1627,
+  "missing_local_links": []
+}

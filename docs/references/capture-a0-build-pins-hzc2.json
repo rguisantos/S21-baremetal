@@ -1,0 +1,163 @@
+{
+  "schema": "S21-CAPTURE-A0-BUILD-PINS-v1",
+  "date": "2026-11-01",
+  "source_archive": {
+    "bytes": 209261574,
+    "sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2"
+  },
+  "clang": {
+    "repository": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86",
+    "commit": "f71cc7fa68ac644595257d6fdebc2e543cb7041c",
+    "directory": "clang-r383902",
+    "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+    "llvm_source": "b397f81060ce6d701042b782172ed13bee898b79",
+    "version": "Android (6443078 based on r383902) clang version 11.0.1",
+    "executables": {
+      "clang": {
+        "bytes": 2967775,
+        "sha256": "c3d0831fad23a7a73d41b66aad9cb7dc5f8fc09943dc90d473b06bd2521fa907"
+      },
+      "clang.real": {
+        "bytes": 65789456,
+        "sha256": "0b6a5b9293156103aa5e03ee1f75470b2cb70468f78cbf94f486bac9b783a7e9"
+      },
+      "ld.lld": {
+        "bytes": 35493584,
+        "sha256": "c8b3b0e4d4be9c9098034388d54bca4116fee62ae0751f7ee1ce24401495dc57"
+      }
+    },
+    "original_transport": {
+      "bytes": 342332211,
+      "sha256": "3e26bc04c15874724ce4236cfe5e3dc9fb58be8efee50fa3bc0ff6b14896d351"
+    }
+  },
+  "gnu_tools": {
+    "aarch64-android49": {
+      "repository": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9",
+      "commit": "606f80986096476912e04e5c2913685a8f2c3b65",
+      "tree": "9959a53ab082bef137916638c48c9871c5d82cfd"
+    },
+    "arm-android49": {
+      "repository": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9",
+      "commit": "b0c6a654327ca8796bed1e61dffcf523d04dceaa",
+      "tree": "91c70ff36200356813e0992c39b8b0d47d85aa0b"
+    }
+  },
+  "exact_stock_gnu_revision_established": false,
+  "host_packages_origin": "https://archive.ubuntu.com/ubuntu/",
+  "host_packages": {
+    "bc": {
+      "Version": "1.07.1-3ubuntu4",
+      "Filename": "pool/main/b/bc/bc_1.07.1-3ubuntu4_amd64.deb",
+      "SHA256": "cb85d5929476088533b3c5e1db2de5ab4593a69fa54243710f762197dbaea60d",
+      "Size": "85264",
+      "Depends": "libc6 (>= 2.38), libreadline8t64 (>= 6.0)"
+    },
+    "bison": {
+      "Version": "2:3.8.2+dfsg-1build2",
+      "Filename": "pool/main/b/bison/bison_3.8.2+dfsg-1build2_amd64.deb",
+      "SHA256": "18f487c400da3e968a44ecb3783a443641bcd14e2b080ed9ed1167f4aa2c1612",
+      "Size": "748688",
+      "Depends": "m4, libc6 (>= 2.38)"
+    },
+    "cpio": {
+      "Version": "2.15+dfsg-1ubuntu2",
+      "Filename": "pool/main/c/cpio/cpio_2.15+dfsg-1ubuntu2_amd64.deb",
+      "SHA256": "b3c7bb97baf1a5dabe0c672ebdc94724bdcd7251790152cfa4314efda5696817",
+      "Size": "82668",
+      "Depends": "libc6 (>= 2.38)"
+    },
+    "flex": {
+      "Version": "2.6.4-8.2build1",
+      "Filename": "pool/main/f/flex/flex_2.6.4-8.2build1_amd64.deb",
+      "SHA256": "c5604f55827b50e3f568b4731b7799f86b147454c867be02bc141d9d8ce561ff",
+      "Size": "300754",
+      "Depends": "libc6 (>= 2.38), m4"
+    },
+    "libelf-dev": {
+      "Version": "0.190-1.1build4",
+      "Filename": "pool/main/e/elfutils/libelf-dev_0.190-1.1build4_amd64.deb",
+      "SHA256": "540ef7d433b642c9333374e9580dd3cc21b1ef9532787d994998b5131ef82ea4",
+      "Size": "68546",
+      "Depends": "libelf1t64 (= 0.190-1.1build4), zlib1g-dev, libzstd-dev"
+    },
+    "libelf1t64": {
+      "Version": "0.190-1.1build4",
+      "Filename": "pool/main/e/elfutils/libelf1t64_0.190-1.1build4_amd64.deb",
+      "SHA256": "b277e52769302778bd052376ac6687b52954b6605dd5f781bff8631e3504d58f",
+      "Size": "57594",
+      "Depends": "libc6 (>= 2.38), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)"
+    },
+    "libfl2": {
+      "Version": "2.6.4-8.2build1",
+      "Filename": "pool/main/f/flex/libfl2_2.6.4-8.2build1_amd64.deb",
+      "SHA256": "098db71e672ded6e8194eec7132a2ca31dee49022848c7b0f77ce912d99cb445",
+      "Size": "9768",
+      "Depends": "libc6 (>= 2.2.5)"
+    },
+    "m4": {
+      "Version": "1.4.19-4build1",
+      "Filename": "pool/main/m/m4/m4_1.4.19-4build1_amd64.deb",
+      "SHA256": "30ea715845a1863abd55d11e47ab91513130bf347852d4cdeae69e9d98fa795c",
+      "Size": "243640",
+      "Depends": "libc6 (>= 2.38)"
+    },
+    "zlib1g-dev": {
+      "Version": "1:1.3.dfsg-3.1ubuntu2",
+      "Filename": "pool/main/z/zlib/zlib1g-dev_1.3.dfsg-3.1ubuntu2_amd64.deb",
+      "SHA256": "7360405fbf49e35dca2f7a4ebeac7d4fe5fe3b2db99adac70e11e104f53b2642",
+      "Size": "894096",
+      "Depends": "zlib1g (= 1:1.3.dfsg-3.1ubuntu2), libc6-dev | libc-dev"
+    }
+  },
+  "host_package_scope": "Additional extracted build dependencies; not a complete hermetic host image",
+  "source_members": {
+    "arch/Kconfig": {
+      "bytes": 32385,
+      "sha256": "13ed614794c347169b9787d9c1e830cd8c062390daac4cafd617220506d04b08"
+    },
+    "arch/arm64/configs/exynos2100-p3sxxx_defconfig": {
+      "bytes": 202353,
+      "sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+    },
+    "arch/arm64/Kconfig": {
+      "bytes": 62166,
+      "sha256": "2b31e7745b0f0f06282cf07e0bfe6ba2cd4c1778107d3920d962088b29607626"
+    },
+    "build_kernel.sh": {
+      "bytes": 196,
+      "sha256": "0e81c569d4f01485959e072944aa87030a04d6e73d9d3ce2d939a5e875133a4a"
+    },
+    "drivers/gpu/arm/Kconfig": {
+      "bytes": 2233,
+      "sha256": "30bf56e853a20b20d8b632640e49d689a3a5434c3a7bddcaaef90b9bd1f7ffc1"
+    },
+    "drivers/misc/tui/Makefile": {
+      "bytes": 667,
+      "sha256": "42c5595348f0670cf18f1e48f8f4fc532e000f9714d8bf75678763c3d45eb067"
+    },
+    "kernel/module.c": {
+      "bytes": 125135,
+      "sha256": "3d5eaec1a1513fd10786a75f2b70903b34d655ded3b47596aadd26af9d0ffb9b"
+    },
+    "include/linux/vermagic.h": {
+      "bytes": 1159,
+      "sha256": "61f37f7ce7742896e59d878740894a2717cca66e1434a9facbfe3e79d8c360d0"
+    },
+    "scripts/setlocalversion": {
+      "bytes": 5508,
+      "sha256": "37251df11bd177c0c61921d95ea699579148d47e92f712bae0b44d4ce32d4600"
+    },
+    "drivers/kperfmon/Makefile": {
+      "bytes": 2430,
+      "sha256": "b3370ce3cf24ea751655295b9dac7c276316ea174404d88382823cee8f49cb0e"
+    }
+  },
+  "clang_transport_observed": {
+    "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+    "members": 5162,
+    "content_bytes": 1142896294,
+    "archive_bytes": 342333111,
+    "archive_sha256": "2e9c0198ca7f72a0a671b3e348bbfcd643a26790247fe7e03ded50127a0bee71"
+  }
+}
