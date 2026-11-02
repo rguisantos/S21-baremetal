@@ -1,0 +1,6243 @@
+{
+  "schema": "S21-CAPTURE-A0-MODULE-POLICY-v1",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "source_members": {
+    "include/linux/license.h": {
+      "bytes": 374,
+      "sha256": "2437eb69a8dea1bffe677c3aa3d8fe949f68c45c2f31b4ca3d78f4716e9bc645"
+    },
+    "include/linux/vermagic.h": {
+      "bytes": 1159,
+      "sha256": "61f37f7ce7742896e59d878740894a2717cca66e1434a9facbfe3e79d8c360d0"
+    },
+    "include/linux/export.h": {
+      "bytes": 6484,
+      "sha256": "68312dbabb84ecff19d72dc6a35d0934a2bc2d3a009034748691bfc2074b752d"
+    },
+    "kernel/module.c": {
+      "bytes": 125135,
+      "sha256": "3d5eaec1a1513fd10786a75f2b70903b34d655ded3b47596aadd26af9d0ffb9b"
+    },
+    "scripts/mod/modpost.c": {
+      "bytes": 71750,
+      "sha256": "33b677c83f4212246ed90a2362606c18fb91b57268c623bd0cc05598039dbd60"
+    },
+    "scripts/genksyms/genksyms.c": {
+      "bytes": 22559,
+      "sha256": "3235081bf63a5c9cd3d75327994266c6b7fdb41a4efa4390e3f2dff6c7fff022"
+    }
+  },
+  "candidate_archive_sha256": "9e6c4f7e93a332bc62ff7d39ada2c2eba6a474699c9e00795f316daeef504469",
+  "vendor_boot_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+  "kernel_vermagic_reference_from_same_build_modules": "5.4.242 SMP preempt mod_unload modversions aarch64",
+  "kernel_modversions": "y",
+  "kernel_build_settings": {
+    "CONFIG_MODULE_SIG": "n",
+    "CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS": "n",
+    "CONFIG_CFI_CLANG": "y",
+    "CONFIG_UH": "y",
+    "CONFIG_RKP": "y"
+  },
+  "stock_vermagic_values": [
+    "5.4.242-30958140-abG998BXXSJHZC2 SMP preempt mod_unload modversions aarch64"
+  ],
+  "candidate_exports_verified_against_symvers": true,
+  "selected_metadata_differences": {
+    "imports": [],
+    "exports": [],
+    "versions": [],
+    "depends": [],
+    "licenses": [],
+    "import_namespaces": []
+  },
+  "sets": {
+    "stock": {
+      "strict_plan_checks_passed": false,
+      "errors": [],
+      "warnings": [
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_guard"
+        ]
+      ],
+      "plan_blocks": [
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_guard"
+        ]
+      ],
+      "modeled_source_checks_passed": true,
+      "unversioned_imports": [
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_fail",
+          "provider": "vmlinux",
+          "provider_crc": "0xf0fdf6cb",
+          "consumer_version_record_present": false
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_guard",
+          "provider": "vmlinux",
+          "provider_crc": "0x8f678b07",
+          "consumer_version_record_present": false
+        }
+      ],
+      "duplicate_exports": [],
+      "selected_count": 274,
+      "weak_unresolved": {},
+      "proprietary_taint_closure": [],
+      "module_abi_established": false,
+      "runtime_loading_tested": false,
+      "a0_complete": false,
+      "imports": 13722,
+      "weak_imports": 0,
+      "exports": 1914,
+      "version_records": 13995,
+      "dependency_edges": 569,
+      "dependency_graph_sha256": "eca7cea1797ce6814caff738fc922a58489fd35b660f4617adef20dbec797aaa",
+      "module_metadata": [
+        {
+          "name": "dss",
+          "path": "lib/modules/dss.ko",
+          "sha256": "d16ab95180d6a6d4b2ac238ea096832375e542a902e8f1bb982a0bdeb45c1167",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_chipid_v2",
+          "path": "lib/modules/exynos-chipid_v2.ko",
+          "sha256": "6ae12af81bbf8434e1e72cbf23416f5639d9e4d3bec9b778b4ceb03ab7adbc9c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_reboot",
+          "path": "lib/modules/exynos-reboot.ko",
+          "sha256": "aa7a69749669c29ab3e0efdc5802b4040b6025ad29932378697c492580289096",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos2100_itmon",
+          "path": "lib/modules/exynos2100-itmon.ko",
+          "sha256": "c4be66d9bf65bc2797050a4354f5d12d610479bfd39bc8e4e36fecffad48a7ef",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pmu_if",
+          "path": "lib/modules/exynos-pmu-if.ko",
+          "sha256": "0c48846407d9bb43a761a2634824626963265ad409ffab7ee1279bd51990d560",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s3c2410_wdt",
+          "path": "lib/modules/s3c2410_wdt.ko",
+          "sha256": "0ce9aa5937b6ed33c57fcbbc03ee4e4d9b90a3fcaefbe6820d5706c0d1127e72",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ecc_handler",
+          "path": "lib/modules/exynos-ecc-handler.ko",
+          "sha256": "14d03f186d81deb7f34fa105fa881fa85c1a2453eb06c70e0e690e912ae46fca",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_coresight",
+          "path": "lib/modules/exynos-coresight.ko",
+          "sha256": "80cec63f8ed0d3b9913c5215e99a73b33a0b92b58e4d7dfaed09854e75ec8df9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "debug_snapshot_qd",
+          "path": "lib/modules/debug-snapshot-qd.ko",
+          "sha256": "7e732d052aeebe2db65a3e09f8f24dec71ea3007c34980c22ff709747bdcdb78",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "eat",
+          "path": "lib/modules/eat.ko",
+          "sha256": "a2e195ba32752bc239a72f7a7c3efa2a37723a7163b0badde68b65d33833c7ed",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_adv_tracer_s2d",
+          "path": "lib/modules/exynos-adv-tracer-s2d.ko",
+          "sha256": "5dbf8a73df987aacc17e78b28e55b733801a9af22ee2ed9a4d10ec2a06603a9a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ehld",
+          "path": "lib/modules/ehld.ko",
+          "sha256": "850868c34786834f3ca2f12f86fdf95a75874a5dd41e19c1057dfa11c7f9b732",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_debug_test",
+          "path": "lib/modules/exynos-debug-test.ko",
+          "sha256": "7be4951d7666073a79c369f0b60297cc9ef5f93d925d80fba6c8c53b58901fd0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hardlockup_debug",
+          "path": "lib/modules/hardlockup-debug.ko",
+          "sha256": "a5b9f1b9e9da3f465ba64e49bd4361e1bfc4cad626b4095226a0b8cd8b58ce81",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_acpm",
+          "path": "lib/modules/exynos_acpm.ko",
+          "sha256": "b876be11908b9c97d1b8ae24a85296304a10baefb46b68ea7294a127f7941178",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm_qos",
+          "path": "lib/modules/exynos_pm_qos.ko",
+          "sha256": "1c44caa8c50d5f99fc1d333de897b7b569556b006b297c043ce6c023fb72b0d3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_s2mpu",
+          "path": "lib/modules/exynos-s2mpu.ko",
+          "sha256": "f575899fcb1841cf2f878d294bae40b2eff0f44df13a9de29659d73bc10d5060",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd_el3",
+          "path": "lib/modules/exynos-pd_el3.ko",
+          "sha256": "a0b6ea3f632b850ae9ea35a3b881011fb5224f2e5be9acbfcd12abdf1ca60d91",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ect_parser",
+          "path": "lib/modules/ect_parser.ko",
+          "sha256": "34d57d4d86e0d4a2ba5c7bc9caa4601e4368140aa62bf1984d14cc2c2439c33e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cmupmucal",
+          "path": "lib/modules/cmupmucal.ko",
+          "sha256": "ce0d57682546adaefea04bc312f7258516860102161e9ffb02bfa470af0870ab",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "clk_exynos",
+          "path": "lib/modules/clk_exynos.ko",
+          "sha256": "5082b0d8022fa533a5fc4b03352e52213e9610a9e4bba71f0f76d6a8ce642f60",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "clk_exynos_audss",
+          "path": "lib/modules/clk-exynos-audss.ko",
+          "sha256": "d534f9ead96238cfa3fd2637d7885b2259315a2c0d77655087f4177c50c5c668",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mct",
+          "path": "lib/modules/exynos_mct.ko",
+          "sha256": "74e8af0a7e1573e04648cdc980e6059f14228dcb890d2550a09b075a0b4cfd48",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pinctrl_samsung_core",
+          "path": "lib/modules/pinctrl-samsung-core.ko",
+          "sha256": "6e22c924d3a59a06b0ab3dc39e91546e44c7851dc68bf9d758fa33db49c09426",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpupm",
+          "path": "lib/modules/exynos-cpupm.ko",
+          "sha256": "374913d0f49cfb71c013138d5ffbe588750aebf60997653d60edd9a744b9e89c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "i2c_exynos5",
+          "path": "lib/modules/i2c-exynos5.ko",
+          "sha256": "e0de535b024bd0b93514b50a55c871fbdddde2e9ea2b8efce47f54ef3f5ac751",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "acpm_mfd_bus",
+          "path": "lib/modules/acpm-mfd-bus.ko",
+          "sha256": "600761161b485d7cc43bbf28d54c9546f6034da839f61923dfe31a460e9bf6f2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps24_mfd",
+          "path": "lib/modules/s2mps24_mfd.ko",
+          "sha256": "d5b3d5821b03565222e2e900728fc0cc8dd0722573bbf412d1461a586ae1f6a5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_mfd",
+          "path": "lib/modules/s2mps23_mfd.ko",
+          "sha256": "c4c08cb275b63684b02b3c84971e13adee56f625e84f156756fc1e046aebc655",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pmic_class",
+          "path": "lib/modules/pmic_class.ko",
+          "sha256": "5b16631cd9c4dc53f2ccc714ebb64d95a540a34d2a68b173078a0cfaff74890d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_regulator",
+          "path": "lib/modules/s2mps23-regulator.ko",
+          "sha256": "ee1e167b046c4532b0d727ac42628380bf62ccb4ee3c7eb29df0de8686b56747",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps24_regulator",
+          "path": "lib/modules/s2mps24-regulator.ko",
+          "sha256": "454f556720be5f3e23ef609a80165045a134de7c325187c4c4f45397be86296a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_usbdrd_super",
+          "path": "lib/modules/phy-exynos-usbdrd-super.ko",
+          "sha256": "085d507b3f6e9af78a04f771dacc7db6112d2cb824abfca87ff35221c1f8fce4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_mode",
+          "path": "lib/modules/sec_debug_mode.ko",
+          "sha256": "f037a2deae0bc1161e781d3a86cc77a459b564c0e329931c4b20bab5d795b7ad",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fingerprint",
+          "path": "lib/modules/fingerprint.ko",
+          "sha256": "09397037eff7a9494dde00c7236a3a4d4af01ab3d6c5fffcee45935a550623f9",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ssg_iosched",
+          "path": "lib/modules/ssg-iosched.ko",
+          "sha256": "3fbaf45505e9de4bdc447b5542494457580391fe1a02c8d926ba0857995f0187",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "blk_sec_stats",
+          "path": "lib/modules/blk-sec-stats.ko",
+          "sha256": "a026d3a99cf249afa36e6ae18e7605ed8de46c383af3588a5d2ad0b9dacacb0b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_mipi_dsim",
+          "path": "lib/modules/phy-exynos-mipi-dsim.ko",
+          "sha256": "4d9ffca8b0b30a7ba1619cd1fd49ec73252d5b5358326872081aff44011023b0",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_mipi",
+          "path": "lib/modules/phy-exynos-mipi.ko",
+          "sha256": "f31e1f91c88d8c18010f51c4797feb46a838beeda9cd50af97e0afcc1fb8cd30",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pwm_samsung",
+          "path": "lib/modules/pwm-samsung.ko",
+          "sha256": "f24abfdc1b1261b07ac674ee9eb15f9a8f18509aa93512065ede879fd6f9b5f5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_host_v0",
+          "path": "lib/modules/pcie-exynos-host-v0.ko",
+          "sha256": "74c505b1a7b0e99e464978eae84a7700f7fe6b484d16282ac9701185a154781a",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_rc",
+          "path": "lib/modules/pcie-exynos-rc.ko",
+          "sha256": "fc04809720fcd0a46e892b27e486bff4c1a6c96a8dda2ad1f19b8613c636348c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_dbg",
+          "path": "lib/modules/pcie-exynos-dbg.ko",
+          "sha256": "0b6496f338ce7ebf71e6356011847718162366aafb4c6e9a157e93c939753d24",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos2100_v0_cal",
+          "path": "lib/modules/pcie-exynos2100-v0-cal.ko",
+          "sha256": "0e9614914dcb9a919aa4ce35e0bfee24cce2abb2ffbca1cc444a9d9ea4e935ef",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos2100_rc_cal",
+          "path": "lib/modules/pcie-exynos2100-rc-cal.ko",
+          "sha256": "48756e560cd424f0a00039a4834e864599d4d405188126fdd351d7d866ee79a8",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fb",
+          "path": "lib/modules/fb.ko",
+          "sha256": "0755642d1080bc07e7f61c4e79826a99da1fdc3406d8e95a7b7657aafb54d03b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel_s6e3hab",
+          "path": "lib/modules/mcd-panel-s6e3hab.ko",
+          "sha256": "7a8fcbe490965f9fd1399c2fb9f58911a933d2ca648e3572071a2e3a1fd46b72",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel_s6e3had",
+          "path": "lib/modules/mcd-panel-s6e3had.ko",
+          "sha256": "b4f49deb52a16493adf189e03b09f215cd781ba3d3b84c180ab989b054620d01",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel",
+          "path": "lib/modules/mcd-panel.ko",
+          "sha256": "bf890672386b961c69b49480b6c1f9b70937f2962718288c1d42d1f54a2917ac",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dpu",
+          "path": "lib/modules/dpu.ko",
+          "sha256": "eebf64cf99caa41c1973ff41a7dca360b9d8417206d66516993e1cd3959403c1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dp_ext_func",
+          "path": "lib/modules/dp_ext_func.ko",
+          "sha256": "0714fa5a3f98b049fbe6713c01ac3528a8268b55edb1015e05190e4f55622070",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pl330",
+          "path": "lib/modules/pl330.ko",
+          "sha256": "4de313a5dd1a9659812c79d298b5c540bda767d259fb2e597c9ef10d733eae1f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_dma",
+          "path": "lib/modules/samsung-dma.ko",
+          "sha256": "a8d1b4add1968a9affb67ce29c8c5321f93c3bcc16a78487eccabe9b340ef0f4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "debug_snapshot_sfrdump",
+          "path": "lib/modules/debug-snapshot-sfrdump.ko",
+          "sha256": "9e3f01e761620eb4a03d98970856599142b286427624481a2780a94938f6b59d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hardlockup_watchdog",
+          "path": "lib/modules/hardlockup-watchdog.ko",
+          "sha256": "24d844c7fc2732bff057621a3942555f051eb2ce29341c42c199e17f2671ab68",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ssld",
+          "path": "lib/modules/exynos-ssld.ko",
+          "sha256": "46b3a6d6f501e9c46cd6b22837af514d85237d652b5cc4b8c014b899a883e97c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_seh",
+          "path": "lib/modules/exynos-seh.ko",
+          "sha256": "d8c86c94580fad202e92b866404f5b3b3065d6d803789e31ac40f0b7c653bacc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_seclog",
+          "path": "lib/modules/exynos-seclog.ko",
+          "sha256": "53e36e23cddfdea7bb23deb97bd6de762971f4cd7078feb12595795bf0e5d5a1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_tzasc",
+          "path": "lib/modules/exynos-tzasc.ko",
+          "sha256": "7ff906acdb9a9f9637aa086935ae68d6012d2ce0469196245eec65b04c699bc3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ppmpu",
+          "path": "lib/modules/exynos-ppmpu.ko",
+          "sha256": "5b9116acecbfb715105b1cdab4c1e09917d8562cac0e045659f65548527f3c2e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_flexpmu_dbg",
+          "path": "lib/modules/exynos-flexpmu-dbg.ko",
+          "sha256": "14259d7376add86f0953a7559074e161fd5b64a007833f973ce94f599730e9db",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd",
+          "path": "lib/modules/exynos-pd.ko",
+          "sha256": "08e6dd47c8d826ddb3fcd50603f78f6140e1b409f4bb32834fd0f988489400e8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd_dbg",
+          "path": "lib/modules/exynos-pd-dbg.ko",
+          "sha256": "daa5dde5e8c8a11cf78b19f036987fbd888b6691fad8ba1411f100cc42ba90bf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "memlogger",
+          "path": "lib/modules/memlogger.ko",
+          "sha256": "3064d87df215877bcdadcdedbdba92124c24acd848f3d7d09bfce0f66c9a16a1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm",
+          "path": "lib/modules/exynos-pm.ko",
+          "sha256": "e0cdbc11ea51024896ac6e72e2a41fe26bd6c557b14588248e2f8d5702ee0540",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cmu_ewf",
+          "path": "lib/modules/cmu_ewf.ko",
+          "sha256": "778ef738a45b2ebb34b17092c5411c586704511444c9d49dd3d3e7762643946f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usi_v2",
+          "path": "lib/modules/usi_v2.ko",
+          "sha256": "e7e8e1a5bf2e9551154e9f888c0c43772fbde7af084b71f78a368800bf4a3e48",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "plugin_dbg",
+          "path": "lib/modules/plugin_dbg.ko",
+          "sha256": "7509ad97247dea16d641f246cb06d35429c9e0eaa785751fce250f1ec8d361b9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ssp",
+          "path": "lib/modules/exynos-ssp.ko",
+          "sha256": "369c697e83bfff843ae16065c6ac445b027b2bb6537d91ff058930ebebb53446",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_el2",
+          "path": "lib/modules/exynos-el2.ko",
+          "sha256": "b419125a08f004336ee219f9825777cd3f10d9cf41bffef96e31753deeda41a1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcu_ipc",
+          "path": "lib/modules/mcu_ipc.ko",
+          "sha256": "cb84a89405f778a77ddd5959b6e4713fc161dcf4c48b285933e220eba4230013",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "shm_ipc",
+          "path": "lib/modules/shm_ipc.ko",
+          "sha256": "c9014a9fd99b7849aa09c9c1375bbb5d8de4985c168f688d6410d4db0c7deb88",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dit",
+          "path": "lib/modules/exynos_dit.ko",
+          "sha256": "00cf41cb20d58a980546feafdb5b7a76694b746463ae0716fd795bd833bd32ee",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "modem_utils",
+          "path": "lib/modules/modem_utils.ko",
+          "sha256": "85aa93f463921ba01dcccca786e4ffa37243198e54de64fc7d5c1881f672e245",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cpif",
+          "path": "lib/modules/cpif.ko",
+          "sha256": "1fddcfbdda9dce38f4073ae93c9189b0afb3e0f6cc6273418c81643964b2054c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hdcp2",
+          "path": "lib/modules/hdcp2.ko",
+          "sha256": "89a54ca55ba23bfc998d9a5cc3e7e5da3905e8316165f36d3ceab1e5753fe81c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpuhp",
+          "path": "lib/modules/exynos-cpuhp.ko",
+          "sha256": "e742ad0a9c2c00a6c43dc82135e00a7b5e20bdf201da5ccc7779ba70b58bfe05",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ufcc",
+          "path": "lib/modules/exynos-ufcc.ko",
+          "sha256": "be81d06873a27e97396f3826045a9561387f365843f270ae01e10e420d4f0f3d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xperf",
+          "path": "lib/modules/xperf.ko",
+          "sha256": "de7f98c03f3a38e17b263da491e7559f84de46dfdf9fdb2cded847dd5d9875ca",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_sdm",
+          "path": "lib/modules/exynos-sdm.ko",
+          "sha256": "0e360346da40d8b4902de1013c0b07691d8aa96e5e293a29faa5310cd5653e87",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_sci",
+          "path": "lib/modules/exynos_sci.ko",
+          "sha256": "5897f2147e445ea47ef2a8287b53889dc62d25d559623b68fe87424c005d262e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bcm_dbg",
+          "path": "lib/modules/exynos-bcm_dbg.ko",
+          "sha256": "42c1ce8be6b751160e1475d0961a6181506d5a29153db3eeb7968451cf18d9af",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bcm_dbg_dt",
+          "path": "lib/modules/exynos-bcm_dbg-dt.ko",
+          "sha256": "eb5775f69737150dccd1b041a99a46ef78897a34f7d060056521ddc86dc10a47",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dm",
+          "path": "lib/modules/exynos-dm.ko",
+          "sha256": "8d594dfc1d4f5c9d074afdf4551ce5ff937c46a70a81d2359e4d156d53bb95ff",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mcinfo",
+          "path": "lib/modules/exynos-mcinfo.ko",
+          "sha256": "2655d04793c82c2ab54567920122b68ac17d85c2474c7df243d2f0c756c9fab8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_msn",
+          "path": "lib/modules/exynos-msn.ko",
+          "sha256": "8a404143d7621aa4b016918dbd6380b780fd95032257f695038700c51cecb1a1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_afm",
+          "path": "lib/modules/exynos-afm.ko",
+          "sha256": "573dc7d9382c5a9f07f4848c99e5ec7d9a0ea784b7ae1736e79bf45c832adc7f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "secmem",
+          "path": "lib/modules/secmem.ko",
+          "sha256": "cb4748fcb85368695d6f5ee1ba57f9f7c30895dd258c6abb56438faf20ddb282",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_migov",
+          "path": "lib/modules/exynos-migov.ko",
+          "sha256": "1a46a58c695271549cbb860bf0eb8fb3959cae3a2bc775f8f79d6d62361eea4a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpu_profiler",
+          "path": "lib/modules/exynos-cpu-profiler.ko",
+          "sha256": "f8ba376114eef0857613ab2b60bf3b590757c7da05d1d5e6de67cf868206f1c6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_gpu_profiler",
+          "path": "lib/modules/exynos-gpu-profiler.ko",
+          "sha256": "c24975caa1e0c3dcb95ce34c85a1ebbce228f40d0d7935838804caa193fdb4b7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mif_profiler",
+          "path": "lib/modules/exynos-mif-profiler.ko",
+          "sha256": "705499366bad0b68a7a3b816b2ee65083d33192e65d5f5909cf9a7095d2e0e15",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "imgloader",
+          "path": "lib/modules/imgloader.ko",
+          "sha256": "22f858d354f17e5eb0fe584125555b6fd9400ff569855c6e30fd304b53a490da",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sysevent",
+          "path": "lib/modules/sysevent.ko",
+          "sha256": "5af7376116d7be98951c95c623504eeab17a1314b6d6dc6446455763c0c75ae1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sysevent_notif",
+          "path": "lib/modules/sysevent_notif.ko",
+          "sha256": "86c56e804186369aba78f30075a49a4a5b39b3b16ce5305b5c81c9e0e9927dd3",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_idle_profiler",
+          "path": "lib/modules/exynos-idle-profiler.ko",
+          "sha256": "47a904f96ac7b37fae2d3a7eb4133bb21cae8b91235a004524d5d9f4025100a9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm_dvs",
+          "path": "lib/modules/exynos-pm-dvs.ko",
+          "sha256": "49945c7f4b4bf7cea824a3d7c12406fec175189315d1b279fdbcfdfcc6cb1e79",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb02_regulator",
+          "path": "lib/modules/s2mpb02-regulator.ko",
+          "sha256": "2032814abae0e2b5b942079656df36f3f5d4f7bcb38091977ee3a49fbc9d14c8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb03",
+          "path": "lib/modules/s2mpb03.ko",
+          "sha256": "3f22fa907ecac01aa880ac80cbfe4688940f6f7d89ddefe97c0a2765bb62b685",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_tty",
+          "path": "lib/modules/exynos_tty.ko",
+          "sha256": "59ac4d6296d635b6ddb1cdc885eccd8d212b1b4875111c12b14dcf46ec6850f1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exyswd_rng",
+          "path": "lib/modules/exyswd-rng.ko",
+          "sha256": "d8ca1c969170a08e8c3102ba96b0257f837df4ccc1b7f5b272629775e06f9a20",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_iommu",
+          "path": "lib/modules/samsung_iommu.ko",
+          "sha256": "de757bc535ac7ac51ec0a83cc5fadfcb766e1720129c7762cfb88a3570a19911",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_iommu_group",
+          "path": "lib/modules/samsung-iommu-group.ko",
+          "sha256": "9a51b26e5186cab14bc6cc21f35046b92a7c47f9f6cde7092fe19cd48e6a58a2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mali_kbase",
+          "path": "lib/modules/mali_kbase.ko",
+          "sha256": "af3a83550635203eb695b13592ff8da11d2aafbe58b0727d00165f4c6a492168",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": [
+            "DMA_BUF"
+          ]
+        },
+        {
+          "name": "tzdev",
+          "path": "lib/modules/tzdev.ko",
+          "sha256": "fa1ad31ccb943585d6c24ccb34f713cf06c55139cbd417cdbbf147230aa23f7c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": [
+            "VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver"
+          ]
+        },
+        {
+          "name": "tuihw",
+          "path": "lib/modules/tuihw.ko",
+          "sha256": "3b1ad922b7f2e6a181a122d7f52d70bc77f7e15d5b3b30cfb4f9e6ef7b7f9a70",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tuihw_inf",
+          "path": "lib/modules/tuihw-inf.ko",
+          "sha256": "406f49883c5e9cf598cb005c690e5b01814a9555c9bb77b3542eccaa88b8e31f",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb02_mfd",
+          "path": "lib/modules/s2mpb02_mfd.ko",
+          "sha256": "efaefd5a9b0a40fcd1ed9d3f2bacfb71640abf189635e8aaf6ebbb18b0214fb8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "nfc_sec",
+          "path": "lib/modules/nfc_sec.ko",
+          "sha256": "bc156487e294b20e47d78bbb5bc111e1c4efd06fbb5dc378c6a2037101fb99b1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dma_buf_container",
+          "path": "lib/modules/dma-buf-container.ko",
+          "sha256": "fc5c2924ea87bc76c2da89dd94c1e3746a461cd1cf14fc59401ea399a0cae4a0",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ufs_exynos_core",
+          "path": "lib/modules/ufs-exynos-core.ko",
+          "sha256": "e506fcb14b88f7399fedcf4ec71a844afce97476b6429291dfcc0835b99a862a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "scsi_srpmb",
+          "path": "lib/modules/scsi_srpmb.ko",
+          "sha256": "1516fef1e8c429c30c6e5ccb37671f7283d8f742336660c9a539419f8de651aa",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spidev",
+          "path": "lib/modules/spidev.ko",
+          "sha256": "8b45fbe75fa424a57a53dd92416ff8b320b19283df7d01f3c09cb00091cf22a4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spi_s3c64xx",
+          "path": "lib/modules/spi-s3c64xx.ko",
+          "sha256": "31810989236e4ec1db94707b52c32636dff78a835eee51c08e95c82ba63db199",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dhd",
+          "path": "lib/modules/dhd.ko",
+          "sha256": "200412b8f6d94e1374860800a0ef13c627f166481cb49af7259d7ba4b95cdeb6",
+          "licenses": [
+            "GPL and additional rights",
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtl8150",
+          "path": "lib/modules/rtl8150.ko",
+          "sha256": "e6af958f8d5999f37a0f3d0f57054e5f9c08e06adf1d2681620e20e10c44f4a0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_eem",
+          "path": "lib/modules/cdc_eem.ko",
+          "sha256": "0313a7feb52e315f4dd4ebcd73dbe7cc0bf94c572b0ae850d45d26322b19b22f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smsc75xx",
+          "path": "lib/modules/smsc75xx.ko",
+          "sha256": "14c078a297869a29d409941a7ea6191e7ff977ed984258f65b7559da4f10609f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smsc95xx",
+          "path": "lib/modules/smsc95xx.ko",
+          "sha256": "ee56cf1d8b5e16f20ea14acbab91384802e46181bd9f9f01ea03f6e91d96cc0a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "net1080",
+          "path": "lib/modules/net1080.ko",
+          "sha256": "76e452d13440dbb4cbc414254bf197f269cfacee55d880590b7f45619aae98bd",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_ncm",
+          "path": "lib/modules/cdc_ncm.ko",
+          "sha256": "b4e401a69b506ec1e27f59275b752e8b0fdadcd484874aa372c0c0faa85972b5",
+          "licenses": [
+            "Dual BSD/GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_hcd",
+          "path": "lib/modules/xhci-hcd.ko",
+          "sha256": "80bc7dba95c3df5dd0d914ec5bf2355276a0769d10295cb365deb29440c22c3e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_pci",
+          "path": "lib/modules/xhci-pci.ko",
+          "sha256": "9dbfcb1b0bfbfc62ed1ae3718f77e73d5afa7a9883db2c3f50b2d66979850f8e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_plat_hcd",
+          "path": "lib/modules/xhci-plat-hcd.ko",
+          "sha256": "c9c3847aba366090c43d329f5b81e1fde76e770b84bf61e1cfcbd3cb4b6bdbc5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_dm",
+          "path": "lib/modules/usb_f_dm.ko",
+          "sha256": "2b63e76247d0d269a055a8d39fb2335e92635fe3c83b3ee309f768327fd0a455",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_dm1",
+          "path": "lib/modules/usb_f_dm1.ko",
+          "sha256": "2eb5e29c93e51338891ae6d6fe826f4d0aca051b2d8ced1545cd0cacf469b311",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_mtp_samsung",
+          "path": "lib/modules/usb_f_mtp_samsung.ko",
+          "sha256": "9f5f7a3c9112210086cf70f86fa1d3b9de2a8ae4b4d6e475838559c53cf903ff",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_ptp",
+          "path": "lib/modules/usb_f_ptp.ko",
+          "sha256": "0a3a166ef545048799a6cdff2d0542aa14a18f1fe99c665102d1571c058bba04",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_conn_gadget",
+          "path": "lib/modules/usb_f_conn_gadget.ko",
+          "sha256": "b6c738161de63b1fed5fd007c7340b8b07e5e2638bf7c61e2eaf00d92f483ca9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_ss_mon_gadget",
+          "path": "lib/modules/usb_f_ss_mon_gadget.ko",
+          "sha256": "4681f1cf0dc07a0dd79aa5fd270490365c9f3bc0869d59a9773360dda0feccb2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3",
+          "path": "lib/modules/dwc3.ko",
+          "sha256": "c4651c0ccc146ebeef2f6e193968beb1728c3ad76fd4dcd781df320ddaa60fc1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_haps",
+          "path": "lib/modules/dwc3-haps.ko",
+          "sha256": "23566e3b79210d6abd865c3a229a3b0dc8525242bd26b00050d408bff0c9082f",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_of_simple",
+          "path": "lib/modules/dwc3-of-simple.ko",
+          "sha256": "fde3f44e54b79313921c3137d16b35a74b7625bdf21234ad616850589b52f9d6",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_qcom",
+          "path": "lib/modules/dwc3-qcom.ko",
+          "sha256": "0b50674c0bc250156ec2a14fce23b2daf306aef0f0c0fe253b8d3e4a964c2cdd",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_acm",
+          "path": "lib/modules/cdc-acm.ko",
+          "sha256": "44ebb6dce285ac4093365e39fcfdb6d8f6645ec8898121f7bf8c32563a5aba86",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usblp",
+          "path": "lib/modules/usblp.ko",
+          "sha256": "8d3b2c04899bbd0d1efc39825487ab75313a7ee43961b491e46633b4ca8af75c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_wdm",
+          "path": "lib/modules/cdc-wdm.ko",
+          "sha256": "731fb3aebd6c87d26f36c08de5321faaa39286d9c10763afe131855072d5e502",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usbserial",
+          "path": "lib/modules/usbserial.ko",
+          "sha256": "63d1cc389475732d4766c613c26480103cad638b05c168adacdd01bc69fb07ce",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ftdi_sio",
+          "path": "lib/modules/ftdi_sio.ko",
+          "sha256": "4760a47dac007db0142ef6df01e4399f8aef2163d245eb861da194ad540267dc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pl2303",
+          "path": "lib/modules/pl2303.ko",
+          "sha256": "694b1922aeec0fafaef13ad6603ba1faf11e14c54887e2a23ee7b88dc82612a4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_notify_layer",
+          "path": "lib/modules/usb_notify_layer.ko",
+          "sha256": "3d2cabde181fcb4eb1603410e22bc9452a9635b032615526884e07f46bc9c234",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_notifier",
+          "path": "lib/modules/usb_notifier.ko",
+          "sha256": "d8249de56f051c11fc10e34c126737b2cb937ee2a64468242eb53cfc30ed0c3f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_key",
+          "path": "lib/modules/s2mps23-key.ko",
+          "sha256": "dd80f8a32e5fca8c6954e4df907a02ec911eb493ccbdd2284011004e6cd82ae8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtc_s3c",
+          "path": "lib/modules/rtc-s3c.ko",
+          "sha256": "3eac2b742c46e5cd52c62b87d73638dd5415d5c8be0f0587b9c9d073fa864085",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtc_s2mps23",
+          "path": "lib/modules/rtc-s2mps23.ko",
+          "sha256": "00e15117f6e737c1827df75d51d40a57dac3cc69c8becaeb8139344661cfd1cc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "i2c_dev",
+          "path": "lib/modules/i2c-dev.ko",
+          "sha256": "b8da82ca3bc12f3a62a98edf25d2bf6fbdc331753381318fc1d190ddc16d2d46",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "v4l2_mem2mem",
+          "path": "lib/modules/v4l2-mem2mem.ko",
+          "sha256": "c3395f285a5f91ef3b0d8d9cfded06208fdc6462a1409a58cf31eeb616c178ad",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "videobuf2_dma_sg",
+          "path": "lib/modules/videobuf2-dma-sg.ko",
+          "sha256": "805bfccd4123ba1fff232995b7772ab6c493b7e8db03ba9737cc6914f7510611",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "repeater",
+          "path": "lib/modules/repeater.ko",
+          "sha256": "9a5ff9df212ea072128538554fa57ab1caf85728f1cee66cded580c78f37f2b8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tsmux",
+          "path": "lib/modules/tsmux.ko",
+          "sha256": "77e6d12caee060a1574473a6886c69a4717196be91c02a0edf1786cefbba677b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mfc",
+          "path": "lib/modules/exynos_mfc.ko",
+          "sha256": "533a9da2bbade71aabd34af977268707ff2bf69ea1c33180f7dd3875d74d98d6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "camerapp",
+          "path": "lib/modules/camerapp.ko",
+          "sha256": "40abece30ffcfd8c56233d3d20764e0048c57f4deb97eb94fac0a1bba544536d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "gdc",
+          "path": "lib/modules/gdc.ko",
+          "sha256": "129bf847c8689b1a18f519b118b274d6052b35eedd7850ec0ae3a260a67b58cc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "votf",
+          "path": "lib/modules/votf.ko",
+          "sha256": "a1502a4547af785325937f659bb53dab0501c544d55221bc7562fc7cc0fa4619",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "camerapp_pd_mgr",
+          "path": "lib/modules/camerapp-pd-mgr.ko",
+          "sha256": "73b8c7b5fa2328d62f8eea76e28ec46eae9f6fa5ef39cfb2fdf9861a3cdc7da9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fimc_is",
+          "path": "lib/modules/fimc-is.ko",
+          "sha256": "48f74ba4bae5e4439563c940d80885cd2d76e6dcaac2c0cf7ab8b1ff8d1727be",
+          "licenses": [
+            "GPL",
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_3j1",
+          "path": "lib/modules/is-cis-3j1.ko",
+          "sha256": "a94512aa76d08a84b3ccb157df09a77a826051ad96876c93c945aff725bb25c5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_gh1",
+          "path": "lib/modules/is-cis-gh1.ko",
+          "sha256": "8bcf3450361d33deae2a7b9db770b97a61e2603c0bd3d554aa0621c242983ceb",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_hm1",
+          "path": "lib/modules/is-cis-hm1.ko",
+          "sha256": "39320824c23ab34bf579ecdf742de3e57e57d958989f150e46ed40839dd00521",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_hm3",
+          "path": "lib/modules/is-cis-hm3.ko",
+          "sha256": "d494e56ecbbbe180d42c3fec46d0fd52e74448aaca1b28e5c6fa3973407dc1d9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_imx563",
+          "path": "lib/modules/is-cis-imx563.ko",
+          "sha256": "ab9e482df0901589a1d1620919f9356c8efcdf0ea13fc34a8f01d1a18ec3317d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_actuator_ak737x",
+          "path": "lib/modules/is-actuator-ak737x.ko",
+          "sha256": "223139fe0d8c9828b699b0fa28b59e19ab6e0aa452555e05e64017c771258444",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_laser_af_vl53l5",
+          "path": "lib/modules/is-laser-af-vl53l5.ko",
+          "sha256": "184d3a32ab890ebbcc9861fc00c6cd515b73aeddc280762bb871d1042115511e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_flash_s2mpb02",
+          "path": "lib/modules/is-flash-s2mpb02.ko",
+          "sha256": "92852bcfaf5da43ceb3ff2c6b058b440078e6cabfc1c2f82e6a24db5d445cac3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_device_eeprom",
+          "path": "lib/modules/is-device-eeprom.ko",
+          "sha256": "3b320ca5e937a083a2fb7f641d5ae0f6a0d0107e7be91e042872888cbb537dbf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcfrc",
+          "path": "lib/modules/mcfrc.ko",
+          "sha256": "bccbabab7a32a6334c4759ec911eb0db8eb411c518cd11d968bf8ec692170118",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smfc",
+          "path": "lib/modules/smfc.ko",
+          "sha256": "692a159030d41462e5c3ef2807e42d336e028dd039370dbcfd34e33fdb9fa522",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "scaler",
+          "path": "lib/modules/scaler.ko",
+          "sha256": "60a0f818698a1ca53141c105303de68a4f7951b26e0d0fc8cd833521229ef56c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_thermal",
+          "path": "lib/modules/exynos_thermal.ko",
+          "sha256": "538f4a3dc91b1caa29358331beb22a3e76171bc1d1c7c98e9b3c47edf06b7cd1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "gpu_cooling",
+          "path": "lib/modules/gpu_cooling.ko",
+          "sha256": "c6855985cfd4e9771881ed351ce78c6765d9cdf9358df75ff067ed845ba505b0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "softdog",
+          "path": "lib/modules/softdog.ko",
+          "sha256": "76e4f102c3b29cf35855a63033604eb096b42996852a801b4c368a7b5c5cb010",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "bcm43xx",
+          "path": "lib/modules/bcm43xx.ko",
+          "sha256": "01f0b6d1f08dedab12ff6681fe8f780d065b68ecee056c34a0a1e89688aab86e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "freq_qos_tracer",
+          "path": "lib/modules/freq-qos-tracer.ko",
+          "sha256": "810f7f9902798f8cb83a39fcc7c8a9e0e33524e4b26eff8468d4c5be634bf695",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_acme",
+          "path": "lib/modules/exynos-acme.ko",
+          "sha256": "891877fa440ef6bacebf856e4c17374810ae96918fe9111f93f647cd56ec4531",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dsufreq",
+          "path": "lib/modules/exynos-dsufreq.ko",
+          "sha256": "4a683ba603bce875fd67f031fb263463fba4216f2cb1e1ec888e0b607d27799d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc",
+          "path": "lib/modules/dw_mmc.ko",
+          "sha256": "8a9bc0808c3f270c441c0b4bc7b391ce210a07f1419c7bb4a65f099bc40acda6",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc_pltfm",
+          "path": "lib/modules/dw_mmc-pltfm.ko",
+          "sha256": "7d6ceb3f05465d0f67df8852ae88806214fbb63c3e44662bb01f92092c574271",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc_exynos",
+          "path": "lib/modules/dw_mmc-exynos.ko",
+          "sha256": "6948a0a678fd977d303581982acfb119592c46a5d5564d344085a0cd2a55ab33",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "leds_s2mpb02",
+          "path": "lib/modules/leds-s2mpb02.ko",
+          "sha256": "d25f562aca327a30c41e5d9ce7162db035ee57f4af387c70e127d2ebc1faa644",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fmp_core",
+          "path": "lib/modules/fmp-core.ko",
+          "sha256": "7c288eacef298a1c7e2ec80c51d2a84d5a7be15ab1853c473987d04550f73c85",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ion_exynos_mod",
+          "path": "lib/modules/ion_exynos_mod.ko",
+          "sha256": "b7800508f4f769ef85b0363a235f9083b1297378929b1a138b28b04e12440a6e",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "switch_class",
+          "path": "lib/modules/switch_class.ko",
+          "sha256": "86a309021964d5028b12196a9b58864aefd63ab82ef6bdd1c6085ce5410f5ca9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_devfreq",
+          "path": "lib/modules/exynos_devfreq.ko",
+          "sha256": "cc85f54bc402c8ff3d0ceabb3cc5c4270694236fbcb7dd0452e1217b90ab4a1f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_adc",
+          "path": "lib/modules/s2mps23_adc.ko",
+          "sha256": "f857c7332a1ab90eb12fae55291c998de9535bbb500a4e9cdd8448e2671da6d2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dsp",
+          "path": "lib/modules/dsp.ko",
+          "sha256": "5dced16e3aec5827877055e46663983ad6cbc1b317c2931500584f3fd7131db1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "npu",
+          "path": "lib/modules/npu.ko",
+          "sha256": "d873cb031125eaadde7f72a2980e6fc1a94001a2da60e637b4609bfd94e0216b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "vbus_notifier",
+          "path": "lib/modules/vbus_notifier.ko",
+          "sha256": "12198451e771289032fffc513da37addd9fa7ff93924caa8a4b0fe98348a1a87",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_debug",
+          "path": "lib/modules/sec_pm_debug.ko",
+          "sha256": "771f7d4a9ce3c8e00bbef986555a6d09e3442399b9cd97832141706c2f42ede5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_log",
+          "path": "lib/modules/sec_pm_log.ko",
+          "sha256": "a4ec00f012096e695f05164765834e652d712076c4d83c6409babe20856be0c3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_cpufreq",
+          "path": "lib/modules/sec_pm_cpufreq.ko",
+          "sha256": "ddc700713433c8e6f9e510da8a0ee0ffd7d08b00daf51d1247280f56216b1923",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_thermistor",
+          "path": "lib/modules/sec_thermistor.ko",
+          "sha256": "1e66d4cddafe3157c2cae0b9e4ce39bd1ae739a4b876adf7c7fed6bc633a048f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_wakeup_cpu_allocator",
+          "path": "lib/modules/sec_wakeup_cpu_allocator.ko",
+          "sha256": "a8a6780a754d9af77d06a2668b1a114dea7d2faee82a0c3d46ed89334e060cb2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_reboot",
+          "path": "lib/modules/sec_reboot.ko",
+          "sha256": "c0d4e7ba6247aeeb867afd9e48ff75531f5f915cbe88425abec86d4fb15a7dc4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_crash_key",
+          "path": "lib/modules/sec_crash_key.ko",
+          "sha256": "71eebe828cb611fe20439174e25d21f87795297a7fb51ed8faa4f7dc0aa0df28",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_crash_key_user",
+          "path": "lib/modules/sec_crash_key_user.ko",
+          "sha256": "a7fe72c9eed236250b3507dce78b0f4d2a5bc5dc9e414eebae8e3b3bd407f0ea",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_hard_reset_hook",
+          "path": "lib/modules/sec_hard_reset_hook.ko",
+          "sha256": "bc3bf90636bef137723687bfbee6d3a3855ec1e8fd02373644185450ac0764e8",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_key_notifier",
+          "path": "lib/modules/sec_key_notifier.ko",
+          "sha256": "6b1c9e5bdf613ae8f7b678b4ceeaa6ef4ed38af4b39b98049ce89ebb96aa69b8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_mparam",
+          "path": "lib/modules/sec_mparam.ko",
+          "sha256": "ffd8129d78273023938f69f0b283602f69a48046b2db30a14bbc4f1b6d1207a9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_class",
+          "path": "lib/modules/sec_class.ko",
+          "sha256": "14eed5fd4206f455ec1658bc87d87eab9276e148ef2e18c966f9e508d7db83b1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_bootstat",
+          "path": "lib/modules/sec_bootstat.ko",
+          "sha256": "d708b0817d3e2df13291583fb0ebcef68ced5b7b3ffdc22a80b0b6dbc4f5c0cb",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_argos",
+          "path": "lib/modules/sec_argos.ko",
+          "sha256": "45cb73c7c3f1c809f586b8cef4925b3a6c35b82f1c46fed4120c4edc98df9477",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hdm",
+          "path": "lib/modules/hdm.ko",
+          "sha256": "7f7c79e03b69b72639aafd6c1db770de976f92464ba2e08f374ac63d858a0bc0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sx9360",
+          "path": "lib/modules/sx9360.ko",
+          "sha256": "02ff649b7c4659dc8a20df2dcaf715250c254dbd370f5f8132ee55dd1c83f64a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug",
+          "path": "lib/modules/sec_debug.ko",
+          "sha256": "80de36d2444e1d4979f6abea65042cea5166577b0d9daecb011472901fe1cc80",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_test",
+          "path": "lib/modules/sec_debug_test.ko",
+          "sha256": "29776f22d4dcf0447306dc56af74e43654ecc50fe39ba70086ae04d3b1903aac",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_dprm",
+          "path": "lib/modules/sec_debug_dprm.ko",
+          "sha256": "73663b30f430646cda8afb9ece646434e8eb00c6b00753278e01b2d97d8d754e",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_extra_info",
+          "path": "lib/modules/sec_debug_extra_info.ko",
+          "sha256": "4ed76c6710181f3eb8d20931c865783c7667c75d596a486c7708c2bb2c881714",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hw_param",
+          "path": "lib/modules/sec_debug_hw_param.ko",
+          "sha256": "ee1d180dfb7134b23328926a3b0a8bdda5a9732f4ef0385db91da6a8f7f717b9",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_reset_reason",
+          "path": "lib/modules/sec_debug_reset_reason.ko",
+          "sha256": "f86e5f6cc8a7b76f8bac7bf212e86d9154490acddc5b67a6dd1203aa89dda6a4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_wdd_info",
+          "path": "lib/modules/sec_debug_wdd_info.ko",
+          "sha256": "72f47de3e5f678b6fb319f67ec7633dce2213a590c63cca47b60ad35c9954e3e",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hist",
+          "path": "lib/modules/sec_debug_hist.ko",
+          "sha256": "0c31ba5b2546bd72c0433c0d0e718dc56273229916d317d87b79b6bd9939bc02",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_summary",
+          "path": "lib/modules/sec_debug_summary.ko",
+          "sha256": "27d373b646365c4ff1110b3396fe84e9f2ba62f445c3e98bb162f21759fecadc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_softdog",
+          "path": "lib/modules/sec_debug_softdog.ko",
+          "sha256": "4f8c489b8804c36dee9f20b48d6fb83246fe85e5b8f6d0194b0d324bc86fc540",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_logbuf_interface",
+          "path": "lib/modules/sec_debug_logbuf_interface.ko",
+          "sha256": "b87fc9ec43931c94066804d0bc9c25cf7eceb3f720c779cb0fa9cbd52f869979",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_stacktrace",
+          "path": "lib/modules/sec_debug_stacktrace.ko",
+          "sha256": "9a76d9d493e3f5feac35cb608331152e5db5edbac77874e64d4a894ea80bc443",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hardlockup_info",
+          "path": "lib/modules/sec_debug_hardlockup_info.ko",
+          "sha256": "3d30d522e495f834a8296f99d6b335928f86003c27d6c91ab6a24611fb9e3686",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_sched_report",
+          "path": "lib/modules/sec_debug_sched_report.ko",
+          "sha256": "b9342b28c3798eaace2973bf62e25bd60522dce291b19ab04abd3bb02c6b848e",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dev_ril_bridge",
+          "path": "lib/modules/dev_ril_bridge.ko",
+          "sha256": "f09e6a0d8fe581caa8b030ea9da88777de516679e276bab450cbb3c7ffe7f40f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_vibrator",
+          "path": "lib/modules/sec_vibrator.ko",
+          "sha256": "62a6a6f91a723694d1502c3ba88fdecf5659bd6502109a9ba362c8d16f6c4638",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "max77705_charger",
+          "path": "lib/modules/max77705-charger.ko",
+          "sha256": "7a7050e629ad8cb8cbec5af9fc4c54a372413a964cf938e82c1faa1503eef4d9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dropdump",
+          "path": "lib/modules/dropdump.ko",
+          "sha256": "efae78ede50046e37126a89c46a771c93497702fb312ffe70f3d9e253ba1f8f3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "common_muic",
+          "path": "lib/modules/common_muic.ko",
+          "sha256": "169f948da8198d1cb5d234ce84bff8cfa31c79a6fd78c021559a93b190d40783",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tsp_log",
+          "path": "lib/modules/sec_tsp_log.ko",
+          "sha256": "86ea7f20f5861653cf97d8fda4d9f1a1066ed17e3627f6982ce3971ce0479a67",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tclm_v2",
+          "path": "lib/modules/sec_tclm_v2.ko",
+          "sha256": "78baca6cfbd6b7f86b3f563b9104613e116ae0cf4a47526432fdae9cf8e2d1de",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_secure_touch",
+          "path": "lib/modules/sec_secure_touch.ko",
+          "sha256": "d0b1ff8e824faa54001307616f5a5e629f41a8ca48f4b07448452e733020aa2f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tsp_dumpkey",
+          "path": "lib/modules/sec_tsp_dumpkey.ko",
+          "sha256": "761b2acd49c9529feae50b6b0b80b807f37dc38a1ffcca9d845f5f3fbb4aabbf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_input_notifier",
+          "path": "lib/modules/sec_input_notifier.ko",
+          "sha256": "05f134fc64bbba6c2b325e441aa9b096dde5aceee7996d95b4c925cd210a1751",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_common_fn",
+          "path": "lib/modules/sec_common_fn.ko",
+          "sha256": "b989c9b8c5fe413a0746e8b3cce9414607b332176b7117c0d6c3af8ffb361f6b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_cmd",
+          "path": "lib/modules/sec_cmd.ko",
+          "sha256": "090c2fd516480b33de4636087771b3168b984a70a8ceb91812572074c5cdf08d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fingerprint_sysfs",
+          "path": "lib/modules/fingerprint_sysfs.ko",
+          "sha256": "557b6b70bebbf700048a595ade621b8171338701ec4301a2a79040e5eb47c18f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "qbt2000_spidev",
+          "path": "lib/modules/qbt2000_spidev.ko",
+          "sha256": "ce7d6b8523187a222f6a8f83bdee54a1484a81c3750c6baad5f0a0d6648b5f74",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_typec_manager",
+          "path": "lib/modules/usb_typec_manager.ko",
+          "sha256": "e95dfd8bdca92162976189c715cfc587bdd2ddd324abd2a8133f12a0c5c9c3e8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "if_cb_manager",
+          "path": "lib/modules/if_cb_manager.ko",
+          "sha256": "a399161415a494bc26a7abeac95bbeaeee150af3821ea5413c6e43369dd58daa",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pdic_notifier_module",
+          "path": "lib/modules/pdic_notifier_module.ko",
+          "sha256": "ee00e30de0c1d7795f4c6109af660b7deb2236a91690ddb4540a351ca048337a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cs40l2x_vib",
+          "path": "lib/modules/cs40l2x_vib.ko",
+          "sha256": "47181d40d143caffc78eb83e1f0b1e7c79c11708a06b71f4e60b8a3e2e6b7338",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2dos05_regulator",
+          "path": "lib/modules/s2dos05-regulator.ko",
+          "sha256": "6ed8a9d1beb786498de1c5df97432a5f1ff9786d83c3ad17680982f8181c4117",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pca9468_charger",
+          "path": "lib/modules/pca9468-charger.ko",
+          "sha256": "607525e60e4a4980e30d83967f9f2bef5cd69556cd65e51901695b69c76eb14a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hall_ic",
+          "path": "lib/modules/hall_ic.ko",
+          "sha256": "5a6a2bb6290ad2fb255b309f7969dfd77ec1034db0161e783bc417536c933471",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "abc",
+          "path": "lib/modules/abc.ko",
+          "sha256": "71cfd1d3fa1c96fb145a7eff9e6e96da90e9ce74ee3492db7aa92a4e8a8861b5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "abc_hub",
+          "path": "lib/modules/abc_hub.ko",
+          "sha256": "a8d210118c7621eb5dfaab1b0b888ebc96e3fc4a55b94e20dc2d6daf8e561601",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "vl53l5",
+          "path": "lib/modules/vl53l5.ko",
+          "sha256": "5193df0fc34a383d0914bc195b4e637c65b8abeef9895dfaa3bb4e66edbef480",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mfd_max77705",
+          "path": "lib/modules/mfd_max77705.ko",
+          "sha256": "f867d1400fb0beda86a598be8da40428cda9d5ecd71ee2621c53cfbb33c76060",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "max77705_fuelgauge",
+          "path": "lib/modules/max77705-fuelgauge.ko",
+          "sha256": "b8ff06c744cee8e2aa52b211a8fee0f98ea8bd71eb3d6a01981429adb2ec94b7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "broadcom_sensorhub",
+          "path": "lib/modules/broadcom-sensorhub.ko",
+          "sha256": "52aa4c2d002c511620bfae01466fe253d7e6a8f08ebdbf685d6d62bb951270fe",
+          "licenses": [
+            "Dual BSD/GPL",
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sensors_core",
+          "path": "lib/modules/sensors_core.ko",
+          "sha256": "40da0a87e74b9fe137f8acfe839e28c764bbc565f42f4fd02a0e89d193c6d59a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "slsi_ts",
+          "path": "lib/modules/slsi_ts.ko",
+          "sha256": "0069f025304666af7dc2b3f18edb3c3ff83d576caa1fa41f9d2c9d4f4b5ded03",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "uwb",
+          "path": "lib/modules/uwb.ko",
+          "sha256": "be671ba05adaee0e153a34a9936063110aa7a5e0c951a0a87adc9324957fea56",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snvm",
+          "path": "lib/modules/snvm.ko",
+          "sha256": "6f71dce5fa0e3ca1b8a6c08759dd4fd3364f7e3487f64f1e719d747f1a4e64c5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mfc_charger",
+          "path": "lib/modules/mfc_charger.ko",
+          "sha256": "37e2f89e14b6d03addc756898c9e52a2205e9854b9188a04fd836f7e8466a233",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tsl2510",
+          "path": "lib/modules/tsl2510.ko",
+          "sha256": "8c0c5b80e36c89e6c2ea49c09d70b9f693a411d03adcc1cbecbd2e2eea751c03",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pdic_max77705",
+          "path": "lib/modules/pdic_max77705.ko",
+          "sha256": "e6004715114595d5797b4dad995fbcb124bee3e9d968e6f236c541b7ff7655ae",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "w9020",
+          "path": "lib/modules/w9020.ko",
+          "sha256": "ef41a3e799f742dc52e38c8eb052c22b2eec8bbc7c3dcd8dcbec8bb221f54193",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_direct_charger",
+          "path": "lib/modules/sec_direct_charger.ko",
+          "sha256": "3ffdc8ae32e0efc5668af00e908173ae6c758ad5271caa343bfef85b0e8111ae",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pd",
+          "path": "lib/modules/sec_pd.ko",
+          "sha256": "feb1fb94fca1a708882404d8a0693b849c8aa900e3328e28afdd37ad677236da",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_battery",
+          "path": "lib/modules/sec-battery.ko",
+          "sha256": "a71e94aa9f3887a79741136f1caa38d8a5611f989bf9baeb73dfedcb5c58c1fe",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcps",
+          "path": "lib/modules/mcps.ko",
+          "sha256": "987e9e63fe7fdc548e0cc503dac6d7ee93014d28d2287ab6c2f15850870a398d",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bts",
+          "path": "lib/modules/exynos-bts.ko",
+          "sha256": "6ca981ad1f872eeb86290d49aad561777e17245c65a9a963c16d22a53279179b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_btsops2100",
+          "path": "lib/modules/exynos-btsops2100.ko",
+          "sha256": "db0d314d681e1f2278b0a92f0d7b25e6c1225442926466d503650152df1dae84",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spu_verify",
+          "path": "lib/modules/spu_verify.ko",
+          "sha256": "065fd8a0394790002693e6dce780d5607c176146705a2e8edbdf9361d4e2b53e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_usb_audio_offloading",
+          "path": "lib/modules/exynos-usb-audio-offloading.ko",
+          "sha256": "f1598519f9b3a924cc86ac709859a1a51bd5a21a4a21ff134678c5c016b9c5db",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_cirrus_amp",
+          "path": "lib/modules/snd-soc-cirrus-amp.ko",
+          "sha256": "eb12c9eac35abec20c6be684c4fde09f090386daee59afaae23b79181bb5e3f4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_cs35l41_i2c",
+          "path": "lib/modules/snd-soc-cs35l41-i2c.ko",
+          "sha256": "b969f981d0f59c3d58a346f4abe81055c26491f9fe9e3bb6efcd15275156faef",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_wm_adsp",
+          "path": "lib/modules/snd-soc-wm-adsp.ko",
+          "sha256": "bdbc3cccf4bc308ad2fb1218d97730b51be48fc9375f660fe3f0a9d21a419eb7",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_s3c_dma",
+          "path": "lib/modules/snd-soc-s3c-dma.ko",
+          "sha256": "570e7eb205dcbe9a9b55101320f80455114c6ed38d1ab52aee413e029e962525",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_dp_dma",
+          "path": "lib/modules/snd-soc-dp_dma.ko",
+          "sha256": "63a2efaf52def291efcdeb7add088b650d8876f2a248f5d3043f07afb6bbc82c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_audio_sysfs",
+          "path": "lib/modules/sec_audio_sysfs.ko",
+          "sha256": "7a29e4377b6681adfd0a868336f916fd6ec16fefd7de8777752e7fb64a0b71d9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_audio_debug",
+          "path": "lib/modules/sec_audio_debug.ko",
+          "sha256": "cff0f2e7241f170a63a985205a80aa4f483df6e116cf72337e475912d2f3f1d5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_abox_gic",
+          "path": "lib/modules/snd-soc-samsung-abox-gic.ko",
+          "sha256": "46f604cbbe333356accfce0de82a9b7c6520084fbf4d29b4b2d8fc571ea4583e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_abox",
+          "path": "lib/modules/snd-soc-samsung-abox.ko",
+          "sha256": "c12cafbad3483db13aa3ae81fb67baa3009c1fa71060ff86bb76862d5cece02c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_vts_mailbox",
+          "path": "lib/modules/snd-soc-samsung-vts-mailbox.ko",
+          "sha256": "65595077985b664c070a68e3288f8a13b3c91045d725d5e587a7e86305044237",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_vts",
+          "path": "lib/modules/snd-soc-samsung-vts.ko",
+          "sha256": "09a5440dfe36f0eeec2e2ca6293fe29d6c28110176b52bdfa97489885942df01",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "unbound_prince",
+          "path": "lib/modules/unbound_prince.ko",
+          "sha256": "142a0147789479d2173f5503904d615a88adf9daffb07f84ae4faa35e2c8edc3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tcp_westwood",
+          "path": "lib/modules/tcp_westwood.ko",
+          "sha256": "50bcaffb3a8ed0b40aa9410523616fe3bacaa5e43f5f615cd3e665a5f9e794b3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tcp_htcp",
+          "path": "lib/modules/tcp_htcp.ko",
+          "sha256": "ffd45b011108d30c24ee9571fea2ebc4bcbf5818b0fc2a4aedf89a0c9959e506",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        }
+      ]
+    },
+    "candidate": {
+      "strict_plan_checks_passed": false,
+      "errors": [],
+      "warnings": [
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_guard"
+        ]
+      ],
+      "plan_blocks": [
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_guard"
+        ]
+      ],
+      "modeled_source_checks_passed": true,
+      "unversioned_imports": [
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_fail",
+          "provider": "vmlinux",
+          "provider_crc": "0xf0fdf6cb",
+          "consumer_version_record_present": false
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_guard",
+          "provider": "vmlinux",
+          "provider_crc": "0x8f678b07",
+          "consumer_version_record_present": false
+        }
+      ],
+      "duplicate_exports": [],
+      "selected_count": 274,
+      "weak_unresolved": {},
+      "proprietary_taint_closure": [],
+      "module_abi_established": false,
+      "runtime_loading_tested": false,
+      "a0_complete": false,
+      "imports": 13722,
+      "weak_imports": 0,
+      "exports": 1914,
+      "version_records": 13995,
+      "dependency_edges": 569,
+      "dependency_graph_sha256": "eca7cea1797ce6814caff738fc922a58489fd35b660f4617adef20dbec797aaa",
+      "module_metadata": [
+        {
+          "name": "dss",
+          "path": "drivers/soc/samsung/debug/dss.ko",
+          "sha256": "69a581c72a3de686a60ad508e1ed492fd2a895ebbf8d67d8088f1265073c9847",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_chipid_v2",
+          "path": "drivers/soc/samsung/exynos-chipid_v2.ko",
+          "sha256": "64f72470428072769bbe9abb935d60820da1bec27ecdee828145c98fa7d2dae9",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_reboot",
+          "path": "drivers/power/reset/exynos-reboot.ko",
+          "sha256": "968aa25d7b10a206822f2d615e8930d8444bd6a8681a0f83790c4df441e32fa0",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos2100_itmon",
+          "path": "drivers/soc/samsung/debug/exynos2100-itmon.ko",
+          "sha256": "016a3aaef6e508a0b177022ac93c31c3b4af2464e773f936bf0c82d31a4620f2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pmu_if",
+          "path": "drivers/soc/samsung/exynos-pmu-if.ko",
+          "sha256": "571931a49a82aea5db903b52f7de40560fba9d67c02a48d61213dc96e4b79b53",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s3c2410_wdt",
+          "path": "drivers/watchdog/s3c2410_wdt.ko",
+          "sha256": "3d854cb1db6fce119abc21f182cba211aa963b01cd29b5923fa0bcb6509eb650",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ecc_handler",
+          "path": "drivers/soc/samsung/debug/exynos-ecc-handler.ko",
+          "sha256": "bef72f074c3a57e0908510672a8c143e54b498c7cfc00489bbcea49d6438b073",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_coresight",
+          "path": "drivers/soc/samsung/debug/exynos-coresight.ko",
+          "sha256": "89706b3f0b57975024554f61a61c20d147c974f408c9670219b7aafab977febf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "debug_snapshot_qd",
+          "path": "drivers/soc/samsung/debug/debug-snapshot-qd.ko",
+          "sha256": "4b338dce7361e8ff0cca339ee8b3f9548c955cb892a87d5eedfe14c987cb8282",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "eat",
+          "path": "drivers/soc/samsung/debug/eat.ko",
+          "sha256": "79ed2050b70f39ff38ab6b5124f1cc1858393de185182341c5a2f12b28577168",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_adv_tracer_s2d",
+          "path": "drivers/soc/samsung/debug/exynos-adv-tracer-s2d.ko",
+          "sha256": "2e5965aaa1feb2fff47e1071c37ac68f3e73e5f021f370e1c1c69f9fe3901a18",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ehld",
+          "path": "drivers/soc/samsung/debug/ehld.ko",
+          "sha256": "fb5279706f02cc749b6650448246d568b6fb16bb79d401ec8e93d96c007ee8c4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_debug_test",
+          "path": "drivers/soc/samsung/debug/exynos-debug-test.ko",
+          "sha256": "ad35e7dad8c025118d8967a894207b19fdec6b1b4b59a13c9f0559f5e77fe425",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hardlockup_debug",
+          "path": "drivers/soc/samsung/debug/hardlockup-debug.ko",
+          "sha256": "65b1b28ac184e3d23e1055d5172d34ff3e308666ab49feccf1a6f6981b089216",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_acpm",
+          "path": "drivers/soc/samsung/acpm/exynos_acpm.ko",
+          "sha256": "b2cca2fde967b6dcf69f935b7b8ff744a1e2b8bd229b4fbf05b879672ad79209",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm_qos",
+          "path": "drivers/soc/samsung/exynos_pm_qos.ko",
+          "sha256": "e061ab863ea0d02c3c2861b4019cf66ad73181775d5a3981fc40379972c4fd22",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_s2mpu",
+          "path": "drivers/soc/samsung/exynos-s2mpu.ko",
+          "sha256": "8bfb2ddaa0f52ad8986238d81cdf960f254ad01fc406e628516c400dea8d37e2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd_el3",
+          "path": "drivers/soc/samsung/exynos-pd_el3.ko",
+          "sha256": "9e125c462c45f7117a584112a12f2f9c24786b8c1216547c4c927530ed0bac9e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ect_parser",
+          "path": "drivers/soc/samsung/ect_parser.ko",
+          "sha256": "f8b20ac07096584ad38aa4194e49d112d6f246ce886a0bfb10ad1025f343b424",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cmupmucal",
+          "path": "drivers/soc/samsung/cal-if/cmupmucal.ko",
+          "sha256": "f2233c28858efb843b26263234698b3edc2e855666dfeccbf18b0d0b98fda89d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "clk_exynos",
+          "path": "drivers/clk/samsung/clk_exynos.ko",
+          "sha256": "b9259476160dfd89ac553b2390e6da7917ad2b2f97f3e9fc10b67924bd3afb80",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "clk_exynos_audss",
+          "path": "drivers/clk/samsung/clk-exynos-audss.ko",
+          "sha256": "ee36cd30fe60c0085e851cf18249130a35098dce29c8ff33ffadba72d97fc229",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mct",
+          "path": "drivers/clocksource/exynos_mct.ko",
+          "sha256": "c035785ac3acdf71c1508382657a40f60922414077f8f84b1ef4af3fd93598ca",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pinctrl_samsung_core",
+          "path": "drivers/pinctrl/samsung/pinctrl-samsung-core.ko",
+          "sha256": "1829cabce79ac6632defcad3778184bce0fd81f2755af809b9416c3a7a5222e7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpupm",
+          "path": "drivers/soc/samsung/exynos-cpupm.ko",
+          "sha256": "bc562504c01b87294cbeee7c999133c583500f9a0324d0a0d88d006811947729",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "i2c_exynos5",
+          "path": "drivers/i2c/busses/i2c-exynos5.ko",
+          "sha256": "b9b0254e1ad74edc4dfcd592cc3a370919222e8ed4976675c0c60e1212f75247",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "acpm_mfd_bus",
+          "path": "drivers/i2c/busses/acpm-mfd-bus.ko",
+          "sha256": "e934ff3d661096dc1788ed0ac9f0d1b84a21aa3f173d0a9b44b664d8f1db06c8",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps24_mfd",
+          "path": "drivers/mfd/s2mps24_mfd.ko",
+          "sha256": "180f508fa969158662f8383fe8805bcb327c4064d60c8db2545949076db0dd28",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_mfd",
+          "path": "drivers/mfd/s2mps23_mfd.ko",
+          "sha256": "1149f7e2b03c31b42c9594d3c8c98d534560600a299c63df5ca275e9724d8dd4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pmic_class",
+          "path": "drivers/regulator/pmic_class/pmic_class.ko",
+          "sha256": "90595aca2f551654cee8582017eb87a4aaf447fb9728cc0d530cefe82a04c545",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_regulator",
+          "path": "drivers/regulator/s2mps23-regulator.ko",
+          "sha256": "e703329c575fa661609ef8a9555799404c3c875ae712c5ef68b79cd4516b284b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps24_regulator",
+          "path": "drivers/regulator/s2mps24-regulator.ko",
+          "sha256": "b38820e2e4f0165a27c9b486635e3f4e1bf7c2895d5f8098e9075ff2ead3114d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_usbdrd_super",
+          "path": "drivers/phy/samsung/phy-exynos-usbdrd-super.ko",
+          "sha256": "d0ebef8bc9ee8eff84256820b6b9dba4d933ecf245c1648e6c46a4a6b6462f9b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_mode",
+          "path": "drivers/samsung/debug/sec_debug_mode.ko",
+          "sha256": "67918fc2e32588fd206de1451cdaf41b69ce7d26ca1eef50332295df6f394bd2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fingerprint",
+          "path": "drivers/fingerprint/fingerprint.ko",
+          "sha256": "d5caafa844dc191ca1d13028c33e8bc5b3cd51a2d30e864fceb442c3c477ea9c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ssg_iosched",
+          "path": "block/ssg-iosched.ko",
+          "sha256": "4e47a926e442664cf448ef0f3878f2587a1c5bdece08204cd34b39ce4e3cecf3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "blk_sec_stats",
+          "path": "block/blk-sec-stats.ko",
+          "sha256": "cde83f9a0784195207c0313557470320d8cc187f84a92f156bf1c453d87f8bf1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_mipi_dsim",
+          "path": "drivers/phy/samsung/phy-exynos-mipi-dsim.ko",
+          "sha256": "f1062e61cb77d19ede6cba3e0a717001771bf1582542608ec1cbefd92c8dc83f",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "phy_exynos_mipi",
+          "path": "drivers/phy/samsung/phy-exynos-mipi.ko",
+          "sha256": "19e7422f6f3c14ffa42b3546778dd8b3384804a4d215b507d6bc551c46f42351",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pwm_samsung",
+          "path": "drivers/pwm/pwm-samsung.ko",
+          "sha256": "f155121fe0f965efae551a2782c837256c7c5b92264ba1daa557ffba464f039a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_host_v0",
+          "path": "drivers/pci/controller/dwc/pcie-exynos-host-v0.ko",
+          "sha256": "69268033daed2b389e35054a85ed6fc1316176f1a34c96c1fedf8b7a434e17e1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_rc",
+          "path": "drivers/pci/controller/dwc/pcie-exynos-rc.ko",
+          "sha256": "c9b1f5c70a5de9aca038a9f35df6745049230aed06a37da3ab01165536ca061b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos_dbg",
+          "path": "drivers/pci/controller/dwc/pcie-exynos-dbg.ko",
+          "sha256": "f8f6b1d2f8617d4db342273a70fa855d61c31f89ea287b2e16913acc3345fee6",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos2100_v0_cal",
+          "path": "drivers/pci/controller/dwc/pcie-exynos2100-v0-cal.ko",
+          "sha256": "c2cee5ad1726fbd696ad1ac9e4508dc6384b65d52fc5c64876b7a66215076e68",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pcie_exynos2100_rc_cal",
+          "path": "drivers/pci/controller/dwc/pcie-exynos2100-rc-cal.ko",
+          "sha256": "c802effdb5f3bf482599d02409fb4668e90435e504638aaf20c927c1d894c940",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fb",
+          "path": "drivers/video/fbdev/core/fb.ko",
+          "sha256": "eaa0d7a333107cae4af9ce548f8ac894af54151fd365364ff996fb7a1e700943",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel_s6e3hab",
+          "path": "drivers/video/fbdev/exynos/panel/s6e3hab/mcd-panel-s6e3hab.ko",
+          "sha256": "9fde6d3196f06fafa162d011075b22baa2d7035fa57348e4d71b3659ba612ccc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel_s6e3had",
+          "path": "drivers/video/fbdev/exynos/panel/s6e3had/mcd-panel-s6e3had.ko",
+          "sha256": "3e763ed9bfaa2ada563fc26cd11bdfc6aa15d52410bd0f41f06c15fa3e758cd5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcd_panel",
+          "path": "drivers/video/fbdev/exynos/panel/mcd-panel.ko",
+          "sha256": "f7397862bdc4c24464655c4ee098c9f927b7b2f44210848146009e0e1c228acb",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dpu",
+          "path": "drivers/video/fbdev/exynos/dpu30/dpu.ko",
+          "sha256": "ba536cdfee516f0c362223e8af7c39f218eaf5ae835d2bb9101182e2442ccd34",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dp_ext_func",
+          "path": "drivers/video/fbdev/exynos/dp_logger/dp_ext_func.ko",
+          "sha256": "b1b3cef1d3a2246253749c285750f02d92146a6056b90fecfe37980622044071",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pl330",
+          "path": "drivers/dma/pl330.ko",
+          "sha256": "9c3090dda8c5d4bd2914a62dca883c29ce421c6cd06936a925bad5458f262d14",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_dma",
+          "path": "drivers/dma/samsung-dma.ko",
+          "sha256": "b218b26d03513f3500446b476ba1ff44dbe8c995f02915b7468305e3f0929e14",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "debug_snapshot_sfrdump",
+          "path": "drivers/soc/samsung/debug/debug-snapshot-sfrdump.ko",
+          "sha256": "c899874791964411c67241eb835ef72535a9fda67f8fc7a92cbf120601240de1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hardlockup_watchdog",
+          "path": "drivers/soc/samsung/debug/hardlockup-watchdog.ko",
+          "sha256": "c197c4298c3064167f1abd69845d56776fb49b16fe7f543f26d1d205743b329b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ssld",
+          "path": "drivers/soc/samsung/debug/exynos-ssld.ko",
+          "sha256": "1ca63d8804449c8d0eed32a67762af1fe71c1a2beb545acb5798061332ab755a",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_seh",
+          "path": "drivers/soc/samsung/exynos-seh.ko",
+          "sha256": "8da6dc401fbe3469a7919390196ee3c4f76411cc7af05355c2e541bdbddb18ff",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_seclog",
+          "path": "drivers/soc/samsung/exynos-seclog.ko",
+          "sha256": "1ff871ab216b6b3403610b51888cd09ea95c833094e5c45daa9d85887168868a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_tzasc",
+          "path": "drivers/soc/samsung/exynos-tzasc.ko",
+          "sha256": "c48e31be33ae864dbed6c05fb50e85d2bb2db215b49b7579ac640dde4dddc619",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ppmpu",
+          "path": "drivers/soc/samsung/exynos-ppmpu.ko",
+          "sha256": "618b6a8b51bac0977f2b5cc14ab39b2703746246822af33dffa437bbe98a6313",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_flexpmu_dbg",
+          "path": "drivers/soc/samsung/exynos-flexpmu-dbg.ko",
+          "sha256": "4a3073a2d4aa203a5fbfc119ec0a8d229add06966d2d72367d9e0395ebb06447",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd",
+          "path": "drivers/soc/samsung/exynos-pd.ko",
+          "sha256": "0803265bf1d9bc594ccc0fd4fd74d24207ecddc8431c5f84e20b8ba7c704586c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pd_dbg",
+          "path": "drivers/soc/samsung/exynos-pd-dbg.ko",
+          "sha256": "4411b51f3760a13d66e0cacfa0fe87f16e9ab83f109c3248ee6e918d77edbb79",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "memlogger",
+          "path": "drivers/soc/samsung/memlogger.ko",
+          "sha256": "150983a1a7753b8a6e51337f0b11e8f9e1ac9b17548f6ef2a15016717f51fdee",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm",
+          "path": "drivers/soc/samsung/exynos-pm.ko",
+          "sha256": "0e47924540e65395c81501e267bfb0a8f3f603a88e107fcb853cd1129cb9a949",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cmu_ewf",
+          "path": "drivers/soc/samsung/cal-if/cmu_ewf.ko",
+          "sha256": "3a7f81fa75c9c4ba5c46a1b3d465e17daf9cead98af11afd53d7cb69a74706ef",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usi_v2",
+          "path": "drivers/soc/samsung/usi_v2.ko",
+          "sha256": "d34057d9455fdb92da8f25ff1870cd0a49fcac19d22ebaca1734ba6b27b5c013",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "plugin_dbg",
+          "path": "drivers/soc/samsung/acpm/plugin_dbg.ko",
+          "sha256": "963784b28e0a52cf5655d120ab50a62d3ed0457609b912d938b1abc205f95c68",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ssp",
+          "path": "drivers/soc/samsung/exynos-ssp.ko",
+          "sha256": "0e51ba784171da411382948dc1107aac6b7648b25768ffb630f15f10356d8978",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_el2",
+          "path": "drivers/soc/samsung/exynos-el2.ko",
+          "sha256": "d5afea6f91f5ea2f3ec1e347ff8532d5bb2fae3585e044bbb4cecda41d7dda9e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcu_ipc",
+          "path": "drivers/soc/samsung/cpif/mcu_ipc.ko",
+          "sha256": "11ff59a31694caf83563a22c99ab089e70858edeaa4e4206606a4caa6260e97e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "shm_ipc",
+          "path": "drivers/soc/samsung/cpif/shm_ipc.ko",
+          "sha256": "85f44e6684914db323c3b7d8457a1c23fc321473c505ead2a69d1dc9ca6a2423",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dit",
+          "path": "drivers/soc/samsung/cpif/exynos_dit.ko",
+          "sha256": "fc0add15b38c86523f261a7c24fbab2cab908ca72998cd66a0beea569ec0c160",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "modem_utils",
+          "path": "drivers/soc/samsung/cpif/modem_utils.ko",
+          "sha256": "dc23c4a338309135b21b2f34f9b009b01ffbcd2eb8d21e6048264a584d4dae44",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cpif",
+          "path": "drivers/soc/samsung/cpif/cpif.ko",
+          "sha256": "3c2744c34280b6012b70fe86a504d8e7ade9df431b187fab2657d213e3a92990",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hdcp2",
+          "path": "drivers/soc/samsung/exynos-hdcp/hdcp2.ko",
+          "sha256": "606ce0b13aead6b066a80ebd9b7d514eab98407e4ce78d8caf25dffbb71ad57e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpuhp",
+          "path": "drivers/soc/samsung/exynos-cpuhp.ko",
+          "sha256": "896e3c22be197947bc6d6757cdf44143f4b5e2d408dc9cc319734af09358aeba",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_ufcc",
+          "path": "drivers/soc/samsung/exynos-ufcc.ko",
+          "sha256": "d29d2fe6ddac023d5e6a1aa7ab5d8a8497ca4bb1d343d35d7601c79361920e25",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xperf",
+          "path": "drivers/soc/samsung/xperf/xperf.ko",
+          "sha256": "53716e5a9a078bb15de1b0d69ab33db2dcaa25ef79e468f0870d2ae1cb261a35",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_sdm",
+          "path": "drivers/soc/samsung/exynos-sdm.ko",
+          "sha256": "f889c61b6c099329d792af293cb2b781d231c33969ffe99c37250a5d80b23b77",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_sci",
+          "path": "drivers/soc/samsung/exynos_sci.ko",
+          "sha256": "8157fc24f7961f4ba4ce23b7fda593d2eec86369be2464887a8f686e01fa69fd",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bcm_dbg",
+          "path": "drivers/soc/samsung/exynos-bcm_dbg.ko",
+          "sha256": "c79dffd9cc16f82462819c9627a8b131fb94aed94efb39b555bc8fb34ae4270a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bcm_dbg_dt",
+          "path": "drivers/soc/samsung/exynos-bcm_dbg-dt.ko",
+          "sha256": "370aa28bb0bb3c5a8d344e25d58399c7377a0c418f323e4cf07006957532b28b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dm",
+          "path": "drivers/soc/samsung/exynos-dm.ko",
+          "sha256": "3ae9837c09649f96f18b3200c2305b3295dc82cbea45e57574b9f1dc9a6504e2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mcinfo",
+          "path": "drivers/soc/samsung/exynos-mcinfo.ko",
+          "sha256": "0ab98f55273a258fdf18cb8edb751e0ac653fa143864d4309d7eb2ce80cb7df3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_msn",
+          "path": "drivers/soc/samsung/exynos-msn.ko",
+          "sha256": "54907d97b19123a3d99fb221852b749db4300078e0e044fd82767ef7f38c1d92",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_afm",
+          "path": "drivers/soc/samsung/exynos-afm.ko",
+          "sha256": "af92caac3efac527b3166d9cb34f30106810f0541fe353e056390004c1205691",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "secmem",
+          "path": "drivers/soc/samsung/secmem.ko",
+          "sha256": "777493e1644958e6e6a5c92aaa94aaa03eed4b07fd4f472dd64dd0fa4fb6445c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_migov",
+          "path": "drivers/soc/samsung/exynos-migov.ko",
+          "sha256": "9bc0a9adba28129462693b827c2e0f63d039086d54f80e3b6916eece83c62152",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_cpu_profiler",
+          "path": "drivers/soc/samsung/exynos-cpu-profiler.ko",
+          "sha256": "25fb562fbb843fc0ace2cac6a52f2d762b19bc9ca442f6c51109a411034911d1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_gpu_profiler",
+          "path": "drivers/soc/samsung/exynos-gpu-profiler.ko",
+          "sha256": "935ed4a947c4e0a313ae785b0a0863b68aa39154d24f29e4fbcef5cdf619600c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mif_profiler",
+          "path": "drivers/soc/samsung/exynos-mif-profiler.ko",
+          "sha256": "3315ec1253cb67f60b992f8f1e74a1a091950262fd2447c6459f3337f19092d6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "imgloader",
+          "path": "drivers/soc/samsung/imgloader.ko",
+          "sha256": "f2915b0c9e9f2c53d0dce761a4cc885553cae7c36b8e2b889a32de553d18c51b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sysevent",
+          "path": "drivers/soc/samsung/sysevent.ko",
+          "sha256": "524d0caeb9a8b1affc729b9a4b728fa651a26418a85b5c4515715a3fdc77d159",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sysevent_notif",
+          "path": "drivers/soc/samsung/sysevent_notif.ko",
+          "sha256": "56497775a05d03b1b864f911c41b65b4c524851fa9c5f67b22ad209489a6105f",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_idle_profiler",
+          "path": "drivers/soc/samsung/exynos-idle-profiler.ko",
+          "sha256": "100bda558ecc29b8d0ef22972dd8ed6d09549cea1db29878acf59bd61e3c2fc3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_pm_dvs",
+          "path": "drivers/soc/samsung/exynos-pm-dvs.ko",
+          "sha256": "2cab3c162db695570291532fcd1c7720b4af9802fa4983c46abe35e4783ad3dc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb02_regulator",
+          "path": "drivers/regulator/s2mpb02-regulator.ko",
+          "sha256": "a4e0cc1d557d3178613899f006da727fe5bfa8e56c28a3d99cc18b6e9fafaefe",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb03",
+          "path": "drivers/regulator/s2mpb03.ko",
+          "sha256": "b5a6948500d9d23ad965cfa7cc0c52b69c5bd3ab952660ec8b40bb4a9f7fd7f1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_tty",
+          "path": "drivers/tty/serial/exynos_tty.ko",
+          "sha256": "6afbdcbe9feb6c2d1641009ed186ef1810c38bc6e3d998abed980ade73eabc7c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exyswd_rng",
+          "path": "drivers/char/hw_random/exyswd-rng.ko",
+          "sha256": "1122151d4c6571bdec074e9e1ecea103b29fdfdbf8e48572a00436848a6ba0a4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_iommu",
+          "path": "drivers/iommu/samsung_iommu.ko",
+          "sha256": "34b47fb05f9e052b1aae7dcf36dcab8a5f8d9f88af2b5c9d2c34e7e3b1e40645",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "samsung_iommu_group",
+          "path": "drivers/iommu/samsung-iommu-group.ko",
+          "sha256": "ae778809b3569b36e1100f76bbc9d792058ebea52a8320ec33b8a579fb1c7bb7",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mali_kbase",
+          "path": "drivers/gpu/arm/bv_r38p0/mali_kbase.ko",
+          "sha256": "db8a218861816f7e1a41ca410d74614f6875d49712800543746394ac1e690604",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": [
+            "DMA_BUF"
+          ]
+        },
+        {
+          "name": "tzdev",
+          "path": "drivers/misc/tzdev/tzdev.ko",
+          "sha256": "007a195af9e311420716a6673aaccc44c71cd8d861faa28d99e102c0e9847e89",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": [
+            "VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver"
+          ]
+        },
+        {
+          "name": "tuihw",
+          "path": "drivers/misc/tui/tuihw.ko",
+          "sha256": "d10d6d5e4046ad6b5c98d9bdfd522f7ed0bf9daaf9fcaaddfd8ddb92eafb8719",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tuihw_inf",
+          "path": "drivers/misc/tui/tuihw-inf.ko",
+          "sha256": "ecad76c066fc11baa42a400bbba1eeffe32752081a2f09e5424c8aa2c165fd4c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mpb02_mfd",
+          "path": "drivers/mfd/s2mpb02_mfd.ko",
+          "sha256": "2ad7104cf50f13a94ad53e027bf0a567ba433123f6a09fbf5b3ef820969f1624",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "nfc_sec",
+          "path": "drivers/nfc/nfc_sec.ko",
+          "sha256": "83e7ee17756d35f028a9439bd5c2caef930cd755a81b47b80aab5ae48b45b82a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dma_buf_container",
+          "path": "drivers/dma-buf/dma-buf-container.ko",
+          "sha256": "0d77797ee7b14b55b0f90d6972495ae238f9926185e21d497a69fb166c42ea35",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ufs_exynos_core",
+          "path": "drivers/scsi/ufs/ufs-exynos-core.ko",
+          "sha256": "84a63bce0215c76ca919e728cd3f417ff307e9652466ef9d9b2393c7d7e6cbda",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "scsi_srpmb",
+          "path": "drivers/scsi/scsi_srpmb.ko",
+          "sha256": "9f662a667f48dd2ba50070e4372a98b956650152fcd120810792b38a00212c44",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spidev",
+          "path": "drivers/spi/spidev.ko",
+          "sha256": "9cf15d35de629e5679ab187b92e4723d59ad5376bb431433cb585cd05c0758c7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spi_s3c64xx",
+          "path": "drivers/spi/spi-s3c64xx.ko",
+          "sha256": "2487c48dbbee7e7f45f62714dfcbe692243e1db7a6cf79f726dd2743b9bef0c2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dhd",
+          "path": "drivers/net/wireless/broadcom/bcmdhd_101_18/dhd.ko",
+          "sha256": "bab197dc920ac00299cd5d004cd693583cff5868c9d16b5e51da9273e9aaa61a",
+          "licenses": [
+            "GPL and additional rights",
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtl8150",
+          "path": "drivers/net/usb/rtl8150.ko",
+          "sha256": "710f5cdc8dc6393b4be7ff5c2b2d242f09951377921294d86ebbc95f16279c25",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_eem",
+          "path": "drivers/net/usb/cdc_eem.ko",
+          "sha256": "8eca13e6d2c2ec42d6aab008ded71fa75d81e1acf051c2b7a8a4fb45c5b08da7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smsc75xx",
+          "path": "drivers/net/usb/smsc75xx.ko",
+          "sha256": "9e9351ed308c6454abef792560fad480f7f0f79e8647a9ed8440113c910d70f1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smsc95xx",
+          "path": "drivers/net/usb/smsc95xx.ko",
+          "sha256": "44eb093a490282c493a617861fc19c4e856e9cba9bbdf30a044805b74e9d878f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "net1080",
+          "path": "drivers/net/usb/net1080.ko",
+          "sha256": "e76e028c410612f42668be5d918d09ff6f6c4a0e8936f5f6d8e77b57df9a7aad",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_ncm",
+          "path": "drivers/net/usb/cdc_ncm.ko",
+          "sha256": "ac91a9df571405bb5516c0d3530b3dd2bd73bf84d89b28ce11e6d16392a76de6",
+          "licenses": [
+            "Dual BSD/GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_hcd",
+          "path": "drivers/usb/host/xhci-hcd.ko",
+          "sha256": "e830b147b8cbb0e480425b645ae4fd761701bbac11908591905fdffdad175897",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_pci",
+          "path": "drivers/usb/host/xhci-pci.ko",
+          "sha256": "ac5df23c57d137747505725c6a63f1edf5e1d9a9939d2005254238eeeb8ed9d6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "xhci_plat_hcd",
+          "path": "drivers/usb/host/xhci-plat-hcd.ko",
+          "sha256": "ea90defbbcde77c75f8755b4ac6b1bca4edf6902bd3bee7b186d32c480cd0a04",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_dm",
+          "path": "drivers/usb/gadget/function/usb_f_dm.ko",
+          "sha256": "f2f55403bb40fcc534733b0e502fb127eefd4b69022ff5706e58aa4892b13749",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_dm1",
+          "path": "drivers/usb/gadget/function/usb_f_dm1.ko",
+          "sha256": "2813f33f99df1d8def979a109a8681ebb6a8faca1ae9ff0c1fdb0acebf329b51",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_mtp_samsung",
+          "path": "drivers/usb/gadget/function/usb_f_mtp_samsung.ko",
+          "sha256": "d35c6cd18a84eb9058fda40c47768574b7cfbdf758f27d86e60630da570e605d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_ptp",
+          "path": "drivers/usb/gadget/function/usb_f_ptp.ko",
+          "sha256": "3d44b0025a403a01f26e6f2277f33d908f691faacf537505d9ac3ea99b6f20e9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_conn_gadget",
+          "path": "drivers/usb/gadget/function/usb_f_conn_gadget.ko",
+          "sha256": "d31ddc5bb20b82502482c5d54308b6d671c7ddeb09d4113f6c075806413d32dc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_f_ss_mon_gadget",
+          "path": "drivers/usb/gadget/function/usb_f_ss_mon_gadget.ko",
+          "sha256": "07749baf934175ed801d0c95f295830b965806e7c6caadd0d865882df6282d46",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3",
+          "path": "drivers/usb/dwc3/dwc3.ko",
+          "sha256": "b40a60ae28241d729f5c6758883ec1810742041c63098fe35a7b55aa40e9af0a",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_haps",
+          "path": "drivers/usb/dwc3/dwc3-haps.ko",
+          "sha256": "48158b6c0dd4c604a2479645eff252ed2bc8784d896619827150f9a405761a04",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_of_simple",
+          "path": "drivers/usb/dwc3/dwc3-of-simple.ko",
+          "sha256": "55668340422b03b5dcf67fa03dc16cd3d4cca3d5020bb9507d952bf6b95857f8",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dwc3_qcom",
+          "path": "drivers/usb/dwc3/dwc3-qcom.ko",
+          "sha256": "e34a99a60f685a0bb1000040e4590518fead3cc3e1aafc1ef6cb48e32462306d",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_acm",
+          "path": "drivers/usb/class/cdc-acm.ko",
+          "sha256": "cfbb724931fc6c3ef5fe899d52ede938c7290ea0700c1e47fe3d4a3871bd8bce",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usblp",
+          "path": "drivers/usb/class/usblp.ko",
+          "sha256": "5ef0dec262b9bd03a4b79fde4e30552f1be652371bbf4e0d88c38b6247e95dcd",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cdc_wdm",
+          "path": "drivers/usb/class/cdc-wdm.ko",
+          "sha256": "0d7f3fb4a344d798d6ed5452d4b9bf4a3b296b0ac4d88a5c949be52e6864aa8e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usbserial",
+          "path": "drivers/usb/serial/usbserial.ko",
+          "sha256": "41fbfd589322d56178e0333366e1d40e177b271d7d440d5a02936c93b7528609",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ftdi_sio",
+          "path": "drivers/usb/serial/ftdi_sio.ko",
+          "sha256": "40b96421af69c100a05f6b6dfc00bf0462aa4f5b30481987e8fd4423f66ca893",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pl2303",
+          "path": "drivers/usb/serial/pl2303.ko",
+          "sha256": "d93c9b14e27974269ae1957a85e324794a742dc1929aa2f9a19d9a987b19a419",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_notify_layer",
+          "path": "drivers/usb/notify/usb_notify_layer.ko",
+          "sha256": "be9eb568e3c5f472b86e431a9fee9dc40d20063abdab053af30ad9cfe531aabf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_notifier",
+          "path": "drivers/usb/notify/usb_notifier.ko",
+          "sha256": "e1503e04a393eeb2cc92765082c3de02cde4bf1debee06a46a6c0eaffa780a0a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_key",
+          "path": "drivers/input/keyboard/s2mps23-key.ko",
+          "sha256": "ace677f8719c6510dfbe1d7648a3fb8592b11ac339ecf64516da6b76db3b921e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtc_s3c",
+          "path": "drivers/rtc/rtc-s3c.ko",
+          "sha256": "fc9e860dc01a791ff86ca78840247bf6030fde21997ac633778a83f41403dbae",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "rtc_s2mps23",
+          "path": "drivers/rtc/rtc-s2mps23.ko",
+          "sha256": "b5961d41d05cf8b63b7d0e225450019f1348b1aac78bc454721d2f5afad6faf6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "i2c_dev",
+          "path": "drivers/i2c/i2c-dev.ko",
+          "sha256": "1294c67a48ecaccde61936477ff49ed7a82ee6f85e9209257170ae1bd6612dbf",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "v4l2_mem2mem",
+          "path": "drivers/media/v4l2-core/v4l2-mem2mem.ko",
+          "sha256": "3eecdf531e384e68805eddc956a0a7683853de518b04becbf70cbf0823e425b5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "videobuf2_dma_sg",
+          "path": "drivers/media/common/videobuf2/videobuf2-dma-sg.ko",
+          "sha256": "bf96dc09c3fed6b967ef3616b33168ad63a45b39d328112c8cd7384bf67f1c33",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "repeater",
+          "path": "drivers/media/platform/exynos/repeater/repeater.ko",
+          "sha256": "44ec40a925fccc8d43d431d6e2515deced115346a4ba810d0f634252daae059a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tsmux",
+          "path": "drivers/media/platform/exynos/tsmux/tsmux.ko",
+          "sha256": "cc040668152d755a6ca6bedc0ca1355a0607100250e1a100a5a5db0faeb96c4a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_mfc",
+          "path": "drivers/media/platform/exynos/mfc/exynos_mfc.ko",
+          "sha256": "6595e1c335348371c78e0655130599e74b47eb0af7dbf92f9750f73022b91b26",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "camerapp",
+          "path": "drivers/media/platform/exynos/camera-pp/camerapp.ko",
+          "sha256": "94461cc0d1c9dc123f7b891e78dba0f20ace192c72917f692a1789d55e3d037f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "gdc",
+          "path": "drivers/media/platform/exynos/camera-pp/gdc/gdc.ko",
+          "sha256": "b660e2cb103fc6c32f99992061f1e16215d872babecd7a1c92aab12cb132f0a1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "votf",
+          "path": "drivers/media/platform/exynos/camera-pp/votf/votf.ko",
+          "sha256": "f1bf2567a3639688cc1cf8799a81a1d3d5c84140ba753cc0c08c317eeefc96b0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "camerapp_pd_mgr",
+          "path": "drivers/media/platform/exynos/camera-pp/pd_mgr/camerapp-pd-mgr.ko",
+          "sha256": "211d315a8e0e66a25ceffb6cd532ef1a1929c5263251657c2a46a98b1acec363",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fimc_is",
+          "path": "drivers/media/platform/exynos/camera/fimc-is.ko",
+          "sha256": "028b9066d598213231131d5af7601ad6dcd6bdb383c315d6619bc87cb550953a",
+          "licenses": [
+            "GPL",
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_3j1",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/cis/is-cis-3j1.ko",
+          "sha256": "b93af773db5660251885cda84a8ad42dbeaae03258debb077eec4f7a49c638e3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_gh1",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/cis/is-cis-gh1.ko",
+          "sha256": "944eabd823c6f40bb6df1c6481f53ba6659e3be624a2723c72ef06493d60b841",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_hm1",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/cis/is-cis-hm1.ko",
+          "sha256": "ca6c2d7efaec4270717396b01bb64add9a5a193691752eea520ac0a9295b3aab",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_hm3",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/cis/is-cis-hm3.ko",
+          "sha256": "53fb87d4428186dd14d2b5f8c4fe7ea98ee8c65330f804fa715185de9ae33ac2",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_cis_imx563",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/cis/is-cis-imx563.ko",
+          "sha256": "d1619468df92001cc5a34bf366907f39665c4c5222977476fc58d781ebf17290",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_actuator_ak737x",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/actuator/is-actuator-ak737x.ko",
+          "sha256": "c53b8129557a1549fe194c110a7f4c3d9ec484e531e536ec7f11104f6319df55",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_laser_af_vl53l5",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/laser_af/is-laser-af-vl53l5.ko",
+          "sha256": "ac2bbe9c82beb47b95d008efb1e76b848bb057b9b110dfafe7bd032e7f794ecd",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_flash_s2mpb02",
+          "path": "drivers/media/platform/exynos/camera/sensor/module_framework/flash/is-flash-s2mpb02.ko",
+          "sha256": "5be11d3df8480b31e4b352f03f1d2d70827cb2c43884b4bc5fc7e76171466e72",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "is_device_eeprom",
+          "path": "drivers/media/platform/exynos/camera/vendor/mcd/is-device-eeprom.ko",
+          "sha256": "5e94fb22f8d7c4405240e3f06ffefd4465e9c76b1eb0ff21ae281df57d530a8e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcfrc",
+          "path": "drivers/media/platform/exynos/mcfrc/mcfrc.ko",
+          "sha256": "ffe2d2ee92201efcd3956f659e822dc1a2d7285adbd4730a9fec18442809cb21",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "smfc",
+          "path": "drivers/media/platform/exynos/smfc/smfc.ko",
+          "sha256": "58c4c265e2f7174a6c6b2ac60af95a4341e9e57a8dd0392b3f43d08b2eba40e9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "scaler",
+          "path": "drivers/media/platform/exynos/scaler/scaler.ko",
+          "sha256": "0d4d2a5b5b636cfe2da5187f29f7b9ccbf8c1fd529be37900781a78763132feb",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_thermal",
+          "path": "drivers/thermal/samsung/exynos_thermal.ko",
+          "sha256": "701e43f9ae4ca25f77f9c59d4437028eb46c06a7ae01b801d059044b45e5e531",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "gpu_cooling",
+          "path": "drivers/thermal/samsung/gpu_cooling.ko",
+          "sha256": "3cdfa8c890684380f636f3d0d879d32744dd6746bbffc919d0748848b80f9f9f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "softdog",
+          "path": "drivers/watchdog/softdog.ko",
+          "sha256": "58bb19cd9513529538c964dffb14b0344805c9e679a0e43ad7d4b2a6db5d27d6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "bcm43xx",
+          "path": "drivers/bluetooth/bcm43xx.ko",
+          "sha256": "a3f9053da81386797766a59cfcb3e85d2c76ec97b170a2cf4f8076786bcbc3a9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "freq_qos_tracer",
+          "path": "drivers/cpufreq/freq-qos-tracer.ko",
+          "sha256": "675b40d0ab6cf8bfb6672782b8b009f6735cb13caf93d6a86b8dbc816813c115",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_acme",
+          "path": "drivers/cpufreq/exynos-acme.ko",
+          "sha256": "dfe4e6a17e3fbdc15ebee1e2be531d67e88a0dca2f53ac80103580c525cb3d28",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_dsufreq",
+          "path": "drivers/cpufreq/exynos-dsufreq.ko",
+          "sha256": "3a3b62682d93cff9b4832ef6f921c409602e48cafa4b464485933f1f3812ca51",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc",
+          "path": "drivers/mmc/host/dw_mmc.ko",
+          "sha256": "2f4c45f7a634af58855e0b5a8314135af6b67d29e38a489fbf65cb18520dabc1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc_pltfm",
+          "path": "drivers/mmc/host/dw_mmc-pltfm.ko",
+          "sha256": "679dd8caa8080ea32ed430228e0fe2abe5726377285c47cfbf81090becce17bd",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dw_mmc_exynos",
+          "path": "drivers/mmc/host/dw_mmc-exynos.ko",
+          "sha256": "d697510f44821f9beb9515d3203ce2a00bb5082126e81531fbeefc5a285f65d0",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "leds_s2mpb02",
+          "path": "drivers/leds/leds-s2mpb02.ko",
+          "sha256": "3174db4c5e89c154edfbd11e43a55e55fab245c85ed1749ce0dfe924aae59f72",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fmp_core",
+          "path": "drivers/crypto/fmp/fmp-core.ko",
+          "sha256": "30e6b50d5260dd805815d6d7ad3d2bbeaebf26dc9063fa377a270830945ec646",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "ion_exynos_mod",
+          "path": "drivers/staging/android/ion/exynos/ion_exynos_mod.ko",
+          "sha256": "54eabe39fdcaae9c9cc95ede7e8c9d34d9ac7db176de957bec40d7eb2815e058",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "switch_class",
+          "path": "drivers/staging/android/switch/switch_class.ko",
+          "sha256": "57217e884f18a4ff2b2c94c9cc4d2b71ec7589a5a09bca41de282be2cd68d52a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_devfreq",
+          "path": "drivers/devfreq/exynos/exynos_devfreq.ko",
+          "sha256": "d4ee82d43e83d7ad70af91a50498731fb9dee51a07aad800b64a705f13e003a9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2mps23_adc",
+          "path": "drivers/iio/adc/s2mps23_adc.ko",
+          "sha256": "ca0ffb7d036b0a4a9ac0f7cbd102011f540b9c3ec51d95533b89510c89df89d2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dsp",
+          "path": "drivers/vision/dsp/dsp.ko",
+          "sha256": "224bd984eaeea4614b3c85feeae651794ccc960240e1d016fe8e0a6919742be1",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "npu",
+          "path": "drivers/vision/npu.ko",
+          "sha256": "03f089257dabc4e7af7a55fbde42924b99aea0b7b4f2e67d6068b7529d709c72",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "vbus_notifier",
+          "path": "drivers/samsung/misc/vbus_notifier.ko",
+          "sha256": "1ae01f5dd111f8566e725ab037313dce2e6a3a0d0d0957281b7f79f65fe9ab5c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_debug",
+          "path": "drivers/samsung/pm/sec_pm_debug.ko",
+          "sha256": "835a10fb31e348ff02a2f8d738150c983780358778d0c695ebe29b8e01e1b54a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_log",
+          "path": "drivers/samsung/pm/sec_pm_log.ko",
+          "sha256": "bb00349ced899dd6e5030a1a5dc94aae3ff74f8a2c04e264933c2e54baa56901",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pm_cpufreq",
+          "path": "drivers/samsung/pm/sec_pm_cpufreq.ko",
+          "sha256": "1ce1982658f3c801f70cbb5440c503cbf44b0b1e9f9dc7fc530976db10bc8c82",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_thermistor",
+          "path": "drivers/samsung/pm/sec_thermistor.ko",
+          "sha256": "a9723f6c164dbc9c24e965ffcbc95a813ee75791f922f8c9cdc9eddc95602cdb",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_wakeup_cpu_allocator",
+          "path": "drivers/samsung/pm/sec_wakeup_cpu_allocator.ko",
+          "sha256": "02c169b58a9898ad3a18c332ba162f9a99787e020599e4dcaf469565f01fa358",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_reboot",
+          "path": "drivers/samsung/sec_reboot.ko",
+          "sha256": "ba78bb8778ea9c871fcfa5d9ad910849b61ddc61ad7efc476288d0953a094b05",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_crash_key",
+          "path": "drivers/samsung/sec_crash_key.ko",
+          "sha256": "9dfb6a7262c8e4d8085ec5595d4d511ca814e9d4fd7ca012eff200d2b4d0ef80",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_crash_key_user",
+          "path": "drivers/samsung/sec_crash_key_user.ko",
+          "sha256": "ff005f4f7ff90fec2f6c9bc6689538e64d1d9cdb20dc706e2fd2b3c5d2106596",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_hard_reset_hook",
+          "path": "drivers/samsung/sec_hard_reset_hook.ko",
+          "sha256": "fe29afcd5ec12685d003af23f82c87f2db6122bc482aa9e90354fae26fa865a2",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_key_notifier",
+          "path": "drivers/samsung/sec_key_notifier.ko",
+          "sha256": "fd0b72cd1dc7e69bd3526c508dc6db954690b5a0e4a5db0c04ee78a919a06b9c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_mparam",
+          "path": "drivers/samsung/sec_mparam.ko",
+          "sha256": "4940b8d312e137b15df0ee51de44431e4d1d6a85c41b740f9431595ddc9a69a6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_class",
+          "path": "drivers/samsung/sec_class.ko",
+          "sha256": "ecadd1317c1bb2df71488a766cae0ed26d6cb25852c405d6605781542e4f0d85",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_bootstat",
+          "path": "drivers/samsung/sec_bootstat.ko",
+          "sha256": "df3c4d25623e2b9edda410b07a6d427f0306145c8c5f5b4f097837871b215f88",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_argos",
+          "path": "drivers/samsung/sec_argos.ko",
+          "sha256": "2c1f64b308f4457a5505e27f8382cd4786a238440b52343c2ea7f828e15821d1",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hdm",
+          "path": "drivers/knox/hdm/hdm.ko",
+          "sha256": "ad1671a1c95a9902f6bfebef4a29a885931581a0cdbeee97868ef4510c62199e",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sx9360",
+          "path": "drivers/sensors/sx9360.ko",
+          "sha256": "c4286bd9c7c44a8c119089b167933f6350ec361cd171e218483362f5467b140a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug",
+          "path": "drivers/samsung/debug/sec_debug.ko",
+          "sha256": "ed4cb395754cf100572b369e3d1448968964399e1d890c8590e19dfe6af16b89",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_test",
+          "path": "drivers/samsung/debug/sec_debug_test.ko",
+          "sha256": "b03270b7051b2ced18bcd6c6d23479f048d756be0fb4a48f36dcee4cb96a62f3",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_dprm",
+          "path": "drivers/samsung/debug/sec_debug_dprm.ko",
+          "sha256": "a353f72d3877510efa939da1d6e85e30c3aff028eac63ebf240cd6ffaa69fb3b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_extra_info",
+          "path": "drivers/samsung/debug/sec_debug_extra_info.ko",
+          "sha256": "2d3d9c6e8417cae5361300fd37fd0c38bfc28b4c1cadefacdeadbd02091d2b6c",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hw_param",
+          "path": "drivers/samsung/debug/sec_debug_hw_param.ko",
+          "sha256": "c851a7c29486ccc7b9e15caaef4eb82a0fe0f969d835bace106a92a8ca539eb9",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_reset_reason",
+          "path": "drivers/samsung/debug/sec_debug_reset_reason.ko",
+          "sha256": "40838808b6a9e35a9d23b833c183cfa204b09ab212646a1682619013afa20719",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_wdd_info",
+          "path": "drivers/samsung/debug/sec_debug_wdd_info.ko",
+          "sha256": "855a8a8ea158b4a10622aa7a4912e98a825a07afa0346d0b5db3ca75d5d1f98f",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hist",
+          "path": "drivers/samsung/debug/sec_debug_hist.ko",
+          "sha256": "d630459a124496e75506baf22ecdf94e43d14a50e82f681fac52d3477c74b619",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_summary",
+          "path": "drivers/samsung/debug/sec_debug_summary.ko",
+          "sha256": "77ad6d66f86e5399e1f688d0bc5cf372a996837cbe167e714904373c24518c08",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_softdog",
+          "path": "drivers/samsung/debug/sec_debug_softdog.ko",
+          "sha256": "aedeefd7c772236b001610937fe522fc973fd62b626e90f81706aadf284e207b",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_logbuf_interface",
+          "path": "drivers/samsung/debug/sec_debug_logbuf_interface.ko",
+          "sha256": "98afd8a9ee22cff8d0a7c564a0844295690c013499a2ec106044840cdd9c8799",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_stacktrace",
+          "path": "drivers/samsung/debug/sec_debug_stacktrace.ko",
+          "sha256": "9ac06c1c04a7cc11682b5d167fc676dd5c5558e7f3f229b3979853adff451659",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_hardlockup_info",
+          "path": "drivers/samsung/debug/sec_debug_hardlockup_info.ko",
+          "sha256": "268b01148893917db29789a416fb356c708c5398245cbb0a42f5069b3509e5f8",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_debug_sched_report",
+          "path": "drivers/samsung/debug/sec_debug_sched_report.ko",
+          "sha256": "f1b9b4e3bbe2f8f70a6817fedb122f76759e9bbdc8e8078a791fbe8c2fa577c6",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dev_ril_bridge",
+          "path": "drivers/misc/drb/dev_ril_bridge.ko",
+          "sha256": "913c08e03b00f52ec391866cf63060f99bf82b2be3625944dd22ba723d4719c7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_vibrator",
+          "path": "drivers/vibrator/common/sec_vibrator.ko",
+          "sha256": "051bdf4351096efeb4b75e9f26baee73cc16761385d9b6503b7655a46f84a453",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "max77705_charger",
+          "path": "drivers/battery/charger/max77705_charger/max77705-charger.ko",
+          "sha256": "368cde211c7bb8b8cb4e8faf38207379f8f606a115618865271e9d021b347fc5",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "dropdump",
+          "path": "drivers/net/dropdump/dropdump.ko",
+          "sha256": "4e90f6fc9b8def030072f8e13bf85049dfe7b61251e45a8cd9b304f04989b71f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "common_muic",
+          "path": "drivers/muic/common/common_muic.ko",
+          "sha256": "6c01ceac562b4d3dcb2a4c753ddcb4e818db91dce41cac828f679947e68ceb47",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tsp_log",
+          "path": "drivers/input/sec_input/sec_tsp_log.ko",
+          "sha256": "0733831bc8ee49c4402afb8332531457b44bc35741226cba2774300e25febf5c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tclm_v2",
+          "path": "drivers/input/sec_input/sec_tclm_v2.ko",
+          "sha256": "9b1f48e756545866c10d1a7cca600bb09b21c6e6a8fb5efe3d45f3c86a8427bd",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_secure_touch",
+          "path": "drivers/input/sec_input/sec_secure_touch.ko",
+          "sha256": "1723161761c51a2907a55f6c0ac766d81de0461e1eafb9db98ef7946d9f6422b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_tsp_dumpkey",
+          "path": "drivers/input/sec_input/sec_tsp_dumpkey.ko",
+          "sha256": "530e9bac5d04b4852506a81ff38a42e311843b7bd3e942dcee8327448855bee7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_input_notifier",
+          "path": "drivers/input/sec_input/sec_input_notifier.ko",
+          "sha256": "2cd9ac7fc49e34e455d64bb5b36786bfc65f639beef58a3d5a1486c93864a795",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_common_fn",
+          "path": "drivers/input/sec_input/sec_common_fn.ko",
+          "sha256": "2020af2fb140a490d0abd4f49bc1d089144003042cc886d33556d9c087d8e522",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_cmd",
+          "path": "drivers/input/sec_input/sec_cmd.ko",
+          "sha256": "cca81f2f17e9c3695f9fc2fe330ce8c125559c5afede0b6fef350cbc5285e7a7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "fingerprint_sysfs",
+          "path": "drivers/fingerprint/fingerprint_sysfs.ko",
+          "sha256": "5816b307d063db1dff52a8043c12b92b7ec06bccb16f9ad09c192f3d91c9846f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "qbt2000_spidev",
+          "path": "drivers/fingerprint/qbt2000_spidev.ko",
+          "sha256": "037328fe242e4823c4c149dcac08090f03cc9cb34e86a438fa348b8860961893",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "usb_typec_manager",
+          "path": "drivers/usb/typec/manager/usb_typec_manager.ko",
+          "sha256": "d7dcf731bed80ab24610684dc45e4ee82947c08bcd8189ae3b31186d134f07b6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "if_cb_manager",
+          "path": "drivers/usb/typec/manager/if_cb_manager.ko",
+          "sha256": "1b3fc39fafd7e73db67f9583ffc8704943a80b0f35db8747ccabfdd305156109",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pdic_notifier_module",
+          "path": "drivers/usb/typec/common/pdic_notifier_module.ko",
+          "sha256": "42a89b345264bdeebf5a4fd3a93c8426705d23b71fabffe4127e7cbaf3f0a1f8",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "cs40l2x_vib",
+          "path": "drivers/vibrator/cs40l2x/cs40l2x_vib.ko",
+          "sha256": "83a7feaff4633485f7f6c223ab69e4d787f4512a001e0d698ae18d7ad8653fe4",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "s2dos05_regulator",
+          "path": "drivers/regulator/s2dos05/s2dos05-regulator.ko",
+          "sha256": "3b6d582ee3eed9027eae455145b9cc84aff2fcb22e1acc0f27fbbc2b94c6410a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pca9468_charger",
+          "path": "drivers/battery/charger/pca9468_charger/pca9468-charger.ko",
+          "sha256": "91223e1428d7047e8a44f5cc067aae9e3520e489c6f993fb0bdc68e09b01f93d",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "hall_ic",
+          "path": "drivers/input/misc/hall/hall_ic.ko",
+          "sha256": "8c9e4d6276834f81f16b2482917bf271f6f06d65a0a63258238a909276544b3b",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "abc",
+          "path": "drivers/sti/abc/abc.ko",
+          "sha256": "40b43ea1150e4791860764031d54062f3f4059c1e29a0b8d3abbfbc5763526e6",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "abc_hub",
+          "path": "drivers/sti/abc/abc_hub.ko",
+          "sha256": "c01c7d78defda6d3504957eb3d2e59f7a408f80aa2a0f639c44dd3565b605280",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "vl53l5",
+          "path": "drivers/sensors/vl53l5/vl53l5.ko",
+          "sha256": "ca5183b51a2c8b3f0ec03aab13d56d6ce6e3ef74cf9282de7887b98805a498e9",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mfd_max77705",
+          "path": "drivers/mfd/maxim/mfd_max77705.ko",
+          "sha256": "3fc650d2d312b9e2f9bf7498776348abfda24e6820a08a9d6506f795b988abe9",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "max77705_fuelgauge",
+          "path": "drivers/battery/fuelgauge/max77705_fuelgauge/max77705-fuelgauge.ko",
+          "sha256": "02c0f6c72275b39e17e5c08be0cebf4cd212914d59b7dda6c825e64b4ffae57c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "broadcom_sensorhub",
+          "path": "drivers/sensorhub/brcm/broadcom-sensorhub.ko",
+          "sha256": "e93a7fbabdb10e16b622e96c0c488eac778298e48a44512a7d583d8d5e0d0bda",
+          "licenses": [
+            "Dual BSD/GPL",
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sensors_core",
+          "path": "drivers/sensorhub/brcm/sensors_core.ko",
+          "sha256": "6789d5dfdb9c03af5ef02ebb0c12334da561d2d0f2d27ed9e79631bd842f5780",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "slsi_ts",
+          "path": "drivers/input/sec_input/slsi/slsi_ts.ko",
+          "sha256": "42634aebb8acb83a70dd5c8b046f47a9df3d165052dfa13ddc49e98ba7f81f66",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "uwb",
+          "path": "drivers/uwb/uwb.ko",
+          "sha256": "2e2dac4ad600070b3fed012156bdbcf4f804f8efaa335296e9f2e90def3324d7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snvm",
+          "path": "drivers/nfc/snvm/snvm.ko",
+          "sha256": "9195bc4a1735357bfae6fa1183f86208f9ea5c1ff650d36e915e7e3392f40468",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mfc_charger",
+          "path": "drivers/battery/wireless/mfc_charger.ko",
+          "sha256": "7c3bdd353e9890ce06e8db5a3733de233bf2cd0869fbdc41f46ce7916bce628a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tsl2510",
+          "path": "drivers/optics/tsl2510.ko",
+          "sha256": "cf92b723a7e2e11c268eb18b93afec440fc36052bcbb59e8c723552a54b5eef7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "pdic_max77705",
+          "path": "drivers/usb/typec/maxim/pdic_max77705.ko",
+          "sha256": "80edbdfb6dafd21d3f3238f95b095653d48607682a80f5fcc0ea704a16a4e6cc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "w9020",
+          "path": "drivers/input/wacom/w9020.ko",
+          "sha256": "1a47877a1a751c41d13f94181aaba0c211282ea4de393e037f8e2c3375f2bdef",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_direct_charger",
+          "path": "drivers/battery/common/sec_direct_charger.ko",
+          "sha256": "fe1f8e3b4ea2b9a9caa090201316cfd54f7934bd2f23acbb5aa75001a058299a",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_pd",
+          "path": "drivers/battery/common/sec_pd.ko",
+          "sha256": "704b956e3e2807ab41bf8a585454244bfcbcc43e8eb916e8fdcee12191a39978",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_battery",
+          "path": "drivers/battery/common/sec-battery.ko",
+          "sha256": "5da41aae77de81d62ffc439d4eba4ca066c39d0d24d1da805b9ca40acf287976",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "mcps",
+          "path": "drivers/mcps/mcps.ko",
+          "sha256": "01df0e388cc14da037d63689de742082ca81d5477bf113e28ccfc746b3b83782",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_bts",
+          "path": "drivers/bts/exynos-bts.ko",
+          "sha256": "6b2092fd8f8283b14a812c68c231cca1329d3c2fc6c806d91408c87fd288118c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_btsops2100",
+          "path": "drivers/bts/exynos-btsops2100.ko",
+          "sha256": "628fe63eab5f34178d58811446d10364731fc650b049bb2f0479899b72119295",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "spu_verify",
+          "path": "drivers/spu_verify/spu_verify.ko",
+          "sha256": "aaafb6e3a781bffb7d54c5a751dfd31ba4755baad7cc8b8af9dd8363461e8fbb",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "exynos_usb_audio_offloading",
+          "path": "sound/usb/exynos-usb-audio-offloading.ko",
+          "sha256": "a5d186d8cd476065b12ad9f123dcbbea41eb7da8ab405c47d2fb6871293e6aee",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_cirrus_amp",
+          "path": "sound/soc/codecs/snd-soc-cirrus-amp.ko",
+          "sha256": "929b6d37872ab0a73f68cc65353aa4c4216eabcc2af0d17f388cf44ff7740f79",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_cs35l41_i2c",
+          "path": "sound/soc/codecs/snd-soc-cs35l41-i2c.ko",
+          "sha256": "a196552e41689fa9924350d9d3f92d7223f882d23adee583bb9be492501d4f37",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_wm_adsp",
+          "path": "sound/soc/codecs/snd-soc-wm-adsp.ko",
+          "sha256": "835e5ef5a6945819570b0767659697b73477e7fbe4c76ce22278518addf9c9e4",
+          "licenses": [
+            "GPL v2"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_s3c_dma",
+          "path": "sound/soc/samsung/snd-soc-s3c-dma.ko",
+          "sha256": "7183f73c5ecf68c455f2c1d20ffa35af499dc7a28e7a13ad8a15b6fb7153513c",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_dp_dma",
+          "path": "sound/soc/samsung/snd-soc-dp_dma.ko",
+          "sha256": "f4fbb5ca677caa455d8d798fd49b0f1792d26a0dd063219d110cee29b3ff89b7",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_audio_sysfs",
+          "path": "sound/soc/samsung/sec_audio_sysfs.ko",
+          "sha256": "8c6c2b72ee9e190b6706ca4765e14ac69b538797766cb554507aa76261c0bacc",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "sec_audio_debug",
+          "path": "sound/soc/samsung/sec_audio_debug.ko",
+          "sha256": "cf5abc80aa78d5b67ff331360d076afdb1ef3fa63d480a635b97ed7242de5df0",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_abox_gic",
+          "path": "sound/soc/samsung/abox/snd-soc-samsung-abox-gic.ko",
+          "sha256": "2898bf4fe0b49db9eabd8322614f3947f4a690a8075b247198ef712773ad0e69",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_abox",
+          "path": "sound/soc/samsung/abox/snd-soc-samsung-abox.ko",
+          "sha256": "8e9929357772e015b1273809bb2f9e4f3a8e5d10450ed2e6f7f69570c0b06636",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_vts_mailbox",
+          "path": "sound/soc/samsung/vts/snd-soc-samsung-vts-mailbox.ko",
+          "sha256": "764298e16f1547a925f51b36c2a3c310be55ff71507a483babaf791e92312f10",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "snd_soc_samsung_vts",
+          "path": "sound/soc/samsung/vts/snd-soc-samsung-vts.ko",
+          "sha256": "b0bd11dbe91f268e5438669cbc5e77481f2394eac25039093fd71a8addacc5ed",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "unbound_prince",
+          "path": "sound/soc/samsung/unbound_prince.ko",
+          "sha256": "1cbe913331b266a5c96a36712eab30c6377cf0b7e5296a9e003cecc521400e40",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tcp_westwood",
+          "path": "net/ipv4/tcp_westwood.ko",
+          "sha256": "e07e953a8d706ea4690479b9e3beca966a80ff2e44b6d715fd149afc0e0652d3",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        },
+        {
+          "name": "tcp_htcp",
+          "path": "net/ipv4/tcp_htcp.ko",
+          "sha256": "58b25e3aed79131e6475376ac550aa326ca05b21820b40ebc580235e0824d22f",
+          "licenses": [
+            "GPL"
+          ],
+          "import_namespaces": []
+        }
+      ]
+    }
+  },
+  "proposed_plan": {
+    "status": "proposed_with_version_gaps",
+    "reference_set": "stock_vendor_ramdisk",
+    "kernel": "candidate_from_PR80",
+    "requested_names": [
+      "dss",
+      "exynos_chipid_v2",
+      "exynos_reboot",
+      "exynos2100_itmon",
+      "exynos_pmu_if",
+      "s3c2410_wdt",
+      "exynos_ecc_handler",
+      "exynos_coresight",
+      "debug_snapshot_qd",
+      "eat",
+      "exynos_adv_tracer_s2d",
+      "ehld",
+      "exynos_debug_test",
+      "hardlockup_debug",
+      "exynos_acpm",
+      "exynos_pm_qos",
+      "exynos_s2mpu",
+      "exynos_pd_el3",
+      "ect_parser",
+      "cmupmucal",
+      "clk_exynos",
+      "clk_exynos_audss",
+      "exynos_mct",
+      "pinctrl_samsung_core",
+      "exynos_cpupm",
+      "i2c_exynos5",
+      "acpm_mfd_bus",
+      "s2mps24_mfd",
+      "s2mps23_mfd",
+      "pmic_class",
+      "s2mps23_regulator",
+      "s2mps24_regulator",
+      "phy_exynos_usbdrd_super",
+      "sec_debug_mode",
+      "fingerprint",
+      "ssg_iosched",
+      "blk_sec_stats",
+      "phy_exynos_mipi_dsim",
+      "phy_exynos_mipi",
+      "pwm_samsung",
+      "pcie_exynos_host_v0",
+      "pcie_exynos_rc",
+      "pcie_exynos_dbg",
+      "pcie_exynos2100_v0_cal",
+      "pcie_exynos2100_rc_cal",
+      "fb",
+      "mcd_panel_s6e3hab",
+      "mcd_panel_s6e3had",
+      "mcd_panel",
+      "dpu",
+      "dp_ext_func",
+      "pl330",
+      "samsung_dma",
+      "debug_snapshot_sfrdump",
+      "hardlockup_watchdog",
+      "exynos_ssld",
+      "exynos_seh",
+      "exynos_seclog",
+      "exynos_tzasc",
+      "exynos_ppmpu",
+      "exynos_flexpmu_dbg",
+      "exynos_pd",
+      "exynos_pd_dbg",
+      "memlogger",
+      "exynos_pm",
+      "cmu_ewf",
+      "usi_v2",
+      "plugin_dbg",
+      "exynos_ssp",
+      "exynos_el2",
+      "mcu_ipc",
+      "shm_ipc",
+      "exynos_dit",
+      "modem_utils",
+      "cpif",
+      "hdcp2",
+      "exynos_cpuhp",
+      "exynos_ufcc",
+      "xperf",
+      "exynos_sdm",
+      "exynos_sci",
+      "exynos_bcm_dbg",
+      "exynos_bcm_dbg_dt",
+      "exynos_dm",
+      "exynos_mcinfo",
+      "exynos_msn",
+      "exynos_afm",
+      "secmem",
+      "exynos_migov",
+      "exynos_cpu_profiler",
+      "exynos_gpu_profiler",
+      "exynos_mif_profiler",
+      "imgloader",
+      "sysevent",
+      "sysevent_notif",
+      "exynos_idle_profiler",
+      "exynos_pm_dvs",
+      "s2mpb02_regulator",
+      "s2mpb03",
+      "exynos_tty",
+      "exyswd_rng",
+      "samsung_iommu",
+      "samsung_iommu_group",
+      "mali_kbase",
+      "tzdev",
+      "tuihw",
+      "tuihw_inf",
+      "s2mpb02_mfd",
+      "nfc_sec",
+      "dma_buf_container",
+      "ufs_exynos_core",
+      "scsi_srpmb",
+      "spidev",
+      "spi_s3c64xx",
+      "dhd",
+      "rtl8150",
+      "cdc_eem",
+      "smsc75xx",
+      "smsc95xx",
+      "net1080",
+      "cdc_ncm",
+      "xhci_hcd",
+      "xhci_pci",
+      "xhci_plat_hcd",
+      "usb_f_dm",
+      "usb_f_dm1",
+      "usb_f_mtp_samsung",
+      "usb_f_ptp",
+      "usb_f_conn_gadget",
+      "usb_f_ss_mon_gadget",
+      "dwc3",
+      "dwc3_haps",
+      "dwc3_of_simple",
+      "dwc3_qcom",
+      "cdc_acm",
+      "usblp",
+      "cdc_wdm",
+      "usbserial",
+      "ftdi_sio",
+      "pl2303",
+      "usb_notify_layer",
+      "usb_notifier",
+      "s2mps23_key",
+      "rtc_s3c",
+      "rtc_s2mps23",
+      "i2c_dev",
+      "v4l2_mem2mem",
+      "videobuf2_dma_sg",
+      "repeater",
+      "tsmux",
+      "exynos_mfc",
+      "camerapp",
+      "gdc",
+      "votf",
+      "camerapp_pd_mgr",
+      "fimc_is",
+      "is_cis_3j1",
+      "is_cis_gh1",
+      "is_cis_hm1",
+      "is_cis_hm3",
+      "is_cis_imx563",
+      "is_actuator_ak737x",
+      "is_laser_af_vl53l5",
+      "is_flash_s2mpb02",
+      "is_device_eeprom",
+      "mcfrc",
+      "smfc",
+      "scaler",
+      "exynos_thermal",
+      "gpu_cooling",
+      "softdog",
+      "bcm43xx",
+      "freq_qos_tracer",
+      "exynos_acme",
+      "exynos_dsufreq",
+      "dw_mmc",
+      "dw_mmc_pltfm",
+      "dw_mmc_exynos",
+      "leds_s2mpb02",
+      "fmp_core",
+      "ion_exynos_mod",
+      "switch_class",
+      "exynos_devfreq",
+      "s2mps23_adc",
+      "dsp",
+      "npu",
+      "vbus_notifier",
+      "sec_pm_debug",
+      "sec_pm_log",
+      "sec_pm_cpufreq",
+      "sec_thermistor",
+      "sec_wakeup_cpu_allocator",
+      "sec_reboot",
+      "sec_crash_key",
+      "sec_crash_key_user",
+      "sec_hard_reset_hook",
+      "sec_key_notifier",
+      "sec_mparam",
+      "sec_class",
+      "sec_bootstat",
+      "sec_argos",
+      "hdm",
+      "sx9360",
+      "sec_debug",
+      "sec_debug_test",
+      "sec_debug_dprm",
+      "sec_debug_extra_info",
+      "sec_debug_hw_param",
+      "sec_debug_reset_reason",
+      "sec_debug_wdd_info",
+      "sec_debug_hist",
+      "sec_debug_summary",
+      "sec_debug_softdog",
+      "sec_debug_logbuf_interface",
+      "sec_debug_stacktrace",
+      "sec_debug_hardlockup_info",
+      "sec_debug_sched_report",
+      "dev_ril_bridge",
+      "sec_vibrator",
+      "max77705_charger",
+      "dropdump",
+      "common_muic",
+      "sec_tsp_log",
+      "sec_tclm_v2",
+      "sec_secure_touch",
+      "sec_tsp_dumpkey",
+      "sec_input_notifier",
+      "sec_common_fn",
+      "sec_cmd",
+      "fingerprint_sysfs",
+      "qbt2000_spidev",
+      "usb_typec_manager",
+      "if_cb_manager",
+      "pdic_notifier_module",
+      "cs40l2x_vib",
+      "s2dos05_regulator",
+      "pca9468_charger",
+      "hall_ic",
+      "abc",
+      "abc_hub",
+      "vl53l5",
+      "mfd_max77705",
+      "max77705_fuelgauge",
+      "broadcom_sensorhub",
+      "sensors_core",
+      "slsi_ts",
+      "uwb",
+      "snvm",
+      "mfc_charger",
+      "tsl2510",
+      "pdic_max77705",
+      "w9020",
+      "sec_direct_charger",
+      "sec_pd",
+      "sec_battery",
+      "mcps",
+      "exynos_bts",
+      "exynos_btsops2100",
+      "spu_verify",
+      "exynos_usb_audio_offloading",
+      "snd_soc_cirrus_amp",
+      "snd_soc_cs35l41_i2c",
+      "snd_soc_wm_adsp",
+      "snd_soc_s3c_dma",
+      "snd_soc_dp_dma",
+      "sec_audio_sysfs",
+      "sec_audio_debug",
+      "snd_soc_samsung_abox_gic",
+      "snd_soc_samsung_abox",
+      "snd_soc_samsung_vts_mailbox",
+      "snd_soc_samsung_vts",
+      "unbound_prince",
+      "tcp_westwood",
+      "tcp_htcp"
+    ],
+    "modules_load_original": [
+      "dss.ko",
+      "exynos-chipid_v2.ko",
+      "exynos-reboot.ko",
+      "exynos2100-itmon.ko",
+      "exynos-pmu-if.ko",
+      "s3c2410_wdt.ko",
+      "exynos-ecc-handler.ko",
+      "exynos-coresight.ko",
+      "debug-snapshot-qd.ko",
+      "eat.ko",
+      "exynos-adv-tracer-s2d.ko",
+      "ehld.ko",
+      "exynos-debug-test.ko",
+      "hardlockup-debug.ko",
+      "exynos_acpm.ko",
+      "exynos_pm_qos.ko",
+      "exynos-s2mpu.ko",
+      "exynos-pd_el3.ko",
+      "ect_parser.ko",
+      "cmupmucal.ko",
+      "clk_exynos.ko",
+      "clk-exynos-audss.ko",
+      "exynos_mct.ko",
+      "pinctrl-samsung-core.ko",
+      "exynos-cpupm.ko",
+      "i2c-exynos5.ko",
+      "acpm-mfd-bus.ko",
+      "s2mps24_mfd.ko",
+      "s2mps23_mfd.ko",
+      "pmic_class.ko",
+      "s2mps23-regulator.ko",
+      "s2mps24-regulator.ko",
+      "phy-exynos-usbdrd-super.ko",
+      "sec_debug_mode.ko",
+      "fingerprint.ko",
+      "ssg-iosched.ko",
+      "blk-sec-stats.ko",
+      "phy-exynos-mipi-dsim.ko",
+      "phy-exynos-mipi.ko",
+      "pwm-samsung.ko",
+      "pcie-exynos-host-v0.ko",
+      "pcie-exynos-rc.ko",
+      "pcie-exynos-dbg.ko",
+      "pcie-exynos2100-v0-cal.ko",
+      "pcie-exynos2100-rc-cal.ko",
+      "fb.ko",
+      "mcd-panel-s6e3hab.ko",
+      "mcd-panel-s6e3had.ko",
+      "mcd-panel.ko",
+      "dpu.ko",
+      "dp_ext_func.ko",
+      "pl330.ko",
+      "samsung-dma.ko",
+      "debug-snapshot-sfrdump.ko",
+      "hardlockup-watchdog.ko",
+      "exynos-ssld.ko",
+      "exynos-seh.ko",
+      "exynos-seclog.ko",
+      "exynos-tzasc.ko",
+      "exynos-ppmpu.ko",
+      "exynos-flexpmu-dbg.ko",
+      "exynos-pd.ko",
+      "exynos-pd-dbg.ko",
+      "memlogger.ko",
+      "exynos-pm.ko",
+      "cmu_ewf.ko",
+      "usi_v2.ko",
+      "plugin_dbg.ko",
+      "exynos-ssp.ko",
+      "exynos-el2.ko",
+      "mcu_ipc.ko",
+      "shm_ipc.ko",
+      "exynos_dit.ko",
+      "modem_utils.ko",
+      "cpif.ko",
+      "hdcp2.ko",
+      "exynos-cpuhp.ko",
+      "exynos-ufcc.ko",
+      "xperf.ko",
+      "exynos-sdm.ko",
+      "exynos_sci.ko",
+      "exynos-bcm_dbg.ko",
+      "exynos-bcm_dbg-dt.ko",
+      "exynos-dm.ko",
+      "exynos-mcinfo.ko",
+      "exynos-msn.ko",
+      "exynos-afm.ko",
+      "secmem.ko",
+      "exynos-migov.ko",
+      "exynos-cpu-profiler.ko",
+      "exynos-gpu-profiler.ko",
+      "exynos-mif-profiler.ko",
+      "imgloader.ko",
+      "sysevent.ko",
+      "sysevent_notif.ko",
+      "exynos-idle-profiler.ko",
+      "exynos-pm-dvs.ko",
+      "s2mpb02-regulator.ko",
+      "s2mpb03.ko",
+      "exynos_tty.ko",
+      "exyswd-rng.ko",
+      "samsung_iommu.ko",
+      "samsung-iommu-group.ko",
+      "mali_kbase.ko",
+      "tzdev.ko",
+      "tuihw.ko",
+      "tuihw-inf.ko",
+      "s2mpb02_mfd.ko",
+      "nfc_sec.ko",
+      "dma-buf-container.ko",
+      "ufs-exynos-core.ko",
+      "scsi_srpmb.ko",
+      "spidev.ko",
+      "spi-s3c64xx.ko",
+      "dhd.ko",
+      "rtl8150.ko",
+      "cdc_eem.ko",
+      "smsc75xx.ko",
+      "smsc95xx.ko",
+      "net1080.ko",
+      "cdc_ncm.ko",
+      "xhci-hcd.ko",
+      "xhci-pci.ko",
+      "xhci-plat-hcd.ko",
+      "usb_f_dm.ko",
+      "usb_f_dm1.ko",
+      "usb_f_mtp_samsung.ko",
+      "usb_f_ptp.ko",
+      "usb_f_conn_gadget.ko",
+      "usb_f_ss_mon_gadget.ko",
+      "dwc3.ko",
+      "dwc3-haps.ko",
+      "dwc3-of-simple.ko",
+      "dwc3-qcom.ko",
+      "cdc-acm.ko",
+      "usblp.ko",
+      "cdc-wdm.ko",
+      "usbserial.ko",
+      "ftdi_sio.ko",
+      "pl2303.ko",
+      "usb_notify_layer.ko",
+      "usb_notifier.ko",
+      "s2mps23-key.ko",
+      "rtc-s3c.ko",
+      "rtc-s2mps23.ko",
+      "i2c-dev.ko",
+      "v4l2-mem2mem.ko",
+      "videobuf2-dma-sg.ko",
+      "repeater.ko",
+      "tsmux.ko",
+      "exynos_mfc.ko",
+      "camerapp.ko",
+      "gdc.ko",
+      "votf.ko",
+      "camerapp-pd-mgr.ko",
+      "fimc-is.ko",
+      "is-cis-3j1.ko",
+      "is-cis-gh1.ko",
+      "is-cis-hm1.ko",
+      "is-cis-hm3.ko",
+      "is-cis-imx563.ko",
+      "is-actuator-ak737x.ko",
+      "is-laser-af-vl53l5.ko",
+      "is-flash-s2mpb02.ko",
+      "is-device-eeprom.ko",
+      "mcfrc.ko",
+      "smfc.ko",
+      "scaler.ko",
+      "exynos_thermal.ko",
+      "gpu_cooling.ko",
+      "softdog.ko",
+      "bcm43xx.ko",
+      "freq-qos-tracer.ko",
+      "exynos-acme.ko",
+      "exynos-dsufreq.ko",
+      "dw_mmc.ko",
+      "dw_mmc-pltfm.ko",
+      "dw_mmc-exynos.ko",
+      "leds-s2mpb02.ko",
+      "fmp-core.ko",
+      "ion_exynos_mod.ko",
+      "switch_class.ko",
+      "exynos_devfreq.ko",
+      "s2mps23_adc.ko",
+      "dsp.ko",
+      "npu.ko",
+      "vbus_notifier.ko",
+      "sec_pm_debug.ko",
+      "sec_pm_log.ko",
+      "sec_pm_cpufreq.ko",
+      "sec_thermistor.ko",
+      "sec_wakeup_cpu_allocator.ko",
+      "sec_reboot.ko",
+      "sec_crash_key.ko",
+      "sec_crash_key_user.ko",
+      "sec_hard_reset_hook.ko",
+      "sec_key_notifier.ko",
+      "sec_mparam.ko",
+      "sec_class.ko",
+      "sec_bootstat.ko",
+      "sec_argos.ko",
+      "hdm.ko",
+      "sx9360.ko",
+      "sec_debug.ko",
+      "sec_debug_test.ko",
+      "sec_debug_dprm.ko",
+      "sec_debug_extra_info.ko",
+      "sec_debug_hw_param.ko",
+      "sec_debug_reset_reason.ko",
+      "sec_debug_wdd_info.ko",
+      "sec_debug_hist.ko",
+      "sec_debug_summary.ko",
+      "sec_debug_softdog.ko",
+      "sec_debug_logbuf_interface.ko",
+      "sec_debug_stacktrace.ko",
+      "sec_debug_hardlockup_info.ko",
+      "sec_debug_sched_report.ko",
+      "dev_ril_bridge.ko",
+      "sec_vibrator.ko",
+      "max77705-charger.ko",
+      "dropdump.ko",
+      "common_muic.ko",
+      "sec_tsp_log.ko",
+      "sec_tclm_v2.ko",
+      "sec_secure_touch.ko",
+      "sec_tsp_dumpkey.ko",
+      "sec_input_notifier.ko",
+      "sec_common_fn.ko",
+      "sec_cmd.ko",
+      "fingerprint_sysfs.ko",
+      "qbt2000_spidev.ko",
+      "usb_typec_manager.ko",
+      "if_cb_manager.ko",
+      "pdic_notifier_module.ko",
+      "cs40l2x_vib.ko",
+      "s2dos05-regulator.ko",
+      "pca9468-charger.ko",
+      "hall_ic.ko",
+      "abc.ko",
+      "abc_hub.ko",
+      "vl53l5.ko",
+      "mfd_max77705.ko",
+      "max77705-fuelgauge.ko",
+      "broadcom-sensorhub.ko",
+      "sensors_core.ko",
+      "slsi_ts.ko",
+      "uwb.ko",
+      "snvm.ko",
+      "mfc_charger.ko",
+      "tsl2510.ko",
+      "pdic_max77705.ko",
+      "w9020.ko",
+      "sec_direct_charger.ko",
+      "sec_pd.ko",
+      "sec-battery.ko",
+      "mcps.ko",
+      "exynos-bts.ko",
+      "exynos-btsops2100.ko",
+      "spu_verify.ko",
+      "exynos-usb-audio-offloading.ko",
+      "snd-soc-cirrus-amp.ko",
+      "snd-soc-cs35l41-i2c.ko",
+      "snd-soc-wm-adsp.ko",
+      "snd-soc-s3c-dma.ko",
+      "snd-soc-dp_dma.ko",
+      "sec_audio_sysfs.ko",
+      "sec_audio_debug.ko",
+      "snd-soc-samsung-abox-gic.ko",
+      "snd-soc-samsung-abox.ko",
+      "snd-soc-samsung-vts-mailbox.ko",
+      "snd-soc-samsung-vts.ko",
+      "unbound_prince.ko",
+      "tcp_westwood.ko",
+      "tcp_htcp.ko"
+    ],
+    "modules_load_sha256": "90b8d756be8b59552a4c63972ffd728a6dca2e27f55641738c24e3f4107acbb9",
+    "modules_dep_sha256": "253239a24749aaafc108f1478a4fd0a7edf626f8f3c176565ac2f66017f30200",
+    "dependency_order_for_audit": [
+      "dss",
+      "exynos_chipid_v2",
+      "exynos_pmu_if",
+      "exynos_debug_test",
+      "exynos_pm_qos",
+      "ect_parser",
+      "clk_exynos_audss",
+      "exynos_mct",
+      "pinctrl_samsung_core",
+      "acpm_mfd_bus",
+      "pmic_class",
+      "phy_exynos_usbdrd_super",
+      "blk_sec_stats",
+      "pcie_exynos_dbg",
+      "pcie_exynos2100_v0_cal",
+      "pcie_exynos2100_rc_cal",
+      "fb",
+      "dp_ext_func",
+      "pl330",
+      "hardlockup_watchdog",
+      "exynos_ssld",
+      "exynos_seh",
+      "exynos_seclog",
+      "exynos_tzasc",
+      "exynos_ppmpu",
+      "exynos_flexpmu_dbg",
+      "exynos_pd_dbg",
+      "memlogger",
+      "usi_v2",
+      "plugin_dbg",
+      "exynos_bcm_dbg_dt",
+      "exynos_mcinfo",
+      "exynos_msn",
+      "secmem",
+      "sysevent_notif",
+      "exynos_idle_profiler",
+      "exynos_pm_dvs",
+      "exyswd_rng",
+      "samsung_iommu_group",
+      "tzdev",
+      "s2mpb02_mfd",
+      "dma_buf_container",
+      "spidev",
+      "rtl8150",
+      "cdc_eem",
+      "smsc75xx",
+      "smsc95xx",
+      "net1080",
+      "cdc_ncm",
+      "usb_f_dm",
+      "usb_f_dm1",
+      "usb_f_mtp_samsung",
+      "usb_f_conn_gadget",
+      "dwc3_haps",
+      "dwc3_of_simple",
+      "dwc3_qcom",
+      "cdc_acm",
+      "usblp",
+      "cdc_wdm",
+      "usbserial",
+      "usb_notify_layer",
+      "rtc_s3c",
+      "i2c_dev",
+      "v4l2_mem2mem",
+      "videobuf2_dma_sg",
+      "repeater",
+      "tsmux",
+      "camerapp_pd_mgr",
+      "mcfrc",
+      "freq_qos_tracer",
+      "fmp_core",
+      "ion_exynos_mod",
+      "switch_class",
+      "vbus_notifier",
+      "sec_wakeup_cpu_allocator",
+      "sec_key_notifier",
+      "sec_mparam",
+      "sec_class",
+      "sec_debug_stacktrace",
+      "dev_ril_bridge",
+      "sec_vibrator",
+      "dropdump",
+      "sec_tsp_log",
+      "sec_input_notifier",
+      "fingerprint_sysfs",
+      "qbt2000_spidev",
+      "if_cb_manager",
+      "sensors_core",
+      "snvm",
+      "sec_pd",
+      "mcps",
+      "exynos_btsops2100",
+      "spu_verify",
+      "snd_soc_wm_adsp",
+      "snd_soc_s3c_dma",
+      "sec_audio_sysfs",
+      "sec_audio_debug",
+      "snd_soc_samsung_abox_gic",
+      "snd_soc_samsung_vts_mailbox",
+      "tcp_westwood",
+      "tcp_htcp",
+      "exynos_reboot",
+      "s3c2410_wdt",
+      "exynos_ecc_handler",
+      "exynos_coresight",
+      "debug_snapshot_qd",
+      "eat",
+      "hardlockup_debug",
+      "exynos_s2mpu",
+      "sec_debug_mode",
+      "fingerprint",
+      "ssg_iosched",
+      "phy_exynos_mipi_dsim",
+      "phy_exynos_mipi",
+      "samsung_dma",
+      "cmu_ewf",
+      "exynos_el2",
+      "hdcp2",
+      "exynos_cpuhp",
+      "exynos_sdm",
+      "sysevent",
+      "s2mpb02_regulator",
+      "s2mpb03",
+      "tuihw_inf",
+      "nfc_sec",
+      "usb_f_ptp",
+      "usb_f_ss_mon_gadget",
+      "ftdi_sio",
+      "pl2303",
+      "camerapp",
+      "smfc",
+      "leds_s2mpb02",
+      "sec_pm_log",
+      "sec_pm_cpufreq",
+      "sec_thermistor",
+      "sec_hard_reset_hook",
+      "sec_argos",
+      "hdm",
+      "sec_debug_softdog",
+      "sec_debug_sched_report",
+      "common_muic",
+      "sec_tclm_v2",
+      "sec_secure_touch",
+      "sec_cmd",
+      "pdic_notifier_module",
+      "cs40l2x_vib",
+      "pca9468_charger",
+      "abc",
+      "vl53l5",
+      "mfd_max77705",
+      "mfc_charger",
+      "snd_soc_cirrus_amp",
+      "exynos_adv_tracer_s2d",
+      "ehld",
+      "exynos_acpm",
+      "exynos_pd_el3",
+      "mcd_panel",
+      "imgloader",
+      "votf",
+      "softdog",
+      "sec_reboot",
+      "sec_crash_key",
+      "sec_crash_key_user",
+      "usb_typec_manager",
+      "s2dos05_regulator",
+      "hall_ic",
+      "abc_hub",
+      "max77705_fuelgauge",
+      "uwb",
+      "tsl2510",
+      "sec_direct_charger",
+      "snd_soc_cs35l41_i2c",
+      "s2mps24_mfd",
+      "mcd_panel_s6e3hab",
+      "mcd_panel_s6e3had",
+      "modem_utils",
+      "exynos_sci",
+      "gdc",
+      "s2mps23_adc",
+      "sx9360",
+      "sec_debug",
+      "sec_debug_test",
+      "sec_common_fn",
+      "broadcom_sensorhub",
+      "pdic_max77705",
+      "s2mps23_mfd",
+      "s2mps24_regulator",
+      "mcu_ipc",
+      "shm_ipc",
+      "sec_debug_dprm",
+      "sec_debug_extra_info",
+      "sec_debug_wdd_info",
+      "sec_debug_hist",
+      "sec_debug_summary",
+      "sec_debug_logbuf_interface",
+      "max77705_charger",
+      "sec_tsp_dumpkey",
+      "exynos2100_itmon",
+      "cmupmucal",
+      "s2mps23_regulator",
+      "exynos_afm",
+      "samsung_iommu",
+      "rtc_s2mps23",
+      "sec_debug_reset_reason",
+      "sec_debug_hardlockup_info",
+      "sec_battery",
+      "clk_exynos",
+      "exynos_cpupm",
+      "s2mps23_key",
+      "sec_pm_debug",
+      "sec_debug_hw_param",
+      "exynos_bts",
+      "snd_soc_samsung_vts",
+      "i2c_exynos5",
+      "pwm_samsung",
+      "exynos_ssp",
+      "exynos_dit",
+      "exynos_ufcc",
+      "exynos_dm",
+      "exynos_tty",
+      "mali_kbase",
+      "ufs_exynos_core",
+      "spi_s3c64xx",
+      "dwc3",
+      "scaler",
+      "dw_mmc",
+      "dsp",
+      "pcie_exynos_host_v0",
+      "pcie_exynos_rc",
+      "exynos_pm",
+      "exynos_migov",
+      "scsi_srpmb",
+      "xhci_hcd",
+      "usb_notifier",
+      "bcm43xx",
+      "exynos_dsufreq",
+      "dw_mmc_pltfm",
+      "slsi_ts",
+      "cpif",
+      "dhd",
+      "xhci_pci",
+      "dw_mmc_exynos",
+      "snd_soc_samsung_abox",
+      "exynos_pd",
+      "exynos_thermal",
+      "exynos_usb_audio_offloading",
+      "unbound_prince",
+      "debug_snapshot_sfrdump",
+      "exynos_bcm_dbg",
+      "exynos_cpu_profiler",
+      "exynos_gpu_profiler",
+      "xhci_plat_hcd",
+      "exynos_mfc",
+      "gpu_cooling",
+      "fimc_is",
+      "exynos_devfreq",
+      "dpu",
+      "xperf",
+      "exynos_mif_profiler",
+      "is_cis_3j1",
+      "is_cis_gh1",
+      "is_cis_hm1",
+      "is_cis_hm3",
+      "is_cis_imx563",
+      "is_actuator_ak737x",
+      "is_laser_af_vl53l5",
+      "is_flash_s2mpb02",
+      "is_device_eeprom",
+      "exynos_acme",
+      "npu",
+      "w9020",
+      "tuihw",
+      "sec_bootstat",
+      "snd_soc_dp_dma"
+    ],
+    "dependency_order_is_boot_validation": false,
+    "package_modified": false,
+    "additional_candidate_modules": [
+      "input_booster_lkm",
+      "sec_debug_sched_info"
+    ],
+    "alternative_candidate_set_names": [
+      "dss",
+      "exynos_chipid_v2",
+      "exynos_reboot",
+      "exynos2100_itmon",
+      "exynos_pmu_if",
+      "s3c2410_wdt",
+      "exynos_ecc_handler",
+      "exynos_coresight",
+      "debug_snapshot_qd",
+      "eat",
+      "exynos_adv_tracer_s2d",
+      "ehld",
+      "exynos_debug_test",
+      "hardlockup_debug",
+      "exynos_acpm",
+      "exynos_pm_qos",
+      "exynos_s2mpu",
+      "exynos_pd_el3",
+      "ect_parser",
+      "cmupmucal",
+      "clk_exynos",
+      "clk_exynos_audss",
+      "exynos_mct",
+      "pinctrl_samsung_core",
+      "exynos_cpupm",
+      "i2c_exynos5",
+      "acpm_mfd_bus",
+      "s2mps24_mfd",
+      "s2mps23_mfd",
+      "pmic_class",
+      "s2mps23_regulator",
+      "s2mps24_regulator",
+      "phy_exynos_usbdrd_super",
+      "sec_debug_mode",
+      "fingerprint",
+      "ssg_iosched",
+      "blk_sec_stats",
+      "phy_exynos_mipi_dsim",
+      "phy_exynos_mipi",
+      "pwm_samsung",
+      "pcie_exynos_host_v0",
+      "pcie_exynos_rc",
+      "pcie_exynos_dbg",
+      "pcie_exynos2100_v0_cal",
+      "pcie_exynos2100_rc_cal",
+      "fb",
+      "mcd_panel_s6e3hab",
+      "mcd_panel_s6e3had",
+      "mcd_panel",
+      "dpu",
+      "dp_ext_func",
+      "pl330",
+      "samsung_dma",
+      "debug_snapshot_sfrdump",
+      "hardlockup_watchdog",
+      "exynos_ssld",
+      "exynos_seh",
+      "exynos_seclog",
+      "exynos_tzasc",
+      "exynos_ppmpu",
+      "exynos_flexpmu_dbg",
+      "exynos_pd",
+      "exynos_pd_dbg",
+      "memlogger",
+      "exynos_pm",
+      "cmu_ewf",
+      "usi_v2",
+      "plugin_dbg",
+      "exynos_ssp",
+      "exynos_el2",
+      "mcu_ipc",
+      "shm_ipc",
+      "exynos_dit",
+      "modem_utils",
+      "cpif",
+      "hdcp2",
+      "exynos_cpuhp",
+      "exynos_ufcc",
+      "xperf",
+      "exynos_sdm",
+      "exynos_sci",
+      "exynos_bcm_dbg",
+      "exynos_bcm_dbg_dt",
+      "exynos_dm",
+      "exynos_mcinfo",
+      "exynos_msn",
+      "exynos_afm",
+      "secmem",
+      "exynos_migov",
+      "exynos_cpu_profiler",
+      "exynos_gpu_profiler",
+      "exynos_mif_profiler",
+      "imgloader",
+      "sysevent",
+      "sysevent_notif",
+      "exynos_idle_profiler",
+      "exynos_pm_dvs",
+      "s2mpb02_regulator",
+      "s2mpb03",
+      "exynos_tty",
+      "exyswd_rng",
+      "samsung_iommu",
+      "samsung_iommu_group",
+      "mali_kbase",
+      "tzdev",
+      "tuihw",
+      "tuihw_inf",
+      "s2mpb02_mfd",
+      "nfc_sec",
+      "dma_buf_container",
+      "ufs_exynos_core",
+      "scsi_srpmb",
+      "spidev",
+      "spi_s3c64xx",
+      "dhd",
+      "rtl8150",
+      "cdc_eem",
+      "smsc75xx",
+      "smsc95xx",
+      "net1080",
+      "cdc_ncm",
+      "xhci_hcd",
+      "xhci_pci",
+      "xhci_plat_hcd",
+      "usb_f_dm",
+      "usb_f_dm1",
+      "usb_f_mtp_samsung",
+      "usb_f_ptp",
+      "usb_f_conn_gadget",
+      "usb_f_ss_mon_gadget",
+      "dwc3",
+      "dwc3_haps",
+      "dwc3_of_simple",
+      "dwc3_qcom",
+      "cdc_acm",
+      "usblp",
+      "cdc_wdm",
+      "usbserial",
+      "ftdi_sio",
+      "pl2303",
+      "usb_notify_layer",
+      "usb_notifier",
+      "s2mps23_key",
+      "rtc_s3c",
+      "rtc_s2mps23",
+      "i2c_dev",
+      "v4l2_mem2mem",
+      "videobuf2_dma_sg",
+      "repeater",
+      "tsmux",
+      "exynos_mfc",
+      "camerapp",
+      "gdc",
+      "votf",
+      "camerapp_pd_mgr",
+      "fimc_is",
+      "is_cis_3j1",
+      "is_cis_gh1",
+      "is_cis_hm1",
+      "is_cis_hm3",
+      "is_cis_imx563",
+      "is_actuator_ak737x",
+      "is_laser_af_vl53l5",
+      "is_flash_s2mpb02",
+      "is_device_eeprom",
+      "mcfrc",
+      "smfc",
+      "scaler",
+      "exynos_thermal",
+      "gpu_cooling",
+      "softdog",
+      "bcm43xx",
+      "freq_qos_tracer",
+      "exynos_acme",
+      "exynos_dsufreq",
+      "dw_mmc",
+      "dw_mmc_pltfm",
+      "dw_mmc_exynos",
+      "leds_s2mpb02",
+      "fmp_core",
+      "ion_exynos_mod",
+      "switch_class",
+      "exynos_devfreq",
+      "s2mps23_adc",
+      "dsp",
+      "npu",
+      "vbus_notifier",
+      "sec_pm_debug",
+      "sec_pm_log",
+      "sec_pm_cpufreq",
+      "sec_thermistor",
+      "sec_wakeup_cpu_allocator",
+      "sec_reboot",
+      "sec_crash_key",
+      "sec_crash_key_user",
+      "sec_hard_reset_hook",
+      "sec_key_notifier",
+      "sec_mparam",
+      "sec_class",
+      "sec_bootstat",
+      "sec_argos",
+      "hdm",
+      "sx9360",
+      "sec_debug",
+      "sec_debug_test",
+      "sec_debug_dprm",
+      "sec_debug_extra_info",
+      "sec_debug_hw_param",
+      "sec_debug_reset_reason",
+      "sec_debug_wdd_info",
+      "sec_debug_hist",
+      "sec_debug_summary",
+      "sec_debug_softdog",
+      "sec_debug_logbuf_interface",
+      "sec_debug_stacktrace",
+      "sec_debug_hardlockup_info",
+      "sec_debug_sched_report",
+      "dev_ril_bridge",
+      "sec_vibrator",
+      "max77705_charger",
+      "dropdump",
+      "common_muic",
+      "sec_tsp_log",
+      "sec_tclm_v2",
+      "sec_secure_touch",
+      "sec_tsp_dumpkey",
+      "sec_input_notifier",
+      "sec_common_fn",
+      "sec_cmd",
+      "fingerprint_sysfs",
+      "qbt2000_spidev",
+      "usb_typec_manager",
+      "if_cb_manager",
+      "pdic_notifier_module",
+      "cs40l2x_vib",
+      "s2dos05_regulator",
+      "pca9468_charger",
+      "hall_ic",
+      "abc",
+      "abc_hub",
+      "vl53l5",
+      "mfd_max77705",
+      "max77705_fuelgauge",
+      "broadcom_sensorhub",
+      "sensors_core",
+      "slsi_ts",
+      "uwb",
+      "snvm",
+      "mfc_charger",
+      "tsl2510",
+      "pdic_max77705",
+      "w9020",
+      "sec_direct_charger",
+      "sec_pd",
+      "sec_battery",
+      "mcps",
+      "exynos_bts",
+      "exynos_btsops2100",
+      "spu_verify",
+      "exynos_usb_audio_offloading",
+      "snd_soc_cirrus_amp",
+      "snd_soc_cs35l41_i2c",
+      "snd_soc_wm_adsp",
+      "snd_soc_s3c_dma",
+      "snd_soc_dp_dma",
+      "sec_audio_sysfs",
+      "sec_audio_debug",
+      "snd_soc_samsung_abox_gic",
+      "snd_soc_samsung_abox",
+      "snd_soc_samsung_vts_mailbox",
+      "snd_soc_samsung_vts",
+      "unbound_prince",
+      "tcp_westwood",
+      "tcp_htcp"
+    ]
+  },
+  "module_abi_established": false,
+  "signature_policy_verified": false,
+  "cfi_runtime_verified": false,
+  "physical_action": false,
+  "a0_complete": false
+}

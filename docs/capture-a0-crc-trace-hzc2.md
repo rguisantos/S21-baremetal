@@ -129,3 +129,14 @@ Doze controles host cobrem essas propriedades e fazem parte da CI.
 A0 permanece condicionado ao build completo e comparação de exports/CRCs,
 aos insumos KMI/configuração, às políticas de módulos e ao contêiner de
 payload modificado. A1 e ações no aparelho continuam separados.
+
+## Continuação — proposta de módulos, 02/11/2026
+
+A [auditoria dos conjuntos de módulos](capture-a0-module-policy-hzc2.md)
+propõe o kernel candidato com os 274 módulos do vendor_boot original; a
+alternativa recompilada contém os mesmos nomes. Confirma fornecedores,
+CRCs presentes e condições modeladas de licença/namespace. Dois imports
+de s2mpb02_mfd não têm registro de consumidor: a fonte permite com aviso,
+mas a cobertura estrita permanece incompleta. O sufixo HZC2 isoladamente
+não reprova same_magic nessa fonte com MODVERSIONS e __versions.
+Isso não fecha ABI, carga runtime, listas KMI ausentes ou contêiner modificado.

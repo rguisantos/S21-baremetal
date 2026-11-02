@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "a471e7d1b86d4b24a0e13aceb6214351a0b20b0b",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 157,
+    "new_tests": 30,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "report": {
+    "sha256": "076ae7e18eca29a9108968535fca42e7de81eb7c3c014c24a5bedbae2f946b8e",
+    "bytes": 188960,
+    "identical_independent_executions": 2,
+    "runner_returncode": 2
+  },
+  "stock_modules_read": 274,
+  "candidate_modules_read": 276,
+  "candidate_exports_verified_against_symvers": true,
+  "selected_metadata_differences": {
+    "imports": [],
+    "exports": [],
+    "versions": [],
+    "depends": [],
+    "licenses": [],
+    "import_namespaces": []
+  },
+  "sets": {
+    "stock": {
+      "strict_plan_checks_passed": false,
+      "errors": [],
+      "warnings": [
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_guard"
+        ]
+      ],
+      "plan_blocks": [
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_guard"
+        ]
+      ],
+      "modeled_source_checks_passed": true,
+      "unversioned_imports": [
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_fail",
+          "provider": "vmlinux",
+          "provider_crc": "0xf0fdf6cb",
+          "consumer_version_record_present": false
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_guard",
+          "provider": "vmlinux",
+          "provider_crc": "0x8f678b07",
+          "consumer_version_record_present": false
+        }
+      ],
+      "duplicate_exports": [],
+      "selected_count": 274,
+      "weak_unresolved": {},
+      "proprietary_taint_closure": [],
+      "module_abi_established": false,
+      "runtime_loading_tested": false,
+      "a0_complete": false,
+      "imports": 13722,
+      "weak_imports": 0,
+      "exports": 1914,
+      "version_records": 13995,
+      "dependency_edges": 569,
+      "dependency_graph_sha256": "eca7cea1797ce6814caff738fc922a58489fd35b660f4617adef20dbec797aaa"
+    },
+    "candidate": {
+      "strict_plan_checks_passed": false,
+      "errors": [],
+      "warnings": [
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "import_version_missing_source_permits",
+          "__stack_chk_guard"
+        ]
+      ],
+      "plan_blocks": [
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_guard"
+        ]
+      ],
+      "modeled_source_checks_passed": true,
+      "unversioned_imports": [
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_fail",
+          "provider": "vmlinux",
+          "provider_crc": "0xf0fdf6cb",
+          "consumer_version_record_present": false
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_guard",
+          "provider": "vmlinux",
+          "provider_crc": "0x8f678b07",
+          "consumer_version_record_present": false
+        }
+      ],
+      "duplicate_exports": [],
+      "selected_count": 274,
+      "weak_unresolved": {},
+      "proprietary_taint_closure": [],
+      "module_abi_established": false,
+      "runtime_loading_tested": false,
+      "a0_complete": false,
+      "imports": 13722,
+      "weak_imports": 0,
+      "exports": 1914,
+      "version_records": 13995,
+      "dependency_edges": 569,
+      "dependency_graph_sha256": "eca7cea1797ce6814caff738fc922a58489fd35b660f4617adef20dbec797aaa"
+    }
+  },
+  "kernel_build_settings": {
+    "CONFIG_MODULE_SIG": "n",
+    "CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS": "n",
+    "CONFIG_CFI_CLANG": "y",
+    "CONFIG_UH": "y",
+    "CONFIG_RKP": "y"
+  },
+  "reference_plan_status": "proposed_with_version_gaps",
+  "additional_candidate_modules": [
+    "input_booster_lkm",
+    "sec_debug_sched_info"
+  ],
+  "vermagic_release_prefix_ignored_in_pinned_crc_path": true,
+  "reverse_loading_in_running_stock_kernel_tested": false,
+  "module_abi_established": false,
+  "signature_policy_verified": false,
+  "cfi_runtime_verified": false,
+  "physical_action": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "local_markdown_links_checked": 1686,
+  "missing_local_links": []
+}

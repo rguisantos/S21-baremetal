@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_module_policy.py` compara insumos fixados, exports/relocations reais, imports, versões, licenças e namespaces. `capture_a0_module_policy.py` distingue recusas da fonte e lacunas conservadoras do plano; 30 controles novos em `test_capture_a0_module_policy.py`, incluídos na CI. Propõe 274 módulos stock e registra dois imports sem versão. [Guia](../docs/capture-a0-module-policy-hzc2.md).
+
 `--trace-versions` em `check_capture_a0_build_profile.py` acompanha dois produtores de CRC e agregados LTO durante `--compile`. O observador `capture_a0_crc_trace.py` faz somente leituras, limita dados/eventos e registra lacunas/erros; 12 controles novos em `test_capture_a0_crc_trace.py`. [Resultado e guia](../docs/capture-a0-crc-trace-hzc2.md).
 
 `check_capture_a0_build_profile.py` verifica fonte/toolchains antes de rodar Kconfig, preparação, CRCs parciais e controles TUI. `--compile` acrescenta uma tentativa limitada de vmlinux/módulos e comparação de Module.symvers. `capture_a0_build.py` verifica árvores Git, perfil crítico e artefatos; 23 testes em `test_capture_a0_build.py`, incluídos na CI. [Guia](../docs/capture-a0-build-profile-hzc2.md).
