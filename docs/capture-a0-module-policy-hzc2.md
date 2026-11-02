@@ -157,3 +157,11 @@ comportamento e aceitação de boot continuam fora desta prova.
 O comando retorna 2 após produzir a análise e conserva A0 aberto; retorno
 1 indica erro/recusa de insumos ou formato. A proposta registra o conjunto
 e as exceções; não autoriza instalação ou mudança da decisão OEM.
+
+## Continuação — origem dos dois helpers, 02/11/2026
+
+A [reexecução nativa de modpost](capture-a0-stack-versions-hzc2.md) sobre os
+ELFs finais produz os 35 registros anteriores mais os dois helpers. Os
+imports apontam para instruções reais de proteção de pilha na IRQ. Não foi
+reproduzida a transição entre os intermediários do build original; os
+módulos recebidos continuam com as duas lacunas. Nenhum deles foi reparado.

@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "b900afc51943962f051067598cf9c481b983b75f",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 170,
+    "new_tests": 13,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_report": {
+    "sha256": "7509e3a96e0c859ec366c847dd550ef807e68c0477674546ed0f12e8d4d00e61",
+    "bytes": 13257,
+    "identical_executions": 2,
+    "runner_returncode": 2
+  },
+  "sets": {
+    "stock": {
+      "module_sha256": "efaefd5a9b0a40fcd1ed9d3f2bacfb71640abf189635e8aaf6ebbb18b0214fb8",
+      "final_imports": 36,
+      "original_version_records": 35,
+      "generated_version_records": 37,
+      "generated_source_sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda",
+      "added_rows": {
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "__stack_chk_guard": "0x8f678b07"
+      },
+      "existing_rows_unchanged": true,
+      "elf_input_unchanged": true
+    },
+    "candidate": {
+      "module_sha256": "2ad7104cf50f13a94ad53e027bf0a567ba433123f6a09fbf5b3ef820969f1624",
+      "final_imports": 36,
+      "original_version_records": 35,
+      "generated_version_records": 37,
+      "generated_source_sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda",
+      "added_rows": {
+        "__stack_chk_fail": "0xf0fdf6cb",
+        "__stack_chk_guard": "0x8f678b07"
+      },
+      "existing_rows_unchanged": true,
+      "elf_input_unchanged": true
+    }
+  },
+  "same_generated_source_for_both_inputs": true,
+  "same_five_ssp_sites": true,
+  "original_build_transition_reproduced": false,
+  "stock_build_cause_established": false,
+  "native_stock_section_mismatch_warnings": 2,
+  "native_candidate_warnings": 0,
+  "regenerated_source_compiled_into_modules": false,
+  "package_modified": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "local_markdown_links_checked": 1697,
+  "missing_local_links": []
+}
