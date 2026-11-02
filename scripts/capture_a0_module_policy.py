@@ -21,13 +21,14 @@ MODNAME=re.compile(r'[A-Za-z0-9_][A-Za-z0-9_.-]*')
 
 
 class Elf:
-    def __init__(self,data,require_module_metadata=True):
+    def __init__(self,data,require_module_metadata=True,max_sections=4096):
+        require(isinstance(max_sections,int) and 1<=max_sections<=16384,'section count budget')
         require(64<=len(data)<=MAX_MODULE,'module size bound')
         require(data[:7]==b'\x7fELF\x02\x01\x01','requires ELF64 little endian')
         require(struct.unpack_from('<HHI',data,16)==(1,183,1),'requires AArch64 ET_REL')
         off=struct.unpack_from('<Q',data,40)[0]
         eh,_,ph,sz,count,names=struct.unpack_from('<6H',data,52)
-        require(eh==64 and ph==0 and sz==64 and 0<names<count<=4096 and off>=64
+        require(eh==64 and ph==0 and sz==64 and 0<names<count<=max_sections and off>=64
                 and off+64*count<=len(data),'section table bounds')
         self.data=data;self.rows=[struct.unpack_from('<IIQQQQIIQQ',data,off+64*i) for i in range(count)]
         self.cache={};self.used=0

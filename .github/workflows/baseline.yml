@@ -40,6 +40,7 @@ jobs:
           python3 scripts/test_capture_a0_module_policy.py
           python3 scripts/test_capture_a0_stack_versions.py
           python3 scripts/test_capture_a0_module_stages.py
+          python3 scripts/test_capture_a0_aligned_build.py
       - name: Check static pre-copy witness refusals
         run: python3 scripts/test_lk_precopy_measurement.py
       - name: Check embedded AVB key format and consumer decoding

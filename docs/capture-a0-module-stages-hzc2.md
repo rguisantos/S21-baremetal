@@ -133,3 +133,12 @@ com suas duas ausências originais. Próximo gate: build completo com patch,
 comparação de todos os módulos/CRCs e revisão da política do pacote. A0 segue
 aberto também para proveniência KMI e contêiner modificado. A1 e a decisão
 física continuam separados; o histórico do build stock não foi estabelecido.
+
+## Continuação — build completo alinhado, 02/11/2026
+
+O [build completo corrigido](capture-a0-aligned-full-hzc2.md) concluiu
+vmlinux/276 módulos e conferiu as fases de todos eles. O conjunto de 274
+recompilados não tem imports sem versão ou CRCs divergentes nas regras
+modeladas e passa a ser a proposta de referência offline com o novo kernel.
+O conjunto stock permanece intacto, com as duas ausências anteriores.
+KMI, execução/ABI e contêiner continuam gates separados; A0 permanece aberto.

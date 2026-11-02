@@ -47,7 +47,7 @@ def snapshot(root, destination):
 
 
 def imports(data):
-    elf=Elf(data,require_module_metadata=False); result={}
+    elf=Elf(data,require_module_metadata=False,max_sections=16384); result={}
     for s in elf.symbols[1:]:
         if s['section']!=0:continue
         require(SYMBOL.fullmatch(s['name']) and s['binding'] in (1,2) and s['name'] not in result,

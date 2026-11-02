@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "916374224fd99f67f9997bdb090f69a4f7688088",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 198,
+    "new_tests": 12,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_build": {
+    "targets": [
+      "vmlinux",
+      "modules"
+    ],
+    "make_returncode": 0,
+    "timed_out": false,
+    "runner_returncode": 2,
+    "completed": true,
+    "built_modules": 276,
+    "config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+    "final_config_unchanged": true,
+    "critical_profile_preserved": true,
+    "vmlinux_sha256": "0355418bebc35257984558d234d61af4d6b71a312c8089b760fda7c1b3405eeb",
+    "module_prelink_patch": {
+      "before_sha256": "083ce8e6dc233be0cb4d347bd7e2de850639d7b9a05c3cdc707f6c1fe8dbac98",
+      "after_sha256": "5c577cd70b59082e5b66faa3aef3856458d9d9958642c800fff11c3746c42d30"
+    }
+  },
+  "crc_comparison": {
+    "supplied": true,
+    "sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+    "matched": 2763,
+    "missing": [],
+    "mismatched": [],
+    "stock_crc_conflicts": [],
+    "crc_coverage_passed": true,
+    "module_abi_established": false
+  },
+  "sets": {
+    "stock274": {
+      "selected_count": 274,
+      "imports": 13722,
+      "exports": 1914,
+      "version_records": 13995,
+      "weak_imports": 0,
+      "modeled_source_checks_passed": true,
+      "strict_plan_checks_passed": false,
+      "errors": [],
+      "plan_blocks": [
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_fail"
+        ],
+        [
+          "s2mpb02_mfd",
+          "crc_coverage_not_established",
+          "__stack_chk_guard"
+        ]
+      ],
+      "unversioned_imports": [
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_fail",
+          "provider": "vmlinux",
+          "provider_crc": "0xf0fdf6cb",
+          "consumer_version_record_present": false
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "symbol": "__stack_chk_guard",
+          "provider": "vmlinux",
+          "provider_crc": "0x8f678b07",
+          "consumer_version_record_present": false
+        }
+      ]
+    },
+    "rebuilt274": {
+      "selected_count": 274,
+      "imports": 13722,
+      "exports": 1914,
+      "version_records": 13996,
+      "weak_imports": 0,
+      "modeled_source_checks_passed": true,
+      "strict_plan_checks_passed": true,
+      "errors": [],
+      "plan_blocks": [],
+      "unversioned_imports": []
+    },
+    "all_rebuilt": {
+      "selected_count": 276,
+      "imports": 13797,
+      "exports": 1914,
+      "version_records": 14073,
+      "weak_imports": 0,
+      "modeled_source_checks_passed": true,
+      "strict_plan_checks_passed": true,
+      "errors": [],
+      "plan_blocks": [],
+      "unversioned_imports": []
+    }
+  },
+  "phase_totals": {
+    "imports_added_after_modpost": 0,
+    "prelink_imports_without_generated_version": 0,
+    "final_imports_without_version": 0,
+    "unused_version_records": 0
+  },
+  "changes_from_PR80": {
+    "differences": {
+      "imports": [],
+      "exports": [],
+      "versions": [
+        "dhd",
+        "s2mpb02_mfd"
+      ],
+      "depends": [],
+      "licenses": [],
+      "import_namespaces": [],
+      "vermagic": []
+    },
+    "version_changes": {
+      "dhd": {
+        "added": {},
+        "removed": {
+          "__const_udelay": "0xeae3dfd6"
+        },
+        "changed": {}
+      },
+      "s2mpb02_mfd": {
+        "added": {
+          "__stack_chk_fail": "0xf0fdf6cb",
+          "__stack_chk_guard": "0x8f678b07"
+        },
+        "removed": {},
+        "changed": {}
+      }
+    }
+  },
+  "candidate_set": "proposed",
+  "excluded_additional_modules": [
+    "input_booster_lkm",
+    "sec_debug_sched_info"
+  ],
+  "gnu_elf_headers": {
+    "tool": "GNU readelf (GNU Binutils for Debian) 2.44",
+    "files": 277,
+    "modules_rel": 276,
+    "vmlinux_dyn": 1,
+    "aarch64": 277,
+    "runtime_tested": false
+  },
+  "report_sha256": "3c2e43fbb0052a17bf067a7fab9539bdbbe73134a12c73cfe7ef794861eb77f4",
+  "preserved_layout_audit_byte_identical": true,
+  "recompilation_used_for_audit_replay": false,
+  "crc_trace": {
+    "events": 30,
+    "maximum_gap_seconds": 1.8,
+    "observer_error": null,
+    "event_limit_reached": false,
+    "sampler_may_miss_transitions": true
+  },
+  "module_abi_established": false,
+  "signature_policy_verified": false,
+  "cfi_runtime_verified": false,
+  "package_modified": false,
+  "stock_module_set_modified": false,
+  "physical_action": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "reference_artifacts": {
+    "filename": "S21-HZC2-alinhado-completo-20261102.tar.gz",
+    "bytes": 430051580,
+    "sha256": "d649de92e904eff21fd0cf40af0d10b5a10b67a54de54b5b6f234df628e10015",
+    "files_verified": 2133,
+    "full_object_cache_included": false,
+    "prelink_and_generated_sources_included": true
+  },
+  "local_markdown_links_checked": 1716,
+  "missing_local_links": []
+}
