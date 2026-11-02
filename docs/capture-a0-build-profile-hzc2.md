@@ -206,3 +206,15 @@ um requisito necessário, não prova de ABI ou comportamento.
 O [contêiner de payload modificado](capture-a0-repack-extent-hzc2.md)
 continua um bloqueio independente. A1 ainda requer prova no ELF/Image
 final da seção de captura e da ordem de entrada/continuação.
+
+## Continuação em 2026-11-02 — build completo acompanhado
+
+O [build acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e
+276 módulos, mantendo o perfil crítico e a configuração gerada. O
+Module.symvers final cobriu os 2763 requisitos de CRC stock, todos iguais.
+Os seis CRCs chegaram aos agregados e ao linker; a ocorrência anterior
+de arquivos vazios não se reproduziu e sua causa segue não demonstrada.
+Os 274 nomes de módulos do vendor ramdisk estão presentes no candidato,
+com dois adicionais em relação a esse conjunto. Isso fecha a produção
+e a cobertura de CRC desse candidato, mantendo compatibilidade/políticas,
+proveniência KMI e contêiner abertos em A0. Não houve avanço A1 ou ação física.

@@ -124,3 +124,15 @@ A [rodada de build](capture-a0-build-profile-hzc2.md) registra os controles
 de configuração, preparação com compat32, CRCs recalculados do candidato
 e a correção TUI para `O=`. Esses resultados complementam o estado
 histórico acima; não encerram A0 nem autorizam A1 ou uma ação física.
+
+## Continuação em 2026-11-02 — build completo acompanhado
+
+O [build acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e
+276 módulos, mantendo o perfil crítico e a configuração gerada. O
+Module.symvers final cobriu os 2763 requisitos de CRC stock, todos iguais.
+Os seis CRCs chegaram aos agregados e ao linker; a ocorrência anterior
+de arquivos vazios não se reproduziu e sua causa segue não demonstrada.
+Os 274 nomes de módulos do vendor ramdisk estão presentes no candidato,
+com dois adicionais em relação a esse conjunto. Isso fecha a produção
+e a cobertura de CRC desse candidato, mantendo compatibilidade/políticas,
+proveniência KMI e contêiner abertos em A0. Não houve avanço A1 ou ação física.

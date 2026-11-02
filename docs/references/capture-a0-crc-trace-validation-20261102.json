@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "af69b7e6143514923f926392cae7bf3d0f984a72",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 127,
+    "new_tests": 12,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_build": {
+    "targets": [
+      "vmlinux",
+      "modules"
+    ],
+    "make_returncode": 0,
+    "runner_returncode": 2,
+    "timed_out": false,
+    "completed": true,
+    "critical_profile_preserved": true,
+    "generated_config_unchanged": true,
+    "built_modules": 276,
+    "vmlinux_sha256": "bfdf4dae3039e0215413cfa151e3bd26d0236f81aba2cd411d2ce27aa998d885"
+  },
+  "crc_comparison": {
+    "crc_coverage_passed": true,
+    "matched": 2763,
+    "mismatched": [],
+    "missing": [],
+    "module_abi_established": false,
+    "sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+    "stock_crc_conflicts": [],
+    "supplied": true
+  },
+  "trace": {
+    "events": 27,
+    "requested_interval_seconds": 0.1,
+    "maximum_sample_gap_seconds": 0.69,
+    "observer_error": null,
+    "event_limit_reached": false,
+    "six_values_equal_isolated_reference": true,
+    "six_values_reached_lto_script_and_final_symvers": true,
+    "transitions_between_samples_may_be_missed": true,
+    "earlier_empty_file_failure_reproduced": false,
+    "earlier_failure_cause_established": false
+  },
+  "candidate_module_headers": {
+    "tool": "GNU readelf (GNU Binutils for Ubuntu) 2.42",
+    "files_checked": 276,
+    "type": "ET_REL",
+    "machine": "AArch64",
+    "stock_names_present": 274,
+    "stock_names_missing": [],
+    "additional_names_in_comparison_to_stock_vendor_ramdisk": [
+      "input_booster_lkm",
+      "sec_debug_sched_info"
+    ],
+    "vermagic_values": [
+      "5.4.242 SMP preempt mod_unload modversions aarch64"
+    ],
+    "metadata_inventory_sha256": "079c9883eedf98270e3ab4b4bd1411fcb4268308473d5046ceab297b7dbe2668"
+  },
+  "vmlinux_header": {
+    "class": "ELF64",
+    "data": "little endian",
+    "type": "ET_DYN",
+    "machine": "AArch64",
+    "entry": "0xffffffc010080000",
+    "runtime_entry_tested": false
+  },
+  "input_integrity": {
+    "all_toolchain_trees_verified_before_execution": true,
+    "truncated_installed_member_restored_before_build": "clang-r383902/bin/clang-11",
+    "restoration_attributed_as_cause_of_earlier_crc_failure": false
+  },
+  "reference_artifacts": {
+    "bytes": 316867773,
+    "sha256": "9e6c4f7e93a332bc62ff7d39ada2c2eba6a474699c9e00795f316daeef504469",
+    "files_verified": 292,
+    "full_object_cache_included": false
+  },
+  "a0_complete": false,
+  "a1_implemented": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "crc_pipeline_sources": {
+    "scripts/link-vmlinux.sh": {
+      "bytes": 9953,
+      "sha256": "ca4a90a665e7f6913f13f93aa999f8c499beacb48bf53480a05cd9cdc2a8385c",
+      "unchanged_after_build": true
+    },
+    "scripts/Makefile.build": {
+      "bytes": 19294,
+      "sha256": "c8c5cd8f80ea708e8b51191a4b6aaa1f913ae02053af5a318f007cfebf758e3d",
+      "unchanged_after_build": true
+    }
+  },
+  "local_markdown_links_checked": 1643,
+  "missing_local_links": []
+}

@@ -1,14 +1,16 @@
 # Guia da documentação
 
-O [build candidato p3s](capture-a0-build-profile-hzc2.md) preserva LTO/CFI e compat32 nos controles nativos. A preparação passou, quatro CRCs recalculados de `module.c` coincidiram com os requisitos stock e uma correção de três includes TUI removeu o bloqueio de build `O=`. A tentativa completa chegou à linkedição, onde seis exports de rede sem CRC bloquearam vmlinux. A0 continua aberto para fechar o pipeline completo de CRC, configuração/KMI, compatibilidade e contêiner; A1 não foi iniciado.
+O [build p3s acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e 276 módulos com LTO/CFI/compat32 preservados. O Module.symvers final cobriu os 2763 requisitos de CRC stock, sem ausências ou divergências. Os seis CRCs antes ausentes chegaram aos agregados e ao linker; a falha anterior não se reproduziu. A0 segue aberto para compatibilidade/política de módulos, proveniência KMI e contêiner.
 
-O [inventário de módulos stock](capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; a continuação de build acima registra a comparação do candidato. A0 continua aberto para build, compatibilidade e contêiner.
+A [rodada anterior do perfil p3s](capture-a0-build-profile-hzc2.md) fixou o ambiente vendor OS, confirmou os controles críticos e corrigiu três includes TUI para O=. Sua tentativa completa falhou com seis exports sem CRC; a continuação acompanhada acima registra o build concluído e mantém a causa daquela ocorrência não demonstrada.
+
+O [inventário de módulos stock](capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; a continuação de build acima registra a comparação do candidato. A0 continua aberto para compatibilidade e contêiner.
 
 A [proposta única de carga, captura e recuperação](marco-a-carga-captura-recuperacao.md) passa a orientar o trabalho imediato: captura cooperativa em uma Image Linux de diagnóstico e exportação somente de leitura no mesmo boot. É uma proposta ainda não implementada; a sonda WFE, o Marco A standalone e a decisão OEM continuam separados. NEWTIME/DMC/ASV, expansão XNU e SMP ficam pausados.
 
 O [A0 offline HZC2](capture-a0-hzc2.md) fixou fonte Samsung 5.4.242/configuração p3s e Clang 11/r383902, com inventário stock reproduzido. O round-trip magiskboot preserva os payloads, mas altera extensões/rodapés e invalida os hashes AVB: **A0 parcial e bloqueado**, sem avanço para A1 ou operação no telefone.
 
-A [conferência das duas chaves KMI](capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; A extração dos requisitos reais e a comparação do candidato têm continuação acima. A compatibilidade continua aberta em A0.
+A [conferência das duas chaves KMI](capture-a0-kmi-hzc2.md) encontrou duas listas stock ausentes da fonte recebida e dez símbolos da whitelist sem origem fechada nas listas disponíveis. O gerador original passou seis controles isolados de caminhos/exports/layout; a extração dos requisitos reais e a comparação do candidato têm continuação acima. A compatibilidade continua aberta em A0.
 
 A [repetição do repack](capture-a0-repack-extent-hzc2.md) produziu três saídas idênticas por imagem mesmo com mtimes diferentes. A extensão `SignerVer03` é omitida nesse percurso; o rodapé AVB fica fora do hash. Dos 586/3474 bytes alterados, 584/651 ficam dentro do intervalo original. Isso explica o controle reprovado, sem fornecer um packer de payload modificado.
 
@@ -84,6 +86,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
+- [A0: build completo e rastro de CRCs](capture-a0-crc-trace-hzc2.md): vmlinux/276 módulos, 2763 requisitos stock cobertos e limites da amostragem.
 - [A0: fonte e integridade stock HZC2](capture-a0-hzc2.md): pins Samsung/Clang, IKCONFIG, round-trip Magisk reprovado por AVB e controle de inventário sem alterações.
 - [Contrato do diagnóstico Samsung](samsung-diagnostic-contract.md): matriz de carga/recuperação, condições pendentes e leitor offline de registros/capturas QEMU.
 - [Perfis de dump e encaminhamento RDX](lk-dump-export-hzc2.md): quatro regiões fixas, descritores dinâmicos e envio nominal; disponibilidade e retenção ainda pendentes.
