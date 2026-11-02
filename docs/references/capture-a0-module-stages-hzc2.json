@@ -1,0 +1,718 @@
+{
+  "schema": "S21-CAPTURE-A0-MODULE-STAGES-v1",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "reference_archive_sha256": "9e6c4f7e93a332bc62ff7d39ada2c2eba6a474699c9e00795f316daeef504469",
+  "reference_module_sha256": "2ad7104cf50f13a94ad53e027bf0a567ba433123f6a09fbf5b3ef820969f1624",
+  "toolchain_trees": {
+    "clang-r383902": {
+      "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+      "members": 5162,
+      "content_bytes": 1142896294
+    },
+    "aarch64-android49": {
+      "tree": "9959a53ab082bef137916638c48c9871c5d82cfd",
+      "members": 260,
+      "content_bytes": 73782326
+    },
+    "arm-android49": {
+      "tree": "91c70ff36200356813e0992c39b8b0d47d85aa0b",
+      "members": 184,
+      "content_bytes": 117494022
+    }
+  },
+  "profile": {
+    "critical_profile_preserved": true,
+    "critical_mismatches": {},
+    "selected_config": {
+      "CONFIG_CC_IS_CLANG": "y",
+      "CONFIG_CLANG_VERSION": "110001",
+      "CONFIG_LD_IS_LLD": "y",
+      "CONFIG_LTO": "y",
+      "CONFIG_LTO_CLANG": "y",
+      "CONFIG_CFI_CLANG": "y",
+      "CONFIG_CFI_CLANG_SHADOW": "y",
+      "CONFIG_CFI_PERMISSIVE": "n",
+      "CONFIG_COMPAT_VDSO": "y",
+      "CONFIG_MODVERSIONS": "y",
+      "CONFIG_TRIM_UNUSED_KSYMS": "y",
+      "CONFIG_MALI_DDK_VALHALL_R38P0": "y"
+    },
+    "source_defconfig_equal": false,
+    "config_differences": [
+      {
+        "key": "CONFIG_KMI_SYMBOL_LISTS",
+        "source_value_sha256": null,
+        "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+      },
+      {
+        "key": "CONFIG_SEC_AUTO_INPUT",
+        "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+        "generated_value_sha256": null
+      }
+    ],
+    "generated_config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+    "module_abi_established": false
+  },
+  "stages": {
+    "olddefconfig": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "41eca52aa9519696da1306cd773a95a5d5a713c91d4ec95cf9fab1fba7e26aed"
+    },
+    "prepare": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "16f9b39cca0d8a4b205b750d932f504e5e60e2644b1d6f25892ff55fd35a29c7"
+    },
+    "scripts": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "23cdcc37c100010ba7503568656c965c35e505457444d5165780474f5a3e5166"
+    },
+    "original-pre": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "80ea5db10fd819648a6b5c664aef723a022eac378cd24c72f742f0dd4114434d"
+    },
+    "original-final": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "d4d82d81f3b5db650c8129c16e031f1566e4c216b67b9e7c083e0617585dd41c"
+    },
+    "aligned-pre": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "88be7f62436f723639b93e6dcfec1e8897c032d501c1103cab5cb9e995849f8c"
+    },
+    "aligned-final": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "26ee49a72b334e3a99c387a9fd0dd8dc6f343c0f88256a7a4168fd27ce01df2d"
+    },
+    "limit5-control": {
+      "returncode": 0,
+      "timed_out": false,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "snapshots": {
+    "original-pre": {
+      "drivers/mfd/s2mpb02-core.o": {
+        "state": "regular",
+        "bytes": 237548,
+        "sha256": "03d4855e7b1ccdd1a9f3738e85681bd97b9c17c6a217a4ce0fea12416164d333"
+      },
+      "drivers/mfd/s2mpb02-irq.o": {
+        "state": "regular",
+        "bytes": 148144,
+        "sha256": "3922c38bf9f2f057ba77cad9782e0fefd882f5dbbeb16df4c38ae40629149ff1"
+      },
+      "drivers/mfd/s2mpb02_mfd.o": {
+        "state": "regular",
+        "bytes": 1132,
+        "sha256": "050a75c670efb29f5d2406d133a7c7361ed02f0115784774bb989bddea7930f7"
+      },
+      "drivers/mfd/s2mpb02_mfd.lto.o": {
+        "state": "regular",
+        "bytes": 656352,
+        "sha256": "d8e84b2aff9ac9be6fc6459b850de57e6537becc513e988347b68f60eb5eb17b"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod": {
+        "state": "regular",
+        "bytes": 778,
+        "sha256": "3547eb6756fc8a31c55aeeb76d5e68463144665848e6badf5c41bce88be3ba65"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.c": {
+        "state": "regular",
+        "bytes": 2042,
+        "sha256": "73283f4278fa3278fa7c6aac9c0a346f08827611e0b716eb2c1fb7765a45f85a"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.o": {
+        "state": "missing"
+      },
+      "drivers/mfd/s2mpb02_mfd.ko": {
+        "state": "missing"
+      },
+      "drivers/mfd/.s2mpb02-core.o.cmd": {
+        "state": "regular",
+        "bytes": 97984,
+        "sha256": "ba149e2a12c9a52bfe5696dedf32fc99bed667f17733976d21394c65dfb5dd7d"
+      },
+      "drivers/mfd/.s2mpb02-irq.o.cmd": {
+        "state": "regular",
+        "bytes": 79977,
+        "sha256": "c3eb171ce35d197bf917b15da3f1d54479bb54e9a606d660dc30cd4ffdf7b07c"
+      },
+      "drivers/mfd/.s2mpb02_mfd.o.cmd": {
+        "state": "regular",
+        "bytes": 340,
+        "sha256": "750d142abbb3b8ec1d3912e71d2be334a70ae47be8fce3c8e0016b07aac92361"
+      },
+      "drivers/mfd/.s2mpb02_mfd.lto.o.cmd": {
+        "state": "regular",
+        "bytes": 164,
+        "sha256": "3e32b5449172a7753b88718e91c17af964f366318d7ae6109addd056371c39f6"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.cmd": {
+        "state": "regular",
+        "bytes": 229,
+        "sha256": "2c3a7caddad5b792696791b79abc63417709ca98fd7cb1a9ef40d7acbb899d67"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.o.cmd": {
+        "state": "missing"
+      },
+      "drivers/mfd/.s2mpb02_mfd.ko.cmd": {
+        "state": "missing"
+      },
+      "drivers/mfd/s2mpb02-core.o.symversions": {
+        "state": "regular",
+        "bytes": 191,
+        "sha256": "cc1ac77053cd400e8e0f9578063dd78e3b9f828abc1e2186849047ef79a1204b"
+      },
+      "drivers/mfd/s2mpb02-irq.o.symversions": {
+        "state": "regular",
+        "bytes": 74,
+        "sha256": "b1de154d20cb9aaa6f65e152ea451984a7d008cf89417acac225a90cae431f4e"
+      },
+      "drivers/mfd/s2mpb02_mfd.o.symversions": {
+        "state": "regular",
+        "bytes": 265,
+        "sha256": "acdaf12fcfd2f41f8f1778ad2c7aacd5eb288ce1cf59e35310a6920f2145978a"
+      }
+    },
+    "original-final": {
+      "drivers/mfd/s2mpb02-core.o": {
+        "state": "regular",
+        "bytes": 237548,
+        "sha256": "03d4855e7b1ccdd1a9f3738e85681bd97b9c17c6a217a4ce0fea12416164d333"
+      },
+      "drivers/mfd/s2mpb02-irq.o": {
+        "state": "regular",
+        "bytes": 148144,
+        "sha256": "3922c38bf9f2f057ba77cad9782e0fefd882f5dbbeb16df4c38ae40629149ff1"
+      },
+      "drivers/mfd/s2mpb02_mfd.o": {
+        "state": "regular",
+        "bytes": 1132,
+        "sha256": "050a75c670efb29f5d2406d133a7c7361ed02f0115784774bb989bddea7930f7"
+      },
+      "drivers/mfd/s2mpb02_mfd.lto.o": {
+        "state": "regular",
+        "bytes": 656352,
+        "sha256": "d8e84b2aff9ac9be6fc6459b850de57e6537becc513e988347b68f60eb5eb17b"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod": {
+        "state": "regular",
+        "bytes": 778,
+        "sha256": "3547eb6756fc8a31c55aeeb76d5e68463144665848e6badf5c41bce88be3ba65"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.c": {
+        "state": "regular",
+        "bytes": 2042,
+        "sha256": "73283f4278fa3278fa7c6aac9c0a346f08827611e0b716eb2c1fb7765a45f85a"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.o": {
+        "state": "regular",
+        "bytes": 68596,
+        "sha256": "359f27a2fac87da637499b91cfb4b4e2a8f9552554689a1cf4fa96a3845af8f6"
+      },
+      "drivers/mfd/s2mpb02_mfd.ko": {
+        "state": "regular",
+        "bytes": 468856,
+        "sha256": "7b81368f5eb24a5415cb9dc38f823e9ced223c0cc2d0869902dea03b6248f7b8"
+      },
+      "drivers/mfd/.s2mpb02-core.o.cmd": {
+        "state": "regular",
+        "bytes": 97984,
+        "sha256": "ba149e2a12c9a52bfe5696dedf32fc99bed667f17733976d21394c65dfb5dd7d"
+      },
+      "drivers/mfd/.s2mpb02-irq.o.cmd": {
+        "state": "regular",
+        "bytes": 79977,
+        "sha256": "c3eb171ce35d197bf917b15da3f1d54479bb54e9a606d660dc30cd4ffdf7b07c"
+      },
+      "drivers/mfd/.s2mpb02_mfd.o.cmd": {
+        "state": "regular",
+        "bytes": 340,
+        "sha256": "750d142abbb3b8ec1d3912e71d2be334a70ae47be8fce3c8e0016b07aac92361"
+      },
+      "drivers/mfd/.s2mpb02_mfd.lto.o.cmd": {
+        "state": "regular",
+        "bytes": 164,
+        "sha256": "3e32b5449172a7753b88718e91c17af964f366318d7ae6109addd056371c39f6"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.cmd": {
+        "state": "regular",
+        "bytes": 229,
+        "sha256": "2c3a7caddad5b792696791b79abc63417709ca98fd7cb1a9ef40d7acbb899d67"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.o.cmd": {
+        "state": "regular",
+        "bytes": 60744,
+        "sha256": "39758252944a76a4c11a4cb59fe9b87d2a7ce024bf77384fc2674f280c3b8686"
+      },
+      "drivers/mfd/.s2mpb02_mfd.ko.cmd": {
+        "state": "regular",
+        "bytes": 563,
+        "sha256": "701fc2c3fb34f702e90adbd8018db41937faccaeee03d2bc4252b22d2899448e"
+      },
+      "drivers/mfd/s2mpb02-core.o.symversions": {
+        "state": "regular",
+        "bytes": 191,
+        "sha256": "cc1ac77053cd400e8e0f9578063dd78e3b9f828abc1e2186849047ef79a1204b"
+      },
+      "drivers/mfd/s2mpb02-irq.o.symversions": {
+        "state": "regular",
+        "bytes": 74,
+        "sha256": "b1de154d20cb9aaa6f65e152ea451984a7d008cf89417acac225a90cae431f4e"
+      },
+      "drivers/mfd/s2mpb02_mfd.o.symversions": {
+        "state": "regular",
+        "bytes": 265,
+        "sha256": "acdaf12fcfd2f41f8f1778ad2c7aacd5eb288ce1cf59e35310a6920f2145978a"
+      }
+    },
+    "aligned-pre": {
+      "drivers/mfd/s2mpb02-core.o": {
+        "state": "regular",
+        "bytes": 237548,
+        "sha256": "03d4855e7b1ccdd1a9f3738e85681bd97b9c17c6a217a4ce0fea12416164d333"
+      },
+      "drivers/mfd/s2mpb02-irq.o": {
+        "state": "regular",
+        "bytes": 148144,
+        "sha256": "3922c38bf9f2f057ba77cad9782e0fefd882f5dbbeb16df4c38ae40629149ff1"
+      },
+      "drivers/mfd/s2mpb02_mfd.o": {
+        "state": "regular",
+        "bytes": 1132,
+        "sha256": "050a75c670efb29f5d2406d133a7c7361ed02f0115784774bb989bddea7930f7"
+      },
+      "drivers/mfd/s2mpb02_mfd.lto.o": {
+        "state": "regular",
+        "bytes": 421872,
+        "sha256": "d25aeae9e49ca8ea2d79c334073e0e4ca5a6044a9f3e53ceb4131cd67dade0b0"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod": {
+        "state": "regular",
+        "bytes": 778,
+        "sha256": "3547eb6756fc8a31c55aeeb76d5e68463144665848e6badf5c41bce88be3ba65"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.c": {
+        "state": "regular",
+        "bytes": 2117,
+        "sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.o": {
+        "state": "missing"
+      },
+      "drivers/mfd/s2mpb02_mfd.ko": {
+        "state": "missing"
+      },
+      "drivers/mfd/.s2mpb02-core.o.cmd": {
+        "state": "regular",
+        "bytes": 97984,
+        "sha256": "ba149e2a12c9a52bfe5696dedf32fc99bed667f17733976d21394c65dfb5dd7d"
+      },
+      "drivers/mfd/.s2mpb02-irq.o.cmd": {
+        "state": "regular",
+        "bytes": 79977,
+        "sha256": "c3eb171ce35d197bf917b15da3f1d54479bb54e9a606d660dc30cd4ffdf7b07c"
+      },
+      "drivers/mfd/.s2mpb02_mfd.o.cmd": {
+        "state": "regular",
+        "bytes": 340,
+        "sha256": "750d142abbb3b8ec1d3912e71d2be334a70ae47be8fce3c8e0016b07aac92361"
+      },
+      "drivers/mfd/.s2mpb02_mfd.lto.o.cmd": {
+        "state": "regular",
+        "bytes": 204,
+        "sha256": "5d1f11cb0c878f51fd2c93a2ff911e6a335a45a09c84c6af37147b7adc4fb02a"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.cmd": {
+        "state": "regular",
+        "bytes": 229,
+        "sha256": "2c3a7caddad5b792696791b79abc63417709ca98fd7cb1a9ef40d7acbb899d67"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.o.cmd": {
+        "state": "missing"
+      },
+      "drivers/mfd/.s2mpb02_mfd.ko.cmd": {
+        "state": "missing"
+      },
+      "drivers/mfd/s2mpb02-core.o.symversions": {
+        "state": "regular",
+        "bytes": 191,
+        "sha256": "cc1ac77053cd400e8e0f9578063dd78e3b9f828abc1e2186849047ef79a1204b"
+      },
+      "drivers/mfd/s2mpb02-irq.o.symversions": {
+        "state": "regular",
+        "bytes": 74,
+        "sha256": "b1de154d20cb9aaa6f65e152ea451984a7d008cf89417acac225a90cae431f4e"
+      },
+      "drivers/mfd/s2mpb02_mfd.o.symversions": {
+        "state": "regular",
+        "bytes": 265,
+        "sha256": "acdaf12fcfd2f41f8f1778ad2c7aacd5eb288ce1cf59e35310a6920f2145978a"
+      }
+    },
+    "aligned-final": {
+      "drivers/mfd/s2mpb02-core.o": {
+        "state": "regular",
+        "bytes": 237548,
+        "sha256": "03d4855e7b1ccdd1a9f3738e85681bd97b9c17c6a217a4ce0fea12416164d333"
+      },
+      "drivers/mfd/s2mpb02-irq.o": {
+        "state": "regular",
+        "bytes": 148144,
+        "sha256": "3922c38bf9f2f057ba77cad9782e0fefd882f5dbbeb16df4c38ae40629149ff1"
+      },
+      "drivers/mfd/s2mpb02_mfd.o": {
+        "state": "regular",
+        "bytes": 1132,
+        "sha256": "050a75c670efb29f5d2406d133a7c7361ed02f0115784774bb989bddea7930f7"
+      },
+      "drivers/mfd/s2mpb02_mfd.lto.o": {
+        "state": "regular",
+        "bytes": 421872,
+        "sha256": "d25aeae9e49ca8ea2d79c334073e0e4ca5a6044a9f3e53ceb4131cd67dade0b0"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod": {
+        "state": "regular",
+        "bytes": 778,
+        "sha256": "3547eb6756fc8a31c55aeeb76d5e68463144665848e6badf5c41bce88be3ba65"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.c": {
+        "state": "regular",
+        "bytes": 2117,
+        "sha256": "294a3f3bf789af49b21f74350919e6b3a5ed2857eb5dc66b775053cb76930bda"
+      },
+      "drivers/mfd/s2mpb02_mfd.mod.o": {
+        "state": "regular",
+        "bytes": 68756,
+        "sha256": "d6478c3e422ffa5b5a61dc9186aa159f2dcaf5564b08d27a4af611a6a316da4d"
+      },
+      "drivers/mfd/s2mpb02_mfd.ko": {
+        "state": "regular",
+        "bytes": 468984,
+        "sha256": "e4ae82123b86c76effe8a0bc080c783a84bb9df66c6c367ea531ed6e74227e62"
+      },
+      "drivers/mfd/.s2mpb02-core.o.cmd": {
+        "state": "regular",
+        "bytes": 97984,
+        "sha256": "ba149e2a12c9a52bfe5696dedf32fc99bed667f17733976d21394c65dfb5dd7d"
+      },
+      "drivers/mfd/.s2mpb02-irq.o.cmd": {
+        "state": "regular",
+        "bytes": 79977,
+        "sha256": "c3eb171ce35d197bf917b15da3f1d54479bb54e9a606d660dc30cd4ffdf7b07c"
+      },
+      "drivers/mfd/.s2mpb02_mfd.o.cmd": {
+        "state": "regular",
+        "bytes": 340,
+        "sha256": "750d142abbb3b8ec1d3912e71d2be334a70ae47be8fce3c8e0016b07aac92361"
+      },
+      "drivers/mfd/.s2mpb02_mfd.lto.o.cmd": {
+        "state": "regular",
+        "bytes": 204,
+        "sha256": "5d1f11cb0c878f51fd2c93a2ff911e6a335a45a09c84c6af37147b7adc4fb02a"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.cmd": {
+        "state": "regular",
+        "bytes": 229,
+        "sha256": "2c3a7caddad5b792696791b79abc63417709ca98fd7cb1a9ef40d7acbb899d67"
+      },
+      "drivers/mfd/.s2mpb02_mfd.mod.o.cmd": {
+        "state": "regular",
+        "bytes": 60744,
+        "sha256": "39758252944a76a4c11a4cb59fe9b87d2a7ce024bf77384fc2674f280c3b8686"
+      },
+      "drivers/mfd/.s2mpb02_mfd.ko.cmd": {
+        "state": "regular",
+        "bytes": 563,
+        "sha256": "701fc2c3fb34f702e90adbd8018db41937faccaeee03d2bc4252b22d2899448e"
+      },
+      "drivers/mfd/s2mpb02-core.o.symversions": {
+        "state": "regular",
+        "bytes": 191,
+        "sha256": "cc1ac77053cd400e8e0f9578063dd78e3b9f828abc1e2186849047ef79a1204b"
+      },
+      "drivers/mfd/s2mpb02-irq.o.symversions": {
+        "state": "regular",
+        "bytes": 74,
+        "sha256": "b1de154d20cb9aaa6f65e152ea451984a7d008cf89417acac225a90cae431f4e"
+      },
+      "drivers/mfd/s2mpb02_mfd.o.symversions": {
+        "state": "regular",
+        "bytes": 265,
+        "sha256": "acdaf12fcfd2f41f8f1778ad2c7aacd5eb288ce1cf59e35310a6920f2145978a"
+      }
+    }
+  },
+  "analyses": {
+    "original": {
+      "prelink_imports": {
+        "mutex_lock": "strong",
+        "i2c_smbus_read_byte_data": "strong",
+        "mutex_unlock": "strong",
+        "printk": "strong",
+        "i2c_smbus_read_i2c_block_data": "strong",
+        "i2c_smbus_write_byte_data": "strong",
+        "i2c_smbus_write_i2c_block_data": "strong",
+        "i2c_register_driver": "strong",
+        "_dev_err": "strong",
+        "__devm_irq_alloc_descs": "strong",
+        "__mutex_init": "strong",
+        "mfd_add_devices": "strong",
+        "device_init_wakeup": "strong",
+        "devm_kmalloc": "strong",
+        "of_get_named_gpio_flags": "strong",
+        "of_find_property": "strong",
+        "mfd_remove_devices": "strong",
+        "disable_irq": "strong",
+        "irq_set_irq_wake": "strong",
+        "enable_irq": "strong",
+        "i2c_del_driver": "strong",
+        "__this_module": "strong",
+        "gpio_request": "strong",
+        "gpio_free": "strong",
+        "irq_set_chip_data": "strong",
+        "handle_edge_irq": "strong",
+        "request_threaded_irq": "strong",
+        "free_irq": "strong",
+        "gpiod_to_irq": "strong",
+        "gpio_to_desc": "strong",
+        "gpiod_direction_input": "strong",
+        "irq_set_chip_and_handler_name": "strong",
+        "irq_get_irq_data": "strong",
+        "irq_modify_status": "strong",
+        "handle_nested_irq": "strong"
+      },
+      "prelink_effective_imports": 34,
+      "generated_records": 35,
+      "final_imports": {
+        "mutex_lock": "strong",
+        "i2c_smbus_read_byte_data": "strong",
+        "mutex_unlock": "strong",
+        "printk": "strong",
+        "i2c_smbus_read_i2c_block_data": "strong",
+        "i2c_smbus_write_byte_data": "strong",
+        "i2c_smbus_write_i2c_block_data": "strong",
+        "i2c_register_driver": "strong",
+        "_dev_err": "strong",
+        "__devm_irq_alloc_descs": "strong",
+        "__mutex_init": "strong",
+        "mfd_add_devices": "strong",
+        "device_init_wakeup": "strong",
+        "devm_kmalloc": "strong",
+        "of_get_named_gpio_flags": "strong",
+        "of_find_property": "strong",
+        "mfd_remove_devices": "strong",
+        "disable_irq": "strong",
+        "irq_set_irq_wake": "strong",
+        "enable_irq": "strong",
+        "i2c_del_driver": "strong",
+        "gpio_request": "strong",
+        "gpio_free": "strong",
+        "irq_set_chip_data": "strong",
+        "handle_edge_irq": "strong",
+        "request_threaded_irq": "strong",
+        "free_irq": "strong",
+        "gpiod_to_irq": "strong",
+        "gpio_to_desc": "strong",
+        "gpiod_direction_input": "strong",
+        "irq_set_chip_and_handler_name": "strong",
+        "irq_get_irq_data": "strong",
+        "irq_modify_status": "strong",
+        "handle_nested_irq": "strong",
+        "__stack_chk_fail": "strong",
+        "__stack_chk_guard": "strong"
+      },
+      "final_version_records": 35,
+      "imports_added_after_modpost": [
+        "__stack_chk_fail",
+        "__stack_chk_guard"
+      ],
+      "imports_removed_after_modpost": [],
+      "final_imports_without_versions": [
+        "__stack_chk_fail",
+        "__stack_chk_guard"
+      ],
+      "crc_mismatches": [],
+      "version_payload_unchanged": true,
+      "strict_final_crc_coverage": false,
+      "final_text_sha256": "92e75dd0497d408640b1fd01b6db38bfff54b83496d03ec3beab929c59b945a7",
+      "module_abi_established": false
+    },
+    "aligned": {
+      "prelink_imports": {
+        "mutex_lock": "strong",
+        "i2c_smbus_read_byte_data": "strong",
+        "mutex_unlock": "strong",
+        "printk": "strong",
+        "i2c_smbus_read_i2c_block_data": "strong",
+        "i2c_smbus_write_byte_data": "strong",
+        "i2c_smbus_write_i2c_block_data": "strong",
+        "i2c_register_driver": "strong",
+        "_dev_err": "strong",
+        "__devm_irq_alloc_descs": "strong",
+        "__mutex_init": "strong",
+        "mfd_add_devices": "strong",
+        "device_init_wakeup": "strong",
+        "devm_kmalloc": "strong",
+        "of_get_named_gpio_flags": "strong",
+        "of_find_property": "strong",
+        "mfd_remove_devices": "strong",
+        "disable_irq": "strong",
+        "irq_set_irq_wake": "strong",
+        "enable_irq": "strong",
+        "i2c_del_driver": "strong",
+        "__this_module": "strong",
+        "gpio_request": "strong",
+        "gpio_free": "strong",
+        "irq_set_chip_data": "strong",
+        "handle_edge_irq": "strong",
+        "request_threaded_irq": "strong",
+        "free_irq": "strong",
+        "gpiod_to_irq": "strong",
+        "gpio_to_desc": "strong",
+        "gpiod_direction_input": "strong",
+        "irq_set_chip_and_handler_name": "strong",
+        "irq_get_irq_data": "strong",
+        "irq_modify_status": "strong",
+        "handle_nested_irq": "strong",
+        "__stack_chk_fail": "strong",
+        "__stack_chk_guard": "strong"
+      },
+      "prelink_effective_imports": 36,
+      "generated_records": 37,
+      "final_imports": {
+        "mutex_lock": "strong",
+        "i2c_smbus_read_byte_data": "strong",
+        "mutex_unlock": "strong",
+        "printk": "strong",
+        "i2c_smbus_read_i2c_block_data": "strong",
+        "i2c_smbus_write_byte_data": "strong",
+        "i2c_smbus_write_i2c_block_data": "strong",
+        "i2c_register_driver": "strong",
+        "_dev_err": "strong",
+        "__devm_irq_alloc_descs": "strong",
+        "__mutex_init": "strong",
+        "mfd_add_devices": "strong",
+        "device_init_wakeup": "strong",
+        "devm_kmalloc": "strong",
+        "of_get_named_gpio_flags": "strong",
+        "of_find_property": "strong",
+        "mfd_remove_devices": "strong",
+        "disable_irq": "strong",
+        "irq_set_irq_wake": "strong",
+        "enable_irq": "strong",
+        "i2c_del_driver": "strong",
+        "gpio_request": "strong",
+        "gpio_free": "strong",
+        "irq_set_chip_data": "strong",
+        "handle_edge_irq": "strong",
+        "request_threaded_irq": "strong",
+        "free_irq": "strong",
+        "gpiod_to_irq": "strong",
+        "gpio_to_desc": "strong",
+        "gpiod_direction_input": "strong",
+        "irq_set_chip_and_handler_name": "strong",
+        "irq_get_irq_data": "strong",
+        "irq_modify_status": "strong",
+        "handle_nested_irq": "strong",
+        "__stack_chk_fail": "strong",
+        "__stack_chk_guard": "strong"
+      },
+      "final_version_records": 37,
+      "imports_added_after_modpost": [],
+      "imports_removed_after_modpost": [],
+      "final_imports_without_versions": [],
+      "crc_mismatches": [],
+      "version_payload_unchanged": true,
+      "strict_final_crc_coverage": true,
+      "final_text_sha256": "92e75dd0497d408640b1fd01b6db38bfff54b83496d03ec3beab929c59b945a7",
+      "module_abi_established": false
+    }
+  },
+  "source_patch": {
+    "before_sha256": "083ce8e6dc233be0cb4d347bd7e2de850639d7b9a05c3cdc707f6c1fe8dbac98",
+    "after_sha256": "5c577cd70b59082e5b66faa3aef3856458d9d9958642c800fff11c3746c42d30",
+    "sha256": "6311dcf9dcdcd3a0de1a76f0190459806bea6e38f1a75c0c2b0068b07a60d8b6"
+  },
+  "source_ir_objects_unchanged_between_controls": true,
+  "control_limit5_imports": {
+    "mutex_lock": "strong",
+    "i2c_smbus_read_byte_data": "strong",
+    "mutex_unlock": "strong",
+    "printk": "strong",
+    "i2c_smbus_read_i2c_block_data": "strong",
+    "i2c_smbus_write_byte_data": "strong",
+    "i2c_smbus_write_i2c_block_data": "strong",
+    "i2c_register_driver": "strong",
+    "_dev_err": "strong",
+    "__devm_irq_alloc_descs": "strong",
+    "__mutex_init": "strong",
+    "mfd_add_devices": "strong",
+    "device_init_wakeup": "strong",
+    "devm_kmalloc": "strong",
+    "of_get_named_gpio_flags": "strong",
+    "of_find_property": "strong",
+    "mfd_remove_devices": "strong",
+    "disable_irq": "strong",
+    "irq_set_irq_wake": "strong",
+    "enable_irq": "strong",
+    "i2c_del_driver": "strong",
+    "__this_module": "strong",
+    "gpio_request": "strong",
+    "gpio_free": "strong",
+    "irq_set_chip_data": "strong",
+    "handle_edge_irq": "strong",
+    "request_threaded_irq": "strong",
+    "free_irq": "strong",
+    "gpiod_to_irq": "strong",
+    "gpio_to_desc": "strong",
+    "gpiod_direction_input": "strong",
+    "irq_set_chip_and_handler_name": "strong",
+    "irq_get_irq_data": "strong",
+    "irq_modify_status": "strong",
+    "handle_nested_irq": "strong",
+    "__stack_chk_fail": "strong",
+    "__stack_chk_guard": "strong"
+  },
+  "control_limit5_matches_aligned_prelink": true,
+  "metadata_parity_with_PR80": {
+    "original": {
+      "imports": true,
+      "exports": true,
+      "depends": true,
+      "licenses": true,
+      "import_namespaces": true,
+      "vermagic": true
+    },
+    "aligned": {
+      "imports": true,
+      "exports": true,
+      "depends": true,
+      "licenses": true,
+      "import_namespaces": true,
+      "vermagic": true
+    }
+  },
+  "final_text_equal_between_controls": true,
+  "original_isolated_gap_reproduced": true,
+  "aligned_isolated_crc_coverage_complete": true,
+  "original_full_kernel_build_reexecuted": false,
+  "stock_build_history_established": false,
+  "fixed_full_kernel_built": false,
+  "reference_module_set_modified": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "a0_complete": false,
+  "resolved_link_commands": {
+    "original-pre": "ld.lld  -r -o drivers/mfd/s2mpb02_mfd.lto.o -T drivers/mfd/s2mpb02_mfd.o.symversions --whole-archive drivers/mfd/s2mpb02_mfd.o",
+    "original-final": "ld.lld -r  -mllvm -import-instr-limit=5 --build-id  -T <WORK>/source/scripts/module-common.lds -T <WORK>/source/arch/arm64/kernel/module.lds -T <WORK>/source/scripts/module-lto.lds -T drivers/mfd/s2mpb02_mfd.o.symversions -o drivers/mfd/s2mpb02_mfd.ko --whole-archive drivers/mfd/s2mpb02_mfd.o drivers/mfd/s2mpb02_mfd.mod.o;  true",
+    "aligned-pre": "ld.lld  -mllvm -import-instr-limit=5 --build-id -r -o drivers/mfd/s2mpb02_mfd.lto.o -T drivers/mfd/s2mpb02_mfd.o.symversions --whole-archive drivers/mfd/s2mpb02_mfd.o",
+    "aligned-final": "ld.lld -r  -mllvm -import-instr-limit=5 --build-id  -T <WORK>/source/scripts/module-common.lds -T <WORK>/source/arch/arm64/kernel/module.lds -T <WORK>/source/scripts/module-lto.lds -T drivers/mfd/s2mpb02_mfd.o.symversions -o drivers/mfd/s2mpb02_mfd.ko --whole-archive drivers/mfd/s2mpb02_mfd.o drivers/mfd/s2mpb02_mfd.mod.o;  true"
+  }
+}

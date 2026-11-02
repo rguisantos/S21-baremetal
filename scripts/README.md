@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_module_stages.py` mede as fronteiras do build isolado de s2mpb02_mfd, conserva os intermediários e testa o alinhamento de flags ThinLTO. `capture_a0_module_stages.py` valida cópias, comandos e cobertura; 16 controles novos em `test_capture_a0_module_stages.py`. O runner de build completo aceita `--compile --align-module-prelink`. [Guia](../docs/capture-a0-module-stages-hzc2.md).
+
 `check_capture_a0_stack_versions.py` compila o modpost da fonte fixada e o reexecuta sobre cópias dos dois módulos finais. `capture_a0_stack_versions.py` confere registros e relocations/instruções SSP; 13 testes novos em `test_capture_a0_stack_versions.py`. [Guia e limites](../docs/capture-a0-stack-versions-hzc2.md).
 
 `check_capture_a0_module_policy.py` compara insumos fixados, exports/relocations reais, imports, versões, licenças e namespaces. `capture_a0_module_policy.py` distingue recusas da fonte e lacunas conservadoras do plano; 30 controles novos em `test_capture_a0_module_policy.py`, incluídos na CI. Propõe 274 módulos stock e registra dois imports sem versão. [Guia](../docs/capture-a0-module-policy-hzc2.md).

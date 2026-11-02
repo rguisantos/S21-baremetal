@@ -165,3 +165,13 @@ ELFs finais produz os 35 registros anteriores mais os dois helpers. Os
 imports apontam para instruções reais de proteção de pilha na IRQ. Não foi
 reproduzida a transição entre os intermediários do build original; os
 módulos recebidos continuam com as duas lacunas. Nenhum deles foi reparado.
+
+## Continuação — etapas ThinLTO, 02/11/2026
+
+A [reprodução isolada por etapa](capture-a0-module-stages-hzc2.md) agora
+conserva os intermediários e mede a diferença entre as duas linkedições.
+Alinhar KBUILD_LDFLAGS_MODULE faz os helpers aparecerem antes do modpost e
+produz 37 versões sem lacunas no módulo isolado; o conjunto stock permanece
+intacto. A correção candidata requer validação em build completo antes de
+fechar o gate de módulos. O runner completo oferece --align-module-prelink
+com --compile; o histórico do build stock não foi reproduzido.

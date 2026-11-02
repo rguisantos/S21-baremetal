@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "2bb8d768f9bfab1406081dc501dd3c17b336edfe",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 186,
+    "new_tests": 16,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir NEW-DIRECTORY",
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_builds": {
+    "count": 2,
+    "semantic_results_equal": true,
+    "full_reports_required_byte_identical": false,
+    "runner_returncode": 2,
+    "original_gap_reproduced": true,
+    "aligned_crc_coverage_complete": true,
+    "control_limit5_matches_aligned": true,
+    "critical_profile_preserved": true,
+    "config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a"
+  },
+  "report_sha256": "9303f078491506057febdb0104d178c79d14ee414bdb5a94e31d9d5e41393107",
+  "source_patch": {
+    "before_sha256": "083ce8e6dc233be0cb4d347bd7e2de850639d7b9a05c3cdc707f6c1fe8dbac98",
+    "after_sha256": "5c577cd70b59082e5b66faa3aef3856458d9d9958642c800fff11c3746c42d30",
+    "sha256": "6311dcf9dcdcd3a0de1a76f0190459806bea6e38f1a75c0c2b0068b07a60d8b6"
+  },
+  "same_input_ir_between_controls": true,
+  "final_text_equal_between_controls": true,
+  "metadata_parity_with_PR80": {
+    "original": {
+      "imports": true,
+      "exports": true,
+      "depends": true,
+      "licenses": true,
+      "import_namespaces": true,
+      "vermagic": true
+    },
+    "aligned": {
+      "imports": true,
+      "exports": true,
+      "depends": true,
+      "licenses": true,
+      "import_namespaces": true,
+      "vermagic": true
+    }
+  },
+  "reference_artifacts": {
+    "filename": "S21-HZC2-intermediarios-modpost-20261102.tar.gz",
+    "bytes": 2452332,
+    "sha256": "95522de8d4c6296d7f67667dd1a0b8a6cae771077d315c585e8df78055489512",
+    "payload_files_verified": 79,
+    "full_object_cache_included": false
+  },
+  "full_runner_alignment_option_integrated": true,
+  "fixed_full_kernel_built": false,
+  "stock_build_history_established": false,
+  "reference_module_set_modified": false,
+  "module_abi_established": false,
+  "physical_action": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "local_markdown_links_checked": 1707,
+  "missing_local_links": []
+}
