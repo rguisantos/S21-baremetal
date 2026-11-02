@@ -138,3 +138,15 @@ def patch_tui(data):
         data=data.replace(old,b'ccflags-y += -I$(srctree)/'+path+b'\n')
     require(digest(data)==TUI_AFTER,'patched TUI identity differs')
     return data
+
+
+def link_failure(log):
+    """Extract diagnostics only; do not infer ABI or repair CRC assignments."""
+    require(len(log) <= 64*1024*1024, 'build log exceeds bound')
+    name=r'([A-Za-z_][A-Za-z0-9_.$]*)'
+    exports=re.findall(r'^WARNING: EXPORT symbol "'+name+
+        r'" \[vmlinux\] version generation failed, symbol will not be versioned\.$',log,re.M)
+    crcs=re.findall(r'^ld\.lld: error: relocation R_AARCH64_ABS32 cannot be used against symbol __crc_'+name+r';',log,re.M)
+    return dict(modpost_unversioned_exports=sorted(set(exports)),
+                abs32_crc_relocation_symbols=sorted(set(crcs)),
+                module_abi_established=False)

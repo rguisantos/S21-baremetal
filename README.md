@@ -1,6 +1,6 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-O [build candidato p3s](docs/capture-a0-build-profile-hzc2.md) preserva LTO/CFI e compat32 nos controles nativos. A preparação passou, quatro CRCs recalculados de `module.c` coincidiram com os requisitos stock e uma correção de três includes TUI removeu o bloqueio de build `O=`. A0 continua aberto para configuração/KMI, compatibilidade e contêiner; A1 não foi iniciado.
+O [build candidato p3s](docs/capture-a0-build-profile-hzc2.md) preserva LTO/CFI e compat32 nos controles nativos. A preparação passou, quatro CRCs recalculados de `module.c` coincidiram com os requisitos stock e uma correção de três includes TUI removeu o bloqueio de build `O=`. A tentativa completa chegou à linkedição, onde seis exports de rede sem CRC bloquearam vmlinux. A0 continua aberto para fechar o pipeline completo de CRC, configuração/KMI, compatibilidade e contêiner; A1 não foi iniciado.
 
 O [inventário de módulos stock](docs/capture-a0-modules-hzc2.md) identificou 274 módulos no vendor ramdisk, 13995 registros de versão e 2763 nomes com CRC exigido, sem conflitos entre consumidores. Todos esperam `module_layout=0x1e5b7ab7`; a continuação de build acima registra a comparação do candidato. A0 continua aberto para build, compatibilidade e contêiner.
 

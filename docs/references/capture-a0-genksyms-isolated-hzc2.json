@@ -1,0 +1,68 @@
+{
+  "schema": "S21-CAPTURE-A0-GENKSYMS-ISOLATED-v1",
+  "date": "2026-11-01",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "toolchain_trees": {
+    "clang-r383902": {
+      "tree": "34feae7abc38fffe258af1842a4c19746368cec6",
+      "members": 5162,
+      "content_bytes": 1142896294
+    },
+    "aarch64-android49": {
+      "tree": "9959a53ab082bef137916638c48c9871c5d82cfd",
+      "members": 260,
+      "content_bytes": 73782326
+    },
+    "arm-android49": {
+      "tree": "91c70ff36200356813e0992c39b8b0d47d85aa0b",
+      "members": 184,
+      "content_bytes": 117494022
+    }
+  },
+  "generated_config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+  "critical_profile_preserved_after_object_make": true,
+  "make_targets": [
+    "net/netfilter/core.o",
+    "net/mac80211/rx.o"
+  ],
+  "make_returncode": 0,
+  "full_build_repeated": false,
+  "full_link_blocker_resolved": false,
+  "module_abi_established": false,
+  "objects": {
+    "net/netfilter/core": {
+      "object_symversions_bytes": 127,
+      "object_symversions_sha256": "0eadf7fdb70f221ca7da406d1913e0b7c26d9fd64887dad5d1d28237cf1d412d",
+      "direct_quiet_returncode": 0,
+      "direct_warnings_returncode": 1,
+      "quiet_warnings_output_equal": true,
+      "direct_matches_object": true,
+      "preprocessed_export_markers": 3,
+      "warning_lines": 132,
+      "assignments": {
+        "nf_register_net_hooks": "0xca246fbf",
+        "nf_unregister_net_hooks": "0x9e22a387",
+        "nf_conntrack_destroy": "0x02a18c74"
+      },
+      "preprocessed_sha256": "baffd2c7d7117ad9d61fa913e8905629dc9de44d74ba94da9d494e048e3dda77",
+      "symbols_with_stock_consumer_crc": []
+    },
+    "net/mac80211/rx": {
+      "object_symversions_bytes": 127,
+      "object_symversions_sha256": "bb46c37b9db976702d9cf1cfc0b8364a0b60e4be118453caada6ca89c5529c76",
+      "direct_quiet_returncode": 0,
+      "direct_warnings_returncode": 1,
+      "quiet_warnings_output_equal": true,
+      "direct_matches_object": true,
+      "preprocessed_export_markers": 3,
+      "warning_lines": 143,
+      "assignments": {
+        "ieee80211_sta_ps_transition": "0x13b52f69",
+        "ieee80211_rx_napi": "0x9323aada",
+        "ieee80211_rx_irqsafe": "0x67c28663"
+      },
+      "preprocessed_sha256": "80f6a6ea6afb2524c8caab8ae0cb7528f37f6ba39d0829018910dfcc2762df28",
+      "symbols_with_stock_consumer_crc": []
+    }
+  }
+}

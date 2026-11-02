@@ -29,7 +29,8 @@ os recursos selecionados não é automaticamente igual à IKCONFIG stock.
 
 ## Resultados nativos já conferidos
 
-O [relatório](references/capture-a0-build-profile-hzc2.json) separa os
+A [validação da rodada](references/capture-a0-build-validation-20261101.json)
+registra os testes e os limites. O [relatório](references/capture-a0-build-profile-hzc2.json) separa os
 controles encerrados do estado da compilação completa.
 
 | Controle | Retorno make | Efeito observado |
@@ -101,7 +102,7 @@ byte a byte do pacote stock.
 3856 objetos antes do caminho LTO/MODPOST; a linkedição de
 `.tmp_vmlinux.kallsyms1` foi recusada. MODPOST avisou que seis exports
 não receberam versão; o LLD encontrou relocação R_AARCH64_ABS32 contra
-os respectivos símbolos `__crc_*` ainda não resolvidos:
+os respectivos símbolos `__crc_*`:
 
 - `nf_conntrack_destroy`, `nf_register_net_hooks`, `nf_unregister_net_hooks`;
 - `ieee80211_rx_irqsafe`, `ieee80211_rx_napi`, `ieee80211_sta_ps_transition`.
@@ -114,10 +115,35 @@ stock. Nenhum vmlinux ou conjunto de módulos concluído foi aprovado.
 
 O próximo alvo é o pipeline de pré-processamento/genksyms desses dois
 objetos, conferindo os exports efetivamente vistos e a ordem de atualização
-de autoksyms. A causa dos arquivos vazios ainda não está demonstrada.
+de autoksyms. A causa dos arquivos vazios ainda não está demonstrada. A conferência
+do `gki/abi_symbollist.raw` fixado encontrou os seis nomes na whitelist;
+não se atribuiu a falha à simples ausência desses nomes nessa lista.
 Não se aplicou `-fPIC`, nem se desligaram MODVERSIONS/LTO/CFI para
 contornar o erro. Os quatro CRCs de `module.c` continuam válidos como
 comparação parcial, sem cobrir os seis exports ou o conjunto completo.
+
+## Conferência isolada dos dois produtores
+
+Uma preparação nova, com as mesmas três árvores de ferramentas e perfil
+crítico preservado, compilou somente `net/netfilter/core.o` e
+`net/mac80211/rx.o`. Ambos os `.symversions` têm 127 bytes e três
+atribuições. O [relatório isolado](references/capture-a0-genksyms-isolated-hzc2.json)
+registra os seis valores e hashes. O pré-processamento Clang de cada
+comando `.cmd`, com `-E -D__GENKSYMS__`, contém três marcadores de export;
+`genksyms -r /dev/null` retorna zero e gera exatamente os bytes dos
+respectivos `.symversions`.
+
+Com `-w`, genksyms retorna 1 e relata expansão de tipos incompletos, mas
+gera as mesmas atribuições. Esse modo de diagnóstico não foi confundido
+com o comando quiet usado pelo Kbuild, que retornou zero no ensaio isolado.
+Esses seis nomes não aparecem na união de CRCs exigidos pelos consumidores
+stock inventariados; não há CRC stock deles nesse inventário para comparar.
+
+O ensaio **não reproduziu os arquivos vazios** da tentativa completa.
+Não demonstra correção do build completo ou causa intrínseca no parser.
+O próximo ensaio deve acompanhar conteúdo/hash dos dois `.symversions`
+ao longo do pipeline completo e seus agregados LTO, começando por uma
+saída nova. Não se injetam manualmente estas atribuições no kernel.
 
 ## Reprodução
 

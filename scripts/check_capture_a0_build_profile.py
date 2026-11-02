@@ -10,7 +10,7 @@ import signal
 import subprocess
 import tarfile
 
-from capture_a0_build import directory_tree, profile, vdso, partial_versions, patch_tui
+from capture_a0_build import directory_tree, profile, vdso, partial_versions, patch_tui, link_failure
 from capture_a0_formats import digest, require
 from capture_a0_modules import compare_symvers
 from check_capture_a0 import PINS, verify_file
@@ -139,6 +139,8 @@ def inspect(archive, toolchains, host, work, compile_kernel=False):
         report['final_profile']=profile(baseline,(out/'.config').read_text())
         report['final_config_unchanged']=(report['final_profile']['generated_config_sha256'] ==
             report['profiles']['complete']['generated_config_sha256'])
+        if not report['full_build_completed']:
+            report['full_build_failure']=link_failure((logs/'full_build.log').read_text())
         if report['full_build_completed']:
             report['vmlinux_sha256']=digest((out/'vmlinux').read_bytes())
             report['candidate_comparison']=compare_symvers(stock['requirements'],(out/'Module.symvers').read_text())

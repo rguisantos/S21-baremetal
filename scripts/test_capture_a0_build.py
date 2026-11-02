@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import patch
 
 from capture_a0_build import (CRITICAL, archive_tree, directory_tree,
-    blob, profile, partial_versions, vdso, patch_tui)
+    blob, profile, partial_versions, vdso, patch_tui, link_failure)
 from check_capture_a0_build_profile import inspect, run
 
 
@@ -130,6 +130,24 @@ class BuildChecks(unittest.TestCase):
 
     def test_patch_refuses_unpinned_input(self):
         with self.assertRaises(ValueError):patch_tui(b'ccflags-y += -Idrivers/video/fbdev/exynos/dpu30\n')
+
+    def test_link_failure_deduplicates_observed_diagnostics(self):
+        warning='WARNING: EXPORT symbol "nf_register_net_hooks" [vmlinux] version generation failed, symbol will not be versioned.\n'
+        error='ld.lld: error: relocation R_AARCH64_ABS32 cannot be used against symbol __crc_nf_register_net_hooks; recompile with -fPIC\n'
+        r=link_failure(warning+warning+error)
+        self.assertEqual(r['modpost_unversioned_exports'],['nf_register_net_hooks'])
+        self.assertEqual(r['abs32_crc_relocation_symbols'],['nf_register_net_hooks'])
+        self.assertFalse(r['module_abi_established'])
+
+    def test_link_diagnostics_are_not_a_compatibility_verdict(self):
+        r=link_failure('LD vmlinux\nWARNING: unrelated diagnostic\n')
+        self.assertEqual(r['modpost_unversioned_exports'],[])
+        self.assertEqual(r['abs32_crc_relocation_symbols'],[])
+        self.assertFalse(r['module_abi_established'])
+
+    def test_link_diagnostic_symbol_validation(self):
+        r=link_failure('WARNING: EXPORT symbol "../bad" [vmlinux] version generation failed, symbol will not be versioned.\n')
+        self.assertEqual(r['modpost_unversioned_exports'],[])
 
     def test_unverified_source_never_executes(self):
         source=self.root/'source.gz';source.write_bytes(b'wrong')
