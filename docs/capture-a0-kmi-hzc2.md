@@ -156,3 +156,14 @@ Os 274 nomes de módulos do vendor ramdisk estão presentes no candidato,
 com dois adicionais em relação a esse conjunto. Isso fecha a produção
 e a cobertura de CRC desse candidato, mantendo compatibilidade/políticas,
 proveniência KMI e contêiner abertos em A0. Não houve avanço A1 ou ação física.
+
+## Continuação — proposta de módulos, 02/11/2026
+
+A [auditoria dos conjuntos de módulos](capture-a0-module-policy-hzc2.md)
+propõe o kernel candidato com os 274 módulos do vendor_boot original; a
+alternativa recompilada contém os mesmos nomes. Confirma fornecedores,
+CRCs presentes e condições modeladas de licença/namespace. Dois imports
+de s2mpb02_mfd não têm registro de consumidor: a fonte permite com aviso,
+mas a cobertura estrita permanece incompleta. O sufixo HZC2 isoladamente
+não reprova same_magic nessa fonte com MODVERSIONS e __versions.
+Isso não fecha ABI, carga runtime, listas KMI ausentes ou contêiner modificado.

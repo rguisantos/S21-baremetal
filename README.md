@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [proposta de módulos HZC2](docs/capture-a0-module-policy-hzc2.md) seleciona como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
+
 O [build p3s acompanhado](docs/capture-a0-crc-trace-hzc2.md) concluiu vmlinux e 276 módulos com LTO/CFI/compat32 preservados. O Module.symvers final cobriu os 2763 requisitos de CRC stock, sem ausências ou divergências. Os seis CRCs antes ausentes chegaram aos agregados e ao linker; a falha anterior não se reproduziu. A0 segue aberto para compatibilidade/política de módulos, proveniência KMI e contêiner.
 
 A [rodada anterior do perfil p3s](docs/capture-a0-build-profile-hzc2.md) fixou o ambiente vendor OS, confirmou os controles críticos e corrigiu três includes TUI para O=. Sua tentativa completa falhou com seis exports sem CRC; a continuação acompanhada acima registra o build concluído e mantém a causa daquela ocorrência não demonstrada.
