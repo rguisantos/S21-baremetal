@@ -1,0 +1,934 @@
+{
+  "a0_complete": false,
+  "build_environment": {
+    "ANDROID_MAJOR_VERSION": "r",
+    "ARCH": "arm64",
+    "KBUILD_BUILD_HOST": "offline",
+    "KBUILD_BUILD_TIMESTAMP": "Sun Nov 1 00:00:00 UTC 2026",
+    "KBUILD_BUILD_USER": "s21-a0",
+    "KBUILD_BUILD_VERSION": "1",
+    "LC_ALL": "C",
+    "PLATFORM_VERSION": "11",
+    "SEC_BUILD_CONF_VENDOR_BUILD_OS": "15"
+  },
+  "build_result_state": "finished",
+  "built_module_count": 276,
+  "candidate_comparison": {
+    "crc_coverage_passed": true,
+    "matched": 2763,
+    "mismatched": [],
+    "missing": [],
+    "module_abi_established": false,
+    "sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+    "stock_crc_conflicts": [],
+    "supplied": true
+  },
+  "crc_trace": {
+    "event_limit_reached": false,
+    "events": [
+      {
+        "path": "net/netfilter/core.o.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/mac80211/rx.o.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/netfilter/netfilter.o.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/netfilter/built-in.a.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/mac80211/mac80211.o.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/mac80211/built-in.a.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "net/built-in.a.symversions",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": ".tmp_lto.lds",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "path": "Module.symvers",
+        "seconds": 0.0,
+        "state": "missing"
+      },
+      {
+        "assignments": {},
+        "bytes": 0,
+        "inode": 1738816,
+        "mtime_ns": 1793619107552392412,
+        "path": "net/netfilter/core.o.symversions",
+        "seconds": 310.358,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 127,
+        "inode": 1738816,
+        "mtime_ns": 1793619107994724050,
+        "path": "net/netfilter/core.o.symversions",
+        "seconds": 310.762,
+        "sha256": "0eadf7fdb70f221ca7da406d1913e0b7c26d9fd64887dad5d1d28237cf1d412d",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 0,
+        "inode": 1738728,
+        "mtime_ns": 1793619112144362887,
+        "path": "net/mac80211/rx.o.symversions",
+        "seconds": 314.901,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ]
+        },
+        "bytes": 127,
+        "inode": 1738728,
+        "mtime_ns": 1793619112936357795,
+        "path": "net/mac80211/rx.o.symversions",
+        "seconds": 315.709,
+        "sha256": "bb46c37b9db976702d9cf1cfc0b8364a0b60e4be118453caada6ca89c5529c76",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ]
+        },
+        "bytes": 2829,
+        "inode": 1738260,
+        "mtime_ns": 1793619135195363690,
+        "path": "net/mac80211/built-in.a.symversions",
+        "seconds": 337.977,
+        "sha256": "870fb0063e2c48f6b9c22213f31ab3d334440ecd31f361e9f166375e72e2d87d",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 680,
+        "inode": 1737375,
+        "mtime_ns": 1793619173153944447,
+        "path": "net/netfilter/built-in.a.symversions",
+        "seconds": 375.945,
+        "sha256": "f5ed1ee7acc35e498ddfe80e002534d393cd88245b8aa7e6fdbf93272b9695c3",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 21767,
+        "inode": 1745359,
+        "mtime_ns": 1793619228923316162,
+        "path": "net/built-in.a.symversions",
+        "seconds": 431.687,
+        "sha256": "ca2bdfb2cd4f8538616b57903d6b72971e10cefa1b30a88f110272412225b2c2",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 0,
+        "inode": 1609036,
+        "mtime_ns": 1793619445166163279,
+        "path": ".tmp_lto.lds",
+        "seconds": 647.934,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 68497,
+        "inode": 1609036,
+        "mtime_ns": 1793619447346045490,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.087,
+        "sha256": "907c3c053c66ee987c170fd421a7f521c5228a1041893d8a470c676d0dc067de",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 83354,
+        "inode": 1609036,
+        "mtime_ns": 1793619447450480685,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.194,
+        "sha256": "b03f5adf598bb8f1aef0c17b588f65f1bbfa87516035e5bcfbca3c0f11765496",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 105052,
+        "inode": 1609036,
+        "mtime_ns": 1793619447554147307,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.297,
+        "sha256": "e9c2819632fb65572df16d12af09c62a0e2c93f185074b526081115623530799",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 132733,
+        "inode": 1609036,
+        "mtime_ns": 1793619447662194538,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.405,
+        "sha256": "e2817d16d292998e2688e17fd9dcd8b05361506a5d8f84f7eb7bc3affa028c5c",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 159177,
+        "inode": 1609036,
+        "mtime_ns": 1793619447768367559,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.51,
+        "sha256": "3b7aaf352db53f9047378f0804109f77dca462ebefa400f4518b09139fb0749b",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 190051,
+        "inode": 1609036,
+        "mtime_ns": 1793619447873144400,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.617,
+        "sha256": "36fe5d789fba8ea637d33d67d2689aea319509873fd07d86624c8d51f7b33b7c",
+        "state": "regular"
+      },
+      {
+        "assignments": {},
+        "bytes": 226290,
+        "inode": 1609036,
+        "mtime_ns": 1793619447980073647,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.723,
+        "sha256": "ef6c5bbe93ea5b03e9b020d771fc5f1d3882ef677b8a366aa9ed7ce54264bceb",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 242783,
+        "inode": 1609036,
+        "mtime_ns": 1793619448068059428,
+        "path": ".tmp_lto.lds",
+        "seconds": 650.831,
+        "sha256": "eaa977026d05a54de936bf2debd785c5997df8867404aed7b0567f9d6de93336",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 280866,
+        "inode": 1609026,
+        "mtime_ns": 1793619569014286264,
+        "path": "Module.symvers",
+        "seconds": 771.815,
+        "sha256": "f2ebde62fbe0a04de47ad95284e60d1abf0a36cb4562bc7bde18b26553bbd181",
+        "state": "regular"
+      },
+      {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 444057,
+        "inode": 1609026,
+        "mtime_ns": 1793619647432053332,
+        "path": "Module.symvers",
+        "seconds": 850.285,
+        "sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+        "state": "regular"
+      }
+    ],
+    "final": {
+      ".tmp_lto.lds": {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 242783,
+        "inode": 1609036,
+        "mtime_ns": 1793619448068059428,
+        "sha256": "eaa977026d05a54de936bf2debd785c5997df8867404aed7b0567f9d6de93336",
+        "state": "regular"
+      },
+      "Module.symvers": {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 444057,
+        "inode": 1609026,
+        "mtime_ns": 1793619647432053332,
+        "sha256": "b5aebd8e2db225b247a552f5e5a07a66042ed29e74ca3f348e94487227975139",
+        "state": "regular"
+      },
+      "net/built-in.a.symversions": {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ],
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 21767,
+        "inode": 1745359,
+        "mtime_ns": 1793619228923316162,
+        "sha256": "ca2bdfb2cd4f8538616b57903d6b72971e10cefa1b30a88f110272412225b2c2",
+        "state": "regular"
+      },
+      "net/mac80211/built-in.a.symversions": {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ]
+        },
+        "bytes": 2829,
+        "inode": 1738260,
+        "mtime_ns": 1793619135195363690,
+        "sha256": "870fb0063e2c48f6b9c22213f31ab3d334440ecd31f361e9f166375e72e2d87d",
+        "state": "regular"
+      },
+      "net/mac80211/mac80211.o.symversions": {
+        "state": "missing"
+      },
+      "net/mac80211/rx.o.symversions": {
+        "assignments": {
+          "ieee80211_rx_irqsafe": [
+            "0x67c28663"
+          ],
+          "ieee80211_rx_napi": [
+            "0x9323aada"
+          ],
+          "ieee80211_sta_ps_transition": [
+            "0x13b52f69"
+          ]
+        },
+        "bytes": 127,
+        "inode": 1738728,
+        "mtime_ns": 1793619112936357795,
+        "sha256": "bb46c37b9db976702d9cf1cfc0b8364a0b60e4be118453caada6ca89c5529c76",
+        "state": "regular"
+      },
+      "net/netfilter/built-in.a.symversions": {
+        "assignments": {
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 680,
+        "inode": 1737375,
+        "mtime_ns": 1793619173153944447,
+        "sha256": "f5ed1ee7acc35e498ddfe80e002534d393cd88245b8aa7e6fdbf93272b9695c3",
+        "state": "regular"
+      },
+      "net/netfilter/core.o.symversions": {
+        "assignments": {
+          "nf_conntrack_destroy": [
+            "0x02a18c74"
+          ],
+          "nf_register_net_hooks": [
+            "0xca246fbf"
+          ],
+          "nf_unregister_net_hooks": [
+            "0x9e22a387"
+          ]
+        },
+        "bytes": 127,
+        "inode": 1738816,
+        "mtime_ns": 1793619107994724050,
+        "sha256": "0eadf7fdb70f221ca7da406d1913e0b7c26d9fd64887dad5d1d28237cf1d412d",
+        "state": "regular"
+      },
+      "net/netfilter/netfilter.o.symversions": {
+        "state": "missing"
+      }
+    },
+    "interval_seconds": 0.1,
+    "log_sha256": "b736ab3fb8f13aa94dfcd515c9aa570b04a74913462d037265adef4f1d335629",
+    "max_sample_gap_seconds": 0.69,
+    "module_abi_established": false,
+    "observer_error": null,
+    "schema": "S21-CAPTURE-A0-CRC-TRACE-v1",
+    "source_modified_by_observer": false,
+    "transitions_between_samples_may_be_missed": true
+  },
+  "final_config_unchanged": true,
+  "final_profile": {
+    "config_differences": [
+      {
+        "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "key": "CONFIG_KMI_SYMBOL_LISTS",
+        "source_value_sha256": null
+      },
+      {
+        "generated_value_sha256": null,
+        "key": "CONFIG_SEC_AUTO_INPUT",
+        "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a"
+      }
+    ],
+    "critical_mismatches": {},
+    "critical_profile_preserved": true,
+    "generated_config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+    "module_abi_established": false,
+    "selected_config": {
+      "CONFIG_CC_IS_CLANG": "y",
+      "CONFIG_CFI_CLANG": "y",
+      "CONFIG_CFI_CLANG_SHADOW": "y",
+      "CONFIG_CFI_PERMISSIVE": "n",
+      "CONFIG_CLANG_VERSION": "110001",
+      "CONFIG_COMPAT_VDSO": "y",
+      "CONFIG_LD_IS_LLD": "y",
+      "CONFIG_LTO": "y",
+      "CONFIG_LTO_CLANG": "y",
+      "CONFIG_MALI_DDK_VALHALL_R38P0": "y",
+      "CONFIG_MODVERSIONS": "y",
+      "CONFIG_TRIM_UNUSED_KSYMS": "y"
+    },
+    "source_defconfig_equal": false
+  },
+  "full_build_completed": true,
+  "full_build_requested": true,
+  "host_machine": "x86_64",
+  "module_abi_established": false,
+  "module_c_partial_versions": {
+    "assignments": 4,
+    "compared": {
+      "__module_get": {
+        "candidate_crc": "0x02cbec78",
+        "matches_stock": true,
+        "stock_crcs": [
+          "0x02cbec78"
+        ]
+      },
+      "module_layout": {
+        "candidate_crc": "0x1e5b7ab7",
+        "matches_stock": true,
+        "stock_crcs": [
+          "0x1e5b7ab7"
+        ]
+      },
+      "module_put": {
+        "candidate_crc": "0xa503ed0d",
+        "matches_stock": true,
+        "stock_crcs": [
+          "0xa503ed0d"
+        ]
+      },
+      "try_module_get": {
+        "candidate_crc": "0xd497d133",
+        "matches_stock": true,
+        "stock_crcs": [
+          "0xd497d133"
+        ]
+      }
+    },
+    "full_module_symvers": false,
+    "module_abi_established": false,
+    "sha256": "42ae48cd1bd8c7a3e349bf73dd2d4ae43f3e9e994c85e74d3e7d5b556427c740"
+  },
+  "physical_action": false,
+  "prepared_vdsos": {
+    "vdso": {
+      "bytes": 17952,
+      "elf_class": 2,
+      "elf_header_only": true,
+      "machine": 183,
+      "runtime_execution_tested": false,
+      "sha256": "452ef903d8a75aa8c1ccd1647877220d7129d03add02d898979b77ed2f4c735c"
+    },
+    "vdso32": {
+      "bytes": 18488,
+      "elf_class": 1,
+      "elf_header_only": true,
+      "machine": 40,
+      "runtime_execution_tested": false,
+      "sha256": "9606c4d9108b5ce96a85a00914963b3bd1fd9a8ce30481808fbd0071408fff34"
+    }
+  },
+  "profiles": {
+    "complete": {
+      "config_differences": [
+        {
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a"
+        }
+      ],
+      "critical_mismatches": {},
+      "critical_profile_preserved": true,
+      "generated_config_sha256": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a",
+      "module_abi_established": false,
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_CFI_CLANG_SHADOW": "y",
+        "CONFIG_CFI_PERMISSIVE": "n",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_LD_IS_LLD": "y",
+        "CONFIG_LTO": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y"
+      },
+      "source_defconfig_equal": false
+    },
+    "gnu_ld": {
+      "config_differences": [
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_CFI_CLANG",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_CFI_CLANG_SHADOW",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_CFI_PERMISSIVE",
+          "source_value_sha256": "1b16b1df538ba12dc3f97edbb85caa7050d46c148134290feba80f8236c83db9"
+        },
+        {
+          "generated_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "key": "CONFIG_HAVE_ARCH_PREL32_RELOCATIONS",
+          "source_value_sha256": null
+        },
+        {
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_LD_IS_LLD",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_LTO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_LTO_CLANG",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa",
+          "key": "CONFIG_LTO_NONE",
+          "source_value_sha256": "1b16b1df538ba12dc3f97edbb85caa7050d46c148134290feba80f8236c83db9"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_RELR",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_THINLTO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_TOOLS_SUPPORT_RELR",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        }
+      ],
+      "critical_mismatches": {
+        "CONFIG_CFI_CLANG": {
+          "actual": null,
+          "expected": "y"
+        },
+        "CONFIG_CFI_CLANG_SHADOW": {
+          "actual": null,
+          "expected": "y"
+        },
+        "CONFIG_CFI_PERMISSIVE": {
+          "actual": null,
+          "expected": "n"
+        },
+        "CONFIG_LD_IS_LLD": {
+          "actual": null,
+          "expected": "y"
+        },
+        "CONFIG_LTO": {
+          "actual": null,
+          "expected": "y"
+        },
+        "CONFIG_LTO_CLANG": {
+          "actual": null,
+          "expected": "y"
+        }
+      },
+      "critical_profile_preserved": false,
+      "generated_config_sha256": "80cf57971b02ff37fa09db8c857396ce8c4f310bdbd42ed3a250bdb3fc140cb4",
+      "module_abi_established": false,
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CFI_CLANG": null,
+        "CONFIG_CFI_CLANG_SHADOW": null,
+        "CONFIG_CFI_PERMISSIVE": null,
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_LD_IS_LLD": null,
+        "CONFIG_LTO": null,
+        "CONFIG_LTO_CLANG": null,
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y"
+      },
+      "source_defconfig_equal": false
+    },
+    "no_compat": {
+      "config_differences": [
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_COMPAT_VDSO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_GENERIC_COMPAT_VDSO",
+          "source_value_sha256": "a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa"
+        },
+        {
+          "generated_value_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "key": "CONFIG_KMI_SYMBOL_LISTS",
+          "source_value_sha256": null
+        },
+        {
+          "generated_value_sha256": null,
+          "key": "CONFIG_SEC_AUTO_INPUT",
+          "source_value_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a"
+        }
+      ],
+      "critical_mismatches": {
+        "CONFIG_COMPAT_VDSO": {
+          "actual": null,
+          "expected": "y"
+        }
+      },
+      "critical_profile_preserved": false,
+      "generated_config_sha256": "079cb3827c8b92ba89ffef5528acf1a52f5725eb2503aa9f7171b1decfefc0f2",
+      "module_abi_established": false,
+      "selected_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_CFI_CLANG_SHADOW": "y",
+        "CONFIG_CFI_PERMISSIVE": "n",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_COMPAT_VDSO": null,
+        "CONFIG_LD_IS_LLD": "y",
+        "CONFIG_LTO": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y"
+      },
+      "source_defconfig_equal": false
+    }
+  },
+  "schema": "S21-CAPTURE-A0-BUILD-PROFILE-v2",
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "source_members": {
+    "arch/Kconfig": {
+      "bytes": 32385,
+      "sha256": "13ed614794c347169b9787d9c1e830cd8c062390daac4cafd617220506d04b08"
+    },
+    "arch/arm64/Kconfig": {
+      "bytes": 62166,
+      "sha256": "2b31e7745b0f0f06282cf07e0bfe6ba2cd4c1778107d3920d962088b29607626"
+    },
+    "arch/arm64/configs/exynos2100-p3sxxx_defconfig": {
+      "bytes": 202353,
+      "sha256": "e0d7cfe4c8fceb31a5e44a9ba916c00338834a58011a44494e15120efe76c4fd"
+    },
+    "build_kernel.sh": {
+      "bytes": 196,
+      "sha256": "0e81c569d4f01485959e072944aa87030a04d6e73d9d3ce2d939a5e875133a4a"
+    },
+    "drivers/gpu/arm/Kconfig": {
+      "bytes": 2233,
+      "sha256": "30bf56e853a20b20d8b632640e49d689a3a5434c3a7bddcaaef90b9bd1f7ffc1"
+    },
+    "drivers/misc/tui/Makefile": {
+      "bytes": 667,
+      "sha256": "42c5595348f0670cf18f1e48f8f4fc532e000f9714d8bf75678763c3d45eb067"
+    }
+  },
+  "stages": {
+    "complete": {
+      "log_sha256": "07a5f3c63859005a2013b633e8aec45ea3a7b41f22a57cfd76367c522b0fd680",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "full_build": {
+      "log_sha256": "707d0043d3c4258d5021d0956aab51b8c981e6ead3f0a62430e43034b813aff7",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "gnu_ld": {
+      "log_sha256": "1648043ad1b27063ca1c0baaaba4a49630f8370f7f0181727301d2c447eca779",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "module_object": {
+      "log_sha256": "a69e55e2178264e42448622e4c29f108ae509d16bab7979c82156ebeb4e89443",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "no_compat": {
+      "log_sha256": "5fbef787daac2c13d60801fb1712c649c431ae62f4d546b94eddfb68b56d8f70",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "no_vendor_os": {
+      "log_sha256": "8e0d7ec82fdb63332ab0cf85a8b052a764ef67c3d9142c35385962013abfc793",
+      "returncode": 2,
+      "timed_out": false
+    },
+    "prepare": {
+      "log_sha256": "4a82e14bac8399cdca7f139bca427e01be911264db8ccfbf6b7ad540843fd291",
+      "returncode": 0,
+      "timed_out": false
+    },
+    "tui_original": {
+      "log_sha256": "adf01bb7e786d51768749a041aec17f8c26a0c851c6dc5a31102019d306eff8d",
+      "returncode": 2,
+      "timed_out": false
+    },
+    "tui_patched": {
+      "log_sha256": "a76a7e4f05ea73fbffd0c19bb9cd743b5e9cceb63b50b1584420d8d7d82d28e9",
+      "returncode": 0,
+      "timed_out": false
+    }
+  },
+  "toolchain_trees": {
+    "aarch64-android49": {
+      "content_bytes": 73782326,
+      "members": 260,
+      "tree": "9959a53ab082bef137916638c48c9871c5d82cfd"
+    },
+    "arm-android49": {
+      "content_bytes": 117494022,
+      "members": 184,
+      "tree": "91c70ff36200356813e0992c39b8b0d47d85aa0b"
+    },
+    "clang-r383902": {
+      "content_bytes": 1142896294,
+      "members": 5162,
+      "tree": "34feae7abc38fffe258af1842a4c19746368cec6"
+    }
+  },
+  "tui_patch": {
+    "after_sha256": "eedc69cb4c0b8e82561925badb1cd765ce266a99dd91ad2aa224a878320084d7",
+    "before_sha256": "42c5595348f0670cf18f1e48f8f4fc532e000f9714d8bf75678763c3d45eb067"
+  },
+  "versions": {
+    "clang": "Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)",
+    "gnu32_as": "GNU assembler (binutils-2.27-bd24d23f) 2.27.0.20170315",
+    "gnu64_as": "GNU assembler (binutils-2.27-bd24d23f) 2.27.0.20170315",
+    "host_gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "lld": "LLD 11.0.1 (/buildbot/tmp/tmp6_m7QH b397f81060ce6d701042b782172ed13bee898b79) (compatible with GNU linkers)"
+  },
+  "vmlinux_sha256": "bfdf4dae3039e0215413cfa151e3bd26d0236f81aba2cd411d2ce27aa998d885"
+}
