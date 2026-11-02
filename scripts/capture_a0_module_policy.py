@@ -21,7 +21,7 @@ MODNAME=re.compile(r'[A-Za-z0-9_][A-Za-z0-9_.-]*')
 
 
 class Elf:
-    def __init__(self,data):
+    def __init__(self,data,require_module_metadata=True):
         require(64<=len(data)<=MAX_MODULE,'module size bound')
         require(data[:7]==b'\x7fELF\x02\x01\x01','requires ELF64 little endian')
         require(struct.unpack_from('<HHI',data,16)==(1,183,1),'requires AArch64 ET_REL')
@@ -37,7 +37,8 @@ class Elf:
             require(row[1]==8 or row[4]+row[5]<=len(data),'section exceeds file')
             name=cstring(strings,row[0]);require(name and name not in self.sections,'section name duplicate/empty')
             self.sections[name]=i
-        require('.symtab' in self.sections and '.modinfo' in self.sections and '__versions' in self.sections,
+        require('.symtab' in self.sections and (not require_module_metadata or
+                ('.modinfo' in self.sections and '__versions' in self.sections)),
                 'required metadata missing')
         self.symindex=self.sections['.symtab'];s=self.rows[self.symindex]
         require(s[1]==2 and s[9]==24 and s[5]%24==0 and s[5]//24<=200000 and

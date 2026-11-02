@@ -229,3 +229,13 @@ de s2mpb02_mfd não têm registro de consumidor: a fonte permite com aviso,
 mas a cobertura estrita permanece incompleta. O sufixo HZC2 isoladamente
 não reprova same_magic nessa fonte com MODVERSIONS e __versions.
 Isso não fecha ABI, carga runtime, listas KMI ausentes ou contêiner modificado.
+
+## Continuação — etapas ThinLTO, 02/11/2026
+
+A [reprodução isolada por etapa](capture-a0-module-stages-hzc2.md) agora
+conserva os intermediários e mede a diferença entre as duas linkedições.
+Alinhar KBUILD_LDFLAGS_MODULE faz os helpers aparecerem antes do modpost e
+produz 37 versões sem lacunas no módulo isolado; o conjunto stock permanece
+intacto. A correção candidata requer validação em build completo antes de
+fechar o gate de módulos. O runner completo oferece --align-module-prelink
+com --compile; o histórico do build stock não foi reproduzido.

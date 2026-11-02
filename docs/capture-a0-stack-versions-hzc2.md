@@ -109,3 +109,13 @@ O comportamento permissivo de check_version e as duas lacunas do
 [plano do PR #81](capture-a0-module-policy-hzc2.md) permanecem como estavam.
 Esta rodada não fecha cobertura estrita nos ELFs originais, ABI, CFI/RKP em
 execução, proveniência KMI, contêiner modificado, A1 ou decisão OEM.
+
+## Continuação — etapas ThinLTO, 02/11/2026
+
+A [reprodução isolada por etapa](capture-a0-module-stages-hzc2.md) agora
+conserva os intermediários e mede a diferença entre as duas linkedições.
+Alinhar KBUILD_LDFLAGS_MODULE faz os helpers aparecerem antes do modpost e
+produz 37 versões sem lacunas no módulo isolado; o conjunto stock permanece
+intacto. A correção candidata requer validação em build completo antes de
+fechar o gate de módulos. O runner completo oferece --align-module-prelink
+com --compile; o histórico do build stock não foi reproduzido.

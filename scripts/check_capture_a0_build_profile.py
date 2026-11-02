@@ -15,6 +15,7 @@ from capture_a0_build import directory_tree, profile, vdso, partial_versions, pa
 from capture_a0_formats import digest, require
 from capture_a0_modules import compare_symvers
 from capture_a0_crc_trace import VersionTrace
+from capture_a0_module_stages import patch_modpost
 from check_capture_a0 import PINS, verify_file
 
 TREES = {'clang-r383902':'34feae7abc38fffe258af1842a4c19746368cec6',
@@ -23,13 +24,13 @@ TREES = {'clang-r383902':'34feae7abc38fffe258af1842a4c19746368cec6',
 CONFIG = 'arch/arm64/configs/exynos2100-p3sxxx_defconfig'
 
 
-def run(args, env, log, timeout=180):
+def run(args, env, log, timeout=180, cwd=None):
     """Bound a process group so a timeout cannot leave compiler children running."""
     with log.open('wb') as f:
         # One writer owns the log; concurrent make children share a pipe instead
         # of potentially divergent seek offsets on transported filesystems.
         p = subprocess.Popen(args,env=env,stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT,start_new_session=True)
+                             stderr=subprocess.STDOUT,start_new_session=True,cwd=cwd)
         timed_out=False
         try:output,_=p.communicate(timeout=timeout)
         except subprocess.TimeoutExpired:
@@ -46,8 +47,9 @@ def run(args, env, log, timeout=180):
         return dict(returncode=p.returncode,timed_out=timed_out)
 
 
-def inspect(archive, toolchains, host, work, compile_kernel=False, trace_versions=False):
+def inspect(archive, toolchains, host, work, compile_kernel=False, trace_versions=False, align_module_prelink=False):
     require(not trace_versions or compile_kernel,'CRC tracing requires full compilation')
+    require(not align_module_prelink or compile_kernel,'module prelink alignment requires full compilation')
     pins=json.loads(PINS.read_text());verify_file(archive,pins['samsung_source_archive'])
     for path in (toolchains,host,work):
         require(re.fullmatch(r'/[A-Za-z0-9_./-]+',str(path.resolve())), 'unsafe build path')
@@ -82,6 +84,10 @@ def inspect(archive, toolchains, host, work, compile_kernel=False, trace_version
            'arch/arm64/Kconfig','drivers/misc/tui/Makefile')
     report['source_members']={n:dict(bytes=(source/n).stat().st_size,
         sha256=digest((source/n).read_bytes())) for n in names}
+    if align_module_prelink:
+        makefile=source/'scripts/Makefile.modpost';before=makefile.read_bytes();after=patch_modpost(before)
+        makefile.write_bytes(after)
+        report['module_prelink_patch']=dict(before_sha256=digest(before),after_sha256=digest(after))
     report['build_environment']={k:v for k,v in env.items() if k in (
         'ARCH','PLATFORM_VERSION','ANDROID_MAJOR_VERSION','SEC_BUILD_CONF_VENDOR_BUILD_OS',
         'LC_ALL','KBUILD_BUILD_USER','KBUILD_BUILD_HOST','KBUILD_BUILD_VERSION','KBUILD_BUILD_TIMESTAMP')}
@@ -160,9 +166,11 @@ def main():
     for n in ('source','toolchains','host-root','work-dir'):p.add_argument('--'+n,type=Path,required=True)
     p.add_argument('--compile',action='store_true')
     p.add_argument('--trace-versions',action='store_true')
+    p.add_argument('--align-module-prelink',action='store_true')
     a=p.parse_args()
     if a.trace_versions and not a.compile:p.error('--trace-versions requires --compile')
-    try:r=inspect(a.source.resolve(),a.toolchains.resolve(),a.host_root.resolve(),a.work_dir.resolve(),a.compile,a.trace_versions)
+    if a.align_module_prelink and not a.compile:p.error('--align-module-prelink requires --compile')
+    try:r=inspect(a.source.resolve(),a.toolchains.resolve(),a.host_root.resolve(),a.work_dir.resolve(),a.compile,a.trace_versions,a.align_module_prelink)
     except (OSError,ValueError,tarfile.TarError,subprocess.SubprocessError) as exc:p.exit(1,'BUILD PROFILE REFUSED: '+str(exc)+'\n')
     print('Profile preserved:',r['profiles']['complete']['critical_profile_preserved'], '; full build:',r['full_build_completed'])
     print('A0 remains open; see report.json for CRC coverage and limits')

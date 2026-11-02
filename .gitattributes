@@ -1,2 +1,5 @@
 # Preserve unified-diff context lines in the received audit artifact.
 docs/references/newtime-gate-image-base-received.patch whitespace=-blank-at-eol
+
+# Unified diff context adds a space before Makefile indentation tabs.
+scripts/patches/*.patch whitespace=-space-before-tab
