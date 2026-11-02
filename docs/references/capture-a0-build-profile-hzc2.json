@@ -58,6 +58,11 @@
       "returncode": 0,
       "timed_out": false,
       "log_sha256": "514b63ba4fa0a5692ce1005efcaa9d5c66d18286e18b36b76046fd3b9ea461a6"
+    },
+    "full_build": {
+      "returncode": 2,
+      "timed_out": false,
+      "log_sha256": "578fef9286b5ef22e72b4f410c079699dc117540ddb24ab1e3defce8ef181e93"
     }
   },
   "profiles": {
@@ -369,5 +374,24 @@
     "crc_coverage_passed": false,
     "module_abi_established": false
   },
-  "build_result_state": "running"
+  "build_result_state": "finished",
+  "full_build_failure": {
+    "stage": "LD .tmp_vmlinux.kallsyms1",
+    "modpost_unversioned_exports": [
+      "nf_conntrack_destroy",
+      "nf_register_net_hooks",
+      "nf_unregister_net_hooks",
+      "ieee80211_rx_irqsafe",
+      "ieee80211_rx_napi",
+      "ieee80211_sta_ps_transition"
+    ],
+    "linker_error": "R_AARCH64_ABS32 against unresolved __crc_*",
+    "empty_symversion_files": [
+      "net/netfilter/core.o.symversions",
+      "net/mac80211/rx.o.symversions"
+    ],
+    "partial_module_symvers_present": true,
+    "partial_module_symvers_accepted_for_coverage": false,
+    "final_profile_checked": false
+  }
 }

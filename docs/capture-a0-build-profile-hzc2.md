@@ -95,6 +95,30 @@ hash original conhecido; então exige sucesso dos mesmos objetos. A fonte
 compilada passa a ser um candidato com patch explícito, não uma reprodução
 byte a byte do pacote stock.
 
+## Tentativa completa: bloqueio na linkedição
+
+`make vmlinux modules` terminou com retorno 2, sem timeout. Foram compilados
+3856 objetos antes do caminho LTO/MODPOST; a linkedição de
+`.tmp_vmlinux.kallsyms1` foi recusada. MODPOST avisou que seis exports
+não receberam versão; o LLD encontrou relocação R_AARCH64_ABS32 contra
+os respectivos símbolos `__crc_*` ainda não resolvidos:
+
+- `nf_conntrack_destroy`, `nf_register_net_hooks`, `nf_unregister_net_hooks`;
+- `ieee80211_rx_irqsafe`, `ieee80211_rx_napi`, `ieee80211_sta_ps_transition`.
+
+Os arquivos `net/netfilter/core.o.symversions` e
+`net/mac80211/rx.o.symversions` estavam vazios. O `Module.symvers`
+intermediário contém CRC zero nesses seis nomes; não é o conjunto final
+de kernel e módulos e não foi aceito para a cobertura dos 2763 requisitos
+stock. Nenhum vmlinux ou conjunto de módulos concluído foi aprovado.
+
+O próximo alvo é o pipeline de pré-processamento/genksyms desses dois
+objetos, conferindo os exports efetivamente vistos e a ordem de atualização
+de autoksyms. A causa dos arquivos vazios ainda não está demonstrada.
+Não se aplicou `-fPIC`, nem se desligaram MODVERSIONS/LTO/CFI para
+contornar o erro. Os quatro CRCs de `module.c` continuam válidos como
+comparação parcial, sem cobrir os seis exports ou o conjunto completo.
+
 ## Reprodução
 
 Prepare a fonte e as três toolchains indicadas nos pins. O diretório host
