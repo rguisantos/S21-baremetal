@@ -239,3 +239,12 @@ produz 37 versões sem lacunas no módulo isolado; o conjunto stock permanece
 intacto. A correção candidata requer validação em build completo antes de
 fechar o gate de módulos. O runner completo oferece --align-module-prelink
 com --compile; o histórico do build stock não foi reproduzido.
+
+## Continuação — build completo alinhado, 02/11/2026
+
+O [build completo corrigido](capture-a0-aligned-full-hzc2.md) concluiu
+vmlinux/276 módulos e conferiu as fases de todos eles. O conjunto de 274
+recompilados não tem imports sem versão ou CRCs divergentes nas regras
+modeladas e passa a ser a proposta de referência offline com o novo kernel.
+O conjunto stock permanece intacto, com as duas ausências anteriores.
+KMI, execução/ABI e contêiner continuam gates separados; A0 permanece aberto.

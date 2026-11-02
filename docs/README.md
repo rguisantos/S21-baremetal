@@ -1,6 +1,6 @@
 # Guia da documentação
 
-A [reprodução das etapas de s2mpb02_mfd](capture-a0-module-stages-hzc2.md) mediu a origem das duas lacunas no ensaio isolado: a preliminar ThinLTO omitia o limite de importação 5 usado na final. O controle desse flag e um patch de uma linha fizeram o modpost gerar 37 versões, sem lacunas no módulo recompilado. A0 permanece aberto: falta validar o patch no build completo; o conjunto stock, KMI e contêiner continuam pendentes.
+O [build completo com ThinLTO alinhado](capture-a0-aligned-full-hzc2.md) concluiu vmlinux e 276 módulos. O conjunto selecionado de 274 recompilados tem 13722 imports e 13996 versões, sem lacunas ou CRCs divergentes nas regras verificadas. A proposta offline passa ao kernel e módulos desse mesmo build. KMI, política runtime e contêiner modificado continuam pendentes em A0; o aparelho permanece intocado.
 
 A [proposta de módulos HZC2](capture-a0-module-policy-hzc2.md) seleciona como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
 
@@ -90,6 +90,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
+- [A0: build completo alinhado e auditoria](capture-a0-aligned-full-hzc2.md): 276 módulos conferidos por etapa, 274 selecionados sem lacunas de versão e proposta de conjunto coerente.
 - [A0: etapas LTO e correção candidata](capture-a0-module-stages-hzc2.md): diferença de imports reproduzida, snapshots conservados e 37 versões no módulo isolado corrigido.
 - [A0: helpers de pilha e modpost](capture-a0-stack-versions-hzc2.md): usos reais de SSP, geração nativa de 37 registros e fronteira da causa ainda não medida.
 - [A0: proposta e política de módulos](capture-a0-module-policy-hzc2.md): conjuntos de 274, metadados/fornecedores, vermagic e duas lacunas de versão permitidas com aviso.
