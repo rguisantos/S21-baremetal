@@ -122,3 +122,8 @@ metadados AVB conferidos**, sem fechar o gate do contêiner Samsung utilizável.
 O trabalho seguinte em A0 é dimensionar/montar os payloads reais do mesmo
 build e fechar a política de assinatura/aceitação da rota escolhida. KMI e
 política runtime permanecem pendentes; entrada/cápsula de A1 seguem separadas.
+
+A [continuação de dimensionamento](capture-a0-payload-sizes-hzc2.md) gerou a
+Image e protótipos de ramdisk com dados reais. O perfil com strip cabe em
+capacidade, mas ambos os payloads menores ainda exigem adaptação de
+comprimento validada; o montador de mesmo tamanho continua recusando-os.

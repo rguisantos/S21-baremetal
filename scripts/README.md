@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_sizes.py` gera Image pela receita fixada, confere o mapeamento ELF independentemente e mede ramdisks com os 274 módulos preservados/cópias com --strip-debug. `capture_a0_sizes.py` conserva metadados newc e verifica a saída em stream até 512 MiB sem mudar o leitor normal. `test_capture_a0_sizes.py` tem 24 controles; retorno 2 mantém A0 aberto. [Guia](../docs/capture-a0-payload-sizes-hzc2.md).
+
 `capture_a0_container.py` substitui payloads de mesmo tamanho e autentica AVB com chave de laboratório, mantendo headers/extensão/rodapé. `check_capture_a0_container.py` confere pins e onze casos com avbtool AOSP; retorno 2 mantém A0 aberto. `test_capture_a0_container.py` tem 29 controles sintéticos com RSA real e recusas, incluídos na CI. [Guia e limites](../docs/capture-a0-container-hzc2.md).
 
 `check_capture_a0_aligned_build.py` audita os 276 módulos de um build completo corrigido, suas fases e exports/CRCs, e compara os conjuntos stock/recompilado. Aceita `--preserved-layout` para os artefatos desempacotados, sem compilar. `capture_a0_aligned_build.py` tem 12 controles novos; a leitura de intermediários admite explicitamente 16384 seções. [Guia](../docs/capture-a0-aligned-full-hzc2.md).

@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "a7733812fe10d99e1ae465715615a76550ac190e",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 251,
+    "new_tests": 24,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_runner_returncode": 2,
+  "independently_mapped_image_byte_identical": true,
+  "file_backed_image_sections": 29,
+  "selected_build_payloads_verified": 275,
+  "post_run_preserved_input_copies_sha256_verified": 275,
+  "ramdisk_entries_verified_per_profile": 296,
+  "recompiled_modules_per_profile": 274,
+  "strip_metadata_and_allocated_section_bytes_preserved_for_all_selected": true,
+  "repeated_image_cpio_gzip_module_bytes_and_hashes_equal": true,
+  "whole_report_hash_not_a_reproduction_requirement": true,
+  "refused_attempt": {
+    "runner_returncode": 1,
+    "stage": "strip-103",
+    "module": "mali_kbase",
+    "error": "GNU strip: file format not recognized",
+    "expected_copy_bytes": 30998000,
+    "observed_copy_bytes": 26214400,
+    "expected_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+    "observed_sha256": "ffac0a4f38e5ffa7c92a2ad39d98b26a33795b13ddd2b43a7eb74ae28f129099",
+    "log_sha256": "83d415e31e32d95a8f61d4a1135298b692f3833d3456bb30a90761a16414bfd4",
+    "success_report_written": false,
+    "mutation_origin_identified": false,
+    "subsequent_complete_runs_reproduced": true,
+    "added_pre_strip_copy_identity_guard": true
+  },
+  "implementation_sha256": {
+    "capture_a0_sizes.py": "d670a887e538b3935db6dad544b8e0718fdf3162fecf787a82a18dab83b56a4b",
+    "check_capture_a0_sizes.py": "d75082ec69ae63079275be11e64e8268a79ed50ec6083a99ca2c9d2e7b2704b7"
+  },
+  "report_sha256": "4a3326f133eb1344620c85be4f8ccb6afe9d54cfc2c9f1149634389b8b783f70",
+  "exact_stock_sizes_matched": false,
+  "stock_image_size_is_physical_partition_measurement": false,
+  "stock_modules_as_built_profile_adopted": false,
+  "strip_debug_package_policy_adopted": false,
+  "padding_applied": false,
+  "modules_dep_regenerated": false,
+  "boot_container_built": false,
+  "module_abi_established": false,
+  "signature_policy_verified": false,
+  "user_independent_verification_completed": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links_checked": 1747,
+  "missing_local_links": []
+}
