@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-03",
+  "timezone": "America/Campo_Grande",
+  "source_base": "0a5c9ec91821cb0949f858ded38ae829a3a78568",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 272,
+    "new_tests": 21,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_runner_returncode": 2,
+  "archive_payloads_verified": 2133,
+  "archive_failures": 0,
+  "destination_readbacks_verified": 275,
+  "recorded_truncation_matches_exact_25MiB_prefix": true,
+  "controlled_prefix_native_refusal_reproduced": true,
+  "later_copy_checks_passed": 3,
+  "separate_tool_call_preflight_copy_checks_passed": 3,
+  "source_stream_hash_is_not_destination_proof": true,
+  "consumer_guards_retained": true,
+  "candidate_symbol_bindings_verified": 8,
+  "file_runtime_delta_accounted_separately": true,
+  "pe_data_file_size_delta": 0,
+  "pe_data_virtual_size_delta": 0,
+  "virtual_tail_without_file_bytes_delta": 0,
+  "image_sha256_matches_PR86": true,
+  "repeated_archive_prefix_layout_results_equal": true,
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "implementation_sha256": {
+    "capture_a0_copy.py": "45e528ec403aaa404d19f7a7f9a9214fe88fe7781f94b48ffb1c0a21d499fe2d",
+    "capture_a0_layout.py": "c7d900d736357e8e1e1b10612ca3927ca80b03f64fc55b805688413ff1e124fc",
+    "check_capture_a0_layout.py": "3c456a0f4053a8a0bb2f82d115c45903487a543531750b9c291adf83b4308ad2",
+    "check_capture_a0_sizes.py": "e73fdc8d9aba4ca770282c33449e2e9e7b4650f5ab107dd232c6469f323dacbe"
+  },
+  "report_sha256": "97e6db3b1da494205a857cf3400ebc0b9526a387c3a9af3071291dafe06adcce",
+  "historical_mutator_identified": false,
+  "producer_build_cause_identified": false,
+  "full_ramdisk_sizing_pipeline_reexecuted": false,
+  "kernel_recompiled": false,
+  "padding_applied": false,
+  "geometry_changed": false,
+  "signature_policy_verified": false,
+  "user_independent_verification_completed": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links_checked": 1760,
+  "missing_local_links": []
+}

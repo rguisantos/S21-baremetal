@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [auditoria da cópia e do delta da Image](capture-a0-copy-image-delta-hzc2.md) confirmou os 2133 payloads preservados e vinculou o hash truncado ao prefixo exato de 25 MiB de mali_kbase. A extração agora relê os destinos. Os 64 KiB foram decompostos na região PE anterior a initdata, com dados/cauda virtual de mesmo tamanho. Autor do corte e causa produtora da redução continuam desconhecidos; nenhum preenchimento ou geometria foi adotado.
+
 O [dimensionamento dos payloads reais](capture-a0-payload-sizes-hzc2.md) gerou a Image de 29403648 bytes, 65536 menor que o payload stock. O ramdisk gzip-9 com 274 módulos como preservados tem 103744124 bytes; cópias com --strip-debug reduzem a 11774882, 242375 menor que o stock, com metadados e seções alocadas preservados. Os payloads menores cabem em capacidade, mas ainda são recusados pela igualdade exata do montador. Sem padding ou geometria nova adotados; assinatura/aceitação Samsung, KMI e política runtime mantêm A0 aberto.
 
 O [contêiner de laboratório com geometria fixa](capture-a0-container-hzc2.md) preserva o round-trip de boot/vendor_boot e assina mutações sintéticas com SHA256_RSA4096 e a chave de teste publicada pelo AOSP. O avbtool fixado confirma os casos positivos e recusa digest/assinatura obsoletos. Isso não monta o kernel/ramdisk real nem valida SignerVer03, confiança da chave ou aceitação Samsung; A0 continua aberto.
@@ -76,8 +78,8 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
-Atualizado em **2026-11-02 (Campo Grande)**. Base técnica revisada:
-[main até o PR #85, a773381](https://github.com/rguisantos/S21-baremetal/commit/a7733812fe10d99e1ae465715615a76550ac190e),
+Atualizado em **2026-11-03 (Campo Grande)**. Base técnica revisada:
+[main até o PR #86, 0a5c9ec](https://github.com/rguisantos/S21-baremetal/commit/0a5c9ec91821cb0949f858ded38ae829a3a78568),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.

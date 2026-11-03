@@ -135,3 +135,8 @@ Essa adaptação não foi escondida em padding automático. Ainda faltam a
 política do pacote/dependências, assinatura/aceitação Samsung (SignerVer03,
 chave e vbmeta pai), KMI e política runtime. A0 permanece aberto; A1 não
 começou e nenhuma operação foi feita no aparelho.
+
+A [auditoria seguinte](capture-a0-copy-image-delta-hzc2.md) confirma que o
+hash da cópia recusada corresponde ao prefixo de 25 MiB do módulo íntegro
+e decompõe os dois deltas da Image por PE. As causas produtoras continuam
+abertas; a extração passou a reler os destinos além de conferir a origem.

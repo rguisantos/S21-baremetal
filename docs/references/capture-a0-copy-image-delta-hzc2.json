@@ -1,0 +1,259 @@
+{
+  "schema": "S21-CAPTURE-A0-LAYOUT-COPY-v1",
+  "source_base": "0a5c9ec91821cb0949f858ded38ae829a3a78568",
+  "implementation_sha256": {
+    "capture_a0_copy.py": "45e528ec403aaa404d19f7a7f9a9214fe88fe7781f94b48ffb1c0a21d499fe2d",
+    "capture_a0_layout.py": "c7d900d736357e8e1e1b10612ca3927ca80b03f64fc55b805688413ff1e124fc",
+    "check_capture_a0_layout.py": "3c456a0f4053a8a0bb2f82d115c45903487a543531750b9c291adf83b4308ad2",
+    "check_capture_a0_sizes.py": "e73fdc8d9aba4ca770282c33449e2e9e7b4650f5ab107dd232c6469f323dacbe"
+  },
+  "archive": {
+    "archive_bytes": 430051580,
+    "archive_sha256": "d649de92e904eff21fd0cf40af0d10b5a10b67a54de54b5b6f234df628e10015",
+    "manifest_sha256": "dc9fa0410b3dc211f47e2c94cae4af0d6607041b5443b657bf2b32172a7ebcbf",
+    "payloads_verified": 2133,
+    "members": 2134,
+    "payload_bytes": 1290269017,
+    "failures": 0,
+    "inventory_sha256": "6cd71851b0cffe1714c5633a7b37eb4f73cb0e739455ecd333924f545567100d"
+  },
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "stock_boot_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+  "source_members": {
+    "arch/arm64/kernel/head.S": {
+      "bytes": 28272,
+      "sha256": "3ed01797b2e3a3060aa3177f09ae0c414665b78b50a2f15f68a4665a2d59f73e"
+    },
+    "arch/arm64/kernel/vmlinux.lds.S": {
+      "bytes": 6576,
+      "sha256": "a5c3a8fe52b5438fb45fc48304a4608885d098232d3087a3eb69f6f4085245ab"
+    },
+    "arch/arm64/kernel/image.h": {
+      "bytes": 2336,
+      "sha256": "3a2fb662a5d42766bcb44c715a6e2f1cb790469dd68ae4a3ca5ac1e791a4ba97"
+    },
+    "arch/arm64/kernel/efi-header.S": {
+      "bytes": 4759,
+      "sha256": "8c9ba2c34dd05a4525032ca26d1cc859c4ca5a3964b95a8b17d30f21b131e845"
+    }
+  },
+  "selected_copy_readbacks_verified": 275,
+  "module_readback": {
+    "bytes_written": 30998000,
+    "source_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+    "destination_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+    "destination_readback_verified": true,
+    "writer_pid": 2,
+    "destination": {
+      "device": 27,
+      "inode": 1322179,
+      "bytes": 30998000,
+      "mtime_ns": 1793720752658945108,
+      "ctime_ns": 1793720752658945108
+    },
+    "volatile_identity_fields_are_not_reproduction_criteria": true
+  },
+  "incident": {
+    "full_bytes": 30998000,
+    "full_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+    "prefix_bytes": 26214400,
+    "prefix_sha256": "ffac0a4f38e5ffa7c92a2ad39d98b26a33795b13ddd2b43a7eb74ae28f129099",
+    "recorded_truncated_sha256": "ffac0a4f38e5ffa7c92a2ad39d98b26a33795b13ddd2b43a7eb74ae28f129099",
+    "recorded_hash_matches_prefix": true,
+    "absent_tail_bytes": 4783600,
+    "section_table_offset": 30993072,
+    "section_table_bytes": 4928,
+    "section_table_fits_prefix": false,
+    "historical_mutator_identified": false
+  },
+  "copy_trials": [
+    {
+      "name": "copy-a.ko",
+      "copy": {
+        "bytes_written": 30998000,
+        "source_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_readback_verified": true,
+        "writer_pid": 2,
+        "destination": {
+          "device": 27,
+          "inode": 1322561,
+          "bytes": 30998000,
+          "mtime_ns": 1793720769670143213,
+          "ctime_ns": 1793720769670143213
+        },
+        "volatile_identity_fields_are_not_reproduction_criteria": true
+      },
+      "later_hash_check_passed": true
+    },
+    {
+      "name": "copy-b.bin",
+      "copy": {
+        "bytes_written": 30998000,
+        "source_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_readback_verified": true,
+        "writer_pid": 2,
+        "destination": {
+          "device": 27,
+          "inode": 1322562,
+          "bytes": 30998000,
+          "mtime_ns": 1793720769994127985,
+          "ctime_ns": 1793720769994127985
+        },
+        "volatile_identity_fields_are_not_reproduction_criteria": true
+      },
+      "later_hash_check_passed": true
+    },
+    {
+      "name": "copy-c.copy",
+      "copy": {
+        "bytes_written": 30998000,
+        "source_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "destination_readback_verified": true,
+        "writer_pid": 2,
+        "destination": {
+          "device": 27,
+          "inode": 1322563,
+          "bytes": 30998000,
+          "mtime_ns": 1793720770326112380,
+          "ctime_ns": 1793720770326112380
+        },
+        "volatile_identity_fields_are_not_reproduction_criteria": true
+      },
+      "later_hash_check_passed": true
+    }
+  ],
+  "controlled_prefix": {
+    "synthetic": true,
+    "native_returncode": 1,
+    "original_unchanged": true,
+    "same_error_class_as_incident": true
+  },
+  "historical_copy_available": false,
+  "historical_log_available": false,
+  "historical_mutation_origin_identified": false,
+  "copy_trials_do_not_prove_historical_cause": true,
+  "layout": {
+    "stock": {
+      "file_bytes": 29469184,
+      "sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0",
+      "linux_header": {
+        "file_bytes": 29469184,
+        "text_offset": 524288,
+        "runtime_image_size": 33976320,
+        "flags": 10
+      },
+      "pe_offset": 64,
+      "pe_runtime_bytes": 33976320,
+      "headers_bytes": 4096,
+      "sections": {
+        ".text": {
+          "virtual_bytes": 27906048,
+          "rva": 4096,
+          "file_bytes": 27906048,
+          "file_offset": 4096
+        },
+        ".data": {
+          "virtual_bytes": 6066176,
+          "rva": 27910144,
+          "file_bytes": 1559040,
+          "file_offset": 27910144
+        }
+      },
+      "primary_branch_target": 26869760,
+      "efi_entry_rva": 26870608,
+      "mapped_file_end": 29469184,
+      "unmapped_file_tail_bytes": 0,
+      "virtual_tail_without_file_bytes": 4507136
+    },
+    "candidate": {
+      "file_bytes": 29403648,
+      "sha256": "9614f9a0ec8e83177ccb2010a585a128fd11f028cb46c417f2c1dbed2c2fd571",
+      "linux_header": {
+        "file_bytes": 29403648,
+        "text_offset": 524288,
+        "runtime_image_size": 33910784,
+        "flags": 10
+      },
+      "pe_offset": 64,
+      "pe_runtime_bytes": 33910784,
+      "headers_bytes": 4096,
+      "sections": {
+        ".text": {
+          "virtual_bytes": 27840512,
+          "rva": 4096,
+          "file_bytes": 27840512,
+          "file_offset": 4096
+        },
+        ".data": {
+          "virtual_bytes": 6066176,
+          "rva": 27844608,
+          "file_bytes": 1559040,
+          "file_offset": 27844608
+        }
+      },
+      "primary_branch_target": 26804224,
+      "efi_entry_rva": 26805072,
+      "mapped_file_end": 29403648,
+      "unmapped_file_tail_bytes": 0,
+      "virtual_tail_without_file_bytes": 4507136
+    },
+    "file_delta_bytes": -65536,
+    "runtime_delta_bytes": -65536,
+    "primary_branch_target_delta": -65536,
+    "efi_entry_rva_delta": -65536,
+    "section_deltas": {
+      ".text": {
+        "virtual_bytes": -65536,
+        "rva": 0,
+        "file_bytes": -65536,
+        "file_offset": 0
+      },
+      ".data": {
+        "virtual_bytes": 0,
+        "rva": -65536,
+        "file_bytes": 0,
+        "file_offset": -65536
+      }
+    },
+    "delta_fully_accounted_by_pe_layout": true,
+    "producer_build_cause_identified": false,
+    "padding_validated": false,
+    "physical_layout_measured": false
+  },
+  "candidate_symbols": {
+    "__efistub_entry": "0xffffffc011a10350",
+    "__initdata_begin": "0xffffffc011b0e000",
+    "_edata": "0xffffffc011c8aa00",
+    "_end": "0xffffffc0120d7000",
+    "_head": "0xffffffc010080000",
+    "_text": "0xffffffc010080000",
+    "efi_header_end": "0xffffffc010081000",
+    "stext": "0xffffffc011a10000"
+  },
+  "candidate_elf_symbol_binding_verified": true,
+  "tools": {
+    "objcopy": {
+      "version": "GNU objcopy (GNU Binutils for Debian) 2.44",
+      "sha256": "80f9027f7aa9c6b85515a049a25d99845cad74d13f18d4b4da8ca9523891c157"
+    },
+    "strip": {
+      "version": "GNU strip (GNU Binutils for Debian) 2.44",
+      "sha256": "7d09ed4eea03511b39cf7c64da06f9f90ec691fbb61e2430c2cab65a5cf50049"
+    },
+    "nm": {
+      "version": "GNU nm (GNU Binutils for Debian) 2.44",
+      "sha256": "507950b76ed983334636dee2c9eba697d159e47918fdd0068a21c1b87f8f7116"
+    }
+  },
+  "producer_build_cause_identified": false,
+  "padding_applied": false,
+  "geometry_changed": false,
+  "signature_policy_verified": false,
+  "user_independent_verification_completed": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false
+}

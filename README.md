@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [auditoria da cópia e do delta da Image](docs/capture-a0-copy-image-delta-hzc2.md) confirmou os 2133 payloads preservados e vinculou o hash truncado ao prefixo exato de 25 MiB de mali_kbase. A extração agora relê os destinos. Os 64 KiB foram decompostos na região PE anterior a initdata, com dados/cauda virtual de mesmo tamanho. Autor do corte e causa produtora da redução continuam desconhecidos; nenhum preenchimento ou geometria foi adotado.
+
 O [dimensionamento dos payloads reais](docs/capture-a0-payload-sizes-hzc2.md) gerou a Image de 29403648 bytes, 65536 menor que o payload stock. O ramdisk gzip-9 com 274 módulos como preservados tem 103744124 bytes; cópias com --strip-debug reduzem a 11774882, 242375 menor que o stock, com metadados e seções alocadas preservados. Os payloads menores cabem em capacidade, mas ainda são recusados pela igualdade exata do montador. Sem padding ou geometria nova adotados; assinatura/aceitação Samsung, KMI e política runtime mantêm A0 aberto.
 
 O [contêiner de laboratório com geometria fixa](docs/capture-a0-container-hzc2.md) preserva o round-trip de boot/vendor_boot e assina mutações sintéticas com SHA256_RSA4096 e a chave de teste publicada pelo AOSP. O avbtool fixado confirma os casos positivos e recusa digest/assinatura obsoletos. Isso não monta o kernel/ramdisk real nem valida SignerVer03, confiança da chave ou aceitação Samsung; A0 continua aberto.
