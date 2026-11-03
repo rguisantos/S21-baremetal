@@ -1,0 +1,143 @@
+{
+  "schema": "S21-A0-COPY-ORIGIN-INVESTIGATION-v1",
+  "base": "b090537371f8d1d245e865c5b924f4ec3833a19b",
+  "scans": [
+    {
+      "commit": "0a5c9ec91821cb0949f858ded38ae829a3a78568",
+      "files_scanned": 311,
+      "matches": [],
+      "inventory_sha256": "592f0b53178f2414353c655b6e46be62cd1611899c4d9276aa8fc39ac6db61fb",
+      "record_files_scanned": 42,
+      "record_matches": [
+        {
+          "path": "docs/capture-a0-payload-sizes-hzc2.md",
+          "line": 99
+        },
+        {
+          "path": "docs/references/capture-a0-payload-sizes-validation-20261102.json",
+          "line": 31
+        },
+        {
+          "path": "worklog.md",
+          "line": 4092
+        }
+      ],
+      "tracked_log_paths": [],
+      "record_inventory_sha256": "e05629d12a77b04c652f7ef003e0feeb121a8a33b699a7e17e6ffbd6e9cc5534",
+      "extractor_sha256": "d75082ec69ae63079275be11e64e8268a79ed50ec6083a99ca2c9d2e7b2704b7",
+      "extractor_function": "def extract_selected(archive, selected, output, vmlinux_pin):\n    wanted = {r['source']:dict(bytes=r['bytes'],sha256=r['sha256'],target=output/(r['name']+'.ko')) for r in selected}\n    require(len(wanted) == len(selected), 'duplicate source path')\n    wanted['vmlinux'] = dict(**vmlinux_pin, target=output/'vmlinux')\n    seen = set(); found = set()\n    with tarfile.open(archive,'r|gz') as tar:\n        for member in tar:\n            path = PurePosixPath(member.name)\n            require(path.parts and not path.is_absolute() and '..' not in path.parts\n                and str(path) == member.name and member.name not in seen, 'artifact path/duplicate')\n            seen.add(member.name)\n            if member.name not in wanted: continue\n            row = wanted[member.name]\n            require(member.isfile() and member.size == row['bytes'], 'artifact selected member type/size')\n            h = hashlib.sha256(); count = 0\n            with tar.extractfile(member) as source, row['target'].open('xb') as dest:\n                while chunk := source.read(1024*1024):\n                    count += len(chunk); require(count <= row['bytes'], 'selected member grew')\n                    h.update(chunk); dest.write(chunk)\n            require(count == row['bytes'] and h.hexdigest() == row['sha256'], 'selected member hash differs')\n            found.add(member.name)\n    require(found == wanted.keys(), 'selected build member missing')\n",
+      "negative_search_is_not_a_proof_about_unrecorded_tools": true
+    },
+    {
+      "commit": "b090537371f8d1d245e865c5b924f4ec3833a19b",
+      "files_scanned": 315,
+      "matches": [],
+      "inventory_sha256": "84d14074a67c5f215f0327718e6de5d8534ead6abd954a77161a9d34c6086acf",
+      "record_files_scanned": 45,
+      "record_matches": [
+        {
+          "path": "docs/capture-a0-copy-image-delta-hzc2.md",
+          "line": 23
+        },
+        {
+          "path": "docs/capture-a0-copy-image-delta-hzc2.md",
+          "line": 32
+        },
+        {
+          "path": "docs/capture-a0-payload-sizes-hzc2.md",
+          "line": 99
+        },
+        {
+          "path": "docs/capture-a0-payload-sizes-hzc2.md",
+          "line": 140
+        },
+        {
+          "path": "docs/references/capture-a0-copy-image-delta-hzc2.json",
+          "line": 59
+        },
+        {
+          "path": "docs/references/capture-a0-copy-image-delta-validation-20261103.json",
+          "line": 19
+        },
+        {
+          "path": "docs/references/capture-a0-payload-sizes-validation-20261102.json",
+          "line": 31
+        },
+        {
+          "path": "worklog.md",
+          "line": 4092
+        },
+        {
+          "path": "worklog.md",
+          "line": 4100
+        }
+      ],
+      "tracked_log_paths": [],
+      "record_inventory_sha256": "dc040977b621c939576fff3bfd51727d6b48c20279b3d378eb8e2a5598429b8a",
+      "extractor_sha256": "e73fdc8d9aba4ca770282c33449e2e9e7b4650f5ab107dd232c6469f323dacbe",
+      "extractor_function": "def extract_selected(archive, selected, output, vmlinux_pin):\n    wanted = {r['source']:dict(bytes=r['bytes'],sha256=r['sha256'],target=output/(r['name']+'.ko')) for r in selected}\n    require(len(wanted) == len(selected), 'duplicate source path')\n    wanted['vmlinux'] = dict(**vmlinux_pin, target=output/'vmlinux')\n    seen = set(); found = set(); readbacks = {}\n    with tarfile.open(archive,'r|gz') as tar:\n        for member in tar:\n            path = PurePosixPath(member.name)\n            require(path.parts and not path.is_absolute() and '..' not in path.parts\n                and str(path) == member.name and member.name not in seen, 'artifact path/duplicate')\n            seen.add(member.name)\n            if member.name not in wanted: continue\n            row = wanted[member.name]\n            require(member.isfile() and member.size == row['bytes'], 'artifact selected member type/size')\n            with tar.extractfile(member) as source:\n                readbacks[member.name] = copy_checked(source,row['target'],row)\n            found.add(member.name)\n    require(found == wanted.keys(), 'selected build member missing')\n    return readbacks\n",
+      "negative_search_is_not_a_proof_about_unrecorded_tools": true
+    }
+  ],
+  "probes": {
+    "cp_version": "cp (GNU coreutils) 9.4",
+    "native_trials": [
+      {
+        "synthetic_limit": false,
+        "returncode": 0,
+        "bytes": 30998000,
+        "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+        "exceeds_25mib": true,
+        "diagnostic": ""
+      },
+      {
+        "synthetic_limit": true,
+        "returncode": 1,
+        "bytes": 26214400,
+        "sha256": "ffac0a4f38e5ffa7c92a2ad39d98b26a33795b13ddd2b43a7eb74ae28f129099",
+        "exceeds_25mib": false,
+        "diagnostic": "/usr/bin/cp: error writing 'build/a0-handoff-published/limited-copy': File too large"
+      }
+    ],
+    "python_stream_copy": {
+      "bytes": 30998000,
+      "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062"
+    },
+    "repository_copy_readback": true,
+    "current_rlimit_fsize": [
+      -1,
+      -1
+    ],
+    "current_free_bytes": 60224684032,
+    "current_filesystem_supports_full_module": true,
+    "historical_process_environment_known": false,
+    "quota_history_available": false,
+    "historical_writer_identified": false,
+    "injected_limit_is_not_a_reproduction_of_the_historical_process": true
+  },
+  "historical_bad_copy_available": false,
+  "historical_log_available": false,
+  "historical_writer_audit_available": false,
+  "conclusion": "not identified; current copy limits tested, historical conditions unknown",
+  "archive": {
+    "bytes": 430051580,
+    "sha256": "d649de92e904eff21fd0cf40af0d10b5a10b67a54de54b5b6f234df628e10015",
+    "manifest_sha256": "dc9fa0410b3dc211f47e2c94cae4af0d6607041b5443b657bf2b32172a7ebcbf",
+    "selected_members_verified": 4,
+    "per_payload_2133_verification_repeated": false
+  },
+  "inputs_checked_and_processed_in_same_immutable_buffers": true,
+  "implementation_sha256": {
+    "capture_a0_inputs.py": "eb8e0062107ea9712209460673c16e885488660c1702cef5902b7945e51b4d90",
+    "capture_a0_kallsyms.py": "ac0aecf95b28bc06580ad71442fd563dc8a9a82ed3e4f88dccceb97d5b16e3df",
+    "check_capture_a0_handoff.py": "2bd51b21cbab93bee195aa746176cde3eb14798d622153e7c61786d51d069546"
+  },
+  "new_pipeline_does_not_certify_other_consumers": true,
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "padding_applied": false,
+  "geometry_changed": false,
+  "user_independent_verification_completed": false
+}

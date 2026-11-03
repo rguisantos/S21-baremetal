@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-03",
+  "timezone": "America/Campo_Grande",
+  "source_base": "b090537371f8d1d245e865c5b924f4ec3833a19b",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 296,
+    "new_tests": 24,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "steps": 9,
+    "status": "passed",
+    "summary_sha256": "246f86d63c3372e9e5d5b1026aebe3f73f4495d0dbfc243d63f72bdc17c8aa5a"
+  },
+  "native_runner_returncode": 2,
+  "reports": {
+    "copy-origin": {
+      "bytes": 7685,
+      "sha256": "41bc341b3baec5495f565c284f8cfce016520bb6ce1698e4a04416f17cc670ef"
+    },
+    "image-producer": {
+      "bytes": 8277,
+      "sha256": "50a647ef181cf1de10ed3483e73d8c8f5a1e5cd9359b543b7ea4884d6eff360f"
+    }
+  },
+  "implementation_sha256": {
+    "capture_a0_inputs.py": "eb8e0062107ea9712209460673c16e885488660c1702cef5902b7945e51b4d90",
+    "capture_a0_kallsyms.py": "ac0aecf95b28bc06580ad71442fd563dc8a9a82ed3e4f88dccceb97d5b16e3df",
+    "check_capture_a0_handoff.py": "2bd51b21cbab93bee195aa746176cde3eb14798d622153e7c61786d51d069546"
+  },
+  "scripts_scanned": [
+    311,
+    315
+  ],
+  "boundary_matches": [
+    0,
+    0
+  ],
+  "native_cp_full_size_passed": true,
+  "controlled_rlimit_failed_explicitly": true,
+  "rlimit_is_historical_attribution": false,
+  "stock_kallsyms_symbols": 131783,
+  "candidate_kallsyms_symbols": 131799,
+  "candidate_system_map_matches": 131799,
+  "pre_alignment_delta_bytes": -24576,
+  "alignment_padding_delta_bytes": -40960,
+  "init_boundary_delta_bytes": -65536,
+  "same_buffer_consumption_verified_for_new_runner": true,
+  "entire_pipeline_consumer_coverage": false,
+  "historical_copy_origin_identified": false,
+  "upstream_build_cause_identified": false,
+  "stock_elf_section_table_available": false,
+  "all_2133_payloads_reverified": false,
+  "kernel_recompiled": false,
+  "native_objcopy_reexecuted": false,
+  "ramdisk_sizing_reexecuted": false,
+  "padding_applied": false,
+  "geometry_changed": false,
+  "user_independent_verification_completed": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "local_markdown_links_checked": 1782,
+  "missing_local_links": [],
+  "local_markdown_link_scope": "project Markdown; excludes tools/ and build/"
+}

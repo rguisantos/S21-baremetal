@@ -140,3 +140,8 @@ A0 permanece aberto: autor/causa do corte histórico, causa produtora da
 redução pré-initdata, política de pacote/dependências e comprimento,
 assinatura/aceitação Samsung/SignerVer03/vbmeta pai, KMI e política runtime.
 A1 não começou; sem decisão OEM ou operação no aparelho.
+
+Continuação do PR #87: [hipóteses do corte](capture-a0-copy-origin-hzc2.md) e
+[alinhamento localizado pelo kallsyms stock](capture-a0-image-producer-hzc2.md).
+A amplificação por ALIGN foi demonstrada; a causa anterior ao alinhamento
+e a identidade do escritor histórico continuam desconhecidas.

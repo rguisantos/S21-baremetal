@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_handoff.py` testa hipóteses de limite/cópia em snapshots fixos e liga kallsyms stock/candidato ao alinhamento pré-init. `capture_a0_inputs.py` entrega aos parsers os buffers imutáveis verificados; `capture_a0_kallsyms.py` valida nomes/offsets/marcadores e limites. `test_capture_a0_handoff.py` acrescenta 24 controles. Retorno 2 mantém A0 aberto. [Origem do corte](../docs/capture-a0-copy-origin-hzc2.md) e [mecanismo da Image](../docs/capture-a0-image-producer-hzc2.md).
+
 `check_capture_a0_layout.py` confere todos os payloads do manifesto, audita a cópia/prefixo e liga o delta ARM64/PE a símbolos do ELF. `capture_a0_copy.py` relê destinos após escrever; `capture_a0_layout.py` limita as conclusões a prefixo/layout. São 21 controles novos, incluídos na CI. [Guia](../docs/capture-a0-copy-image-delta-hzc2.md).
 
 `check_capture_a0_sizes.py` gera Image pela receita fixada, confere o mapeamento ELF independentemente e mede ramdisks com os 274 módulos preservados/cópias com --strip-debug. `capture_a0_sizes.py` conserva metadados newc e verifica a saída em stream até 512 MiB sem mudar o leitor normal. `test_capture_a0_sizes.py` tem 24 controles; retorno 2 mantém A0 aberto. [Guia](../docs/capture-a0-payload-sizes-hzc2.md).

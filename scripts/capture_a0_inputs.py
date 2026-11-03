@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Pinned immutable input buffers for the A0 handoff investigations."""
+import io
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import stat
+import tarfile
+
+from capture_a0_formats import digest, require
+
+MAX_INPUT = 512*1024*1024
+
+
+def checked_buffer(data, pin):
+    require(type(data) is bytes and type(pin['bytes']) is int
+        and 0 <= pin['bytes'] <= MAX_INPUT and isinstance(pin['sha256'], str)
+        and re.fullmatch('[0-9a-f]{64}', pin['sha256']), 'invalid input buffer/pin')
+    require(len(data) == pin['bytes'] and digest(data) == pin['sha256'], 'input buffer identity differs')
+    return data
+
+
+def read_checked(path, pin):
+    require(type(pin['bytes']) is int and 0 <= pin['bytes'] <= MAX_INPUT, 'input read budget')
+    fd = os.open(Path(path), os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, 'rb') as file:
+        require(stat.S_ISREG(os.fstat(file.fileno()).st_mode), 'input must be regular')
+        data = file.read(pin['bytes']+1)
+    # This same immutable object is returned to the parser. The input path is
+    # not reopened by a later consumer in this investigation runner.
+    return checked_buffer(data, pin)
+
+
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        require(key not in result, 'duplicate JSON key'); result[key] = value
+    return result
+
+
+def select_members(archive, wanted, manifest=False, source_tree=False):
+    require(type(archive) is bytes and len(archive) <= MAX_INPUT, 'archive buffer bound')
+    wanted = set(wanted); selected = {}; seen = set(); total = 0; raw_manifest = None
+    with tarfile.open(fileobj=io.BytesIO(archive), mode='r|gz') as tar:
+        for member in tar:
+            p = PurePosixPath(member.name)
+            require(p.parts and not p.is_absolute() and '..' not in p.parts
+                and str(p) == member.name and '\\' not in member.name
+                and member.name not in seen
+                and 0 <= member.size <= MAX_INPUT and len(seen) < (150000 if source_tree else 10000), 'archive path/type/budget')
+            seen.add(member.name); total += member.size
+            require(total <= 2*1024**3, 'archive logical byte budget')
+            if source_tree and not member.isfile():
+                require(member.name not in wanted and member.size == 0
+                    and (member.isdir() or member.issym() or member.islnk()), 'unsupported source tree entry')
+                continue  # Unselected metadata only; nothing is extracted/followed.
+            require(member.isfile(), 'archive member must be regular')
+            if member.name not in wanted and not (manifest and member.name == 'manifest.json'): continue
+            limit = 2*1024*1024 if member.name == 'manifest.json' else MAX_INPUT
+            require(member.size <= limit, 'selected member bound')
+            with tar.extractfile(member) as stream: data = stream.read(member.size+1)
+            require(len(data) == member.size, 'selected member truncated')
+            if member.name == 'manifest.json': raw_manifest = data
+            else: selected[member.name] = data
+    require(selected.keys() == wanted, 'selected member missing')
+    if manifest:
+        require(raw_manifest is not None, 'manifest missing')
+        meta = json.loads(raw_manifest, object_pairs_hook=unique_object)
+        require(meta.get('schema') == 'S21-CANDIDATE-ARTIFACTS-v1' and isinstance(meta.get('files'), dict),
+            'manifest schema')
+        for name, data in selected.items(): checked_buffer(data, meta['files'][name])
+    return selected, raw_manifest

@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [investigação da origem do corte](capture-a0-copy-origin-hzc2.md) não encontrou limite de 25 MiB nos scripts fixados; um controle RLIMIT_FSIZE reproduziu o prefixo com erro explícito, sem atribuição histórica. O [mecanismo do delta da Image](capture-a0-image-producer-hzc2.md) foi localizado pelo kallsyms stock: -24576 antes de ALIGN e -40960 de padding somam -65536. A opção/objeto/função anterior continua desconhecida. Sem preenchimento ou geometria adotados; A0 aberto.
+
 A [auditoria da cópia e do delta da Image](capture-a0-copy-image-delta-hzc2.md) confirmou os 2133 payloads preservados e vinculou o hash truncado ao prefixo exato de 25 MiB de mali_kbase. A extração agora relê os destinos. Os 64 KiB foram decompostos na região PE anterior a initdata, com dados/cauda virtual de mesmo tamanho. Autor do corte e causa produtora da redução continuam desconhecidos; nenhum preenchimento ou geometria foi adotado.
 
 O [dimensionamento dos payloads reais](capture-a0-payload-sizes-hzc2.md) gerou a Image de 29403648 bytes, 65536 menor que o payload stock. O ramdisk gzip-9 com 274 módulos como preservados tem 103744124 bytes; cópias com --strip-debug reduzem a 11774882, 242375 menor que o stock, com metadados e seções alocadas preservados. Os payloads menores cabem em capacidade, mas ainda são recusados pela igualdade exata do montador. Sem padding ou geometria nova adotados; assinatura/aceitação Samsung, KMI e política runtime mantêm A0 aberto.

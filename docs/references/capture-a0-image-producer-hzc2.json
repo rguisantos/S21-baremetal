@@ -1,0 +1,305 @@
+{
+  "stock": {
+    "symbols": {
+      "_etext": 15532032,
+      "__start_rodata": 15532032,
+      "__end_rodata": 26681344,
+      "__start_notes": 26797032,
+      "__stop_notes": 26797080,
+      "idmap_pg_dir": 26800128,
+      "idmap_pg_end": 26812416,
+      "reserved_pg_dir": 26812416,
+      "swapper_pg_dir": 26816512,
+      "stext": 26869760,
+      "__init_begin": 26869760,
+      "__initdata_begin": 27910144,
+      "_edata": 29469184,
+      "_end": 33976320
+    },
+    "before_segment_align": 26820608,
+    "segment_align": 65536,
+    "zero_alignment_bytes": 49152,
+    "rodata_to_page_tables_bytes": 11288576,
+    "init_to_initdata_bytes": 1040384
+  },
+  "candidate": {
+    "symbols": {
+      "_etext": 15532032,
+      "__start_rodata": 15532032,
+      "__end_rodata": 26656768,
+      "__start_notes": 26772456,
+      "__stop_notes": 26772504,
+      "idmap_pg_dir": 26775552,
+      "idmap_pg_end": 26787840,
+      "reserved_pg_dir": 26787840,
+      "swapper_pg_dir": 26791936,
+      "stext": 26804224,
+      "__init_begin": 26804224,
+      "__initdata_begin": 27844608,
+      "_edata": 29403648,
+      "_end": 33910784
+    },
+    "before_segment_align": 26796032,
+    "segment_align": 65536,
+    "zero_alignment_bytes": 8192,
+    "rodata_to_page_tables_bytes": 11264000,
+    "init_to_initdata_bytes": 1040384
+  },
+  "kallsyms": {
+    "stock": {
+      "symbol_count": 131783,
+      "relative_base": "0xffffffc010080000",
+      "offsets_at": 19680824,
+      "relative_base_at": 20207960,
+      "names_at": 20207976,
+      "names_bytes": 2873900,
+      "markers_at": 23081880,
+      "token_table_at": 23083944,
+      "token_index_at": 23084800,
+      "tables_sha256": "0c34395a70ddf41854d98a617add16cebb4f4d58eb998c685cba1bd6193b1196",
+      "all_markers_verified": true,
+      "image_boundaries_verified": true
+    },
+    "candidate": {
+      "symbol_count": 131799,
+      "relative_base": "0xffffffc010080000",
+      "offsets_at": 19659352,
+      "relative_base_at": 20186552,
+      "names_at": 20186568,
+      "names_bytes": 2874235,
+      "markers_at": 23060808,
+      "token_table_at": 23062872,
+      "token_index_at": 23063728,
+      "tables_sha256": "f3ae40c67750ed9ae929a21edc6b88cf4531de2f81dcd6c55be31d486b2be992",
+      "all_markers_verified": true,
+      "image_boundaries_verified": true
+    }
+  },
+  "pre_alignment_delta_bytes": -24576,
+  "alignment_padding_delta_bytes": -40960,
+  "init_boundary_delta_bytes": -65536,
+  "source_producer_cause_identified": false,
+  "stock_elf_section_table_available": false,
+  "candidate_system_map_check": {
+    "decoded_symbols_matched": 131799,
+    "system_map_sha256": "bb66bf96a5b801e14874862a5494a4fd3e598e225557d89b164f1157f5859f11"
+  },
+  "candidate_file_backed_sections": [
+    {
+      "name": ".head.text",
+      "offset": 0,
+      "bytes": 4096
+    },
+    {
+      "name": ".text",
+      "offset": 4096,
+      "bytes": 15507748
+    },
+    {
+      "name": ".rodata",
+      "offset": 15532032,
+      "bytes": 10842061
+    },
+    {
+      "name": ".uh_ro",
+      "offset": 26374144,
+      "bytes": 7953
+    },
+    {
+      "name": "\".mmuoff.data.write\"",
+      "offset": 26382104,
+      "bytes": 8
+    },
+    {
+      "name": ".pci_fixup",
+      "offset": 26382112,
+      "bytes": 13368
+    },
+    {
+      "name": "__ksymtab",
+      "offset": 26395480,
+      "bytes": 62280
+    },
+    {
+      "name": "__ksymtab_gpl",
+      "offset": 26457760,
+      "bytes": 57552
+    },
+    {
+      "name": "__kcrctab",
+      "offset": 26515312,
+      "bytes": 10380
+    },
+    {
+      "name": "__kcrctab_gpl",
+      "offset": 26525692,
+      "bytes": 9592
+    },
+    {
+      "name": "__ksymtab_strings",
+      "offset": 26535284,
+      "bytes": 101527
+    },
+    {
+      "name": "__secdbg_member_table",
+      "offset": 26636816,
+      "bytes": 2808
+    },
+    {
+      "name": "__param",
+      "offset": 26639624,
+      "bytes": 13760
+    },
+    {
+      "name": "__modver",
+      "offset": 26653384,
+      "bytes": 192
+    },
+    {
+      "name": "__ex_table",
+      "offset": 26656768,
+      "bytes": 11824
+    },
+    {
+      "name": ".modinfo",
+      "offset": 26668592,
+      "bytes": 103861
+    },
+    {
+      "name": ".notes",
+      "offset": 26772456,
+      "bytes": 48
+    },
+    {
+      "name": ".init.text",
+      "offset": 26804224,
+      "bytes": 515220
+    },
+    {
+      "name": ".exit.text",
+      "offset": 27319444,
+      "bytes": 26132
+    },
+    {
+      "name": ".altinstructions",
+      "offset": 27345576,
+      "bytes": 348012
+    },
+    {
+      "name": ".altinstr_replacement",
+      "offset": 27693588,
+      "bytes": 148344
+    },
+    {
+      "name": ".init.data",
+      "offset": 27844608,
+      "bytes": 94968
+    },
+    {
+      "name": ".data..percpu",
+      "offset": 27942912,
+      "bytes": 91736
+    },
+    {
+      "name": ".relr.dyn",
+      "offset": 28034648,
+      "bytes": 32128
+    },
+    {
+      "name": ".data",
+      "offset": 28114944,
+      "bytes": 1152208
+    },
+    {
+      "name": "__bug_table",
+      "offset": 29267152,
+      "bytes": 133500
+    },
+    {
+      "name": ".mmuoff.data.write",
+      "offset": 29401088,
+      "bytes": 16
+    },
+    {
+      "name": ".mmuoff.data.read",
+      "offset": 29403136,
+      "bytes": 8
+    },
+    {
+      "name": ".pecoff_edata_padding",
+      "offset": 29403144,
+      "bytes": 504
+    }
+  ],
+  "candidate_image": {
+    "bytes": 29403648,
+    "sha256": "9614f9a0ec8e83177ccb2010a585a128fd11f028cb46c417f2c1dbed2c2fd571"
+  },
+  "stock_image": {
+    "bytes": 29469184,
+    "sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0"
+  },
+  "config_sha256": {
+    "stock": "55dde3bb7c52e99eccdb82b925a4b831c03fd32a19a2b64bdf7bda993e92a2e1",
+    "candidate": "5e82e452e6a5bc008f191e971f0cc21cd97be5cad7965542403dedc67b45570a"
+  },
+  "source_members": {
+    "arch/arm64/include/asm/kernel-pgtable.h": {
+      "bytes": 5196,
+      "sha256": "5e66b6b8d8b6425b45914f6e4aacc9294cab86ed7d4748796da67f80b76ea62a"
+    },
+    "arch/arm64/include/asm/memory.h": {
+      "bytes": 11770,
+      "sha256": "98536235220c2246a1e78caf166b98f91605f93ff2098140f7d2c726fb4f3058"
+    },
+    "arch/arm64/boot/Makefile": {
+      "bytes": 1200,
+      "sha256": "6795ca6aa6f1e6e153588a472921db194be11dc62939f4680cd97dd220285fa8"
+    },
+    "arch/arm64/kernel/vmlinux.lds.S": {
+      "bytes": 6576,
+      "sha256": "a5c3a8fe52b5438fb45fc48304a4608885d098232d3087a3eb69f6f4085245ab"
+    },
+    "arch/arm64/kernel/image.h": {
+      "bytes": 2336,
+      "sha256": "3a2fb662a5d42766bcb44c715a6e2f1cb790469dd68ae4a3ca5ac1e791a4ba97"
+    },
+    "arch/arm64/kernel/efi-header.S": {
+      "bytes": 4759,
+      "sha256": "8c9ba2c34dd05a4525032ca26d1cc859c4ca5a3964b95a8b17d30f21b131e845"
+    },
+    "kernel/kallsyms.c": {
+      "bytes": 18985,
+      "sha256": "39d7be3ae9047b80e0a544b74cd00b636ed307cc77c24c0462c38b01ab8c2d58"
+    },
+    "scripts/kallsyms.c": {
+      "bytes": 18452,
+      "sha256": "22cd67f5007f0e614ef85c0b3b6e2d347a8a41ec804246802832f668e3b3c99a"
+    }
+  },
+  "stock_build_recipe_available": false,
+  "schema": "S21-A0-IMAGE-PRODUCER-INVESTIGATION-v1",
+  "base": "b090537371f8d1d245e865c5b924f4ec3833a19b",
+  "conclusion": "alignment mechanism accounted; upstream option/object/function not identified",
+  "archive": {
+    "bytes": 430051580,
+    "sha256": "d649de92e904eff21fd0cf40af0d10b5a10b67a54de54b5b6f234df628e10015",
+    "manifest_sha256": "dc9fa0410b3dc211f47e2c94cae4af0d6607041b5443b657bf2b32172a7ebcbf",
+    "selected_members_verified": 4,
+    "per_payload_2133_verification_repeated": false
+  },
+  "inputs_checked_and_processed_in_same_immutable_buffers": true,
+  "implementation_sha256": {
+    "capture_a0_inputs.py": "eb8e0062107ea9712209460673c16e885488660c1702cef5902b7945e51b4d90",
+    "capture_a0_kallsyms.py": "ac0aecf95b28bc06580ad71442fd563dc8a9a82ed3e4f88dccceb97d5b16e3df",
+    "check_capture_a0_handoff.py": "2bd51b21cbab93bee195aa746176cde3eb14798d622153e7c61786d51d069546"
+  },
+  "new_pipeline_does_not_certify_other_consumers": true,
+  "source_archive_sha256": "c5ad9994240e67ebdc40878c191be040bf30db398bc8513ea1f156eaebd86bf2",
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false,
+  "padding_applied": false,
+  "geometry_changed": false,
+  "user_independent_verification_completed": false
+}
