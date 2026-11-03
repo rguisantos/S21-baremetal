@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`capture_a0_container.py` substitui payloads de mesmo tamanho e autentica AVB com chave de laboratório, mantendo headers/extensão/rodapé. `check_capture_a0_container.py` confere pins e onze casos com avbtool AOSP; retorno 2 mantém A0 aberto. `test_capture_a0_container.py` tem 29 controles sintéticos com RSA real e recusas, incluídos na CI. [Guia e limites](../docs/capture-a0-container-hzc2.md).
+
 `check_capture_a0_aligned_build.py` audita os 276 módulos de um build completo corrigido, suas fases e exports/CRCs, e compara os conjuntos stock/recompilado. Aceita `--preserved-layout` para os artefatos desempacotados, sem compilar. `capture_a0_aligned_build.py` tem 12 controles novos; a leitura de intermediários admite explicitamente 16384 seções. [Guia](../docs/capture-a0-aligned-full-hzc2.md).
 
 `check_capture_a0_module_stages.py` mede as fronteiras do build isolado de s2mpb02_mfd, conserva os intermediários e testa o alinhamento de flags ThinLTO. `capture_a0_module_stages.py` valida cópias, comandos e cobertura; 16 controles novos em `test_capture_a0_module_stages.py`. O runner de build completo aceita `--compile --align-module-prelink`. [Guia](../docs/capture-a0-module-stages-hzc2.md).

@@ -1,0 +1,17 @@
+{
+  "schema": "S21-CAPTURE-A0-CONTAINER-PINS-v1",
+  "aosp_repository": "https://android.googlesource.com/platform/external/avb",
+  "aosp_tag": "android-15.0.0_r1",
+  "aosp_commit": "25a14f7e3e6493a7f1a42aa9f78209d4dbe848e9",
+  "avbtool": {
+    "path": "avbtool.py",
+    "bytes": 204713,
+    "sha256": "78a50c8620985709f2e131cf948dcd66ecc43f09ed735e09d75751a7e21e4eb8"
+  },
+  "public_test_key": {
+    "path": "test/data/testkey_rsa4096.pem",
+    "bytes": 3243,
+    "sha256": "6a224754880a57ab9cbd308267cd157d94cf05a1c8cb851aec4090e045d24121",
+    "purpose": "Public upstream laboratory fixture; never a device or production key"
+  }
+}

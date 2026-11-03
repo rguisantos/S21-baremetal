@@ -1,0 +1,525 @@
+{
+  "schema": "S21-CAPTURE-A0-CONTAINER-v1",
+  "source_base": "ed262c44b8762a9b8e3f2e7ad464a5fcbeae34bc",
+  "tools": {
+    "schema": "S21-CAPTURE-A0-CONTAINER-PINS-v1",
+    "aosp_repository": "https://android.googlesource.com/platform/external/avb",
+    "aosp_tag": "android-15.0.0_r1",
+    "aosp_commit": "25a14f7e3e6493a7f1a42aa9f78209d4dbe848e9",
+    "avbtool": {
+      "path": "avbtool.py",
+      "bytes": 204713,
+      "sha256": "78a50c8620985709f2e131cf948dcd66ecc43f09ed735e09d75751a7e21e4eb8"
+    },
+    "public_test_key": {
+      "path": "test/data/testkey_rsa4096.pem",
+      "bytes": 3243,
+      "sha256": "6a224754880a57ab9cbd308267cd157d94cf05a1c8cb851aec4090e045d24121",
+      "purpose": "Public upstream laboratory fixture; never a device or production key"
+    }
+  },
+  "implementation_sha256": {
+    "capture_a0_container.py": "a643128aadadd77c57bdae12b9915da3d463413f108de9f2a5e6aa796c6581af",
+    "check_capture_a0_container.py": "eaf9fec6510690f7eb9753fece329099fe6fb3a8181c32e6e2e6f16519aa71c6"
+  },
+  "openssl": {
+    "version": "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)",
+    "executable_sha256": "204951390b4f82d39f98b0dd0fa54502f27256c8d2fd08b55a5e3781408ae83b"
+  },
+  "public_lab_key_sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6",
+  "no_change_controls": {
+    "boot.img": {
+      "bytes": 67108864,
+      "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+      "byte_identical": true,
+      "aosp_verification": {
+        "returncode": 0,
+        "expected_success": true,
+        "hash_mismatch": false,
+        "signature_failure": false,
+        "lab_key_explicitly_supplied": false,
+        "log_hash_depends_on_output_path": true,
+        "output_sha256": "71c451122a500d8452063e2dc11820ec8dd1a14c7a316e01ff8a07b010eebdd1"
+      },
+      "packer_exercised": true
+    },
+    "vendor_boot.img": {
+      "bytes": 67108864,
+      "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+      "byte_identical": true,
+      "aosp_verification": {
+        "returncode": 0,
+        "expected_success": true,
+        "hash_mismatch": false,
+        "signature_failure": false,
+        "lab_key_explicitly_supplied": false,
+        "log_hash_depends_on_output_path": true,
+        "output_sha256": "2e7932d00410944f48d030289c530fc49d2a82827bd6b720d87a961ff0d3a241"
+      },
+      "packer_exercised": true
+    },
+    "dtbo.img": {
+      "bytes": 8388608,
+      "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34",
+      "byte_identical": true,
+      "aosp_verification": {
+        "returncode": 0,
+        "expected_success": true,
+        "hash_mismatch": false,
+        "signature_failure": false,
+        "lab_key_explicitly_supplied": false,
+        "log_hash_depends_on_output_path": true,
+        "output_sha256": "0e1c5c5fcc36c2f55074e8d663f9416f71912449449bd4244abb7df41bd6c561"
+      },
+      "packer_exercised": false
+    }
+  },
+  "trials": {
+    "boot.img": {
+      "component": "kernel",
+      "mutation_offset": 29473279,
+      "mutation_xor": 1,
+      "synthetic_mutation_not_a_runnable_payload": true,
+      "same_key_repack_byte_identical": true,
+      "variants": {
+        "stale": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "826befb90ef1ce21da560aeb920a3fcc3834d8cb9e55928c3afd49d533a84d00",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "kernel",
+                "bytes": 29469184,
+                "before_sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0",
+                "after_sha256": "0d51a9cdedf27ed259db605e5e496cedb93a69339e44705499257a46f8a0601b"
+              },
+              {
+                "name": "ramdisk",
+                "bytes": 701558,
+                "before_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28",
+                "after_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 800,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "original_hash_extent": [
+              0,
+              30180128
+            ],
+            "output_hash_extent": [
+              0,
+              30180128
+            ],
+            "hash_descriptors_match": false,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": false,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": true,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": false,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "b8a1130f7f045bf393825d2ccfff197c1ded74f6a06be869bc6e3956ac6f97aa"
+          }
+        },
+        "hash-only": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "ec353ec56571e6a03ee6e33238f9520e5a0bc7dec274e9b198f20965f4b8da24",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "kernel",
+                "bytes": 29469184,
+                "before_sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0",
+                "after_sha256": "0d51a9cdedf27ed259db605e5e496cedb93a69339e44705499257a46f8a0601b"
+              },
+              {
+                "name": "ramdisk",
+                "bytes": 701558,
+                "before_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28",
+                "after_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 800,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "original_hash_extent": [
+              0,
+              30180128
+            ],
+            "output_hash_extent": [
+              0,
+              30180128
+            ],
+            "hash_descriptors_match": true,
+            "rsa_signature_matches_embedded_key": false,
+            "embedded_key_changed": false,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": false,
+            "signature_failure": true,
+            "lab_key_explicitly_supplied": false,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "de72dbeef85ff032d2ae5f7a0aaec61e85dbcfc3f15c8d8356ed697508390b0f"
+          }
+        },
+        "lab-signed": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "23dbfab8d4b18457a4e4ea4286f98fa2ffa6b015dfd5d2794a22614e10502960",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "kernel",
+                "bytes": 29469184,
+                "before_sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0",
+                "after_sha256": "0d51a9cdedf27ed259db605e5e496cedb93a69339e44705499257a46f8a0601b"
+              },
+              {
+                "name": "ramdisk",
+                "bytes": 701558,
+                "before_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28",
+                "after_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 800,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6",
+            "original_hash_extent": [
+              0,
+              30180128
+            ],
+            "output_hash_extent": [
+              0,
+              30180128
+            ],
+            "hash_descriptors_match": true,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": true,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 0,
+            "expected_success": true,
+            "hash_mismatch": false,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": true,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "272c9f4018f7777adec68d176eef59b119d88d8af18feb105bd1a9e1ba429f83"
+          }
+        },
+        "tampered": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "7d5f0c73c77fe78ea84ebabf6813c97f562c1e79c7bcac05f650044164a8b9a3",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "kernel",
+                "bytes": 29469184,
+                "before_sha256": "28cb5598e8287da2e4fe238030d2b2f4dd96233f458a4bccf6d17688b6ad2bb0",
+                "after_sha256": "cf89d2da19230eb306fc0226ec02d16dbb5a9f60889d5595370ee9a55da9b87f"
+              },
+              {
+                "name": "ramdisk",
+                "bytes": 701558,
+                "before_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28",
+                "after_sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 800,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6",
+            "original_hash_extent": [
+              0,
+              30180128
+            ],
+            "output_hash_extent": [
+              0,
+              30180128
+            ],
+            "hash_descriptors_match": false,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": true,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": true,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": true,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "6d2f8244fcca9b47a185ccb6aed4fed5b580d3847b6fcdc9a1cfb6f268d0f032"
+          }
+        }
+      }
+    },
+    "vendor_boot.img": {
+      "component": "ramdisk",
+      "mutation_offset": 12021352,
+      "mutation_xor": 1,
+      "synthetic_mutation_not_a_runnable_payload": true,
+      "same_key_repack_byte_identical": true,
+      "variants": {
+        "stale": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "faa8d1397672c371b89a92b9adaf3ceb1bf498f73ab314f7e5c92fa40705a3f3",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "ramdisk",
+                "bytes": 12017257,
+                "before_sha256": "2d926b819764ff7c985db7dc75d7a46152dc14ee3189f2c13c91123b5c807857",
+                "after_sha256": "451cd1e6df9a51af9f6f082e47f06082e364d97ed093a0a599992f37bf22a5e5"
+              },
+              {
+                "name": "dtb",
+                "bytes": 389940,
+                "before_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f",
+                "after_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 784,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "original_hash_extent": [
+              0,
+              12415760
+            ],
+            "output_hash_extent": [
+              0,
+              12415760
+            ],
+            "hash_descriptors_match": false,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": false,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": true,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": false,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "603b18f22cdc8b51fdbcfb8baf21cf3996e2b9f75a6b649c90b3299e85bf09d6"
+          }
+        },
+        "hash-only": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "4f6f1b33c304bdca7dafdae73215c725ea2778a3d3b20717ac8b2842afbdef3c",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "ramdisk",
+                "bytes": 12017257,
+                "before_sha256": "2d926b819764ff7c985db7dc75d7a46152dc14ee3189f2c13c91123b5c807857",
+                "after_sha256": "451cd1e6df9a51af9f6f082e47f06082e364d97ed093a0a599992f37bf22a5e5"
+              },
+              {
+                "name": "dtb",
+                "bytes": 389940,
+                "before_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f",
+                "after_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 784,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "original_hash_extent": [
+              0,
+              12415760
+            ],
+            "output_hash_extent": [
+              0,
+              12415760
+            ],
+            "hash_descriptors_match": true,
+            "rsa_signature_matches_embedded_key": false,
+            "embedded_key_changed": false,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": false,
+            "signature_failure": true,
+            "lab_key_explicitly_supplied": false,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "9d2bdeaf290f21c3ef8775e00ab4b0f5f48ccbd18425973892093c9f586195bc"
+          }
+        },
+        "lab-signed": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "fe92f8dfd1c6f4e1b8da0f4d931b94332c4bec2ffc9f9350fe300f137214bf4b",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "ramdisk",
+                "bytes": 12017257,
+                "before_sha256": "2d926b819764ff7c985db7dc75d7a46152dc14ee3189f2c13c91123b5c807857",
+                "after_sha256": "451cd1e6df9a51af9f6f082e47f06082e364d97ed093a0a599992f37bf22a5e5"
+              },
+              {
+                "name": "dtb",
+                "bytes": 389940,
+                "before_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f",
+                "after_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 784,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6",
+            "original_hash_extent": [
+              0,
+              12415760
+            ],
+            "output_hash_extent": [
+              0,
+              12415760
+            ],
+            "hash_descriptors_match": true,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": true,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 0,
+            "expected_success": true,
+            "hash_mismatch": false,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": true,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "62a3036d4d727e132db15d11f8b4758086c0ee9735b63ee52408b6d86454f78f"
+          }
+        },
+        "tampered": {
+          "result": {
+            "bytes": 67108864,
+            "sha256": "d31a3b6624b061ac7e818863d6579af106e856682a696e1d967af6aad19a1c7d",
+            "byte_identical": false,
+            "payloads": [
+              {
+                "name": "ramdisk",
+                "bytes": 12017257,
+                "before_sha256": "2d926b819764ff7c985db7dc75d7a46152dc14ee3189f2c13c91123b5c807857",
+                "after_sha256": "a7ff2bec982b734fb08b4cd1496a7f67f1cb2713fd190f05feb1d28a4645e168"
+              },
+              {
+                "name": "dtb",
+                "bytes": 389940,
+                "before_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f",
+                "after_sha256": "f3f4cd4f91f7286a40e27ab47222d88162ca41673b6eee3306a3421fd93d5b3f"
+              }
+            ],
+            "android_header_and_non_vbmeta_non_payload_bytes_preserved": true,
+            "avb_header_preserved": true,
+            "footer_preserved": true,
+            "signed_extension_bytes": 784,
+            "opaque_extension_bytes": 4096,
+            "original_embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+            "output_embedded_key_sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6",
+            "original_hash_extent": [
+              0,
+              12415760
+            ],
+            "output_hash_extent": [
+              0,
+              12415760
+            ],
+            "hash_descriptors_match": false,
+            "rsa_signature_matches_embedded_key": true,
+            "embedded_key_changed": true,
+            "key_trust_established": false,
+            "samsung_signature_validated": false,
+            "payload_semantics_validated": false,
+            "physical_acceptance_established": false
+          },
+          "aosp_verification": {
+            "returncode": 1,
+            "expected_success": false,
+            "hash_mismatch": true,
+            "signature_failure": false,
+            "lab_key_explicitly_supplied": true,
+            "log_hash_depends_on_output_path": true,
+            "output_sha256": "a4fd25f8bb16d74bf6a29b1057e83c46cfd7d9e386ec71d1383dc6449e7ce126"
+          }
+        }
+      }
+    }
+  },
+  "fixed_geometry_lab_repack_checks_passed": true,
+  "runnable_payload_package_built": false,
+  "samsung_signerver03_regenerated": false,
+  "samsung_signerver03_validated": false,
+  "key_trust_established": false,
+  "parent_vbmeta_updated": false,
+  "signature_policy_verified": false,
+  "physical_acceptance_established": false,
+  "module_abi_established": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false
+}

@@ -118,6 +118,11 @@ unidades/capacidades da PIT ainda não medidas.
 Não há comandos de desbloqueio, flash, reparticionamento ou escrita de
 armazenamento neste documento. Nenhum pacote físico está pronto.
 
+O [montador offline com geometria fixa](capture-a0-container-hzc2.md) já confere
+mutações sintéticas com uma chave de laboratório e preserva os bytes opacos.
+Isso ainda não monta os payloads reais nem demonstra validade SignerVer03,
+confiança da chave ou aceitação Samsung; o gate A0 do contêiner continua aberto.
+
 ## Desenho da captura: produtor e vida dos bytes
 
 O fluxo proposto é:

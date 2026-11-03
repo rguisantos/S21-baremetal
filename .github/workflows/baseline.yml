@@ -25,7 +25,7 @@ jobs:
       - name: Install system tools
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3
+          sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3 openssl
           dpkg-query -W gcc gcc-aarch64-linux-gnu binutils binutils-aarch64-linux-gnu qemu-system-arm python3
       - name: Check ELF symbol reader with localized headers
         run: python3 scripts/test_elf_symbols.py
@@ -41,6 +41,7 @@ jobs:
           python3 scripts/test_capture_a0_stack_versions.py
           python3 scripts/test_capture_a0_module_stages.py
           python3 scripts/test_capture_a0_aligned_build.py
+          python3 scripts/test_capture_a0_container.py
       - name: Check static pre-copy witness refusals
         run: python3 scripts/test_lk_precopy_measurement.py
       - name: Check embedded AVB key format and consumer decoding

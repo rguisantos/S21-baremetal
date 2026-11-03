@@ -1,8 +1,10 @@
 # Guia da documentação
 
+O [contêiner de laboratório com geometria fixa](capture-a0-container-hzc2.md) preserva o round-trip de boot/vendor_boot e assina mutações sintéticas com SHA256_RSA4096 e a chave de teste publicada pelo AOSP. O avbtool fixado confirma os casos positivos e recusa digest/assinatura obsoletos. Isso não monta o kernel/ramdisk real nem valida SignerVer03, confiança da chave ou aceitação Samsung; A0 continua aberto.
+
 O [build completo com ThinLTO alinhado](capture-a0-aligned-full-hzc2.md) concluiu vmlinux e 276 módulos. O conjunto selecionado de 274 recompilados tem 13722 imports e 13996 versões, sem lacunas ou CRCs divergentes nas regras verificadas. A proposta offline passa ao kernel e módulos desse mesmo build. KMI, política runtime e contêiner modificado continuam pendentes em A0; o aparelho permanece intocado.
 
-A [proposta de módulos HZC2](capture-a0-module-policy-hzc2.md) seleciona como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
+A [proposta anterior de módulos HZC2](capture-a0-module-policy-hzc2.md) selecionava como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
 
 O [build p3s acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e 276 módulos com LTO/CFI/compat32 preservados. O Module.symvers final cobriu os 2763 requisitos de CRC stock, sem ausências ou divergências. Os seis CRCs antes ausentes chegaram aos agregados e ao linker; a falha anterior não se reproduziu. A0 segue aberto para compatibilidade/política de módulos, proveniência KMI e contêiner.
 
@@ -90,6 +92,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Preparação do userland HackiOS](hackios-userland-host.md): quatro falhas trazidas no relato GLM, seis fixtures de jobs, quatro controles Bash e patch conferido.
 - [Trecho final LK HZC2](lk-final-edges.md): grafo estático limitado, callbacks conhecidos, leituras SCTLR_EL1 e fronteira do SMC; 29 testes de host.
 - [Diagnóstico de entrada EL1/EL2](entry-diagnostic.md): Image independente, registro de estado e 12 casos QEMU no teste padrão; leitor de símbolos corrigido para cabeçalhos traduzidos, com cinco regressões no CI.
+- [A0: contêiner offline com geometria fixa](capture-a0-container-hzc2.md): preservação das regiões opacas, controles RSA/hash e conferência AOSP com chave de laboratório; sem aceitação Samsung.
 - [A0: build completo alinhado e auditoria](capture-a0-aligned-full-hzc2.md): 276 módulos conferidos por etapa, 274 selecionados sem lacunas de versão e proposta de conjunto coerente.
 - [A0: etapas LTO e correção candidata](capture-a0-module-stages-hzc2.md): diferença de imports reproduzida, snapshots conservados e 37 versões no módulo isolado corrigido.
 - [A0: helpers de pilha e modpost](capture-a0-stack-versions-hzc2.md): usos reais de SSP, geração nativa de 37 registros e fronteira da causa ainda não medida.
