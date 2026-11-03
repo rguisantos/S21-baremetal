@@ -123,6 +123,11 @@ mutações sintéticas com uma chave de laboratório e preserva os bytes opacos.
 Isso ainda não monta os payloads reais nem demonstra validade SignerVer03,
 confiança da chave ou aceitação Samsung; o gate A0 do contêiner continua aberto.
 
+O [dimensionamento dos payloads](capture-a0-payload-sizes-hzc2.md) confirmou
+Image menor e ramdisk de medição com strip menor que os payloads stock,
+sem comprimento exatamente igual. Sem strip, o ramdisk excede o arquivo
+vendor_boot stock inteiro. Nenhum padding ou pacote de boot foi adotado.
+
 ## Desenho da captura: produtor e vida dos bytes
 
 O fluxo proposto é:
