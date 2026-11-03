@@ -1,8 +1,10 @@
 # Roadmap e estado do S21-baremetal
 
+O [contêiner de laboratório com geometria fixa](capture-a0-container-hzc2.md) preserva o round-trip de boot/vendor_boot e assina mutações sintéticas com SHA256_RSA4096 e a chave de teste publicada pelo AOSP. O avbtool fixado confirma os casos positivos e recusa digest/assinatura obsoletos. Isso não monta o kernel/ramdisk real nem valida SignerVer03, confiança da chave ou aceitação Samsung; A0 continua aberto.
+
 O [build completo com ThinLTO alinhado](capture-a0-aligned-full-hzc2.md) concluiu vmlinux e 276 módulos. O conjunto selecionado de 274 recompilados tem 13722 imports e 13996 versões, sem lacunas ou CRCs divergentes nas regras verificadas. A proposta offline passa ao kernel e módulos desse mesmo build. KMI, política runtime e contêiner modificado continuam pendentes em A0; o aparelho permanece intocado.
 
-A [proposta de módulos HZC2](capture-a0-module-policy-hzc2.md) seleciona como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
+A [proposta anterior de módulos HZC2](capture-a0-module-policy-hzc2.md) selecionava como referência o kernel candidato e os 274 módulos do vendor_boot original, com alternativa recompilada restrita aos mesmos nomes. Os 13722 imports fortes têm fornecedor; não há divergências nos CRCs presentes nem falhas GPL/namespaces nas regras modeladas. Dois imports de s2mpb02_mfd não têm registro de versão: a fonte permite com aviso, mas a cobertura estrita fica incompleta. A0 permanece aberto para essas lacunas, política runtime, proveniência KMI e contêiner modificado.
 
 O [build p3s acompanhado](capture-a0-crc-trace-hzc2.md) concluiu vmlinux e 276 módulos com LTO/CFI/compat32 preservados. O Module.symvers final cobriu os 2763 requisitos de CRC stock, sem ausências ou divergências. Os seis CRCs antes ausentes chegaram aos agregados e ao linker; a falha anterior não se reproduziu. A0 segue aberto para compatibilidade/política de módulos, proveniência KMI e contêiner.
 
@@ -73,7 +75,7 @@ A [continuação do dispatcher ACPM](newtime-dispatch-completion-hzc2.md) não u
 A [separação dos retornos FVP](newtime-return-planes-hzc2.md) confirma que erro u32 pode coexistir com resposta publicada zero e cache não atualizado. Repetição explícita do pedido ainda seleciona o helper sob estado preservado; retry automático e resultado físico continuam abertos.
 
 Atualizado em **2026-11-02 (Campo Grande)**. Base técnica revisada:
-[main até o PR #79, af69b7e](https://github.com/rguisantos/S21-baremetal/commit/af69b7e6143514923f926392cae7bf3d0f984a72),
+[main até o PR #84, ed262c4](https://github.com/rguisantos/S21-baremetal/commit/ed262c44b8762a9b8e3f2e7ad464a5fcbeae34bc),
 com [baseline obrigatório e CI](baseline-validation.md) aprovados e
 [contrato do diagnóstico Samsung](samsung-diagnostic-contract.md) consolidado nesta continuação.
 Alvo: **Galaxy S21 Ultra SM-G998B/p3s, Exynos 2100, stock G998BXXSJHZC2 / Android 15**.

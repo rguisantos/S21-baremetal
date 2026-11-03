@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Campo_Grande",
+  "source_base": "ed262c44b8762a9b8e3f2e7ad464a5fcbeae34bc",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 227,
+    "new_tests": 29,
+    "status": "passed"
+  },
+  "reused_key_reader_tests": {
+    "command": "python3 scripts/test_lk_embedded_key.py",
+    "tests": 17,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_runner_returncode": 2,
+  "native_aosp_verifications": {
+    "total": 11,
+    "positive": 5,
+    "expected_negative": 6,
+    "unexpected": 0
+  },
+  "no_change_boot_vendor_byte_identical": true,
+  "dtbo_read_only_reference_verified": true,
+  "repeated_variants_compared": [
+    "boot.img:stale",
+    "boot.img:hash-only",
+    "boot.img:lab-signed",
+    "boot.img:tampered",
+    "vendor_boot.img:stale",
+    "vendor_boot.img:hash-only",
+    "vendor_boot.img:lab-signed",
+    "vendor_boot.img:tampered"
+  ],
+  "repeated_image_hashes_and_semantic_results_equal": true,
+  "native_log_hashes_may_depend_on_output_directory": true,
+  "report_sha256": "ee16ffb20821ba58ac0817c802a769563ab2e63103ceda5eb76ee4055f15a82b",
+  "implementation_sha256": {
+    "capture_a0_container.py": "a643128aadadd77c57bdae12b9915da3d463413f108de9f2a5e6aa796c6581af",
+    "check_capture_a0_container.py": "eaf9fec6510690f7eb9753fece329099fe6fb3a8181c32e6e2e6f16519aa71c6"
+  },
+  "tested_profile": "Fixed-size synthetic payload substitutions, SHA256_RSA4096 with public AOSP test-key fixture",
+  "local_markdown_links_checked": 1731,
+  "missing_local_links": [],
+  "runnable_payload_package_built": false,
+  "samsung_signerver03_validated": false,
+  "key_trust_established": false,
+  "parent_vbmeta_updated": false,
+  "signature_policy_verified": false,
+  "module_abi_established": false,
+  "user_independent_verification_completed": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "physical_action": false
+}
