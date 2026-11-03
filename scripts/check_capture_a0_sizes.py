@@ -20,6 +20,7 @@ import tarfile
 import zlib
 
 from capture_a0_formats import digest, layout, require
+from capture_a0_copy import copy_checked
 from capture_a0_module_policy import MODNAME
 from capture_a0_module_policy import MAX_MODULE
 from capture_a0_modules import gunzip
@@ -54,7 +55,7 @@ def extract_selected(archive, selected, output, vmlinux_pin):
     wanted = {r['source']:dict(bytes=r['bytes'],sha256=r['sha256'],target=output/(r['name']+'.ko')) for r in selected}
     require(len(wanted) == len(selected), 'duplicate source path')
     wanted['vmlinux'] = dict(**vmlinux_pin, target=output/'vmlinux')
-    seen = set(); found = set()
+    seen = set(); found = set(); readbacks = {}
     with tarfile.open(archive,'r|gz') as tar:
         for member in tar:
             path = PurePosixPath(member.name)
@@ -64,14 +65,11 @@ def extract_selected(archive, selected, output, vmlinux_pin):
             if member.name not in wanted: continue
             row = wanted[member.name]
             require(member.isfile() and member.size == row['bytes'], 'artifact selected member type/size')
-            h = hashlib.sha256(); count = 0
-            with tar.extractfile(member) as source, row['target'].open('xb') as dest:
-                while chunk := source.read(1024*1024):
-                    count += len(chunk); require(count <= row['bytes'], 'selected member grew')
-                    h.update(chunk); dest.write(chunk)
-            require(count == row['bytes'] and h.hexdigest() == row['sha256'], 'selected member hash differs')
+            with tar.extractfile(member) as source:
+                readbacks[member.name] = copy_checked(source,row['target'],row)
             found.add(member.name)
     require(found == wanted.keys(), 'selected build member missing')
+    return readbacks
 
 
 def inspect(stock, archive, source, tools_root, output):
@@ -101,8 +99,9 @@ def inspect(stock, archive, source, tools_root, output):
         verify(stock/name, pins['stock_raw'][name]); raw[name] = (stock/name).read_bytes()
         require(layout(raw[name])['avb']['all_hashes_match'], 'stock descriptor hashes differ')
     output = output.resolve(); output.mkdir(parents=True)
-    candidate = output/'candidate'; candidate.mkdir(); extract_selected(archive, selected, candidate,
-        dict(bytes=437269784,sha256=previous['native_build']['vmlinux_sha256']))
+    candidate = output/'candidate'; candidate.mkdir()
+    vmlinux_pin = dict(bytes=437269784,sha256=previous['native_build']['vmlinux_sha256'])
+    readbacks = extract_selected(archive, selected, candidate,vmlinux_pin)
     tools = {}
     def native(tool, args, label):
         binary = tools_root/'usr/bin'/('aarch64-linux-gnu-'+tool)
@@ -115,7 +114,9 @@ def inspect(stock, archive, source, tools_root, output):
     for name in ('objcopy','strip'):
         version = native(name,['--version'],name+'-version').splitlines()[0]
         tools[name] = dict(version=version,sha256=file_hash(tools_root/'usr/bin'/('aarch64-linux-gnu-'+name)))
+    verify(candidate/'vmlinux',vmlinux_pin)
     image = output/'Image'; native('objcopy',IMAGE_FLAGS+[candidate/'vmlinux',image],'image-objcopy')
+    verify(candidate/'vmlinux',vmlinux_pin)
     with (candidate/'vmlinux').open('rb') as file, mmap.mmap(file.fileno(),0,access=mmap.ACCESS_READ) as data:
         independent, mapped = flat_image(data)
     actual = image.read_bytes(); require(actual == independent, 'objcopy Image differs from independent ELF mapping')
@@ -150,7 +151,8 @@ def inspect(stock, archive, source, tools_root, output):
         implementation_sha256={n:digest(Path(__file__).with_name(n).read_bytes())
             for n in ('capture_a0_sizes.py','check_capture_a0_sizes.py')},
         source_archive_sha256=pins['samsung_source_archive']['sha256'],candidate_archive_sha256=previous['reference_artifacts']['sha256'],
-        selected_build_payloads_verified=275,source_members={n:dict(bytes=len(b),sha256=digest(b)) for n,b in members.items()},
+        selected_build_payloads_verified=275,selected_copy_readbacks_verified=len(readbacks),
+        source_members={n:dict(bytes=len(b),sha256=digest(b)) for n,b in members.items()},
         tools=tools,python=sys.version,zlib_version=zlib.ZLIB_VERSION,
         image=dict(recipe=IMAGE_FLAGS,sha256=digest(actual),mapping=mapped,independent_mapping_byte_identical=True,
             comparison=comparison(kernel['bytes'],len(actual)),stock_header=stock_header,
