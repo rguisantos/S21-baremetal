@@ -125,11 +125,23 @@ As coordenadas são as linhas do arquivo bruto, não da página HTML.
 
 ## Matriz pareada do truncamento
 
-O [pré-registro](references/capture-a0-copy-paired-preregistration-20261104.json)
-foi commitado localmente em 07a10d3 antes do primeiro ensaio. O código local de execução está
-em 78e4d86. Foram 30 casos: cinco condições, duas extensões e três repetições,
-em ordem sorteada com Random(210090). Mesmo diretório/nome-base payload,
-objeto novo a cada tentativa, mesmo buffer DHD de 51582680 bytes conferido.
+A [anterioridade do pré-registro](references/capture-a0-copy-paired-preregistration-20261104.json)
+é **não verificável no remoto**. Segundo o relato da sessão, o plano foi
+commitado localmente em 07a10d3 antes dos ensaios e o código local usado foi
+78e4d86. Ambos existem no histórico local preservado, mas o GitHub não os
+encontra pelos hashes completos. O primeiro commit remoto que reúne plano
+e resultados é 681f174; ele não demonstra a ordem entre ambos. Datas de
+commits locais tampouco são atestação independente do momento dos ensaios.
+Os 30 casos ficam classificados como **resultados observados, sem
+pré-registro com anterioridade verificada no remoto**; não constituem
+confirmação prospectiva de previsões. A [correção de proveniência](references/capture-a0-copy-registration-provenance-hzc2.json)
+preserva os identificadores completos, hashes e a referência ao plano
+original em 681f174. Publicar os objetos agora não provaria sua anterioridade
+em relação à execução histórica.
+
+Foram cinco condições, duas extensões e três repetições, em ordem sorteada
+com Random(210090). Mesmo diretório/nome-base payload, objeto novo a cada
+tentativa, mesmo buffer DHD de 51582680 bytes conferido.
 
 | Segunda chamada | .ko íntegros imediatos/tardios | .bin íntegros imediatos/tardios |
 |---|---:|---:|
@@ -139,7 +151,7 @@ objeto novo a cada tentativa, mesmo buffer DHD de 51582680 bytes conferido.
 | Após fechamento/readback, somente espera | 3/3 e 3/3 | 3/3 e 3/3 |
 | Após fechamento/readback, espera e nota | 3/3 e 3/3 | 3/3 e 3/3 |
 
-Os horários confirmaram todas as fases previstas, sem tentativa descartada.
+Os horários registrados situam as chamadas nas fases descritas, sem tentativa descartada; isso não verifica a anterioridade do plano.
 Inotify do arquivo/diretório encerrou as 30 janelas sem erro/overflow;
 eventos não identificam PID. strace foi tentado e recusado por
 PTRACE_TRACEME/SETOPTIONS com Operation not permitted; não houve os dois
@@ -156,7 +168,7 @@ isso não recompõe todo o estado histórico da sessão/API/filesystem.
 não se estabelece regra de extensão e não se refutam as observações do PR #90.
 O mecanismo continua não identificado, inclusive para o Mali de 25 MiB.
 Não se troca uma atribuição ausente por uma explicação presumida de sandbox,
-sincronização ou Linux Mint. O limite pré-registrado de ensaios foi respeitado.
+sincronização ou Linux Mint. Foram registrados 30 casos, em concordância com a contagem do plano declarado; sua anterioridade continua não verificável no remoto.
 
 ## Reprodução, artefato e gates
 
