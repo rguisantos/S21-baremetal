@@ -117,3 +117,10 @@ do assistente não muda essa classificação.
 
 Estado: **A0 aberto; A1 não iniciado; sem decisão OEM ou ação no aparelho.**
 Este registro não executa as fases nem escolhe uma opção de empacotamento.
+
+## Execução offline registrada
+
+A [execução por fase](capture-a0-execucao-hzc2.md) formaliza a saída não
+identificada da Fase 1, apresenta opções na Fase 2 e registra os bloqueios
+das Fases 3/4. Corrige e executa as fronteiras do runner de dimensionamento
+na Fase 5, sem certificar todo o pipeline. Não adota pacote ou inicia A1.

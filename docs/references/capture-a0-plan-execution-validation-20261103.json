@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-03",
+  "timezone": "America/Campo_Grande",
+  "source_base": "e0aa2e16346ca09473071c3ffaaccd46e987568a",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 312,
+    "new_tests": 16,
+    "status": "passed"
+  },
+  "required_baseline": {
+    "steps": 9,
+    "status": "passed"
+  },
+  "native_sizing_returncode": 2,
+  "plan_runner_returncode": 2,
+  "report_sha256": "099a18e495cfa3e3106a59683c0dc7d6312050279c3f57a7f6a0792fd7abaa84",
+  "evidence": {
+    "capture-a0-plan-execution-hzc2.json": {
+      "bytes": 11761,
+      "sha256": "099a18e495cfa3e3106a59683c0dc7d6312050279c3f57a7f6a0792fd7abaa84"
+    },
+    "capture-a0-recurrent-copy-incident-20261103.json": {
+      "bytes": 4398,
+      "sha256": "1d661062e40f89d53bbeb83b36bbaf84a107452a808e7de08108b57b7cc7576f"
+    },
+    "capture-a0-copy-observation-20261103.json": {
+      "bytes": 18104,
+      "sha256": "0754269c666a515610640cc30205448006135281d8177efce99a5d38dd95e369"
+    },
+    "capture-a0-overlap-observation-20261103.json": {
+      "bytes": 7668,
+      "sha256": "e62fa274d754c47c92b576f5f3b1bdd8318a68877f19aa11fb4b73f9bcfbcafc"
+    }
+  },
+  "implementation_sha256": {
+    "capture_a0_inputs.py": "f235148b1ba5c0de71ff30b50af3dd23d081b2ab20d3a74fa0fab2d695d5f624",
+    "capture_a0_sizes.py": "01e863f3bb6bd3634d1a6cec9e713b122ee4c9c48bc87eef96e0962236e681a2",
+    "check_capture_a0_sizes.py": "f2df983cd52a22b911315a5c5503d68523cf94703d7d774ffff3adf907847810",
+    "capture_a0_package_plan.py": "f7e8ab3b871064ba424b3dfe8d95adc0210e2c9804ce9a02b74b2b7969a8f4b6",
+    "check_capture_a0_plan.py": "d5d4b53762ef521ce4e89b96ec459141d1a166e0edb8fcb552dd0ec198c85ee7"
+  },
+  "native_inputs_sealed": 275,
+  "snapshots_sealed_during_extraction": true,
+  "working_copy_paths_reconsumed": false,
+  "destination_readbacks": 275,
+  "module_measurements_identical_to_PR86": 274,
+  "image_and_both_ramdisk_hashes_identical_to_PR86": true,
+  "refused_native_attempts_with_later_copy_drift": 2,
+  "retained_real_dhd_prefix_bytes": 36700160,
+  "observed_other_dhd_prefix_bytes": 17825792,
+  "overlap_control": {
+    "ko_serial_passes": 2,
+    "ko_serial_cases": 2,
+    "ko_overlap_late_mutations": 2,
+    "ko_overlap_cases": 2,
+    "bin_serial_passes": 1,
+    "bin_overlap_passes": 1
+  },
+  "underlying_writer_identified": false,
+  "historical_mali_cause_attributed": false,
+  "stock_hash_rsa_rechecked": 2,
+  "phase1_documentary_exit": "non_identified",
+  "phase2_choice_pending": true,
+  "phase3_acceptance_blocked": true,
+  "phase4_kmi_runtime_blocked": true,
+  "new_kernel_build": false,
+  "package_adopted": false,
+  "padding_applied": false,
+  "geometry_adopted": false,
+  "a0_complete": false,
+  "a1_implemented": false,
+  "all_pipeline_consumers_certified": false,
+  "external_user_verification_completed": false,
+  "oem_decision": false,
+  "physical_action": false,
+  "local_markdown_links_checked": 1807,
+  "missing_local_links": [],
+  "link_scope": "project Markdown excluding tools/ and build/"
+}

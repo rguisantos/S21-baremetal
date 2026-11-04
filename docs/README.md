@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [execução offline do plano A0](capture-a0-execucao-hzc2.md) registrou a saída documental não identificada da Image e calculou três opções de pacote para decisão do usuário. O runner de dimensionamento agora vincula objcopy/strip a 275 entradas seladas e verifica buffers antes de emitir CPIO e reler gzip; a execução real manteve todos os hashes medidos. Uma cópia real de dhd cortada em 35 MiB foi recusada e preservada, sem escritor identificado. Aceitação Samsung e KMI/runtime seguem bloqueados; nenhuma opção foi adotada e A1 não começou.
+
 O [plano A0 de fases e gates](capture-a0-plano-hzc2.md) organiza atribuição da Image, decisão de empacotamento, assinatura/aceitação e KMI/política runtime. A integridade é transversal desde a Fase 1; um bloqueio registrado não libera A1, e a saída não identificada não aprova empacotamento por si só. Decisões de pacote e OEM permanecem com o usuário.
 
 A [investigação da origem do corte](capture-a0-copy-origin-hzc2.md) não encontrou limite de 25 MiB nos scripts fixados; um controle RLIMIT_FSIZE reproduziu o prefixo com erro explícito, sem atribuição histórica. O [mecanismo do delta da Image](capture-a0-image-producer-hzc2.md) foi localizado pelo kallsyms stock: -24576 antes de ALIGN e -40960 de padding somam -65536. A opção/objeto/função anterior continua desconhecida. Sem preenchimento ou geometria adotados; A0 aberto.

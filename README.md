@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+A [execução offline do plano A0](docs/capture-a0-execucao-hzc2.md) registrou a saída documental não identificada da Image e calculou três opções de pacote para decisão do usuário. O runner de dimensionamento agora vincula objcopy/strip a 275 entradas seladas e verifica buffers antes de emitir CPIO e reler gzip; a execução real manteve todos os hashes medidos. Uma cópia real de dhd cortada em 35 MiB foi recusada e preservada, sem escritor identificado. Aceitação Samsung e KMI/runtime seguem bloqueados; nenhuma opção foi adotada e A1 não começou.
+
 A [investigação da origem do corte](docs/capture-a0-copy-origin-hzc2.md) não encontrou limite de 25 MiB nos scripts fixados; um controle RLIMIT_FSIZE reproduziu o prefixo com erro explícito, sem atribuição histórica. O [mecanismo do delta da Image](docs/capture-a0-image-producer-hzc2.md) foi localizado pelo kallsyms stock: -24576 antes de ALIGN e -40960 de padding somam -65536. A opção/objeto/função anterior continua desconhecida. Sem preenchimento ou geometria adotados; A0 aberto.
 
 A [auditoria da cópia e do delta da Image](docs/capture-a0-copy-image-delta-hzc2.md) confirmou os 2133 payloads preservados e vinculou o hash truncado ao prefixo exato de 25 MiB de mali_kbase. A extração agora relê os destinos. Os 64 KiB foram decompostos na região PE anterior a initdata, com dados/cauda virtual de mesmo tamanho. Autor do corte e causa produtora da redução continuam desconhecidos; nenhum preenchimento ou geometria foi adotado.

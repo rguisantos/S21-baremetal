@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_plan.py` consolida saída documental, opções de coordenadas, criptografia stock e política proposta com referência Git fixa; `capture_a0_package_plan.py` calcula payloads sem montar contêiner e verifica a repetição das medições. O runner `check_capture_a0_sizes.py` agora usa buffers conferidos e descritores selados de `capture_a0_inputs.py`, verifica módulos antes de emitir CPIO e relê gzip contra o hash do escritor. Dezesseis controles novos em `test_capture_a0_consumption.py`. [Execução e decisão pendente](../docs/capture-a0-execucao-hzc2.md).
+
 `check_capture_a0_handoff.py` testa hipóteses de limite/cópia em snapshots fixos e liga kallsyms stock/candidato ao alinhamento pré-init. `capture_a0_inputs.py` entrega aos parsers os buffers imutáveis verificados; `capture_a0_kallsyms.py` valida nomes/offsets/marcadores e limites. `test_capture_a0_handoff.py` acrescenta 24 controles. Retorno 2 mantém A0 aberto. [Origem do corte](../docs/capture-a0-copy-origin-hzc2.md) e [mecanismo da Image](../docs/capture-a0-image-producer-hzc2.md).
 
 `check_capture_a0_layout.py` confere todos os payloads do manifesto, audita a cópia/prefixo e liga o delta ARM64/PE a símbolos do ELF. `capture_a0_copy.py` relê destinos após escrever; `capture_a0_layout.py` limita as conclusões a prefixo/layout. São 21 controles novos, incluídos na CI. [Guia](../docs/capture-a0-copy-image-delta-hzc2.md).

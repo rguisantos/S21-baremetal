@@ -1,0 +1,171 @@
+{
+  "schema": "S21-A0-OVERLAPPING-EXEC-OBSERVATION-v1",
+  "scope": "this assistant execution environment only; small bounded sample",
+  "input": {
+    "bytes": 51582680,
+    "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd"
+  },
+  "cases": {
+    "serial": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753919127455299,
+        "ctime_ns": 1793753919127455299,
+        "time_ns": 1793753919257953596
+      },
+      {
+        "label": "later",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753919127455299,
+        "ctime_ns": 1793753919127455299,
+        "time_ns": 1793753923322192587
+      }
+    ],
+    "serial-ko-2": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793754018218070411,
+        "ctime_ns": 1793754018218070411,
+        "time_ns": 1793754018365957732
+      },
+      {
+        "label": "later",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793754018218070411,
+        "ctime_ns": 1793754018218070411,
+        "time_ns": 1793754022422655879
+      }
+    ],
+    "overlapping": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753931911790545,
+        "ctime_ns": 1793753931911790545,
+        "time_ns": 1793753932064680557
+      },
+      {
+        "label": "later",
+        "bytes": 36700160,
+        "stat_bytes": 36700160,
+        "sha256": "109a69412d0322ba1898b96ba4d02bf1573bccb9dd1811be62ac52f57879dfd5",
+        "matches": false,
+        "mtime_ns": 1793753931003766429,
+        "ctime_ns": 1793753933209701060,
+        "time_ns": 1793753936106112982
+      }
+    ],
+    "overlapping-ko-2": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793754007961805336,
+        "ctime_ns": 1793754007961805336,
+        "time_ns": 1793754008087520886
+      },
+      {
+        "label": "later",
+        "bytes": 36700160,
+        "stat_bytes": 36700160,
+        "sha256": "109a69412d0322ba1898b96ba4d02bf1573bccb9dd1811be62ac52f57879dfd5",
+        "matches": false,
+        "mtime_ns": 1793754007053783234,
+        "ctime_ns": 1793754009233837609,
+        "time_ns": 1793754012131525815
+      }
+    ],
+    "serial-bin": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753988621302520,
+        "ctime_ns": 1793753988621302520,
+        "time_ns": 1793753988750325888
+      },
+      {
+        "label": "later",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753988621302520,
+        "ctime_ns": 1793753988621302520,
+        "time_ns": 1793753992805218514
+      }
+    ],
+    "overlapping-bin": [
+      {
+        "label": "immediate",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753979277054266,
+        "ctime_ns": 1793753979277054266,
+        "time_ns": 1793753979415907218
+      },
+      {
+        "label": "later",
+        "bytes": 51582680,
+        "stat_bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+        "matches": true,
+        "mtime_ns": 1793753979277054266,
+        "ctime_ns": 1793753979277054266,
+        "time_ns": 1793753983475480338
+      }
+    ]
+  },
+  "methods": {
+    "probe-v1.txt": {
+      "sha256": "1bda60d8729887da0535a3b512b0fc3f897b98789d67bbc67883ad7133be9df7",
+      "source": "from pathlib import Path\nimport sys,time,json,hashlib,os\nsys.path.insert(0,'scripts');from capture_a0_inputs import read_checked\nsource=read_checked(Path('build/a0-plan-consumption/candidate/dhd.ko'),dict(bytes=51582680,sha256='8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd'))\nname=sys.argv[1];p=Path('build/a0-overlap-probe')/(name+'.ko');rows=[]\nwith p.open('xb') as f:\n for off in range(0,len(source),1024*1024):f.write(source[off:off+1024*1024]);f.flush();time.sleep(0.06)\n os.fsync(f.fileno())\ndef observe(label):\n s=p.stat()\n with p.open('rb') as f:b=f.read(len(source)+1)\n return dict(label=label,bytes=len(b),stat_bytes=s.st_size,sha256=hashlib.sha256(b).hexdigest(),matches=b==source,mtime_ns=s.st_mtime_ns,ctime_ns=s.st_ctime_ns,time_ns=time.time_ns())\nrows.append(observe('immediate'));print(json.dumps(rows[-1]),flush=True)\ntime.sleep(4)\nrows.append(observe('later'));Path('build/a0-overlap-probe/'+name+'.json').write_text(json.dumps(rows,indent=2)+'\\n');print(json.dumps(rows[-1]),flush=True)\n"
+    },
+    "probe.py": {
+      "sha256": "240841804683e4a405a32d3d8c40ac317d884db8e023ec154ae14c44b65909e6",
+      "source": "from pathlib import Path\nimport sys,time,json,hashlib,os\nsys.path.insert(0,'scripts');from capture_a0_inputs import read_checked\nsource=read_checked(Path('build/a0-plan-consumption/candidate/dhd.ko'),dict(bytes=51582680,sha256='8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd'))\nname=sys.argv[1];p=Path('build/a0-overlap-probe')/(name+(sys.argv[2] if len(sys.argv)>2 else '.ko'));rows=[]\nwith p.open('xb') as f:\n for off in range(0,len(source),1024*1024):f.write(source[off:off+1024*1024]);f.flush();time.sleep(0.06)\n os.fsync(f.fileno())\ndef observe(label):\n s=p.stat()\n with p.open('rb') as f:b=f.read(len(source)+1)\n return dict(label=label,bytes=len(b),stat_bytes=s.st_size,sha256=hashlib.sha256(b).hexdigest(),matches=b==source,mtime_ns=s.st_mtime_ns,ctime_ns=s.st_ctime_ns,time_ns=time.time_ns())\nrows.append(observe('immediate'));print(json.dumps(rows[-1]),flush=True)\ntime.sleep(4)\nrows.append(observe('later'));Path('build/a0-overlap-probe/'+name+'.json').write_text(json.dumps(rows,indent=2)+'\\n');print(json.dumps(rows[-1]),flush=True)\n"
+    }
+  },
+  "orchestration": {
+    "writer_call_yield_time_ms": 1000,
+    "unrelated_call_yield_time_ms": 10000,
+    "unrelated_python": "import time; from pathlib import Path; time.sleep(4); Path(unrelated_note).write_text(note)",
+    "unrelated_program_does_not_open_payload": true,
+    "serial_controls_no_overlapping_tool_calls": true
+  },
+  "all_immediate_hashes_correct": true,
+  "ko_serial_passes": 2,
+  "ko_serial_cases": 2,
+  "ko_overlapping_late_mutations": 2,
+  "ko_overlapping_cases": 2,
+  "bin_overlapping_passes": 1,
+  "bin_serial_passes": 1,
+  "underlying_writer_process_identified": false,
+  "universal_extension_rule_established": false,
+  "historical_mali_cause_attributed": false,
+  "image_delta_cause_attributed": false,
+  "persistent_snapshot_consumer_protection_is_separate": true
+}

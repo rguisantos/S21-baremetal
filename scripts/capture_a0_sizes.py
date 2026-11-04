@@ -2,7 +2,9 @@
 """Bounded Image mapping and streamed newc/gzip sizing, not boot validation."""
 import gzip
 import hashlib
+import io
 import json
+import os
 from pathlib import Path
 import stat
 import struct
@@ -10,6 +12,7 @@ import struct
 from capture_a0_formats import MAX_IMAGE, align, digest, require
 from capture_a0_module_policy import Elf, MAX_MODULE, module
 from capture_a0_modules import cpio, cstring
+from capture_a0_inputs import HashingWriter, read_checked, read_sealed
 
 MAX_CPIO = 512*1024*1024  # Explicit measurement path; existing readers stay unchanged.
 REMOVED_IMAGE_SECTIONS = {'.note', '.note.gnu.build-id', '.comment'}
@@ -116,37 +119,35 @@ def ramdisk(raw, replacements, target):
         if name == 'TRAILER!!!': continue
         replacement = replacements.get(name)
         if replacement is not None:
-            path = Path(replacement['path']); info = path.lstat()
+            info = os.fstat(replacement['fd']) if 'fd' in replacement else Path(replacement['path']).lstat()
             require(stat.S_ISREG(info.st_mode) and stat.S_IFMT(row['fields'][1]) == stat.S_IFREG
                 and 0 <= info.st_size == replacement['bytes'] <= MAX_MODULE, 'replacement type/size')
         expected[name] = dict(fields=list(row['fields']), sha256=replacement['sha256'] if replacement else digest(row['data']))
         if replacement: expected[name]['fields'][6] = replacement['bytes']
     written = 0; cpio_hash = hashlib.sha256()
-    with target.open('xb') as file, gzip.GzipFile(filename='', fileobj=file, mode='wb', compresslevel=9, mtime=0) as zipped:
-        def emit(data):
-            nonlocal written
-            written += len(data); require(written <= MAX_CPIO, 'measurement cpio exceeds explicit bound')
-            cpio_hash.update(data); zipped.write(data)
-        if not replacements:
-            emit(raw)
-        else:
-            for row in rows:
-                replacement = replacements.get(row['name'])
-                if replacement is None:
-                    emit(row['prefix']); emit(row['data']); emit(row['padding']); continue
-                prefix = bytearray(row['prefix']); prefix[54:62] = f"{replacement['bytes']:08x}".encode()
-                emit(prefix); hashed = hashlib.sha256(); count = 0
-                with Path(replacement['path']).open('rb') as source:
-                    while chunk := source.read(1024*1024):
-                        count += len(chunk); require(count <= replacement['bytes'], 'replacement grew')
-                        hashed.update(chunk); emit(chunk)
-                require(count == replacement['bytes'] and hashed.hexdigest() == replacement['sha256'], 'replacement hash differs')
-                emit(bytes((-count) % 4))
-            emit(bytes((-written) % 512))
-    # Re-read gzip and all cpio data in bounded chunks, without constructing a
-    # 400+ MiB byte string or relaxing the normal ramdisk reader's limits.
+    with target.open('xb') as file:
+        encoded = HashingWriter(file)
+        with gzip.GzipFile(filename='', fileobj=encoded, mode='wb', compresslevel=9, mtime=0) as zipped:
+            def emit(data):
+                nonlocal written
+                written += len(data); require(written <= MAX_CPIO, 'measurement cpio exceeds explicit bound')
+                cpio_hash.update(data); zipped.write(data)
+            if not replacements:
+                emit(raw)
+            else:
+                for row in rows:
+                    replacement = replacements.get(row['name'])
+                    if replacement is None:
+                        emit(row['prefix']); emit(row['data']); emit(row['padding']); continue
+                    prefix = bytearray(row['prefix']); prefix[54:62] = f"{replacement['bytes']:08x}".encode()
+                    data = read_sealed(replacement['fd'],replacement) if 'fd' in replacement else read_checked(Path(replacement['path']),replacement)
+                    emit(prefix); emit(data); emit(bytes((-len(data)) % 4))
+                emit(bytes((-written) % 512))
+    compressed = read_checked(target,encoded.pin())
+    # Stream decoded cpio from the very compressed buffer verified against
+    # the writer, without constructing a 400+ MiB decoded byte string.
     checked = 0; read = 0; seen = set(); verified_hash = hashlib.sha256()
-    with gzip.open(target, 'rb') as stream:
+    with gzip.GzipFile(fileobj=io.BytesIO(compressed),mode='rb') as stream:
         def take(size):
             nonlocal read
             require(0 <= size <= 1024*1024 and read+size <= MAX_CPIO, 'streamed cpio bound')
@@ -170,9 +171,8 @@ def ramdisk(raw, replacements, target):
             require(not any(chunk) and read+len(chunk) <= MAX_CPIO, 'output trailing bytes/bound')
             read += len(chunk); verified_hash.update(chunk)
     require(read == written and verified_hash.digest() == cpio_hash.digest(), 'stream replay differs')
-    with target.open('rb') as file: compressed_hash = hashlib.file_digest(file,'sha256').hexdigest()
-    return dict(cpio_bytes=written, cpio_sha256=cpio_hash.hexdigest(), gzip_bytes=target.stat().st_size,
-        gzip_sha256=compressed_hash, entries_verified=checked, modules_replaced=len(replacements),
+    return dict(cpio_bytes=written, cpio_sha256=cpio_hash.hexdigest(), gzip_bytes=len(compressed),
+        gzip_sha256=digest(compressed), entries_verified=checked, modules_replaced=len(replacements),
         original_order_and_headers_preserved_except_file_size=True,
         untouched_entry_data_preserved=True, stream_replay_verified=True,
         compression='Python gzip.GzipFile, level 9, mtime 0, empty filename',
