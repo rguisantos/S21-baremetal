@@ -1,0 +1,151 @@
+{
+  "schema": "S21-A0-PARENT-VALIDATION-v1",
+  "date": "2026-11-04",
+  "timezone": "America/Campo_Grande",
+  "execution": "assistant session; not independent external verification",
+  "branch_base": "443a8a66af70fe5ffc3ccaa6db51ed0b248e4a95",
+  "reference_main": "692f12d10abe043934e525bcfecf1c07c5520049",
+  "comparison": {
+    "report": {
+      "bytes": 13960,
+      "sha256": "3e2ddff291eb1ec003c41c976bc1d51ec80f87b24a11d118fbab4217aabe09a3"
+    },
+    "stock_positive_controls": 2,
+    "B_matches": 0,
+    "openssl_hash_agreements": 4,
+    "parent_rsa_methods": [
+      "Python PKCS1v15/SHA256",
+      "OpenSSL dgst -sha256 -verify"
+    ],
+    "checked_archive_members": 5,
+    "checked_B_payloads": 4,
+    "identical_report_replays": 2,
+    "command": "python3 scripts/check_capture_a0_parent.py --bl-archive /insumos/BL_G998BXXSJHZC2_G998BXXSJHZC2_MQB107295400_REV01_user_low_ship_MULTI_CERT.tar.md5 --stock-lz4-dir /insumos --prototype-archive /insumos/S21-A0-B-prototipo-offline-20261104.tar.gz --output build/parent-comparison-nova.json"
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "new_tests": 32,
+    "total": 378,
+    "failures": 0,
+    "skips": 0,
+    "log": {
+      "bytes": 479,
+      "sha256": "d49583d99b0333d8f5d016914966bdfcca6a7e489a580d99a0ba56d66e10fb57"
+    }
+  },
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-parent-20261104",
+    "passed": 9,
+    "required": 9,
+    "summary": {
+      "bytes": 5586,
+      "sha256": "1b40e26a27f4e91ca093d079259180b989adfe25cc02192d8cec722d9f4237cc"
+    },
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "6671d13b51998a59ff756c21b7d29813ac5bbdd68dc4d93723b931efe877fea8"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "9b620adae1023a42ca2716a31f0f8554d495a51a78a5670f4f86463d5c200490"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "4aa4b77ec05b28512e7cb3b2d2aae1f2eb6ec4892201ef7dda6dba59b6ad43d4"
+      }
+    ]
+  },
+  "sources": {
+    "scripts/capture_a0_parent.py": {
+      "bytes": 6484,
+      "sha256": "5e598f410bb5e896f65c46ef591f4a43c8affba41192a0708437ed1e6441c229"
+    },
+    "scripts/check_capture_a0_parent.py": {
+      "bytes": 9847,
+      "sha256": "147b1cc813c1cced3f5411c18af4b0365f9f8ba0201f0401566aa0f40df7133a"
+    },
+    "scripts/test_capture_a0_parent.py": {
+      "bytes": 15640,
+      "sha256": "0b3ebd0eccac73ad9da63a2efb3c05acbe7ff1abce9254b0adfff9fc70348e19"
+    },
+    ".github/workflows/baseline.yml": {
+      "bytes": 4855,
+      "sha256": "1ffa9262c6bd39bce16f6409c2865badbe97f711a1e1e88eed1f8b394dc74076"
+    },
+    "docs/references/capture-a0-parent-pins-hzc2.json": {
+      "bytes": 680,
+      "sha256": "34b259be13f989a8ddb7ee782ae2c479b1c52465c0e0e10a92b8b6dcc2b88fc6"
+    }
+  },
+  "scope": {
+    "installed_parent_identity_established": false,
+    "device_key_trust_established": false,
+    "full_avb_chain_verified": false,
+    "samsung_acceptance_established": false,
+    "signer_ver03_validated": false,
+    "external_user_verification_completed": false,
+    "a0_complete": false,
+    "a1_started": false,
+    "device_action_performed": false,
+    "physical_use_authorized": false,
+    "main_updated": false,
+    "PR_merged": false
+  },
+  "remote_head_ci_and_automatic_review": "not attributed from earlier heads; query after publication",
+  "local_links": {
+    "files": [
+      "README.md",
+      "docs/README.md",
+      "docs/roadmap.md",
+      "docs/capture-a0-natural-b-hzc2.md",
+      "docs/capture-a0-parent-hzc2.md",
+      "scripts/README.md",
+      "worklog.md"
+    ],
+    "checked": 747,
+    "missing": 0
+  }
+}

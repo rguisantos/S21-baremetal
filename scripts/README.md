@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`capture_a0_parent.py` e `check_capture_a0_parent.py` comparam os dois filhos stock e B com os hash descriptors diretos do pai candidato extraído do BL. Entradas fixadas por hash, buffers sem reabertura, LZ4 limitado, controles stock obrigatórios e digest/RSA cruzados com OpenSSL. `test_capture_a0_parent.py` tem 32 controles sintéticos; resultado e limites ficam na [comparação do pai](../docs/capture-a0-parent-hzc2.md). Não valida confiança ou uso no aparelho.
+
 `capture_a0_natural.py` e `check_capture_a0_natural.py` montam a variante B offline com comprimentos naturais e total fixo, AVB de laboratório e consumidores selados. `test_capture_a0_natural.py` acrescenta 28 controles de geometria/RSA; `capture_a0_copy_probe.py` e seus seis testes registram buffers/identidade/inotify sem atribuir PID. A matriz de 30 casos e seus limites ficam na [rodada B](../docs/capture-a0-natural-b-hzc2.md); a orquestração da API está em `lab/a0_copy_paired.js`.
 
 `check_capture_a0_plan.py` consolida saída documental, opções de coordenadas, criptografia stock e política proposta com referência Git fixa; `capture_a0_package_plan.py` calcula payloads sem montar contêiner e verifica a repetição das medições. O runner `check_capture_a0_sizes.py` agora usa buffers conferidos e descritores selados de `capture_a0_inputs.py`, verifica módulos antes de emitir CPIO e relê gzip contra o hash do escritor. Dezesseis controles novos em `test_capture_a0_consumption.py`. [Execução e decisão pendente](../docs/capture-a0-execucao-hzc2.md).

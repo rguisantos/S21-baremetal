@@ -1,0 +1,18 @@
+{
+  "schema": "S21-A0-PARENT-PINS-v1",
+  "firmware": "G998BXXSJHZC2",
+  "bl_archive_name": "BL_G998BXXSJHZC2_G998BXXSJHZC2_MQB107295400_REV01_user_low_ship_MULTI_CERT.tar.md5",
+  "bl_archive": {
+    "bytes": 10936433,
+    "sha256": "5b48c27798b103ec906112fc4baad1aacd8d39c970dae6c478d3bd559e2cf31f"
+  },
+  "parent_lz4": {
+    "bytes": 3793,
+    "sha256": "063de3663de033a932f18a78622f2a39f430d45c1dc13786df4a77b102d0e85f"
+  },
+  "parent_raw": {
+    "bytes": 10128,
+    "sha256": "cd86d91b22e4e273abb65189cadea1c6d76683822e4fefa0c5407110462917ea"
+  },
+  "source_identity_scope": "BL archive and selected member bytes; not installed-device identity or trusted-root authorization"
+}

@@ -99,9 +99,13 @@ ABI, relocations, CFI, RKP ou comportamento runtime.
 
 ## VBMeta pai e fontes fixadas
 
-O pai não foi fornecido a esta execução e não foi modificado. Seu estado é
-**não fornecido, impacto não determinado**; não se presume que esteja intacto
-no sentido de continuar aprovando os filhos modificados.
+Na montagem original, o pai não foi fornecido nem modificado. A
+[comparação posterior com stock](capture-a0-parent-hzc2.md) recuperou o
+candidato do BL HZC2 e conferiu sua identidade e RSA embutida. Os dois
+filhos stock passam seus hashes diretos; os dois protótipos B divergem.
+Assim, esse pai inalterado não aprova B. A identidade/uso do pai instalado
+e a confiança no aparelho continuam sem demonstração. O relatório e o
+README dentro do bundle preservam o estado histórico daquela montagem.
 
 - Se o pai contiver um hash descriptor para o componente alterado, o digest
   correspondente precisa ser recalculado e a autenticação do pai refeita.
