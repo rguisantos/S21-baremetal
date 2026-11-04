@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`inspect_lk_vbmeta_load.py` confere a rota estática de leitura AVB, os slots +24/+88, os nomes e o predicado de fallback para boot no HZC2. GNU lê um snapshot selado do mesmo buffer verificado. Os 25 testes `test_lk_vbmeta_load.py` são sintéticos; [relatório e limites](../docs/lk-vbmeta-load-hzc2.md) distinguem seleção nominal, I/O, identidade instalada e confiança.
+
 `capture_a0_parent.py` e `check_capture_a0_parent.py` comparam os dois filhos stock e B com os hash descriptors diretos do pai candidato extraído do BL. Entradas fixadas por hash, buffers sem reabertura, LZ4 limitado, controles stock obrigatórios e digest/RSA cruzados com OpenSSL. `test_capture_a0_parent.py` tem 32 controles sintéticos; resultado e limites ficam na [comparação do pai](../docs/capture-a0-parent-hzc2.md). Não valida confiança ou uso no aparelho.
 
 `capture_a0_natural.py` e `check_capture_a0_natural.py` montam a variante B offline com comprimentos naturais e total fixo, AVB de laboratório e consumidores selados. `test_capture_a0_natural.py` acrescenta 28 controles de geometria/RSA; `capture_a0_copy_probe.py` e seus seis testes registram buffers/identidade/inotify sem atribuir PID. A matriz de 30 casos e seus limites ficam na [rodada B](../docs/capture-a0-natural-b-hzc2.md); a orquestração da API está em `lab/a0_copy_paired.js`.
