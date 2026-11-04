@@ -1,0 +1,76 @@
+{
+  "repository": "https://android.googlesource.com/platform/external/avb",
+  "commit": "25a14f7e3e6493a7f1a42aa9f78209d4dbe848e9",
+  "tag": "android-15.0.0_r1",
+  "method": "Gitiles format=TEXT decoded once; SHA256 and Git blob SHA1 computed over file bytes",
+  "files": [
+    {
+      "path": "libavb/avb_chain_partition_descriptor.h",
+      "bytes": 3184,
+      "sha256": "50d29e5c5ec59b50467cd8e3b372c92c3aff26c1f6fd0ea08e8c0176ae73bcf9",
+      "git_blob_sha1": "2a08afe6b3feeca8174f3c6b8352d44fc677aef0",
+      "witness_lines": [
+        {
+          "line": 66,
+          "text": "uint32_t rollback_index_location;"
+        }
+      ]
+    },
+    {
+      "path": "libavb/avb_footer.h",
+      "bytes": 2869,
+      "sha256": "0704e9e6ef1a20f1bb0a1ba59e54155981f67e6d8889b5c59a034ce50465b900",
+      "git_blob_sha1": "e84826fa8f45fa08986d59a1f7250ef28d5a2bc8",
+      "witness_lines": [
+        {
+          "line": 62,
+          "text": "uint64_t original_image_size;"
+        },
+        {
+          "line": 65,
+          "text": "uint64_t vbmeta_offset;"
+        },
+        {
+          "line": 68,
+          "text": "uint64_t vbmeta_size;"
+        }
+      ]
+    },
+    {
+      "path": "libavb/avb_hash_descriptor.h",
+      "bytes": 3127,
+      "sha256": "61811399ac8e4ca0392a87039de9edfcaab72d165a346337e87b5fb5c3a4d602",
+      "git_blob_sha1": "9ee89971235872d5ef81183a3cd0ae45042796b2",
+      "witness_lines": [
+        {
+          "line": 66,
+          "text": "uint64_t image_size;"
+        }
+      ]
+    },
+    {
+      "path": "libavb/avb_vbmeta_image.h",
+      "bytes": 11913,
+      "sha256": "0979deac8902cbcbd0ec1d2f94af6692ab954fe698b1bd2e8b193b7eec3a3607",
+      "git_blob_sha1": "f9cbac447d0941429d813ca0aadef4401e7ec8d7",
+      "witness_lines": [
+        {
+          "line": 184,
+          "text": "uint32_t rollback_index_location;"
+        },
+        {
+          "line": 266,
+          "text": "* VERY IMPORTANT:"
+        },
+        {
+          "line": 270,
+          "text": "*      matches a known key! You can use 'avbtool extract_public_key'"
+        },
+        {
+          "line": 275,
+          "text": "*   2. You need to check the |rollback_index| field against a stored"
+        }
+      ]
+    }
+  ]
+}

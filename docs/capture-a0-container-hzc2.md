@@ -124,6 +124,8 @@ build e fechar a política de assinatura/aceitação da rota escolhida. KMI e
 política runtime permanecem pendentes; entrada/cápsula de A1 seguem separadas.
 
 A [continuação de dimensionamento](capture-a0-payload-sizes-hzc2.md) gerou a
-Image e protótipos de ramdisk com dados reais. O perfil com strip cabe em
-capacidade, mas ambos os payloads menores ainda exigem adaptação de
-comprimento validada; o montador de mesmo tamanho continua recusando-os.
+Image e protótipos de ramdisk com dados reais. O perfil com strip é menor que o payload stock medido; isso não mede
+capacidade física. O montador de mesmo tamanho continua recusando ambos
+os payloads menores. A [continuação B](capture-a0-natural-b-hzc2.md) implementa
+outro montador de laboratório com geometria interna nova, mantendo os
+comprimentos naturais e sem demonstrar aceitação Samsung.

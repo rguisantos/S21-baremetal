@@ -1,5 +1,7 @@
 # A0: plano de fases, gates e integridade transversal
 
+Continuação: o [protótipo B offline](capture-a0-natural-b-hzc2.md) registra a escolha delegada e sua execução em 04/11/2026 UTC. Os resultados abaixo preservam o estado da rodada original.
+
 Plano registrado em 03/11/2026, Campo Grande, a partir de origin/main
 692f12d, após o PR #88. Formaliza a sequência acordada no chat; não escolhe
 empacotamento, não autoriza ação no aparelho e não inicia A1.
