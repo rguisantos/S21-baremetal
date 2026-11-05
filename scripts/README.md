@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`check_capture_a0_load_plan.py` verifica dependências declaradas do inventário fixado e gera ordem proposta; `--vendor-boot` permite conferir os arquivos de controle do stock. Retorno 2 indica cobertura incompleta ou diagnóstico negativo. Não carrega módulos. [Guia](../docs/capture-a0-module-load-plan-hzc2.md).
+
 `inspect_lk_vbmeta_load.py` confere a rota estática de leitura AVB, os slots +24/+88, os nomes e o predicado de fallback para boot no HZC2. GNU lê um snapshot selado do mesmo buffer verificado. Os 25 testes `test_lk_vbmeta_load.py` são sintéticos; [relatório e limites](../docs/lk-vbmeta-load-hzc2.md) distinguem seleção nominal, I/O, identidade instalada e confiança.
 
 `capture_a0_parent.py` e `check_capture_a0_parent.py` comparam os dois filhos stock e B com os hash descriptors diretos do pai candidato extraído do BL. Entradas fixadas por hash, buffers sem reabertura, LZ4 limitado, controles stock obrigatórios e digest/RSA cruzados com OpenSSL. `test_capture_a0_parent.py` tem 32 controles sintéticos; resultado e limites ficam na [comparação do pai](../docs/capture-a0-parent-hzc2.md). Não valida confiança ou uso no aparelho.
