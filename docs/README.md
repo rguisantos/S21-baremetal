@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [plano A0 de fases e gates](capture-a0-plano-hzc2.md) organiza atribuição da Image, decisão de empacotamento, assinatura/aceitação e KMI/política runtime. A integridade é transversal desde a Fase 1; um bloqueio registrado não libera A1, e a saída não identificada não aprova empacotamento por si só. Decisões de pacote e OEM permanecem com o usuário.
+
 A [investigação da origem do corte](capture-a0-copy-origin-hzc2.md) não encontrou limite de 25 MiB nos scripts fixados; um controle RLIMIT_FSIZE reproduziu o prefixo com erro explícito, sem atribuição histórica. O [mecanismo do delta da Image](capture-a0-image-producer-hzc2.md) foi localizado pelo kallsyms stock: -24576 antes de ALIGN e -40960 de padding somam -65536. A opção/objeto/função anterior continua desconhecida. Sem preenchimento ou geometria adotados; A0 aberto.
 
 A [auditoria da cópia e do delta da Image](capture-a0-copy-image-delta-hzc2.md) confirmou os 2133 payloads preservados e vinculou o hash truncado ao prefixo exato de 25 MiB de mali_kbase. A extração agora relê os destinos. Os 64 KiB foram decompostos na região PE anterior a initdata, com dados/cauda virtual de mesmo tamanho. Autor do corte e causa produtora da redução continuam desconhecidos; nenhum preenchimento ou geometria foi adotado.
