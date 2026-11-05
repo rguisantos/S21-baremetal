@@ -4211,3 +4211,12 @@ LZ4/raw enviados conferidos contra os pins HZC2. Metadados dos 274 módulos igua
 Boot LZ4/raw enviados coincidem com os pins HZC2. Init de 1502328 bytes identificado por hash; mini-debug XZ recupera os símbolos originais. Verificador reproduzível fornece buffers selados ao nm/GNU, confere onze calls diretos, cinco palavras e cinco literais. FirstStageMain → LoadKernelModules → LoadListedModules → LoadWithAliases → InsmodWithDeps; consulta de dependências e chamada recursiva precedem Insmod. O laço selecionado percorre strings em ordem reversa. Syscall observado com W0=273 e flags zero. Duas execuções produziram JSON idêntico. O modelo DFS anterior não é equiparado à ordem Samsung. Nove testes novos passaram; binários permanecem fora do Git. Identificação estática do loader fechada nessa rota, sem execução, ABI, CFI/RKP, aceitação Samsung ou A0 concluído.
 
 Validação adicional desta rodada: 394 testes A0 existentes e baseline R10 9/9 aprovados, além dos nove controles novos executados separadamente.
+
+
+## 2026-11-05 — A0: referência libmodprobe executada no host
+
+Referência AOSP system/core 6072de17 fixada por revisão e hashes, sem vendoring das fontes. Resolvedor original compilado com includes/adaptadores declarados e backend sem syscalls de carga. Controles stock conferidos: 1652 aliases, 26 linhas/45 alvos de softdeps, 274 roots e 3654 arestas. Caso positivo: 274 únicos, 276 tentativas (duas equivalentes a EEXIST), todas as arestas antes dos consumidores. dss injetado falha com zero inserções; exynos_acme falha com 209 inserções/216 tentativas e resultado global recusado. Corrigida a primeira versão do backend, que contava tentativas repetidas como módulos novos: o ramo EEXIST da referência não incrementa o contador. Softdep memory_group_manager não tem chave/arquivo no conjunto, sem inferência de recurso built-in ou GPU funcional. Duas execuções finais produziram relatório idêntico; nove testes de adaptação/trace passaram. Nenhum init Samsung, módulo ou aparelho executado; equivalência binária e runtime seguem abertos.
+
+Validação adicional local: 394 testes A0 existentes, nove controles do init
+stock e baseline R10 9/9 aprovados. Os nove testes de replay são separados
+dessas contagens.

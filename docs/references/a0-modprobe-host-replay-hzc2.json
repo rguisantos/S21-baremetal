@@ -1,0 +1,2330 @@
+{
+  "schema": "S21-A0-MODPROBE-HOST-REPLAY-v1",
+  "source_commit": "6072de17cd812daf238092695f26a552d3122f8c",
+  "source_pins": {
+    "libmodprobe.cpp": {
+      "bytes": 15997,
+      "sha256": "ae0e51e9827fe9293918f4e83bbc7ee9baf251e4423a39e52ca0699adfcad5f1"
+    },
+    "modprobe.h": {
+      "bytes": 3301,
+      "sha256": "399ca3a67d7106c8a1ef713107e8e98dce5e87d1fe514557ed4f5a27a553ef40"
+    }
+  },
+  "stock_vendor_boot": {
+    "bytes": 67108864,
+    "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+  },
+  "control_pins": {
+    "modules.alias": {
+      "bytes": 87092,
+      "sha256": "016fc0390161fd7dd4ecf575ad61d42246bddf4ec3ff05ea2856b8862b5cdb3d"
+    },
+    "modules.dep": {
+      "bytes": 115402,
+      "sha256": "253239a24749aaafc108f1478a4fd0a7edf626f8f3c176565ac2f66017f30200"
+    },
+    "modules.softdep": {
+      "bytes": 1320,
+      "sha256": "ece5b2b2c42db2478c3ffd8aec74fbaa6d05533980802b6feb47bec7f1da26db"
+    },
+    "modules.load": {
+      "bytes": 4399,
+      "sha256": "90b8d756be8b59552a4c63972ffd728a6dca2e27f55641738c24e3f4107acbb9"
+    }
+  },
+  "absent_controls": [
+    "modules.blocklist",
+    "modules.options"
+  ],
+  "translation_unit": {
+    "bytes": 854084,
+    "sha256": "cb2015a4803db98b20c40bd8acd33370989d0e6df2ac1c21791513bf24ee341b"
+  },
+  "runs": {
+    "all_success": {
+      "success": true,
+      "count": 274,
+      "attempts": [
+        {
+          "module": "dss",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_chipid_v2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_reboot",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_class",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_mparam",
+          "outcome": "success"
+        },
+        {
+          "module": "abc",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_key_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "pinctrl_samsung_core",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_hard_reset_hook",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pmu_if",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_reboot",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_mode",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_extra_info",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos2100_itmon",
+          "outcome": "success"
+        },
+        {
+          "module": "s3c2410_wdt",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ecc_handler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_coresight",
+          "outcome": "success"
+        },
+        {
+          "module": "debug_snapshot_qd",
+          "outcome": "success"
+        },
+        {
+          "module": "eat",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_adv_tracer_s2d",
+          "outcome": "success"
+        },
+        {
+          "module": "hardlockup_watchdog",
+          "outcome": "success"
+        },
+        {
+          "module": "ehld",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_debug_test",
+          "outcome": "success"
+        },
+        {
+          "module": "hardlockup_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acpm",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm_qos",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_s2mpu",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_el2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd_el3",
+          "outcome": "success"
+        },
+        {
+          "module": "ect_parser",
+          "outcome": "success"
+        },
+        {
+          "module": "cmu_ewf",
+          "outcome": "success"
+        },
+        {
+          "module": "cmupmucal",
+          "outcome": "success"
+        },
+        {
+          "module": "clk_exynos",
+          "outcome": "success"
+        },
+        {
+          "module": "clk_exynos_audss",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mct",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_notify_layer",
+          "outcome": "success"
+        },
+        {
+          "module": "switch_class",
+          "outcome": "success"
+        },
+        {
+          "module": "common_muic",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_flexpmu_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpupm",
+          "outcome": "success"
+        },
+        {
+          "module": "i2c_exynos5",
+          "outcome": "success"
+        },
+        {
+          "module": "acpm_mfd_bus",
+          "outcome": "success"
+        },
+        {
+          "module": "pmic_class",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps24_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps24_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_usbdrd_super",
+          "outcome": "success"
+        },
+        {
+          "module": "fingerprint_sysfs",
+          "outcome": "success"
+        },
+        {
+          "module": "fingerprint",
+          "outcome": "success"
+        },
+        {
+          "module": "blk_sec_stats",
+          "outcome": "success"
+        },
+        {
+          "module": "ssg_iosched",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_mipi_dsim",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_mipi",
+          "outcome": "success"
+        },
+        {
+          "module": "pwm_samsung",
+          "outcome": "success"
+        },
+        {
+          "module": "freq_qos_tracer",
+          "outcome": "success"
+        },
+        {
+          "module": "fmp_core",
+          "outcome": "success"
+        },
+        {
+          "module": "ufs_exynos_core",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos2100_v0_cal",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_host_v0",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos2100_rc_cal",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_rc",
+          "outcome": "success"
+        },
+        {
+          "module": "fb",
+          "outcome": "success"
+        },
+        {
+          "module": "dev_ril_bridge",
+          "outcome": "success"
+        },
+        {
+          "module": "s2dos05_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "pl330",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_dma",
+          "outcome": "success"
+        },
+        {
+          "module": "spi_s3c64xx",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel_s6e3hab",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel_s6e3had",
+          "outcome": "success"
+        },
+        {
+          "module": "if_cb_manager",
+          "outcome": "success"
+        },
+        {
+          "module": "pdic_notifier_module",
+          "outcome": "success"
+        },
+        {
+          "module": "vbus_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_typec_manager",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_abox_gic",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_audio_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "memlogger",
+          "outcome": "success"
+        },
+        {
+          "module": "modem_utils",
+          "outcome": "success"
+        },
+        {
+          "module": "shm_ipc",
+          "outcome": "success"
+        },
+        {
+          "module": "mcu_ipc",
+          "outcome": "success"
+        },
+        {
+          "module": "mcps",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_dit",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_sci",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_btsops2100",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bts",
+          "outcome": "success"
+        },
+        {
+          "module": "cpif",
+          "outcome": "success"
+        },
+        {
+          "module": "sysevent_notif",
+          "outcome": "success"
+        },
+        {
+          "module": "sysevent",
+          "outcome": "success"
+        },
+        {
+          "module": "imgloader",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_abox",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3",
+          "outcome": "success"
+        },
+        {
+          "module": "tzdev",
+          "outcome": "success"
+        },
+        {
+          "module": "tuihw_inf",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_vts_mailbox",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_vts",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bcm_dbg_dt",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bcm_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpuhp",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mcinfo",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_msn",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_thermal",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_pm_cpufreq",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_dm",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_devfreq",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "success"
+        },
+        {
+          "module": "mali_kbase",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "existing"
+        },
+        {
+          "module": "mali_kbase",
+          "outcome": "existing"
+        },
+        {
+          "module": "exynos_migov",
+          "outcome": "success"
+        },
+        {
+          "module": "repeater",
+          "outcome": "success"
+        },
+        {
+          "module": "dp_ext_func",
+          "outcome": "success"
+        },
+        {
+          "module": "hdcp2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_iommu_group",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_iommu",
+          "outcome": "success"
+        },
+        {
+          "module": "dpu",
+          "outcome": "success"
+        },
+        {
+          "module": "debug_snapshot_sfrdump",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ssld",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_seh",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_seclog",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_tzasc",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ppmpu",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm",
+          "outcome": "success"
+        },
+        {
+          "module": "usi_v2",
+          "outcome": "success"
+        },
+        {
+          "module": "plugin_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ssp",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ufcc",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_afm",
+          "outcome": "success"
+        },
+        {
+          "module": "xperf",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_sdm",
+          "outcome": "success"
+        },
+        {
+          "module": "secmem",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpu_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_gpu_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mif_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_idle_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm_dvs",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb02_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb03",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_tty",
+          "outcome": "success"
+        },
+        {
+          "module": "exyswd_rng",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_tsp_log",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_common_fn",
+          "outcome": "success"
+        },
+        {
+          "module": "tuihw",
+          "outcome": "success"
+        },
+        {
+          "module": "nfc_sec",
+          "outcome": "success"
+        },
+        {
+          "module": "dma_buf_container",
+          "outcome": "success"
+        },
+        {
+          "module": "scsi_srpmb",
+          "outcome": "success"
+        },
+        {
+          "module": "spidev",
+          "outcome": "success"
+        },
+        {
+          "module": "dhd",
+          "outcome": "success"
+        },
+        {
+          "module": "rtl8150",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_eem",
+          "outcome": "success"
+        },
+        {
+          "module": "smsc75xx",
+          "outcome": "success"
+        },
+        {
+          "module": "smsc95xx",
+          "outcome": "success"
+        },
+        {
+          "module": "net1080",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_ncm",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_hcd",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_pci",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_usb_audio_offloading",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_plat_hcd",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_dm",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_dm1",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_mtp_samsung",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_ptp",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_conn_gadget",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_ss_mon_gadget",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_haps",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_of_simple",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_qcom",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_acm",
+          "outcome": "success"
+        },
+        {
+          "module": "usblp",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_wdm",
+          "outcome": "success"
+        },
+        {
+          "module": "usbserial",
+          "outcome": "success"
+        },
+        {
+          "module": "ftdi_sio",
+          "outcome": "success"
+        },
+        {
+          "module": "pl2303",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_key",
+          "outcome": "success"
+        },
+        {
+          "module": "rtc_s3c",
+          "outcome": "success"
+        },
+        {
+          "module": "rtc_s2mps23",
+          "outcome": "success"
+        },
+        {
+          "module": "i2c_dev",
+          "outcome": "success"
+        },
+        {
+          "module": "v4l2_mem2mem",
+          "outcome": "success"
+        },
+        {
+          "module": "videobuf2_dma_sg",
+          "outcome": "success"
+        },
+        {
+          "module": "tsmux",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mfc",
+          "outcome": "success"
+        },
+        {
+          "module": "camerapp",
+          "outcome": "success"
+        },
+        {
+          "module": "votf",
+          "outcome": "success"
+        },
+        {
+          "module": "camerapp_pd_mgr",
+          "outcome": "success"
+        },
+        {
+          "module": "gdc",
+          "outcome": "success"
+        },
+        {
+          "module": "leds_s2mpb02",
+          "outcome": "success"
+        },
+        {
+          "module": "fimc_is",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_3j1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_gh1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_hm1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_hm3",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_imx563",
+          "outcome": "success"
+        },
+        {
+          "module": "is_actuator_ak737x",
+          "outcome": "success"
+        },
+        {
+          "module": "sensors_core",
+          "outcome": "success"
+        },
+        {
+          "module": "vl53l5",
+          "outcome": "success"
+        },
+        {
+          "module": "is_laser_af_vl53l5",
+          "outcome": "success"
+        },
+        {
+          "module": "is_flash_s2mpb02",
+          "outcome": "success"
+        },
+        {
+          "module": "is_device_eeprom",
+          "outcome": "success"
+        },
+        {
+          "module": "mcfrc",
+          "outcome": "success"
+        },
+        {
+          "module": "smfc",
+          "outcome": "success"
+        },
+        {
+          "module": "scaler",
+          "outcome": "success"
+        },
+        {
+          "module": "gpu_cooling",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_stacktrace",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_softdog",
+          "outcome": "success"
+        },
+        {
+          "module": "softdog",
+          "outcome": "success"
+        },
+        {
+          "module": "bcm43xx",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_dsufreq",
+          "outcome": "success"
+        },
+        {
+          "module": "dw_mmc",
+          "outcome": "success"
+        },
+        {
+          "module": "dw_mmc_pltfm",
+          "outcome": "success"
+        },
+        {
+          "module": "dw_mmc_exynos",
+          "outcome": "success"
+        },
+        {
+          "module": "ion_exynos_mod",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_adc",
+          "outcome": "success"
+        },
+        {
+          "module": "dsp",
+          "outcome": "success"
+        },
+        {
+          "module": "npu",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_pm_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_pm_log",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_thermistor",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_wakeup_cpu_allocator",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_crash_key",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_crash_key_user",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_bootstat",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_argos",
+          "outcome": "success"
+        },
+        {
+          "module": "hdm",
+          "outcome": "success"
+        },
+        {
+          "module": "sx9360",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_test",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_dprm",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_hw_param",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_reset_reason",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_wdd_info",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_hist",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_summary",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_logbuf_interface",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_hardlockup_info",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_sched_report",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_vibrator",
+          "outcome": "success"
+        },
+        {
+          "module": "mfd_max77705",
+          "outcome": "success"
+        },
+        {
+          "module": "spu_verify",
+          "outcome": "success"
+        },
+        {
+          "module": "pdic_max77705",
+          "outcome": "success"
+        },
+        {
+          "module": "max77705_charger",
+          "outcome": "success"
+        },
+        {
+          "module": "dropdump",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_tclm_v2",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_secure_touch",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_tsp_dumpkey",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_input_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_cmd",
+          "outcome": "success"
+        },
+        {
+          "module": "qbt2000_spidev",
+          "outcome": "success"
+        },
+        {
+          "module": "cs40l2x_vib",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_pd",
+          "outcome": "success"
+        },
+        {
+          "module": "pca9468_charger",
+          "outcome": "success"
+        },
+        {
+          "module": "hall_ic",
+          "outcome": "success"
+        },
+        {
+          "module": "abc_hub",
+          "outcome": "success"
+        },
+        {
+          "module": "max77705_fuelgauge",
+          "outcome": "success"
+        },
+        {
+          "module": "broadcom_sensorhub",
+          "outcome": "success"
+        },
+        {
+          "module": "slsi_ts",
+          "outcome": "success"
+        },
+        {
+          "module": "uwb",
+          "outcome": "success"
+        },
+        {
+          "module": "snvm",
+          "outcome": "success"
+        },
+        {
+          "module": "mfc_charger",
+          "outcome": "success"
+        },
+        {
+          "module": "tsl2510",
+          "outcome": "success"
+        },
+        {
+          "module": "w9020",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_direct_charger",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_battery",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_wm_adsp",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_cirrus_amp",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_audio_sysfs",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_cs35l41_i2c",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_s3c_dma",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_dp_dma",
+          "outcome": "success"
+        },
+        {
+          "module": "unbound_prince",
+          "outcome": "success"
+        },
+        {
+          "module": "tcp_westwood",
+          "outcome": "success"
+        },
+        {
+          "module": "tcp_htcp",
+          "outcome": "success"
+        }
+      ]
+    },
+    "first_listed_failure": {
+      "success": false,
+      "count": 0,
+      "attempts": [
+        {
+          "module": "dss",
+          "outcome": "failure"
+        }
+      ]
+    },
+    "later_module_failure": {
+      "success": false,
+      "count": 209,
+      "attempts": [
+        {
+          "module": "dss",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_chipid_v2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_reboot",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_class",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_mparam",
+          "outcome": "success"
+        },
+        {
+          "module": "abc",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_key_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "pinctrl_samsung_core",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_hard_reset_hook",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pmu_if",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_reboot",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_mode",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_extra_info",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos2100_itmon",
+          "outcome": "success"
+        },
+        {
+          "module": "s3c2410_wdt",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ecc_handler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_coresight",
+          "outcome": "success"
+        },
+        {
+          "module": "debug_snapshot_qd",
+          "outcome": "success"
+        },
+        {
+          "module": "eat",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_adv_tracer_s2d",
+          "outcome": "success"
+        },
+        {
+          "module": "hardlockup_watchdog",
+          "outcome": "success"
+        },
+        {
+          "module": "ehld",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_debug_test",
+          "outcome": "success"
+        },
+        {
+          "module": "hardlockup_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acpm",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm_qos",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_s2mpu",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_el2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd_el3",
+          "outcome": "success"
+        },
+        {
+          "module": "ect_parser",
+          "outcome": "success"
+        },
+        {
+          "module": "cmu_ewf",
+          "outcome": "success"
+        },
+        {
+          "module": "cmupmucal",
+          "outcome": "success"
+        },
+        {
+          "module": "clk_exynos",
+          "outcome": "success"
+        },
+        {
+          "module": "clk_exynos_audss",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mct",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_notify_layer",
+          "outcome": "success"
+        },
+        {
+          "module": "switch_class",
+          "outcome": "success"
+        },
+        {
+          "module": "common_muic",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_flexpmu_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpupm",
+          "outcome": "success"
+        },
+        {
+          "module": "i2c_exynos5",
+          "outcome": "success"
+        },
+        {
+          "module": "acpm_mfd_bus",
+          "outcome": "success"
+        },
+        {
+          "module": "pmic_class",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps24_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps24_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_usbdrd_super",
+          "outcome": "success"
+        },
+        {
+          "module": "fingerprint_sysfs",
+          "outcome": "success"
+        },
+        {
+          "module": "fingerprint",
+          "outcome": "success"
+        },
+        {
+          "module": "blk_sec_stats",
+          "outcome": "success"
+        },
+        {
+          "module": "ssg_iosched",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_mipi_dsim",
+          "outcome": "success"
+        },
+        {
+          "module": "phy_exynos_mipi",
+          "outcome": "success"
+        },
+        {
+          "module": "pwm_samsung",
+          "outcome": "success"
+        },
+        {
+          "module": "freq_qos_tracer",
+          "outcome": "success"
+        },
+        {
+          "module": "fmp_core",
+          "outcome": "success"
+        },
+        {
+          "module": "ufs_exynos_core",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos2100_v0_cal",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_host_v0",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos2100_rc_cal",
+          "outcome": "success"
+        },
+        {
+          "module": "pcie_exynos_rc",
+          "outcome": "success"
+        },
+        {
+          "module": "fb",
+          "outcome": "success"
+        },
+        {
+          "module": "dev_ril_bridge",
+          "outcome": "success"
+        },
+        {
+          "module": "s2dos05_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "pl330",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_dma",
+          "outcome": "success"
+        },
+        {
+          "module": "spi_s3c64xx",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel_s6e3hab",
+          "outcome": "success"
+        },
+        {
+          "module": "mcd_panel_s6e3had",
+          "outcome": "success"
+        },
+        {
+          "module": "if_cb_manager",
+          "outcome": "success"
+        },
+        {
+          "module": "pdic_notifier_module",
+          "outcome": "success"
+        },
+        {
+          "module": "vbus_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_typec_manager",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_abox_gic",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_audio_debug",
+          "outcome": "success"
+        },
+        {
+          "module": "memlogger",
+          "outcome": "success"
+        },
+        {
+          "module": "modem_utils",
+          "outcome": "success"
+        },
+        {
+          "module": "shm_ipc",
+          "outcome": "success"
+        },
+        {
+          "module": "mcu_ipc",
+          "outcome": "success"
+        },
+        {
+          "module": "mcps",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_dit",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_sci",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_btsops2100",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bts",
+          "outcome": "success"
+        },
+        {
+          "module": "cpif",
+          "outcome": "success"
+        },
+        {
+          "module": "sysevent_notif",
+          "outcome": "success"
+        },
+        {
+          "module": "sysevent",
+          "outcome": "success"
+        },
+        {
+          "module": "imgloader",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_abox",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3",
+          "outcome": "success"
+        },
+        {
+          "module": "tzdev",
+          "outcome": "success"
+        },
+        {
+          "module": "tuihw_inf",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_vts_mailbox",
+          "outcome": "success"
+        },
+        {
+          "module": "snd_soc_samsung_vts",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bcm_dbg_dt",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_bcm_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpuhp",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mcinfo",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_msn",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_thermal",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_pm_cpufreq",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_dm",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_devfreq",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        },
+        {
+          "module": "mali_kbase",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        },
+        {
+          "module": "mali_kbase",
+          "outcome": "existing"
+        },
+        {
+          "module": "exynos_migov",
+          "outcome": "success"
+        },
+        {
+          "module": "repeater",
+          "outcome": "success"
+        },
+        {
+          "module": "dp_ext_func",
+          "outcome": "success"
+        },
+        {
+          "module": "hdcp2",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pd_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_iommu_group",
+          "outcome": "success"
+        },
+        {
+          "module": "samsung_iommu",
+          "outcome": "success"
+        },
+        {
+          "module": "dpu",
+          "outcome": "success"
+        },
+        {
+          "module": "debug_snapshot_sfrdump",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ssld",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_seh",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_seclog",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_tzasc",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ppmpu",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm",
+          "outcome": "success"
+        },
+        {
+          "module": "usi_v2",
+          "outcome": "success"
+        },
+        {
+          "module": "plugin_dbg",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_ssp",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        },
+        {
+          "module": "exynos_ufcc",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        },
+        {
+          "module": "exynos_afm",
+          "outcome": "success"
+        },
+        {
+          "module": "xperf",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_sdm",
+          "outcome": "success"
+        },
+        {
+          "module": "secmem",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_cpu_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_gpu_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mif_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_idle_profiler",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_pm_dvs",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb02_mfd",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb02_regulator",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mpb03",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_tty",
+          "outcome": "success"
+        },
+        {
+          "module": "exyswd_rng",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_tsp_log",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_common_fn",
+          "outcome": "success"
+        },
+        {
+          "module": "tuihw",
+          "outcome": "success"
+        },
+        {
+          "module": "nfc_sec",
+          "outcome": "success"
+        },
+        {
+          "module": "dma_buf_container",
+          "outcome": "success"
+        },
+        {
+          "module": "scsi_srpmb",
+          "outcome": "success"
+        },
+        {
+          "module": "spidev",
+          "outcome": "success"
+        },
+        {
+          "module": "dhd",
+          "outcome": "success"
+        },
+        {
+          "module": "rtl8150",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_eem",
+          "outcome": "success"
+        },
+        {
+          "module": "smsc75xx",
+          "outcome": "success"
+        },
+        {
+          "module": "smsc95xx",
+          "outcome": "success"
+        },
+        {
+          "module": "net1080",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_ncm",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_hcd",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_pci",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_usb_audio_offloading",
+          "outcome": "success"
+        },
+        {
+          "module": "xhci_plat_hcd",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_dm",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_dm1",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_mtp_samsung",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_ptp",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_conn_gadget",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_f_ss_mon_gadget",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_haps",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_of_simple",
+          "outcome": "success"
+        },
+        {
+          "module": "dwc3_qcom",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_acm",
+          "outcome": "success"
+        },
+        {
+          "module": "usblp",
+          "outcome": "success"
+        },
+        {
+          "module": "cdc_wdm",
+          "outcome": "success"
+        },
+        {
+          "module": "usbserial",
+          "outcome": "success"
+        },
+        {
+          "module": "ftdi_sio",
+          "outcome": "success"
+        },
+        {
+          "module": "pl2303",
+          "outcome": "success"
+        },
+        {
+          "module": "usb_notifier",
+          "outcome": "success"
+        },
+        {
+          "module": "s2mps23_key",
+          "outcome": "success"
+        },
+        {
+          "module": "rtc_s3c",
+          "outcome": "success"
+        },
+        {
+          "module": "rtc_s2mps23",
+          "outcome": "success"
+        },
+        {
+          "module": "i2c_dev",
+          "outcome": "success"
+        },
+        {
+          "module": "v4l2_mem2mem",
+          "outcome": "success"
+        },
+        {
+          "module": "videobuf2_dma_sg",
+          "outcome": "success"
+        },
+        {
+          "module": "tsmux",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_mfc",
+          "outcome": "success"
+        },
+        {
+          "module": "camerapp",
+          "outcome": "success"
+        },
+        {
+          "module": "votf",
+          "outcome": "success"
+        },
+        {
+          "module": "camerapp_pd_mgr",
+          "outcome": "success"
+        },
+        {
+          "module": "gdc",
+          "outcome": "success"
+        },
+        {
+          "module": "leds_s2mpb02",
+          "outcome": "success"
+        },
+        {
+          "module": "fimc_is",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_3j1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_gh1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_hm1",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_hm3",
+          "outcome": "success"
+        },
+        {
+          "module": "is_cis_imx563",
+          "outcome": "success"
+        },
+        {
+          "module": "is_actuator_ak737x",
+          "outcome": "success"
+        },
+        {
+          "module": "sensors_core",
+          "outcome": "success"
+        },
+        {
+          "module": "vl53l5",
+          "outcome": "success"
+        },
+        {
+          "module": "is_laser_af_vl53l5",
+          "outcome": "success"
+        },
+        {
+          "module": "is_flash_s2mpb02",
+          "outcome": "success"
+        },
+        {
+          "module": "is_device_eeprom",
+          "outcome": "success"
+        },
+        {
+          "module": "mcfrc",
+          "outcome": "success"
+        },
+        {
+          "module": "smfc",
+          "outcome": "success"
+        },
+        {
+          "module": "scaler",
+          "outcome": "success"
+        },
+        {
+          "module": "gpu_cooling",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_stacktrace",
+          "outcome": "success"
+        },
+        {
+          "module": "sec_debug_softdog",
+          "outcome": "success"
+        },
+        {
+          "module": "softdog",
+          "outcome": "success"
+        },
+        {
+          "module": "bcm43xx",
+          "outcome": "success"
+        },
+        {
+          "module": "exynos_acme",
+          "outcome": "failure"
+        }
+      ]
+    }
+  },
+  "stock_controls_summary": {
+    "alias_rules": 1652,
+    "softdep_statements": 26,
+    "softdep_targets": [
+      {
+        "module": "exynos_pd_el3",
+        "phase": "pre",
+        "target": "exynos-el2",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "sec_hard_reset_hook",
+        "phase": "pre",
+        "target": "pinctrl-samsung-core",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "mali_kbase",
+        "phase": "pre",
+        "target": "memory_group_manager",
+        "direct_dep_key_present": false
+      },
+      {
+        "module": "mali_kbase",
+        "phase": "pre",
+        "target": "exynos-acme",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "cmupmucal",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "clk_exynos",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "exynos-pmu-if",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "pinctrl-samsung-core",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "fb",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "phy-exynos-mipi",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "exynos-pd",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "exynos-pd-dbg",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "dpu",
+        "phase": "pre",
+        "target": "samsung-iommu",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "softdog",
+        "phase": "pre",
+        "target": "s3c2410_wdt",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_flash_s2mpb02",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "cmupmucal",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "clk_exynos",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "exynos-pmu-if",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "pinctrl-samsung-core",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "phy-exynos-mipi",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "samsung-iommu",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "fimc_is",
+        "phase": "pre",
+        "target": "samsung-iommu-group",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "mcd_panel",
+        "phase": "pre",
+        "target": "s2dos05_regulator",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "mcd_panel",
+        "phase": "pre",
+        "target": "s2mps24-regulator",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "mcd_panel",
+        "phase": "pre",
+        "target": "spi-s3c64xx",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_cis_3j1",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_laser_af_vl53l5",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_cis_imx563",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "tsmux",
+        "phase": "pre",
+        "target": "repeater",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_devfreq",
+        "phase": "pre",
+        "target": "exynos_dm",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_devfreq",
+        "phase": "pre",
+        "target": "exynos_thermal",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_devfreq",
+        "phase": "post",
+        "target": "exynos-acme",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_devfreq",
+        "phase": "post",
+        "target": "mali_kbase",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_afm",
+        "phase": "pre",
+        "target": "exynos-acme",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "slsi_ts",
+        "phase": "pre",
+        "target": "acpm-mfd-bus",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_ufcc",
+        "phase": "pre",
+        "target": "exynos-acme",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_pm_dvs",
+        "phase": "pre",
+        "target": "acpm-mfd-bus",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "sec_pm_debug",
+        "phase": "pre",
+        "target": "acpm-mfd-bus",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_actuator_ak737x",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_pd",
+        "phase": "pre",
+        "target": "clk_exynos",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "samsung_iommu",
+        "phase": "pre",
+        "target": "samsung-iommu-group",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "is_device_eeprom",
+        "phase": "pre",
+        "target": "fimc-is",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_reboot",
+        "phase": "pre",
+        "target": "exynos-chipid_v2",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_gpu_profiler",
+        "phase": "pre",
+        "target": "exynos-migov",
+        "direct_dep_key_present": true
+      },
+      {
+        "module": "exynos_dsufreq",
+        "phase": "pre",
+        "target": "exynos-acme",
+        "direct_dep_key_present": true
+      }
+    ],
+    "hard_dependency_edges": 3654,
+    "all_hard_dependencies_precede_consumers_in_success_model": true
+  },
+  "assumptions": {
+    "backend": "fake Insmod: success for new modules, EEXIST-equivalent for repeated modules, failure for injected canonical name",
+    "kernel_cmdline": "",
+    "blocklist_enabled": true,
+    "strict_list": true,
+    "regular_path_presence": "stock structural validation",
+    "readfile": "map of checked embedded control buffers",
+    "logging": "no-op",
+    "compiler_input_sealed": true
+  },
+  "android_init_executed": false,
+  "kernel_modules_loaded": false,
+  "device_accessed": false,
+  "samsung_binary_equivalence_proven": false,
+  "real_init_order_observed": false,
+  "a0_complete": false
+}
