@@ -96,3 +96,10 @@ alterado e imutabilidade dos buffers nativos. Integração na CI existente.
 Validação local adicional: 394 testes existentes da família A0 aprovados e
 baseline R10 9/9. Esses 394 não incluem os nove testes novos acima, que
 foram executados separadamente.
+
+## Continuação — referência executável em host
+
+A [execução da referência AOSP fixada](a0-modprobe-host-replay-hzc2.md)
+com controles stock e backend simulado produziu 274 módulos únicos, duas
+tentativas equivalentes a EEXIST e dois controles negativos. Não demonstra
+equivalência binária Samsung nem a ordem real no telefone.

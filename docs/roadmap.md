@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [reprodução do resolvedor em host](a0-modprobe-host-replay-hzc2.md) executou uma referência AOSP fixada com controles stock e backend simulado: 274 módulos únicos, duas tentativas equivalentes a EEXIST e todas as 3654 dependências antes dos consumidores. Dois controles de falha recusaram a lista. A softdep memory_group_manager não está no conjunto; sua opcionalidade no resolvedor não prova funcionamento da GPU. Sem execução Samsung ou equivalência runtime; A0 aberto.
+
 O [init stock e seu resolvedor de módulos](a0-init-module-loader-hzc2.md) foram identificados no boot enviado: FirstStageMain chega a LoadListedModules, LoadWithAliases e InsmodWithDeps antes de Insmod. As 151 relações fora da lista literal não demonstram falha de carga; a implementação resolve dependências e o percurso selecionado é reverso. São bindings estáticos do ELF fixado, sem execução ou aprovação runtime; A0 aberto.
 
 A [verificação do vendor_boot stock](capture-a0-stock-load-validation-hzc2.md) conferiu o arquivo enviado contra os pins HZC2 e aprovou os arquivos reais de carga: 274 módulos, 569 dependências declaradas e 3654 arestas em modules.dep, sem ausências ou ciclos. Há 151 relações fora da ordem literal de modules.load; resolver dependências é distinto de insmod sequencial. O loader userspace continua pendente; A0 aberto.

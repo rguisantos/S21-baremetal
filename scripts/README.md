@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`replay_a0_modprobe.py` compila o resolvedor AOSP fixado com adaptadores de host e backend que registra tentativas, sem carregar módulos. Três casos nativos, nove testes de trace/adaptação. [Guia e hipóteses](../docs/a0-modprobe-host-replay-hzc2.md).
+
 `inspect_a0_init_modules.py` analisa boot stock fixado, recupera símbolos do mini-debug do init e confere calls/instruções de carga de módulos. Leitores nativos usam memfds selados; init não é executado. Nove testes em `test_a0_init_modules.py`. [Guia](../docs/a0-init-module-loader-hzc2.md).
 
 `check_capture_a0_load_plan.py` verifica dependências declaradas do inventário fixado e gera ordem proposta; `--vendor-boot` permite conferir os arquivos de controle do stock. Retorno 2 indica cobertura incompleta ou diagnóstico negativo. Não carrega módulos. [Guia](../docs/capture-a0-module-load-plan-hzc2.md).
