@@ -1,0 +1,478 @@
+{
+  "scope": "bounded local inotify observation; no PID attribution",
+  "events": [
+    {
+      "kind": "watch",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build",
+      "time_ns": 1793753259028548783
+    },
+    {
+      "kind": "start",
+      "observer_pid": 2,
+      "child_pid": 6,
+      "args": [
+        "python3",
+        "scripts/check_capture_a0_sizes.py",
+        "--stock-dir",
+        "build/a0-plan-stock",
+        "--candidate-artifacts",
+        "/workspace/scratch/1b09503e0552/stage-a0-execution-inputs/S21-HZC2-alinhado-completo-20261102.tar.gz",
+        "--source",
+        "/workspace/scratch/1b09503e0552/stage-a0-execution-inputs/Kernel.tar.gz",
+        "--tools-root",
+        "tools/root",
+        "--output-dir",
+        "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed"
+      ],
+      "time_ns": 1793753259029067774
+    },
+    {
+      "kind": "watch",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed",
+      "time_ns": 1793753266267162787
+    },
+    {
+      "kind": "watch",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate",
+      "time_ns": 1793753266267264780
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x100",
+      "time_ns": 1793753266496995038,
+      "bytes": 0,
+      "inode": 917552,
+      "mtime_ns": 1793753266494566896,
+      "ctime_ns": 1793753266494566896
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266501210085,
+      "bytes": 1048576,
+      "inode": 917552,
+      "mtime_ns": 1793753266498566998,
+      "ctime_ns": 1793753266498566998
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266504189040,
+      "bytes": 2097152,
+      "inode": 917552,
+      "mtime_ns": 1793753266502567101,
+      "ctime_ns": 1793753266502567101
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266506575428,
+      "bytes": 3145728,
+      "inode": 917552,
+      "mtime_ns": 1793753266506131691,
+      "ctime_ns": 1793753266506131691
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266510983125,
+      "bytes": 4194304,
+      "inode": 917552,
+      "mtime_ns": 1793753266506567203,
+      "ctime_ns": 1793753266506567203
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266516820625,
+      "bytes": 5242880,
+      "inode": 917552,
+      "mtime_ns": 1793753266514567408,
+      "ctime_ns": 1793753266514567408
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266522761950,
+      "bytes": 6291456,
+      "inode": 917552,
+      "mtime_ns": 1793753266518567511,
+      "ctime_ns": 1793753266518567511
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266528801464,
+      "bytes": 7340032,
+      "inode": 917552,
+      "mtime_ns": 1793753266526567716,
+      "ctime_ns": 1793753266526567716
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266534613090,
+      "bytes": 8388608,
+      "inode": 917552,
+      "mtime_ns": 1793753266530567819,
+      "ctime_ns": 1793753266530567819
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266542030289,
+      "bytes": 9437184,
+      "inode": 917552,
+      "mtime_ns": 1793753266538568025,
+      "ctime_ns": 1793753266538568025
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266547510049,
+      "bytes": 10485760,
+      "inode": 917552,
+      "mtime_ns": 1793753266542568127,
+      "ctime_ns": 1793753266542568127
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266553410258,
+      "bytes": 11534336,
+      "inode": 917552,
+      "mtime_ns": 1793753266550568332,
+      "ctime_ns": 1793753266550568332
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266557441078,
+      "bytes": 12582912,
+      "inode": 917552,
+      "mtime_ns": 1793753266554568435,
+      "ctime_ns": 1793753266554568435
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266560145605,
+      "bytes": 13631488,
+      "inode": 917552,
+      "mtime_ns": 1793753266558568538,
+      "ctime_ns": 1793753266558568538
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266563229093,
+      "bytes": 14680064,
+      "inode": 917552,
+      "mtime_ns": 1793753266562970424,
+      "ctime_ns": 1793753266562970424
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266566451650,
+      "bytes": 15728640,
+      "inode": 917552,
+      "mtime_ns": 1793753266566051903,
+      "ctime_ns": 1793753266566051903
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266570916427,
+      "bytes": 16777216,
+      "inode": 917552,
+      "mtime_ns": 1793753266566568743,
+      "ctime_ns": 1793753266566568743
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266573892639,
+      "bytes": 17825792,
+      "inode": 917552,
+      "mtime_ns": 1793753266570568845,
+      "ctime_ns": 1793753266570568845
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266577098931,
+      "bytes": 18874368,
+      "inode": 917552,
+      "mtime_ns": 1793753266574568948,
+      "ctime_ns": 1793753266574568948
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266580751862,
+      "bytes": 19922944,
+      "inode": 917552,
+      "mtime_ns": 1793753266578569050,
+      "ctime_ns": 1793753266578569050
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266584019271,
+      "bytes": 20971520,
+      "inode": 917552,
+      "mtime_ns": 1793753266582569153,
+      "ctime_ns": 1793753266582569153
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266589505607,
+      "bytes": 22020096,
+      "inode": 917552,
+      "mtime_ns": 1793753266586569256,
+      "ctime_ns": 1793753266586569256
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266592883899,
+      "bytes": 23068672,
+      "inode": 917552,
+      "mtime_ns": 1793753266590569358,
+      "ctime_ns": 1793753266590569358
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266595771808,
+      "bytes": 24117248,
+      "inode": 917552,
+      "mtime_ns": 1793753266594569461,
+      "ctime_ns": 1793753266594569461
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266598878275,
+      "bytes": 25165824,
+      "inode": 917552,
+      "mtime_ns": 1793753266598325353,
+      "ctime_ns": 1793753266598325353
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266601769619,
+      "bytes": 26214400,
+      "inode": 917552,
+      "mtime_ns": 1793753266598569564,
+      "ctime_ns": 1793753266598569564
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266604994975,
+      "bytes": 27262976,
+      "inode": 917552,
+      "mtime_ns": 1793753266602569667,
+      "ctime_ns": 1793753266602569667
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266607663944,
+      "bytes": 28311552,
+      "inode": 917552,
+      "mtime_ns": 1793753266606569769,
+      "ctime_ns": 1793753266606569769
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266611157454,
+      "bytes": 29360128,
+      "inode": 917552,
+      "mtime_ns": 1793753266610956802,
+      "ctime_ns": 1793753266610956802
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266613974916,
+      "bytes": 30408704,
+      "inode": 917552,
+      "mtime_ns": 1793753266613811441,
+      "ctime_ns": 1793753266613811441
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x2",
+      "time_ns": 1793753266616600770,
+      "bytes": 30998000,
+      "inode": 917552,
+      "mtime_ns": 1793753266614569974,
+      "ctime_ns": 1793753266614569974
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/mali_kbase.ko",
+      "mask": "0x8",
+      "time_ns": 1793753266623261750,
+      "bytes": 30998000,
+      "inode": 917552,
+      "mtime_ns": 1793753266614569974,
+      "ctime_ns": 1793753266614569974
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x100",
+      "time_ns": 1793753268299865887,
+      "bytes": 0,
+      "inode": 917651,
+      "mtime_ns": 1793753268298613075,
+      "ctime_ns": 1793753268298613075
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268309232520,
+      "bytes": 1048576,
+      "inode": 917651,
+      "mtime_ns": 1793753268302613178,
+      "ctime_ns": 1793753268302613178
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268317620389,
+      "bytes": 2097152,
+      "inode": 917651,
+      "mtime_ns": 1793753268310613382,
+      "ctime_ns": 1793753268310613382
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268335810997,
+      "bytes": 3145728,
+      "inode": 917651,
+      "mtime_ns": 1793753268322613689,
+      "ctime_ns": 1793753268322613689
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268363888652,
+      "bytes": 4194304,
+      "inode": 917651,
+      "mtime_ns": 1793753268334613996,
+      "ctime_ns": 1793753268334613996
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268369726292,
+      "bytes": 5242880,
+      "inode": 917651,
+      "mtime_ns": 1793753268362614713,
+      "ctime_ns": 1793753268362614713
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268375942050,
+      "bytes": 6291456,
+      "inode": 917651,
+      "mtime_ns": 1793753268370614918,
+      "ctime_ns": 1793753268370614918
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268382448262,
+      "bytes": 7340032,
+      "inode": 917651,
+      "mtime_ns": 1793753268374615020,
+      "ctime_ns": 1793753268374615020
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268388927702,
+      "bytes": 8388608,
+      "inode": 917651,
+      "mtime_ns": 1793753268382615225,
+      "ctime_ns": 1793753268382615225
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268395310387,
+      "bytes": 9437184,
+      "inode": 917651,
+      "mtime_ns": 1793753268390615429,
+      "ctime_ns": 1793753268390615429
+    },
+    {
+      "kind": "event",
+      "path": "/workspace/scratch/1b09503e0552/S21-baremetal/build/a0-plan-observed/candidate/dhd.ko",
+      "mask": "0x2",
+      "time_ns": 1793753268401558715,
+      "bytes": 10485760,
+      "inode": 917651,
+      "mtime_ns": 1793753268394615532,
+      "ctime_ns": 1793753268394615532
+    }
+  ],
+  "observer_method": {
+    "sha256": "042eb390f4a76b194e251865e12e0ea3ba08f8eb527bff92b8a691c6728dddcf",
+    "source": "from pathlib import Path\nimport ctypes as c,os,json,select,struct,subprocess,time\nroot=Path('.').resolve();out=root/'build/a0-plan-observed';events=root/'build/a0-plan-observer.jsonl';lib=c.CDLL(None,use_errno=True)\nlib.inotify_init1.argtypes=[c.c_int];lib.inotify_init1.restype=c.c_int;lib.inotify_add_watch.argtypes=[c.c_int,c.c_char_p,c.c_uint];lib.inotify_add_watch.restype=c.c_int\nfd=lib.inotify_init1(os.O_NONBLOCK|os.O_CLOEXEC);assert fd>=0,c.get_errno();watches={};seen=set();mask=0x2|0x4|0x8|0x100\nwith events.open('x') as trace, (root/'build/a0-plan-observed.log').open('x') as log:\n def emit(row):trace.write(json.dumps(row)+'\\n');trace.flush()\n def add(path):\n  if str(path) in seen or not path.exists():return\n  wd=lib.inotify_add_watch(fd,os.fsencode(path),mask)\n  if wd>=0:watches[wd]=path;seen.add(str(path));emit(dict(kind='watch',path=str(path),time_ns=time.time_ns()))\n add(root/'build')\n args=['python3','scripts/check_capture_a0_sizes.py','--stock-dir','build/a0-plan-stock','--candidate-artifacts','/workspace/scratch/1b09503e0552/stage-a0-execution-inputs/S21-HZC2-alinhado-completo-20261102.tar.gz','--source','/workspace/scratch/1b09503e0552/stage-a0-execution-inputs/Kernel.tar.gz','--tools-root','tools/root','--output-dir',str(out)]\n child=subprocess.Popen(args,stdout=log,stderr=subprocess.STDOUT);start=time.monotonic();last=start\n emit(dict(kind='start',observer_pid=os.getpid(),child_pid=child.pid,args=args,time_ns=time.time_ns()))\n while child.poll() is None:\n  if time.monotonic()-start>300:child.kill();raise RuntimeError('observer timeout')\n  add(out);add(out/'candidate')\n  ready,_,_=select.select([fd],[],[],0.2)\n  if ready:\n   data=os.read(fd,65536);pos=0\n   while pos+16<=len(data):\n    wd,bits,cookie,n=struct.unpack_from('iIII',data,pos);name=data[pos+16:pos+16+n].split(b'\\0',1)[0].decode();pos+=16+n\n    if name not in ('dhd.ko','mali_kbase.ko'):continue\n    path=watches[wd]/name;row=dict(kind='event',path=str(path),mask=hex(bits),time_ns=time.time_ns())\n    try:\n     st=path.stat();row.update(bytes=st.st_size,inode=st.st_ino,mtime_ns=st.st_mtime_ns,ctime_ns=st.st_ctime_ns)\n    except OSError as e:row['error']=str(e)\n    emit(row)\n  if time.monotonic()-last>20:print('Observed sizing active; seconds',int(time.monotonic()-start),flush=True);last=time.monotonic()\n emit(dict(kind='exit',returncode=child.returncode,time_ns=time.time_ns()))\n print('Observed sizing returncode:',child.returncode,flush=True)\nos.close(fd)\n"
+  },
+  "trace_sha256": "6579c8a72f8f9c48559dbc88b4a3a1b253b82228c04cd03f05abb64262eac768",
+  "trace_complete": false,
+  "native_returncode": 1,
+  "writer_identified": false
+}

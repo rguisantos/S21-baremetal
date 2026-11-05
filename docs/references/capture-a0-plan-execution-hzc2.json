@@ -1,0 +1,338 @@
+{
+  "schema": "S21-A0-PLAN-EXECUTION-v1",
+  "reference_commit": "e0aa2e16346ca09473071c3ffaaccd46e987568a",
+  "reference_sha256": {
+    "docs/references/capture-a0-pins-hzc2.json": "e049544a5afb5fe451a98f7e03943f105fd69de581c8e3e46ef1ebebd35b05b2",
+    "docs/references/capture-a0-payload-sizes-hzc2.json": "4a3326f133eb1344620c85be4f8ccb6afe9d54cfc2c9f1149634389b8b783f70",
+    "docs/references/capture-a0-stock-hzc2.json": "a6298e379d9cf4d62cc38399de81bc194369107032574546583408469860d7d6",
+    "docs/references/capture-a0-aligned-full-audit-hzc2.json": "3c2e43fbb0052a17bf067a7fab9539bdbbe73134a12c73cfe7ef794861eb77f4",
+    "docs/references/capture-a0-kmi-hzc2.json": "faa2a77ca68df9af3e1545e36346c3926ab31556a751714fd01a322b034491fb",
+    "docs/references/capture-a0-image-producer-hzc2.json": "50a647ef181cf1de10ed3483e73d8c8f5a1e5cd9359b543b7ea4884d6eff360f"
+  },
+  "implementation_sha256": {
+    "capture_a0_inputs.py": "f235148b1ba5c0de71ff30b50af3dd23d081b2ab20d3a74fa0fab2d695d5f624",
+    "capture_a0_sizes.py": "01e863f3bb6bd3634d1a6cec9e713b122ee4c9c48bc87eef96e0962236e681a2",
+    "check_capture_a0_sizes.py": "f2df983cd52a22b911315a5c5503d68523cf94703d7d774ffff3adf907847810",
+    "capture_a0_package_plan.py": "f7e8ab3b871064ba424b3dfe8d95adc0210e2c9804ce9a02b74b2b7969a8f4b6",
+    "check_capture_a0_plan.py": "d5d4b53762ef521ce4e89b96ec459141d1a166e0edb8fcb552dd0ec198c85ee7"
+  },
+  "phase1": {
+    "status": "documentary_exit_non_identified",
+    "upstream_delta_bytes": -24576,
+    "upstream_producer_identified": false,
+    "alignment_mechanism_already_documented": true,
+    "new_binary_attribution_claim": false
+  },
+  "phase2": {
+    "status": "proposal_awaiting_user_choice",
+    "options": {
+      "fixed_geometry": {
+        "kernel_filler_bytes": 65536,
+        "strip_gzip_filler_bytes": 242375,
+        "current_packer_accepts_natural_payloads": false,
+        "image_padding_semantics_validated": false,
+        "gzip_padding_semantics_validated": false
+      },
+      "natural_lengths_strip_debug": {
+        "boot": {
+          "payloads": [
+            {
+              "name": "kernel",
+              "stock_start": 4096,
+              "start": 4096,
+              "bytes": 29403648,
+              "coordinate_delta": 0,
+              "size_delta": -65536
+            },
+            {
+              "name": "ramdisk",
+              "stock_start": 29474816,
+              "start": 29409280,
+              "bytes": 701558,
+              "coordinate_delta": -65536,
+              "size_delta": 0
+            }
+          ],
+          "natural_body_end": 30113792,
+          "stock_body_end": 30179328,
+          "body_end_delta": -65536,
+          "stock_file_bytes": 67108864,
+          "payload_body_within_stock_file": true,
+          "physical_partition_capacity_established": false,
+          "opaque_signature_and_vbmeta_placement_defined": false,
+          "container_built": false
+        },
+        "vendor_boot": {
+          "payloads": [
+            {
+              "name": "ramdisk",
+              "stock_start": 4096,
+              "start": 4096,
+              "bytes": 11774882,
+              "coordinate_delta": 0,
+              "size_delta": -242375
+            },
+            {
+              "name": "dtb",
+              "stock_start": 12021760,
+              "start": 11780096,
+              "bytes": 389940,
+              "coordinate_delta": -241664,
+              "size_delta": 0
+            }
+          ],
+          "natural_body_end": 12173312,
+          "stock_body_end": 12414976,
+          "body_end_delta": -241664,
+          "stock_file_bytes": 67108864,
+          "payload_body_within_stock_file": true,
+          "physical_partition_capacity_established": false,
+          "opaque_signature_and_vbmeta_placement_defined": false,
+          "container_built": false
+        },
+        "current_packer_supports_geometry": false
+      },
+      "natural_lengths_as_built": {
+        "boot": {
+          "payloads": [
+            {
+              "name": "kernel",
+              "stock_start": 4096,
+              "start": 4096,
+              "bytes": 29403648,
+              "coordinate_delta": 0,
+              "size_delta": -65536
+            },
+            {
+              "name": "ramdisk",
+              "stock_start": 29474816,
+              "start": 29409280,
+              "bytes": 701558,
+              "coordinate_delta": -65536,
+              "size_delta": 0
+            }
+          ],
+          "natural_body_end": 30113792,
+          "stock_body_end": 30179328,
+          "body_end_delta": -65536,
+          "stock_file_bytes": 67108864,
+          "payload_body_within_stock_file": true,
+          "physical_partition_capacity_established": false,
+          "opaque_signature_and_vbmeta_placement_defined": false,
+          "container_built": false
+        },
+        "vendor_boot": {
+          "payloads": [
+            {
+              "name": "ramdisk",
+              "stock_start": 4096,
+              "start": 4096,
+              "bytes": 103744124,
+              "coordinate_delta": 0,
+              "size_delta": 91726867
+            },
+            {
+              "name": "dtb",
+              "stock_start": 12021760,
+              "start": 103751680,
+              "bytes": 389940,
+              "coordinate_delta": 91729920,
+              "size_delta": 0
+            }
+          ],
+          "natural_body_end": 104144896,
+          "stock_body_end": 12414976,
+          "body_end_delta": 91729920,
+          "stock_file_bytes": 67108864,
+          "payload_body_within_stock_file": false,
+          "physical_partition_capacity_established": false,
+          "opaque_signature_and_vbmeta_placement_defined": false,
+          "container_built": false
+        },
+        "current_packer_supports_geometry": false
+      },
+      "user_choice": null,
+      "strip_policy_adopted": false,
+      "padding_applied": false,
+      "geometry_adopted": false
+    },
+    "recommended_research_option": "natural_lengths_strip_debug",
+    "recommendation_is_not_adoption": true
+  },
+  "phase3": {
+    "status": "blocked_no_demonstrated_acceptance",
+    "stock_signatures": {
+      "boot.img": {
+        "stock_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+        "stock_digest_and_embedded_rsa_valid": true,
+        "embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+        "signed_extent_bytes": 30180128,
+        "signer_marker_offset_in_opaque": 16,
+        "signer_signature_validated": false,
+        "modified_payload_acceptance_demonstrated": false
+      },
+      "vendor_boot.img": {
+        "stock_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+        "stock_digest_and_embedded_rsa_valid": true,
+        "embedded_key_sha256": "d185cb2fb075fdc3b128836be117bd44851aabacce2ebffd285cf4e2b3aa54e6",
+        "signed_extent_bytes": 12415760,
+        "signer_marker_offset_in_opaque": 0,
+        "signer_signature_validated": false,
+        "modified_payload_acceptance_demonstrated": false
+      }
+    },
+    "parent_vbmeta_supplied": false,
+    "lab_key_is_device_trust": false,
+    "physical_action": false
+  },
+  "phase4": {
+    "status": "blocked_kmi_provenance_and_runtime",
+    "missing_list_inputs": [
+      "abi_greylist",
+      "android/abi_gki_aarch64_galaxy_presubmit"
+    ],
+    "whitelist_names_without_list_origin": [
+      "five_hook_heads",
+      "ib_notifier_register",
+      "ib_notifier_unregister",
+      "load_trusted_app",
+      "mz_exynos_pmu_write",
+      "register_five_tee_driver",
+      "register_mz_tee_crypto_driver",
+      "unload_trusted_app",
+      "unregister_five_tee_driver",
+      "unregister_mz_tee_crypto_driver"
+    ],
+    "policy_proposal": {
+      "same_aligned_build_kernel_and_274_modules": true,
+      "excluded_additional_names": [
+        "input_booster_lkm",
+        "sec_debug_sched_info"
+      ],
+      "module_loading_force_allowed": false,
+      "security_settings": {
+        "CONFIG_MODULE_SIG": "n",
+        "CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS": "n",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_UH": "y",
+        "CONFIG_RKP": "y"
+      },
+      "critical_config": {
+        "CONFIG_CC_IS_CLANG": "y",
+        "CONFIG_CLANG_VERSION": "110001",
+        "CONFIG_LD_IS_LLD": "y",
+        "CONFIG_LTO": "y",
+        "CONFIG_LTO_CLANG": "y",
+        "CONFIG_CFI_CLANG": "y",
+        "CONFIG_CFI_CLANG_SHADOW": "y",
+        "CONFIG_CFI_PERMISSIVE": "n",
+        "CONFIG_COMPAT_VDSO": "y",
+        "CONFIG_MODVERSIONS": "y",
+        "CONFIG_TRIM_UNUSED_KSYMS": "y",
+        "CONFIG_MALI_DDK_VALHALL_R38P0": "y"
+      },
+      "modules_dep_closure_not_revalidated_here": true
+    },
+    "source_hooks": [
+      {
+        "file": "kernel/module.c",
+        "needle": "cfi_init(mod);",
+        "lines": [
+          3658
+        ]
+      },
+      {
+        "file": "kernel/module.c",
+        "needle": "cfi_module_add(mod, module_addr_min, module_addr_max);",
+        "lines": [
+          4521
+        ]
+      },
+      {
+        "file": "kernel/module.c",
+        "needle": "uh_call(UH_APP_RKP, RKP_MODULE_LOAD, RKP_MODULE_PXN_SET,",
+        "lines": [
+          3794
+        ]
+      },
+      {
+        "file": "kernel/module.c",
+        "needle": "uh_call(UH_APP_RKP, RKP_MODULE_LOAD, RKP_MODULE_PXN_CLEAR,",
+        "lines": [
+          3932
+        ]
+      },
+      {
+        "file": "kernel/cfi.c",
+        "needle": "CONFIG_CFI_PERMISSIVE",
+        "lines": [
+          19,
+          25,
+          29
+        ]
+      },
+      {
+        "file": "kernel/cfi.c",
+        "needle": "void cfi_module_add(",
+        "lines": [
+          215
+        ]
+      }
+    ],
+    "source_members": {
+      "include/linux/cfi.h": {
+        "bytes": 1107,
+        "sha256": "726f1fa02c2586f390006205222660935bc15b9f54ad9ae0630617f8f36fc728"
+      },
+      "kernel/module.c": {
+        "bytes": 125135,
+        "sha256": "3d5eaec1a1513fd10786a75f2b70903b34d655ded3b47596aadd26af9d0ffb9b"
+      },
+      "kernel/cfi.c": {
+        "bytes": 7844,
+        "sha256": "32ff0b698b990528d9d899167d3a4af88ccfa78d21467f7e3a92357bbf7c7233"
+      }
+    },
+    "source_hook_presence_is_not_runtime_validation": true,
+    "cfi_rkp_runtime_verified": false
+  },
+  "phase5": {
+    "status": "sizing_runner_frontiers_corrected",
+    "consumption": {
+      "native_inputs_sealed": 275,
+      "copy_readbacks_verified": 275,
+      "module_measurements_equal_to_PR86": 274,
+      "image_and_ramdisk_hashes_equal_to_PR86": true,
+      "all_pipeline_consumers_certified": false
+    },
+    "sizing_report_sha256": "d8680fc431d703b10345042ed245126ada1f93883bbe83bade64f69e9814edc4",
+    "tools": {
+      "objcopy": {
+        "version": "GNU objcopy (GNU Binutils for Debian) 2.44",
+        "sha256": "80f9027f7aa9c6b85515a049a25d99845cad74d13f18d4b4da8ca9523891c157"
+      },
+      "strip": {
+        "version": "GNU strip (GNU Binutils for Debian) 2.44",
+        "sha256": "7d09ed4eea03511b39cf7c64da06f9f90ec691fbb61e2430c2cab65a5cf50049"
+      }
+    },
+    "artifact_hashes": {
+      "Image": "9614f9a0ec8e83177ccb2010a585a128fd11f028cb46c417f2c1dbed2c2fd571",
+      "ramdisk_as_built": "5a2adf2e84a124113651efa124f90b071df6214db8c51a3be6272b59ab35f374",
+      "ramdisk_strip_debug": "7bc62305b3467bd1dbc92acbd346e1db3a96cd7e037367ce4a9e7b94817fbcd9"
+    },
+    "remaining_scope": [
+      "other runners with verify then reopen",
+      "external archive verification on user machine"
+    ],
+    "external_user_verification_completed": false
+  },
+  "a0_complete": false,
+  "a1_implemented": false,
+  "package_adopted": false,
+  "boot_container_built": false,
+  "padding_applied": false,
+  "geometry_adopted": false,
+  "oem_decision": false,
+  "physical_action": false
+}

@@ -1,0 +1,121 @@
+{
+  "observed_at_ns": 1793753054254050067,
+  "rlimit_fsize": [
+    -1,
+    -1
+  ],
+  "copies": [
+    {
+      "path": "build/a0-plan-consumption/candidate/dhd.ko",
+      "expected": {
+        "bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd"
+      },
+      "bytes": 51582680,
+      "device": 27,
+      "inode": 797722,
+      "mtime_ns": 1793752419572565490,
+      "ctime_ns": 1793752419572565490,
+      "mode": "0o100644",
+      "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+      "stable_during_read": true
+    },
+    {
+      "path": "build/a0-plan-consumption/candidate/mali_kbase.ko",
+      "expected": {
+        "bytes": 30998000,
+        "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062"
+      },
+      "bytes": 30998000,
+      "device": 27,
+      "inode": 797660,
+      "mtime_ns": 1793752418032526697,
+      "ctime_ns": 1793752418032526697,
+      "mode": "0o100644",
+      "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+      "stable_during_read": true
+    },
+    {
+      "path": "build/a0-plan-consumption-final/candidate/dhd.ko",
+      "expected": {
+        "bytes": 51582680,
+        "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd"
+      },
+      "bytes": 36700160,
+      "device": 27,
+      "inode": 917917,
+      "mtime_ns": 1793752987407377822,
+      "ctime_ns": 1793752992871519717,
+      "mode": "0o100644",
+      "sha256": "109a69412d0322ba1898b96ba4d02bf1573bccb9dd1811be62ac52f57879dfd5",
+      "stable_during_read": true
+    },
+    {
+      "path": "build/a0-plan-consumption-final/candidate/mali_kbase.ko",
+      "expected": {
+        "bytes": 30998000,
+        "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062"
+      },
+      "bytes": 30998000,
+      "device": 27,
+      "inode": 917670,
+      "mtime_ns": 1793752985659332470,
+      "ctime_ns": 1793752985659332470,
+      "mode": "0o100644",
+      "sha256": "5f9453abfb10849b04bf8916c21fcd3125df6d92788fdbc9f2b30d6134a43062",
+      "stable_during_read": true
+    }
+  ],
+  "open_writers": [],
+  "schema": "S21-A0-RECURRENT-COPY-INCIDENT-v1",
+  "module": "dhd",
+  "historical_mali_incident_is_separate": true,
+  "prefix": {
+    "full_bytes": 51582680,
+    "full_sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd",
+    "prefix_bytes": 36700160,
+    "prefix_sha256": "109a69412d0322ba1898b96ba4d02bf1573bccb9dd1811be62ac52f57879dfd5",
+    "recorded_truncated_sha256": "109a69412d0322ba1898b96ba4d02bf1573bccb9dd1811be62ac52f57879dfd5",
+    "recorded_hash_matches_prefix": true,
+    "absent_tail_bytes": 14882520,
+    "section_table_offset": 51579416,
+    "section_table_bytes": 3264,
+    "section_table_fits_prefix": false,
+    "historical_mutator_identified": false
+  },
+  "actual_prefix_equal": true,
+  "failure_stage": "module_input refused before native strip; extraction/readback completed first",
+  "copy_guard_prevented_consumption": true,
+  "writer_identified": false,
+  "fanotify_errno": 1,
+  "fanotify_capabilities_available": false,
+  "synthetic": false,
+  "output_success_report_generated": false,
+  "invalid_payload_not_for_loading": true,
+  "observed_mtime_ctime_gap_ns": 5464141895,
+  "evidence_bundle": {
+    "name": "S21-A0-dhd-copia-recusada-20261103.tar.gz",
+    "bytes": 10303135,
+    "sha256": "4916f6f89ba4d5827a8067efb41702b00ddba8125e11c91c92581dad43f43202",
+    "library_file_id": "libfile_5fd1d2d98064819189e6d450a5d9953d",
+    "file_id": "file_000000002308820e95022acca84fb671",
+    "library_path": "/Kernel/S21-A0-dhd-copia-recusada-20261103.tar.gz"
+  },
+  "observation_attempt": {
+    "log_sha256": "8e8398c2e9c498bfc7f0f6e36ed832e5b9595e0d6b71807d2f468f813c42c48b",
+    "native_returncode": 1,
+    "observed_stage": "module_input size/type refusal at dhd.ko before strip",
+    "writer_identified": false,
+    "event_count": 47,
+    "trace_has_exit_event": false,
+    "trace_complete": false,
+    "trace_is_not_writer_attribution": true,
+    "copy_bytes": 17825792,
+    "copy_sha256": "fcbd7c7a351c9eefc237fff350f050d0239aab3a5cdd2b2aa77ff44c435fea7d",
+    "mode": "0o100644",
+    "mtime_ns": 1793753268382615225,
+    "ctime_ns": 1793753274005956920,
+    "prefix_sha256": "fcbd7c7a351c9eefc237fff350f050d0239aab3a5cdd2b2aa77ff44c435fea7d",
+    "copy_is_exact_prefix": true
+  }
+}
