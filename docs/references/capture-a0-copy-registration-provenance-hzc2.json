@@ -1,0 +1,63 @@
+{
+  "schema": "S21-A0-COPY-REGISTRATION-PROVENANCE-v1",
+  "correction_date_local": "2026-11-03",
+  "timezone": "America/Campo_Grande",
+  "publication_commit": "681f17428d6d9f9b36f9ea22bad9a2bcb08efa55",
+  "local_commits": [
+    {
+      "sha": "07a10d360d08101ac70994ea0f50d2e394af7858",
+      "tree": "221e3d166d049f601cea99450709ba46f2e4c1f8",
+      "parents": [
+        "0261215cfe48f25fed68ef2d818afee523843573"
+      ],
+      "author_date": "2026-11-03T22:14:16-04:00",
+      "committer_date": "2026-11-03T22:14:16-04:00",
+      "available_in_local_history": true,
+      "available_through_remote_commit_api": false
+    },
+    {
+      "sha": "78e4d861f77e68dc58488be9cd9193eab9106d50",
+      "tree": "c35db54ecc86e68c64fb61b2f388f1dc6fa1659b",
+      "parents": [
+        "07a10d360d08101ac70994ea0f50d2e394af7858"
+      ],
+      "author_date": "2026-11-03T22:15:34-04:00",
+      "committer_date": "2026-11-03T22:15:34-04:00",
+      "available_in_local_history": true,
+      "available_through_remote_commit_api": false
+    }
+  ],
+  "remote_check": {
+    "method": "GET /repos/rguisantos/S21-baremetal/commits/{full_sha}",
+    "status": 422,
+    "message": "No commit found for SHA for each of the two full local identifiers"
+  },
+  "original_plan": {
+    "path": "capture-a0-copy-paired-preregistration-20261104.json",
+    "bytes": 2857,
+    "sha256": "c68b3ddf855f43f6c821fd053ff48b53a2f2e20541b4ade8c44cb6f563de9a23",
+    "git_blob_sha1": "8470d79ec876ca3739f6623665d872735e9ea74b",
+    "retrievable_at_commit": "681f17428d6d9f9b36f9ea22bad9a2bcb08efa55",
+    "registered_before_first_trial_claim": true
+  },
+  "chronology": {
+    "assistant_session_reports_plan_before_trials": true,
+    "local_git_history_present": true,
+    "local_commit_dates_are_independent_time_attestation": false,
+    "published_before_trials_independently_verified": false,
+    "status": "not_verifiable_from_remote",
+    "later_publication_would_prove_historical_trial_order": false
+  },
+  "result_classification": "observed_results_without_remotely_verified_preregistration",
+  "prospective_prediction_confirmation_established": false,
+  "trial_bytes_and_results_changed": false,
+  "prototype_bundle_changed": false,
+  "old_head_checks": {
+    "commit_sha": "681f17428d6d9f9b36f9ea22bad9a2bcb08efa55",
+    "ci": "success",
+    "code_review_status": "completed",
+    "has_any_findings": false,
+    "has_unresolved_findings": false
+  },
+  "new_head_checks_must_be_queried_separately": true
+}

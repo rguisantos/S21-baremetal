@@ -1,0 +1,169 @@
+{
+  "schema": "S21-LK-VBMETA-LOAD-VALIDATION-v1",
+  "date": "2026-11-04",
+  "timezone": "America/Campo_Grande",
+  "base": "09b1b4d46774534b9a47252ba4dcbbcdcef41b28",
+  "execution": "assistant offline static analysis, not external user verification",
+  "report": {
+    "bytes": 114321,
+    "sha256": "7370d6ec5a9f6cfeef20c203438921dfe6bbf1c78ee40bafbc31f1068392cfef"
+  },
+  "report_identical_replays": 2,
+  "gnu_words": 971,
+  "gnu_relative_targets": 184,
+  "selected_operand_checks": 102,
+  "commands": [
+    {
+      "command": "python3 scripts/inspect_lk_vbmeta_load.py /insumos/sboot.bin --output build/vbmeta-load-novo.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 scripts/test_lk_vbmeta_load.py",
+      "tests": 25,
+      "exit_code": 0,
+      "log": {
+        "bytes": 124,
+        "sha256": "cf29216ce833131d8be330a38a8fdc296c323b2b32d896d217fe50959cafddeb"
+      }
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_lk_avb*.py'",
+      "tests": 48,
+      "exit_code": 0,
+      "log": {
+        "bytes": 147,
+        "sha256": "e12a087d2f4c89da6ff415aeedf04ae85f50cecdcce24d0baa642ca82866ddb9"
+      }
+    }
+  ],
+  "baseline": {
+    "command": "python3 scripts/validate_baseline.py --output-dir build/baseline-vbmeta-load-20261104",
+    "passed": 9,
+    "required": 9,
+    "summary": {
+      "bytes": 5566,
+      "sha256": "06df0c4cb0bb46ec9240c186ce878c10d1e5fe08813d18b4cfa3978a81c0c6ec"
+    },
+    "stages": [
+      {
+        "name": "01-runner-contract",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "4bafe31973c87a93516622d2c5d86bc55610c15cc417f46aa5026f7bf0634aac"
+      },
+      {
+        "name": "02-tool-versions",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "24b9120aa4ccf21301ebff08ae7d0dc5510b4f0d7daa2430a230c5f18e9dcad4"
+      },
+      {
+        "name": "03-build-r10",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "690394076a30cb5acb6f0c7b032c5d10e2bfc817321b068f16694443a0e1c299"
+      },
+      {
+        "name": "04-fdt",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "4f5f84f1be06b6826d2c28d994ab7e2aed2c4f8f2a445e1e43504c50be28f6ef"
+      },
+      {
+        "name": "05-payload",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "d992a68dc60583225317748f68210bba2e9c4fa423dd76bf3a2527eb82de8390"
+      },
+      {
+        "name": "06-payload-stage",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "d29508707eb3013b9b1afd7cc0b93e290a09fba8047cafb747055ba548f3d5a7"
+      },
+      {
+        "name": "07-entry-diag",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "ff792b5d80a37dd0e2b3b9cc30276f83217c242d8a4a50e3054e44a2fc42d60f"
+      },
+      {
+        "name": "08-payload-loader",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "6e7fa56465f9cc5d1b9db09a98b9b225ffefbadf993cbcfa84642e2d9187956b"
+      },
+      {
+        "name": "09-entry-record",
+        "status": "passed",
+        "returncode": 0,
+        "log_sha256": "68ce7cc5e0e2f1015e4d8b90bd09f550df8dd5eaa22acedb8958c976c7064871"
+      }
+    ]
+  },
+  "sources": {
+    "scripts/inspect_lk_vbmeta_load.py": {
+      "bytes": 13065,
+      "sha256": "40481bbe3b01b6093656687618685617c31f58af66e80bfcff2eb878c6a6c5b0"
+    },
+    "scripts/test_lk_vbmeta_load.py": {
+      "bytes": 8247,
+      "sha256": "0cb9a503c6d8fc6de84fecf250bf478e755026c5870fdd820a24895ae63c0ee3"
+    },
+    "scripts/inspect_lk_avb_trust.py": {
+      "bytes": 11090,
+      "sha256": "cde269b9ecd27a0562bebb618eb0d552f7609d77891f2a4af6ca23280ed24b0c"
+    },
+    "scripts/inspect_lk_precopy_measurement.py": {
+      "bytes": 9254,
+      "sha256": "5e621386908e3d3639ffa386dba545cd4158c75150f9178416b9e58b4fc55ad7"
+    },
+    "scripts/capture_a0_inputs.py": {
+      "bytes": 5420,
+      "sha256": "f235148b1ba5c0de71ff30b50af3dd23d081b2ab20d3a74fa0fab2d695d5f624"
+    },
+    ".github/workflows/baseline.yml": {
+      "bytes": 4977,
+      "sha256": "4fd005e22ca4181280d50c13e20123b4c0dca581bbc926d23a6f0ec572bd25f6"
+    }
+  },
+  "input_identity": {
+    "sboot_bytes": 4194304,
+    "sboot_sha256": "a11c3da07011384415cc07f2b9c2c582ea608b286389a5fbd4bad5965fc87a91",
+    "sboot_lz4_bytes": 1963522,
+    "sboot_lz4_sha256": "7d07b1d85b746c073c51278a5102ff4edd8fd73a4e9fcadceb1f269ede000bd1",
+    "bl_pins": "capture-a0-parent-pins-hzc2.json"
+  },
+  "local_links": {
+    "files": [
+      "README.md",
+      "docs/README.md",
+      "docs/roadmap.md",
+      "docs/lk-vbmeta-load-hzc2.md",
+      "scripts/README.md",
+      "worklog.md"
+    ],
+    "checked": 738,
+    "missing": 0
+  },
+  "scope": {
+    "firmware_executed": false,
+    "hardware_observed": false,
+    "installed_parent_identity_established": false,
+    "device_key_trust_established": false,
+    "physical_read_success_established": false,
+    "image_acceptance_established": false,
+    "signer_ver03_validated": false,
+    "a0_complete": false,
+    "a1_started": false,
+    "oem_decision_made": false,
+    "main_updated": false,
+    "PR_merged": false,
+    "external_user_verification_completed": false
+  },
+  "earlier_A0_tests": {
+    "count": 378,
+    "replayed_this_round": false
+  },
+  "remote_CI_and_automatic_review": "not inherited from prior head; query after publication"
+}

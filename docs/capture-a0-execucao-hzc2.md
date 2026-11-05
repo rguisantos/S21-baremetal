@@ -1,5 +1,7 @@
 # A0: execução do plano e proposta de empacotamento
 
+Continuação: o [protótipo B offline](capture-a0-natural-b-hzc2.md) registra a escolha delegada e sua execução em 04/11/2026 UTC. Os resultados abaixo preservam o estado da rodada original.
+
 Rodada de 03/11/2026, Campo Grande, base e0aa2e1 do PR #89.
 Executa o alcance offline do [plano](capture-a0-plano-hzc2.md). Não adota
 pacote, não integra o PR #89, não inicia A1 e não opera o aparelho.

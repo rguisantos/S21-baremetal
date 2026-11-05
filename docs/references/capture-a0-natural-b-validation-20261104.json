@@ -1,0 +1,92 @@
+{
+  "schema": "S21-A0-NATURAL-B-VALIDATION-v1",
+  "date_utc": "2026-11-04",
+  "source_base": "0261215cfe48f25fed68ef2d818afee523843573",
+  "host_tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_capture_a0*.py'",
+    "tests": 346,
+    "new_tests": 34,
+    "status": "passed",
+    "log_sha256": "3450700ba18857c94be03185cd966c8b500929e15957152db0b4f5fda86dc104"
+  },
+  "baseline": {
+    "status": "passed",
+    "steps": 9,
+    "summary_sha256": "6065f1142dc5abfc8a79c2bf2af45daaae89a1019f02f7bc3626591c45048a25"
+  },
+  "native_payload_preparation": {
+    "native_inputs_sealed": 275,
+    "copy_readbacks_verified": 275,
+    "module_measurements_equal_to_PR86": 274,
+    "image_and_ramdisk_hashes_equal_to_PR86": true,
+    "all_pipeline_consumers_certified": false
+  },
+  "native_assembly_returncode": 2,
+  "upstream_verifications": 10,
+  "local_links": {
+    "scope": "Project root, docs, scripts, lab and r8 Markdown; excludes vendored dependency documentation",
+    "checked": 1825,
+    "missing": []
+  },
+  "evidence": {
+    "capture-a0-natural-b-hzc2.json": {
+      "bytes": 31312,
+      "sha256": "b83ee53e08ce9416d9fe4dba15a28e19f2036b2a5c81d984220985a01ab49b4e"
+    },
+    "capture-a0-natural-b-primary-pins-20261104.json": {
+      "bytes": 2223,
+      "sha256": "40fe39d6adbfd5b7fcf29f0f6f62b8f9481673b98b73cc294c2de83bc2eed29f"
+    },
+    "capture-a0-copy-paired-preregistration-20261104.json": {
+      "bytes": 3450,
+      "sha256": "fae4f67e41993175074fdb899f06cbca05a96325b5fbbbccca3ee4a5e9b0d90f"
+    },
+    "capture-a0-copy-paired-results-20261104.json": {
+      "bytes": 397272,
+      "sha256": "af026292bef6a0cc341a0223ed32b2b9d66ae3cd5b1ea9546c98f023d1c2e6d0"
+    },
+    "capture-a0-natural-b-artifact-20261104.json": {
+      "bytes": 1210,
+      "sha256": "7c958d5f733fdff5bd9fc85a0e09b2be2230ede76e848d91e4b5bf690e7c9bcc"
+    },
+    "capture-a0-copy-registration-provenance-hzc2.json": {
+      "bytes": 2475,
+      "sha256": "cf4dcda94dfeb00e16b4bada6f7b7003db7ca54386ac55031d377d1ea9227c5a"
+    }
+  },
+  "implementation_sha256": {
+    "scripts/capture_a0_natural.py": "c4e15db494dcfb90fce88265a0ef0b15df9ae80683f19f9a52abf21042ebcedd",
+    "scripts/check_capture_a0_natural.py": "fcf608c964f319420165c1be8ceb9b027c40de295b21884d55ff00e5ed874de5",
+    "scripts/test_capture_a0_natural.py": "2f1535abaecb187e52db79decd21c751136deed1ef5d3648742852035e5e21d1",
+    "scripts/capture_a0_copy_probe.py": "2d22434e3264a23f5ae77c4c8b70445263cbb7959700726c4cfd8f70903db73a",
+    "scripts/test_capture_a0_copy_probe.py": "1f6633d12e6568e94405f1d3372a1a66264bfca5c6c16cc12557e35b7f817be3",
+    "lab/a0_copy_paired.js": "71e849e0e612c4cbae01a948f0d94c212a87c77ffd2e72ed0c531d802ad7cd48"
+  },
+  "copy_matrix": {
+    "planned": 30,
+    "completed": 30,
+    "immediate_matches": 30,
+    "later_matches": 30,
+    "ptrace_permitted": false,
+    "underlying_writer_identified": false
+  },
+  "samsung_acceptance_established": false,
+  "parent_vbmeta_updated": false,
+  "module_abi_established": false,
+  "a0_complete": false,
+  "a1_started": false,
+  "physical_action": false,
+  "provenance_correction": {
+    "date_local": "2026-11-03",
+    "timezone": "America/Campo_Grande",
+    "reference_commit": "681f17428d6d9f9b36f9ea22bad9a2bcb08efa55",
+    "classification": "observed_results_without_remotely_verified_preregistration",
+    "case_records_and_method_hashes_unchanged": true,
+    "execution_plan_settings_unchanged": true,
+    "executable_implementations_unchanged": true,
+    "prototype_report_and_bundle_identity_unchanged": true,
+    "json_and_evidence_hashes_checked": true,
+    "previous_test_runs_reexecuted_locally": false,
+    "new_head_ci_and_review_must_be_queried": true
+  }
+}

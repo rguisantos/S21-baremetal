@@ -25,7 +25,7 @@ jobs:
       - name: Install system tools
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3 openssl
+          sudo apt-get install --yes --no-install-recommends build-essential binutils gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu qemu-system-arm python3 openssl liblz4-1
           dpkg-query -W gcc gcc-aarch64-linux-gnu binutils binutils-aarch64-linux-gnu qemu-system-arm python3
       - name: Check ELF symbol reader with localized headers
         run: python3 scripts/test_elf_symbols.py
@@ -46,12 +46,17 @@ jobs:
           python3 scripts/test_capture_a0_layout.py
           python3 scripts/test_capture_a0_handoff.py
           python3 scripts/test_capture_a0_consumption.py
+          python3 scripts/test_capture_a0_natural.py
+          python3 scripts/test_capture_a0_parent.py
+          python3 scripts/test_capture_a0_copy_probe.py
       - name: Check static pre-copy witness refusals
         run: python3 scripts/test_lk_precopy_measurement.py
       - name: Check embedded AVB key format and consumer decoding
         run: python3 scripts/test_lk_embedded_key.py
       - name: Check AVB key-trust callback bindings
         run: python3 scripts/test_lk_avb_trust.py
+      - name: Check vbmeta read callbacks and bounded fallback models
+        run: python3 scripts/test_lk_vbmeta_load.py
       - name: Check AVB signature tables and bounded dispatch decoding
         run: python3 scripts/test_lk_avb_signature.py
       - name: Check AVB wrapper immediates and direct reference decoding

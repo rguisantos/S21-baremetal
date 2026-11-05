@@ -1,0 +1,32 @@
+{
+  "schema": "S21-A0-NATURAL-B-LAB-ARCHIVE-v1",
+  "name": "S21-A0-B-prototipo-offline-20261104.tar.gz",
+  "bytes": 27103200,
+  "sha256": "f23a98c6ead07b81d899a68c4566ec38860941264bdc29da40f73429e1504a5e",
+  "manifest_sha256": "1ea75d5c08f3279902b32819f051a822ab86ddd68f5eb2b2dbafeb8eeebfda4b",
+  "payloads": {
+    "boot.img": {
+      "bytes": 67108864,
+      "sha256": "ca760185024c4492745413189c28639aa841decbc3bed3cc827c6dbe31c2daf0"
+    },
+    "vendor_boot.img": {
+      "bytes": 67108864,
+      "sha256": "5efffbccc3ecbe616de9e6089cfb5600963189ecf41c27723020001980df4602"
+    },
+    "report.json": {
+      "bytes": 31312,
+      "sha256": "b83ee53e08ce9416d9fe4dba15a28e19f2036b2a5c81d984220985a01ab49b4e"
+    },
+    "README.txt": {
+      "bytes": 755,
+      "sha256": "b514423823dd80cecf3fe4ee332658469b525b4ef741e5e1c204e463995794ef"
+    }
+  },
+  "members_verified": 5,
+  "payloads_verified": 4,
+  "verification": "same checked archive buffer replayed; assistant session, not external user verification",
+  "samsung_acceptance_established": false,
+  "physical_use_authorized": false,
+  "library_file_id": "libfile_c24451630c4c81918bf7f955c16d6794",
+  "file_id": "file_000000006a24820e9e50654fb52a6388"
+}

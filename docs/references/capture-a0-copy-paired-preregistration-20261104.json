@@ -1,0 +1,85 @@
+{
+  "schema": "S21-A0-COPY-PAIRED-PREREGISTRATION-v1",
+  "source_base": "0261215cfe48f25fed68ef2d818afee523843573",
+  "scope": "Current assistant sandbox and execution-call boundary only",
+  "registered_before_first_trial": null,
+  "input": {
+    "bytes": 51582680,
+    "sha256": "8b35af1011201872809d2679fc1f23ed75498ed21019fcc0a4c4160e561a78fd"
+  },
+  "repetitions": 3,
+  "extensions": [
+    ".ko",
+    ".bin"
+  ],
+  "conditions": [
+    {
+      "name": "serial",
+      "second_call": false
+    },
+    {
+      "name": "during_wait",
+      "second_call": true,
+      "start": "during write",
+      "second_program": "sleep only"
+    },
+    {
+      "name": "during_note",
+      "second_call": true,
+      "start": "during write",
+      "second_program": "sleep then unrelated note"
+    },
+    {
+      "name": "after_wait",
+      "second_call": true,
+      "start": "after close and immediate readback",
+      "second_program": "sleep only"
+    },
+    {
+      "name": "after_note",
+      "second_call": true,
+      "start": "after close and immediate readback",
+      "second_program": "sleep then unrelated note"
+    }
+  ],
+  "trial_order": "seeded shuffle, seed 210090",
+  "target": "Same parent directory and basename payload; fresh generated object at each trial; only suffix differs",
+  "write_chunk_bytes": 1048576,
+  "pause_per_chunk_seconds": 0.06,
+  "late_observation_delay_seconds": 7,
+  "writer_call_yield_time_ms": 1000,
+  "after_condition_extra_delay_ms": 3000,
+  "second_program_wait_seconds": 4,
+  "hypotheses_and_predictions": [
+    {
+      "hypothesis": "Observed PR90 association recurs",
+      "prediction": "Late prefix changes concentrate in .ko during_note relative to paired serial cases",
+      "non_recurrence": "No attribution; does not disprove historical observations"
+    },
+    {
+      "hypothesis": "Overlap during active writing is necessary",
+      "prediction": "after conditions remain integral; a late change in after conditions contradicts necessity"
+    },
+    {
+      "hypothesis": "Second program note write is necessary",
+      "prediction": "wait-only conditions remain integral; a change in wait-only contradicts necessity"
+    },
+    {
+      "hypothesis": "Suffix has an effect in this bounded environment",
+      "prediction": "Different outcomes by suffix under otherwise matched conditions; requires repetitions and remains local"
+    }
+  ],
+  "phase_adherence": "Classify actual second-call monotonic timestamps against writer-close/immediate-read times; do not silently count a missed phase as matched",
+  "observation": "Writer syscalls if permitted in a separate traced follow-up; inotify file+directory without PID attribution; before/after descriptor and path identity",
+  "tracing_changes_timing": true,
+  "non_trials": "Instrument failure, incomplete report, input pin failure or missed phase are recorded separately",
+  "stop": "30 untraced planned cases, then at most two traced follow-ups if ptrace works; preserve divergences, no indefinite retries",
+  "historical_mali_attribution_allowed": false,
+  "physical_action": false,
+  "reported_registered_before_first_trial": true,
+  "remote_preregistration_verified": false,
+  "registration_status": "not_verifiable_from_remote",
+  "original_record_sha256": "c68b3ddf855f43f6c821fd053ff48b53a2f2e20541b4ade8c44cb6f563de9a23",
+  "original_record_commit": "681f17428d6d9f9b36f9ea22bad9a2bcb08efa55",
+  "post_execution_provenance_correction": true
+}
