@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+O [init stock e seu resolvedor de módulos](docs/a0-init-module-loader-hzc2.md) foram identificados no boot enviado: FirstStageMain chega a LoadListedModules, LoadWithAliases e InsmodWithDeps antes de Insmod. As 151 relações fora da lista literal não demonstram falha de carga; a implementação resolve dependências e o percurso selecionado é reverso. São bindings estáticos do ELF fixado, sem execução ou aprovação runtime; A0 aberto.
+
 A [verificação do vendor_boot stock](docs/capture-a0-stock-load-validation-hzc2.md) conferiu o arquivo enviado contra os pins HZC2 e aprovou os arquivos reais de carga: 274 módulos, 569 dependências declaradas e 3654 arestas em modules.dep, sem ausências ou ciclos. Há 151 relações fora da ordem literal de modules.load; resolver dependências é distinto de insmod sequencial. O loader userspace continua pendente; A0 aberto.
 
 A [verificação da carga de módulos](docs/capture-a0-module-load-plan-hzc2.md) confirma que o inventário fixado dos 274 módulos tem 569 dependências declaradas, todas resolvidas e sem ciclos. O novo verificador gera uma ordem proposta e pode confrontar modules.load/modules.dep do vendor_boot stock. Esses arquivos não estão neste ambiente: sua validação e o comportamento do loader permanecem pendentes. PRs #89–#91 integrados; A0 aberto.

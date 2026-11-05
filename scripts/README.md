@@ -1,5 +1,7 @@
 # Catálogo de scripts
 
+`inspect_a0_init_modules.py` analisa boot stock fixado, recupera símbolos do mini-debug do init e confere calls/instruções de carga de módulos. Leitores nativos usam memfds selados; init não é executado. Nove testes em `test_a0_init_modules.py`. [Guia](../docs/a0-init-module-loader-hzc2.md).
+
 `check_capture_a0_load_plan.py` verifica dependências declaradas do inventário fixado e gera ordem proposta; `--vendor-boot` permite conferir os arquivos de controle do stock. Retorno 2 indica cobertura incompleta ou diagnóstico negativo. Não carrega módulos. [Guia](../docs/capture-a0-module-load-plan-hzc2.md).
 
 `inspect_lk_vbmeta_load.py` confere a rota estática de leitura AVB, os slots +24/+88, os nomes e o predicado de fallback para boot no HZC2. GNU lê um snapshot selado do mesmo buffer verificado. Os 25 testes `test_lk_vbmeta_load.py` são sintéticos; [relatório e limites](../docs/lk-vbmeta-load-hzc2.md) distinguem seleção nominal, I/O, identidade instalada e confiança.

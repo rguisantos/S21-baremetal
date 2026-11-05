@@ -87,3 +87,10 @@ lz4_frame em check_capture_a0_parent.py limita a saída e recusa concatenação
 ou truncagem. Os 16 controles existentes passaram. Não houve alteração de
 código executável nem novo build; a baseline R10 9/9 e os 394 testes A0 do
 PR #92 são validações anteriores, não testes reexecutados nesta rodada.
+
+## Continuação — boot recebido
+
+A [análise do init stock](a0-init-module-loader-hzc2.md) identifica o loader
+e a resolução recursiva antes de Insmod no caminho selecionado. Isso fecha
+a identificação estática pendente, sem afirmar carga runtime ou igualdade
+da ordem real com o modelo DFS deste relatório.
