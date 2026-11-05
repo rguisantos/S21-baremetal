@@ -1,0 +1,212 @@
+{
+  "schema": "S21-A0-INIT-MODULE-LOADER-v1",
+  "boot_lz4": {
+    "bytes": 20255202,
+    "sha256": "cb5f76269c71f5d643afdcda57ff1561b708b9fcb724876b59b0d407abb3477e"
+  },
+  "boot_raw": {
+    "bytes": 67108864,
+    "sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1"
+  },
+  "ramdisk_gzip": {
+    "bytes": 701558,
+    "sha256": "7e00ae38ae0b281ef691472fd71091a81645988b221babfb34673f9a73e76d28"
+  },
+  "ramdisk_cpio": {
+    "bytes": 1516288,
+    "sha256": "268ac13b36bf780f6b0b318e1c43e2bd2132e5201e63c2ff0ac91be692e55821"
+  },
+  "cpio_entries": {
+    "debug_ramdisk": {
+      "kind": 16384,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dev": {
+      "kind": 16384,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dpolicy": {
+      "kind": 32768,
+      "bytes": 8971,
+      "sha256": "f4c3dd16bb663b2b0890309c8e4e022df28d9d2e4fd185ed833e1ae4a3214d48"
+    },
+    "fstab.exynos2100": {
+      "kind": 32768,
+      "bytes": 3805,
+      "sha256": "f04d4f90b9f03454a18b2128956c30faaf578cf649e39a6138036e557d1a3041"
+    },
+    "init": {
+      "kind": 32768,
+      "bytes": 1502328,
+      "sha256": "389d314c35d4d058da8845213191ff1058275fd403809ea2c8b244983825775b"
+    },
+    "mnt": {
+      "kind": 16384,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "proc": {
+      "kind": 16384,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sys": {
+      "kind": 16384,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "analysis": {
+    "init": {
+      "bytes": 1502328,
+      "sha256": "389d314c35d4d058da8845213191ff1058275fd403809ea2c8b244983825775b"
+    },
+    "mini_debug": {
+      "bytes": 273168,
+      "sha256": "6f59bd656a74d10cab2f1e7e324caba4561478e538432b9508c994cbc73ae56f"
+    },
+    "mini_debug_compressed": {
+      "bytes": 46888,
+      "sha256": "f4e10082ea5b780ce75bdecad14f28d8d5a6460463c5a0b8c57124c6bc3d409d"
+    },
+    "text_section": {
+      "address": "0x257000",
+      "file_offset": 356352,
+      "bytes": 1074044,
+      "sha256": "f185d22ec1881e6f9a847a7f0d9cf974ba74b8340cd33bd12ae8cbc0d06034d9"
+    },
+    "symbols": {
+      "0x25d304": [
+        "android::init::GetModuleLoadList(bool, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&)"
+      ],
+      "0x25d4cc": [
+        "android::init::LoadKernelModules(bool, bool)"
+      ],
+      "0x25ddec": [
+        "android::init::FirstStageMain(int, char**)"
+      ],
+      "0x2f3e88": [
+        "Modprobe::Modprobe(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)"
+      ],
+      "0x2f4684": [
+        "Modprobe::GetDependencies(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&)"
+      ],
+      "0x2f4744": [
+        "Modprobe::InsmodWithDeps(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&)"
+      ],
+      "0x2f4d30": [
+        "Modprobe::LoadWithAliases(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, bool, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&)"
+      ],
+      "0x2f5084": [
+        "Modprobe::LoadListedModules(bool)"
+      ],
+      "0x2f6344": [
+        "Modprobe::Insmod(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&)"
+      ],
+      "0x32c820": [
+        "syscall"
+      ]
+    },
+    "calls": {
+      "0x25ec18": "0x25d4cc",
+      "0x25d798": "0x25d304",
+      "0x25d7a8": "0x2f3e88",
+      "0x25d824": "0x2f5084",
+      "0x25d9d0": "0x2f5084",
+      "0x2f50dc": "0x2f4d30",
+      "0x2f4f84": "0x2f4744",
+      "0x2f47a4": "0x2f4684",
+      "0x2f4804": "0x2f4d30",
+      "0x2f4ab8": "0x2f6344",
+      "0x2f65ac": "0x32c820"
+    },
+    "selected_instructions": {
+      "0x25d798": {
+        "word": "97fffedb",
+        "instruction": "bl\t0x25d304"
+      },
+      "0x25d7a8": {
+        "word": "940259b8",
+        "instruction": "bl\t0x2f3e88"
+      },
+      "0x25d824": {
+        "word": "94025e18",
+        "instruction": "bl\t0x2f5084"
+      },
+      "0x25d9d0": {
+        "word": "94025dad",
+        "instruction": "bl\t0x2f5084"
+      },
+      "0x25ec18": {
+        "word": "97fffa2d",
+        "instruction": "bl\t0x25d4cc"
+      },
+      "0x2f47a4": {
+        "word": "97ffffb8",
+        "instruction": "bl\t0x2f4684"
+      },
+      "0x2f47e8": {
+        "word": "d10062d6",
+        "instruction": "sub\tx22, x22, #0x18"
+      },
+      "0x2f4804": {
+        "word": "9400014b",
+        "instruction": "bl\t0x2f4d30"
+      },
+      "0x2f4824": {
+        "word": "91006028",
+        "instruction": "add\tx8, x1, #0x18"
+      },
+      "0x2f482c": {
+        "word": "54fffd61",
+        "instruction": "b.ne\t0x2f47d8  // b.any"
+      },
+      "0x2f4ab8": {
+        "word": "94000623",
+        "instruction": "bl\t0x2f6344"
+      },
+      "0x2f4f84": {
+        "word": "97fffdf0",
+        "instruction": "bl\t0x2f4744"
+      },
+      "0x2f50dc": {
+        "word": "97ffff15",
+        "instruction": "bl\t0x2f4d30"
+      },
+      "0x2f659c": {
+        "word": "52802220",
+        "instruction": "mov\tw0, #0x111                 \t// #273"
+      },
+      "0x2f65a8": {
+        "word": "2a1f03e3",
+        "instruction": "mov\tw3, wzr"
+      },
+      "0x2f65ac": {
+        "word": "9400d89d",
+        "instruction": "bl\t0x32c820"
+      }
+    },
+    "literals": {
+      "0x35d8": "/lib/modules",
+      "0x6907": "/modules.dep",
+      "0xc844": "modules.load",
+      "0x61c1": "modules.load.recovery",
+      "0xcba3": "system/core/libmodprobe/libmodprobe.cpp"
+    },
+    "native_readers_use_sealed_snapshots": true,
+    "init_executed": false,
+    "modules_loaded": false,
+    "actual_device_boot_observed": false,
+    "exact_runtime_order_established": false,
+    "a0_complete": false,
+    "interpretation": "Selected static path: first-stage init calls LoadKernelModules; LoadListedModules calls LoadWithAliases; InsmodWithDeps resolves dependencies recursively before Insmod. The selected loop walks dependency strings backwards. Insmod calls syscall with number 273 and flags 0.",
+    "limits": [
+      "Selected calls and operands, not complete symbolic execution of C++ containers",
+      "Alias, blocklist, softdep, recovery selection and live cmdline require separate semantics",
+      "This identifies the stock file implementation, not execution or successful module initialization",
+      "No claim that the earlier generic DFS order equals the Samsung loader order"
+    ]
+  }
+}

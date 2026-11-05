@@ -4204,3 +4204,10 @@ Validação final: 394 testes A0 aprovados e baseline R10 9/9. O teste de integr
 ## 2026-11-05 — A0: vendor_boot stock enviado e arquivos de carga reais
 
 LZ4/raw enviados conferidos contra os pins HZC2. Metadados dos 274 módulos iguais ao inventário fixado. Duas execuções do verificador de carga produziram JSONs idênticos, exit 0: 569 dependências declaradas, 3654 arestas no arquivo modules.dep, sem ausências/ciclos; modules.load pede os 274 módulos. Existem 151 arestas fora da ordem literal, sem alegação de falha runtime. Uma travessia de resolução offline ordenou os 274 arquivos respeitando todas as arestas; modelo não atribuído ao loader real. O único rc/sh do CPIO não referencia os comandos de carga procurados; o ramdisk não contém executável init/modprobe identificado pelo nome. Loader userspace segue pendente e boot stock ainda não está neste ambiente. Dezesseis testes existentes passaram; nenhum build repetido ou operação física. Relatório textual e guia versionados, binários fora do Git.
+
+
+## 2026-11-05 — A0: init stock e resolução de dependências
+
+Boot LZ4/raw enviados coincidem com os pins HZC2. Init de 1502328 bytes identificado por hash; mini-debug XZ recupera os símbolos originais. Verificador reproduzível fornece buffers selados ao nm/GNU, confere onze calls diretos, cinco palavras e cinco literais. FirstStageMain → LoadKernelModules → LoadListedModules → LoadWithAliases → InsmodWithDeps; consulta de dependências e chamada recursiva precedem Insmod. O laço selecionado percorre strings em ordem reversa. Syscall observado com W0=273 e flags zero. Duas execuções produziram JSON idêntico. O modelo DFS anterior não é equiparado à ordem Samsung. Nove testes novos passaram; binários permanecem fora do Git. Identificação estática do loader fechada nessa rota, sem execução, ABI, CFI/RKP, aceitação Samsung ou A0 concluído.
+
+Validação adicional desta rodada: 394 testes A0 existentes e baseline R10 9/9 aprovados, além dos nove controles novos executados separadamente.
