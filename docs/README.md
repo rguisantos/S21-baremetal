@@ -1,5 +1,7 @@
 # Guia da documentação
 
+A [verificação do vendor_boot stock](capture-a0-stock-load-validation-hzc2.md) conferiu o arquivo enviado contra os pins HZC2 e aprovou os arquivos reais de carga: 274 módulos, 569 dependências declaradas e 3654 arestas em modules.dep, sem ausências ou ciclos. Há 151 relações fora da ordem literal de modules.load; resolver dependências é distinto de insmod sequencial. O loader userspace continua pendente; A0 aberto.
+
 A [verificação da carga de módulos](capture-a0-module-load-plan-hzc2.md) confirma que o inventário fixado dos 274 módulos tem 569 dependências declaradas, todas resolvidas e sem ciclos. O novo verificador gera uma ordem proposta e pode confrontar modules.load/modules.dep do vendor_boot stock. Esses arquivos não estão neste ambiente: sua validação e o comportamento do loader permanecem pendentes. PRs #89–#91 integrados; A0 aberto.
 
 O [caminho de leitura do vbmeta HZC2](lk-vbmeta-load-hzc2.md) liga a entrada selecionada ao callback +24, à normalização VBMETA e à busca na tabela de partições em memória. O fallback para o footer de boot exige retorno 3 da leitura inicial e predicados locais específicos; strings VBMETA_SAMSUNG/SYSTEM não demonstram seleção alternativa. São 25 testes novos, 48 regressões AVB e baseline 9/9. Isso delimita a rota estática, sem provar bytes instalados, leitura física ou confiança. Validação offline continuada; PR #91 aberto, main preservada e nenhuma ação no aparelho.

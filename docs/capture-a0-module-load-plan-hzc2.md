@@ -69,3 +69,10 @@ explícita a diferença entre diagnóstico estrutural e falha runtime.
 Validação local: 394 testes da família A0 e baseline R10 9/9 aprovados.
 O modo de contêiner foi exercitado de ponta a ponta com uma fixture sintética,
 incluindo recusa de truncagem; o stock privado continua não executado.
+
+## Continuação — insumo stock recebido
+
+A [execução com o arquivo enviado](capture-a0-stock-load-validation-hzc2.md)
+aprovou os arquivos reais do stock em duas execuções idênticas. Fecha a
+pendência de insumo desta rodada anterior, mantendo a validação do loader
+userspace e runtime aberta.

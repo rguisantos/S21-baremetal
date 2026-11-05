@@ -1,0 +1,1222 @@
+{
+  "schema": "S21-A0-MODULE-LOAD-PLAN-v1",
+  "mode": "pinned_stock_buffer_and_control_files",
+  "inventory_pin": {
+    "bytes": 415440,
+    "sha256": "76fbc6e96cd0310fdc83e501acc39ae1eec955714cbb2e6698b7ff7240267e0b"
+  },
+  "vendor_boot_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+  "result": {
+    "module_count": 274,
+    "declared_dependency_edges": 569,
+    "missing_declared_dependencies": [],
+    "cycle_or_blocked_dependents": [],
+    "declared_graph_closed_and_acyclic": true,
+    "proposed_dependency_first_order": [
+      "lib/modules/acpm-mfd-bus.ko",
+      "lib/modules/blk-sec-stats.ko",
+      "lib/modules/camerapp-pd-mgr.ko",
+      "lib/modules/cdc-acm.ko",
+      "lib/modules/cdc-wdm.ko",
+      "lib/modules/cdc_eem.ko",
+      "lib/modules/cdc_ncm.ko",
+      "lib/modules/clk-exynos-audss.ko",
+      "lib/modules/dev_ril_bridge.ko",
+      "lib/modules/dma-buf-container.ko",
+      "lib/modules/dp_ext_func.ko",
+      "lib/modules/dropdump.ko",
+      "lib/modules/dss.ko",
+      "lib/modules/dwc3-haps.ko",
+      "lib/modules/dwc3-of-simple.ko",
+      "lib/modules/dwc3-qcom.ko",
+      "lib/modules/ect_parser.ko",
+      "lib/modules/exynos-bcm_dbg-dt.ko",
+      "lib/modules/exynos-btsops2100.ko",
+      "lib/modules/exynos-chipid_v2.ko",
+      "lib/modules/exynos-debug-test.ko",
+      "lib/modules/exynos-flexpmu-dbg.ko",
+      "lib/modules/exynos-idle-profiler.ko",
+      "lib/modules/exynos-mcinfo.ko",
+      "lib/modules/exynos-msn.ko",
+      "lib/modules/exynos-pd-dbg.ko",
+      "lib/modules/exynos-pm-dvs.ko",
+      "lib/modules/exynos-pmu-if.ko",
+      "lib/modules/exynos-ppmpu.ko",
+      "lib/modules/exynos-seclog.ko",
+      "lib/modules/exynos-seh.ko",
+      "lib/modules/exynos-ssld.ko",
+      "lib/modules/exynos-tzasc.ko",
+      "lib/modules/exynos_mct.ko",
+      "lib/modules/exynos_pm_qos.ko",
+      "lib/modules/exyswd-rng.ko",
+      "lib/modules/fb.ko",
+      "lib/modules/fingerprint_sysfs.ko",
+      "lib/modules/fmp-core.ko",
+      "lib/modules/freq-qos-tracer.ko",
+      "lib/modules/hardlockup-watchdog.ko",
+      "lib/modules/i2c-dev.ko",
+      "lib/modules/if_cb_manager.ko",
+      "lib/modules/ion_exynos_mod.ko",
+      "lib/modules/mcfrc.ko",
+      "lib/modules/mcps.ko",
+      "lib/modules/memlogger.ko",
+      "lib/modules/net1080.ko",
+      "lib/modules/pcie-exynos-dbg.ko",
+      "lib/modules/pcie-exynos2100-rc-cal.ko",
+      "lib/modules/pcie-exynos2100-v0-cal.ko",
+      "lib/modules/phy-exynos-usbdrd-super.ko",
+      "lib/modules/pinctrl-samsung-core.ko",
+      "lib/modules/pl330.ko",
+      "lib/modules/plugin_dbg.ko",
+      "lib/modules/pmic_class.ko",
+      "lib/modules/qbt2000_spidev.ko",
+      "lib/modules/repeater.ko",
+      "lib/modules/rtc-s3c.ko",
+      "lib/modules/rtl8150.ko",
+      "lib/modules/s2mpb02_mfd.ko",
+      "lib/modules/samsung-iommu-group.ko",
+      "lib/modules/sec_audio_debug.ko",
+      "lib/modules/sec_audio_sysfs.ko",
+      "lib/modules/sec_class.ko",
+      "lib/modules/sec_debug_stacktrace.ko",
+      "lib/modules/sec_input_notifier.ko",
+      "lib/modules/sec_key_notifier.ko",
+      "lib/modules/sec_mparam.ko",
+      "lib/modules/sec_pd.ko",
+      "lib/modules/sec_tsp_log.ko",
+      "lib/modules/sec_vibrator.ko",
+      "lib/modules/sec_wakeup_cpu_allocator.ko",
+      "lib/modules/secmem.ko",
+      "lib/modules/sensors_core.ko",
+      "lib/modules/smsc75xx.ko",
+      "lib/modules/smsc95xx.ko",
+      "lib/modules/snd-soc-s3c-dma.ko",
+      "lib/modules/snd-soc-samsung-abox-gic.ko",
+      "lib/modules/snd-soc-samsung-vts-mailbox.ko",
+      "lib/modules/snd-soc-wm-adsp.ko",
+      "lib/modules/snvm.ko",
+      "lib/modules/spidev.ko",
+      "lib/modules/spu_verify.ko",
+      "lib/modules/switch_class.ko",
+      "lib/modules/sysevent_notif.ko",
+      "lib/modules/tcp_htcp.ko",
+      "lib/modules/tcp_westwood.ko",
+      "lib/modules/tsmux.ko",
+      "lib/modules/tzdev.ko",
+      "lib/modules/usb_f_conn_gadget.ko",
+      "lib/modules/usb_f_dm.ko",
+      "lib/modules/usb_f_dm1.ko",
+      "lib/modules/usb_f_mtp_samsung.ko",
+      "lib/modules/usb_notify_layer.ko",
+      "lib/modules/usblp.ko",
+      "lib/modules/usbserial.ko",
+      "lib/modules/usi_v2.ko",
+      "lib/modules/v4l2-mem2mem.ko",
+      "lib/modules/vbus_notifier.ko",
+      "lib/modules/videobuf2-dma-sg.ko",
+      "lib/modules/abc.ko",
+      "lib/modules/camerapp.ko",
+      "lib/modules/cmu_ewf.ko",
+      "lib/modules/common_muic.ko",
+      "lib/modules/cs40l2x_vib.ko",
+      "lib/modules/debug-snapshot-qd.ko",
+      "lib/modules/eat.ko",
+      "lib/modules/exynos-coresight.ko",
+      "lib/modules/exynos-cpuhp.ko",
+      "lib/modules/exynos-ecc-handler.ko",
+      "lib/modules/exynos-el2.ko",
+      "lib/modules/exynos-reboot.ko",
+      "lib/modules/exynos-s2mpu.ko",
+      "lib/modules/exynos-sdm.ko",
+      "lib/modules/fingerprint.ko",
+      "lib/modules/ftdi_sio.ko",
+      "lib/modules/hardlockup-debug.ko",
+      "lib/modules/hdcp2.ko",
+      "lib/modules/hdm.ko",
+      "lib/modules/leds-s2mpb02.ko",
+      "lib/modules/mfc_charger.ko",
+      "lib/modules/mfd_max77705.ko",
+      "lib/modules/nfc_sec.ko",
+      "lib/modules/pca9468-charger.ko",
+      "lib/modules/pdic_notifier_module.ko",
+      "lib/modules/phy-exynos-mipi-dsim.ko",
+      "lib/modules/phy-exynos-mipi.ko",
+      "lib/modules/pl2303.ko",
+      "lib/modules/s2mpb02-regulator.ko",
+      "lib/modules/s2mpb03.ko",
+      "lib/modules/s3c2410_wdt.ko",
+      "lib/modules/samsung-dma.ko",
+      "lib/modules/sec_argos.ko",
+      "lib/modules/sec_cmd.ko",
+      "lib/modules/sec_debug_mode.ko",
+      "lib/modules/sec_debug_sched_report.ko",
+      "lib/modules/sec_debug_softdog.ko",
+      "lib/modules/sec_hard_reset_hook.ko",
+      "lib/modules/sec_pm_cpufreq.ko",
+      "lib/modules/sec_pm_log.ko",
+      "lib/modules/sec_secure_touch.ko",
+      "lib/modules/sec_tclm_v2.ko",
+      "lib/modules/sec_thermistor.ko",
+      "lib/modules/smfc.ko",
+      "lib/modules/snd-soc-cirrus-amp.ko",
+      "lib/modules/ssg-iosched.ko",
+      "lib/modules/sysevent.ko",
+      "lib/modules/tuihw-inf.ko",
+      "lib/modules/usb_f_ptp.ko",
+      "lib/modules/usb_f_ss_mon_gadget.ko",
+      "lib/modules/vl53l5.ko",
+      "lib/modules/abc_hub.ko",
+      "lib/modules/ehld.ko",
+      "lib/modules/exynos-adv-tracer-s2d.ko",
+      "lib/modules/exynos-pd_el3.ko",
+      "lib/modules/exynos_acpm.ko",
+      "lib/modules/hall_ic.ko",
+      "lib/modules/imgloader.ko",
+      "lib/modules/max77705-fuelgauge.ko",
+      "lib/modules/mcd-panel.ko",
+      "lib/modules/s2dos05-regulator.ko",
+      "lib/modules/sec_crash_key.ko",
+      "lib/modules/sec_crash_key_user.ko",
+      "lib/modules/sec_direct_charger.ko",
+      "lib/modules/sec_reboot.ko",
+      "lib/modules/snd-soc-cs35l41-i2c.ko",
+      "lib/modules/softdog.ko",
+      "lib/modules/tsl2510.ko",
+      "lib/modules/usb_typec_manager.ko",
+      "lib/modules/uwb.ko",
+      "lib/modules/votf.ko",
+      "lib/modules/broadcom-sensorhub.ko",
+      "lib/modules/exynos_sci.ko",
+      "lib/modules/gdc.ko",
+      "lib/modules/mcd-panel-s6e3hab.ko",
+      "lib/modules/mcd-panel-s6e3had.ko",
+      "lib/modules/modem_utils.ko",
+      "lib/modules/pdic_max77705.ko",
+      "lib/modules/s2mps23_adc.ko",
+      "lib/modules/s2mps24_mfd.ko",
+      "lib/modules/sec_common_fn.ko",
+      "lib/modules/sec_debug.ko",
+      "lib/modules/sec_debug_test.ko",
+      "lib/modules/sx9360.ko",
+      "lib/modules/max77705-charger.ko",
+      "lib/modules/mcu_ipc.ko",
+      "lib/modules/s2mps23_mfd.ko",
+      "lib/modules/s2mps24-regulator.ko",
+      "lib/modules/sec_debug_dprm.ko",
+      "lib/modules/sec_debug_extra_info.ko",
+      "lib/modules/sec_debug_hist.ko",
+      "lib/modules/sec_debug_logbuf_interface.ko",
+      "lib/modules/sec_debug_summary.ko",
+      "lib/modules/sec_debug_wdd_info.ko",
+      "lib/modules/sec_tsp_dumpkey.ko",
+      "lib/modules/shm_ipc.ko",
+      "lib/modules/cmupmucal.ko",
+      "lib/modules/exynos-afm.ko",
+      "lib/modules/exynos2100-itmon.ko",
+      "lib/modules/rtc-s2mps23.ko",
+      "lib/modules/s2mps23-regulator.ko",
+      "lib/modules/samsung_iommu.ko",
+      "lib/modules/sec-battery.ko",
+      "lib/modules/sec_debug_hardlockup_info.ko",
+      "lib/modules/sec_debug_reset_reason.ko",
+      "lib/modules/clk_exynos.ko",
+      "lib/modules/exynos-bts.ko",
+      "lib/modules/exynos-cpupm.ko",
+      "lib/modules/s2mps23-key.ko",
+      "lib/modules/sec_debug_hw_param.ko",
+      "lib/modules/sec_pm_debug.ko",
+      "lib/modules/snd-soc-samsung-vts.ko",
+      "lib/modules/dsp.ko",
+      "lib/modules/dw_mmc.ko",
+      "lib/modules/dwc3.ko",
+      "lib/modules/exynos-dm.ko",
+      "lib/modules/exynos-ssp.ko",
+      "lib/modules/exynos-ufcc.ko",
+      "lib/modules/exynos_dit.ko",
+      "lib/modules/exynos_tty.ko",
+      "lib/modules/i2c-exynos5.ko",
+      "lib/modules/mali_kbase.ko",
+      "lib/modules/pwm-samsung.ko",
+      "lib/modules/scaler.ko",
+      "lib/modules/spi-s3c64xx.ko",
+      "lib/modules/ufs-exynos-core.ko",
+      "lib/modules/bcm43xx.ko",
+      "lib/modules/dw_mmc-pltfm.ko",
+      "lib/modules/exynos-dsufreq.ko",
+      "lib/modules/exynos-migov.ko",
+      "lib/modules/exynos-pm.ko",
+      "lib/modules/pcie-exynos-host-v0.ko",
+      "lib/modules/pcie-exynos-rc.ko",
+      "lib/modules/scsi_srpmb.ko",
+      "lib/modules/slsi_ts.ko",
+      "lib/modules/usb_notifier.ko",
+      "lib/modules/xhci-hcd.ko",
+      "lib/modules/cpif.ko",
+      "lib/modules/dhd.ko",
+      "lib/modules/dw_mmc-exynos.ko",
+      "lib/modules/xhci-pci.ko",
+      "lib/modules/snd-soc-samsung-abox.ko",
+      "lib/modules/exynos-pd.ko",
+      "lib/modules/exynos-usb-audio-offloading.ko",
+      "lib/modules/exynos_thermal.ko",
+      "lib/modules/unbound_prince.ko",
+      "lib/modules/debug-snapshot-sfrdump.ko",
+      "lib/modules/exynos-bcm_dbg.ko",
+      "lib/modules/exynos-cpu-profiler.ko",
+      "lib/modules/exynos-gpu-profiler.ko",
+      "lib/modules/exynos_mfc.ko",
+      "lib/modules/gpu_cooling.ko",
+      "lib/modules/xhci-plat-hcd.ko",
+      "lib/modules/exynos_devfreq.ko",
+      "lib/modules/fimc-is.ko",
+      "lib/modules/dpu.ko",
+      "lib/modules/exynos-acme.ko",
+      "lib/modules/exynos-mif-profiler.ko",
+      "lib/modules/is-actuator-ak737x.ko",
+      "lib/modules/is-cis-3j1.ko",
+      "lib/modules/is-cis-gh1.ko",
+      "lib/modules/is-cis-hm1.ko",
+      "lib/modules/is-cis-hm3.ko",
+      "lib/modules/is-cis-imx563.ko",
+      "lib/modules/is-device-eeprom.ko",
+      "lib/modules/is-flash-s2mpb02.ko",
+      "lib/modules/is-laser-af-vl53l5.ko",
+      "lib/modules/npu.ko",
+      "lib/modules/w9020.ko",
+      "lib/modules/xperf.ko",
+      "lib/modules/sec_bootstat.ko",
+      "lib/modules/snd-soc-dp_dma.ko",
+      "lib/modules/tuihw.ko"
+    ],
+    "control_files_supplied": true,
+    "control_files_checks_passed": true,
+    "symbol_import_dependencies_evaluated": false,
+    "userspace_loader_semantics_validated": false,
+    "runtime_loading_validated": false,
+    "module_abi_established": false,
+    "a0_complete": false,
+    "physical_action": false,
+    "modules_dep_missing_keys": [],
+    "modules_dep_missing_declared_edges": [],
+    "modules_dep_cycle_or_blocked_dependents": [],
+    "modules_load_entries": 274,
+    "modules_load_unlisted": [],
+    "literal_load_order_dependency_violations": [
+      {
+        "module": "lib/modules/exynos2100-itmon.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/ehld.ko",
+        "dependency": "lib/modules/hardlockup-watchdog.ko"
+      },
+      {
+        "module": "lib/modules/cmupmucal.ko",
+        "dependency": "lib/modules/cmu_ewf.ko"
+      },
+      {
+        "module": "lib/modules/cmupmucal.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/exynos-cpupm.ko",
+        "dependency": "lib/modules/common_muic.ko"
+      },
+      {
+        "module": "lib/modules/exynos-cpupm.ko",
+        "dependency": "lib/modules/exynos-flexpmu-dbg.ko"
+      },
+      {
+        "module": "lib/modules/s2mps24_mfd.ko",
+        "dependency": "lib/modules/pmic_class.ko"
+      },
+      {
+        "module": "lib/modules/s2mps23-regulator.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/s2mps23-regulator.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/s2mps24-regulator.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/fingerprint.ko",
+        "dependency": "lib/modules/fingerprint_sysfs.ko"
+      },
+      {
+        "module": "lib/modules/ssg-iosched.ko",
+        "dependency": "lib/modules/blk-sec-stats.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-host-v0.ko",
+        "dependency": "lib/modules/pcie-exynos-dbg.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-host-v0.ko",
+        "dependency": "lib/modules/pcie-exynos2100-v0-cal.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-host-v0.ko",
+        "dependency": "lib/modules/ufs-exynos-core.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-rc.ko",
+        "dependency": "lib/modules/pcie-exynos-dbg.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-rc.ko",
+        "dependency": "lib/modules/pcie-exynos2100-rc-cal.ko"
+      },
+      {
+        "module": "lib/modules/pcie-exynos-rc.ko",
+        "dependency": "lib/modules/ufs-exynos-core.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel-s6e3hab.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel-s6e3hab.ko",
+        "dependency": "lib/modules/mcd-panel.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel-s6e3had.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel-s6e3had.ko",
+        "dependency": "lib/modules/mcd-panel.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/mcd-panel.ko",
+        "dependency": "lib/modules/dev_ril_bridge.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/dp_ext_func.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/dwc3.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/exynos-migov.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/exynos-pd.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/exynos_devfreq.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/exynos_sci.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/hdcp2.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/mali_kbase.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/repeater.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/switch_class.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/tuihw-inf.ko"
+      },
+      {
+        "module": "lib/modules/dpu.ko",
+        "dependency": "lib/modules/usb_typec_manager.ko"
+      },
+      {
+        "module": "lib/modules/debug-snapshot-sfrdump.ko",
+        "dependency": "lib/modules/exynos-pd.ko"
+      },
+      {
+        "module": "lib/modules/exynos-pd.ko",
+        "dependency": "lib/modules/dwc3.ko"
+      },
+      {
+        "module": "lib/modules/exynos-pd.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/exynos-pd.ko",
+        "dependency": "lib/modules/snd-soc-samsung-abox.ko"
+      },
+      {
+        "module": "lib/modules/exynos-pd.ko",
+        "dependency": "lib/modules/snd-soc-samsung-vts.ko"
+      },
+      {
+        "module": "lib/modules/exynos-pm.ko",
+        "dependency": "lib/modules/dwc3.ko"
+      },
+      {
+        "module": "lib/modules/mcu_ipc.ko",
+        "dependency": "lib/modules/modem_utils.ko"
+      },
+      {
+        "module": "lib/modules/shm_ipc.ko",
+        "dependency": "lib/modules/modem_utils.ko"
+      },
+      {
+        "module": "lib/modules/exynos_dit.ko",
+        "dependency": "lib/modules/mcps.ko"
+      },
+      {
+        "module": "lib/modules/exynos_dit.ko",
+        "dependency": "lib/modules/modem_utils.ko"
+      },
+      {
+        "module": "lib/modules/cpif.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/cpif.ko",
+        "dependency": "lib/modules/exynos_sci.ko"
+      },
+      {
+        "module": "lib/modules/cpif.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/cpif.ko",
+        "dependency": "lib/modules/mcps.ko"
+      },
+      {
+        "module": "lib/modules/exynos-ufcc.ko",
+        "dependency": "lib/modules/exynos-msn.ko"
+      },
+      {
+        "module": "lib/modules/exynos-ufcc.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/xperf.ko",
+        "dependency": "lib/modules/exynos-afm.ko"
+      },
+      {
+        "module": "lib/modules/xperf.ko",
+        "dependency": "lib/modules/exynos_devfreq.ko"
+      },
+      {
+        "module": "lib/modules/xperf.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/xperf.ko",
+        "dependency": "lib/modules/mali_kbase.ko"
+      },
+      {
+        "module": "lib/modules/exynos-bcm_dbg.ko",
+        "dependency": "lib/modules/exynos-bcm_dbg-dt.ko"
+      },
+      {
+        "module": "lib/modules/exynos-afm.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/exynos-migov.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/exynos-migov.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/exynos-migov.ko",
+        "dependency": "lib/modules/mali_kbase.ko"
+      },
+      {
+        "module": "lib/modules/exynos-cpu-profiler.ko",
+        "dependency": "lib/modules/exynos_thermal.ko"
+      },
+      {
+        "module": "lib/modules/exynos-gpu-profiler.ko",
+        "dependency": "lib/modules/exynos_thermal.ko"
+      },
+      {
+        "module": "lib/modules/exynos-gpu-profiler.ko",
+        "dependency": "lib/modules/mali_kbase.ko"
+      },
+      {
+        "module": "lib/modules/exynos-mif-profiler.ko",
+        "dependency": "lib/modules/exynos_devfreq.ko"
+      },
+      {
+        "module": "lib/modules/exynos-mif-profiler.ko",
+        "dependency": "lib/modules/exynos_thermal.ko"
+      },
+      {
+        "module": "lib/modules/sysevent.ko",
+        "dependency": "lib/modules/sysevent_notif.ko"
+      },
+      {
+        "module": "lib/modules/s2mpb02-regulator.ko",
+        "dependency": "lib/modules/s2mpb02_mfd.ko"
+      },
+      {
+        "module": "lib/modules/samsung_iommu.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/mali_kbase.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/mali_kbase.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/tuihw.ko",
+        "dependency": "lib/modules/sec_common_fn.ko"
+      },
+      {
+        "module": "lib/modules/tuihw.ko",
+        "dependency": "lib/modules/tuihw-inf.ko"
+      },
+      {
+        "module": "lib/modules/nfc_sec.ko",
+        "dependency": "lib/modules/sec_mparam.ko"
+      },
+      {
+        "module": "lib/modules/ufs-exynos-core.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/ufs-exynos-core.ko",
+        "dependency": "lib/modules/fmp-core.ko"
+      },
+      {
+        "module": "lib/modules/ufs-exynos-core.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/ufs-exynos-core.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/dhd.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/xhci-hcd.ko",
+        "dependency": "lib/modules/dwc3.ko"
+      },
+      {
+        "module": "lib/modules/xhci-plat-hcd.ko",
+        "dependency": "lib/modules/dwc3.ko"
+      },
+      {
+        "module": "lib/modules/xhci-plat-hcd.ko",
+        "dependency": "lib/modules/exynos-usb-audio-offloading.ko"
+      },
+      {
+        "module": "lib/modules/usb_f_ss_mon_gadget.ko",
+        "dependency": "lib/modules/usb_notify_layer.ko"
+      },
+      {
+        "module": "lib/modules/dwc3.ko",
+        "dependency": "lib/modules/if_cb_manager.ko"
+      },
+      {
+        "module": "lib/modules/dwc3.ko",
+        "dependency": "lib/modules/usb_notify_layer.ko"
+      },
+      {
+        "module": "lib/modules/dwc3.ko",
+        "dependency": "lib/modules/usb_typec_manager.ko"
+      },
+      {
+        "module": "lib/modules/usb_notifier.ko",
+        "dependency": "lib/modules/common_muic.ko"
+      },
+      {
+        "module": "lib/modules/usb_notifier.ko",
+        "dependency": "lib/modules/usb_typec_manager.ko"
+      },
+      {
+        "module": "lib/modules/usb_notifier.ko",
+        "dependency": "lib/modules/vbus_notifier.ko"
+      },
+      {
+        "module": "lib/modules/s2mps23-key.ko",
+        "dependency": "lib/modules/sec_hard_reset_hook.ko"
+      },
+      {
+        "module": "lib/modules/rtc-s2mps23.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/rtc-s2mps23.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/rtc-s2mps23.ko",
+        "dependency": "lib/modules/sec_pm_cpufreq.ko"
+      },
+      {
+        "module": "lib/modules/exynos_mfc.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/exynos_mfc.ko",
+        "dependency": "lib/modules/exynos_thermal.ko"
+      },
+      {
+        "module": "lib/modules/exynos_mfc.ko",
+        "dependency": "lib/modules/sec_debug_extra_info.ko"
+      },
+      {
+        "module": "lib/modules/gdc.ko",
+        "dependency": "lib/modules/camerapp-pd-mgr.ko"
+      },
+      {
+        "module": "lib/modules/gdc.ko",
+        "dependency": "lib/modules/votf.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/dev_ril_bridge.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/exynos_thermal.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/fimc-is.ko",
+        "dependency": "lib/modules/leds-s2mpb02.ko"
+      },
+      {
+        "module": "lib/modules/is-laser-af-vl53l5.ko",
+        "dependency": "lib/modules/vl53l5.ko"
+      },
+      {
+        "module": "lib/modules/is-flash-s2mpb02.ko",
+        "dependency": "lib/modules/leds-s2mpb02.ko"
+      },
+      {
+        "module": "lib/modules/scaler.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/exynos_thermal.ko",
+        "dependency": "lib/modules/freq-qos-tracer.ko"
+      },
+      {
+        "module": "lib/modules/exynos_thermal.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/exynos_thermal.ko",
+        "dependency": "lib/modules/snd-soc-samsung-abox.ko"
+      },
+      {
+        "module": "lib/modules/softdog.ko",
+        "dependency": "lib/modules/sec_debug_softdog.ko"
+      },
+      {
+        "module": "lib/modules/exynos-acme.ko",
+        "dependency": "lib/modules/exynos_devfreq.ko"
+      },
+      {
+        "module": "lib/modules/exynos-acme.ko",
+        "dependency": "lib/modules/sec_pm_cpufreq.ko"
+      },
+      {
+        "module": "lib/modules/exynos_devfreq.ko",
+        "dependency": "lib/modules/snd-soc-samsung-abox.ko"
+      },
+      {
+        "module": "lib/modules/dsp.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/npu.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/npu.ko",
+        "dependency": "lib/modules/exynos-bts.ko"
+      },
+      {
+        "module": "lib/modules/sec_pm_debug.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/sec_thermistor.ko",
+        "dependency": "lib/modules/sec_class.ko"
+      },
+      {
+        "module": "lib/modules/sec_reboot.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/sec_reboot.ko",
+        "dependency": "lib/modules/sec_hard_reset_hook.ko"
+      },
+      {
+        "module": "lib/modules/sec_reboot.ko",
+        "dependency": "lib/modules/sec_mparam.ko"
+      },
+      {
+        "module": "lib/modules/sec_crash_key.ko",
+        "dependency": "lib/modules/sec_key_notifier.ko"
+      },
+      {
+        "module": "lib/modules/sec_crash_key_user.ko",
+        "dependency": "lib/modules/sec_key_notifier.ko"
+      },
+      {
+        "module": "lib/modules/sec_hard_reset_hook.ko",
+        "dependency": "lib/modules/sec_key_notifier.ko"
+      },
+      {
+        "module": "lib/modules/sx9360.ko",
+        "dependency": "lib/modules/sensors_core.ko"
+      },
+      {
+        "module": "lib/modules/sx9360.ko",
+        "dependency": "lib/modules/usb_typec_manager.ko"
+      },
+      {
+        "module": "lib/modules/sec_debug_softdog.ko",
+        "dependency": "lib/modules/sec_debug_stacktrace.ko"
+      },
+      {
+        "module": "lib/modules/max77705-charger.ko",
+        "dependency": "lib/modules/common_muic.ko"
+      },
+      {
+        "module": "lib/modules/max77705-charger.ko",
+        "dependency": "lib/modules/mfd_max77705.ko"
+      },
+      {
+        "module": "lib/modules/max77705-charger.ko",
+        "dependency": "lib/modules/pdic_max77705.ko"
+      },
+      {
+        "module": "lib/modules/sec_tsp_dumpkey.ko",
+        "dependency": "lib/modules/sec_common_fn.ko"
+      },
+      {
+        "module": "lib/modules/sec_common_fn.ko",
+        "dependency": "lib/modules/usb_typec_manager.ko"
+      },
+      {
+        "module": "lib/modules/usb_typec_manager.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/usb_typec_manager.ko",
+        "dependency": "lib/modules/pdic_notifier_module.ko"
+      },
+      {
+        "module": "lib/modules/s2dos05-regulator.ko",
+        "dependency": "lib/modules/abc.ko"
+      },
+      {
+        "module": "lib/modules/pca9468-charger.ko",
+        "dependency": "lib/modules/sec_pd.ko"
+      },
+      {
+        "module": "lib/modules/vl53l5.ko",
+        "dependency": "lib/modules/sensors_core.ko"
+      },
+      {
+        "module": "lib/modules/broadcom-sensorhub.ko",
+        "dependency": "lib/modules/sensors_core.ko"
+      },
+      {
+        "module": "lib/modules/broadcom-sensorhub.ko",
+        "dependency": "lib/modules/spu_verify.ko"
+      },
+      {
+        "module": "lib/modules/slsi_ts.ko",
+        "dependency": "lib/modules/spu_verify.ko"
+      },
+      {
+        "module": "lib/modules/mfc_charger.ko",
+        "dependency": "lib/modules/spu_verify.ko"
+      },
+      {
+        "module": "lib/modules/pdic_max77705.ko",
+        "dependency": "lib/modules/spu_verify.ko"
+      },
+      {
+        "module": "lib/modules/w9020.ko",
+        "dependency": "lib/modules/spu_verify.ko"
+      },
+      {
+        "module": "lib/modules/exynos-bts.ko",
+        "dependency": "lib/modules/exynos-btsops2100.ko"
+      },
+      {
+        "module": "lib/modules/exynos-usb-audio-offloading.ko",
+        "dependency": "lib/modules/snd-soc-samsung-abox.ko"
+      },
+      {
+        "module": "lib/modules/snd-soc-cirrus-amp.ko",
+        "dependency": "lib/modules/snd-soc-wm-adsp.ko"
+      },
+      {
+        "module": "lib/modules/snd-soc-cs35l41-i2c.ko",
+        "dependency": "lib/modules/sec_audio_sysfs.ko"
+      },
+      {
+        "module": "lib/modules/snd-soc-cs35l41-i2c.ko",
+        "dependency": "lib/modules/snd-soc-wm-adsp.ko"
+      }
+    ],
+    "literal_load_order_dependency_first": false,
+    "literal_order_is_runtime_failure": false
+  },
+  "source_compressed": {
+    "bytes": 12320188,
+    "sha256": "179c36e8fbcd9163f800dd9ab5a169cbbed702f1390bd45f05ed602b3916e736"
+  },
+  "source_raw": {
+    "bytes": 67108864,
+    "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5"
+  },
+  "control_file_pins": {
+    "lib/modules/modules.load": {
+      "bytes": 4399,
+      "sha256": "90b8d756be8b59552a4c63972ffd728a6dca2e27f55641738c24e3f4107acbb9"
+    },
+    "lib/modules/modules.dep": {
+      "bytes": 115402,
+      "sha256": "253239a24749aaafc108f1478a4fd0a7edf626f8f3c176565ac2f66017f30200"
+    }
+  },
+  "dependency_file_edges": 3654,
+  "resolver_model": {
+    "algorithm": "DFS dependencies in modules.dep order, roots in modules.load order, load each path once",
+    "modules_scheduled": 274,
+    "all_file_dependencies_scheduled_first": true,
+    "order": [
+      "lib/modules/dss.ko",
+      "lib/modules/exynos-chipid_v2.ko",
+      "lib/modules/exynos-reboot.ko",
+      "lib/modules/sec_debug_mode.ko",
+      "lib/modules/exynos-pmu-if.ko",
+      "lib/modules/sec_key_notifier.ko",
+      "lib/modules/sec_hard_reset_hook.ko",
+      "lib/modules/sec_class.ko",
+      "lib/modules/abc.ko",
+      "lib/modules/sec_mparam.ko",
+      "lib/modules/sec_reboot.ko",
+      "lib/modules/sec_debug.ko",
+      "lib/modules/sec_debug_extra_info.ko",
+      "lib/modules/exynos2100-itmon.ko",
+      "lib/modules/s3c2410_wdt.ko",
+      "lib/modules/exynos-ecc-handler.ko",
+      "lib/modules/exynos-coresight.ko",
+      "lib/modules/debug-snapshot-qd.ko",
+      "lib/modules/eat.ko",
+      "lib/modules/exynos-adv-tracer-s2d.ko",
+      "lib/modules/hardlockup-watchdog.ko",
+      "lib/modules/ehld.ko",
+      "lib/modules/exynos-debug-test.ko",
+      "lib/modules/hardlockup-debug.ko",
+      "lib/modules/exynos_acpm.ko",
+      "lib/modules/exynos_pm_qos.ko",
+      "lib/modules/exynos-s2mpu.ko",
+      "lib/modules/exynos-pd_el3.ko",
+      "lib/modules/ect_parser.ko",
+      "lib/modules/cmu_ewf.ko",
+      "lib/modules/cmupmucal.ko",
+      "lib/modules/clk_exynos.ko",
+      "lib/modules/clk-exynos-audss.ko",
+      "lib/modules/exynos_mct.ko",
+      "lib/modules/pinctrl-samsung-core.ko",
+      "lib/modules/exynos-flexpmu-dbg.ko",
+      "lib/modules/switch_class.ko",
+      "lib/modules/usb_notify_layer.ko",
+      "lib/modules/common_muic.ko",
+      "lib/modules/exynos-cpupm.ko",
+      "lib/modules/i2c-exynos5.ko",
+      "lib/modules/acpm-mfd-bus.ko",
+      "lib/modules/pmic_class.ko",
+      "lib/modules/s2mps24_mfd.ko",
+      "lib/modules/s2mps23_mfd.ko",
+      "lib/modules/s2mps23-regulator.ko",
+      "lib/modules/s2mps24-regulator.ko",
+      "lib/modules/phy-exynos-usbdrd-super.ko",
+      "lib/modules/fingerprint_sysfs.ko",
+      "lib/modules/fingerprint.ko",
+      "lib/modules/blk-sec-stats.ko",
+      "lib/modules/ssg-iosched.ko",
+      "lib/modules/phy-exynos-mipi-dsim.ko",
+      "lib/modules/phy-exynos-mipi.ko",
+      "lib/modules/pwm-samsung.ko",
+      "lib/modules/pcie-exynos-dbg.ko",
+      "lib/modules/pcie-exynos2100-v0-cal.ko",
+      "lib/modules/fmp-core.ko",
+      "lib/modules/freq-qos-tracer.ko",
+      "lib/modules/ufs-exynos-core.ko",
+      "lib/modules/pcie-exynos-host-v0.ko",
+      "lib/modules/pcie-exynos2100-rc-cal.ko",
+      "lib/modules/pcie-exynos-rc.ko",
+      "lib/modules/fb.ko",
+      "lib/modules/dev_ril_bridge.ko",
+      "lib/modules/mcd-panel.ko",
+      "lib/modules/mcd-panel-s6e3hab.ko",
+      "lib/modules/mcd-panel-s6e3had.ko",
+      "lib/modules/dp_ext_func.ko",
+      "lib/modules/hdcp2.ko",
+      "lib/modules/repeater.ko",
+      "lib/modules/exynos-dm.ko",
+      "lib/modules/exynos-btsops2100.ko",
+      "lib/modules/exynos-bts.ko",
+      "lib/modules/exynos_sci.ko",
+      "lib/modules/mali_kbase.ko",
+      "lib/modules/exynos-migov.ko",
+      "lib/modules/exynos-msn.ko",
+      "lib/modules/exynos-mcinfo.ko",
+      "lib/modules/exynos-cpuhp.ko",
+      "lib/modules/imgloader.ko",
+      "lib/modules/sysevent_notif.ko",
+      "lib/modules/sysevent.ko",
+      "lib/modules/mcps.ko",
+      "lib/modules/memlogger.ko",
+      "lib/modules/modem_utils.ko",
+      "lib/modules/exynos_dit.ko",
+      "lib/modules/mcu_ipc.ko",
+      "lib/modules/shm_ipc.ko",
+      "lib/modules/cpif.ko",
+      "lib/modules/sec_audio_debug.ko",
+      "lib/modules/snd-soc-samsung-abox-gic.ko",
+      "lib/modules/snd-soc-samsung-abox.ko",
+      "lib/modules/exynos_thermal.ko",
+      "lib/modules/exynos-bcm_dbg-dt.ko",
+      "lib/modules/snd-soc-samsung-vts-mailbox.ko",
+      "lib/modules/snd-soc-samsung-vts.ko",
+      "lib/modules/vbus_notifier.ko",
+      "lib/modules/pdic_notifier_module.ko",
+      "lib/modules/usb_typec_manager.ko",
+      "lib/modules/if_cb_manager.ko",
+      "lib/modules/dwc3.ko",
+      "lib/modules/exynos-pd.ko",
+      "lib/modules/exynos-bcm_dbg.ko",
+      "lib/modules/exynos_devfreq.ko",
+      "lib/modules/tzdev.ko",
+      "lib/modules/tuihw-inf.ko",
+      "lib/modules/dpu.ko",
+      "lib/modules/pl330.ko",
+      "lib/modules/samsung-dma.ko",
+      "lib/modules/debug-snapshot-sfrdump.ko",
+      "lib/modules/exynos-ssld.ko",
+      "lib/modules/exynos-seh.ko",
+      "lib/modules/exynos-seclog.ko",
+      "lib/modules/exynos-tzasc.ko",
+      "lib/modules/exynos-ppmpu.ko",
+      "lib/modules/exynos-pd-dbg.ko",
+      "lib/modules/exynos-pm.ko",
+      "lib/modules/usi_v2.ko",
+      "lib/modules/plugin_dbg.ko",
+      "lib/modules/exynos-ssp.ko",
+      "lib/modules/exynos-el2.ko",
+      "lib/modules/exynos-ufcc.ko",
+      "lib/modules/exynos-afm.ko",
+      "lib/modules/xperf.ko",
+      "lib/modules/exynos-sdm.ko",
+      "lib/modules/secmem.ko",
+      "lib/modules/exynos-cpu-profiler.ko",
+      "lib/modules/exynos-gpu-profiler.ko",
+      "lib/modules/exynos-mif-profiler.ko",
+      "lib/modules/exynos-idle-profiler.ko",
+      "lib/modules/exynos-pm-dvs.ko",
+      "lib/modules/s2mpb02_mfd.ko",
+      "lib/modules/s2mpb02-regulator.ko",
+      "lib/modules/s2mpb03.ko",
+      "lib/modules/exynos_tty.ko",
+      "lib/modules/exyswd-rng.ko",
+      "lib/modules/samsung_iommu.ko",
+      "lib/modules/samsung-iommu-group.ko",
+      "lib/modules/sec_tsp_log.ko",
+      "lib/modules/sec_common_fn.ko",
+      "lib/modules/tuihw.ko",
+      "lib/modules/nfc_sec.ko",
+      "lib/modules/dma-buf-container.ko",
+      "lib/modules/scsi_srpmb.ko",
+      "lib/modules/spidev.ko",
+      "lib/modules/spi-s3c64xx.ko",
+      "lib/modules/dhd.ko",
+      "lib/modules/rtl8150.ko",
+      "lib/modules/cdc_eem.ko",
+      "lib/modules/smsc75xx.ko",
+      "lib/modules/smsc95xx.ko",
+      "lib/modules/net1080.ko",
+      "lib/modules/cdc_ncm.ko",
+      "lib/modules/xhci-hcd.ko",
+      "lib/modules/xhci-pci.ko",
+      "lib/modules/exynos-usb-audio-offloading.ko",
+      "lib/modules/xhci-plat-hcd.ko",
+      "lib/modules/usb_f_dm.ko",
+      "lib/modules/usb_f_dm1.ko",
+      "lib/modules/usb_f_mtp_samsung.ko",
+      "lib/modules/usb_f_ptp.ko",
+      "lib/modules/usb_f_conn_gadget.ko",
+      "lib/modules/usb_f_ss_mon_gadget.ko",
+      "lib/modules/dwc3-haps.ko",
+      "lib/modules/dwc3-of-simple.ko",
+      "lib/modules/dwc3-qcom.ko",
+      "lib/modules/cdc-acm.ko",
+      "lib/modules/usblp.ko",
+      "lib/modules/cdc-wdm.ko",
+      "lib/modules/usbserial.ko",
+      "lib/modules/ftdi_sio.ko",
+      "lib/modules/pl2303.ko",
+      "lib/modules/usb_notifier.ko",
+      "lib/modules/s2mps23-key.ko",
+      "lib/modules/rtc-s3c.ko",
+      "lib/modules/sec_pm_cpufreq.ko",
+      "lib/modules/rtc-s2mps23.ko",
+      "lib/modules/i2c-dev.ko",
+      "lib/modules/v4l2-mem2mem.ko",
+      "lib/modules/videobuf2-dma-sg.ko",
+      "lib/modules/tsmux.ko",
+      "lib/modules/exynos_mfc.ko",
+      "lib/modules/camerapp.ko",
+      "lib/modules/camerapp-pd-mgr.ko",
+      "lib/modules/votf.ko",
+      "lib/modules/gdc.ko",
+      "lib/modules/leds-s2mpb02.ko",
+      "lib/modules/fimc-is.ko",
+      "lib/modules/is-cis-3j1.ko",
+      "lib/modules/is-cis-gh1.ko",
+      "lib/modules/is-cis-hm1.ko",
+      "lib/modules/is-cis-hm3.ko",
+      "lib/modules/is-cis-imx563.ko",
+      "lib/modules/is-actuator-ak737x.ko",
+      "lib/modules/sensors_core.ko",
+      "lib/modules/vl53l5.ko",
+      "lib/modules/is-laser-af-vl53l5.ko",
+      "lib/modules/is-flash-s2mpb02.ko",
+      "lib/modules/is-device-eeprom.ko",
+      "lib/modules/mcfrc.ko",
+      "lib/modules/smfc.ko",
+      "lib/modules/scaler.ko",
+      "lib/modules/gpu_cooling.ko",
+      "lib/modules/sec_debug_stacktrace.ko",
+      "lib/modules/sec_debug_softdog.ko",
+      "lib/modules/softdog.ko",
+      "lib/modules/bcm43xx.ko",
+      "lib/modules/exynos-acme.ko",
+      "lib/modules/exynos-dsufreq.ko",
+      "lib/modules/dw_mmc.ko",
+      "lib/modules/dw_mmc-pltfm.ko",
+      "lib/modules/dw_mmc-exynos.ko",
+      "lib/modules/ion_exynos_mod.ko",
+      "lib/modules/s2mps23_adc.ko",
+      "lib/modules/dsp.ko",
+      "lib/modules/npu.ko",
+      "lib/modules/sec_pm_debug.ko",
+      "lib/modules/sec_pm_log.ko",
+      "lib/modules/sec_thermistor.ko",
+      "lib/modules/sec_wakeup_cpu_allocator.ko",
+      "lib/modules/sec_crash_key.ko",
+      "lib/modules/sec_crash_key_user.ko",
+      "lib/modules/sec_bootstat.ko",
+      "lib/modules/sec_argos.ko",
+      "lib/modules/hdm.ko",
+      "lib/modules/sx9360.ko",
+      "lib/modules/sec_debug_test.ko",
+      "lib/modules/sec_debug_dprm.ko",
+      "lib/modules/sec_debug_hw_param.ko",
+      "lib/modules/sec_debug_reset_reason.ko",
+      "lib/modules/sec_debug_wdd_info.ko",
+      "lib/modules/sec_debug_hist.ko",
+      "lib/modules/sec_debug_summary.ko",
+      "lib/modules/sec_debug_logbuf_interface.ko",
+      "lib/modules/sec_debug_hardlockup_info.ko",
+      "lib/modules/sec_debug_sched_report.ko",
+      "lib/modules/sec_vibrator.ko",
+      "lib/modules/spu_verify.ko",
+      "lib/modules/mfd_max77705.ko",
+      "lib/modules/pdic_max77705.ko",
+      "lib/modules/max77705-charger.ko",
+      "lib/modules/dropdump.ko",
+      "lib/modules/sec_tclm_v2.ko",
+      "lib/modules/sec_secure_touch.ko",
+      "lib/modules/sec_tsp_dumpkey.ko",
+      "lib/modules/sec_input_notifier.ko",
+      "lib/modules/sec_cmd.ko",
+      "lib/modules/qbt2000_spidev.ko",
+      "lib/modules/cs40l2x_vib.ko",
+      "lib/modules/s2dos05-regulator.ko",
+      "lib/modules/sec_pd.ko",
+      "lib/modules/pca9468-charger.ko",
+      "lib/modules/hall_ic.ko",
+      "lib/modules/abc_hub.ko",
+      "lib/modules/max77705-fuelgauge.ko",
+      "lib/modules/broadcom-sensorhub.ko",
+      "lib/modules/slsi_ts.ko",
+      "lib/modules/uwb.ko",
+      "lib/modules/snvm.ko",
+      "lib/modules/mfc_charger.ko",
+      "lib/modules/tsl2510.ko",
+      "lib/modules/w9020.ko",
+      "lib/modules/sec_direct_charger.ko",
+      "lib/modules/sec-battery.ko",
+      "lib/modules/snd-soc-wm-adsp.ko",
+      "lib/modules/snd-soc-cirrus-amp.ko",
+      "lib/modules/sec_audio_sysfs.ko",
+      "lib/modules/snd-soc-cs35l41-i2c.ko",
+      "lib/modules/snd-soc-s3c-dma.ko",
+      "lib/modules/snd-soc-dp_dma.ko",
+      "lib/modules/unbound_prince.ko",
+      "lib/modules/tcp_westwood.ko",
+      "lib/modules/tcp_htcp.ko"
+    ],
+    "actual_loader_executed": false
+  },
+  "ramdisk_loader_search": {
+    "cpio_entries": 296,
+    "rc_or_sh_entries": [
+      "etc/init/init.exynos2100.usb.rc"
+    ],
+    "regular_init_or_modprobe_entries": [],
+    "scope": "This vendor ramdisk only; boot ramdisk and system/vendor userspace were not supplied"
+  }
+}
