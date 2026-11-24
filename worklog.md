@@ -4220,3 +4220,7 @@ Referência AOSP system/core 6072de17 fixada por revisão e hashes, sem vendorin
 Validação adicional local: 394 testes A0 existentes, nove controles do init
 stock e baseline R10 9/9 aprovados. Os nove testes de replay são separados
 dessas contagens.
+
+## 2026-11-23 — A0: comparação HZC2 com MonsterROM Stability 1.2
+
+[Resultados e reprodução](docs/a0-monsterrom-hzc2.md). Comparados os arquivos originais com o pacote alinhado e o protótipo B fixados. Cabeçalho difere só no tamanho do ramdisk. Dois pares de módulos têm .text idêntico e IKCONFIG coincide com .config. Baseline R10 9/9. A0 aberto.
