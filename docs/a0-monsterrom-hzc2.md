@@ -74,6 +74,15 @@ membro principal publicados na análise de 27/10, seguir `main_entry.txt` e
 selecionar somente essas duas linhas pelo primeiro campo dentro de LSMOD.
 As linhas são numeradas a partir de 1, usando LF como separador.
 
+A listagem completa oferece também uma referência para o conjunto do A0.
+Comparando os nomes do [modules.load original](references/a0-modprobe-host-replay-hzc2.json)
+com a primeira coluna das linhas de dados de LSMOD, os **274 de 274** nomes
+da lista aparecem entre **276 módulos distintos** carregados. Para comparar,
+retirar o diretório e a extensão .ko e trocar hífen por sublinhado em cada
+nome de modules.load. Somente `input_booster_lkm` e `sec_debug_sched_info`
+aparecem em LSMOD sem constar dessa lista. A fotografia não identifica o
+mecanismo de carga desses dois nem a ordem em que os módulos entraram.
+
 O membro distinto `FS/cache/recovery/last_kmsg` contém mensagens de carga
 concluída dos dois módulos (linhas 1744 e 5664). O banner do kernel na linha
 2 identifica **HZA6**. Nesse mesmo membro, os campos de atualização nas

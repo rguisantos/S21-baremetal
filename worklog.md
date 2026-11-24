@@ -4230,4 +4230,5 @@ dessas contagens.
 O [comparativo](docs/a0-monsterrom-hzc2.md) registra as duas linhas de
 LSMOD do bugreport fixado, a atribuição das mensagens de recovery ao HZA6
 e a comparação simbólica das 331 e 893 relocações dos dois pares de módulos.
+Os 274 nomes de modules.load constam entre os 276 módulos listados no aparelho.
 A execução do candidato continua pendente.
