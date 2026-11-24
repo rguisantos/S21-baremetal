@@ -1,6 +1,6 @@
 # Roadmap e estado do S21-baremetal
 
-A [comparação com a MonsterROM](a0-monsterrom-hzc2.md) confirmou os campos de vendor_boot no original e em B, a igualdade de .text em dois pares de módulos e a configuração embutida no vmlinux alinhado. A0 segue aberto para execução e aceitação.
+A [comparação com a MonsterROM](a0-monsterrom-hzc2.md) confirmou os campos de vendor_boot no original e em B, a igualdade de .text em dois pares de módulos e a configuração embutida no vmlinux alinhado. O bugreport HZC2 original lista os dois módulos carregados. A execução e a aceitação do candidato A0 seguem em aberto.
 
 A [reprodução do resolvedor em host](a0-modprobe-host-replay-hzc2.md) executou uma referência AOSP fixada com controles stock e backend simulado: 274 módulos únicos, duas tentativas equivalentes a EEXIST e todas as 3654 dependências antes dos consumidores. Dois controles de falha recusaram a lista. A softdep memory_group_manager não está no conjunto; sua opcionalidade no resolvedor não prova funcionamento da GPU. Sem execução Samsung ou equivalência runtime; A0 aberto.
 

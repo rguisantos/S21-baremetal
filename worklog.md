@@ -4224,3 +4224,10 @@ dessas contagens.
 ## 2026-11-23 — A0: comparação HZC2 com MonsterROM Stability 1.2
 
 [Resultados e reprodução](docs/a0-monsterrom-hzc2.md). Comparados os arquivos originais com o pacote alinhado e o protótipo B fixados. Cabeçalho difere só no tamanho do ramdisk. Dois pares de módulos têm .text idêntico e IKCONFIG coincide com .config. Baseline R10 9/9. A0 aberto.
+
+## 2026-11-24 — A0: módulos carregados no HZC2 original
+
+O [comparativo](docs/a0-monsterrom-hzc2.md) registra as duas linhas de
+LSMOD do bugreport fixado, a atribuição das mensagens de recovery ao HZA6
+e a comparação simbólica das 331 e 893 relocações dos dois pares de módulos.
+A execução do candidato continua pendente.
