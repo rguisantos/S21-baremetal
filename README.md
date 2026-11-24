@@ -1,6 +1,6 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
-No HZC2, os 274 módulos do ramdisk e os [dois módulos da partição vendor](docs/a0-vendor-modules-hzc2.md) cobrem todos os 276 nomes observados no aparelho. A carga do candidato segue pendente.
+No HZC2, os 274 módulos do ramdisk e os [dois módulos da partição vendor](docs/a0-vendor-modules-hzc2.md) cobrem todos os 276 nomes observados no aparelho. O [leitor de bugreport](docs/a0-runtime-identity-hzc2.md) identifica o banner Samsung nessa captura. A carga do candidato segue pendente.
 
 A [comparação com a MonsterROM](docs/a0-monsterrom-hzc2.md) confirmou os campos de vendor_boot no original e em B, a igualdade de .text em dois pares de módulos e a configuração embutida no vmlinux alinhado. O bugreport HZC2 original lista os dois módulos carregados. A execução e a aceitação do candidato A0 seguem em aberto.
 
