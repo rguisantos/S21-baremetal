@@ -4240,3 +4240,11 @@ contém os dois arquivos, a lista separada e os pedidos de carga em early-init
 e após boot_completed. A captura ZTO lista ambos e seus quatro provedores.
 Os 70 símbolos distintos têm CRC correspondente no build alinhado. Mantida
 a seleção de 274 módulos do ramdisk.
+
+## 2026-11-24 — A0: identidade do kernel na captura
+
+[Comparação e reprodução](docs/a0-runtime-identity-hzc2.md). O banner do
+bugreport real coincide com a Image stock. O leitor compara banner e
+inventário no mesmo membro dumpstate. Os GNU build IDs das duas Images
+foram localizados pelos símbolos das notas e o de B também no vmlinux.
+A0 permanece sem captura de execução.
