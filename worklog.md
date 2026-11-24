@@ -4232,3 +4232,11 @@ LSMOD do bugreport fixado, a atribuição das mensagens de recovery ao HZA6
 e a comparação simbólica das 331 e 893 relocações dos dois pares de módulos.
 Os 274 nomes de modules.load constam entre os 276 módulos listados no aparelho.
 A execução do candidato continua pendente.
+
+## 2026-11-24 — A0: origem dos dois módulos em vendor
+
+[Análise e hashes](docs/a0-vendor-modules-hzc2.md). A imagem HZC2 XEO
+contém os dois arquivos, a lista separada e os pedidos de carga em early-init
+e após boot_completed. A captura ZTO lista ambos e seus quatro provedores.
+Os 70 símbolos distintos têm CRC correspondente no build alinhado. Mantida
+a seleção de 274 módulos do ramdisk.

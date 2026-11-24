@@ -81,7 +81,7 @@ da lista aparecem entre **276 módulos distintos** carregados. Para comparar,
 retirar o diretório e a extensão .ko e trocar hífen por sublinhado em cada
 nome de modules.load. Somente `input_booster_lkm` e `sec_debug_sched_info`
 aparecem em LSMOD sem constar dessa lista. A fotografia não identifica o
-mecanismo de carga desses dois nem a ordem em que os módulos entraram.
+mecanismo de carga desses dois nem a ordem em que os módulos entraram. A [análise da partição vendor](a0-vendor-modules-hzc2.md) identifica os arquivos e os dois pedidos de carga na configuração XEO.
 
 O membro distinto `FS/cache/recovery/last_kmsg` contém mensagens de carga
 concluída dos dois módulos (linhas 1744 e 5664). O banner do kernel na linha
