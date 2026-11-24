@@ -54,6 +54,62 @@ de /proc/config.gz em runtime continua pendente. A .config inclui
 PSTORE_RAM e PSTORE_CONSOLE. A configuração por si só não identifica região
 reservada, registro do backend ou log persistente disponível em um boot.
 
+## Os dois módulos no aparelho com HZC2 original
+
+No [bugreport de 27/10](bugreport-boot-hzc2.md), a linha 13 do membro
+principal identifica o kernel HZC2. As linhas 379730 e 379923 identificam
+o bootloader e a build como G998BXXSJHZC2. A seção `LSMOD (lsmod)`
+(linhas 513027–513305) contém as seguintes entradas:
+
+| Módulo | Linha | Tamanho listado (bytes) | Contagem de uso | Anotação ou consumidores listados |
+|---|---:|---:|---:|---|
+| gpu_cooling | 513099 | 36864 | 0 | [permanent] |
+| pdic_notifier_module | 513230 | 53248 | 2 | pdic_max77705, usb_typec_manager |
+
+Essa é evidência de presença dos dois módulos no sistema Samsung em execução.
+A contagem zero é a contagem de uso exibida pelo `lsmod`. A listagem não mede
+controle térmico efetivo, notificações USB entregues ou o retorno numérico das
+funções de inicialização. Para reproduzir, conferir os hashes do ZIP e do
+membro principal publicados na análise de 27/10, seguir `main_entry.txt` e
+selecionar somente essas duas linhas pelo primeiro campo dentro de LSMOD.
+As linhas são numeradas a partir de 1, usando LF como separador.
+
+A listagem completa oferece também uma referência para o conjunto do A0.
+Comparando os nomes do [modules.load original](references/a0-modprobe-host-replay-hzc2.json)
+com a primeira coluna das linhas de dados de LSMOD, os **274 de 274** nomes
+da lista aparecem entre **276 módulos distintos** carregados. Para comparar,
+retirar o diretório e a extensão .ko e trocar hífen por sublinhado em cada
+nome de modules.load. Somente `input_booster_lkm` e `sec_debug_sched_info`
+aparecem em LSMOD sem constar dessa lista. A fotografia não identifica o
+mecanismo de carga desses dois nem a ordem em que os módulos entraram.
+
+O membro distinto `FS/cache/recovery/last_kmsg` contém mensagens de carga
+concluída dos dois módulos (linhas 1744 e 5664). O banner do kernel na linha
+2 identifica **HZA6**. Nesse mesmo membro, os campos de atualização nas
+linhas 13460–13461 identificam HZA6 como origem e HZC2 como destino. Essas
+mensagens documentam a carga no recovery anterior. No membro principal HZC2
+não encontramos o nome literal de nenhuma das duas funções de inicialização.
+
+## Da tabela de relocações à entrada do módulo
+
+Em cada ELF, `readelf -W -S` identifica a seção RELA que aponta para
+`.text` pelo campo `Inf` (sh_info). Ela se chama `.rela.text` no original
+e `.rela.text.__cfi_check` no recompilado. Com `readelf -W -r`, comparar na
+ordem as entradas dessa seção por offset, tipo de relocação, valor e nome do
+símbolo e addend. O índice numérico do símbolo pode mudar entre os ELFs.
+
+| Módulo | Entradas coincidentes em .text | Offset do salto CFI | Destino init_module em .text |
+|---|---:|---:|---:|
+| gpu_cooling | 331 de 331 | 0x39c | 0xfb4 |
+| pdic_notifier_module | 893 de 893 | 0x6a8 | 0xedc |
+
+Nos quatro arquivos, a relocação `R_AARCH64_ABS64` em
+`.gnu.linkonce.this_module+0x178` referencia `init_module.cfi_jt`.
+Em cada offset de salto da tabela, `R_AARCH64_JUMP26` referencia
+`init_module`, com addend zero. Isso confirma o destino simbólico da entrada
+em cada par. O endereço final atribuído pelo carregador e o comportamento
+dos módulos recompilados dependem de execução do candidato.
+
 ## Como reproduzir a medição
 
 1. Conferir os [pins de fonte, LZ4 e imagem original](references/capture-a0-pins-hzc2.json),
@@ -77,7 +133,8 @@ reservada, registro do backend ou log persistente disponível em um boot.
 
 **Decisão para A0.** Manter o empacotamento B e as duas entradas Samsung
 estudadas. A comparação não identificou uma correção a importar nesses pontos.
-A próxima evidência que distinguiria os casos é a chamada de inicialização
-após relocação e seu resultado. O relato sobre o FlopKernel não estabelece
+O critério de execução que falta é observar os dois módulos carregados numa
+captura identificada como sendo do candidato. Uma medição do retorno de init
+exigiria ainda um registro específico dessa chamada. O relato sobre o FlopKernel não estabelece
 uma falha CFI no candidato. A captura cooperativa do Marco A continua dependente
 da validação de execução e aceitação já registrada no projeto.
