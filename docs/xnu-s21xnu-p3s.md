@@ -190,6 +190,43 @@ UFS ou o FDT final do aparelho.
   observado.
 - Recuperação: modo download e Odin com o boot stock.
 
+## Toque no p3s: patch XNU 0146 (26/11)
+
+O driver de toque (`bsd/dev/sweet_touch.c`) converte o valor bruto
+0..4095 com `x*1080>>12`, `y*2400>>12`. O valor bruto cobre o painel físico
+inteiro. No perfil `p3s-window` a imagem ocupa só o canto 1080x2400 do
+painel 1440x3200, e o toque sairia a 3/4 da posição.
+
+[`lab/s21xnu-p3s/xnu/0146-s21-touch-panel-geometry.patch`](../lab/s21xnu-p3s/xnu/0146-s21-touch-panel-geometry.patch)
+troca a fórmula por `ts_panel_map`: escala pelo painel físico (boot-args
+`touch_panel_w`/`touch_panel_h`, padrão 1080/2400), espelha no painel
+físico e limita à janela 1080x2400. O restante do caminho HID (0058/0061)
+fica igual. No p3s com `BOARD=p3s-window`, acrescentar
+`touch_panel_w=1440 touch_panel_h=3200` ao `--cmdline` do `mkpayload.py`.
+
+[`verify_xnu_touch_patch.py`](../lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py)
+reproduz o laço de patches do `build.sh` do darwin-xnu-build
+(`663906528d1c`): `git apply --check` e aplica, ou pula, em ordem de nome.
+Ele trabalha sobre o XNU `xnu-8796.141.3` (`1b191cb58250`). Depois aplica
+0146 e compila `ts_panel_map` num teste de host. Resultado: 16/16
+([JSON](references/s21xnu-xnu-touch-0146-20261126.json), idêntico em duas
+execuções).
+- 0146 aplica sobre a série e muda só `sweet_touch.c`.
+- Com o painel padrão, o mapeamento é idêntico ao original nos 4096 valores
+  brutos × 4 combinações de `touch_flip`.
+- Com 1440x3200, o centro físico vira o pixel 720,1600, e todo toque cai
+  dentro da janela.
+- O XNU não foi compilado; isso exige o runner macOS do s21xnu.
+
+**Observação sobre a série do s21xnu.** O build pula silenciosamente todo
+patch cujo `git apply --check` falha. Na reprodução sem os scripts `*.sh`
+(não executados aqui porque alguns baixam código), 110 patches aplicam e 27
+são pulados. Entre os pulados estão as variantes do Redmi (toque Goodix
+0060/0063, USB 0072–0081, PCIe Qualcomm 0109–0112) e também
+`0030-sweet-ufs-writes`, coerente com o UFS só leitura relatado pelo
+s21xnu. Pulos que dependem de arquivos gerados por scripts (`sweet_hfs`)
+podem não ocorrer no build real. A lista completa está no JSON.
+
 ## Coerências com este repositório
 
 - PSCI por **HVC** observado pelo s21xnu bate com a
@@ -218,7 +255,8 @@ correção).
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
 - Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
   neste ambiente) e conferir o relatório antes de qualquer flash.
-- Ajuste de toque em 0094 (boot-arg com a geometria do painel) e da
-  apresentação em 0061 para `p3s`; exigem o build XNU do workflow s21xnu.
+- Toque no modo janela: patch 0146 pronto e verificado na série, falta
+  compilar no runner macOS do s21xnu. Modo tela cheia (`p3s`) ainda exige
+  escalar a apresentação em 0061 e o compositor.
 - Port BCM4389 ou Wi-Fi desligado.
 - Conferir no aparelho o FDT final do LK e o scanout do `bootloader_fb`.

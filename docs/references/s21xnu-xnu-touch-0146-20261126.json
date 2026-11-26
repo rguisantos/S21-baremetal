@@ -1,0 +1,333 @@
+{
+  "schema": "s21xnu-xnu-touch-0146/1",
+  "checks": [
+    {
+      "check": "s21xnu fixado",
+      "ok": true,
+      "detail": "a128f07b0498"
+    },
+    {
+      "check": "dxb fixado",
+      "ok": true,
+      "detail": "663906528d1c"
+    },
+    {
+      "check": "xnu fixado",
+      "ok": true,
+      "detail": "1b191cb58250"
+    },
+    {
+      "check": "série: 0094 (toque sec_ts S21) aplicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "série: 0139 (poll do toque S21) aplicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "série: 0060 (toque Goodix do Redmi) pulado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0146 aplica sobre a série",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0146 muda só sweet_touch.c",
+      "ok": true,
+      "detail": "['35', '3', 'bsd/dev/sweet_touch.c']"
+    },
+    {
+      "check": "0146 alterou o arquivo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "boot-args touch_panel_w/h lidos",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "fórmula fixa 1080/2400 removida do caminho de postagem",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ts_panel_map extraída",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "t2s: idêntico ao original (4096 valores × 4 flips)",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "p3s: centro do painel físico = pixel 720,1600 da janela",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s: todo toque fica dentro da janela 1080x2400",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s: espelhamento no painel físico",
+      "ok": true,
+      "detail": "719,1599"
+    }
+  ],
+  "series": {
+    "applied": [
+      "0001-new-clang-drop-removed-auto-var-init-flag.patch",
+      "0002-new-clang-backport-UIO_STACKBUF.patch",
+      "0003-sweet-framebuffer-serial-console.patch",
+      "0004-sweet-machine-config.patch",
+      "0005-non-pac-build-fixes.patch",
+      "0006-sweet-master-config-open-source-asm-pmap.patch",
+      "0007-sweet-stub-apple-internal-headers.patch",
+      "0008-sweet-fill-closed-lib-gaps-kpc-stub.patch",
+      "0009-sweet-drop-apple-soc-only-exports.patch",
+      "0010-sweet-early-framebuffer-debug.patch",
+      "0011-sweet-physmap-alignment-padding.patch",
+      "0012-sweet-keep-debug-console-after-ttbr0.patch",
+      "0013-sweet-kmem-rng-without-corecrypto.patch",
+      "0014-sweet-kernel-hmac-prng.patch",
+      "0015-sweet-unavailable-trust-cache-runtime.patch",
+      "0016-sweet-device-tree-platform-expert.patch",
+      "0017-sweet-device-tree-virtual-timer-irq.patch",
+      "0018-sweet-boot-cpu-driver.patch",
+      "0019-sweet-builtin-pthread.patch",
+      "0020-sweet-portable-aes-cbc.patch",
+      "0021-sweet-mockfs-ramdisk-root.patch",
+      "0022-sweet-ramdisk-root-without-iomedia.patch",
+      "0023-sweet-builtin-sha256-for-libkern.patch",
+      "0024-sweet-mockfs-virtual-ramdisk-io.patch",
+      "0025-sweet-builtin-amfi-no-entitlements.patch",
+      "0026-sweet-builtin-hfs.patch",
+      "0027-sweet-bearssl-md5.patch",
+      "0028-sweet-ufs-root-device.patch",
+      "0029-sweet-unsealed-root-volume.patch",
+      "0032-sweet-bearssl-sha1.patch",
+      "0033-sweet-bearssl-sha384-sha512.patch",
+      "0035-sweet-amfi-entitlements-platform-binaries.patch",
+      "0036-sweet-amfi-cs-signed.patch",
+      "0037-sweet-config-bindfs.patch",
+      "0038-sweet-applekeystore.patch",
+      "0039-sweet-coredump-default-off.patch",
+      "0040-sweet-iowatchdog.patch",
+      "0042-sweet-short-exec-log.patch",
+      "0043-sweet-console-crash-log.patch",
+      "0044-sweet-crash-log-reason.patch",
+      "0045-sweet-iowatchdog-pmu-primary.patch",
+      "0046-sweet-iosurface-iomfb.patch",
+      "0048-sweet-devnull-tee.patch",
+      "0049-sweet-iokit-trace.patch",
+      "0050-sweet-sandbox-policy.patch",
+      "0051-sweet-crash-heap-strings.patch",
+      "0052-sweet-hfs-rename-swap.patch",
+      "0053-sweet-crash-scan-springboard.patch",
+      "0054a-sweet-process-sampler-s21.patch",
+      "0055-sweet-aks-ext-state-sampler-depth.patch",
+      "0056-sweet-fb-throttled-present.patch",
+      "0057-sweet-no-ext-resolver.patch",
+      "0058-sweet-hid-event-services.patch",
+      "0059-sweet-iphone-identity.patch",
+      "0061-sweet-iphone-x-display-size.patch",
+      "0064-sweet-priv-work-interval.patch",
+      "0065-sweet-smp-psci.patch",
+      "0066-sweet-crash-fault-region.patch",
+      "0067-sweet-console-mute.patch",
+      "0068-sweet-surface-lookup-cached.patch",
+      "0070-sweet-pid-hibernate.patch",
+      "0071-sweet-touch-edge.patch",
+      "0078-sweet-smp-8-cores.patch",
+      "0079-sweet-display-power.patch",
+      "0080-sweet-net-trace.patch",
+      "0083-sweet-ufs-hs-g4.patch",
+      "0084-sweet-ufs-ram-overlay.patch",
+      "0085-sweet-amfi-iokit-service.patch",
+      "0086-sweet-ufs-diag.patch",
+      "0088-sweet-iolog-dedupe.patch",
+      "0090-sweet-lsd-syscall-errors.patch",
+      "0091-sweet-sample-start.patch",
+      "0092-sweet-strfix.patch",
+      "0093-sweet-freeze-halt.patch",
+      "0094-sweet-touch-sec-ts.patch",
+      "0098-sweet-touch-edge-args-drain.patch",
+      "0099-s21-usb-hook.patch",
+      "0101-sweet-aks-sel8-32-stub.patch",
+      "0102-sweet-hid-move-range-touch.patch",
+      "0103-sweet-hid-clean-first-sample.patch",
+      "0104-sweet-hid-field-toggles.patch",
+      "0105-sweet-hid-edge-toggle-log.patch",
+      "0106-sweet-early-fault-frame.patch",
+      "0107-s21-smp-gic-touch.patch",
+      "0108-s21-cpu-on-lowmem-trampoline.patch",
+      "0108-touch-pullup-and-recovery.patch",
+      "0112-sweet-aarch32-el0-test.patch",
+      "0113-sweet-initproc-fault-diag.patch",
+      "0120-s21-mali-iokit.patch",
+      "0121-s21-gpu-composite.patch",
+      "0122-s21-fb-present-log.patch",
+      "0126-s21-exit-keep-log.patch",
+      "0128-s21-battery-files.patch",
+      "0129-pixos-sweet-sandbox-container-path-appex.patch",
+      "0130-pixos-sweet-amfi-dyld-policy.patch",
+      "0131-pixos-sweet-sandbox-extension-ops.patch",
+      "0132-pixos-sweet-sandbox-priv-net.patch",
+      "0133-pixos-sweet-sandbox-skywalk-entitlements.patch",
+      "0134-pixos-sweet-sandbox-selfcheck.patch",
+      "0135-s21-publish-iortc.patch",
+      "0136-s21-crash-regs.patch",
+      "0137-s21-fb-pacing.patch",
+      "0138-s21-recommended-cores.patch",
+      "0139-s21-touch-precise-poll.patch",
+      "0143-s21-display-pipe-dicts.patch",
+      "0144-s21-fb-yuv-layers.patch",
+      "kas_info.patch",
+      "machine_routines.patch",
+      "skywalk_ventura.patch",
+      "syntax_checker_ventura.patch"
+    ],
+    "skipped": [
+      {
+        "patch": "0030-sweet-ufs-writes.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:1"
+      },
+      {
+        "patch": "0031-sweet-read-write-root.patch",
+        "reason": "error: bsd/sweet_hfs/core/hfs_vfsutils.c: No such file or directory"
+      },
+      {
+        "patch": "0034-sweet-ufs-dma-above-4g.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:305"
+      },
+      {
+        "patch": "0041-sweet-hfs-link-notes.patch",
+        "reason": "error: bsd/sweet_hfs/core/hfs_catalog.c: No such file or directory"
+      },
+      {
+        "patch": "0047-sweet-persistent-console-log.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:37"
+      },
+      {
+        "patch": "0054-sweet-process-sampler.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:46"
+      },
+      {
+        "patch": "0060-sweet-keys-touch-drivers.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:47"
+      },
+      {
+        "patch": "0062-sweet-touch-power-battery.patch",
+        "reason": "error: patch failed: bsd/conf/files:108"
+      },
+      {
+        "patch": "0063-sweet-goodix-geni-packing.patch",
+        "reason": "error: bsd/dev/sweet_touch.c: No such file or directory"
+      },
+      {
+        "patch": "0069-sweet-ufs-faster.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:42"
+      },
+      {
+        "patch": "0072-sweet-usb-probe.patch",
+        "reason": "error: patch failed: bsd/conf/files:110"
+      },
+      {
+        "patch": "0073-sweet-usb-device-ep0.patch",
+        "reason": "error: bsd/dev/sweet_usb.c: No such file or directory"
+      },
+      {
+        "patch": "0074-sweet-usb-vbus-override.patch",
+        "reason": "error: bsd/dev/sweet_usb.c: No such file or directory"
+      },
+      {
+        "patch": "0075-sweet-usb-ecm.patch",
+        "reason": "error: bsd/dev/sweet_usb.c: No such file or directory"
+      },
+      {
+        "patch": "0076-sweet-usb-rx-mbuf.patch",
+        "reason": "error: bsd/dev/sweet_usb.c: No such file or directory"
+      },
+      {
+        "patch": "0077-sweet-usb-live-log.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:700"
+      },
+      {
+        "patch": "0081-sweet-usb-link-state.patch",
+        "reason": "error: bsd/dev/sweet_usb.c: No such file or directory"
+      },
+      {
+        "patch": "0082-sweet-ufs-diag.patch",
+        "reason": "error: patch failed: bsd/dev/sweet_ufs.c:70"
+      },
+      {
+        "patch": "0089-sweet-aks-ext-state.patch",
+        "reason": "error: patch failed: iokit/Kernel/arm/SweetKeyStore.cpp:41"
+      },
+      {
+        "patch": "0109-sweet-pcie-wifi-link.patch",
+        "reason": "error: patch failed: bsd/conf/files:106"
+      },
+      {
+        "patch": "0110-sweet-pcie-s2mpu-window.patch",
+        "reason": "error: bsd/dev/sweet_pcie.c: No such file or directory"
+      },
+      {
+        "patch": "0111-sweet-pcie-wifi-firmware.patch",
+        "reason": "error: bsd/dev/sweet_pcie.c: No such file or directory"
+      },
+      {
+        "patch": "0112-sweet-pcie-msgbuf-ioctl.patch",
+        "reason": "error: bsd/dev/sweet_pcie.c: No such file or directory"
+      },
+      {
+        "patch": "TrustCache.patch",
+        "reason": "error: EXTERNAL_HEADERS/TrustCache/API.h: already exists in working directory"
+      },
+      {
+        "patch": "iobuffermemd_monterey.patch",
+        "reason": "error: patch failed: iokit/Kernel/IOBufferMemoryDescriptor.cpp:332"
+      },
+      {
+        "patch": "skywalk_sonoma.patch",
+        "reason": "error: patch failed: bsd/skywalk/packet/os_packet.h:883"
+      },
+      {
+        "patch": "syntax_checker_sonoma.patch",
+        "reason": "error: patch failed: tools/lldbmacros/core/syntax_checker.py:1"
+      }
+    ],
+    "scripts_not_run": [
+      "0019-stage-libpthread.sh",
+      "0020-stage-bearssl.sh",
+      "0026-stage-hfs.sh",
+      "0099-s21-usb-probe.sh",
+      "0100-s21-usb-gadget.sh",
+      "0111-s21-mali-core.sh",
+      "0112-s21-mali-iokit.sh",
+      "0123-s21-max77705.sh",
+      "0125-s21-keys.sh",
+      "0127-s21-battery-service.sh",
+      "0140-s21-soc-thermal.sh",
+      "0141-s21-cputop.sh",
+      "0142-s21-wifi.sh",
+      "0145-s21-scaler-standin.sh",
+      "0200-sweet-ramoops-log.sh"
+    ]
+  },
+  "host_test": {
+    "t2s_mismatch": "0",
+    "p3s_mid": "720,1600",
+    "p3s_inside": "1",
+    "p3s_mid_flip": "719,1599"
+  },
+  "result": "PASS"
+}

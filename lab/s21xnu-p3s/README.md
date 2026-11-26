@@ -29,3 +29,10 @@ python3 lab/s21xnu-p3s/qemu/run_handoff.py s21xnu   # handoff LK modelado no QEM
 
 Sem `--payload` sai a sonda (diagnóstico na tela e reboot em 40 s). Limites
 e pré-requisitos em [docs/xnu-s21xnu-p3s.md](../../docs/xnu-s21xnu-p3s.md).
+
+## Toque no p3s (patch XNU 0146)
+
+`xnu/0146-s21-touch-panel-geometry.patch` vai em `xnu/patches/` do s21xnu.
+Com `BOARD=p3s-window`, passar `touch_panel_w=1440 touch_panel_h=3200` no
+`--cmdline` do `mkpayload.py`. Verificação da série e teste de host:
+`python3 lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py --s21xnu S --dxb D --xnu X`.

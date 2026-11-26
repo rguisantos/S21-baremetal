@@ -4281,3 +4281,16 @@ um kernel falso: 57/57 em KASLR 0/0x8000/0x1f8000, controle sem padding não
 executa, boot.img idêntico em duas execuções. CI busca o s21xnu fixado e
 roda perfil + handoff. Sem stock boot/vendor_boot reais neste ambiente;
 nada no aparelho.
+
+## 2026-11-26 — s21xnu: toque no p3s (patch XNU 0146)
+
+[Análise](docs/xnu-s21xnu-p3s.md#toque-no-p3s-patch-xnu-0146-2611).
+Reproduzido o laço de patches do darwin-xnu-build `663906528d1c` sobre
+xnu-8796.141.3 sem executar os `*.sh` do s21xnu: 110 aplicados, 27 pulados
+(variantes Redmi, 0030 escrita UFS e dependências de scripts). O
+`sweet_touch.c` final é o do 0094 (sec_ts S21). Patch 0146 troca a fórmula
+fixa 1080/2400 por `ts_panel_map` com boot-args `touch_panel_w/h`: S21+
+idêntico em 4096×4 casos, p3s-window mapeado para a janela. Verificador
+16/16, determinístico, incluído no CI. XNU não compilado (runner macOS).
+Revisão automática Codex dos PRs #100/#101 falhou por limite de uso; merges
+aguardam revisão.
