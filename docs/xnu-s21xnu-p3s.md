@@ -207,6 +207,31 @@ android.googlesource.com está bloqueado aqui. O
 `check_capture_a0_container.py` faz isso quando recebe o avbtool fixado.
 Assinatura de laboratório não é confiança do aparelho.
 
+### Sonda que fotografa o handoff (26/11)
+
+[`lab/s21xnu-p3s/0002-probe-lk-handoff-facts.patch`](../lab/s21xnu-p3s/0002-probe-lk-handoff-facts.patch),
+aplicado ao s21xnu depois do 0001, acrescenta quatro linhas à tela do
+loader. A sonda as mantém por cerca de 25 s; uma foto da tela basta para
+conferir o modelo do LK no aparelho.
+[`qemu/probe_screenshot.py`](../lab/s21xnu-p3s/qemu/probe_screenshot.py)
+carrega a sonda pelo handoff modelado (KASLR 0x8000), copia o framebuffer
+pelo monitor do QEMU e grava o topo da tela
+([PNG](references/s21xnu-sonda-qemu-20261126.png),
+[JSON](references/s21xnu-sonda-qemu-20261126.json); idêntico em duas
+execuções):
+
+![Sonda no QEMU](references/s21xnu-sonda-qemu-20261126.png)
+
+| Linha | Esperado no S21 Ultra (modelo) | Se vier diferente |
+|---|---|---|
+| tela vermelha com texto | DECON exibindo 0xfa000000 | nada na tela: o scanout do S-Boot não reflete escritas no framebuffer (`psr_mode=2`) |
+| `ENTRY el=` | 1 | 2: o LK não desceu para EL1; o shim e o XNU esperam EL1 |
+| `ENTRY x0=` | 8B080000 | outro endereço de FDT |
+| `IMAGE at=` | 80080000 + KASLR (até 80278000, passo 8000) | dá o KASLR real ou mostra que o destino difere |
+| `INITRD start=` | 84080000 | destino do ramdisk vendor diferente |
+| `INITRD end=` | start + ramdisk vendor + ramdisk de boot (sonda: 84BF5E89) | ramdisk vendor de outro tamanho ou com padding: muda o padding do payload |
+| `FB w= stride=` | 5A0 / 1680 (`BOARD=p3s`) | build com outro perfil |
+
 ### Alternar Android e s21xnu sem Odin (26/11)
 
 O [DualbootHelper](https://github.com/justin-a30/DualbootHelper)

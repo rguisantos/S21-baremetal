@@ -44,6 +44,7 @@ jobs:
           git -C /tmp/s21xnu checkout -q FETCH_HEAD
           python3 lab/s21xnu-p3s/verify_p3s_profile.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
+          python3 lab/s21xnu-p3s/qemu/probe_screenshot.py /tmp/s21xnu --png /tmp/sonda.png
       - name: Reproduce the s21xnu XNU patch series and check touch patch 0146
         run: |
           git init -q /tmp/dxb
