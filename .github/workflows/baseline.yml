@@ -37,6 +37,8 @@ jobs:
         run: python3 lab/s21xnu-p3s/test_avb_lab.py
       - name: Check first-boot kit builder (synthetic firmware, real RSA)
         run: python3 lab/s21xnu-p3s/test_prepare_first_boot.py
+      - name: Check Wi-Fi file preparation for the p3s BCM4389 (synthetic files)
+        run: python3 lab/s21xnu-p3s/wifi/test_prepare_wifi_files.py
       - name: Check BOOT switch script for Android/TWRP (dash and bash)
         run: python3 lab/s21xnu-p3s/dualboot/test_s21xnu_switch.py
       - name: Fetch pinned s21xnu and run p3s profile and LK handoff in QEMU

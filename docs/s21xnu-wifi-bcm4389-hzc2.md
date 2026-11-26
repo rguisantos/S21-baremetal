@@ -143,20 +143,51 @@ lê os arquivos `bcm4389-sta.bin`, `bcm4389-nvram-semco.txt` e
 acima). No `sweet_wifi.c`, o p3s chega ao driver com `sweetwifi=4`; abaixo
 disso continua em `W4 SKIP`. O caminho do BCM4375 não muda.
 
+A RAM do SYSMEM pode passar do que o BAR2 mapeia. No CA7, o `chip()` só
+registra isso, e o `firmware()` confere o encaixe depois de aplicar o
+tamanho que a própria imagem declara (`SMAR` em 0x6c), antes de parar o
+ARM. O BCM4375 continua recusando já no `chip()`.
+
 O sucesso esperado é `W4 PASS: the firmware is up, shared area at …`. Daí
 em diante o driver é o do 4375: área compartilhada (versões 5 a 7), anéis,
-ioctls. Se o firmware 20.80 usar outra versão de área compartilhada, o log
-para em `shared()` com a versão lida; esse é o marco seguinte.
+ioctls. A versão da área compartilhada deve caber: o `bcmdhd_101_18` compila com
+`PCIE_SHARED_VERSION` = 7 (`include/bcmpcie.h`) e só aceita firmware de
+versão 5 a 7, a mesma faixa do driver do 4375. Se ainda assim o log parar
+em `shared()`, ele mostra a versão lida; esse é o marco seguinte.
 
 [`verify_wifi_0150.py`](../lab/s21xnu-p3s/xnu/verify_wifi_0150.py), no
 CI, busca o z3sios no commit do 0142, confere o SHA-256 do driver contra a
 lista do script, aplica 0149 e 0150 e confere a ordem da carga, a recusa do
 vetor protegido, a remapeação condicionada ao tamanho do BAR2, que o 4375
 mantém CR4/murata, e (no host) a decodificação dos bancos do SYSMEM nas
-duas revisões. 22 de 22 checagens.
+duas revisões. 24 de 24 checagens.
 [Evidência](references/s21xnu-p3s-wifi-0150-20261126.json).
 
 No fork, `02528b7` e run
 [45901428006](https://github.com/rguisantos/s21xnu/actions/runs/45901428006):
 sucesso, 0150 aplicado; os avisos em `redwood_bcm4375.c` estão em linhas do
-upstream, nenhum nas linhas novas. Esse `xnu-kernel` é o candidato.
+upstream, nenhum nas linhas novas. Com o encaixe da RAM depois do `SMAR`:
+`b5b1377`, run
+[45903906003](https://github.com/rguisantos/s21xnu/actions/runs/45903906003),
+sucesso, mesmos avisos do upstream. Esse `xnu-kernel` é o candidato.
+
+## Preparar os arquivos do Wi-Fi
+
+[`wifi/prepare_wifi_files.py`](../lab/s21xnu-p3s/wifi/prepare_wifi_files.py)
+recebe o `/vendor/firmware/wifi` do aparelho (ou da imagem HZC2) e:
+- confere os três arquivos pelos SHA-256 da tabela acima e recusa outra
+  revisão;
+- grava `bcm4389-sta.bin`, `bcm4389-nvram-semco.txt` e `bcm4389-clm.blob`
+  (modo 0644), `SHA256SUMS` e um `LEIAME.txt`: copiar para
+  `/usr/local/etc/wifi` no rootfs; `sweetwifi=3` identifica o chip,
+  `sweetwifi=4` carrega o firmware;
+- lê do firmware a palavra 0 (vetor de reset), o tamanho de RAM declarado
+  (`SMAR`), onde a RAM termina a partir de 0x200000 e se o driver vai
+  precisar remapear o BAR2 (fim acima de 4 MiB), e procura a versão
+  20.80.87.4 e o FWID 01-3fe70789.
+
+8 testes com arquivos sintéticos no CI, inclusive: hashes da tabela iguais
+aos do script, recusa por hash, por arquivo ausente, por firmware maior
+que a RAM declarada e por diretório de saída não vazio. Os arquivos reais
+não estão neste ambiente; o relatório do script com eles responde se o
+remapeamento será necessário.

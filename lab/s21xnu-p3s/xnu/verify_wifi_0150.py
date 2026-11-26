@@ -133,6 +133,8 @@ def main(argv=None):
               "ramsize = ca7 ? sysmem_ramsize() : cr4_ramsize();" in chip)
         check("chip(): BAR2 remapeado só se o BAR2 cobre rambase + ramsize",
               "rambase + ramsize <= bus->bar2_size" in chip)
+        check("chip(): no CA7, RAM além do BAR2 fica para o tamanho declarado pela imagem",
+              "(!ca7 && rambase + ramsize > tcm_size)" in chip and "left to the image's own RAM size" in chip)
         pas = extract(d, "static void\nca7_passive(void)")
         check("ca7_passive: janela BAR1 = 0, CA7 parado, SYSMEM reset (download_state enter)",
               pas.index("w32(cfg, 0x84, 0)") < pas.index("core_reset(cr4, ARMCR4_CPUHALT, ARMCR4_CPUHALT, ARMCR4_CPUHALT)")
@@ -145,6 +147,8 @@ def main(argv=None):
         i_pas, i_copy = fw.index("ca7_passive();"), fw.index("*(volatile uint32_t *)(tcm + rambase + at) = word;")
         i_seed, i_act = fw.index("SEED_MAGIC"), fw.index("ca7_active(resetintr)")
         check("firmware(): parar → firmware → NVRAM/semente → soltar", i_pas < i_copy < i_seed < i_act)
+        i_smar, i_fit = fw.index("RAMSIZE_MAGIC"), fw.index("if (rambase + ramsize > tcm_size)")
+        check("firmware(): RAM (já com o SMAR) conferida contra o BAR2 antes de parar o ARM", i_smar < i_fit < i_pas)
         check("firmware(): BCM4375 mantém cr4_passive/cr4_active", "cr4_passive();" in fw and "cr4_active(resetintr);" in fw)
         check("firmware(): murata só fora do CA7", 'which == 1 && !ca7 ? "murata" : "semco"' in fw)
         clm = extract(d, "static int\nclm_load(void)")
