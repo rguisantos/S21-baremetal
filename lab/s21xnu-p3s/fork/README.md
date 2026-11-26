@@ -1,0 +1,25 @@
+# Série para um fork do s21xnu
+
+Três commits sobre `a128f07` (o `main` do s21xnu em 26/11/2026), gerados
+com `git format-patch`:
+
+1. `0001` shim/mkadt: perfis `p3s` e `p3s-window`;
+2. `0002` shim: linhas ENTRY/IMAGE/INITRD/FB na tela do loader;
+3. `0003` xnu: patches 0146–0148 copiados para `xnu/patches/`.
+
+O workflow `xnu.yml` do s21xnu roda em push no `main` quando
+`xnu/patches/**` muda (runner `macos-15-intel`) e publica o artefato
+`xnu-kernel`. Um fork com esta série compila o XNU com os patches do S21
+Ultra, o que este ambiente não consegue fazer.
+
+```bash
+# no GitHub: Fork de jimmycarles9991-glitch/s21xnu para a sua conta e
+# habilitar Actions na aba Actions do fork
+git clone https://github.com/SEU_USUARIO/s21xnu && cd s21xnu
+git am /caminho/S21-baremetal/lab/s21xnu-p3s/fork/000*.patch
+git push origin main
+```
+
+`check_fork_series.py CLONE` confere que a série reproduz exatamente os
+patches do lab (0001+0002 aplicados ao shim/mkadt e 0146–0148 em
+`xnu/patches/`), sem outros arquivos.

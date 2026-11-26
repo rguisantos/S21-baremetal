@@ -5,4 +5,4 @@ docs/references/newtime-gate-image-base-received.patch whitespace=-blank-at-eol
 scripts/patches/*.patch whitespace=-space-before-tab
 
 # Unified diff context lines for empty source lines are a single space.
-lab/s21xnu-p3s/**/*.patch whitespace=-blank-at-eol,-space-before-tab
+lab/s21xnu-p3s/**/*.patch whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab

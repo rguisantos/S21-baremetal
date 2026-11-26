@@ -1,0 +1,55 @@
+From e80e7ee99c56a7429470b9a2862752b63193f5f6 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 26 Nov 2026 16:12:25 -0400
+Subject: [PATCH 2/3] shim: show the bootloader hand-off on the loader screen
+
+ENTRY (EL, x0), IMAGE (load address and size), INITRD (/chosen) and FB
+lines under the loader result, kept for the ~25 s pause, so one photo of
+a first S-Boot boot checks the hand-off model.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01BMMeXnUh8SfBzu3GsrA53v
+---
+ shim/shim.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/shim/shim.c b/shim/shim.c
+index c622d0f..8d55f1d 100644
+--- a/shim/shim.c
++++ b/shim/shim.c
+@@ -11,6 +11,7 @@
+ #include "mmu.h"
+ #include "loader.h"
+ #include "ufs.h"
++#include "fdt.h"
+ 
+ /* S21: CNTFRQ_EL0 reads 0 on this firmware; the counter really runs at 26 MHz. */
+ #define CNTFRQ			26000000UL
+@@ -379,6 +380,24 @@ void shim_main(uint64_t dtb)
+ 	const char *why = loader_boot(dtb);
+ 	con_str("LOADER", why);
+ 	con_skip();
++	{
++		/*
++		 * Hand-off as seen on entry, for a photo of the first S-Boot boot:
++		 * exception level, x0 (FDT), where the Image landed (0x80080000 +
++		 * KASLR on the LK HZC2 model), /chosen initrd span and the
++		 * framebuffer geometry this build assumes.
++		 */
++		extern char _head[], _end[];
++		uint64_t el, is = 0, ie = 0;
++		__asm__ volatile("mrs %0, CurrentEL" : "=r"(el));
++		int hs = fdt_chosen_u64(dtb, "linux,initrd-start", &is);
++		int he = fdt_chosen_u64(dtb, "linux,initrd-end", &ie);
++		con_hex2("ENTRY", "el=", (uint32_t)(el >> 2), "x0=", (uint32_t)dtb);
++		con_hex2("IMAGE", "at=", (uint32_t)(uintptr_t)_head, "size=", (uint32_t)(_end - _head));
++		con_hex2("INITRD", "start=", hs ? (uint32_t)is : 0, "end=", he ? (uint32_t)ie : 0);
++		con_hex2("FB", "w=", FB_W, "stride=", FB_STRIDE);
++		con_skip();
++	}
+ 	{
+ 		uint64_t t0 = now();
+ 		while (now() - t0 < 26000000UL * 25)	/* keep the loader result on screen ~25 s */
+-- 
+2.43.0
+

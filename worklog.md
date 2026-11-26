@@ -4361,3 +4361,13 @@ detectada; ~4 ms/quadro no Xeon (indicativo). Revisão Codex do #108: limites
 de retângulos parciais truncados não batiam com a amostragem inversa; agora
 com teto (blit e YUV), teste com 6 retângulos falhava antes (800 pixels).
 XNU não compilado.
+
+## 2026-11-26 — s21xnu: série pronta para um fork
+
+[Análise](docs/xnu-s21xnu-p3s.md#compilar-o-xnu-num-fork-do-s21xnu-2611).
+O XNU só compila no runner macOS do s21xnu (`xnu.yml`, push em
+`xnu/patches/**`). `lab/s21xnu-p3s/fork/` tem 3 commits `git am` sobre
+`a128f07` (upstream sem mudanças em 26/11): perfis p3s, sonda e patches
+0146–0148. `check_fork_series.py` confirma 7 arquivos idênticos aos do lab;
+no CI. Janela de RAM do XNU (2 GiB em 0x8c0000000) cabe nos 12 GiB do p3s
+(banco alto até 0xb00000000); não alterada sem teste.

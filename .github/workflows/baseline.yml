@@ -47,6 +47,7 @@ jobs:
           python3 lab/s21xnu-p3s/verify_p3s_profile.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/probe_screenshot.py /tmp/s21xnu --png /tmp/sonda.png
+          python3 lab/s21xnu-p3s/fork/check_fork_series.py /tmp/s21xnu
       - name: Reproduce the s21xnu XNU patch series and check touch patch 0146
         run: |
           git init -q /tmp/dxb
