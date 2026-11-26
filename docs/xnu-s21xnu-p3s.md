@@ -404,6 +404,20 @@ são pulados. Entre os pulados estão as variantes do Redmi (toque Goodix
 s21xnu. Pulos que dependem de arquivos gerados por scripts (`sweet_hfs`)
 podem não ocorrer no build real. A lista completa está no JSON.
 
+## Compilar o XNU num fork do s21xnu (26/11)
+
+O XNU só compila no runner macOS do workflow `xnu.yml` do s21xnu. Ele roda
+em push no `main` quando `xnu/patches/**` muda e publica o artefato
+`xnu-kernel`. [`lab/s21xnu-p3s/fork/`](../lab/s21xnu-p3s/fork/README.md)
+traz três commits para `git am` sobre `a128f07`:
+- perfis p3s do shim e do mkadt;
+- linhas de handoff da sonda;
+- patches XNU 0146–0148 em `xnu/patches/`.
+
+`check_fork_series.py` (no CI) confere que a série reproduz exatamente os
+arquivos do lab: 7 arquivos, todos idênticos. Falta o fork, que só o dono
+da conta pode criar, e habilitar o Actions nele.
+
 ## Coerências com este repositório
 
 - PSCI por **HVC** observado pelo s21xnu bate com a
@@ -432,7 +446,7 @@ correção).
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
 - Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
   neste ambiente) e conferir o relatório antes de qualquer flash.
-- Patches 0146/0147 verificados na série; falta compilar no runner macOS do
-  s21xnu. Ocupar o painel inteiro exigiria escalar no compositor (1,28×).
+- Patches 0146–0148 verificados na série; compilar exige um fork do s21xnu
+  com a [série pronta](../lab/s21xnu-p3s/fork/README.md).
 - Port BCM4389 ou Wi-Fi desligado.
 - Conferir no aparelho o FDT final do LK e o scanout do `bootloader_fb`.
