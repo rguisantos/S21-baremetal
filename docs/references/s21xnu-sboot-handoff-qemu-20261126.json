@@ -1,0 +1,381 @@
+{
+  "schema": "s21xnu-sboot-handoff/1",
+  "s21xnu_commit": "a128f07b04987e60f5e13e2ce67b19ae009672cd",
+  "cases": [
+    {
+      "kaslr": "0x0",
+      "fake_xnu": {
+        "el": 1,
+        "ba": 2684387328,
+        "rev": 2,
+        "ver": 2,
+        "virt": 18446741874803752960,
+        "phys": 2684354560,
+        "mem": 268435456,
+        "top": 2684403712,
+        "fb": 4194304000,
+        "disp": 1,
+        "stride": 5760,
+        "w": 1440,
+        "h": 3200,
+        "depth": 32,
+        "dt": 18446741874803769344,
+        "dtlen": 64,
+        "adt0": 2401619548421439814,
+        "memact": 268435456,
+        "cmd": "s21xnu-p3s-handoff debug=0x8"
+      }
+    },
+    {
+      "kaslr": "0x8000",
+      "fake_xnu": {
+        "el": 1,
+        "ba": 2684387328,
+        "rev": 2,
+        "ver": 2,
+        "virt": 18446741874803752960,
+        "phys": 2684354560,
+        "mem": 268435456,
+        "top": 2684403712,
+        "fb": 4194304000,
+        "disp": 1,
+        "stride": 5760,
+        "w": 1440,
+        "h": 3200,
+        "depth": 32,
+        "dt": 18446741874803769344,
+        "dtlen": 64,
+        "adt0": 2401619548421439814,
+        "memact": 268435456,
+        "cmd": "s21xnu-p3s-handoff debug=0x8"
+      }
+    },
+    {
+      "kaslr": "0x1f8000",
+      "fake_xnu": {
+        "el": 1,
+        "ba": 2684387328,
+        "rev": 2,
+        "ver": 2,
+        "virt": 18446741874803752960,
+        "phys": 2684354560,
+        "mem": 268435456,
+        "top": 2684403712,
+        "fb": 4194304000,
+        "disp": 1,
+        "stride": 5760,
+        "w": 1440,
+        "h": 3200,
+        "depth": 32,
+        "dt": 18446741874803769344,
+        "dtlen": 64,
+        "adt0": 2401619548421439814,
+        "memact": 268435456,
+        "cmd": "s21xnu-p3s-handoff debug=0x8"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "check": "boot.img montado; pad para alinhar a 8",
+      "ok": true,
+      "detail": "7"
+    },
+    {
+      "check": "kernel extraído = shim",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "KASLR 0x0: kernel falso recebeu o controle",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "KASLR 0x0: el",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x0: rev",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x0: ver",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x0: virt",
+      "ok": true,
+      "detail": "0xfffffe0007004000"
+    },
+    {
+      "check": "KASLR 0x0: phys",
+      "ok": true,
+      "detail": "0xa0000000"
+    },
+    {
+      "check": "KASLR 0x0: mem",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x0: fb",
+      "ok": true,
+      "detail": "0xfa000000"
+    },
+    {
+      "check": "KASLR 0x0: disp",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x0: stride",
+      "ok": true,
+      "detail": "0x1680"
+    },
+    {
+      "check": "KASLR 0x0: w",
+      "ok": true,
+      "detail": "0x5a0"
+    },
+    {
+      "check": "KASLR 0x0: h",
+      "ok": true,
+      "detail": "0xc80"
+    },
+    {
+      "check": "KASLR 0x0: depth",
+      "ok": true,
+      "detail": "0x20"
+    },
+    {
+      "check": "KASLR 0x0: dtlen",
+      "ok": true,
+      "detail": "0x40"
+    },
+    {
+      "check": "KASLR 0x0: adt0",
+      "ok": true,
+      "detail": "0x21544441454b4146"
+    },
+    {
+      "check": "KASLR 0x0: memact",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x0: cmdline",
+      "ok": true,
+      "detail": "s21xnu-p3s-handoff debug=0x8"
+    },
+    {
+      "check": "KASLR 0x0: boot_args dentro da janela e após o kernel",
+      "ok": true,
+      "detail": "0xa0008000"
+    },
+    {
+      "check": "KASLR 0x8000: kernel falso recebeu o controle",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "KASLR 0x8000: el",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x8000: rev",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x8000: ver",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x8000: virt",
+      "ok": true,
+      "detail": "0xfffffe0007004000"
+    },
+    {
+      "check": "KASLR 0x8000: phys",
+      "ok": true,
+      "detail": "0xa0000000"
+    },
+    {
+      "check": "KASLR 0x8000: mem",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x8000: fb",
+      "ok": true,
+      "detail": "0xfa000000"
+    },
+    {
+      "check": "KASLR 0x8000: disp",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x8000: stride",
+      "ok": true,
+      "detail": "0x1680"
+    },
+    {
+      "check": "KASLR 0x8000: w",
+      "ok": true,
+      "detail": "0x5a0"
+    },
+    {
+      "check": "KASLR 0x8000: h",
+      "ok": true,
+      "detail": "0xc80"
+    },
+    {
+      "check": "KASLR 0x8000: depth",
+      "ok": true,
+      "detail": "0x20"
+    },
+    {
+      "check": "KASLR 0x8000: dtlen",
+      "ok": true,
+      "detail": "0x40"
+    },
+    {
+      "check": "KASLR 0x8000: adt0",
+      "ok": true,
+      "detail": "0x21544441454b4146"
+    },
+    {
+      "check": "KASLR 0x8000: memact",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x8000: cmdline",
+      "ok": true,
+      "detail": "s21xnu-p3s-handoff debug=0x8"
+    },
+    {
+      "check": "KASLR 0x8000: boot_args dentro da janela e após o kernel",
+      "ok": true,
+      "detail": "0xa0008000"
+    },
+    {
+      "check": "KASLR 0x1f8000: kernel falso recebeu o controle",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "KASLR 0x1f8000: el",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x1f8000: rev",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x1f8000: ver",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "KASLR 0x1f8000: virt",
+      "ok": true,
+      "detail": "0xfffffe0007004000"
+    },
+    {
+      "check": "KASLR 0x1f8000: phys",
+      "ok": true,
+      "detail": "0xa0000000"
+    },
+    {
+      "check": "KASLR 0x1f8000: mem",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x1f8000: fb",
+      "ok": true,
+      "detail": "0xfa000000"
+    },
+    {
+      "check": "KASLR 0x1f8000: disp",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "KASLR 0x1f8000: stride",
+      "ok": true,
+      "detail": "0x1680"
+    },
+    {
+      "check": "KASLR 0x1f8000: w",
+      "ok": true,
+      "detail": "0x5a0"
+    },
+    {
+      "check": "KASLR 0x1f8000: h",
+      "ok": true,
+      "detail": "0xc80"
+    },
+    {
+      "check": "KASLR 0x1f8000: depth",
+      "ok": true,
+      "detail": "0x20"
+    },
+    {
+      "check": "KASLR 0x1f8000: dtlen",
+      "ok": true,
+      "detail": "0x40"
+    },
+    {
+      "check": "KASLR 0x1f8000: adt0",
+      "ok": true,
+      "detail": "0x21544441454b4146"
+    },
+    {
+      "check": "KASLR 0x1f8000: memact",
+      "ok": true,
+      "detail": "0x10000000"
+    },
+    {
+      "check": "KASLR 0x1f8000: cmdline",
+      "ok": true,
+      "detail": "s21xnu-p3s-handoff debug=0x8"
+    },
+    {
+      "check": "KASLR 0x1f8000: boot_args dentro da janela e após o kernel",
+      "ok": true,
+      "detail": "0xa0008000"
+    },
+    {
+      "check": "controle sem padding: kernel falso não executa",
+      "ok": true,
+      "detail": "0x84bf5e69 % 8 = 1"
+    }
+  ],
+  "bootimg": {
+    "initrd": [
+      "0x84080000",
+      "0x84bf7200"
+    ],
+    "ramdisk_pad": 7,
+    "payload_pa": "0x84bf5e70",
+    "sha256": "06f34148376c17640f5898d3810412ca264e3a362ba7d944ea897828959bac4a",
+    "boot_img_size": 262144
+  },
+  "inputs_sha256": {
+    "shim": "c6ff260590db32cbdfd59ec6ceeb0819b05556db6a7f6ebcd106a3cabdf7115c",
+    "fake_xnu": "7f0d035665e3c57e6dc1dff536e2adcf804acffbdc2eeefd8cbcd44fcabee031",
+    "payload": "6821646c71e51a23a8ec50b8e5160d88585fdbf2a77bba5e78188136e91ede20"
+  },
+  "result": "PASS"
+}
