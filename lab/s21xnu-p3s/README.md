@@ -27,7 +27,9 @@ python3 lab/s21xnu-p3s/mk_sboot_bootimg.py --stock-boot boot.img \
 python3 lab/s21xnu-p3s/qemu/run_handoff.py s21xnu   # handoff LK modelado no QEMU
 ```
 
-Sem `--payload` sai a sonda (diagnóstico na tela e reboot em 40 s). Limites
+Sem `--payload` sai a sonda (diagnóstico na tela e reboot em 40 s).
+`--avb-lab-key lab.pem` (RSA4096) entrega a partição inteira com rodapé AVB
+de laboratório transplantado do stock, como o port MonsterROM. Limites
 e pré-requisitos em [docs/xnu-s21xnu-p3s.md](../../docs/xnu-s21xnu-p3s.md).
 
 ## Toque e tela no p3s (patches XNU 0146 e 0147)

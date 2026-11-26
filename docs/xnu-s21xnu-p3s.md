@@ -179,11 +179,43 @@ Resultado: **57/57**
 O QEMU virt não é o Exynos. O teste não cobre DECON/painel, uH, PSCI real,
 UFS ou o FDT final do aparelho.
 
+### Rodapé AVB de laboratório (26/11)
+
+[`lab/s21xnu-p3s/avb_lab.py`](../lab/s21xnu-p3s/avb_lab.py) (usado por
+`mk_sboot_bootimg.py --avb-lab-key PEM`) transplanta o vbmeta do boot.img
+stock para o corpo novo. O resultado tem o mesmo formato que
+`avbtool add_hash_footer` produz:
+- vbmeta logo após o corpo alinhado a 4 KiB e rodapé AVBf no fim da
+  partição de 64 MiB;
+- `image_size` e digest do descritor `boot` recalculados;
+- chave pública trocada pela de laboratório e assinatura RSA4096 refeita.
+
+Usa o mesmo perfil canônico e as mesmas checagens de
+`scripts/capture_a0_container.py`. O cabeçalho AVB do stock é preservado;
+a extensão opaca Samsung do stock não vai para o corpo novo.
+
+Seis controles com RSA real via openssl (`test_avb_lab.py`, no CI):
+- hashes e assinatura válidos, com o vbmeta na posição esperada;
+- saída determinística;
+- adulteração quebra o hash;
+- recusas: chave igual à do stock, corpo que não cabe, corpo que não é
+  boot v3, assinatura curta ou de outra chave, stock inválido, stock fora do
+  tamanho da partição.
+
+Não houve conferência cruzada com o avbtool neste ambiente: o
+android.googlesource.com está bloqueado aqui. O
+`check_capture_a0_container.py` faz isso quando recebe o avbtool fixado.
+Assinatura de laboratório não é confiança do aparelho.
+
 ### Antes de um teste no aparelho
 
-- Desbloqueio OEM. O port MonsterROM também regrava o vbmeta. Este repo
-  não verificou como o LK desbloqueado trata o boot sem footer AVB; os docs
-  de AVB do LK cobrem o estado travado.
+- Desbloqueio OEM. O port MonsterROM, no mesmo HZC2 desbloqueado, grava o
+  boot com rodapé AVB assinado por chave de teste (`avbtool add_hash_footer`,
+  partição de 64 MiB, `SHA256_RSA4096`) e regrava o vbmeta
+  (`recipes/package-r5-kernel-fix2.py`, `prepare-p3s-beta2.py` em
+  `ba99fed`). Este repo não verificou como o LK desbloqueado trata um boot
+  sem rodapé; os docs de AVB do LK cobrem o estado travado. Para reproduzir o
+  formato do MonsterROM existe a opção `--avb-lab-key` (abaixo).
 - O DECON 0 está em modo comando com disparo por hardware (`psr_mode=2`,
   `trig_mode=0`), igual no t2s, onde o framebuffer do S-Boot já é usado pelo
   s21xnu. Que escrever em 0xfa000000 apareça na tela do p3s continua não

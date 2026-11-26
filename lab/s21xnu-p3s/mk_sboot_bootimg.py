@@ -5,7 +5,11 @@ O shim entra como kernel; o ramdisk de boot leva o payload SWEETXNU (ou só
 um marcador, no modo sonda). Nada é gravado no aparelho por este script.
 
   mk_sboot_bootimg.py --stock-boot boot.img --vendor-boot vendor_boot.img \
-      --shim Image [--payload payload.bin] --out boot-s21xnu.img [--json r.json]
+      --shim Image [--payload payload.bin] [--avb-lab-key lab.pem] \
+      --out boot-s21xnu.img [--json r.json]
+
+Com --avb-lab-key, a saída é a partição inteira com rodapé AVB transplantado
+do boot.img stock e assinado com a chave de laboratório (avb_lab.py).
 
 Sem --payload gera a sonda: o shim não acha SWEETXNU, mostra o motivo na
 tela e segue para o diagnóstico (MMU, PSCI, GIC) e PSCI SYSTEM_RESET.
@@ -205,18 +209,26 @@ def main(argv=None):
     ap.add_argument("--vendor-boot", required=True)
     ap.add_argument("--shim", required=True, help="shim/out/Image (BOARD=p3s ou p3s-window)")
     ap.add_argument("--payload", help="payload SWEETXNU de tools/mkpayload.py; ausente = sonda")
+    ap.add_argument("--avb-lab-key", help="PEM RSA4096 de laboratório: adiciona rodapé AVB (avb_lab.py)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--json")
     a = ap.parse_args(argv)
     rd = lambda p: pathlib.Path(p).read_bytes()
+    stock = rd(a.stock_boot)
     try:
-        img, rep = build(rd(a.stock_boot), rd(a.vendor_boot), rd(a.shim),
-                         rd(a.payload) if a.payload else None)
-    except ContractError as e:
+        img, rep = build(stock, rd(a.vendor_boot), rd(a.shim), rd(a.payload) if a.payload else None)
+        if a.avb_lab_key:
+            import avb_lab
+            need(len(stock) == PARTITION_BOOT, "boot.img stock não tem o tamanho da partição BOOT")
+            body_sha = rep["sha256"]
+            img = avb_lab.transplant(stock, img, *avb_lab.openssl_lab_key(a.avb_lab_key))
+            rep.update(avb="lab", body_sha256=body_sha, sha256=hashlib.sha256(img).hexdigest(),
+                       boot_img_size=len(img))
+    except (ContractError, ValueError) as e:
         print("RECUSADO:", e, file=sys.stderr)
         return 2
     pathlib.Path(a.out).write_bytes(img)
-    for k in ("mode", "kernel_range", "initrd", "ramdisk_pad", "payload_pa", "boot_img_size", "sha256"):
+    for k in ("mode", "kernel_range", "initrd", "ramdisk_pad", "payload_pa", "avb", "boot_img_size", "sha256"):
         if k in rep:
             print("%-14s %s" % (k, rep[k]))
     if a.json:
