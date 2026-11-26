@@ -3,8 +3,9 @@
 
   probe_screenshot.py CLONE_S21XNU --png sonda.png [--json r.json]
 
-Aplica 0001 (perfil p3s) e 0002 (linhas ENTRY/IMAGE/INITRD/FB) ao s21xnu
-fixado, monta o boot.img de sonda com mk_sboot_bootimg.py e o carrega como
+Exige o clone do s21xnu no commit fixado e sem alterações rastreadas (como
+verify_p3s_profile.py), aplica 0001 (perfil p3s) e 0002 (linhas
+ENTRY/IMAGE/INITRD/FB), monta o boot.img de sonda com mk_sboot_bootimg.py e o carrega como
 o LK faria (run_handoff.py), com KASLR 0x8000. Durante a pausa de ~25 s em
 que o shim mantém o resultado do loader na tela, copia o framebuffer
 0xfa000000 (1440x3200 BGRA) pelo monitor do QEMU e grava um PNG do topo da
@@ -73,7 +74,10 @@ def main(argv=None):
     ap.add_argument("--json")
     a = ap.parse_args(argv)
     src = pathlib.Path(a.clone).resolve()
-    report = {"schema": "s21xnu-probe-screenshot/1", "checks": []}
+    head = vp.pinned_clone(src)          # commit fixado e árvore limpa, como os demais verificadores
+    report = {"schema": "s21xnu-probe-screenshot/1", "s21xnu_commit": head,
+              "patches_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (vp.PATCH, PATCH2)},
+              "checks": []}
     ok = True
 
     def check(name, cond, detail=""):

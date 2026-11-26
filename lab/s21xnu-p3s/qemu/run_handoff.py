@@ -215,10 +215,7 @@ def main(argv=None):
     ap.add_argument("--json")
     a = ap.parse_args(argv)
     src = pathlib.Path(a.clone).resolve()
-    head = subprocess.run(["git", "-C", str(src), "rev-parse", "HEAD"], capture_output=True,
-                          text=True, check=True).stdout.strip()
-    if head != vp.PINNED_COMMIT:
-        raise SystemExit("clone em %s, esperado %s" % (head, vp.PINNED_COMMIT))
+    head = vp.pinned_clone(src)
     report = {"schema": "s21xnu-sboot-handoff/1", "s21xnu_commit": head, "cases": [], "checks": []}
     ok = True
 

@@ -4336,4 +4336,7 @@ imagem do shim; corrigido (só o backup stock é exigido). 16 testes
 roda a sonda no QEMU pelo handoff modelado (KASLR 0x8000) e copia o
 framebuffer: el=1, x0=8B080000, Image em 80088000, initrd 84080000–84BF5E89,
 FB 1440/5760; PNG idêntico em duas execuções, no CI. Tabela de leitura da
-foto no aparelho.
+foto no aparelho. Revisão Codex do #105: a captura não conferia o commit
+fixado nem a árvore limpa do s21xnu; `pinned_clone` compartilhado agora é
+usado pela captura, pelo handoff e pelo perfil, e o relatório registra
+commit e hashes dos patches.

@@ -33,6 +33,20 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def pinned_clone(src):
+    """Exige o clone do s21xnu no commit fixado e sem alterações rastreadas; devolve o commit."""
+    src = pathlib.Path(src).resolve()
+    head = subprocess.run(["git", "-C", str(src), "rev-parse", "HEAD"], capture_output=True,
+                          text=True, check=True).stdout.strip()
+    if head != PINNED_COMMIT:
+        raise SystemExit("clone em %s, esperado %s" % (head, PINNED_COMMIT))
+    dirty = subprocess.run(["git", "-C", str(src), "status", "--porcelain", "--untracked-files=no"],
+                           capture_output=True, text=True, check=True).stdout
+    if dirty.strip():
+        raise SystemExit("clone com alterações locais:\n" + dirty)
+    return head
+
+
 def cross_env(tmp):
     """aarch64-linux-gnu-* no PATH; usa tools/root deste repositório se existir."""
     env = dict(os.environ)
@@ -137,14 +151,7 @@ def main(argv=None):
     ap.add_argument("--json")
     a = ap.parse_args(argv)
     src = pathlib.Path(a.clone).resolve()
-    head = subprocess.run(["git", "-C", str(src), "rev-parse", "HEAD"], capture_output=True,
-                          text=True, check=True).stdout.strip()
-    if head != PINNED_COMMIT:
-        raise SystemExit("clone em %s, esperado %s" % (head, PINNED_COMMIT))
-    dirty = subprocess.run(["git", "-C", str(src), "status", "--porcelain", "--untracked-files=no"],
-                           capture_output=True, text=True, check=True).stdout
-    if dirty.strip():
-        raise SystemExit("clone com alterações locais:\n" + dirty)
+    head = pinned_clone(src)
     report = {"schema": "s21xnu-p3s-profile/1", "s21xnu_commit": head,
               "patch_sha256": sha(PATCH.read_bytes()), "checks": [], "builds": {}}
     ok = True
