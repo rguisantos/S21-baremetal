@@ -82,6 +82,8 @@ A maior parte do XNU do s21xnu lê a geometria do ADT ou de `boot_args.Video`
 
 ### Wi-Fi
 
+O [Wi-Fi BCM4389 C1 no HZC2](s21xnu-wifi-bcm4389-hzc2.md) tem firmware, NVRAM e CLM identificados no Android de referência. A preparação da NVRAM foi corrigida no host. A enumeração pelo XNU no p3s segue pendente.
+
 O BCM4389 do p3s é outro chip, com firmware, NVRAM e CLM próprios. O s21xnu
 carrega BCM4375 (0109/0111/0142, `mkpayload.py --wifi-*`). No p3s, manter
 `sweetpcie` no nível sem firmware até um port próprio.

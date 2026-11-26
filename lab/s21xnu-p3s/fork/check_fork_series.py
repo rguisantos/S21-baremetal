@@ -5,7 +5,7 @@
 
 Aplica fork/000*.patch com `git am` numa cópia do clone fixado (a128f07) e
 exige: árvore final igual à de 0001+0002 aplicados com `patch -p1` mais os
-patches XNU 0146–0148 copiados em xnu/patches/; nenhum outro arquivo
+patches XNU 0146–0148 copiados em xnu/patches/ e o patch 0004 de NVRAM; nenhum outro arquivo
 alterado. Evita que a série do fork e os patches do lab divirjam.
 """
 import filecmp
@@ -42,8 +42,12 @@ def main(argv):
             run("patch", "-p1", "--batch", "-s", "-i", str(p), cwd=b)
         for n in XNU:
             shutil.copy(LAB / "xnu" / n, b / "xnu" / "patches" / n)
+        run("patch", "-p1", "--batch", "-s", "-i",
+            str(HERE / "0004-mkpayload-align-nvram.patch"), cwd=b)
+        run(sys.executable, "tools/test_mkpayload_nvram.py", cwd=a)
         changed = run("git", "diff", "--name-only", vp.PINNED_COMMIT, "HEAD", cwd=a).split()
-        want = sorted(["shim/build-s21.sh", "shim/console.h", "shim/shim.c", "tools/mkadt.py"] +
+        want = sorted(["shim/build-s21.sh", "shim/console.h", "shim/shim.c", "tools/mkadt.py",
+                       "tools/mkpayload.py", "tools/test_mkpayload_nvram.py"] +
                       ["xnu/patches/" + n for n in XNU])
         print("arquivos alterados pela série:", len(changed))
         if sorted(changed) != want:
