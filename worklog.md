@@ -4340,3 +4340,13 @@ foto no aparelho. Revisão Codex do #105: a captura não conferia o commit
 fixado nem a árvore limpa do s21xnu; `pinned_clone` compartilhado agora é
 usado pela captura, pelo handoff e pelo perfil, e o relatório registra
 commit e hashes dos patches.
+
+## 2026-11-26 — s21xnu: kit do primeiro boot
+
+[Análise](docs/xnu-s21xnu-p3s.md#kit-do-primeiro-boot-2611).
+`prepare_first_boot.py` confere boot/vendor_boot (crus ou .lz4) contra os
+pins HZC2, compila o shim p3s (0001+0002) do s21xnu fixado e entrega
+boot.img com AVB de laboratório, AP .tar/.tar.md5, s21xnu-switch.sh,
+ROTEIRO.md, relatório e SHA256SUMS. 6 testes com RSA real no CI; execução
+completa com pins sintéticos usou o mesmo shim (3a9f8039…) da captura no
+QEMU. Firmware real do usuário ausente neste ambiente.

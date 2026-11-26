@@ -267,6 +267,38 @@ corrompido, conteúdo desconhecido, comandos sem instalação e instalação a
 partir do boot do shim. O script não foi executado em Android/toybox nem no
 TWRP.
 
+### Kit do primeiro boot (26/11)
+
+[`lab/s21xnu-p3s/prepare_first_boot.py`](../lab/s21xnu-p3s/prepare_first_boot.py)
+junta tudo num comando, para rodar no PC com o firmware do usuário:
+
+    python3 lab/s21xnu-p3s/prepare_first_boot.py --stock-dir AP_HZC2/ \
+        --s21xnu s21xnu/ --out kit-sonda/ [--lab-key lab.pem]
+
+O que ele faz:
+- confere `boot.img` e `vendor_boot.img`, crus ou `.lz4` como vêm no tar AP,
+  contra os pins HZC2 de [capture-a0-pins](references/capture-a0-pins-hzc2.json),
+  e recusa outro firmware;
+- exige o s21xnu fixado e limpo, compila o shim `BOARD=p3s` com 0001+0002 e
+  monta a sonda com rodapé AVB de laboratório (gera uma chave RSA4096 se não
+  vier uma);
+- entrega `boot.img` (64 MiB), `AP_s21xnu_sonda.tar` e `.tar.md5` para o
+  Odin, `s21xnu-switch.sh`, `ROTEIRO.md` com os valores que a foto deve
+  mostrar (INITRD end calculado do ramdisk vendor real), `relatorio.json` e
+  `SHA256SUMS`.
+
+`test_prepare_first_boot.py` tem 6 testes com RSA real e firmware sintético:
+- conteúdo do kit e do tar do Odin, com o `.md5` anexado;
+- kit reproduzível;
+- recusa de firmware que não bate com os pins, cru e `.lz4`;
+- saída que já existe;
+- CLI sem firmware.
+
+Uma execução completa com pins sintéticos compilou o shim do clone fixado.
+O SHA-256 dele, `3a9f8039…`, é o mesmo do shim capturado no QEMU. O kit com
+o firmware real depende dos arquivos do usuário, que não estão neste
+ambiente.
+
 ### Antes de um teste no aparelho
 
 - Desbloqueio OEM. O port MonsterROM, no mesmo HZC2 desbloqueado, grava o
