@@ -4393,3 +4393,11 @@ Verificador 44/44: nova checagem com `-Wcast-align=strict -Werror`, que
 falha com o código antigo. Série do fork regenerada; `check_fork_series.py`
 PASS. Fork `5231fe5`, run 45893910550: sucesso, nenhum aviso em
 SweetFramebuffer, `xnu-kernel` 61.313.478 bytes.
+
+## 2026-11-26 — BCM4389 C1 do p3s no HZC2
+
+[Identidade, hashes e teste offline](docs/s21xnu-wifi-bcm4389-hzc2.md).
+O diagnóstico STA identifica o módulo SEMCO E53 ES4.0. A correção
+do empacotador produz o tamanho exato descrito no token da NVRAM.
+A série do fork reproduz nove arquivos e testa as quatro classes de
+alinhamento e o limite da contagem. Sem teste no rádio físico.
