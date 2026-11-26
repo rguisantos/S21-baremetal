@@ -5,7 +5,7 @@
 
 Aplica fork/000*.patch com `git am` numa cópia do clone fixado (a128f07) e
 exige: árvore final igual à de 0001+0002 aplicados com `patch -p1` mais os
-patches XNU 0146–0149 copiados em xnu/patches/ e o patch 0004 de NVRAM; nenhum outro arquivo
+patches XNU 0146–0150 copiados em xnu/patches/ e o patch 0004 de NVRAM; nenhum outro arquivo
 alterado. Evita que a série do fork e os patches do lab divirjam.
 """
 import filecmp
@@ -21,7 +21,8 @@ sys.path.insert(0, str(LAB))
 import verify_p3s_profile as vp  # noqa: E402
 
 XNU = ["0146-s21-touch-panel-geometry.patch", "0147-s21-p3s-letterbox-display.patch",
-       "0148-s21-p3s-scaled-display.patch", "0149-s21-p3s-wifi-enumerate.patch"]
+       "0148-s21-p3s-scaled-display.patch", "0149-s21-p3s-wifi-enumerate.patch",
+       "0150-s21-p3s-wifi-bcm4389-firmware.patch"]
 
 
 def run(*a, cwd):

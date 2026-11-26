@@ -49,6 +49,10 @@ jobs:
           python3 lab/s21xnu-p3s/qemu/probe_screenshot.py /tmp/s21xnu --png /tmp/sonda.png
           python3 lab/s21xnu-p3s/fork/check_fork_series.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/xnu/verify_wifi_0149.py --s21xnu /tmp/s21xnu
+          git init -q /tmp/z3sios
+          git -C /tmp/z3sios fetch -q --depth 1 https://github.com/N1709/z3sios 1323aa51d4c16816fa8fd95309f864f7e3888793
+          git -C /tmp/z3sios checkout -q FETCH_HEAD
+          python3 lab/s21xnu-p3s/xnu/verify_wifi_0150.py --s21xnu /tmp/s21xnu --z3sios /tmp/z3sios
       - name: Reproduce the s21xnu XNU patch series and check touch patch 0146
         run: |
           git init -q /tmp/dxb
