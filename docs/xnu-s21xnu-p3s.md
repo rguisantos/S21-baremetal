@@ -434,6 +434,15 @@ sobre `60e23f1`, terminou com **sucesso** em 12,5 min:
   O download do artefato foi bloqueado neste ambiente (host de blob fora da
   lista de rede); o kernel não foi inspecionado aqui.
 
+O aviso foi corrigido em seguida: o blit do 0148 lê e grava cada pixel com
+`__builtin_memcpy` de 4 bytes, sem cast de `uint8_t *` para `uint32_t *`.
+O verificador ganhou a checagem "0148: blit sem -Wcast-align"
+(`-Wcast-align=strict -Werror`), que falha com o código antigo. No fork,
+`5231fe5` e run
+[45893910550](https://github.com/rguisantos/s21xnu/actions/runs/45893910550):
+sucesso, nenhum aviso em SweetFramebuffer, novo `xnu-kernel` de 61.313.478
+bytes. Este é o kernel candidato.
+
 Nada rodou no aparelho. Este kernel é o candidato depois da foto da sonda.
 
 ## lk2nd: o que aproveitar (26/11)
@@ -485,8 +494,7 @@ correção).
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
 - Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
   neste ambiente) e conferir o relatório antes de qualquer flash.
-- Patches 0146–0148 compilados no fork (run 45890705951); falta rodar no
-  aparelho e, opcionalmente, trocar o cast do blit do 0148 por leitura
-  alinhada.
+- Patches 0146–0148 compilados no fork sem avisos próprios (run
+  45893910550); falta rodar no aparelho.
 - Port BCM4389 ou Wi-Fi desligado.
 - Conferir no aparelho o FDT final do LK e o scanout do `bootloader_fb`.

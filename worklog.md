@@ -4383,3 +4383,13 @@ digests em `docs/references/s21xnu-fork-build-20261126.json`; download
 bloqueado aqui. [lk2nd](docs/xnu-s21xnu-p3s.md#lk2nd-o-que-aproveitar-2611):
 só Qualcomm; aproveitável apenas a ideia de heimdall no lugar do Odin.
 Nada executado no aparelho.
+
+## 2026-11-26 — s21xnu: 0148 sem -Wcast-align
+
+[Análise](docs/xnu-s21xnu-p3s.md#resultado-xnu-compilado-com-01460148).
+Blit do 0148 com `__builtin_memcpy` de 4 bytes no lugar do cast para
+`uint32_t *` (avisos em SweetFramebuffer.cpp:194/200 no run 45890705951).
+Verificador 44/44: nova checagem com `-Wcast-align=strict -Werror`, que
+falha com o código antigo. Série do fork regenerada; `check_fork_series.py`
+PASS. Fork `5231fe5`, run 45893910550: sucesso, nenhum aviso em
+SweetFramebuffer, `xnu-kernel` 61.313.478 bytes.

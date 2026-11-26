@@ -6,7 +6,8 @@
     "91b4dd6": "shim, mkadt: p3s framebuffer profiles",
     "4ef3bd1": "shim: probe hand-off lines",
     "60e23f1": "xnu: patches 0146-0148",
-    "cc8d1cd": "NOTES.md handoff (docs only)"
+    "cc8d1cd": "NOTES.md handoff (docs only)",
+    "5231fe5": "xnu: 0148 blit via memcpy (no -Wcast-align)"
   },
   "workflow": "xnu",
   "run_id": 45890705951,
@@ -27,7 +28,7 @@
     "SweetHID",
     "bsd/dev/sweet_touch.c"
   ],
-  "warnings_note": "warnings only; 0148 adds -Wcast-align at SweetFramebuffer.cpp:194, same class upstream already has in sweet_touch.c:308",
+  "warnings_note": "warnings only; 0148 adds -Wcast-align at SweetFramebuffer.cpp:194, same class upstream already has in sweet_touch.c:308; fixed by 5231fe5 (followup_build)",
   "artifacts": [
     {
       "name": "xnu-kernel",
@@ -43,5 +44,30 @@
     }
   ],
   "artifact_download_here": "blocked (blob storage host not on this session's network allowlist); digests are GitHub's",
-  "hardware_run": false
+  "hardware_run": false,
+  "followup_build": {
+    "run_id": 45893910550,
+    "url": "https://github.com/rguisantos/s21xnu/actions/runs/45893910550",
+    "head": "5231fe5",
+    "conclusion": "success",
+    "sweetframebuffer_warnings": 0,
+    "warning_lines_total": {
+      "45890705951": 23386,
+      "45893910550": 23370
+    },
+    "artifacts": [
+      {
+        "name": "xnu-kernel",
+        "id": 15153033151,
+        "bytes": 61313478,
+        "digest": "sha256:772d3373f5dc906af7aaaf7c576f9d82c0e796bb4e31af8f411cc749a1c287b4"
+      },
+      {
+        "name": "xnu-buildtree",
+        "id": 15153078045,
+        "bytes": 23204262,
+        "digest": "sha256:cfe382daa070d3765cd9f123fabc6d9d4ed4f2fc90b5e33c2fe8c792f5933a4c"
+      }
+    ]
+  }
 }

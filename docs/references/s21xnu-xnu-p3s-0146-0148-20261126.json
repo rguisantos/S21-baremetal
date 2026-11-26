@@ -92,6 +92,11 @@
       "detail": ""
     },
     {
+      "check": "0148: blit sem -Wcast-align",
+      "ok": true,
+      "detail": ""
+    },
+    {
       "check": "S21+: toque idêntico (4096 valores × 4 touch_flip)",
       "ok": true,
       "detail": "0"
