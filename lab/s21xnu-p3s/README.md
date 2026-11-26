@@ -41,8 +41,9 @@ e pré-requisitos em [docs/xnu-s21xnu-p3s.md](../../docs/xnu-s21xnu-p3s.md).
 
 ## Toque e tela no p3s (patches XNU 0146 e 0147)
 
-`xnu/0146-s21-touch-panel-geometry.patch` e `xnu/0147-s21-p3s-letterbox-display.patch`
-vão em `xnu/patches/` do s21xnu. No S21 Ultra (perfis `p3s` ou
+`xnu/0146-s21-touch-panel-geometry.patch`, `xnu/0147-s21-p3s-letterbox-display.patch`
+e, opcionalmente, `xnu/0148-s21-p3s-scaled-display.patch` (boot-arg
+`sweetfb_scale=1`, iPhone X escalado para 1440x3118) vão em `xnu/patches/` do s21xnu. No S21 Ultra (perfis `p3s` ou
 `p3s-window`), passar `touch_panel_w=1440 touch_panel_h=3200` no `--cmdline`
 do `mkpayload.py`. Verificação da série e teste de host:
 `python3 lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py --s21xnu S --dxb D --xnu X`.

@@ -4350,3 +4350,11 @@ boot.img com AVB de laboratório, AP .tar/.tar.md5, s21xnu-switch.sh,
 ROTEIRO.md, relatório e SHA256SUMS. 6 testes com RSA real no CI; execução
 completa com pins sintéticos usou o mesmo shim (3a9f8039…) da captura no
 QEMU. Firmware real do usuário ausente neste ambiente.
+
+## 2026-11-26 — s21xnu: escala para ocupar o painel (patch XNU 0148)
+
+[Análise](docs/xnu-s21xnu-p3s.md#escala-para-ocupar-o-painel-patch-xnu-0148-2611).
+`sweetfb_scale=1` escala o iPhone X para 1440x3118 no p3s: blit BGRA por
+vizinho mais próximo na CPU, retângulo YUV convertido, HID com o mesmo ajuste.
+Verificador 43/43 (0146–0148), determinístico; mutação de arredondamento
+detectada; ~4 ms/quadro no Xeon (indicativo). XNU não compilado.
