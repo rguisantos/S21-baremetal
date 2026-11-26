@@ -4357,4 +4357,7 @@ QEMU. Firmware real do usuário ausente neste ambiente.
 `sweetfb_scale=1` escala o iPhone X para 1440x3118 no p3s: blit BGRA por
 vizinho mais próximo na CPU, retângulo YUV convertido, HID com o mesmo ajuste.
 Verificador 43/43 (0146–0148), determinístico; mutação de arredondamento
-detectada; ~4 ms/quadro no Xeon (indicativo). XNU não compilado.
+detectada; ~4 ms/quadro no Xeon (indicativo). Revisão Codex do #108: limites
+de retângulos parciais truncados não batiam com a amostragem inversa; agora
+com teto (blit e YUV), teste com 6 retângulos falhava antes (800 pixels).
+XNU não compilado.

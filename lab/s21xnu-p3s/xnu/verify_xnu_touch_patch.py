@@ -168,16 +168,28 @@ int main(void)
 		long want = ((long)(Y - py) * 2436) / fh;
 		touch_blit_bad += (ly < want - 1 || ly > want);
 	}
-	/* retângulo parcial e fonte curta: só a área mapeada muda, sem ler além da fonte */
-	memset(pan, 0, (size_t)1440 * 3200 * 4);
-	int prow = sweet_fb_scaled_blit((const uint8_t *)srcp, (uint64_t)1125 * 2436 * 4, 1125 * 4, 0, 0, 100, 200, 300, 400,
-	    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+	/* retângulos parciais (inclusive de 1 pixel em posições de borda fracionária):
+	   escreve exatamente os pixels do painel cuja amostra inversa cai dentro do
+	   retângulo lógico, com o valor desse pixel lógico (achado da revisão do #108) */
+	static const int rects[][4] = {{100, 200, 300, 400}, {1, 1, 1, 1}, {0, 0, 1, 1}, {7, 13, 2, 3},
+	    {1124, 2435, 1, 1}, {333, 777, 5, 1}};
 	long outside = 0;
-	int ax0 = px + 100 * fw / 1125, ax1 = px + 400 * fw / 1125, ay0 = py + 200 * fh / 2436, ay1 = py + 600 * fh / 2436;
-	for (int Y = 0; Y < 3200; Y++)
-		for (int X = 0; X < 1440; X++)
-			if ((X < ax0 || X >= ax1 || Y < ay0 || Y >= ay1) && pan[Y * 1440 + X])
-				outside++;
+	int prow = 0;
+	for (unsigned r = 0; r < sizeof(rects) / sizeof(rects[0]); r++) {
+		int rx = rects[r][0], ry = rects[r][1], rw = rects[r][2], rh = rects[r][3];
+		memset(pan, 0, (size_t)1440 * 3200 * 4);
+		int n = sweet_fb_scaled_blit((const uint8_t *)srcp, (uint64_t)1125 * 2436 * 4, 1125 * 4, rx, ry, rx, ry, rw, rh,
+		    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+		if (r == 0)
+			prow = n;
+		for (int Y = 0; Y < 3200; Y++)
+			for (int X = 0; X < 1440; X++) {
+				long lx = (long)X * 1125 / fw, ly = Y >= py ? (long)(Y - py) * 2436 / fh : -1;
+				int in = X < fw && Y >= py && Y < py + fh && lx >= rx && lx < rx + rw && ly >= ry && ly < ry + rh;
+				uint32_t want = in ? (((uint32_t)ly << 16) | (uint32_t)lx | 0x80000000u) : 0;
+				outside += pan[Y * 1440 + X] != want;
+			}
+	}
 	memset(pan, 0, (size_t)1440 * 3200 * 4);
 	sweet_fb_scaled_blit((const uint8_t *)srcp, 4096, 1125 * 4, 0, 0, 0, 0, 1125, 2436,
 	    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
@@ -216,7 +228,7 @@ EXPECT = {
     "t2s_scale_geom": "1080x2400,1125x2436,22,18",
     "native_scale_geom": "1440x3200,1440x3200,0,0",
     "blit_rows": "3118", "blit_bad": "0", "border_bad": "0", "touch_blit_bad": "0",
-    "partial_rows": str(((200 + 400) * 3118) // 2436 - (200 * 3118) // 2436), "partial_outside": "0",
+    "partial_rows": str(-(-(600 * 3118) // 2436) + 0 - -(-(200 * 3118) // 2436)), "partial_outside": "0",
     "short_src_pixels_ok": "1", "empty_rect_rows": "0",
 }
 LABELS = {
@@ -242,7 +254,7 @@ LABELS = {
     "border_bad": "0148: bordas de 41 linhas intactas",
     "touch_blit_bad": "0148: toque aponta o pixel lógico que o blit desenhou (±1)",
     "partial_rows": "0148: retângulo parcial escreve só as linhas mapeadas",
-    "partial_outside": "0148: nada fora do retângulo mapeado",
+    "partial_outside": "0148: retângulos parciais cobrem exatamente a amostragem inversa (6 casos)",
     "short_src_pixels_ok": "0148: fonte curta não é lida além do fim",
     "empty_rect_rows": "0148: retângulo vazio não escreve",
 }

@@ -1,5 +1,5 @@
 diff --git a/iokit/Kernel/arm/SweetFramebuffer.cpp b/iokit/Kernel/arm/SweetFramebuffer.cpp
-index c18581b..134d13b 100644
+index c18581b..a8e2c46 100644
 --- a/iokit/Kernel/arm/SweetFramebuffer.cpp
 +++ b/iokit/Kernel/arm/SweetFramebuffer.cpp
 @@ -132,6 +132,7 @@ enum {
@@ -10,7 +10,7 @@ index c18581b..134d13b 100644
   */
  #define SWEET_FB_LOGICAL_W              1125
  #define SWEET_FB_LOGICAL_H              2436
-@@ -145,6 +146,63 @@ OSDefineMetaClassAndStructors(IOMobileFramebuffer, IOService);
+@@ -145,6 +146,65 @@ OSDefineMetaClassAndStructors(IOMobileFramebuffer, IOService);
  
  class IOMobileFramebufferUserClient;
  
@@ -46,8 +46,10 @@ index c18581b..134d13b 100644
 +	if (w <= 0 || h <= 0 || sx < 0 || sy < 0 || pw2 <= 0 || ph2 <= 0 || lw <= 0 || lh <= 0) {
 +		return 0;
 +	}
-+	int32_t x0 = px + (int32_t)((int64_t)dx * pw2 / lw), x1 = px + (int32_t)((int64_t)(dx + w) * pw2 / lw);
-+	int32_t y0 = py + (int32_t)((int64_t)dy * ph2 / lh), y1 = py + (int32_t)((int64_t)(dy + h) * ph2 / lh);
++	/* panel pixel X samples logical floor((X - px) * lw / pw2): the rect covers
++	   exactly the X in [px + ceil(dx * pw2 / lw), px + ceil((dx + w) * pw2 / lw)) */
++	int32_t x0 = px + (int32_t)(((int64_t)dx * pw2 + lw - 1) / lw), x1 = px + (int32_t)(((int64_t)(dx + w) * pw2 + lw - 1) / lw);
++	int32_t y0 = py + (int32_t)(((int64_t)dy * ph2 + lh - 1) / lh), y1 = py + (int32_t)(((int64_t)(dy + h) * ph2 + lh - 1) / lh);
 +	x0 = x0 < 0 ? 0 : x0;
 +	y0 = y0 < 0 ? 0 : y0;
 +	x1 = x1 > pw ? pw : x1;
@@ -74,7 +76,7 @@ index c18581b..134d13b 100644
  class AppleCLCD : public IOMobileFramebuffer {
  	OSDeclareDefaultStructors(AppleCLCD);
  
-@@ -162,6 +220,8 @@ public:
+@@ -162,6 +222,8 @@ public:
  	uint32_t      fWidth, fHeight, fRowBytes;
  	uint32_t      fLogicalW, fLogicalH;     /* size reported to userland */
  	int32_t       fOffX, fOffY;             /* logical origin of the panel */
@@ -83,7 +85,7 @@ index c18581b..134d13b 100644
  	uintptr_t     fPixels;          /* kernel mapping of the panel memory */
  	IOMemoryMap  *fMap;
  	SweetSurface *fSurface;         /* the panel memory as an IOSurface */
-@@ -278,6 +338,17 @@ AppleCLCD::start(IOService *provider)
+@@ -278,6 +340,17 @@ AppleCLCD::start(IOService *provider)
  	}
  	fOffX = (int32_t)(fLogicalW - fWidth) / 2;
  	fOffY = (int32_t)(fLogicalH - fHeight) / 2;
@@ -101,21 +103,22 @@ index c18581b..134d13b 100644
  	fLock = IOLockAlloc();
  	fClients = OSArray::withCapacity(4);
  	fSurface = sweet_surface_create_physical(fPhys, fWidth, fHeight, fRowBytes, SWEET_FB_FORMAT_BGRA);
-@@ -556,6 +627,13 @@ AppleCLCD::sweet_fb_yuv_layer(const uint8_t *rec, uint32_t layer)
+@@ -556,6 +629,14 @@ AppleCLCD::sweet_fb_yuv_layer(const uint8_t *rec, uint32_t layer)
  	const struct sweet_surface_plane *py = &s->planes[0], *pc = &s->planes[1];
  	int32_t sx = (int32_t)get32(a, 0), sy = (int32_t)get32(a, 4), sw = (int32_t)get32(a, 8), sh = (int32_t)get32(a, 12);
  	int32_t dx = (int32_t)get32(b, 0) - fOffX, dy = (int32_t)get32(b, 4) - fOffY, dw = (int32_t)get32(b, 8), dh = (int32_t)get32(b, 12);
 +	if (fScaled) {      /* 0148: logical rect -> presented rect; the loop below already scales sw -> dw */
 +		int32_t lx = (int32_t)get32(b, 0), ly = (int32_t)get32(b, 4);
-+		dx = fPresX + (int32_t)((int64_t)lx * fPresW / (int32_t)fLogicalW);
-+		dy = fPresY + (int32_t)((int64_t)ly * fPresH / (int32_t)fLogicalH);
-+		dw = fPresX + (int32_t)((int64_t)(lx + (int32_t)get32(b, 8)) * fPresW / (int32_t)fLogicalW) - dx;
-+		dh = fPresY + (int32_t)((int64_t)(ly + (int32_t)get32(b, 12)) * fPresH / (int32_t)fLogicalH) - dy;
++		int64_t LW = (int64_t)fLogicalW, LH = (int64_t)fLogicalH;   /* ceil, as sweet_fb_scaled_blit */
++		dx = fPresX + (int32_t)(((int64_t)lx * fPresW + LW - 1) / LW);
++		dy = fPresY + (int32_t)(((int64_t)ly * fPresH + LH - 1) / LH);
++		dw = fPresX + (int32_t)(((int64_t)(lx + (int32_t)get32(b, 8)) * fPresW + LW - 1) / LW) - dx;
++		dh = fPresY + (int32_t)(((int64_t)(ly + (int32_t)get32(b, 12)) * fPresH + LH - 1) / LH) - dy;
 +	}
  	uintptr_t base = s->kernelAddress();
  	uint64_t len = s->memory != NULL ? s->memory->getLength() : 0;
  	if (sw <= 0 || sh <= 0) {
-@@ -808,6 +886,23 @@ AppleCLCD::present(const uint8_t *rec)
+@@ -808,6 +889,23 @@ AppleCLCD::present(const uint8_t *rec)
  		if (dx < 0 || dy < 0) {
  			dx = dy = 0;
  		}

@@ -202,7 +202,7 @@
       "detail": "512"
     },
     {
-      "check": "0148: nada fora do retângulo mapeado",
+      "check": "0148: retângulos parciais cobrem exatamente a amostragem inversa (6 casos)",
       "ok": true,
       "detail": "0"
     },

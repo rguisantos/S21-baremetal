@@ -383,7 +383,9 @@ execuções. Para o 0148 ele confere:
 - o blit da tela inteira pixel a pixel contra o vizinho mais próximo, com
   as bordas intactas;
 - o toque apontando o pixel lógico que o blit desenhou (±1);
-- retângulo parcial sem escrita fora da área;
+- seis retângulos parciais, inclusive de 1 pixel em bordas fracionárias,
+  cobrindo exatamente a amostragem inversa (limites com teto; achado da
+  revisão Codex no PR #108, 800 pixels errados antes da correção);
 - fonte curta sem leitura além do fim;
 - retângulo vazio;
 - S21+ e `sweetfb_native` inalterados.
