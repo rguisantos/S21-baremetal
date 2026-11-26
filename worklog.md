@@ -4316,3 +4316,12 @@ refeitos), reaproveitando as checagens de `capture_a0_container.py`;
 `mk_sboot_bootimg.py --avb-lab-key`. 6 controles com RSA real no CI. Sem
 avbtool aqui (googlesource bloqueado). Tentativa de acionar `@codex review`
 nos PRs foi negada pelas permissões da sessão; merges seguem pendentes.
+
+## 2026-11-26 — s21xnu: alternância Android ↔ XNU pela BOOT
+
+[Análise](docs/xnu-s21xnu-p3s.md#alternar-android-e-s21xnu-sem-odin-2611).
+Lido o DualbootHelper `aec1ea2`: reparticiona, renomeia GPT de partições de
+sistema e troca boot/recovery/dtb/dtbo por `dd`; não trata vendor_boot.
+`s21xnu-switch.sh` aproveita só o `dd` na BOOT, com backup em /cache,
+SHA256SUMS, verificação por releitura e recusa de conteúdo desconhecido;
+volta pelo TWRP. 14 testes (dash/bash) no CI. Não executado em Android/TWRP.

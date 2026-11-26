@@ -39,3 +39,10 @@ vão em `xnu/patches/` do s21xnu. No S21 Ultra (perfis `p3s` ou
 `p3s-window`), passar `touch_panel_w=1440 touch_panel_h=3200` no `--cmdline`
 do `mkpayload.py`. Verificação da série e teste de host:
 `python3 lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py --s21xnu S --dxb D --xnu X`.
+
+## Alternar Android ↔ s21xnu (sem Odin)
+
+Root no Android: `sh s21xnu-switch.sh install boot-s21xnu.img` e depois
+`to-xnu`. Para voltar: TWRP (Volume+ e Power) e
+`sh /cache/s21xnu/s21xnu-switch.sh to-android`. Só a BOOT é regravada.
+Detalhes em [docs/xnu-s21xnu-p3s.md](../../docs/xnu-s21xnu-p3s.md#alternar-android-e-s21xnu-sem-odin-2611).

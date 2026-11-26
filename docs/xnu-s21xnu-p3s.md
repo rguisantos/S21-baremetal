@@ -207,6 +207,40 @@ android.googlesource.com está bloqueado aqui. O
 `check_capture_a0_container.py` faz isso quando recebe o avbtool fixado.
 Assinatura de laboratório não é confiança do aparelho.
 
+### Alternar Android e s21xnu sem Odin (26/11)
+
+O [DualbootHelper](https://github.com/justin-a30/DualbootHelper)
+(`aec1ea2`) é o app do mod "Dualboot for any Samsung". Os scripts dele
+(`res/raw/switch*.sh`) fazem três coisas:
+- reparticionam o disco para criar cópias `_b`;
+- trocam os nomes GPT de system, vendor, product, odm, efs, cache, userdata,
+  super, prism e optics com `parted`;
+- trocam o **conteúdo** de boot, recovery, dtb e dtbo com `dd`, porque o
+  bootloader acha essas partições pelo nome fixo.
+
+O vendor_boot não aparece nos scripts, e nada indica teste no S21 Ultra.
+
+Para o s21xnu basta a parte do `dd` na BOOT. O shim usa o mesmo vendor_boot
+stock e não precisa de sistema Android próprio.
+[`lab/s21xnu-p3s/dualboot/s21xnu-switch.sh`](../lab/s21xnu-p3s/dualboot/s21xnu-switch.sh)
+faz só isso, sem reparticionar e sem tocar em GPT, vendor_boot, recovery ou
+vbmeta:
+- **`install`:** copia a BOOT atual para `/cache/s21xnu/stock-boot.img`
+  (CACHE tem 153.600 blocos de 4 KiB pela PIT, legível pelo TWRP) e grava
+  `SHA256SUMS`;
+- **`to-xnu` / `to-android`:** gravam com `dd`, conferem por SHA-256 relido
+  da partição e reiniciam;
+- recusa gravar o shim sobre uma BOOT de conteúdo desconhecido, mas sempre
+  permite voltar ao stock;
+- a volta do XNU ou da sonda é pelo TWRP (Volume+ e Power):
+  `sh /cache/s21xnu/s21xnu-switch.sh to-android`.
+
+`test_s21xnu_switch.py`: 14 testes, com dash e bash, usando arquivos no
+lugar da BOOT. Cobrem o ciclo completo, recusas de instalação, backup
+corrompido, conteúdo desconhecido, comandos sem instalação e instalação a
+partir do boot do shim. O script não foi executado em Android/toybox nem no
+TWRP.
+
 ### Antes de um teste no aparelho
 
 - Desbloqueio OEM. O port MonsterROM, no mesmo HZC2 desbloqueado, grava o
@@ -220,7 +254,8 @@ Assinatura de laboratório não é confiança do aparelho.
   `trig_mode=0`), igual no t2s, onde o framebuffer do S-Boot já é usado pelo
   s21xnu. Que escrever em 0xfa000000 apareça na tela do p3s continua não
   observado.
-- Recuperação: modo download e Odin com o boot stock.
+- Recuperação: TWRP com `s21xnu-switch.sh to-android` ou, sem TWRP, modo
+  download e Odin com o boot stock.
 
 ## Toque e tela no p3s: patches XNU 0146 e 0147 (26/11)
 
