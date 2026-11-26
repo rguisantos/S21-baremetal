@@ -1,5 +1,5 @@
 {
-  "schema": "s21xnu-xnu-touch-0146/1",
+  "schema": "s21xnu-xnu-p3s-0146-0147/1",
   "checks": [
     {
       "check": "s21xnu fixado",
@@ -27,6 +27,11 @@
       "detail": ""
     },
     {
+      "check": "série: 0061 (apresentação iPhone X) aplicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
       "check": "série: 0060 (toque Goodix do Redmi) pulado",
       "ok": true,
       "detail": ""
@@ -37,49 +42,104 @@
       "detail": ""
     },
     {
-      "check": "0146 muda só sweet_touch.c",
+      "check": "0146 muda só bsd/dev/sweet_touch.c",
       "ok": true,
-      "detail": "['35', '3', 'bsd/dev/sweet_touch.c']"
+      "detail": "['bsd/dev/sweet_touch.c']"
     },
     {
-      "check": "0146 alterou o arquivo",
-      "ok": true,
-      "detail": ""
-    },
-    {
-      "check": "boot-args touch_panel_w/h lidos",
+      "check": "0147 aplica sobre a série",
       "ok": true,
       "detail": ""
     },
     {
-      "check": "fórmula fixa 1080/2400 removida do caminho de postagem",
+      "check": "0147 muda só iokit/Kernel/arm/SweetFramebuffer.cpp, iokit/Kernel/arm/hid/SweetHID.cpp",
+      "ok": true,
+      "detail": "['iokit/Kernel/arm/SweetFramebuffer.cpp', 'iokit/Kernel/arm/hid/SweetHID.cpp']"
+    },
+    {
+      "check": "toque: boot-args touch_panel_w/h e console lidos",
       "ok": true,
       "detail": ""
     },
     {
-      "check": "ts_panel_map extraída",
+      "check": "toque: fórmula fixa 1080/2400 fora do caminho de postagem",
       "ok": true,
       "detail": ""
     },
     {
-      "check": "t2s: idêntico ao original (4096 valores × 4 flips)",
+      "check": "HID: geometria vinda do console",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "FB: letterbox habilitado para painel maior",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "S21+: toque idêntico (4096 valores × 4 touch_flip)",
       "ok": true,
       "detail": "0"
     },
     {
-      "check": "p3s: centro do painel físico = pixel 720,1600 da janela",
+      "check": "S21+: normalização HID idêntica em todas as linhas e colunas",
       "ok": true,
-      "detail": ""
+      "detail": "0"
     },
     {
-      "check": "p3s: todo toque fica dentro da janela 1080x2400",
+      "check": "S21+: bordas de gesto idênticas em todos os pixels",
       "ok": true,
-      "detail": ""
+      "detail": "0"
     },
     {
-      "check": "p3s: espelhamento no painel físico",
+      "check": "S21+: geometria HID = crop 22,18 como antes",
       "ok": true,
-      "detail": "719,1599"
+      "detail": "1080x2400,1125x2436,22,18"
+    },
+    {
+      "check": "p3s-window: toque escalado ao painel e limitado à janela",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "p3s tela cheia: iPhone X centrado, offsets -157,-382",
+      "ok": true,
+      "detail": "1440x3200,1125x2436,-157,-382"
+    },
+    {
+      "check": "p3s tela cheia: região visível 157..1281 × 382..2817",
+      "ok": true,
+      "detail": "157..1281,382..2817"
+    },
+    {
+      "check": "p3s tela cheia: ida e volta pixel lógico → painel → HID",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "p3s tela cheia: normalização sempre em [0, 1]",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "p3s tela cheia: toque na borda preta esquerda = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "p3s tela cheia: toque na borda preta direita = 1",
+      "ok": true,
+      "detail": "65536"
+    },
+    {
+      "check": "console ausente: volta à geometria do S21+",
+      "ok": true,
+      "detail": "1080x2400,1125x2436,22,18"
+    },
+    {
+      "check": "sweetfb_native=1: painel nativo sem offset",
+      "ok": true,
+      "detail": "1440x3200,1440x3200,0,0"
     }
   ],
   "series": {
@@ -324,10 +384,19 @@
     ]
   },
   "host_test": {
-    "t2s_mismatch": "0",
-    "p3s_mid": "720,1600",
-    "p3s_inside": "1",
-    "p3s_mid_flip": "719,1599"
+    "t2s_geom": "1080x2400,1125x2436,22,18",
+    "p3s_geom": "1440x3200,1125x2436,-157,-382",
+    "p3s_visible": "157..1281,382..2817",
+    "outside_left": "0",
+    "outside_right": "65536",
+    "fallback_geom": "1080x2400,1125x2436,22,18",
+    "native_geom": "1440x3200,1440x3200,0,0",
+    "t2s_touch": "0",
+    "t2s_hid": "0",
+    "t2s_edge": "0",
+    "win_touch": "0",
+    "roundtrip": "0",
+    "clamp_bad": "0"
   },
   "result": "PASS"
 }

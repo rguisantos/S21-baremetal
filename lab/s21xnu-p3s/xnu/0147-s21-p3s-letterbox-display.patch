@@ -1,0 +1,137 @@
+diff --git a/iokit/Kernel/arm/SweetFramebuffer.cpp b/iokit/Kernel/arm/SweetFramebuffer.cpp
+index 36c2e52..c18581b 100644
+--- a/iokit/Kernel/arm/SweetFramebuffer.cpp
++++ b/iokit/Kernel/arm/SweetFramebuffer.cpp
+@@ -130,6 +130,8 @@ enum {
+  * presented as the iPhone X panel, 1125x2436 (375x812 points @3x), and the
+  * centered 1080x2400 part of it is shown on the 1080x2400 panel.
+  * Boot-arg sweetfb_native=1 presents the real panel size instead.
++ * 0147: a larger panel (S21 Ultra, 1440x3200) shows the whole 1125x2436
++ * display centered, 1:1, with black borders (negative fOffX/fOffY).
+  */
+ #define SWEET_FB_LOGICAL_W              1125
+ #define SWEET_FB_LOGICAL_H              2436
+@@ -269,7 +271,8 @@ AppleCLCD::start(IOService *provider)
+ 	PE_parse_boot_argn("sweetfb_native", &native, sizeof(native));
+ 	fLogicalW = fWidth;
+ 	fLogicalH = fHeight;
+-	if (!native && fWidth <= SWEET_FB_LOGICAL_W && fHeight <= SWEET_FB_LOGICAL_H) {
++	if (!native && ((fWidth <= SWEET_FB_LOGICAL_W && fHeight <= SWEET_FB_LOGICAL_H) ||
++	    (fWidth >= SWEET_FB_LOGICAL_W && fHeight >= SWEET_FB_LOGICAL_H))) {
+ 		fLogicalW = SWEET_FB_LOGICAL_W;
+ 		fLogicalH = SWEET_FB_LOGICAL_H;
+ 	}
+diff --git a/iokit/Kernel/arm/hid/SweetHID.cpp b/iokit/Kernel/arm/hid/SweetHID.cpp
+index 5029544..ca4d097 100644
+--- a/iokit/Kernel/arm/hid/SweetHID.cpp
++++ b/iokit/Kernel/arm/hid/SweetHID.cpp
+@@ -359,6 +359,50 @@ OSDefineMetaClassAndStructors(SweetHIDButtons, IOHIDEventService);
+ #define SWEET_TOUCH_EDGE_BOTTOM_PX 100
+ /* sweet-hid field toggles: boot-arg sweethidf, set bit = feature off */
+ static uint32_t sweet_hid_f;
++/*
++ * 0147: touch geometry. Panel = console view (1080x2400 on the S21+ and with
++ * the p3s-window profile, 1440x3200 with the full p3s profile; 1080x2400 if
++ * the console is not set up). The presented display is the iPhone X 1125x2436
++ * unless sweetfb_native=1; it is centered on the panel, so the offset is
++ * positive when it is cropped (S21+) and negative when it is letterboxed.
++ */
++static inline void
++sweet_hid_geometry(int vw, int vh, int native, int *pw, int *ph, int *lw, int *lh, int *ox, int *oy)
++{
++	if (vw <= 0 || vh <= 0 || vw > 8192 || vh > 8192) {
++		vw = 1080;
++		vh = 2400;
++	}
++	*pw = vw;
++	*ph = vh;
++	*lw = vw;
++	*lh = vh;
++	if (!native && ((vw <= 1125 && vh <= 2436) || (vw >= 1125 && vh >= 2436))) {
++		*lw = 1125;
++		*lh = 2436;
++	}
++	*ox = (*lw - vw) / 2;
++	*oy = (*lh - vh) / 2;
++}
++
++/* Panel-pixel bounds of the part of the presented display the panel shows. */
++static inline void
++sweet_hid_visible(int pw, int ph, int lw, int lh, int ox, int oy, int *l, int *r, int *t, int *b)
++{
++	*l = ox < 0 ? -ox : 0;
++	*t = oy < 0 ? -oy : 0;
++	*r = lw - ox - 1 < pw - 1 ? lw - ox - 1 : pw - 1;
++	*b = lh - oy - 1 < ph - 1 ? lh - oy - 1 : ph - 1;
++}
++
++/* Panel pixel -> 16.16 fraction of the presented display, clamped to [0, 1]. */
++static inline IOFixed
++sweet_hid_norm(int v, int off, int logical)
++{
++	int64_t n = ((int64_t)(v + off) << 16) / logical;
++	return (IOFixed)(n < 0 ? 0 : (n > 0x10000 ? 0x10000 : n));
++}
++
+ class SweetHIDTouch : public IOHIDEventService {
+ 	OSDeclareDefaultStructors(SweetHIDTouch);
+ public:
+@@ -370,7 +414,7 @@ protected:
+ 	virtual UInt32 getProductID() APPLE_KEXT_OVERRIDE { return 2; }
+ private:
+ 	IOLock *fLock;
+-	int fLogicalW, fLogicalH, fOffX, fOffY;
++	int fLogicalW, fLogicalH, fOffX, fOffY, fPanelW, fPanelH;
+ 	bool fDown[SWEET_TOUCH_FINGERS];
+ 	bool fEdge[SWEET_TOUCH_FINGERS];
+ 	IOFixed fX[SWEET_TOUCH_FINGERS];
+@@ -437,10 +481,12 @@ SweetHIDTouch::start(IOService *provider)
+ 	}
+ 	int native = 0;
+ 	PE_parse_boot_argn("sweetfb_native", &native, sizeof(native));
+-	fLogicalW = native ? 1080 : 1125;
+-	fLogicalH = native ? 2400 : 2436;
+-	fOffX = (fLogicalW - 1080) / 2;
+-	fOffY = (fLogicalH - 2400) / 2;
++	/* 0147: same geometry rule as SweetFramebuffer.cpp, from the console view. */
++	PE_Video video;
++	bzero(&video, sizeof(video));
++	PE_current_console(&video);
++	sweet_hid_geometry((int)video.v_width, (int)video.v_height, native,
++	    &fPanelW, &fPanelH, &fLogicalW, &fLogicalH, &fOffX, &fOffY);
+ 	/* The digitizer covers the main display (backboardd maps it 1:1). */
+ 	setProperty("DisplayIntegrated", kOSBooleanTrue);
+ 	setProperty("SurfaceWidth", (unsigned long long)(68 << 16), 32);	/* mm, 16.16 */
+@@ -462,14 +508,14 @@ SweetHIDTouch::touch(int finger, bool down, int x, int y)
+ 	if (finger < 0 || finger >= SWEET_TOUCH_FINGERS) {
+ 		return;
+ 	}
+-	x = x < 0 ? 0 : (x > 1079 ? 1079 : x);
+-	y = y < 0 ? 0 : (y > 2399 ? 2399 : y);
++	x = x < 0 ? 0 : (x > fPanelW - 1 ? fPanelW - 1 : x);
++	y = y < 0 ? 0 : (y > fPanelH - 1 ? fPanelH - 1 : y);
+ 
+ 	IOLockLock(fLock);
+ 	bool was = fDown[finger];
+ 	/* Panel pixels -> the presented 1125x2436 display (SweetFramebuffer.cpp). */
+-	IOFixed nx = (IOFixed)(((int64_t)(x + fOffX) << 16) / fLogicalW);
+-	IOFixed ny = (IOFixed)(((int64_t)(y + fOffY) << 16) / fLogicalH);
++	IOFixed nx = sweet_hid_norm(x, fOffX, fLogicalW);
++	IOFixed ny = sweet_hid_norm(y, fOffY, fLogicalH);
+ 	static const char sweet_first_fix[] __attribute__((used)) = "sweet-hid clean first sample";
+ 	bool moved = down && was && (nx != fX[finger] || ny != fY[finger]);
+ 	if (was == down && !moved) {
+@@ -477,8 +523,11 @@ SweetHIDTouch::touch(int finger, bool down, int x, int y)
+ 		return;
+ 	}
+ 	if (!was && down) {
+-		fEdge[finger] = x < SWEET_TOUCH_EDGE_PX || x > 1079 - SWEET_TOUCH_EDGE_PX ||
+-		    y < SWEET_TOUCH_EDGE_PX || y > 2399 - SWEET_TOUCH_EDGE_BOTTOM_PX;
++		/* 0147: edges of the visible part of the presented display, panel pixels */
++		int l, r, t, b;
++		sweet_hid_visible(fPanelW, fPanelH, fLogicalW, fLogicalH, fOffX, fOffY, &l, &r, &t, &b);
++		fEdge[finger] = x < l + SWEET_TOUCH_EDGE_PX || x > r - SWEET_TOUCH_EDGE_PX ||
++		    y < t + SWEET_TOUCH_EDGE_PX || y > b - SWEET_TOUCH_EDGE_BOTTOM_PX;
+ 	}
+ 
+ 	collection = IOHIDEvent::digitizerEvent(now, 0, kIOHIDDigitizerTransducerTypeHand, false, 0, 0, 0);

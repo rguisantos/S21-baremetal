@@ -95,7 +95,7 @@ carrega BCM4375 (0109/0111/0142, `mkpayload.py --wifi-*`). No p3s, manter
 | Perfil | FB_W × FB_H | Stride | Uso |
 |---|---|---|---|
 | `t2s` (padrão) | 1080 × 2400 | 4320 | S21+, byte a byte igual ao original |
-| `p3s` | 1440 × 3200 | 5760 | tela cheia; exige ajustar 0061/0094/0058 |
+| `p3s` | 1440 × 3200 | 5760 | painel inteiro; com os patches XNU 0146+0147, iPhone X 1125x2436 centrado com bordas |
 | `p3s-window` | 1080 × 2400 | 5760 | janela no canto superior esquerdo; XNU sem mudança de geometria, toque desalinhado (3/4) sem ajuste em 0094 |
 
 O [verificador](../lab/s21xnu-p3s/verify_p3s_profile.py) copia o clone
@@ -190,33 +190,52 @@ UFS ou o FDT final do aparelho.
   observado.
 - Recuperação: modo download e Odin com o boot stock.
 
-## Toque no p3s: patch XNU 0146 (26/11)
+## Toque e tela no p3s: patches XNU 0146 e 0147 (26/11)
 
-O driver de toque (`bsd/dev/sweet_touch.c`) converte o valor bruto
-0..4095 com `x*1080>>12`, `y*2400>>12`. O valor bruto cobre o painel físico
-inteiro. No perfil `p3s-window` a imagem ocupa só o canto 1080x2400 do
-painel 1440x3200, e o toque sairia a 3/4 da posição.
+Antes dos patches, o caminho de toque e tela fixava 1080x2400:
+- o driver de toque (`bsd/dev/sweet_touch.c`) convertia o valor bruto
+  0..4095 com `x*1080>>12`, `y*2400>>12`;
+- o HID (`SweetHID.cpp`) limitava a 1079/2399 e normalizava com o crop do
+  iPhone X calculado sobre 1080x2400;
+- o `SweetFramebuffer.cpp` só apresentava o iPhone X 1125x2436 quando o
+  painel era menor que ele. Num painel 1440x3200, passava a apresentar
+  1440x3200 nativo, tamanho para o qual o UIKit não tem layout.
 
-[`lab/s21xnu-p3s/xnu/0146-s21-touch-panel-geometry.patch`](../lab/s21xnu-p3s/xnu/0146-s21-touch-panel-geometry.patch)
-troca a fórmula por `ts_panel_map`: escala pelo painel físico (boot-args
-`touch_panel_w`/`touch_panel_h`, padrão 1080/2400), espelha no painel
-físico e limita à janela 1080x2400. O restante do caminho HID (0058/0061)
-fica igual. No p3s com `BOARD=p3s-window`, acrescentar
-`touch_panel_w=1440 touch_panel_h=3200` ao `--cmdline` do `mkpayload.py`.
+- [`0146-s21-touch-panel-geometry.patch`](../lab/s21xnu-p3s/xnu/0146-s21-touch-panel-geometry.patch):
+  `ts_panel_map` escala pelo painel físico (boot-args `touch_panel_w`/`h`,
+  padrão 1080/2400), espelha no painel e limita à vista do console
+  (`PE_current_console`).
+- [`0147-s21-p3s-letterbox-display.patch`](../lab/s21xnu-p3s/xnu/0147-s21-p3s-letterbox-display.patch):
+  - o framebuffer também apresenta o iPhone X quando o painel é maior, centrado
+    1:1 com bordas pretas (offsets negativos; o recorte das camadas e a
+    limpeza de tela já tratavam isso);
+  - o HID tira painel e offsets do console (`sweet_hid_geometry`), calcula as
+    bordas de gesto pela parte visível (`sweet_hid_visible`) e limita a
+    normalização a [0, 1].
+
+| Perfil do shim | Console | Toque (boot-args) | Resultado |
+|---|---|---|---|
+| t2s (S21+) | 1080x2400 | nenhum | idêntico ao original |
+| `p3s-window` | 1080x2400, stride 5760 | `touch_panel_w=1440 touch_panel_h=3200` | iPhone X recortado no canto superior esquerdo, toque alinhado |
+| `p3s` | 1440x3200 | `touch_panel_w=1440 touch_panel_h=3200` | iPhone X inteiro centrado (157..1281 × 382..2817), bordas pretas |
 
 [`verify_xnu_touch_patch.py`](../lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py)
 reproduz o laço de patches do `build.sh` do darwin-xnu-build
 (`663906528d1c`): `git apply --check` e aplica, ou pula, em ordem de nome.
 Ele trabalha sobre o XNU `xnu-8796.141.3` (`1b191cb58250`). Depois aplica
-0146 e compila `ts_panel_map` num teste de host. Resultado: 16/16
-([JSON](references/s21xnu-xnu-touch-0146-20261126.json), idêntico em duas
-execuções).
-- 0146 aplica sobre a série e muda só `sweet_touch.c`.
-- Com o painel padrão, o mapeamento é idêntico ao original nos 4096 valores
-  brutos × 4 combinações de `touch_flip`.
-- Com 1440x3200, o centro físico vira o pixel 720,1600, e todo toque cai
-  dentro da janela.
-- O XNU não foi compilado; isso exige o runner macOS do s21xnu.
+0146 e 0147, extrai as funções puras e compila um teste de host. Resultado:
+28/28 ([JSON](references/s21xnu-xnu-p3s-0146-0147-20261126.json), idêntico
+em duas execuções):
+- no S21+, toque, normalização HID e bordas de gesto ficam idênticos às
+  fórmulas originais em todos os valores e pixels;
+- no p3s tela cheia, cada pixel lógico do iPhone X volta ao mesmo valor
+  normalizado pelo caminho tela → toque → HID;
+- toques nas bordas pretas ficam limitados a 0/1.
+
+Duas mutações deliberadas (limite da janela e borda visível com erro de um
+pixel) fazem o verificador falhar. O XNU não foi compilado; isso exige o
+runner macOS do s21xnu. Não houve escala: no p3s o iPhone X ocupa 78% da
+largura.
 
 **Observação sobre a série do s21xnu.** O build pula silenciosamente todo
 patch cujo `git apply --check` falha. Na reprodução sem os scripts `*.sh`
@@ -255,8 +274,7 @@ correção).
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
 - Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
   neste ambiente) e conferir o relatório antes de qualquer flash.
-- Toque no modo janela: patch 0146 pronto e verificado na série, falta
-  compilar no runner macOS do s21xnu. Modo tela cheia (`p3s`) ainda exige
-  escalar a apresentação em 0061 e o compositor.
+- Patches 0146/0147 verificados na série; falta compilar no runner macOS do
+  s21xnu. Ocupar o painel inteiro exigiria escalar no compositor (1,28×).
 - Port BCM4389 ou Wi-Fi desligado.
 - Conferir no aparelho o FDT final do LK e o scanout do `bootloader_fb`.
