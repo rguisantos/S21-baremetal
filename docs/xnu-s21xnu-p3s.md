@@ -1,6 +1,6 @@
 # s21xnu no S21 Ultra (p3s): contrato de hardware e perfil de painel
 
-Rodada de 25/11/2026 (Campo Grande). Análise estática das fontes e builds de
+Rodadas de 25 e 26/11/2026 (Campo Grande). Análise estática das fontes e builds de
 host. **Nada foi executado no aparelho; o bootloader continua informado como
 travado.**
 
@@ -112,18 +112,83 @@ não foi compilado; isso exige o runner macOS do workflow dele.
 O s21xnu depende de um Linux com `kexec` no telefone. Para o p3s há três
 opções, todas após o desbloqueio OEM:
 
-1. **Shim direto pelo S-Boot.** O `loader.c` do shim já lê
-   `linux,initrd-start/end` e procura o cabeçalho `SWEETXNU` depois do vendor
-   ramdisk que o S-Boot prepende. Shim como kernel e payload como ramdisk do
-   `boot.img` (partição BOOT de 16384 blocos, 64 MiB pela
-   [PIT](download-pit-observation-hzc2.md)) dispensa Linux. Cada teste volta a
-   ser um flash via Odin. É o mesmo contrato LK→Image que o R10 estuda.
+1. **Shim direto pelo S-Boot** (detalhado abaixo): shim como kernel e
+   payload como ramdisk do `boot.img`, sem Linux. Cada teste é um flash via
+   Odin.
 2. **Kernel Android com `CONFIG_KEXEC`.** O `kernel.config` publicado pelo
    port MonsterROM (Floppy 5.4.304) tem `KEXEC` e `KEXEC_FILE` desligados.
    Um build próprio (o A0 já reproduz 5.4.242 com os 274 módulos) poderia
    ligar a opção e usar o Android rooteado como lançador.
 3. **Linux mainline como no t2s.** Exige DTS p3s para Linux 7.x, que não
    existe publicado.
+
+## Carga direta pelo S-Boot (26/11)
+
+Contrato de entrada do shim (`a128f07`) contra o modelo do LK HZC2 já
+documentado neste repositório:
+
+| Exigência do shim | LK HZC2 (modelo estático) | Situação |
+|---|---|---|
+| Image arm64, código sem relocação absoluta (o build recusa ABS64) | copia para 0x80080000 + KASLR (0..0x1f8000, passo 0x8000) ([produtor](bootloader-hzc2.md)) | compatível; Image p3s 249.856 bytes |
+| Entrada em EL1, MMU/caches desligados, x0 = FDT | X0 = 0x8b080000; helper desce EL2→EL1 ([granule](lk-entry-granule-hzc2.md), [cache](lk-cache-handoff.md)) | compatível no modelo |
+| `/chosen` `linux,initrd-start/end` de 4 ou 8 bytes | LK grava células u32: 0x84080000 e +vendor+boot ([FDT dinâmico](lk-dynamic-fdt.md)) | compatível (`fdt_chosen_u64` aceita 4 bytes) |
+| Procura SWEETXNU de 4 em 4 bytes desde initrd-start | ramdisk vendor em 0x84080000, ramdisk de boot logo após, **sem padding** ([cópias v3](lk-v3-layout.md)) | exige padding, ver abaixo |
+| Header do payload alinhado a 8 (`copy64` em memória Device) | vendor ramdisk stock tem 12.017.257 bytes: o ramdisk de boot começa em **0x84bf5e69** | **7 bytes de padding** |
+| PSCI por HVC | LK edita smc→hvc ([PSCI](lk-psci-final-edit-hzc2.md)) | coerente |
+
+Sem o padding, o header fica em endereço ímpar. O shim não o acha, ou recusa
+o header, e o XNU nunca recebe o controle. No caminho kexec do t2s o Linux
+coloca o initrd alinhado a página, por isso o problema não aparece lá.
+
+[`lab/s21xnu-p3s/mk_sboot_bootimg.py`](../lab/s21xnu-p3s/mk_sboot_bootimg.py)
+monta o `boot.img` v3 a partir do `boot.img`/`vendor_boot.img` stock (mantém
+os_version e cmdline do header), do `Image` do shim e do payload. O padding
+sai do tamanho real do ramdisk vendor. O script recusa a montagem quando:
+- o kernel com o maior KASLR alcança 0x84080000;
+- o initrd passa do FDT do LK ou do staging 0x94000000;
+- o ramdisk vendor contém SWEETXNU num endereço que o scan veria;
+- a janela ou as escritas do payload (segmentos, ADT, boot_args) caem sobre
+  o initrd, o FDT ou as reservas fixas do LK (uH, sboot, fb, kaslr, mz);
+- a imagem excede a partição de 64 MiB.
+
+Sem `--payload`, gera a **sonda**: o shim mostra `no SWEETXNU payload` em
+vermelho, segue para o diagnóstico na tela (DTB, MMU, PSCI, GIC) e chama
+PSCI SYSTEM_RESET após 40 s. A sonda não toca armazenamento: o teste UFS
+do shim (`test_ufs`, só leitura) nem é chamado por `shim_main`. Como reinicia no mesmo
+`boot.img`, sair do ciclo exige entrar no modo download e regravar o boot
+stock.
+
+### Execução no QEMU
+
+[`lab/s21xnu-p3s/qemu/run_handoff.py`](../lab/s21xnu-p3s/qemu/run_handoff.py)
+compila o shim `BOARD=p3s` e um kernel falso e monta o `boot.img` com um
+ramdisk vendor sintético de 12.017.257 bytes. Depois reproduz o LK no QEMU
+virt: Image em 0x80080000+KASLR, initrd vendor+boot em 0x84080000, FDT com
+células u32 em 0x8b080000 e salto em EL1 com x0=FDT. O kernel falso imprime
+`boot_args` na PL011.
+
+Resultado: **57/57**
+([JSON](references/s21xnu-sboot-handoff-qemu-20261126.json)).
+- Nos KASLR 0, 0x8000 e 0x1f8000, o kernel falso recebeu o controle em EL1
+  com Revision/Version 2, framebuffer 0xfa000000 1440×3200 stride 5760,
+  ADT copiado e cmdline correta, e boot_args dentro da janela.
+- O controle negativo, com o mesmo payload sem padding (header em
+  0x84bf5e69, resto 1 mod 8), não chega ao kernel falso.
+- Duas execuções deram o mesmo `boot.img` (SHA-256 `06f34148…`).
+
+O QEMU virt não é o Exynos. O teste não cobre DECON/painel, uH, PSCI real,
+UFS ou o FDT final do aparelho.
+
+### Antes de um teste no aparelho
+
+- Desbloqueio OEM. O port MonsterROM também regrava o vbmeta. Este repo
+  não verificou como o LK desbloqueado trata o boot sem footer AVB; os docs
+  de AVB do LK cobrem o estado travado.
+- O DECON 0 está em modo comando com disparo por hardware (`psr_mode=2`,
+  `trig_mode=0`), igual no t2s, onde o framebuffer do S-Boot já é usado pelo
+  s21xnu. Que escrever em 0xfa000000 apareça na tela do p3s continua não
+  observado.
+- Recuperação: modo download e Odin com o boot stock.
 
 ## Coerências com este repositório
 
@@ -151,6 +216,8 @@ correção).
 ## Pendências
 
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
+- Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
+  neste ambiente) e conferir o relatório antes de qualquer flash.
 - Ajuste de toque em 0094 (boot-arg com a geometria do painel) e da
   apresentação em 0061 para `p3s`; exigem o build XNU do workflow s21xnu.
 - Port BCM4389 ou Wi-Fi desligado.

@@ -31,6 +31,15 @@ jobs:
         run: python3 scripts/test_elf_symbols.py
       - name: Check s21xnu board contract comparator and FDT readers
         run: python3 scripts/test_s21xnu_board_contract.py
+      - name: Check S-Boot boot.img builder for the s21xnu shim
+        run: python3 lab/s21xnu-p3s/test_mk_sboot_bootimg.py
+      - name: Fetch pinned s21xnu and run p3s profile and LK handoff in QEMU
+        run: |
+          git init -q /tmp/s21xnu
+          git -C /tmp/s21xnu fetch -q --depth 1 https://github.com/jimmycarles9991-glitch/s21xnu a128f07b04987e60f5e13e2ce67b19ae009672cd
+          git -C /tmp/s21xnu checkout -q FETCH_HEAD
+          python3 lab/s21xnu-p3s/verify_p3s_profile.py /tmp/s21xnu
+          python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
       - name: Check A0 stock container integrity and offline execution refusals
         run: |
           python3 scripts/test_capture_a0.py

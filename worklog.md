@@ -4265,3 +4265,19 @@ byte a byte igual ao original. XNU não compilado. Corrigido `parse_fdt.py`
 (tokens trocados, versão, células). 11 testes novos, incluídos no CI;
 baseline R10 9/9. Carga no p3s continua dependente do desbloqueio OEM;
 nenhuma ação no aparelho.
+
+## 2026-11-26 — s21xnu: carga direta pelo S-Boot
+
+[Análise](docs/xnu-s21xnu-p3s.md#carga-direta-pelo-s-boot-2611). Cruzado o
+contrato de entrada do shim `a128f07` com o modelo LK HZC2 deste repo
+(Image em 0x80080000+KASLR, initrd vendor+boot em 0x84080000 com células
+u32, X0=0x8b080000, EL1). Achado: o ramdisk vendor stock (12.017.257 bytes)
+faz o ramdisk de boot começar em 0x84bf5e69; o shim exige header SWEETXNU
+alinhado a 8 (`copy64` com MMU desligada), então são necessários 7 bytes de
+padding. Novo `mk_sboot_bootimg.py` monta boot.img v3 (payload ou sonda) a
+partir dos headers stock e recusa violações do mapa LK; 10 testes. Novo
+`qemu/run_handoff.py` reproduz o salto do LK no QEMU virt com o shim p3s e
+um kernel falso: 57/57 em KASLR 0/0x8000/0x1f8000, controle sem padding não
+executa, boot.img idêntico em duas execuções. CI busca o s21xnu fixado e
+roda perfil + handoff. Sem stock boot/vendor_boot reais neste ambiente;
+nada no aparelho.

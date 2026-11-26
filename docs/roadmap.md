@@ -1,5 +1,7 @@
 # Roadmap e estado do S21-baremetal
 
+A [carga direta pelo S-Boot](xnu-s21xnu-p3s.md#carga-direta-pelo-s-boot-2611) mostrou que o shim do s21xnu é compatível com o handoff LK HZC2 modelado, desde que o payload receba 7 bytes de padding: o ramdisk vendor stock tem tamanho ímpar e o shim exige header alinhado a 8. Um montador de `boot.img` (payload ou sonda de diagnóstico) e um teste no QEMU que reproduz o LK passaram 57/57, com controle negativo. Tudo depende do desbloqueio OEM; nada foi executado no aparelho.
+
 O [contrato de hardware do s21xnu no p3s](xnu-s21xnu-p3s.md) comparou as fontes FlopKernel do S21 Ultra e do S21+, onde o port XNU público chegou à tela inicial do iOS 16: touch, S2DOS05, MAX77705, teclas, GIC, Mali, UFS e janela de RAM coincidem (21 itens); painel 1440x3200 e Wi-Fi BCM4389 diferem (5). Um patch fixado acrescenta perfis `p3s` e `p3s-window` ao shim/ADT do s21xnu, com 20/20 verificações de host. Qualquer carga continua exigindo desbloqueio OEM; nada foi executado no aparelho.
 
 No HZC2, os 274 módulos do ramdisk e os [dois módulos da partição vendor](a0-vendor-modules-hzc2.md) cobrem todos os 276 nomes observados no aparelho. O [leitor de bugreport](a0-runtime-identity-hzc2.md) identifica o banner Samsung nessa captura. A carga do candidato segue pendente.
