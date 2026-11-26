@@ -4412,3 +4412,15 @@ driver do BCM4375. `verify_wifi_0149.py` (CI): 17/17, lendo o heredoc do
 0142 sem executá-lo; mutação do ID detectada. Série do fork com `0005`;
 `check_fork_series.py` PASS. Fork `715d738`, run 45898493855: sucesso,
 `xnu-kernel` 61.319.441 bytes. Nada executado no aparelho.
+
+## 2026-11-26 — s21xnu: firmware do BCM4389 pelo caminho ARM CA7 (patch XNU 0150)
+
+[Análise](docs/s21xnu-wifi-bcm4389-hzc2.md#firmware-no-bcm4389-patch-0150).
+Fonte Samsung `bcmdhd_101_18` (FlopKernel `dc17ad0`): o 4389 usa ARM CA7 +
+SYSMEM, RAM em 0x200000 medida pelos bancos do SYSMEM, carga por
+`dhdpcie_bus_download_state()`, sem `FW_SIGNATURE`. O 0150 leva isso ao
+`redwood_bcm4375.c` do 0142 (z3sios fixado, SHA-256 conferido) e libera o
+p3s no `sweetwifi=4`; o caminho do BCM4375 não muda. `verify_wifi_0150.py`
+(CI, busca o z3sios fixado): 22/22. Série do fork com `0006`;
+`check_fork_series.py` PASS. Fork `02528b7`, run 45901428006: sucesso.
+Nada executado no aparelho.

@@ -1,0 +1,328 @@
+diff --git a/bsd/dev/sweet_wifi.c b/bsd/dev/sweet_wifi.c
+index 0b22ce1..c85482b 100644
+--- a/bsd/dev/sweet_wifi.c
++++ b/bsd/dev/sweet_wifi.c
+@@ -697,8 +697,10 @@ wifi_thread(void *arg, wait_result_t wr_)
+ 		if (wifi_level >= 3) {
+ 			bcm4389_chipid();
+ 		}
+-		wlog("W4 SKIP: BCM4389 (p3s), no chip driver yet (redwood_bcm4375 is BCM4375 only)");
+-		return;
++		if (wifi_level < 4) {
++			wlog("W4 SKIP: BCM4389 (p3s) at level %u; 4 runs the chip driver (CA7 path of 0150)", wifi_level);
++			return;
++		}
+ 	}
+ 	if (wifi_level < 3 || dma_pool() != 0) {
+ 		wlog("done at level %u", wifi_level);
+diff --git a/bsd/dev/redwood_bcm4375.c b/bsd/dev/redwood_bcm4375.c
+index 32f5e57..47421b2 100644
+--- a/bsd/dev/redwood_bcm4375.c
++++ b/bsd/dev/redwood_bcm4375.c
+@@ -94,6 +94,19 @@ void redwood_bcm4375_run(const struct redwood_bcm_bus *bus);
+ #define ARMCR4_BANKINFO         0x44
+ 
+ #define RAMBASE_4375            0x170000        /* [chip]741 */
++
++/*
++ * 0150 (S21 Ultra p3s): the BCM4389 C1. Samsung's bcmdhd_101_18 (the HZC2 driver): an ARM CA7 core, its RAM in a
++ * SYSMEM core at CA7_4389_RAM_BASE (include/sbchipc.h), sized by si_sysmem_size() (siutils.c); download state as
++ * dhdpcie_bus_download_state() (dhd_pcie.c): CA7 halted and out of reset, SYSMEM reset, firmware, NVRAM, the
++ * 0xfeedc0de seed, the reset vector at address 0 (unless it reads all ones: a secured vector), CA7 released.
++ */
++#define CORE_ARM_CA7            0x847           /* ARMCA7_CORE_ID, include/hndsoc.h */
++#define CORE_SYSMEM             0x849           /* SYSMEM_CORE_ID */
++#define RAMBASE_4389            0x200000        /* CA7_4389_RAM_BASE */
++#define SYSMEM_COREINFO         0x00            /* include/sbsysmem.h */
++#define SYSMEM_BANKIDX          0x10
++#define SYSMEM_BANKINFO         0x40
+ #define RAMSIZE_MAGIC           0x534d4152      /* "SMAR" at 0x6c of the image: the RAM it was built for [pcie]288 */
+ #define RAMSIZE_OFFSET          0x6c
+ 
+@@ -261,8 +274,13 @@ static uint32_t tcm_size;               /* how much of BAR2 is mapped */
+ static uint32_t win = ~0U;
+ static struct core cores[48];
+ static unsigned ncores;
+-static struct core *cc, *pcie2, *cr4;
++static struct core *cc, *pcie2, *cr4;    /* cr4: the ARM that runs the firmware (the CA7 on the BCM4389) */
+ static uint32_t ramsize;
++static uint32_t rambase = RAMBASE_4375;  /* 0150 */
++static bool ca7;                         /* 0150: BCM4389, ARM CA7 + SYSMEM */
++static struct core *sysmem;
++static uint32_t bar2_phys;
++static const char *fwp = "bcm4375";      /* 0150: file name prefix in /usr/local/etc/wifi */
+ static uint32_t mb_int, mb_mask, h2d_mb0, h2d_mb1;
+ static uint8_t *pool;                   /* bump allocator over the mapped part of the pool */
+ static size_t pool_used;
+@@ -449,7 +467,7 @@ tcm_w32(uint32_t addr, uint32_t value)
+ static bool
+ in_ram(uint32_t addr, uint32_t len)
+ {
+-	return addr >= RAMBASE_4375 && addr + len >= addr && addr + len <= RAMBASE_4375 + ramsize && addr + len <= tcm_size;
++	return addr >= rambase && addr + len >= addr && addr + len <= rambase + ramsize && addr + len <= tcm_size;
+ }
+ 
+ static void *
+@@ -668,6 +686,68 @@ cr4_active(uint32_t rstvec)
+ 	core_reset(cr4, ARMCR4_CPUHALT, 0, 0);
+ }
+ 
++/* 0150: SYSMEM coreinfo: ROM and RAM bank counts, by the core's revision (si_sysmem_size(), include/sbsysmem.h) */
++static inline void
++sysmem_banks(uint32_t info, unsigned rev, uint32_t *nrb, uint32_t *nb)
++{
++	if (rev < 12) {
++		*nrb = (info >> 5) & 0x1f;
++		*nb = info & 0x1f;
++	} else {
++		*nrb = (info >> 24) & 0xff;
++		*nb = (info >> 16) & 0xff;
++	}
++}
++
++/* 0150: si_sysmem_size() (bcmdhd siutils.c): RAM banks after the ROM banks, 8 KB units */
++static uint32_t
++sysmem_ramsize(void)
++{
++	uint32_t info, nrb, nb, size = 0;
++
++	if ((bp_read(sysmem->wrap + BCMA_RESET_CTL) & BCMA_RESET_CTL_RESET) ||
++	    (bp_read(sysmem->wrap + BCMA_IOCTL) & (BCMA_IOCTL_FGC | BCMA_IOCTL_CLK)) != BCMA_IOCTL_CLK) {
++		core_reset(sysmem, 0, 0, 0);
++	}
++	info = bp_read(sysmem->base + SYSMEM_COREINFO);
++	if (info == 0xffffffffU) {
++		return 0;
++	}
++	sysmem_banks(info, sysmem->rev, &nrb, &nb);
++	for (uint32_t i = 0; i < nb; i++) {
++		bp_write(sysmem->base + SYSMEM_BANKIDX, i + nrb);
++		delay(1);
++		size += ((bp_read(sysmem->base + SYSMEM_BANKINFO) & 0x7f) + 1) * 8192;
++	}
++	blog("SYSMEM rev %u coreinfo %#x: %u ROM banks, %u RAM banks, RAM %#x", sysmem->rev, info, nrb, nb, size);
++	return size;
++}
++
++/* 0150: dhdpcie_bus_download_state(enter) for the CA7: ARM halted and out of reset, SYSMEM reset */
++static void
++ca7_passive(void)
++{
++	w32(cfg, 0x84, 0);      /* dhdpcie_setbar1win(bus, 0): BAR2 (bcmdhd's BAR1) from backplane address 0 */
++	core_reset(cr4, ARMCR4_CPUHALT, ARMCR4_CPUHALT, ARMCR4_CPUHALT);
++	core_reset(sysmem, 0, 0, 0);
++}
++
++/* 0150: dhdpcie_bus_download_state(exit) for the CA7: address 0 must not read all ones (a secured vector) */
++static bool
++ca7_active(uint32_t rstvec)
++{
++	uint32_t was = tcm_r32(0);
++
++	if (was == 0xffffffffU) {
++		blog("W4 FAIL: address 0 reads %#x: the reset vector is secured (a signature would be needed)", was);
++		return false;
++	}
++	tcm_w32(0, rstvec);
++	blog("reset vector: address 0 read %#x, now %#x", was, tcm_r32(0));
++	core_reset(cr4, ARMCR4_CPUHALT, 0, 0);
++	return true;
++}
++
+ /* ------------------------------------------------------------------------ */
+ /* The firmware console                                                     */
+ 
+@@ -1615,13 +1695,16 @@ clm_load(void)
+ {
+ 	uint64_t size = 0;
+ 	bool ours;
+-	const uint8_t *clm = fw_file("bcm4375-clm.blob", &size, &ours);
++	char clmname[32];
++	const uint8_t *clm;
+ 	uint8_t *chunk;
+ 	int err = 0;
+ 	uint32_t status = ~0U;
+ 
++	snprintf(clmname, sizeof(clmname), "%s-clm.blob", fwp);     /* 0150 */
++	clm = fw_file(clmname, &size, &ours);
+ 	if (clm == NULL) {
+-		blog("no /fw/bcm4375-clm.blob: no CLM (the firmware's own regulatory defaults)");
++		blog("no /fw/%s: no CLM (the firmware's own regulatory defaults)", clmname);
+ 		return -1;
+ 	}
+ 	chunk = kalloc_data(12 + 1400, Z_WAITOK | Z_ZERO);
+@@ -1685,6 +1768,7 @@ bars(void)
+ 	 * already fill that, and a 4 MB BAR2 on top panicked (kmem_alloc ... failed with 3 @vm_kern.c:178).
+ 	 */
+ 	regs = (volatile uint8_t *)ml_io_map_unmappable(bar0, s0 < BAR0_MAP ? (vm_size_t)s0 : BAR0_MAP, VM_WIMG_IO);
++	bar2_phys = bar2;
+ 	tcm_size = (uint32_t)(s2 > 0x400000 ? 0x400000 : s2);
+ 	tcm = (volatile uint8_t *)ml_io_map_unmappable(bar2, tcm_size, VM_WIMG_IO);
+ 	if (regs == NULL || tcm == NULL) {
+@@ -1701,9 +1785,14 @@ chip(void)
+ 	char line[220];
+ 	size_t at = 0;
+ 
+-	blog("chip id %#x: BCM%x rev %u, package %u (want 4375)", id, CID_ID(id), CID_REV(id), (id >> 20) & 0xf);
+-	if (CID_ID(id) != 0x4375) {
+-		blog("W4 FAIL: not the BCM4375 (%#x)", id);
++	blog("chip id %#x: BCM%x rev %u, package %u (want 4375, or 4389 on the p3s)", id, CID_ID(id), CID_REV(id),
++	    (id >> 20) & 0xf);
++	if (CID_ID(id) == 0x4389) {
++		ca7 = true;
++		rambase = RAMBASE_4389;
++		fwp = "bcm4389";
++	} else if (CID_ID(id) != 0x4375) {
++		blog("W4 FAIL: not the BCM4375 or BCM4389 (%#x)", id);
+ 		return false;
+ 	}
+ 	erom_scan();
+@@ -1713,9 +1802,10 @@ chip(void)
+ 	blog("cores (%u):%s", ncores, line);
+ 	cc = core_find(CORE_CC, 0);
+ 	pcie2 = core_find(CORE_PCIE2, 0);
+-	cr4 = core_find(CORE_ARM_CR4, 0);
+-	if (cc == NULL || pcie2 == NULL || cr4 == NULL) {
+-		blog("W4 FAIL: chipcommon, PCIe2 or ARM CR4 missing from the EROM");
++	cr4 = core_find(ca7 ? CORE_ARM_CA7 : CORE_ARM_CR4, 0);
++	sysmem = ca7 ? core_find(CORE_SYSMEM, 0) : NULL;
++	if (cc == NULL || pcie2 == NULL || cr4 == NULL || (ca7 && sysmem == NULL)) {
++		blog("W4 FAIL: chipcommon, PCIe2, the ARM (%s) or SYSMEM missing from the EROM", ca7 ? "CA7" : "CR4");
+ 		return false;
+ 	}
+ 	/* brcmf_pcie_buscore_reset() [pcie]1904: the mailbox registers by the PCIe2 core's revision */
+@@ -1724,16 +1814,28 @@ chip(void)
+ 	} else {
+ 		mb_int = 0x48, mb_mask = 0x4c, h2d_mb0 = 0x140, h2d_mb1 = 0x144;
+ 	}
+-	ramsize = cr4_ramsize();
+-	blog("PCIe2 core rev %u at %#x (wrapper %#x), ARM CR4 rev %u at %#x (wrapper %#x): RAM %#x + %#x",
+-	    pcie2->rev, pcie2->base, pcie2->wrap, cr4->rev, cr4->base, cr4->wrap, RAMBASE_4375, ramsize);
++	ramsize = ca7 ? sysmem_ramsize() : cr4_ramsize();
++	blog("PCIe2 core rev %u at %#x (wrapper %#x), ARM %s rev %u at %#x (wrapper %#x): RAM %#x + %#x",
++	    pcie2->rev, pcie2->base, pcie2->wrap, ca7 ? "CA7" : "CR4", cr4->rev, cr4->base, cr4->wrap, rambase, ramsize);
+ 	/* brcmf_pcie_attach() [pcie]717: BAR1 window sized */
+ 	pcie2_write(PCIE2_CONFIGADDR, 0x4e0);
+ 	pcie2_write(PCIE2_CONFIGDATA, pcie2_read(PCIE2_CONFIGDATA));
+ 	pcie2_write(mb_mask, 0);
+ 	pcie2_write(mb_int, pcie2_read(mb_int));
+-	if (ramsize == 0 || RAMBASE_4375 + ramsize > tcm_size) {
+-		blog("W4 FAIL: RAM %#x + %#x is not within BAR2's %#x", RAMBASE_4375, ramsize, tcm_size);
++	/* 0150: the BCM4389's RAM ends past 4 MB of BAR2 if it is over 2 MB: map what it needs, if BAR2 has it */
++	if (ramsize != 0 && rambase + ramsize > tcm_size && rambase + ramsize <= bus->bar2_size) {
++		vm_size_t need = ((vm_size_t)rambase + ramsize + 0xffff) & ~(vm_size_t)0xffff;
++		volatile uint8_t *bigger = (volatile uint8_t *)ml_io_map_unmappable(bar2_phys, need, VM_WIMG_IO);
++
++		blog("BAR2 mapped again: %#lx bytes for RAM %#x + %#x: %s", (unsigned long)need, rambase, ramsize,
++		    bigger ? "done" : "failed");
++		if (bigger != NULL) {
++			tcm = bigger;
++			tcm_size = (uint32_t)need;
++		}
++	}
++	if (ramsize == 0 || rambase + ramsize > tcm_size) {
++		blog("W4 FAIL: RAM %#x + %#x is not within BAR2's %#x", rambase, ramsize, tcm_size);
+ 		return false;
+ 	}
+ 	return true;
+@@ -1751,17 +1853,22 @@ firmware(void)
+ 	uint64_t deadline;
+ 	bool fw_ours = false, nv_ours = false;
+ 
++	char fwname[32], nvbuf[40];
++
+ 	PE_parse_boot_argn("wifi_nvram", &which, sizeof(which));
+-	nvname = which == 1 ? "bcm4375-nvram-murata.txt" : "bcm4375-nvram-semco.txt";
+-	fw = fw_file("bcm4375-sta.bin", &fw_size, &fw_ours);
++	/* 0150: BCM4389 C1 on the p3s: bcmdhd_sta.bin_c1, nvram.txt_ES40_semco_c1 (only SEMCO) */
++	snprintf(fwname, sizeof(fwname), "%s-sta.bin", fwp);
++	snprintf(nvbuf, sizeof(nvbuf), "%s-nvram-%s.txt", fwp, which == 1 && !ca7 ? "murata" : "semco");
++	nvname = nvbuf;
++	fw = fw_file(fwname, &fw_size, &fw_ours);
+ 	nvtext = fw_file(nvname, &nv_size, &nv_ours);
+ 	if (fw == NULL || nvtext == NULL || fw_size < 0x100) {
+-		blog("W4 FAIL: fw/bcm4375-sta.bin (%llu bytes) or fw/%s (%llu bytes) missing", fw_size, nvname, nv_size);
++		blog("W4 FAIL: fw/%s (%llu bytes) or fw/%s (%llu bytes) missing", fwname, fw_size, nvname, nv_size);
+ 		fw_release(fw, fw_size, fw_ours);
+ 		fw_release(nvtext, nv_size, nv_ours);
+ 		return false;
+ 	}
+-	blog("fw/bcm4375-sta.bin %llu bytes, fw/%s %llu bytes (%s)", fw_size, nvname, nv_size,
++	blog("fw/%s %llu bytes, fw/%s %llu bytes (%s)", fwname, fw_size, nvname, nv_size,
+ 	    fw_ours ? "read from /fw" : "in the RAM disk");
+ 	nvram = nvram_make(nvtext, nv_size, &nvram_len);
+ 	fw_release(nvtext, nv_size, nv_ours);
+@@ -1783,28 +1890,32 @@ firmware(void)
+ 	}
+ 	resetintr = le32(fw);
+ 
+-	cr4_passive();
++	if (ca7) {
++		ca7_passive();
++	} else {
++		cr4_passive();
++	}
+ 	for (uint64_t at = 0; at < fw_size; at += 4) {
+ 		uint32_t word = 0;
+ 
+ 		memcpy(&word, fw + at, fw_size - at >= 4 ? 4 : (size_t)(fw_size - at));
+-		*(volatile uint32_t *)(tcm + RAMBASE_4375 + at) = word;
++		*(volatile uint32_t *)(tcm + rambase + at) = word;
+ 	}
+ 	__asm__ volatile ("dsb sy" ::: "memory");
+ 	fw_release(fw, fw_size, fw_ours);
+-	tcm_w32(RAMBASE_4375 + ramsize - 4, 0);
++	tcm_w32(rambase + ramsize - 4, 0);
+ 	for (uint32_t at = 0; at < nvram_len; at += 4) {
+ 		uint32_t word;
+ 
+ 		memcpy(&word, nvram + at, 4);
+-		*(volatile uint32_t *)(tcm + RAMBASE_4375 + ramsize - nvram_len + at) = word;
++		*(volatile uint32_t *)(tcm + rambase + ramsize - nvram_len + at) = word;
+ 	}
+ 	/*
+ 	 * Entropy below the NVRAM: the bytes, then {count, 0xfeedc0de}. Samsung's dhdpcie_wrt_rnd() writes 128 bytes
+ 	 * for this chip's ARM CR4 path, brcmfmac's WCC_SEED (the 4375's entry) 256; the firmware randomises its heap with it.
+ 	 */
+ 	{
+-		uint32_t seed[SEED_BYTES / 4], top = RAMBASE_4375 + ramsize - nvram_len;
++		uint32_t seed[SEED_BYTES / 4], top = rambase + ramsize - nvram_len;
+ 
+ 		read_random(seed, sizeof(seed));
+ 		tcm_w32(top - 8, SEED_BYTES);
+@@ -1814,15 +1925,21 @@ firmware(void)
+ 		}
+ 	}
+ 	kfree_data(nvram, nv_size + 64);
+-	written = tcm_r32(RAMBASE_4375 + ramsize - 4);
++	written = tcm_r32(rambase + ramsize - 4);
+ 	blog("firmware %llu bytes at %#x (reset vector %#x), %s %u bytes at the top; first word reads back %#x",
+-	    fw_size, RAMBASE_4375, resetintr, nvname, nvram_len, tcm_r32(RAMBASE_4375));
++	    fw_size, rambase, resetintr, nvname, nvram_len, tcm_r32(rambase));
+ 
+-	cr4_active(resetintr);
++	if (ca7) {
++		if (!ca7_active(resetintr)) {
++			return false;
++		}
++	} else {
++		cr4_active(resetintr);
++	}
+ 	clock_interval_to_deadline(5000, NSEC_PER_MSEC, &deadline);
+ 	do {
+ 		delay(50000);
+-		now = tcm_r32(RAMBASE_4375 + ramsize - 4);
++		now = tcm_r32(rambase + ramsize - 4);
+ 	} while (now == written && mach_absolute_time() < deadline);
+ 	if (now == written || !in_ram(now, SH_HOST_CAP + 4)) {
+ 		blog("W4 FAIL: the firmware did not start: last word %#x (was %#x)", now, written);
+@@ -2901,7 +3018,8 @@ redwood_bcm4375_run(const struct redwood_bcm_bus *b)
+ 	cfg = b->cfg;
+ 	pool = (uint8_t *)b->pool_virt;
+ 	pool_used = 0;
+-	blog("W4: the BCM4375's firmware (pool %#llx, %zu KB mapped)", b->pool_phys, b->pool_mapped >> 10);
++	blog("W4: the chip's firmware, BCM4375 or (0150) BCM4389 (pool %#llx, %zu KB mapped)", b->pool_phys,
++	    b->pool_mapped >> 10);
+ 	found = kalloc_data(FOUND_MOST * sizeof(*found), Z_WAITOK | Z_ZERO);
+ 	if (found == NULL || !bars() || !chip() || !firmware()) {
+ 		return;

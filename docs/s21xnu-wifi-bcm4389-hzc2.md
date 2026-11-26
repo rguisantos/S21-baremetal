@@ -112,5 +112,51 @@ locks). Novo `xnu-kernel` de 61.319.441 bytes; é o kernel candidato.
 
 No aparelho, com `sweetwifi=3`, o esperado é: `endpoint 14e4:4441`,
 `W2 PASS` com os tamanhos dos BARs, `W2b PASS: chipid … chip 4389`, e
-`W4 SKIP`. Próximo marco: carregar o firmware `_c1` no BCM4389 (núcleo CA7,
-RAM em 0x200000 segundo a fonte Samsung), que o redwood_bcm4375 não faz.
+`W4 SKIP`. O marco seguinte, a carga do firmware, é o 0150 abaixo.
+
+## Firmware no BCM4389: patch 0150
+
+O driver do 0142 (`redwood_bcm4375.c`, do z3sios no commit fixado, SHA-256
+conferido pelo script) segue o brcmfmac para o BCM4375: núcleo ARM CR4, RAM
+em 0x170000. O driver Samsung do HZC2 (`bcmdhd_101_18` no FlopKernel
+`dc17ad0`, mesma árvore do contrato de placas) mostra outro caminho para o
+4389:
+- `dhdpcie_dongle_attach()`: se há núcleo SYSMEM (0x849), o tamanho da RAM
+  vem de `si_sysmem_size()` e a base é `CA7_4389_RAM_BASE` = 0x200000;
+- `si_sysmem_size()`: bancos de RAM depois dos bancos de ROM, contados em
+  `coreinfo` (campos diferentes a partir da revisão 12 do núcleo), 8 KB por
+  unidade de `bankinfo`;
+- `dhdpcie_bus_download_state()`: ao entrar, janela BAR1 = 0, CA7 (0x847)
+  parado e fora de reset, SYSMEM em reset; ao sair, NVRAM, semente
+  0xfeedc0de de 128 bytes, leitura do endereço 0 (0xffffffff = vetor
+  protegido, exigiria assinatura), vetor de reset no endereço 0, CA7 solto;
+- `FW_SIGNATURE` não aparece no Makefile, e o bloco `CONFIG_BCM4389` não
+  pede assinatura.
+
+O [0150](../lab/s21xnu-p3s/xnu/0150-s21-p3s-wifi-bcm4389-firmware.patch)
+leva isso para o driver: com chip 0x4389, procura CA7 e SYSMEM no EROM,
+mede a RAM pelos bancos, remapeia o BAR2 se `0x200000 + RAM` passar dos
+4 MB mapeados (e o BAR2 tiver esse tamanho), faz a carga na ordem acima e
+lê os arquivos `bcm4389-sta.bin`, `bcm4389-nvram-semco.txt` e
+`bcm4389-clm.blob` de `/usr/local/etc/wifi`. São cópias renomeadas de
+`bcmdhd_sta.bin_c1`, `nvram.txt_ES40_semco_c1` e `bcmdhd_clm.blob` (tabela
+acima). No `sweet_wifi.c`, o p3s chega ao driver com `sweetwifi=4`; abaixo
+disso continua em `W4 SKIP`. O caminho do BCM4375 não muda.
+
+O sucesso esperado é `W4 PASS: the firmware is up, shared area at …`. Daí
+em diante o driver é o do 4375: área compartilhada (versões 5 a 7), anéis,
+ioctls. Se o firmware 20.80 usar outra versão de área compartilhada, o log
+para em `shared()` com a versão lida; esse é o marco seguinte.
+
+[`verify_wifi_0150.py`](../lab/s21xnu-p3s/xnu/verify_wifi_0150.py), no
+CI, busca o z3sios no commit do 0142, confere o SHA-256 do driver contra a
+lista do script, aplica 0149 e 0150 e confere a ordem da carga, a recusa do
+vetor protegido, a remapeação condicionada ao tamanho do BAR2, que o 4375
+mantém CR4/murata, e (no host) a decodificação dos bancos do SYSMEM nas
+duas revisões. 22 de 22 checagens.
+[Evidência](references/s21xnu-p3s-wifi-0150-20261126.json).
+
+No fork, `02528b7` e run
+[45901428006](https://github.com/rguisantos/s21xnu/actions/runs/45901428006):
+sucesso, 0150 aplicado; os avisos em `redwood_bcm4375.c` estão em linhas do
+upstream, nenhum nas linhas novas. Esse `xnu-kernel` é o candidato.

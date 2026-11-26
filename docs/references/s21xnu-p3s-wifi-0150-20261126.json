@@ -1,0 +1,147 @@
+{
+  "schema": "s21xnu-p3s-wifi-0150/1",
+  "checks": [
+    {
+      "check": "s21xnu fixado",
+      "ok": true,
+      "detail": "a128f07b0498"
+    },
+    {
+      "check": "z3sios no commit do 0142",
+      "ok": true,
+      "detail": "1323aa51d4c1"
+    },
+    {
+      "check": "redwood_bcm4375.c com o SHA-256 do 0142",
+      "ok": true,
+      "detail": "f34eb5a7bdfd6c2e"
+    },
+    {
+      "check": "0149 aplica",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0150 aplica sobre 0142 + 0149 + redwood_bcm4375.c",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0150 muda só sweet_wifi.c e redwood_bcm4375.c",
+      "ok": true,
+      "detail": "['bsd/dev/sweet_wifi.c', 'bsd/dev/redwood_bcm4375.c']"
+    },
+    {
+      "check": "sweet_wifi: p3s abaixo do nível 4 para com W4 SKIP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "sweet_wifi: p3s no nível 4 segue para pool e driver",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "driver: RAMBASE_4375 só no #define e no valor inicial de rambase",
+      "ok": true,
+      "detail": "['#define RAMBASE_4375            0x170000        /* [chip]741 */', 'static uint32_t rambase = RAMBASE_4375;  /* 0150 */', \"/* the chip's memory through BAR2, from its address 0 (the TCM: RAM from RAMBASE_4375) */\"]"
+    },
+    {
+      "check": "chip(): 0x4389 → CA7, RAM 0x200000, arquivos bcm4389-*",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "chip(): CA7 0x847 e SYSMEM 0x849 do EROM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "chip(): RAM do SYSMEM no CA7, do CR4 no BCM4375",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "chip(): BAR2 remapeado só se o BAR2 cobre rambase + ramsize",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ca7_passive: janela BAR1 = 0, CA7 parado, SYSMEM reset (download_state enter)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ca7_active: vetor seguro (0xffffffff) recusado antes de escrever",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "firmware(): parar → firmware → NVRAM/semente → soltar",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "firmware(): BCM4375 mantém cr4_passive/cr4_active",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "firmware(): murata só fora do CA7",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "clm_load(): nome pelo prefixo do chip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "host: sysmem_banks old = 3,17",
+      "ok": true,
+      "detail": "3,17"
+    },
+    {
+      "check": "host: sysmem_banks new = 5,40",
+      "ok": true,
+      "detail": "5,40"
+    },
+    {
+      "check": "host: sysmem_banks ones = 255,255",
+      "ok": true,
+      "detail": "255,255"
+    }
+  ],
+  "host_test": {
+    "old": "3,17",
+    "new": "5,40",
+    "ones": "255,255"
+  },
+  "result": "PASS",
+  "sources": {
+    "bcmdhd": "FlopKernel dc17ad0 drivers/net/wireless/broadcom/bcmdhd_101_18 (dhd_pcie.c dhdpcie_dongle_attach, dhdpcie_bus_download_state, dhdpcie_wrt_rnd; siutils.c si_sysmem_size; include/hndsoc.h, sbsysmem.h, sbchipc.h, bcmrand.h, pcicfg.h; Makefile CONFIG_BCM4389 block, no FW_SIGNATURE)",
+    "driver": "N1709/z3sios 1323aa51d4c1 kernel/xnu/files/bsd/dev/redwood_bcm4375.c sha256 f34eb5a7bdfd6c2efa211e3f9d1369c8d33cc1efcdddcd5512712fab653c55ed"
+  },
+  "fork_build": {
+    "repo": "rguisantos/s21xnu",
+    "commit": "02528b7",
+    "run_id": 45901428006,
+    "conclusion": "success",
+    "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; redwood_bcm4375.c warnings only on upstream lines",
+    "artifacts": [
+      {
+        "name": "xnu-kernel",
+        "id": 15156711442,
+        "bytes": 61313387,
+        "digest": "sha256:c9824a204169c9d912b1be6637c89b53a7b97c9e90c6649c1cf04a16f1e6f5fc"
+      },
+      {
+        "name": "xnu-buildtree",
+        "id": 15155719128,
+        "bytes": 23205715,
+        "digest": "sha256:525b7ace557a88de63cf89f867377b8931b9a2da26c3772b54dc663de1cae29c"
+      }
+    ],
+    "hardware_run": false
+  }
+}
