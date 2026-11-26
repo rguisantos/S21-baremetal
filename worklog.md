@@ -4424,3 +4424,16 @@ p3s no `sweetwifi=4`; o caminho do BCM4375 não muda. `verify_wifi_0150.py`
 (CI, busca o z3sios fixado): 22/22. Série do fork com `0006`;
 `check_fork_series.py` PASS. Fork `02528b7`, run 45901428006: sucesso.
 Nada executado no aparelho.
+
+## 2026-11-26 — s21xnu: arquivos do Wi-Fi e encaixe da RAM do CA7
+
+[Análise](docs/s21xnu-wifi-bcm4389-hzc2.md#preparar-os-arquivos-do-wi-fi).
+`wifi/prepare_wifi_files.py` confere os três arquivos HZC2 pelos SHA-256
+fixados, grava os nomes `bcm4389-*` que o 0150 procura e lê do firmware
+vetor de reset, RAM declarada e necessidade de remapear o BAR2; 8 testes
+sintéticos no CI. O 0150 passou a conferir a RAM do CA7 contra o BAR2 depois
+do tamanho declarado pela imagem (antes recusava no `chip()` pela RAM do
+SYSMEM); verificador 24/24. O `bcmdhd_101_18` compila com
+`PCIE_SHARED_VERSION` = 7 e aceita firmware de versão 5–7, a mesma faixa
+do driver do 4375. Fork `b5b1377`, run 45903906003: sucesso. Nada executado
+no aparelho.

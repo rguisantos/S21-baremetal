@@ -1,4 +1,4 @@
-From cbee0966bf0d7e4811ddce41f5e9be35ef02167e Mon Sep 17 00:00:00 2001
+From 9bc2ce9242f11de0de8c26b078783feb94c1b82e Mon Sep 17 00:00:00 2001
 From: rguisantos <142853894+rguisantos@users.noreply.github.com>
 Date: Thu, 26 Nov 2026 17:55:35 -0400
 Subject: [PATCH] xnu: 0150 S21 Ultra (p3s) Wi-Fi: BCM4389 firmware download
@@ -16,16 +16,16 @@ the p3s reach the driver at sweetwifi=4. The BCM4375 path is unchanged.
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01BMMeXnUh8SfBzu3GsrA53v
 ---
- .../0150-s21-p3s-wifi-bcm4389-firmware.patch  | 328 ++++++++++++++++++
- 1 file changed, 328 insertions(+)
+ .../0150-s21-p3s-wifi-bcm4389-firmware.patch  | 349 ++++++++++++++++++
+ 1 file changed, 349 insertions(+)
  create mode 100644 xnu/patches/0150-s21-p3s-wifi-bcm4389-firmware.patch
 
 diff --git a/xnu/patches/0150-s21-p3s-wifi-bcm4389-firmware.patch b/xnu/patches/0150-s21-p3s-wifi-bcm4389-firmware.patch
 new file mode 100644
-index 0000000..6a919b9
+index 0000000..bdf63e4
 --- /dev/null
 +++ b/xnu/patches/0150-s21-p3s-wifi-bcm4389-firmware.patch
-@@ -0,0 +1,328 @@
+@@ -0,0 +1,349 @@
 +diff --git a/bsd/dev/sweet_wifi.c b/bsd/dev/sweet_wifi.c
 +index 0b22ce1..c85482b 100644
 +--- a/bsd/dev/sweet_wifi.c
@@ -44,7 +44,7 @@ index 0000000..6a919b9
 + 	if (wifi_level < 3 || dma_pool() != 0) {
 + 		wlog("done at level %u", wifi_level);
 +diff --git a/bsd/dev/redwood_bcm4375.c b/bsd/dev/redwood_bcm4375.c
-+index 32f5e57..47421b2 100644
++index 32f5e57..f40957f 100644
 +--- a/bsd/dev/redwood_bcm4375.c
 ++++ b/bsd/dev/redwood_bcm4375.c
 +@@ -94,6 +94,19 @@ void redwood_bcm4375_run(const struct redwood_bcm_bus *bus);
@@ -219,7 +219,7 @@ index 0000000..6a919b9
 + 		return false;
 + 	}
 + 	/* brcmf_pcie_buscore_reset() [pcie]1904: the mailbox registers by the PCIe2 core's revision */
-+@@ -1724,16 +1814,28 @@ chip(void)
++@@ -1724,18 +1814,34 @@ chip(void)
 + 	} else {
 + 		mb_int = 0x48, mb_mask = 0x4c, h2d_mb0 = 0x140, h2d_mb1 = 0x144;
 + 	}
@@ -248,12 +248,18 @@ index 0000000..6a919b9
 ++			tcm_size = (uint32_t)need;
 ++		}
 ++	}
-++	if (ramsize == 0 || rambase + ramsize > tcm_size) {
+++	if (ramsize == 0 || (!ca7 && rambase + ramsize > tcm_size)) {
 ++		blog("W4 FAIL: RAM %#x + %#x is not within BAR2's %#x", rambase, ramsize, tcm_size);
 + 		return false;
 + 	}
+++	if (ca7 && rambase + ramsize > tcm_size) {
+++		/* the image may say less ("SMAR"): firmware() checks again once it has read it */
+++		blog("RAM %#x + %#x passes BAR2's %#x: left to the image's own RAM size", rambase, ramsize, tcm_size);
+++	}
 + 	return true;
-+@@ -1751,17 +1853,22 @@ firmware(void)
++ }
++ 
++@@ -1751,17 +1857,22 @@ firmware(void)
 + 	uint64_t deadline;
 + 	bool fw_ours = false, nv_ours = false;
 + 
@@ -280,7 +286,22 @@ index 0000000..6a919b9
 + 	    fw_ours ? "read from /fw" : "in the RAM disk");
 + 	nvram = nvram_make(nvtext, nv_size, &nvram_len);
 + 	fw_release(nvtext, nv_size, nv_ours);
-+@@ -1783,28 +1890,32 @@ firmware(void)
++@@ -1773,6 +1884,14 @@ firmware(void)
++ 			ramsize = own;
++ 		}
++ 	}
+++	if (rambase + ramsize > tcm_size) {      /* 0150: the CA7's RAM, as the image says, within what BAR2 maps */
+++		blog("W4 FAIL: RAM %#x + %#x is not within BAR2's %#x", rambase, ramsize, tcm_size);
+++		fw_release(fw, fw_size, fw_ours);
+++		if (nvram != NULL) {
+++			kfree_data(nvram, nv_size + 64);
+++		}
+++		return false;
+++	}
++ 	if (nvram == NULL || fw_size + 8 + SEED_BYTES + nvram_len > ramsize) {
++ 		blog("W4 FAIL: firmware %llu + NVRAM %u bytes do not fit RAM %#x", fw_size, nvram_len, ramsize);
++ 		fw_release(fw, fw_size, fw_ours);
++@@ -1783,28 +1902,32 @@ firmware(void)
 + 	}
 + 	resetintr = le32(fw);
 + 
@@ -318,7 +339,7 @@ index 0000000..6a919b9
 + 
 + 		read_random(seed, sizeof(seed));
 + 		tcm_w32(top - 8, SEED_BYTES);
-+@@ -1814,15 +1925,21 @@ firmware(void)
++@@ -1814,15 +1937,21 @@ firmware(void)
 + 		}
 + 	}
 + 	kfree_data(nvram, nv_size + 64);
@@ -344,7 +365,7 @@ index 0000000..6a919b9
 + 	} while (now == written && mach_absolute_time() < deadline);
 + 	if (now == written || !in_ram(now, SH_HOST_CAP + 4)) {
 + 		blog("W4 FAIL: the firmware did not start: last word %#x (was %#x)", now, written);
-+@@ -2901,7 +3018,8 @@ redwood_bcm4375_run(const struct redwood_bcm_bus *b)
++@@ -2901,7 +3030,8 @@ redwood_bcm4375_run(const struct redwood_bcm_bus *b)
 + 	cfg = b->cfg;
 + 	pool = (uint8_t *)b->pool_virt;
 + 	pool_used = 0;
