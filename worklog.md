@@ -4305,3 +4305,14 @@ passou a limitar o toque à vista do console em vez de 1079/2399.
 Verificador 28/28 com S21+ idêntico em todos os valores, ida e volta
 tela→toque→HID no p3s e duas mutações detectadas; determinístico.
 Revisões Codex de #100–#102 seguem bloqueadas por limite de uso; sem merge.
+
+## 2026-11-26 — s21xnu: rodapé AVB de laboratório para o boot.img do shim
+
+[Análise](docs/xnu-s21xnu-p3s.md#rodapé-avb-de-laboratório-2611). O port
+MonsterROM (`ba99fed`) assina o boot com chave de teste no HZC2
+desbloqueado. `avb_lab.py` transplanta o vbmeta do boot stock para o corpo
+do shim (vbmeta após o corpo, AVBf no fim, image_size/digest/chave/assinatura
+refeitos), reaproveitando as checagens de `capture_a0_container.py`;
+`mk_sboot_bootimg.py --avb-lab-key`. 6 controles com RSA real no CI. Sem
+avbtool aqui (googlesource bloqueado). Tentativa de acionar `@codex review`
+nos PRs foi negada pelas permissões da sessão; merges seguem pendentes.

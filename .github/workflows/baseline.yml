@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/test_s21xnu_board_contract.py
       - name: Check S-Boot boot.img builder for the s21xnu shim
         run: python3 lab/s21xnu-p3s/test_mk_sboot_bootimg.py
+      - name: Check lab AVB footer transplant (real RSA via openssl)
+        run: python3 lab/s21xnu-p3s/test_avb_lab.py
       - name: Fetch pinned s21xnu and run p3s profile and LK handoff in QEMU
         run: |
           git init -q /tmp/s21xnu
