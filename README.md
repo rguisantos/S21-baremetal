@@ -1,5 +1,7 @@
 # S21-baremetal — AArch64 no QEMU e investigação do Exynos 2100
 
+O [contrato de hardware do s21xnu no p3s](docs/xnu-s21xnu-p3s.md) comparou as fontes FlopKernel do S21 Ultra e do S21+, onde o port XNU público chegou à tela inicial do iOS 16: touch, S2DOS05, MAX77705, teclas, GIC, Mali, UFS e janela de RAM coincidem (21 itens); painel 1440x3200 e Wi-Fi BCM4389 diferem (5). Um patch fixado acrescenta perfis `p3s` e `p3s-window` ao shim/ADT do s21xnu, com 20/20 verificações de host. Qualquer carga continua exigindo desbloqueio OEM; nada foi executado no aparelho.
+
 No HZC2, os 274 módulos do ramdisk e os [dois módulos da partição vendor](docs/a0-vendor-modules-hzc2.md) cobrem todos os 276 nomes observados no aparelho. O [leitor de bugreport](docs/a0-runtime-identity-hzc2.md) identifica o banner Samsung nessa captura. A carga do candidato segue pendente.
 
 A [comparação com a MonsterROM](docs/a0-monsterrom-hzc2.md) confirmou os campos de vendor_boot no original e em B, a igualdade de .text em dois pares de módulos e a configuração embutida no vmlinux alinhado. O bugreport HZC2 original lista os dois módulos carregados. A execução e a aceitação do candidato A0 seguem em aberto.

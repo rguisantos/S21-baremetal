@@ -1,0 +1,85 @@
+diff --git a/shim/build-s21.sh b/shim/build-s21.sh
+index 77c6a6c..9a38cde 100755
+--- a/shim/build-s21.sh
++++ b/shim/build-s21.sh
+@@ -3,7 +3,16 @@
+ set -euo pipefail
+ cd "$(dirname "$0")"
+ CC=${CC:-aarch64-linux-gnu-gcc}; OBJCOPY=${OBJCOPY:-aarch64-linux-gnu-objcopy}
+-CFLAGS="-O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align -fno-stack-protector -Wall -Wextra"
++# BOARD=t2s (default, S21+), p3s (S21 Ultra, full 1440x3200) or p3s-window
++# (S21 Ultra, 1080x2400 window with the 1440-pixel stride): framebuffer geometry.
++BOARD=${BOARD:-t2s}
++case "$BOARD" in
++  t2s) BOARD_CFLAGS= ;;
++  p3s) BOARD_CFLAGS=-DSWEET_BOARD_P3S ;;
++  p3s-window) BOARD_CFLAGS=-DSWEET_BOARD_P3S_WINDOW ;;
++  *) echo "error: unknown BOARD=$BOARD (t2s|p3s|p3s-window)" >&2; exit 1 ;;
++esac
++CFLAGS="$BOARD_CFLAGS -O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align -fno-stack-protector -Wall -Wextra"
+ mkdir -p out
+ for f in start.S shim.c console.c mmu.c fdt.c loader.c ufs.c; do $CC $CFLAGS -c $f -o out/${f%.*}.o; done
+ abs=$(aarch64-linux-gnu-readelf -r out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o | grep -c ABS64 || true)
+diff --git a/shim/console.h b/shim/console.h
+index 819e61a..f2f07a2 100644
+--- a/shim/console.h
++++ b/shim/console.h
+@@ -1,10 +1,24 @@
+ #pragma once
+ #include <stdint.h>
+ 
+-#define FB_BASE		0xfa000000UL	/* S21 simple-framebuffer, 1080x2400 */
++#define FB_BASE		0xfa000000UL	/* S-Boot framebuffer (bootloader_fb) */
++#if defined(SWEET_BOARD_P3S)
++/* S21 Ultra (p3s): S6E3HAD WQHD+ panel; LK reserves 0x1194000 = 1440*3200*4 */
++#define FB_W		1440
++#define FB_H		3200
++#define FB_STRIDE	(1440 * 4)
++#elif defined(SWEET_BOARD_P3S_WINDOW)
++/* S21 Ultra, 1080x2400 window in the top-left of the 1440x3200 scanout, so the
++ * t2s display/touch geometry in XNU can be reused unchanged for a first boot. */
++#define FB_W		1080
++#define FB_H		2400
++#define FB_STRIDE	(1440 * 4)
++#else
++/* S21+ (t2s): 1080x2400 */
+ #define FB_W		1080
+ #define FB_H		2400
+ #define FB_STRIDE	(FB_W * 4)	/* a8r8g8b8, matches mainline simplefb */
++#endif
+ 
+ #define RED	0xffff0000U
+ #define BLUE	0xff0000a0U
+diff --git a/tools/mkadt.py b/tools/mkadt.py
+index 5e38d39..71ffbab 100644
+--- a/tools/mkadt.py
++++ b/tools/mkadt.py
+@@ -2,7 +2,7 @@
+ """Build the minimal Apple Device Tree that the SWEET xnu needs to boot.
+ 
+ Only what the early boot path actually reads (see NOTES.md); every MMIO
+-address comes from the sweet live FDT. Usage:  mkadt.py OUT.adt [--dump] [--qemu] [--highmem]
++address comes from the sweet live FDT. Usage:  mkadt.py OUT.adt [--dump] [--qemu] [--highmem] [--board=t2s|p3s|p3s-window]
+ """
+ import hashlib, os, struct, sys
+ 
+@@ -30,7 +30,18 @@ GICD, GICD_SIZE = 0x10200000, 0x10000
+ GICR, GICR_SIZE = 0x10240000, 0x200000
+ FB, FB_SIZE = 0xfa000000, 0x1400000
+ SWEET_ECID = 0x5357454554000001  # 'SWEET' + 1, synthetic
+-FB_W, FB_H, FB_STRIDE = 1080, 2400, 1080 * 4
++# Panel geometry left by S-Boot: (width, height, stride). --board=p3s selects the
++# S21 Ultra WQHD+ panel (LK's bootloader_fb reservation is 0x1194000 =
++# 1440*3200*4); p3s-window exposes a 1080x2400 window with the 1440-pixel stride
++# so the t2s display/touch geometry in XNU works unchanged. Default is t2s.
++# Keep in step with shim/console.h (BOARD= in shim/build-s21.sh).
++BOARD_FB = {'t2s': (1080, 2400, 1080 * 4), 'p3s': (1440, 3200, 1440 * 4),
++            'p3s-window': (1080, 2400, 1440 * 4)}
++BOARD = next((a.split('=', 1)[1] for a in sys.argv if a.startswith('--board=')), 't2s')
++if BOARD not in BOARD_FB:
++    raise SystemExit(f'unknown --board={BOARD} (expected one of {sorted(BOARD_FB)})')
++FB_W, FB_H, FB_STRIDE = BOARD_FB[BOARD]
++assert FB_STRIDE * FB_H <= FB_SIZE, 'framebuffer geometry exceeds FB_SIZE'
+ # Internal UFS host (ufshc@1d84000 "ufs_mem"); QEMU virt has none
+ UFS, UFS_SIZE = 0x13100000, 0x2000
+ TIMEBASE = 26000000

@@ -4248,3 +4248,20 @@ bugreport real coincide com a Image stock. O leitor compara banner e
 inventário no mesmo membro dumpstate. Os GNU build IDs das duas Images
 foram localizados pelos símbolos das notas e o de B também no vmlinux.
 A0 permanece sem captura de execução.
+
+## 2026-11-25 — s21xnu (XNU no S21+) frente ao p3s
+
+[Análise](docs/xnu-s21xnu-p3s.md). Avaliados o port MonsterROM A17 (prova de
+kernel/vendor_boot próprios no HZC2 com bootloader desbloqueado) e o
+s21xnu `a128f07` (XNU iOS 16 no S21+ t2s, tela inicial relatada em 31/10,
+carga por kexec a partir de Linux 7.3). Novo verificador compila base e
+overlays r17 do FlopKernel `dc17ad0` e compara os recursos fixados pelo
+s21xnu: 21 iguais (touch, S2DOS05, MAX77705, teclas, GIC, Mali, UFS, MPIDR,
+janela XNU sem reservas fixas) e 5 diferentes (painel 1440x3200, modos,
+firmware touch, Wi-Fi BCM4389 Gen2). JSON idêntico em duas execuções.
+`bootloader_fb` 0x1194000 do LK = 1440×3200×4. Patch para o s21xnu com
+perfis `p3s` e `p3s-window` no shim/ADT; verificador de host 20/20, t2s
+byte a byte igual ao original. XNU não compilado. Corrigido `parse_fdt.py`
+(tokens trocados, versão, células). 11 testes novos, incluídos no CI;
+baseline R10 9/9. Carga no p3s continua dependente do desbloqueio OEM;
+nenhuma ação no aparelho.

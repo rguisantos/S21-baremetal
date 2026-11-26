@@ -29,6 +29,8 @@ jobs:
           dpkg-query -W gcc gcc-aarch64-linux-gnu binutils binutils-aarch64-linux-gnu qemu-system-arm python3
       - name: Check ELF symbol reader with localized headers
         run: python3 scripts/test_elf_symbols.py
+      - name: Check s21xnu board contract comparator and FDT readers
+        run: python3 scripts/test_s21xnu_board_contract.py
       - name: Check A0 stock container integrity and offline execution refusals
         run: |
           python3 scripts/test_capture_a0.py

@@ -243,7 +243,8 @@ Execute a partir da raiz do repositório. Os comandos de validação estão no [
 | Userland no consumidor EFI | `run_guarded_userland.py`, `verify_guarded_userland.py`, `check_guarded_userland_capture.py`, `test_xnu_userland_profile.py` | Perfil fixo, auditoria física somente de leitura, replay independente, três recusas e retorno nativo; [guia](../docs/xnu-guarded-userland.md) |
 | Preparação HackiOS | `check_hackios_userland.py` | Reproduz colisão/modos dos jobs e falhas Bash com entradas sintéticas; gera patch sem alterar o checkout; [evidências](../docs/hackios-userland-host.md) |
 | Inspeção atual | `inspect_proton.py`, `inspect_sboot_hzc2.py` | ZIP Proton e relatório somente leitura do sboot HZC2 identificado por SHA-256 |
-| Forense legada | `parse_fdt.py`, `abl_triage.py` | Leitores ainda não auditados; não usar como única evidência |
+| Forense legada | `parse_fdt.py`, `abl_triage.py` | Leitores legados; `parse_fdt.py` corrigido em 25/11 (tokens, versão, células de `reg`), `abl_triage.py` não auditado; não usar como única evidência |
+| Contrato s21xnu | `s21xnu_board_contract.py`, `test_s21xnu_board_contract.py` | Compara FDT de duas placas nos recursos fixados pelo port s21xnu |
 | Experimentos históricos | `build_kit*.sh`, `snapshot_project.sh`, `mk_append_r9.py`, `test_delta*`, `test_header_qemu.sh`, `kit-assets/`, `magiskboot/` | Kits DAY1/DAY2, repack e experiências anteriores; fora do fluxo atual validado |
 
 Os scripts históricos foram mantidos no lugar para preservar referências e caminhos. Alguns usam `/home/z/my-project` ou dependem de downloads antigos; não são comandos de reprodução atuais. Em particular, o conteúdo descrito por `snapshot_project.sh` inclui `.env`: não usar esse snapshot como pacote público sem revisar sua seleção de arquivos. A organização não executou repacks, instaladores ou scripts de flash.
