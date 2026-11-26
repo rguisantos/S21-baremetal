@@ -1,0 +1,147 @@
+{
+  "schema": "s21xnu-p3s-profile/1",
+  "s21xnu_commit": "a128f07b04987e60f5e13e2ce67b19ae009672cd",
+  "patch_sha256": "a5af2b0f4d51232de49628fa7bc2f33256396472c4f9c2a4aa6d0b15484d63a0",
+  "checks": [
+    {
+      "check": "patch -p1 aplica",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ADT original anuncia 1080x2400",
+      "ok": true,
+      "detail": "(1080, 2400, 4320, 4194304000, 20971520)"
+    },
+    {
+      "check": "ADT t2s geometria",
+      "ok": true,
+      "detail": "(1080, 2400, 4320)"
+    },
+    {
+      "check": "ADT t2s base/tamanho preservados",
+      "ok": true,
+      "detail": "0xfa000000+0x1400000"
+    },
+    {
+      "check": "ADT t2s cabe em FB_SIZE",
+      "ok": true,
+      "detail": "10368000 <= 20971520"
+    },
+    {
+      "check": "console.h t2s (boot_args.Video)",
+      "ok": true,
+      "detail": "(1080, 2400, 4320)"
+    },
+    {
+      "check": "shim t2s idêntico ao original",
+      "ok": true,
+      "detail": "e91caec6f1b5a1f0"
+    },
+    {
+      "check": "ADT t2s idêntico ao original",
+      "ok": true,
+      "detail": "4a4155f4c9bb7d85"
+    },
+    {
+      "check": "ADT p3s geometria",
+      "ok": true,
+      "detail": "(1440, 3200, 5760)"
+    },
+    {
+      "check": "ADT p3s base/tamanho preservados",
+      "ok": true,
+      "detail": "0xfa000000+0x1400000"
+    },
+    {
+      "check": "ADT p3s cabe em FB_SIZE",
+      "ok": true,
+      "detail": "18432000 <= 20971520"
+    },
+    {
+      "check": "console.h p3s (boot_args.Video)",
+      "ok": true,
+      "detail": "(1440, 3200, 5760)"
+    },
+    {
+      "check": "ADT p3s-window geometria",
+      "ok": true,
+      "detail": "(1080, 2400, 5760)"
+    },
+    {
+      "check": "ADT p3s-window base/tamanho preservados",
+      "ok": true,
+      "detail": "0xfa000000+0x1400000"
+    },
+    {
+      "check": "ADT p3s-window cabe em FB_SIZE",
+      "ok": true,
+      "detail": "13824000 <= 20971520"
+    },
+    {
+      "check": "console.h p3s-window (boot_args.Video)",
+      "ok": true,
+      "detail": "(1080, 2400, 5760)"
+    },
+    {
+      "check": "shim p3s difere do t2s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "shim p3s-window difere do p3s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "BOARD ausente = t2s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "BOARD inválido recusado",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "builds": {
+    "original": {
+      "shim": "e91caec6f1b5a1f0895ee779e3d06f505078d49e19a4936a4380f3dfd836a465",
+      "adt": "4a4155f4c9bb7d85d3e0975084e97c04c7fb6f07424b7a88b15d754aa41c59f0"
+    },
+    "t2s": {
+      "shim": "e91caec6f1b5a1f0895ee779e3d06f505078d49e19a4936a4380f3dfd836a465",
+      "adt": "4a4155f4c9bb7d85d3e0975084e97c04c7fb6f07424b7a88b15d754aa41c59f0",
+      "fbcon": [
+        1080,
+        2400,
+        4320,
+        4194304000,
+        20971520
+      ]
+    },
+    "p3s": {
+      "shim": "c6ff260590db32cbdfd59ec6ceeb0819b05556db6a7f6ebcd106a3cabdf7115c",
+      "adt": "f3a08498d2f9f61685dfed83f553e790e550705d95787d123f13631a75978dab",
+      "fbcon": [
+        1440,
+        3200,
+        5760,
+        4194304000,
+        20971520
+      ]
+    },
+    "p3s-window": {
+      "shim": "f5d6d40783f4a1d6fcf2bebda92893776df32d0489d0dfdc48c8c8446d3fbfd6",
+      "adt": "013eafba2c9b7445f8a23c04fd6f99d2c9accb15ed5d9ca98b9eff57ff6c1717",
+      "fbcon": [
+        1080,
+        2400,
+        5760,
+        4194304000,
+        20971520
+      ]
+    }
+  },
+  "result": "PASS"
+}

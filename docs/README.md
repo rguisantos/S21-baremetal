@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [contrato de hardware do s21xnu no p3s](xnu-s21xnu-p3s.md) comparou as fontes FlopKernel do S21 Ultra e do S21+, onde o port XNU público chegou à tela inicial do iOS 16: touch, S2DOS05, MAX77705, teclas, GIC, Mali, UFS e janela de RAM coincidem (21 itens); painel 1440x3200 e Wi-Fi BCM4389 diferem (5). Um patch fixado acrescenta perfis `p3s` e `p3s-window` ao shim/ADT do s21xnu, com 20/20 verificações de host. Qualquer carga continua exigindo desbloqueio OEM; nada foi executado no aparelho.
+
 A [comparação com a MonsterROM](a0-monsterrom-hzc2.md) confirmou os campos de vendor_boot no original e em B, a igualdade de .text em dois pares de módulos e a configuração embutida no vmlinux alinhado. A0 segue aberto para execução e aceitação.
 
 A [reprodução do resolvedor em host](a0-modprobe-host-replay-hzc2.md) executou uma referência AOSP fixada com controles stock e backend simulado: 274 módulos únicos, duas tentativas equivalentes a EEXIST e todas as 3654 dependências antes dos consumidores. Dois controles de falha recusaram a lista. A softdep memory_group_manager não está no conjunto; sua opcionalidade no resolvedor não prova funcionamento da GPU. Sem execução Samsung ou equivalência runtime; A0 aberto.
@@ -103,6 +105,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 
 - [Roadmap e estado atual](roadmap.md): evidências, prioridades e critérios separados para diagnóstico físico e R10 em uma CPU.
 - [Baseline obrigatório e CI](baseline-validation.md): comando único, ELF novo, host/QEMU, logs, timeout e recusa de skips.
+- [s21xnu no p3s](xnu-s21xnu-p3s.md): contrato de hardware S21 Ultra × S21+ (21 iguais, 5 diferentes), perfil de painel para shim/ADT e opções de carga.
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
 - [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.
