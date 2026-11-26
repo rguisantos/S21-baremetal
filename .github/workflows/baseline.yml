@@ -40,6 +40,15 @@ jobs:
           git -C /tmp/s21xnu checkout -q FETCH_HEAD
           python3 lab/s21xnu-p3s/verify_p3s_profile.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
+      - name: Reproduce the s21xnu XNU patch series and check touch patch 0146
+        run: |
+          git init -q /tmp/dxb
+          git -C /tmp/dxb fetch -q --depth 1 https://github.com/blacktop/darwin-xnu-build 663906528d1cd5ea8fde7de6f16de73db9511549
+          git -C /tmp/dxb checkout -q FETCH_HEAD
+          git init -q /tmp/xnu
+          git -C /tmp/xnu fetch -q --depth 1 https://github.com/apple-oss-distributions/xnu refs/tags/xnu-8796.141.3
+          git -C /tmp/xnu checkout -q FETCH_HEAD
+          python3 lab/s21xnu-p3s/xnu/verify_xnu_touch_patch.py --s21xnu /tmp/s21xnu --dxb /tmp/dxb --xnu /tmp/xnu
       - name: Check A0 stock container integrity and offline execution refusals
         run: |
           python3 scripts/test_capture_a0.py

@@ -4281,3 +4281,27 @@ um kernel falso: 57/57 em KASLR 0/0x8000/0x1f8000, controle sem padding não
 executa, boot.img idêntico em duas execuções. CI busca o s21xnu fixado e
 roda perfil + handoff. Sem stock boot/vendor_boot reais neste ambiente;
 nada no aparelho.
+
+## 2026-11-26 — s21xnu: toque no p3s (patch XNU 0146)
+
+[Análise](docs/xnu-s21xnu-p3s.md#toque-no-p3s-patch-xnu-0146-2611).
+Reproduzido o laço de patches do darwin-xnu-build `663906528d1c` sobre
+xnu-8796.141.3 sem executar os `*.sh` do s21xnu: 110 aplicados, 27 pulados
+(variantes Redmi, 0030 escrita UFS e dependências de scripts). O
+`sweet_touch.c` final é o do 0094 (sec_ts S21). Patch 0146 troca a fórmula
+fixa 1080/2400 por `ts_panel_map` com boot-args `touch_panel_w/h`: S21+
+idêntico em 4096×4 casos, p3s-window mapeado para a janela. Verificador
+16/16, determinístico, incluído no CI. XNU não compilado (runner macOS).
+Revisão automática Codex dos PRs #100/#101 falhou por limite de uso; merges
+aguardam revisão.
+
+## 2026-11-26 — s21xnu: tela cheia no p3s (patch XNU 0147) e revisão do 0146
+
+[Análise](docs/xnu-s21xnu-p3s.md#toque-e-tela-no-p3s-patches-xnu-0146-e-0147-2611).
+No painel 1440x3200, o SweetFramebuffer apresentava o tamanho nativo (sem
+layout UIKit) e o HID fixava 1080x2400. 0147 centra o iPhone X 1125x2436
+com bordas (offsets -157/-382) e tira a geometria do HID do console. 0146
+passou a limitar o toque à vista do console em vez de 1079/2399.
+Verificador 28/28 com S21+ idêntico em todos os valores, ida e volta
+tela→toque→HID no p3s e duas mutações detectadas; determinístico.
+Revisões Codex de #100–#102 seguem bloqueadas por limite de uso; sem merge.

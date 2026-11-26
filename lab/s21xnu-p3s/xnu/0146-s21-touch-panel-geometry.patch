@@ -1,0 +1,78 @@
+diff --git a/bsd/dev/sweet_touch.c b/bsd/dev/sweet_touch.c
+index 8684a2e..b715a63 100644
+--- a/bsd/dev/sweet_touch.c
++++ b/bsd/dev/sweet_touch.c
+@@ -47,6 +47,8 @@
+  *                    4096x4096 raw space per nTX:18/nRX:40, rX/rY:4095 from
+  *                    the live sec_input probe log)
+  *   touch_trace=1    print every decoded event
++ *   touch_panel_w/h  physical panel in pixels (default 1080/2400; S21 Ultra:
++ *                    1440/3200); output clamped to the console view, 0146
+  *
+  * NOT YET WIRED: posting into whatever SWEET's own HID stand-in expects.
+  * I have not seen sweet_keys.c or the real posting entry point on this tree
+@@ -407,14 +409,38 @@ extern void sweet_hid_touch(int finger, int down, int x, int y);
+ #define S21_PANEL_MAXX 1079
+ #define S21_PANEL_MAXY 2399
+ 
++/*
++ * 0146: raw 0..4095 -> pixel on the console framebuffer the HID stand-in
++ * normalises against. The raw space spans the whole physical panel: boot-args
++ * touch_panel_w/h give its size (default 1080x2400, the S21+; the S21 Ultra is
++ * 1440x3200). The result is clamped to the console view (PE_current_console):
++ * 1080x2400 on the S21+ and with the shim's p3s-window profile, where the view
++ * is the top-left corner of the panel; 1440x3200 with the full p3s profile.
++ * Mirroring (touch_flip) is applied in panel pixels, before the clamp.
++ */
++static uint32_t ts_g_panel_w = 1080, ts_g_panel_h = 2400;
++static uint32_t ts_g_view_w = S21_PANEL_MAXX + 1, ts_g_view_h = S21_PANEL_MAXY + 1;
++
++static inline void
++ts_panel_map(uint32_t rx, uint32_t ry, uint32_t flip, uint32_t pw, uint32_t ph, uint32_t vw, uint32_t vh,
++    int *ox, int *oy)
++{
++        int x = (int)((rx * pw) >> 12), y = (int)((ry * ph) >> 12);
++        if (flip & 1) { x = (int)pw - 1 - x; }
++        if (flip & 2) { y = (int)ph - 1 - y; }
++        if (x > (int)vw - 1) { x = (int)vw - 1; }
++        if (y > (int)vh - 1) { y = (int)vh - 1; }
++        *ox = x; *oy = y;
++}
++
+ static struct { int down, x, y; } ts_fing[16];   /* fingers posted down (stuck-finger guard, 0139) */
+ extern void sweet_gov_touch(void);   /* 0111: touch booster of the load governor */
+ static void
+ sweet_touch_post(struct ts_touch *t, uint32_t flip)
+ {
+-        int x = (int)(((uint32_t)t->x * 1080u) >> 12), y = (int)(((uint32_t)t->y * 2400u) >> 12);
+-        if (flip & 1) { x = S21_PANEL_MAXX - x; }
+-        if (flip & 2) { y = S21_PANEL_MAXY - y; }
++        int x, y;
++        ts_panel_map((uint32_t)t->x, (uint32_t)t->y, flip, ts_g_panel_w, ts_g_panel_h, ts_g_view_w, ts_g_view_h,
++            &x, &y);
+         sweet_hid_touch(t->id - 1, t->down ? 1 : 0, x, y);
+         if (t->down) {
+                 sweet_gov_touch();
+@@ -1009,6 +1035,22 @@ sweet_touch_init(void)
+ 	PE_parse_boot_argn("touch_pwr", &touch_pwr, sizeof(touch_pwr));
+ 	PE_parse_boot_argn("touch_pull", &touch_pull, sizeof(touch_pull));
+ 	PE_parse_boot_argn("touch_flip", &touch_flip, sizeof(touch_flip));
++	{
++		uint32_t pw = 0, ph = 0;   /* 0146: physical panel; only full-or-larger panels accepted */
++		if (PE_parse_boot_argn("touch_panel_w", &pw, sizeof(pw)) && pw >= 1080 && pw <= 4096) {
++			ts_g_panel_w = pw;
++		}
++		if (PE_parse_boot_argn("touch_panel_h", &ph, sizeof(ph)) && ph >= 2400 && ph <= 8192) {
++			ts_g_panel_h = ph;
++		}
++		PE_Video v;
++		bzero(&v, sizeof(v));
++		if (PE_current_console(&v) == 0 && v.v_width >= 1 && v.v_width <= ts_g_panel_w &&
++		    v.v_height >= 1 && v.v_height <= ts_g_panel_h) {
++			ts_g_view_w = (uint32_t)v.v_width;
++			ts_g_view_h = (uint32_t)v.v_height;
++		}
++	}
+ 	PE_parse_boot_argn("touch_trace", &touch_trace, sizeof(touch_trace));
+ 	PE_parse_boot_argn("touch_poll_us", &touch_poll_us, sizeof(touch_poll_us));
+ 	PE_parse_boot_argn("touch_poll_active_us", &ts_g_active_us, sizeof(ts_g_active_us));
