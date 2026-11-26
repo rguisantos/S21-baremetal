@@ -415,8 +415,47 @@ traz três commits para `git am` sobre `a128f07`:
 - patches XNU 0146–0148 em `xnu/patches/`.
 
 `check_fork_series.py` (no CI) confere que a série reproduz exatamente os
-arquivos do lab: 7 arquivos, todos idênticos. Falta o fork, que só o dono
-da conta pode criar, e habilitar o Actions nele.
+arquivos do lab: 7 arquivos, todos idênticos.
+
+### Resultado: XNU compilado com 0146–0148
+
+O fork [rguisantos/s21xnu](https://github.com/rguisantos/s21xnu) recebeu a
+série (`91b4dd6`, `4ef3bd1`, `60e23f1`) e o handoff em `NOTES.md`
+(`cc8d1cd`). O workflow `xnu`, run
+[45890705951](https://github.com/rguisantos/s21xnu/actions/runs/45890705951)
+sobre `60e23f1`, terminou com **sucesso** em 12,5 min:
+- o log mostra "Applying patch" para 0146, 0147 e 0148, e SweetFramebuffer,
+  SweetHID e `sweet_touch.c` compilam;
+- só avisos. O 0148 acrescenta um `-Wcast-align` em
+  `SweetFramebuffer.cpp:194` (leitura `uint32_t` do blit), a mesma classe
+  que o upstream já tem em `sweet_touch.c:308`; inofensivo em arm64;
+- artefatos `xnu-kernel` (61.313.293 bytes) e `xnu-buildtree`, digests do
+  GitHub em [`s21xnu-fork-build-20261126.json`](references/s21xnu-fork-build-20261126.json).
+  O download do artefato foi bloqueado neste ambiente (host de blob fora da
+  lista de rede); o kernel não foi inspecionado aqui.
+
+Nada rodou no aparelho. Este kernel é o candidato depois da foto da sonda.
+
+## lk2nd: o que aproveitar (26/11)
+
+[lk2nd](https://github.com/msm8916-mainline/lk2nd) (`bef7135`) é um
+bootloader secundário para SoCs **Qualcomm** (família msm8916 e parentes),
+empacotado como `boot.img`. Ele oferece fastboot, carrega o sistema real a
+512 KiB dentro da partição boot ou de um ext2, e em Samsung Qualcomm é
+gravado com heimdall. A lista de aparelhos tem 40 Samsung, todos Qualcomm;
+nenhum Exynos. Não roda no Exynos 2100: depende do LK da Qualcomm, dos
+drivers de MMC/USB/clock dela e do formato de boot dela.
+
+Ideias que valem para cá:
+- **Segundo estágio no boot.img.** É o que o shim do s21xnu já faz: o
+  S-Boot carrega o shim, que desempacota o payload. Nada a copiar.
+- **Fastboot no aparelho** para iterar sem Odin. No Exynos isso exige um
+  gadget USB DWC3 do zero no shim; grande esforço. O
+  [`s21xnu-switch.sh`](../lab/s21xnu-p3s/dualboot/s21xnu-switch.sh) pelo
+  TWRP cobre a troca de imagens com menos risco.
+- **heimdall** como alternativa ao Odin no Linux: compatível com o
+  protocolo de download da Samsung, inclusive Exynos. Útil para gravar
+  `BOOT` sem Windows; não testado aqui com o SM-G998B.
 
 ## Coerências com este repositório
 
@@ -446,7 +485,8 @@ correção).
 - Decisão sobre desbloqueio OEM: nenhuma opção de carga existe sem ela.
 - Montar a sonda com o `boot.img`/`vendor_boot.img` stock reais (não estão
   neste ambiente) e conferir o relatório antes de qualquer flash.
-- Patches 0146–0148 verificados na série; compilar exige um fork do s21xnu
-  com a [série pronta](../lab/s21xnu-p3s/fork/README.md).
+- Patches 0146–0148 compilados no fork (run 45890705951); falta rodar no
+  aparelho e, opcionalmente, trocar o cast do blit do 0148 por leitura
+  alinhada.
 - Port BCM4389 ou Wi-Fi desligado.
 - Conferir no aparelho o FDT final do LK e o scanout do `bootloader_fb`.

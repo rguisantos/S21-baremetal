@@ -4371,3 +4371,15 @@ O XNU só compila no runner macOS do s21xnu (`xnu.yml`, push em
 0146–0148. `check_fork_series.py` confirma 7 arquivos idênticos aos do lab;
 no CI. Janela de RAM do XNU (2 GiB em 0x8c0000000) cabe nos 12 GiB do p3s
 (banco alto até 0xb00000000); não alterada sem teste.
+
+## 2026-11-26 — s21xnu: XNU compilado no fork; lk2nd avaliado
+
+[Análise](docs/xnu-s21xnu-p3s.md#resultado-xnu-compilado-com-01460148).
+Série aplicada em rguisantos/s21xnu (`60e23f1`) e handoff no `NOTES.md`
+(`cc8d1cd`). Workflow `xnu`, run 45890705951: sucesso; 0146–0148 aplicados,
+SweetFramebuffer/SweetHID/sweet_touch compilam, só avisos (novo
+`-Wcast-align` do blit 0148). Artefato `xnu-kernel` 61.313.293 bytes;
+digests em `docs/references/s21xnu-fork-build-20261126.json`; download
+bloqueado aqui. [lk2nd](docs/xnu-s21xnu-p3s.md#lk2nd-o-que-aproveitar-2611):
+só Qualcomm; aproveitável apenas a ideia de heimdall no lugar do Odin.
+Nada executado no aparelho.
