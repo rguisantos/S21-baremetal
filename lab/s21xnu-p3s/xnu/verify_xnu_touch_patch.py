@@ -357,6 +357,11 @@ def main(argv=None):
                         str(tmp / "t")], check=True)
         out = subprocess.run([str(tmp / "t")], capture_output=True, text=True, check=True).stdout.strip()
         vals = dict(kv.split("=", 1) for kv in out.split())
+        # build 45890705951 warned -Wcast-align on the blit (SweetFramebuffer.cpp:194/200)
+        (tmp / "align.c").write_text("#include <stdint.h>\n" + extract(fb, "static int32_t\nsweet_fb_scaled_blit"))
+        align = subprocess.run([cc, "-std=c11", "-Wcast-align=strict", "-Werror", "-Wno-unused-function",
+                                "-fsyntax-only", str(tmp / "align.c")], capture_output=True, text=True)
+        check("0148: blit sem -Wcast-align", align.returncode == 0, align.stderr.strip()[:200])
         report["host_test"] = vals
         for key, want in EXPECT.items():
             check(LABELS[key], vals.get(key) == want, vals.get(key))

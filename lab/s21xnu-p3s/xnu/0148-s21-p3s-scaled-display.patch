@@ -59,13 +59,13 @@ index c18581b..a8e2c46 100644
 +		int32_t ly = (int32_t)((int64_t)(Y - py) * lh / ph2) - dy;
 +		ly = ly < 0 ? 0 : (ly >= h ? h - 1 : ly);
 +		uint64_t row = (uint64_t)(sy + ly) * src_bpr;
-+		uint32_t *out = (uint32_t *)(panel + (uint64_t)Y * rowbytes);
++		uint8_t *out = panel + (uint64_t)Y * rowbytes;
 +		for (int32_t X = x0; X < x1; X++) {
 +			int32_t lx = (int32_t)((int64_t)(X - px) * lw / pw2) - dx;
 +			lx = lx < 0 ? 0 : (lx >= w ? w - 1 : lx);
 +			uint64_t at = row + (uint64_t)(sx + lx) * 4;
 +			if (at + 4 <= src_len) {
-+				out[X] = *(const uint32_t *)(src + at);
++				__builtin_memcpy(out + (uint64_t)X * 4, src + at, 4); /* no -Wcast-align */
 +			}
 +		}
 +		rows++;

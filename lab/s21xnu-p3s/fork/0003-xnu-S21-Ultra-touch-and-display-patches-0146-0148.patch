@@ -1,4 +1,4 @@
-From af4f9c52c1b1c67bb4ad038d57c7fbc50c49bd87 Mon Sep 17 00:00:00 2001
+From 699287ba0e6ec9e865aaf671e93df4682f519d16 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 26 Nov 2026 16:12:25 -0400
 Subject: [PATCH 3/3] xnu: S21 Ultra touch and display patches 0146-0148
@@ -250,7 +250,7 @@ index 0000000..3acc238
 + 	collection = IOHIDEvent::digitizerEvent(now, 0, kIOHIDDigitizerTransducerTypeHand, false, 0, 0, 0);
 diff --git a/xnu/patches/0148-s21-p3s-scaled-display.patch b/xnu/patches/0148-s21-p3s-scaled-display.patch
 new file mode 100644
-index 0000000..b8ea054
+index 0000000..b0869b9
 --- /dev/null
 +++ b/xnu/patches/0148-s21-p3s-scaled-display.patch
 @@ -0,0 +1,195 @@
@@ -315,13 +315,13 @@ index 0000000..b8ea054
 ++		int32_t ly = (int32_t)((int64_t)(Y - py) * lh / ph2) - dy;
 ++		ly = ly < 0 ? 0 : (ly >= h ? h - 1 : ly);
 ++		uint64_t row = (uint64_t)(sy + ly) * src_bpr;
-++		uint32_t *out = (uint32_t *)(panel + (uint64_t)Y * rowbytes);
+++		uint8_t *out = panel + (uint64_t)Y * rowbytes;
 ++		for (int32_t X = x0; X < x1; X++) {
 ++			int32_t lx = (int32_t)((int64_t)(X - px) * lw / pw2) - dx;
 ++			lx = lx < 0 ? 0 : (lx >= w ? w - 1 : lx);
 ++			uint64_t at = row + (uint64_t)(sx + lx) * 4;
 ++			if (at + 4 <= src_len) {
-++				out[X] = *(const uint32_t *)(src + at);
+++				__builtin_memcpy(out + (uint64_t)X * 4, src + at, 4); /* no -Wcast-align */
 ++			}
 ++		}
 ++		rows++;
