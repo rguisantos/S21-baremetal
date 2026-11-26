@@ -67,3 +67,50 @@ também trata CR4 com base 0x170000. A primeira etapa verificável de um
 driver p3s é distinguir o endpoint do p3s do 4375 na enumeração, antes
 de qualquer carga de firmware. O ID esperado vem da fonte Samsung.
 O XNU candidato ainda não enumerou o chip no S21 Ultra.
+
+## Enumeração no XNU: patch 0149
+
+O [0149](../lab/s21xnu-p3s/xnu/0149-s21-p3s-wifi-enumerate.patch) altera
+o `bsd/dev/sweet_wifi.c` que o 0142 escreve. Os pinos não mudam: no DTS
+r17 do p3s, `cfg_wlanen` é gpp12-2 (saída, sem pull, drive 3), host wake
+é gpa0-7 e o PCIe canal 0 tem `ep-device-name = "WIFI"`, como no t2s. O
+p3s declara `max-link-speed = <2>`; o 0142 já força Gen1 x1. O índice
+S2MPU `PCIE_GEN2` = 7 vem do exynos2100.dts comum.
+
+Com `sweetwifi=N` nos boot-args:
+- **N ≥ 2:** liga WLAN_REG_ON, sobe o enlace e lê o ID. 14e4:4475 (S21/S21+)
+  segue o caminho antigo. 14e4:4441 (p3s) é aceito; qualquer outro ID
+  falha como antes.
+- **N ≥ 3 no p3s:** grava BAR0 = 0x20000000, janela BAR0 (config 0x80)
+  na base de enumeração 0x18000000, habilita memória e lê o chipid da
+  ChipCommon. Loga `W2b PASS` se o chip for 0x4389, com a revisão.
+- **p3s, qualquer nível:** `W4 SKIP` e retorno antes do pool DMA e de
+  `redwood_bcm4375_run`, que só conhece o BCM4375.
+
+A base 0x18000000 é a usual dos chips Broadcom AXI e não foi conferida
+para o 4389 neste repositório; um `W2b FAIL` com o valor lido é o
+diagnóstico. As linhas aparecem no log persistente `wifi:` do s21xnu.
+
+[`verify_wifi_0149.py`](../lab/s21xnu-p3s/xnu/verify_wifi_0149.py), no
+CI, lê o heredoc do 0142 como texto (o script baixa código e não é
+executado), aplica o 0149 e confere:
+- a ordem enlace → ramo p3s → pool → driver;
+- a saída do p3s antes do pool e do driver;
+- o chipid só com N ≥ 3, sem escrita no BAR mapeado;
+- a chamada do driver 4375 preservada;
+- num teste de host, a classificação de 7 IDs (inclusive bytes trocados e
+  vizinhos) e a decodificação do chipid.
+
+17 de 17 checagens passam; com o ID trocado no patch, o teste de host
+falha. [Evidência](references/s21xnu-p3s-wifi-0149-20261126.json).
+
+No fork, `715d738` e run
+[45898493855](https://github.com/rguisantos/s21xnu/actions/runs/45898493855):
+sucesso, 0149 aplicado, nenhum aviso novo em `sweet_wifi.c` (os restantes
+são das classes que já existiam: casts de `rd`/`wr` e de inicialização de
+locks). Novo `xnu-kernel` de 61.319.441 bytes; é o kernel candidato.
+
+No aparelho, com `sweetwifi=3`, o esperado é: `endpoint 14e4:4441`,
+`W2 PASS` com os tamanhos dos BARs, `W2b PASS: chipid … chip 4389`, e
+`W4 SKIP`. Próximo marco: carregar o firmware `_c1` no BCM4389 (núcleo CA7,
+RAM em 0x200000 segundo a fonte Samsung), que o redwood_bcm4375 não faz.

@@ -1,0 +1,120 @@
+{
+  "schema": "s21xnu-p3s-wifi-0149/1",
+  "checks": [
+    {
+      "check": "s21xnu fixado",
+      "ok": true,
+      "detail": "a128f07b0498"
+    },
+    {
+      "check": "0142: heredoc literal (delimitador entre aspas)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0149 aplica sobre o sweet_wifi.c do 0142",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0149 muda só bsd/dev/sweet_wifi.c",
+      "ok": true,
+      "detail": "['bsd/dev/sweet_wifi.c']"
+    },
+    {
+      "check": "ordem: enlace → ramo p3s → pool DMA → driver 4375",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s: sai antes do pool DMA e do driver",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s: chipid só com sweetwifi>=3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "enlace: rejeita endpoint desconhecido",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "enlace: log cita 14e4:4475 e 14e4:4441",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "chipid: janela BAR0 na base de enumeração 0x18000000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "chipid: só lê o chip (nenhuma escrita no BAR mapeado)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "S21/S21+: chamada do driver 4375 preservada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "host: radio_bad = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "host: chip = 4389",
+      "ok": true,
+      "detail": "4389"
+    },
+    {
+      "check": "host: rev = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "host: chip_ff = ffff",
+      "ok": true,
+      "detail": "ffff"
+    },
+    {
+      "check": "host: rev_ff = 15",
+      "ok": true,
+      "detail": "15"
+    }
+  ],
+  "host_test": {
+    "radio_bad": "0",
+    "chip": "4389",
+    "rev": "3",
+    "chip_ff": "ffff",
+    "rev_ff": "15"
+  },
+  "result": "PASS",
+  "fork_build": {
+    "repo": "rguisantos/s21xnu",
+    "commit": "715d738",
+    "run_id": 45898493855,
+    "conclusion": "success",
+    "log": "Applying patch .../0149-s21-p3s-wifi-enumerate.patch; sweet_wifi.c warnings only pre-existing classes (rd/wr cast-align, lock/zone startup casts)",
+    "artifacts": [
+      {
+        "name": "xnu-kernel",
+        "id": 15156115215,
+        "bytes": 61319441,
+        "digest": "sha256:2682c688e8da77b65477bed325d62f4437a6416ecf2966c5e92951d9d8fe405a"
+      },
+      {
+        "name": "xnu-buildtree",
+        "id": 15156020295,
+        "bytes": 23204530,
+        "digest": "sha256:9e084f476f8f7d5d6391315eecdacf96f2886922385f29f626452fcacd886827"
+      }
+    ],
+    "hardware_run": false
+  }
+}

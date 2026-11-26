@@ -4401,3 +4401,14 @@ O diagnóstico STA identifica o módulo SEMCO E53 ES4.0. A correção
 do empacotador produz o tamanho exato descrito no token da NVRAM.
 A série do fork reproduz nove arquivos e testa as quatro classes de
 alinhamento e o limite da contagem. Sem teste no rádio físico.
+
+## 2026-11-26 — s21xnu: enumeração do BCM4389 (patch XNU 0149)
+
+[Análise](docs/s21xnu-wifi-bcm4389-hzc2.md#enumeração-no-xnu-patch-0149).
+Pinos e PCIe do Wi-Fi iguais no DTS r17 de t2s e p3s (gpp12-2, gpa0-7,
+canal 0); o p3s declara Gen2, o 0142 força Gen1. O 0149 aceita
+14e4:4441, lê o chipid com `sweetwifi>=3` e para antes do pool DMA e do
+driver do BCM4375. `verify_wifi_0149.py` (CI): 17/17, lendo o heredoc do
+0142 sem executá-lo; mutação do ID detectada. Série do fork com `0005`;
+`check_fork_series.py` PASS. Fork `715d738`, run 45898493855: sucesso,
+`xnu-kernel` 61.319.441 bytes. Nada executado no aparelho.

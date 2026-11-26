@@ -1,0 +1,104 @@
+diff --git a/bsd/dev/sweet_wifi.c b/bsd/dev/sweet_wifi.c
+index 1d50c12..0b22ce1 100644
+--- a/bsd/dev/sweet_wifi.c
++++ b/bsd/dev/sweet_wifi.c
+@@ -56,6 +56,34 @@ struct redwood_bcm_bus {
+ };
+ void redwood_bcm4375_run(const struct redwood_bcm_bus *bus);
+ 
++/* 0149 (S21 Ultra p3s): which radio answered on PCIe channel 0. The p3s carries a BCM4389 (Samsung bcmdhd_101_18
++ * include/bcmdevs.h: BCM4389_D11AX_ID 0x4441, chip 0x4389); redwood_bcm4375.c only knows the BCM4375, so on the p3s
++ * the chip is identified and left alone. Pure functions: host-tested by S21-baremetal's verifier. */
++enum sweet_wifi_radio { SWEET_WIFI_NONE = 0, SWEET_WIFI_BCM4375 = 1, SWEET_WIFI_BCM4389 = 2 };
++static inline enum sweet_wifi_radio
++sweet_wifi_radio(uint32_t id)
++{
++	switch (id) {
++	case 0x447514e4U:
++		return SWEET_WIFI_BCM4375;   /* o1s, t2s */
++	case 0x444114e4U:
++		return SWEET_WIFI_BCM4389;   /* p3s */
++	default:
++		return SWEET_WIFI_NONE;
++	}
++}
++/* ChipCommon chipid register: chip number in bits 0-15, revision in bits 16-19 */
++static inline uint32_t
++sweet_wifi_chip(uint32_t chipid)
++{
++	return chipid & 0xffffU;
++}
++static inline uint32_t
++sweet_wifi_chiprev(uint32_t chipid)
++{
++	return (chipid >> 16) & 0xfU;
++}
++
+ /* ---- log ------------------------------------------------------------------------------------------------- */
+ static void
+ wlog(const char *fmt, ...)
+@@ -291,6 +319,7 @@ redwood_virtio_net_init(void)
+ 
+ static volatile uint8_t *elbi, *phy, *sysr, *dbi, *pcs, *cfgw, *pmu, *ghsi1, *gperic1;
+ static struct redwood_bcm_bus bus;
++static enum sweet_wifi_radio radio;
+ 
+ static inline uint32_t rd(volatile uint8_t *b, uint32_t o) { return *(volatile uint32_t *)(b + o); }
+ static inline void wr(volatile uint8_t *b, uint32_t o, uint32_t v) { *(volatile uint32_t *)(b + o) = v; }
+@@ -559,9 +588,10 @@ power_and_link(void)
+ 		msleep_(10);
+ 	}
+ 	cls = rd(cfgw, 0x08);
+-	wlog("endpoint %04x:%04x (want 14e4:4475) class %06x rev %02x subsys %08x", id & 0xffff, id >> 16, cls >> 8, cls & 0xff,
+-	    rd(cfgw, 0x2c));
+-	if (id != 0x447514e4U) {
++	wlog("endpoint %04x:%04x (want 14e4:4475 o1s/t2s, 14e4:4441 p3s) class %06x rev %02x subsys %08x", id & 0xffff,
++	    id >> 16, cls >> 8, cls & 0xff, rd(cfgw, 0x2c));
++	radio = sweet_wifi_radio(id);
++	if (radio == SWEET_WIFI_NONE) {
+ 		return -1;
+ 	}
+ 	bus.bar0_size = bar_size(0x10, &bus.bar0_wide);
+@@ -613,6 +643,28 @@ dma_pool(void)
+ 
+ static uint32_t wifi_level;
+ 
++/* 0149: the BCM4389's ChipCommon through BAR0 (window 0x80 at the backplane enumeration base 0x18000000), read only */
++static void
++bcm4389_chipid(void)
++{
++	volatile uint8_t *m;
++	uint32_t cid;
++	wr(cfgw, 0x10, PA_MEM);
++	if (bus.bar0_wide) {
++		wr(cfgw, 0x14, 0);
++	}
++	wr(cfgw, 0x80, 0x18000000U);
++	rmw(cfgw, 0x04, 0, 1U << 1);               /* memory space */
++	m = mapr(PA_MEM, 0x1000);
++	if (!m) {
++		wlog("W2b FAIL: BAR0 map");
++		return;
++	}
++	cid = rd(m, 0);
++	wlog("W2b %s: chipid %08x chip %x rev %u (want chip 4389)", sweet_wifi_chip(cid) == 0x4389 ? "PASS" : "FAIL", cid,
++	    sweet_wifi_chip(cid), sweet_wifi_chiprev(cid));
++}
++
+ static void
+ wifi_thread(void *arg, wait_result_t wr_)
+ {
+@@ -641,6 +693,13 @@ wifi_thread(void *arg, wait_result_t wr_)
+ 		wlog("done at level %u", wifi_level);
+ 		return;
+ 	}
++	if (radio == SWEET_WIFI_BCM4389) {
++		if (wifi_level >= 3) {
++			bcm4389_chipid();
++		}
++		wlog("W4 SKIP: BCM4389 (p3s), no chip driver yet (redwood_bcm4375 is BCM4375 only)");
++		return;
++	}
+ 	if (wifi_level < 3 || dma_pool() != 0) {
+ 		wlog("done at level %u", wifi_level);
+ 		return;
