@@ -1,5 +1,5 @@
 {
-  "schema": "s21xnu-xnu-p3s-0146-0147/1",
+  "schema": "s21xnu-xnu-p3s-0146-0148/1",
   "checks": [
     {
       "check": "s21xnu fixado",
@@ -57,6 +57,16 @@
       "detail": "['iokit/Kernel/arm/SweetFramebuffer.cpp', 'iokit/Kernel/arm/hid/SweetHID.cpp']"
     },
     {
+      "check": "0148 aplica sobre a série",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0148 muda só iokit/Kernel/arm/SweetFramebuffer.cpp, iokit/Kernel/arm/hid/SweetHID.cpp",
+      "ok": true,
+      "detail": "['iokit/Kernel/arm/SweetFramebuffer.cpp', 'iokit/Kernel/arm/hid/SweetHID.cpp']"
+    },
+    {
       "check": "toque: boot-args touch_panel_w/h e console lidos",
       "ok": true,
       "detail": ""
@@ -73,6 +83,11 @@
     },
     {
       "check": "FB: letterbox habilitado para painel maior",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "FB/HID: sweetfb_scale lido nos dois lados",
       "ok": true,
       "detail": ""
     },
@@ -140,6 +155,66 @@
       "check": "sweetfb_native=1: painel nativo sem offset",
       "ok": true,
       "detail": "1440x3200,1440x3200,0,0"
+    },
+    {
+      "check": "0148: iPhone X escalado à largura do painel = 1440x3118",
+      "ok": true,
+      "detail": "1440x3118"
+    },
+    {
+      "check": "0148: HID com escala mede 1440x3118 e borda -41",
+      "ok": true,
+      "detail": "1440x3200,1440x3118,0,-41"
+    },
+    {
+      "check": "0148: sweetfb_scale no S21+ não muda nada",
+      "ok": true,
+      "detail": "1080x2400,1125x2436,22,18"
+    },
+    {
+      "check": "0148: sweetfb_native vence sweetfb_scale",
+      "ok": true,
+      "detail": "1440x3200,1440x3200,0,0"
+    },
+    {
+      "check": "0148: blit da tela inteira escreve 3118 linhas",
+      "ok": true,
+      "detail": "3118"
+    },
+    {
+      "check": "0148: cada pixel do painel = vizinho mais próximo da fonte",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "0148: bordas de 41 linhas intactas",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "0148: toque aponta o pixel lógico que o blit desenhou (±1)",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "0148: retângulo parcial escreve só as linhas mapeadas",
+      "ok": true,
+      "detail": "512"
+    },
+    {
+      "check": "0148: retângulos parciais cobrem exatamente a amostragem inversa (6 casos)",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "0148: fonte curta não é lida além do fim",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "check": "0148: retângulo vazio não escreve",
+      "ok": true,
+      "detail": "0"
     }
   ],
   "series": {
@@ -391,6 +466,18 @@
     "outside_right": "65536",
     "fallback_geom": "1080x2400,1125x2436,22,18",
     "native_geom": "1440x3200,1440x3200,0,0",
+    "fit": "1440x3118",
+    "scaled_geom": "1440x3200,1440x3118,0,-41",
+    "t2s_scale_geom": "1080x2400,1125x2436,22,18",
+    "native_scale_geom": "1440x3200,1440x3200,0,0",
+    "blit_rows": "3118",
+    "blit_bad": "0",
+    "border_bad": "0",
+    "touch_blit_bad": "0",
+    "partial_rows": "512",
+    "partial_outside": "0",
+    "short_src_pixels_ok": "1",
+    "empty_rect_rows": "0",
     "t2s_touch": "0",
     "t2s_hid": "0",
     "t2s_edge": "0",

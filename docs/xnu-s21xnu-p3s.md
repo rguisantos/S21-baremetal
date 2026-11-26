@@ -349,7 +349,7 @@ reproduz o laço de patches do `build.sh` do darwin-xnu-build
 (`663906528d1c`): `git apply --check` e aplica, ou pula, em ordem de nome.
 Ele trabalha sobre o XNU `xnu-8796.141.3` (`1b191cb58250`). Depois aplica
 0146 e 0147, extrai as funções puras e compila um teste de host. Resultado:
-28/28 ([JSON](references/s21xnu-xnu-p3s-0146-0147-20261126.json), idêntico
+28/28 ([JSON](references/s21xnu-xnu-p3s-0146-0148-20261126.json), idêntico
 em duas execuções):
 - no S21+, toque, normalização HID e bordas de gesto ficam idênticos às
   fórmulas originais em todos os valores e pixels;
@@ -359,8 +359,41 @@ em duas execuções):
 
 Duas mutações deliberadas (limite da janela e borda visível com erro de um
 pixel) fazem o verificador falhar. O XNU não foi compilado; isso exige o
-runner macOS do s21xnu. Não houve escala: no p3s o iPhone X ocupa 78% da
-largura.
+runner macOS do s21xnu. Sem escala, no p3s o iPhone X ocupa 78% da largura.
+
+### Escala para ocupar o painel: patch XNU 0148 (26/11)
+
+[`0148-s21-p3s-scaled-display.patch`](../lab/s21xnu-p3s/xnu/0148-s21-p3s-scaled-display.patch),
+sobre 0147, liga com o boot-arg `sweetfb_scale=1`:
+- **o que muda na tela:** num painel maior que o iPhone X, ele é escalado à
+  largura do painel (`sweet_present_fit`): 1440x3118 no S21 Ultra, com 41
+  linhas de borda em cima e embaixo;
+- **camadas BGRA:** são copiadas por vizinho mais próximo na CPU
+  (`sweet_fb_scaled_blit`, recortado à superfície e ao tamanho do buffer).
+  O blit da Mali só copia 1:1, então fica de fora nesse modo;
+- **camadas YUV:** o retângulo de destino é convertido para o retângulo
+  apresentado, e o laço existente já escala;
+- **toque:** o HID usa o mesmo ajuste (`sweet_hid_fit`) e passa a medir a
+  tela apresentada em pixels do painel (1440x3118, deslocamento -41);
+- **sem efeito** no S21+ ou com `sweetfb_native=1`.
+
+O verificador, agora 43/43, cobre 0146–0148 e passou idêntico em duas
+execuções. Para o 0148 ele confere:
+- o ajuste 1440x3118;
+- o blit da tela inteira pixel a pixel contra o vizinho mais próximo, com
+  as bordas intactas;
+- o toque apontando o pixel lógico que o blit desenhou (±1);
+- seis retângulos parciais, inclusive de 1 pixel em bordas fracionárias,
+  cobrindo exatamente a amostragem inversa (limites com teto; achado da
+  revisão Codex no PR #108, 800 pixels errados antes da correção);
+- fonte curta sem leitura além do fim;
+- retângulo vazio;
+- S21+ e `sweetfb_native` inalterados.
+
+Uma mutação (arredondar em vez de truncar na coluna) quebra 2.244.960
+pixels e falha. O blit inteiro levou ~4 ms por quadro num Xeon de 2,1 GHz;
+isso é só indicativo, o A78 não foi medido. O compositor já atualiza a tela
+a 10 Hz por padrão (`sweetfb_hz`).
 
 **Observação sobre a série do s21xnu.** O build pula silenciosamente todo
 patch cujo `git apply --check` falha. Na reprodução sem os scripts `*.sh`

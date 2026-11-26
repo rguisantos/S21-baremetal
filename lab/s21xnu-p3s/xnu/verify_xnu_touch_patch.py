@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduz a série XNU do s21xnu e confere os patches p3s 0146 (toque) e 0147 (tela).
+"""Reproduz a série XNU do s21xnu e confere os patches p3s 0146 (toque), 0147 (tela) e 0148 (escala).
 
   verify_xnu_touch_patch.py --s21xnu CLONE --dxb CLONE_DXB --xnu CLONE_XNU [--json r.json]
 
@@ -13,12 +13,15 @@ pulado. **Os scripts *.sh não são executados** (o build real roda todos antes
 dos patches; alguns baixam código); pulos que dependem de arquivos gerados por
 script são esperados aqui e ficam listados no relatório.
 
-Depois aplica 0146 e 0147, extrai as funções puras (ts_panel_map,
-sweet_hid_geometry, sweet_hid_visible, sweet_hid_norm) e compila um teste de
-host que confere: S21+ (console 1080x2400) idêntico às fórmulas originais em
-todos os valores; p3s-window igual ao S21+; p3s tela cheia (1440x3200) com o
-iPhone X 1125x2436 centrado, e ida e volta toque→HID coerente com o deslocamento
-que o SweetFramebuffer aplica às camadas. O XNU não é compilado.
+Depois aplica 0146, 0147 e 0148, extrai as funções puras (ts_panel_map,
+sweet_hid_fit/geometry/visible/norm, sweet_present_fit, sweet_fb_scaled_blit)
+e compila um teste de host que confere: S21+ (console 1080x2400) idêntico às
+fórmulas originais em todos os valores; p3s-window igual ao S21+; p3s tela
+cheia (1440x3200) com o iPhone X 1125x2436 centrado, e ida e volta toque→HID
+coerente com o deslocamento que o SweetFramebuffer aplica às camadas; com
+sweetfb_scale=1, iPhone X escalado para 1440x3118 (bordas de 41 linhas),
+blit por vizinho mais próximo pixel a pixel e toque coerente com o blit.
+O XNU não é compilado.
 """
 import argparse
 import json
@@ -29,7 +32,8 @@ import sys
 import tempfile
 
 HERE = pathlib.Path(__file__).resolve().parent
-PATCHES = [HERE / "0146-s21-touch-panel-geometry.patch", HERE / "0147-s21-p3s-letterbox-display.patch"]
+PATCHES = [HERE / "0146-s21-touch-panel-geometry.patch", HERE / "0147-s21-p3s-letterbox-display.patch",
+           HERE / "0148-s21-p3s-scaled-display.patch"]
 XNU_TAG_COMMIT = "1b191cb58250d0705d8a51287127505aa4bc0789"   # xnu-8796.141.3
 DXB_COMMIT = "663906528d1cd5ea8fde7de6f16de73db9511549"
 S21XNU_COMMIT = "a128f07b04987e60f5e13e2ce67b19ae009672cd"
@@ -37,9 +41,12 @@ S21XNU_COMMIT = "a128f07b04987e60f5e13e2ce67b19ae009672cd"
 HOST_TEST = r'''
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 typedef int32_t IOFixed;
 %(touch)s
 %(hid)s
+%(fb)s
 
 /* Fórmulas anteriores a 0146/0147 (a128f07), só para o S21+. */
 static void old_touch(uint32_t r, uint32_t q, uint32_t f, int *x, int *y)
@@ -78,7 +85,7 @@ int main(void)
 			old_touch(r, r, f, &a, &b);
 			t2s_touch += (x != a) + (y != b);
 		}
-	sweet_hid_geometry(1080, 2400, 0, &pw, &ph, &lw, &lh, &ox, &oy);
+	sweet_hid_geometry(1080, 2400, 0, 0, &pw, &ph, &lw, &lh, &ox, &oy);
 	printf("t2s_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
 	for (int x = 0; x < 1080; x++)
 		t2s_hid += sweet_hid_norm(x, ox, lw) != old_norm(x, 1080, 1125);
@@ -94,7 +101,7 @@ int main(void)
 		int ex = px > 1079 ? 1079 : px, ey = py > 2399 ? 2399 : py;
 		win_touch += (x != ex) + (y != ey);
 	}
-	sweet_hid_geometry(1440, 3200, 0, &pw, &ph, &lw, &lh, &ox, &oy);
+	sweet_hid_geometry(1440, 3200, 0, 0, &pw, &ph, &lw, &lh, &ox, &oy);
 	printf(" p3s_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
 	int l, r, t, b;
 	sweet_hid_visible(pw, ph, lw, lh, ox, oy, &l, &r, &t, &b);
@@ -116,10 +123,89 @@ int main(void)
 			clamp_bad++;
 	}
 	printf(" outside_left=%%d outside_right=%%d", sweet_hid_norm(0, ox, lw), sweet_hid_norm(1439, ox, lw));
-	sweet_hid_geometry(0, 0, 0, &pw, &ph, &lw, &lh, &ox, &oy);
+	sweet_hid_geometry(0, 0, 0, 0, &pw, &ph, &lw, &lh, &ox, &oy);
 	printf(" fallback_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
-	sweet_hid_geometry(1440, 3200, 1, &pw, &ph, &lw, &lh, &ox, &oy);
+	sweet_hid_geometry(1440, 3200, 1, 0, &pw, &ph, &lw, &lh, &ox, &oy);
 	printf(" native_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
+	/* 0148: escala */
+	int fw, fh;
+	sweet_present_fit(1440, 3200, 1125, 2436, &fw, &fh);
+	printf(" fit=%%dx%%d", fw, fh);
+	sweet_hid_geometry(1440, 3200, 0, 1, &pw, &ph, &lw, &lh, &ox, &oy);
+	printf(" scaled_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
+	sweet_hid_geometry(1080, 2400, 0, 1, &pw, &ph, &lw, &lh, &ox, &oy);
+	printf(" t2s_scale_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
+	sweet_hid_geometry(1440, 3200, 1, 1, &pw, &ph, &lw, &lh, &ox, &oy);
+	printf(" native_scale_geom=%%dx%%d,%%dx%%d,%%d,%%d", pw, ph, lw, lh, ox, oy);
+	/* fonte 1125x2436 com valor (y<<16)|x; blit da tela inteira */
+	uint32_t *srcp = malloc((size_t)1125 * 2436 * 4), *pan = calloc((size_t)1440 * 3200, 4);
+	for (int y = 0; y < 2436; y++)
+		for (int x = 0; x < 1125; x++)
+			srcp[y * 1125 + x] = ((uint32_t)y << 16) | (uint32_t)x | 0x80000000u;
+	int px = (1440 - fw) / 2, py = (3200 - fh) / 2;
+	int rows = sweet_fb_scaled_blit((const uint8_t *)srcp, (uint64_t)1125 * 2436 * 4, 1125 * 4, 0, 0, 0, 0, 1125, 2436,
+	    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+	long blit_bad = 0, border_bad = 0, touch_blit_bad = 0;
+	for (int Y = 0; Y < 3200; Y++)
+		for (int X = 0; X < 1440; X++) {
+			uint32_t v = pan[Y * 1440 + X];
+			if (Y < py || Y >= py + fh) {
+				border_bad += v != 0;
+				continue;
+			}
+			uint32_t want = ((uint32_t)(((int64_t)(Y - py) * 2436) / fh) << 16) | (uint32_t)(((int64_t)X * 1125) / fw) | 0x80000000u;
+			blit_bad += v != want;
+		}
+	/* toque no pixel (X,Y) deve apontar o mesmo pixel lógico que o blit desenhou ali */
+	sweet_hid_geometry(1440, 3200, 0, 1, &pw, &ph, &lw, &lh, &ox, &oy);
+	for (int X = 0; X < 1440; X++) {
+		long lx = ((long)sweet_hid_norm(X, ox, lw) * 1125) >> 16;
+		long want = ((long)X * 1125) / fw;
+		touch_blit_bad += (lx < want - 1 || lx > want);
+	}
+	for (int Y = py; Y < py + fh; Y++) {
+		long ly = ((long)sweet_hid_norm(Y, oy, lh) * 2436) >> 16;
+		long want = ((long)(Y - py) * 2436) / fh;
+		touch_blit_bad += (ly < want - 1 || ly > want);
+	}
+	/* retângulos parciais (inclusive de 1 pixel em posições de borda fracionária):
+	   escreve exatamente os pixels do painel cuja amostra inversa cai dentro do
+	   retângulo lógico, com o valor desse pixel lógico (achado da revisão do #108) */
+	static const int rects[][4] = {{100, 200, 300, 400}, {1, 1, 1, 1}, {0, 0, 1, 1}, {7, 13, 2, 3},
+	    {1124, 2435, 1, 1}, {333, 777, 5, 1}};
+	long outside = 0;
+	int prow = 0;
+	for (unsigned r = 0; r < sizeof(rects) / sizeof(rects[0]); r++) {
+		int rx = rects[r][0], ry = rects[r][1], rw = rects[r][2], rh = rects[r][3];
+		memset(pan, 0, (size_t)1440 * 3200 * 4);
+		int n = sweet_fb_scaled_blit((const uint8_t *)srcp, (uint64_t)1125 * 2436 * 4, 1125 * 4, rx, ry, rx, ry, rw, rh,
+		    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+		if (r == 0)
+			prow = n;
+		for (int Y = 0; Y < 3200; Y++)
+			for (int X = 0; X < 1440; X++) {
+				long lx = (long)X * 1125 / fw, ly = Y >= py ? (long)(Y - py) * 2436 / fh : -1;
+				int in = X < fw && Y >= py && Y < py + fh && lx >= rx && lx < rx + rw && ly >= ry && ly < ry + rh;
+				uint32_t want = in ? (((uint32_t)ly << 16) | (uint32_t)lx | 0x80000000u) : 0;
+				outside += pan[Y * 1440 + X] != want;
+			}
+	}
+	memset(pan, 0, (size_t)1440 * 3200 * 4);
+	sweet_fb_scaled_blit((const uint8_t *)srcp, 4096, 1125 * 4, 0, 0, 0, 0, 1125, 2436,
+	    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+	long short_written = 0, short_beyond = 0;
+	for (long i = 0; i < 1440L * 3200; i++)
+		if (pan[i]) {
+			short_written++;
+			short_beyond += (pan[i] >> 16 & 0x7fff) != 0 || (pan[i] & 0xffff) >= 1024;
+		}
+	int zero_rows = sweet_fb_scaled_blit((const uint8_t *)srcp, 0, 1125 * 4, 0, 0, 0, 0, 0, 0,
+	    (uint8_t *)pan, 1440 * 4, 1440, 3200, px, py, fw, fh, 1125, 2436);
+	printf(" blit_rows=%%d blit_bad=%%ld border_bad=%%ld touch_blit_bad=%%ld partial_rows=%%d partial_outside=%%ld"
+	    " short_src_pixels_ok=%%d empty_rect_rows=%%d",
+	    rows, blit_bad, border_bad, touch_blit_bad, prow, outside, short_written > 0 && short_beyond == 0, zero_rows);
+	free(srcp);
+	free(pan);
 	printf(" t2s_touch=%%ld t2s_hid=%%ld t2s_edge=%%ld win_touch=%%ld roundtrip=%%ld clamp_bad=%%ld\n",
 	    t2s_touch, t2s_hid, t2s_edge, win_touch, roundtrip, clamp_bad);
 	(void)ts_g_panel_w; (void)ts_g_panel_h; (void)ts_g_view_w; (void)ts_g_view_h;
@@ -137,6 +223,13 @@ EXPECT = {
     "outside_left": "0", "outside_right": "65536",
     "fallback_geom": "1080x2400,1125x2436,22,18",
     "native_geom": "1440x3200,1440x3200,0,0",
+    "fit": "1440x3118",
+    "scaled_geom": "1440x3200,1440x3118,0,-41",
+    "t2s_scale_geom": "1080x2400,1125x2436,22,18",
+    "native_scale_geom": "1440x3200,1440x3200,0,0",
+    "blit_rows": "3118", "blit_bad": "0", "border_bad": "0", "touch_blit_bad": "0",
+    "partial_rows": str(-(-(600 * 3118) // 2436) + 0 - -(-(200 * 3118) // 2436)), "partial_outside": "0",
+    "short_src_pixels_ok": "1", "empty_rect_rows": "0",
 }
 LABELS = {
     "t2s_touch": "S21+: toque idêntico (4096 valores × 4 touch_flip)",
@@ -152,6 +245,18 @@ LABELS = {
     "outside_right": "p3s tela cheia: toque na borda preta direita = 1",
     "fallback_geom": "console ausente: volta à geometria do S21+",
     "native_geom": "sweetfb_native=1: painel nativo sem offset",
+    "fit": "0148: iPhone X escalado à largura do painel = 1440x3118",
+    "scaled_geom": "0148: HID com escala mede 1440x3118 e borda -41",
+    "t2s_scale_geom": "0148: sweetfb_scale no S21+ não muda nada",
+    "native_scale_geom": "0148: sweetfb_native vence sweetfb_scale",
+    "blit_rows": "0148: blit da tela inteira escreve 3118 linhas",
+    "blit_bad": "0148: cada pixel do painel = vizinho mais próximo da fonte",
+    "border_bad": "0148: bordas de 41 linhas intactas",
+    "touch_blit_bad": "0148: toque aponta o pixel lógico que o blit desenhou (±1)",
+    "partial_rows": "0148: retângulo parcial escreve só as linhas mapeadas",
+    "partial_outside": "0148: retângulos parciais cobrem exatamente a amostragem inversa (6 casos)",
+    "short_src_pixels_ok": "0148: fonte curta não é lida além do fim",
+    "empty_rect_rows": "0148: retângulo vazio não escreve",
 }
 
 
@@ -176,7 +281,7 @@ def main(argv=None):
     ap.add_argument("--xnu", required=True)
     ap.add_argument("--json")
     a = ap.parse_args(argv)
-    report = {"schema": "s21xnu-xnu-p3s-0146-0147/1", "checks": []}
+    report = {"schema": "s21xnu-xnu-p3s-0146-0148/1", "checks": []}
     ok = True
 
     def check(name, cond, detail=""):
@@ -215,7 +320,8 @@ def main(argv=None):
         check("série: 0061 (apresentação iPhone X) aplicado", "0061-sweet-iphone-x-display-size.patch" in applied)
         check("série: 0060 (toque Goodix do Redmi) pulado", "0060-sweet-keys-touch-drivers.patch" not in applied)
         expected_files = {"0146": ["bsd/dev/sweet_touch.c"],
-                          "0147": ["iokit/Kernel/arm/SweetFramebuffer.cpp", "iokit/Kernel/arm/hid/SweetHID.cpp"]}
+                          "0147": ["iokit/Kernel/arm/SweetFramebuffer.cpp", "iokit/Kernel/arm/hid/SweetHID.cpp"],
+                          "0148": ["iokit/Kernel/arm/SweetFramebuffer.cpp", "iokit/Kernel/arm/hid/SweetHID.cpp"]}
         for p in PATCHES:
             tag = p.name[:4]
             r = git("apply", "--check", str(p), cwd=tree, check=False)
@@ -235,10 +341,15 @@ def main(argv=None):
         check("HID: geometria vinda do console", "PE_current_console(&video)" in hid and "1079 ?" not in hid)
         check("FB: letterbox habilitado para painel maior",
               "fWidth >= SWEET_FB_LOGICAL_W && fHeight >= SWEET_FB_LOGICAL_H" in fb)
+        check("FB/HID: sweetfb_scale lido nos dois lados",
+              'PE_parse_boot_argn("sweetfb_scale"' in fb and 'PE_parse_boot_argn("sweetfb_scale"' in hid)
         src = HOST_TEST % {
             "touch": extract(touch, "#define S21_PANEL_MAXX"),
             "hid": "\n".join(extract(hid, "static inline %s\nsweet_hid_%s" % (rt, n))
-                             for rt, n in (("void", "geometry"), ("void", "visible"), ("IOFixed", "norm"))),
+                             for rt, n in (("void", "fit"), ("void", "geometry"), ("void", "visible"),
+                                           ("IOFixed", "norm"))),
+            "fb": extract(fb, "static inline void\nsweet_present_fit") + "\n" +
+                  extract(fb, "static int32_t\nsweet_fb_scaled_blit"),
         }
         (tmp / "t.c").write_text(src)
         cc = shutil.which("cc") or shutil.which("gcc")
