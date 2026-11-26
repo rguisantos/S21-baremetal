@@ -50,11 +50,21 @@ sha_dev() { dd if="$1" bs=4096 count=$(( $2 / 4096 )) 2>/dev/null | sha256sum | 
 
 want() { grep " $1\$" "$SUMS" 2>/dev/null | cut -d' ' -f1; }
 
-check_store() {
-	[ -f "$STOCK" ] && [ -f "$XNU" ] && [ -f "$SUMS" ] || die "rode 'install' primeiro ($DIR incompleto)"
-	[ "$(sha "$STOCK")" = "$(want stock-boot.img)" ] || die "stock-boot.img não confere com SHA256SUMS"
-	[ "$(sha "$XNU")" = "$(want xnu-boot.img)" ] || die "xnu-boot.img não confere com SHA256SUMS"
+# Voltar ao Android depende só do backup stock; o shim é conferido apenas
+# quando vai ser instalado ou gravado.
+check_stock() {
+	[ -f "$STOCK" ] && [ -f "$SUMS" ] || die "rode 'install' primeiro (backup stock ausente em $DIR)"
+	[ -n "$(want stock-boot.img)" ] && [ "$(sha "$STOCK")" = "$(want stock-boot.img)" ] ||
+		die "stock-boot.img não confere com SHA256SUMS"
 }
+
+check_xnu() {
+	[ -f "$XNU" ] || die "xnu-boot.img ausente em $DIR; rode 'install' de novo"
+	[ -n "$(want xnu-boot.img)" ] && [ "$(sha "$XNU")" = "$(want xnu-boot.img)" ] ||
+		die "xnu-boot.img não confere com SHA256SUMS; rode 'install' de novo"
+}
+
+check_store() { check_stock; check_xnu; }
 
 current() {
 	dev=$1; size=$2
@@ -101,12 +111,16 @@ install)
 	say "instalado em $DIR; BOOT atual: $(current "$DEV" "$SIZE")"
 	;;
 status)
-	check_store
+	check_stock
+	( check_xnu ) || say "aviso: imagem do shim indisponível; só 'to-android' funciona"
 	say "BOOT ($DEV, $SIZE bytes): $(current "$DEV" "$SIZE")"
 	;;
 to-xnu|to-android)
-	check_store
-	if [ "$cmd" = to-xnu ]; then img=$XNU; from=stock; to=xnu; else img=$STOCK; from=xnu; to=stock; fi
+	if [ "$cmd" = to-xnu ]; then
+		check_store; img=$XNU; from=stock; to=xnu
+	else
+		check_stock; img=$STOCK; from=xnu; to=stock
+	fi
 	state=$(current "$DEV" "$SIZE")
 	if [ "$state" = "$to" ]; then
 		say "BOOT já está em $to"

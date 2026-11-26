@@ -231,11 +231,12 @@ vbmeta:
 - **`to-xnu` / `to-android`:** gravam com `dd`, conferem por SHA-256 relido
   da partição e reiniciam;
 - recusa gravar o shim sobre uma BOOT de conteúdo desconhecido, mas sempre
-  permite voltar ao stock;
+  permite voltar ao stock; a volta depende só do backup stock e do hash dele
+  (achado da revisão Codex no PR #104);
 - a volta do XNU ou da sonda é pelo TWRP (Volume+ e Power):
   `sh /cache/s21xnu/s21xnu-switch.sh to-android`.
 
-`test_s21xnu_switch.py`: 14 testes, com dash e bash, usando arquivos no
+`test_s21xnu_switch.py`: 16 testes, com dash e bash, usando arquivos no
 lugar da BOOT. Cobrem o ciclo completo, recusas de instalação, backup
 corrompido, conteúdo desconhecido, comandos sem instalação e instalação a
 partir do boot do shim. O script não foi executado em Android/toybox nem no

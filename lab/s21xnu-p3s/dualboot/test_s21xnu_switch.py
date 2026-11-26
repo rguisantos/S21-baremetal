@@ -83,6 +83,22 @@ class SwitchTests(unittest.TestCase):
         self.run_sw("to-android", "--no-reboot")
         self.assertEqual(self.boot.read_bytes(), image(b"stock"))
 
+    def test_return_to_android_needs_only_stock_backup(self):
+        # achado do Codex no PR #104: xnu-boot.img apagado ou corrompido não pode bloquear a volta
+        self.run_sw("install", str(self.xnu))
+        self.run_sw("to-xnu", "--no-reboot")
+        (self.store / "xnu-boot.img").write_bytes(image(b"corrompido"))
+        self.assertIn("só 'to-android'", self.run_sw("status"))
+        self.assertIn("não confere", self.run_sw("to-xnu", "--no-reboot", ok=False))
+        self.run_sw("to-android", "--no-reboot")
+        self.assertEqual(self.boot.read_bytes(), image(b"stock"))
+        self.run_sw("to-xnu", "--no-reboot", ok=False)
+        (self.store / "xnu-boot.img").unlink()
+        self.boot.write_bytes(image(b"s21xnu-shim"))
+        self.run_sw("to-android", "--no-reboot")
+        self.assertEqual(self.boot.read_bytes(), image(b"stock"))
+        self.assertIn("ausente", self.run_sw("to-xnu", "--no-reboot", ok=False))
+
     def test_commands_need_install(self):
         self.assertIn("install", self.run_sw("to-xnu", "--no-reboot", ok=False))
         self.assertEqual(self.boot.read_bytes(), image(b"stock"))

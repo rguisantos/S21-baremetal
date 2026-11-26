@@ -4324,4 +4324,6 @@ Lido o DualbootHelper `aec1ea2`: reparticiona, renomeia GPT de partições de
 sistema e troca boot/recovery/dtb/dtbo por `dd`; não trata vendor_boot.
 `s21xnu-switch.sh` aproveita só o `dd` na BOOT, com backup em /cache,
 SHA256SUMS, verificação por releitura e recusa de conteúdo desconhecido;
-volta pelo TWRP. 14 testes (dash/bash) no CI. Não executado em Android/TWRP.
+volta pelo TWRP. Revisão Codex do #104: `to-android` não pode depender da
+imagem do shim; corrigido (só o backup stock é exigido). 16 testes
+(dash/bash) no CI. Não executado em Android/TWRP.
