@@ -1,5 +1,7 @@
 # Guia da documentação
 
+O [kit do primeiro boot](xnu-s21xnu-p3s.md#kit-do-primeiro-boot-2611) gera, a partir do firmware HZC2 do usuário, a sonda do shim s21xnu com AVB de laboratório, tar do Odin, script de alternância Android ↔ XNU e o roteiro com os valores esperados na foto da tela. Falta só o desbloqueio OEM e o teste no aparelho.
+
 Os [patches XNU 0146 e 0147](xnu-s21xnu-p3s.md#toque-e-tela-no-p3s-patches-xnu-0146-e-0147-2611) ajustam toque e tela do s21xnu ao painel 1440x3200 do S21 Ultra: no modo janela e em tela cheia, com o iPhone X centrado. Aplicam sobre a série reproduzida (110 aplicados, 27 pulados), mantêm o S21+ idêntico em todos os valores e passaram 28/28 no host. XNU não compilado.
 
 A [carga direta pelo S-Boot](xnu-s21xnu-p3s.md#carga-direta-pelo-s-boot-2611) mostrou que o shim do s21xnu é compatível com o handoff LK HZC2 modelado, desde que o payload receba 7 bytes de padding: o ramdisk vendor stock tem tamanho ímpar e o shim exige header alinhado a 8. Um montador de `boot.img` (payload ou sonda de diagnóstico) e um teste no QEMU que reproduz o LK passaram 57/57, com controle negativo. Tudo depende do desbloqueio OEM; nada foi executado no aparelho.
