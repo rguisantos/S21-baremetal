@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-26",
+  "fork": "rguisantos/s21xnu",
+  "base_upstream": "a128f07",
+  "fork_commits": {
+    "91b4dd6": "shim, mkadt: p3s framebuffer profiles",
+    "4ef3bd1": "shim: probe hand-off lines",
+    "60e23f1": "xnu: patches 0146-0148",
+    "cc8d1cd": "NOTES.md handoff (docs only)"
+  },
+  "workflow": "xnu",
+  "run_id": 45890705951,
+  "url": "https://github.com/rguisantos/s21xnu/actions/runs/45890705951",
+  "head_sha": "60e23f1238720654bbd0e450af62fb50853b8313",
+  "conclusion": "success",
+  "started": "2026-11-26T20:23:37Z",
+  "finished": "2026-11-26T20:36:06Z",
+  "patches_applying_lines": 115,
+  "patches_not_applying_lines": 16,
+  "p3s_patches_applied": [
+    "0146-s21-touch-panel-geometry.patch",
+    "0147-s21-p3s-letterbox-display.patch",
+    "0148-s21-p3s-scaled-display.patch"
+  ],
+  "compiled_units_touched": [
+    "SweetFramebuffer.cpp",
+    "SweetHID",
+    "bsd/dev/sweet_touch.c"
+  ],
+  "warnings_note": "warnings only; 0148 adds -Wcast-align at SweetFramebuffer.cpp:194, same class upstream already has in sweet_touch.c:308",
+  "artifacts": [
+    {
+      "name": "xnu-kernel",
+      "id": 15151244327,
+      "bytes": 61313293,
+      "digest": "sha256:ec15de06ac69af1c9e697c9b8edae0d2501d62c73d31359fbde786730401535e"
+    },
+    {
+      "name": "xnu-buildtree",
+      "id": 15151254102,
+      "bytes": 23203878,
+      "digest": "sha256:66518ff03d3e1431524eade216c291948142dd980b6dedfe34b9f15df5baded9"
+    }
+  ],
+  "artifact_download_here": "blocked (blob storage host not on this session's network allowlist); digests are GitHub's",
+  "hardware_run": false
+}
