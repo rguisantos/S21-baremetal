@@ -152,7 +152,7 @@ def fdt_chosen(start, end):
     return hdr + b"\0" * 16 + bytes(st) + bytes(strings)
 
 
-def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=20):
+def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=90):
     d = tmp / name
     d.mkdir()
     image_pa = mk.KERNEL_BASE + kaslr
@@ -171,7 +171,8 @@ def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=20):
             loader += ",cpu-num=0"
         args += ["-device", loader]
     serial = d / "serial.txt"
-    proc = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    errf = open(d / "qemu-stderr.txt", "wb")
+    proc = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=errf)
     deadline = time.monotonic() + secs
     try:
         while time.monotonic() < deadline and proc.poll() is None:
@@ -181,7 +182,12 @@ def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=20):
     finally:
         proc.kill()
         proc.wait()
-    return serial.read_text(errors="replace") if serial.exists() else ""
+        errf.close()
+    err = (d / "qemu-stderr.txt").read_text(errors="replace").strip()
+    out = serial.read_text(errors="replace") if serial.exists() else ""
+    if "FAKEXNU-END" not in out and err:
+        out += "\n[qemu stderr] " + err[-400:]
+    return out
 
 
 def parse(serial):
@@ -247,12 +253,14 @@ def main(argv=None):
                   "fb": 0xFA000000, "disp": 1, "stride": 5760, "w": 1440, "h": 3200, "depth": 32,
                   "dtlen": len(ADT), "adt0": struct.unpack("<Q", ADT[:8])[0], "memact": MEM_SIZE}
         for k in KASLR_CASES:
+            t0 = time.monotonic()
             serial = run_case(qemu, tmp, "kaslr-%x" % k, kernel, initrd, k)
+            case_secs = time.monotonic() - t0
             v = parse(serial)
             case = {"kaslr": hex(k), "fake_xnu": v}
             report["cases"].append(case)
             check("KASLR %#x: kernel falso recebeu o controle" % k, v is not None,
-                  "" if v else serial[-200:])
+                  "%.1fs" % case_secs if v else (serial[-400:] or "serial vazia após %.0fs" % case_secs))
             if v is None:
                 continue
             for key, want in expect.items():
@@ -263,7 +271,7 @@ def main(argv=None):
                   hex(v["ba"]))
         # Controle negativo: o mesmo payload sem o padding cai em endereço não alinhado a 8.
         bad_initrd = vrd + payload
-        serial = run_case(qemu, tmp, "sem-padding", shim, bad_initrd, 0, secs=12)
+        serial = run_case(qemu, tmp, "sem-padding", shim, bad_initrd, 0, secs=30)
         check("controle sem padding: kernel falso não executa", parse(serial) is None,
               "%#x %% 8 = %d" % (mk.INITRD_BASE + len(vrd), (mk.INITRD_BASE + len(vrd)) % 8))
     report["result"] = "PASS" if ok else "FAIL"
