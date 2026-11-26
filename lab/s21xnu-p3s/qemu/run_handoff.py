@@ -47,14 +47,18 @@ STUB_PA = 0x80000000
 
 
 def qemu_cmd():
+    """(argv, env). O QEMU de tools/root precisa dos próprios módulos: sem
+    QEMU_MODULE_DIR ele carrega os do QEMU do host e falha (audio-alsa)."""
     root = REPO / "tools" / "root"
     q = root / "usr" / "bin" / "qemu-system-aarch64"
+    env = dict(os.environ)
     if q.exists():
         lib = root / "usr" / "lib" / "x86_64-linux-gnu"
+        env["QEMU_MODULE_DIR"] = str(lib / "qemu")
         return [str(lib / "ld-linux-x86-64.so.2"), "--library-path", "%s:%s" % (lib, root / "usr" / "lib"),
-                str(q), "-L", str(root / "usr" / "share" / "qemu")]
+                str(q), "-L", str(root / "usr" / "share" / "qemu")], env
     if shutil.which("qemu-system-aarch64"):
-        return ["qemu-system-aarch64"]
+        return ["qemu-system-aarch64"], env
     raise SystemExit("qemu-system-aarch64 ausente")
 
 
@@ -161,9 +165,10 @@ def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=90):
     files = {"stub.bin": (bytes(stub), STUB_PA), "Image": (kernel, image_pa),
              "initrd.bin": (initrd, mk.INITRD_BASE),
              "fdt.dtb": (fdt_chosen(mk.INITRD_BASE, mk.INITRD_BASE + len(initrd)), mk.FDT_X0)}
-    args = qemu + ["-M", "virt,gic-version=3", "-cpu", "cortex-a76", "-m", "3G", "-smp", "1",
-                   "-display", "none", "-monitor", "none", "-serial", "file:%s" % (d / "serial.txt"),
-                   "-no-reboot"]
+    argv, env = qemu
+    args = argv + ["-M", "virt,gic-version=3", "-cpu", "cortex-a76", "-m", "3G", "-smp", "1",
+                   "-nodefaults", "-audio", "none", "-display", "none", "-monitor", "none",
+                   "-serial", "file:%s" % (d / "serial.txt"), "-no-reboot"]
     for fn, (data, addr) in files.items():
         (d / fn).write_bytes(data)
         loader = "loader,file=%s,addr=%#x,force-raw=on" % (d / fn, addr)
@@ -172,7 +177,7 @@ def run_case(qemu, tmp, name, kernel, initrd, kaslr, secs=90):
         args += ["-device", loader]
     serial = d / "serial.txt"
     errf = open(d / "qemu-stderr.txt", "wb")
-    proc = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=errf)
+    proc = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=errf, env=env)
     deadline = time.monotonic() + secs
     try:
         while time.monotonic() < deadline and proc.poll() is None:
