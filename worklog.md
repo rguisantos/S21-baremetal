@@ -4327,3 +4327,16 @@ SHA256SUMS, verificação por releitura e recusa de conteúdo desconhecido;
 volta pelo TWRP. Revisão Codex do #104: `to-android` não pode depender da
 imagem do shim; corrigido (só o backup stock é exigido). 16 testes
 (dash/bash) no CI. Não executado em Android/TWRP.
+
+## 2026-11-26 — s21xnu: sonda que fotografa o handoff
+
+[Análise](docs/xnu-s21xnu-p3s.md#sonda-que-fotografa-o-handoff-2611). Patch
+0002 para o shim acrescenta ENTRY (EL, x0), IMAGE (endereço/tamanho), INITRD
+(/chosen) e FB à tela do loader, mantida por ~25 s. `probe_screenshot.py`
+roda a sonda no QEMU pelo handoff modelado (KASLR 0x8000) e copia o
+framebuffer: el=1, x0=8B080000, Image em 80088000, initrd 84080000–84BF5E89,
+FB 1440/5760; PNG idêntico em duas execuções, no CI. Tabela de leitura da
+foto no aparelho. Revisão Codex do #105: a captura não conferia o commit
+fixado nem a árvore limpa do s21xnu; `pinned_clone` compartilhado agora é
+usado pela captura, pelo handoff e pelo perfil, e o relatório registra
+commit e hashes dos patches.
