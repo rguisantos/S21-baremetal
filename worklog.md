@@ -4512,7 +4512,8 @@ pendente.
 OEM, vbmeta desativado, kit e foto da sonda, volta pelo Odin e primeiro
 boot do XNU com o kernel `2300193` (run 46028220411), tudo pelo Odin (TWRP
 opcional, compatibilidade com o HZC2 não conferida). Novos:
-`vbmeta_disabled.py` (liga só os bits 0 e 1 de `flags` do vbmeta do
-próprio firmware, `.img` ou `.lz4`, e gera o tar do Odin; 5 testes com vbmeta
-AVB sintético no CI) e `AP_stock_boot.tar(.md5)` no kit da sonda, para
-voltar sem montar tar à mão.
+`vbmeta_disabled.py` confere o vbmeta do BL HZC2 pelos pins do parent
+(`.img` ou `.lz4`; outro vbmeta é recusado, achado da revisão do PR #122),
+liga só os bits 0 e 1 de `flags` e gera o tar do Odin (5 testes com vbmeta
+AVB sintético no CI); o kit da sonda grava também `AP_stock_boot.tar(.md5)`
+para voltar sem montar tar à mão.

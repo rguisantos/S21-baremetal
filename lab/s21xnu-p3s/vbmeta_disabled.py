@@ -3,7 +3,9 @@
 
   vbmeta_disabled.py --vbmeta vbmeta.img[.lz4] --out NOVO_DIR
 
-O vbmeta.img (ou vbmeta.img.lz4) vem do arquivo BL do firmware HZC2. O
+O vbmeta.img (ou vbmeta.img.lz4) vem do arquivo BL do firmware HZC2 e é
+conferido contra os pins de docs/references/capture-a0-parent-pins-hzc2.json
+(lz4 e cru); qualquer outro vbmeta é recusado antes de virar tar. O
 script confere o cabeçalho AVB ("AVB0", tamanhos dos blocos dentro do
 arquivo), liga os bits 0 e 1 de `flags` (offset 120, big endian:
 HASHTREE_DISABLED e VERIFICATION_DISABLED, os mesmos que `avbtool
@@ -29,7 +31,9 @@ import sys
 import tarfile
 
 HERE = pathlib.Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent.parent / "scripts"))
+REPO = HERE.parent.parent
+sys.path.insert(0, str(REPO / "scripts"))
+PINS = REPO / "docs" / "references" / "capture-a0-parent-pins-hzc2.json"
 
 HEADER = 256
 FLAGS_OFF = 120
@@ -95,12 +99,18 @@ def odin_tar(data, name="vbmeta.img"):
     return tar, tar + ("%s  vbmeta_disabled.tar\n" % hashlib.md5(tar).hexdigest()).encode()
 
 
-def load(path):
+def load(path, pins=None):
+    """vbmeta.img ou vbmeta.img.lz4 do BL HZC2, conferido pelos pins (tamanho e SHA-256)."""
+    pins = pins or json.loads(PINS.read_text())
     p = pathlib.Path(path)
     data = p.read_bytes()
     if p.suffix == ".lz4":
+        lz = pins["parent_lz4"]
+        need(len(data) == lz["bytes"] and sha(data) == lz["sha256"], "%s não é o vbmeta.img.lz4 do BL HZC2 fixado" % p.name)
         from check_capture_a0_parent import lz4_frame
-        data = lz4_frame(data, 16 * 1024 * 1024)
+        data = lz4_frame(data, pins["parent_raw"]["bytes"])
+    raw = pins["parent_raw"]
+    need(len(data) == raw["bytes"] and sha(data) == raw["sha256"], "%s não é o vbmeta.img do BL HZC2 fixado" % p.name)
     return data
 
 
@@ -129,7 +139,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
     try:
         rep = prepare(load(a.vbmeta), a.out)
-    except (VbmetaError, OSError) as e:
+    except (VbmetaError, OSError, ValueError) as e:
         print("RECUSADO:", e, file=sys.stderr)
         return 2
     print("flags %#x -> %#x, %d byte(s) alterado(s)" % (rep["flags_before"], rep["flags_after"], rep["changed_bytes"]))

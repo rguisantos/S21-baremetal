@@ -92,9 +92,22 @@ class Vbmeta(unittest.TestCase):
         dst = c.create_string_buffer(lib.LZ4F_compressFrameBound(c.c_size_t(len(src)), None))
         n = lib.LZ4F_compressFrame(dst, c.c_size_t(len(dst)), src, c.c_size_t(len(src)), None)
         with tempfile.TemporaryDirectory() as t:
-            packed = pathlib.Path(t, "vbmeta.img.lz4")
+            packed, raw = pathlib.Path(t, "vbmeta.img.lz4"), pathlib.Path(t, "vbmeta.img")
             packed.write_bytes(dst.raw[:n])
-            self.assertEqual(vd.load(packed), src)
+            raw.write_bytes(src)
+            pins = {"parent_lz4": {"bytes": n, "sha256": vd.sha(dst.raw[:n])},
+                    "parent_raw": {"bytes": len(src), "sha256": vd.sha(src)}}
+            self.assertEqual(vd.load(packed, pins), src)
+            self.assertEqual(vd.load(raw, pins), src)
+            other = vbmeta(flags=1)                       # outro vbmeta, estruturalmente válido: recusado
+            raw.write_bytes(other)
+            with self.assertRaisesRegex(vd.VbmetaError, "não é o vbmeta.img do BL HZC2"):
+                vd.load(raw, pins)
+            packed.write_bytes(dst.raw[:n] + b"x")
+            with self.assertRaisesRegex(vd.VbmetaError, "vbmeta.img.lz4 do BL HZC2"):
+                vd.load(packed, pins)
+            with self.assertRaisesRegex(vd.VbmetaError, "BL HZC2 fixado"):   # pins reais: sintético recusado
+                vd.load(raw)
 
 
 if __name__ == "__main__":

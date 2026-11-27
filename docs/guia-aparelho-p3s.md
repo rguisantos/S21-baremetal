@@ -48,12 +48,10 @@ Extraia do `AP_…HZC2….tar.md5` (o `tar` reclama do MD5 no fim; é normal):
 
     mkdir AP_HZC2 && cd AP_HZC2
     tar -xf ../AP_G998BXXSJHZC2_*.tar.md5 boot.img.lz4 vendor_boot.img.lz4
-    tar -tf ../AP_G998BXXSJHZC2_*.tar.md5 | grep vbmeta
-    tar -tf ../BL_G998BXXSJHZC2_*.tar.md5 | grep vbmeta
+    tar -xf ../BL_G998BXXSJHZC2_*.tar.md5 vbmeta.img.lz4
 
-Extraia o `vbmeta.img.lz4` de onde ele aparecer (AP ou BL) para a mesma
-pasta. Os kits conferem boot e vendor_boot pelos hashes fixados e recusam
-qualquer outro firmware.
+O `vbmeta.img.lz4` vem do BL. Os kits conferem boot, vendor_boot e vbmeta
+pelos hashes fixados do HZC2 e recusam qualquer outro firmware.
 
 ## 1. Backup
 
