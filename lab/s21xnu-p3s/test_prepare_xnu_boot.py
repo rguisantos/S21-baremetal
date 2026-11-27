@@ -115,6 +115,9 @@ class EndToEnd(unittest.TestCase):
         self.assertIn(rep["bootimg"]["sha256"], r)
         self.assertIn("2 extents", r)
         self.assertIn("W4 PASS", r)
+        i = r.index("to-android --no-reboot")
+        self.assertLess(i, r.index("install boot.img"))
+        self.assertLess(r.index("install boot.img"), r.index("switch.sh to-xnu"))
         self.assertEqual(sorted(l.split()[1] for l in (out / "SHA256SUMS").read_text().splitlines()),
                          sorted(["AP_s21xnu_xnu.tar", "AP_s21xnu_xnu.tar.md5", "ROTEIRO-XNU.md", "boot.img",
                                  "relatorio.json", "s21xnu-switch.sh"]))

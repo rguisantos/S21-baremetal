@@ -56,6 +56,21 @@ class SwitchTests(unittest.TestCase):
         self.assertFalse(self.marker.exists())
         self.assertIn("já está em stock", self.run_sw("to-android", "--no-reboot"))
 
+    def test_replace_shim_image_after_probe(self):
+        """Segundo kit depois da sonda: a BOOT ainda tem a sonda."""
+        self.run_sw("install", str(self.xnu))
+        self.run_sw("to-xnu", "--no-reboot")
+        second = pathlib.Path(self.tmp.name) / "xnu2.img"
+        second.write_bytes(image(b"s21xnu-xnu-kit"))
+        self.assertIn("to-android --no-reboot", self.run_sw("install", str(second), ok=False))
+        self.assertEqual(self.boot.read_bytes(), image(b"s21xnu-shim"))
+        self.run_sw("install", str(self.xnu))                     # a mesma imagem: aceita
+        self.run_sw("to-android", "--no-reboot")
+        self.run_sw("install", str(second))
+        self.run_sw("to-xnu", "--no-reboot")
+        self.assertEqual(self.boot.read_bytes(), image(b"s21xnu-xnu-kit"))
+        self.assertEqual((self.store / "stock-boot.img").read_bytes(), image(b"stock"))
+
     def test_install_refusals(self):
         self.xnu.write_bytes(image(b"x")[:SIZE - 4096])
         self.assertIn("tamanho da BOOT", self.run_sw("install", str(self.xnu), ok=False))
@@ -67,6 +82,7 @@ class SwitchTests(unittest.TestCase):
     def test_reinstall_keeps_backup_and_refuses_corrupt_backup(self):
         self.run_sw("install", str(self.xnu))
         self.run_sw("to-xnu", "--no-reboot")
+        self.run_sw("to-android", "--no-reboot")
         self.xnu.write_bytes(image(b"s21xnu-shim-v2"))
         self.assertIn("mantido", self.run_sw("install", str(self.xnu)))
         self.assertEqual((self.store / "stock-boot.img").read_bytes(), image(b"stock"))

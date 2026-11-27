@@ -4458,4 +4458,6 @@ do fork (marcas de 0146/0148/0149/0150 conferidas), boot.img com AVB de
 laboratório, tar do Odin, roteiro. Raiz com `ufsov=1` (escritas só na RAM);
 sem `ufshs`/`ufsrw`. `odin_tar` ganhou o nome do tar no trailer MD5.
 `test_prepare_xnu_boot.py`: 5 testes, 2 de ponta a ponta no CI. Kernel real
-de 17,5 MB pelo log do run 45913838407; não carregado aqui.
+de 17,5 MB pelo log do run 45913838407; não carregado aqui. Revisão do
+PR #117: o roteiro volta ao stock antes do `install`, e o `s21xnu-switch.sh`
+recusa trocar a imagem do shim com a anterior na BOOT (18 testes).

@@ -471,6 +471,13 @@ kit:
 - grava `boot.img`, `AP_s21xnu_xnu.tar(.md5)`, `s21xnu-switch.sh`,
   `ROTEIRO-XNU.md`, `relatorio.json` e `SHA256SUMS`.
 
+Pelo TWRP, a BOOT ainda tem a sonda quando o segundo kit chega. Se o
+`install` trocasse a imagem do shim guardada, o `to-xnu` não reconheceria
+mais a BOOT. O roteiro agora volta ao stock antes (`to-android
+--no-reboot`), e o `s21xnu-switch.sh` recusa instalar outra imagem do shim
+enquanto a anterior estiver na BOOT (achado da revisão do PR #117; teste
+novo no `test_s21xnu_switch.py`, 18 casos em dash e bash).
+
 Linha de comando: `-v debug=0xc serial=3 keepsyms=1 sweetfb_scale=1
 touch_panel_w=1440 touch_panel_h=3200 cpus=N` (padrão 1 CPU). Com
 `--filefrag`: `rd=ufsroot0 ufsroot=userdata ufsov=1 ufsovmb=1024
