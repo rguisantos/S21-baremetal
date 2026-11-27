@@ -1,13 +1,24 @@
 {
   "schema": "s21xnu-fork-kernels/1",
-  "note": "kernel.development.sweet do artefato xnu-kernel do fork rguisantos/s21xnu, pelo SHA-256 que o workflow imprime no log desde a série 0008. Builds anteriores não imprimiam o hash e não estão aqui.",
+  "note": "kernel.development.sweet do artefato xnu-kernel do fork rguisantos/s21xnu, pelo SHA-256. Desde a série 0008 o workflow imprime o hash no log; entradas anteriores vêm do artefato baixado.",
   "kernels": {
     "e0c75c109c90288504606cb8062da5c2397ec61024bd91620fe60475a57320d4": {
       "fork_commit": "2300193",
       "run_id": 46028220411,
       "patches_up_to": "0151",
       "artifact_id": 15213548510,
-      "artifact_digest": "sha256:1f5567f3bbd2254b919703c424002f804975f9c634d0cebcb2d5e873ec2b0118"
+      "artifact_digest": "sha256:1f5567f3bbd2254b919703c424002f804975f9c634d0cebcb2d5e873ec2b0118",
+      "bytes": 17505040,
+      "source": "log do run (série 0008); conferido também no artefato baixado (sessão paralela, 27/11)"
+    },
+    "ba6fba6d1953a90d3d7715da6b29576a5e01e710dc2779aaeae034b34f49bed4": {
+      "fork_commit": "6a02361",
+      "run_id": 46022394450,
+      "patches_up_to": "0151",
+      "artifact_id": 15210603694,
+      "artifact_digest": "sha256:32cbea5b672c732da4cfdae01ab876008f9e1c10ac800c2d0bdf28a79f4f0bc4",
+      "bytes": 17505040,
+      "source": "hash tirado do artefato baixado (sessão paralela, 27/11); o log desse run não imprimia o hash"
     }
   }
 }
