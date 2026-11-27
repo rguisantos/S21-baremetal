@@ -4524,3 +4524,8 @@ vbmeta, backup das partições stock pela Fox, sonda e XNU pela Fox com
 `s21xnu-switch.sh` (caminho B: Heimdall), e a ROM MonsterROM só depois dos
 testes (troca o vendor_boot). Revisão do PR #122 feita aqui, a pedido do
 usuário (limite do Codex esgotado).
+Achado da revisão própria: na Fox a `/cache` pode não estar montada; o
+`install` gravaria o backup stock no ramdisk e o `to-android` depois do
+reinício falharia. `s21xnu-switch.sh` agora recusa o diretório padrão sem
+`/cache` em `/proc/mounts` (teste novo, 20 testes com dash e bash) e o guia
+manda `mount /cache` antes de cada uso.

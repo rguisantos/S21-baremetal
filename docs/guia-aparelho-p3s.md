@@ -130,7 +130,12 @@ desativada do passo 3, com a partição inteira. **Mande os hashes.**
 
 Guarde o `kit-sonda/lab-key.pem`: o kit do XNU usa a mesma chave.
 
-Gravar pela Fox (caminho A):
+Gravar pela Fox (caminho A). Primeiro garanta que a `/cache` está montada
+(sem ela o backup ficaria na RAM; o script recusa):
+
+    adb shell 'mount /cache 2>/dev/null; grep " /cache " /proc/mounts'
+
+Tem de aparecer uma linha. Se não, monte a Cache no menu Mount da Fox.
 
     adb push ../kit-sonda/boot.img ../kit-sonda/s21xnu-switch.sh /tmp/
     adb shell sh /tmp/s21xnu-switch.sh install /tmp/boot.img
@@ -163,6 +168,7 @@ do mesmo jeito.
 Segure **Volume− e Power** até apagar e, logo em seguida, **Volume+ e Power
 com o cabo no PC** (Fox). Então:
 
+    adb shell mount /cache
     adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android
 
 Sem a Fox: modo download e
@@ -192,6 +198,7 @@ Sem a Fox: modo download e
    patches até 0151`.
 3. Na Fox, com o Android de volta na BOOT:
 
+       adb shell mount /cache
        adb push ../kit-xnu/boot.img /tmp/xnu-boot.img
        adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot
        adb shell sh /cache/s21xnu/s21xnu-switch.sh install /tmp/xnu-boot.img

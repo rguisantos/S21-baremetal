@@ -81,7 +81,16 @@ write_verified() {
 	[ "$(sha_dev "$dev" "$size")" = "$(sha "$img")" ] || die "verificação após gravar $img falhou: rode o comando oposto ou use o Odin"
 }
 
+# Na recovery /cache pode não estar montada: o backup iria para o ramdisk
+# e sumiria no reinício. Só vale para o DIR padrão (os testes usam outro).
+check_persistent() {
+	[ -z "${S21XNU_DIR:-}" ] || return 0
+	grep -q ' /cache ' /proc/mounts 2>/dev/null ||
+		die "/cache não está montada; rode 'mount /cache' (ou monte pela Fox) e repita"
+}
+
 cmd=${1:-}
+check_persistent
 DEV=$(boot_dev)
 SIZE=$(size_of "$DEV")
 [ "$SIZE" -gt 0 ] && [ $(( SIZE % 4096 )) -eq 0 ] || die "tamanho da BOOT inválido: $SIZE"

@@ -130,6 +130,17 @@ class SwitchTests(unittest.TestCase):
         self.assertIn("install XNU_BOOT.img", r.stdout)
 
 
+    @unittest.skipIf(" /cache " in pathlib.Path("/proc/mounts").read_text(), "host tem /cache montada")
+    def test_default_dir_requires_mounted_cache(self):
+        env = {k: v for k, v in os.environ.items() if k != "S21XNU_DIR"}
+        env.update(S21XNU_BOOT_DEV=str(self.boot), S21XNU_REBOOT="touch %s" % self.marker)
+        r = subprocess.run([self.shell, str(SCRIPT), "install", str(self.xnu)], env=env,
+                           capture_output=True, text=True)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("/cache não está montada", r.stderr)
+        self.assertEqual(self.boot.read_bytes(), image(b"stock"))
+
+
 class BashSwitchTests(SwitchTests):
     shell = "bash"
 
