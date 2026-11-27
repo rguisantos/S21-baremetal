@@ -464,6 +464,9 @@ kit:
   o shim `BOARD=p3s`, com as linhas da sonda;
 - recusa um kernel que não seja Mach-O ou não tenha as marcas de 0146,
   0148, 0149 e 0150 (inclusive a do BAR2 primeiro);
+- identifica o build pelo SHA-256 do kernel em
+  [`s21xnu-fork-kernels.json`](references/s21xnu-fork-kernels.json) (o
+  0151 não deixa marca no binário); candidato: run 46028220411, 0146–0151;
 - gera o ADT (`mkadt.py --board=p3s --highmem`, com o mapa UFS se houver
   `--filefrag`) e o payload (`mkpayload.py`);
 - monta o boot.img com o rodapé AVB de laboratório (a mesma chave da sonda

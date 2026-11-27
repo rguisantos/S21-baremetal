@@ -48,9 +48,21 @@ KERNEL_MARKS = {
     "0150 BAR2 primeiro": b"BAR2 (%llu KB) first at",
 }
 MACHO_MAGIC = b"\xcf\xfa\xed\xfe"
+# kernels do fork identificados pelo SHA-256 que o workflow imprime no log (série 0008); 0151 não deixa marca
+# no binário, então só esta tabela diz se o kernel tem a correção do HID
+KERNELS = HERE.parent.parent / "docs" / "references" / "s21xnu-fork-kernels.json"
 UFS_MAP_MAX = 8192                      # "SWEET UFS: extent cap 8192"
 BASE_ARGS = "-v debug=0xc serial=3 keepsyms=1 sweetfb_scale=1 touch_panel_w=1440 touch_panel_h=3200"
 ROOT_ARGS = "rd=ufsroot0 ufsroot=userdata ufsov=1 ufsovmb=1024 rootrw=1"
+
+
+def identify_kernel(data, table=KERNELS):
+    known = json.loads(pathlib.Path(table).read_text())["kernels"]
+    k = known.get(kit.sha(data))
+    if k is None:
+        return {"known": False, "note": "kernel fora da tabela: marcas até 0150 conferidas; a correção HID 0151 "
+                                         "não é identificável no binário"}
+    return dict(known=True, **k)
 
 
 def check_kernel(data):
@@ -81,6 +93,10 @@ def roteiro(rep):
         "",
         "boot.img: `%s`" % rep["bootimg"]["sha256"],
         "kernel: `%s` (%d bytes)" % (rep["kernel_sha256"], rep["kernel_bytes"]),
+        "build: %s" % (("fork `%s`, run %s, patches até %s" % (rep["kernel_build"]["fork_commit"],
+                                                                rep["kernel_build"]["run_id"],
+                                                                rep["kernel_build"]["patches_up_to"]))
+                       if rep["kernel_build"].get("known") else "**%s**" % rep["kernel_build"]["note"]),
         "",
         "Linha de comando do kernel:",
         "",
@@ -166,7 +182,7 @@ def build_inputs(s21xnu, kernel_path, filefrag, cpus, sweetwifi, tmp):
     kernel = pathlib.Path(kernel_path).read_bytes()
     check_kernel(kernel)
     env = dict(os.environ)
-    extra = {"root": bool(filefrag), "ufs_extents": 0}
+    extra = {"root": bool(filefrag), "ufs_extents": 0, "kernel_build": identify_kernel(kernel)}
     if filefrag:
         ufsmap = tmp / "ufsmap.bin"
         subprocess.run([sys.executable, "tools/mkufsmap.py", str(pathlib.Path(filefrag).resolve()), str(ufsmap)],

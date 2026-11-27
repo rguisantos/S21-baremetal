@@ -42,47 +42,83 @@
       "detail": ""
     },
     {
-      "check": "antes: tilt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12)",
+      "check": "antes: tilt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12 opts=0x1)",
       "ok": true,
-      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12"
+      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12 opts=0x1"
     },
     {
-      "check": "antes: tilt-aux0 mostra o defeito (x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12)",
+      "check": "antes: tilt-aux0 mostra o defeito (x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12 opts=0x1)",
       "ok": true,
-      "detail": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12"
+      "detail": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12 opts=0x1"
+    },
+    {
+      "check": "antes: tilt-opt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=0 a=12 b=12 opts=0x1)",
+      "ok": true,
+      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=0 a=12 b=12 opts=0x1"
+    },
+    {
+      "check": "antes: polar-opt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=1 a=55 b=66 opts=0x1)",
+      "ok": true,
+      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=1 a=55 b=66 opts=0x1"
+    },
+    {
+      "check": "antes: quality-opt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=2 a=77 b=88 opts=0x1)",
+      "ok": true,
+      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=2 a=77 b=88 opts=0x1"
     },
     {
       "check": "depois: tilt com cada campo no lugar",
       "ok": true,
-      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34"
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x1"
     },
     {
       "check": "depois: tilt-aux0 com cada campo no lugar",
       "ok": true,
-      "detail": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34"
+      "detail": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34 opts=0x1"
     },
     {
       "check": "depois: polar com cada campo no lugar",
       "ok": true,
-      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66"
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x1"
     },
     {
       "check": "depois: quality com cada campo no lugar",
       "ok": true,
-      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88"
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x1"
+    },
+    {
+      "check": "depois: tilt-opt com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x41"
+    },
+    {
+      "check": "depois: polar-opt com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x41"
+    },
+    {
+      "check": "depois: quality-opt com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x41"
     }
   ],
   "old": {
-    "tilt": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12",
-    "tilt-aux0": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12",
-    "polar": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=1 a=55 b=66",
-    "quality": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=2 a=77 b=88"
+    "tilt": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12 opts=0x1",
+    "tilt-aux0": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12 opts=0x1",
+    "polar": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=1 a=55 b=66 opts=0x1",
+    "quality": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=2 a=77 b=88 opts=0x1",
+    "tilt-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=0 a=12 b=12 opts=0x1",
+    "polar-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=1 a=55 b=66 opts=0x1",
+    "quality-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=2 a=77 b=88 opts=0x1"
   },
   "new": {
-    "tilt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34",
-    "tilt-aux0": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34",
-    "polar": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66",
-    "quality": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88"
+    "tilt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x1",
+    "tilt-aux0": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34 opts=0x1",
+    "polar": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x1",
+    "quality": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x1",
+    "tilt-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x41",
+    "polar-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x41",
+    "quality-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x41"
   },
   "result": "PASS",
   "fork_build": {
@@ -100,5 +136,11 @@
       }
     ],
     "hardware_run": false
+  },
+  "candidate_kernel": {
+    "fork_commit": "2300193",
+    "run_id": 46028220411,
+    "kernel_sha256": "e0c75c109c90288504606cb8062da5c2397ec61024bd91620fe60475a57320d4",
+    "bytes": 17505040
   }
 }

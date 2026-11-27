@@ -4484,3 +4484,15 @@ dois. `verify_hid_0151.py` (CI) compila os construtores reais antes e
 depois: o antigo reproduz o defeito, o novo entrega cada campo. Série do
 fork com `0007`; `prepare_xnu_boot.py` usa 0001–0007. Fork `6a02361`, run
 46022394450: sucesso.
+
+## 2026-11-27 — 0151 com options e kernel identificado pelo hash
+
+[Análise](docs/s21xnu-spen-p3s.md#evento-de-caneta-no-xnu-patch-0151).
+`verify_hid_0151.py`: casos com `options = 0x40` (antes 0x01 com 64 em
+`twist`; com 0151, 0x41), `kIOHIDEventOptionIsAbsolute` corrigido para
+`1<<0` como no 0058; 20 checagens. Fork: série `0008` (workflow imprime
+o SHA-256 do kernel; antes o `shasum kernel.*` parava no diretório
+`.link`). Run 46028220411 em `2300193`: kernel `e0c75c10…20d4`,
+17.505.040 bytes, 0146–0151. `prepare_xnu_boot.py` consulta
+`docs/references/s21xnu-fork-kernels.json` e registra o build no roteiro;
+6 testes.

@@ -1,6 +1,6 @@
 # Série para um fork do s21xnu
 
-Sete commits sobre `a128f07` (o `main` do s21xnu em 26/11/2026), gerados
+Oito commits sobre `a128f07` (o `main` do s21xnu em 26/11/2026), gerados
 com `git format-patch`:
 
 1. `0001` shim/mkadt: perfis `p3s` e `p3s-window`;
@@ -9,7 +9,8 @@ com `git format-patch`:
 4. `0004` mkpayload: termina e alinha a lista NVRAM antes do token de comprimento;
 5. `0005` xnu: patch 0149 (enumeração do BCM4389 do p3s) copiado para `xnu/patches/`;
 6. `0006` xnu: patch 0150 (firmware do BCM4389 pelo caminho ARM CA7) copiado para `xnu/patches/`;
-7. `0007` xnu: patch 0151 (eventos de digitalizador com z, pressão e inclinação y certos) copiado para `xnu/patches/`.
+7. `0007` xnu: patch 0151 (eventos de digitalizador com z, pressão e inclinação y certos) copiado para `xnu/patches/`;
+8. `0008` ci(xnu): hash só dos arquivos de kernel e `SHA256SUMS` impresso no log (identifica o kernel do artefato).
 
 O workflow `xnu.yml` do s21xnu roda em push no `main` quando
 `xnu/patches/**` muda (runner `macos-15-intel`) e publica o artefato
