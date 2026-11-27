@@ -74,7 +74,7 @@ class Rules(unittest.TestCase):
             xb.cmdline(1, 5, True)
 
     def test_series_is_complete(self):
-        self.assertEqual([p.name[:4] for p in xb.FORK_SERIES], ["0001", "0002", "0003", "0004", "0005", "0006"])
+        self.assertEqual([p.name[:4] for p in xb.FORK_SERIES], ["0001", "0002", "0003", "0004", "0005", "0006", "0007"])
 
 
 @unittest.skipUnless(S21XNU, "S21XNU (clone fixado do s21xnu) não definido")

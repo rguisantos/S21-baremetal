@@ -1,0 +1,104 @@
+{
+  "schema": "s21xnu-hid-0151/1",
+  "checks": [
+    {
+      "check": "s21xnu fixado",
+      "ok": true,
+      "detail": "a128f07b0498"
+    },
+    {
+      "check": "só o 0058 escreve IOHIDEvent.cpp na série",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "0151 aplica sobre o IOHIDEvent.cpp do 0058",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0151 muda só IOHIDEvent.cpp",
+      "ok": true,
+      "detail": "['iokit/Kernel/arm/hid/IOHIDEvent.cpp']"
+    },
+    {
+      "check": "as três chamadas passam z a digitizerEvent()",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "inclinação y = yTilt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "código antigo compila no host",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "código com 0151 compila no host",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "antes: tilt mostra o defeito (x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12)",
+      "ok": true,
+      "detail": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12"
+    },
+    {
+      "check": "antes: tilt-aux0 mostra o defeito (x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12)",
+      "ok": true,
+      "detail": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12"
+    },
+    {
+      "check": "depois: tilt com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34"
+    },
+    {
+      "check": "depois: tilt-aux0 com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34"
+    },
+    {
+      "check": "depois: polar com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66"
+    },
+    {
+      "check": "depois: quality com cada campo no lugar",
+      "ok": true,
+      "detail": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88"
+    }
+  ],
+  "old": {
+    "tilt": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12",
+    "tilt-aux0": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12",
+    "polar": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=1 a=55 b=66",
+    "quality": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=2 a=77 b=88"
+  },
+  "new": {
+    "tilt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34",
+    "tilt-aux0": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34",
+    "polar": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66",
+    "quality": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88"
+  },
+  "result": "PASS",
+  "fork_build": {
+    "repo": "rguisantos/s21xnu",
+    "commit": "6a02361",
+    "run_id": 46022394450,
+    "conclusion": "success",
+    "log": "Applying patch .../0151-s21-hid-digitizer-orientation-args.patch; IOHIDEvent.cpp warning lines 329 -> 326, none on the changed lines",
+    "artifacts": [
+      {
+        "name": "xnu-kernel",
+        "id": 15210603694,
+        "bytes": 61321217,
+        "digest": "sha256:32cbea5b672c732da4cfdae01ab876008f9e1c10ac800c2d0bdf28a79f4f0bc4"
+      }
+    ],
+    "hardware_run": false
+  }
+}

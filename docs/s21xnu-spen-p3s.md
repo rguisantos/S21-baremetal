@@ -93,7 +93,55 @@ saída. [Evidência](references/s21xnu-p3s-spen-decode-20261127.json).
    SDA/SCL a confirmar, como no toque, testando as duas), leitura de 17
    bytes na interrupção gpa2-4 (ou por varredura, como o toque faz) e
    escolha do barramento pela revisão da placa.
-2. Publicar como caneta no SweetHID. Pela análise anterior do fork
-   (`1844379`), o XNU tem o tipo de evento de caneta, mas o caminho de
-   entrada do s21xnu só atende ao dedo; não conferi isso de novo aqui.
+2. Publicar como caneta no SweetHID: o caminho de entrada do s21xnu só
+   publica dedo (seção abaixo). O construtor do evento com inclinação foi
+   corrigido no 0151.
 3. No aparelho: o primeiro pacote, a ordem dos pinos e a resposta do iOS.
+
+## Evento de caneta no XNU: patch 0151
+
+O SweetHID do fork publica o toque como dedo
+(`digitizerEvent(..., kIOHIDDigitizerTransducerTypeFinger, ...)` no
+`sweet_touch`). Para a caneta, o evento com pressão e inclinação é
+`IOHIDEvent::digitizerEventWithTiltOrientation()`, que o 0058 trouxe em
+`iokit/Kernel/arm/hid/IOHIDEvent.cpp` (nenhum outro patch da série muda o
+arquivo). Ele e os construtores Polar e Quality têm o mesmo defeito:
+chamam `digitizerEvent()` sem o argumento `z`, então tudo depois de `y`
+anda uma posição. O de inclinação ainda grava `xTilt` nos dois eixos.
+
+| Campo | Entrada | Antes | Com 0151 |
+|---|---|---|---|
+| z | 11 | 22 | 11 |
+| Pressão da ponta | 22 | 33 | 22 |
+| Pressão da ponta, auxiliar 0 | 22 | 0 | 22 |
+| Pressão auxiliar | 33 | 44 | 33 |
+| Twist | 44 | 0 (vinha de `options`) | 44 |
+| Inclinação (x, y) | (12, −34) | (12, 12) | (12, −34) |
+
+Com pressão auxiliar zero, a caneta encostada chegaria ao iOS com pressão
+de ponta zero. O [0151](../lab/s21xnu-p3s/xnu/0151-s21-hid-digitizer-orientation-args.patch)
+passa `z` nas três chamadas e usa `yTilt`.
+
+[`verify_hid_0151.py`](../lab/s21xnu-p3s/xnu/verify_hid_0151.py), no CI:
+- recria o `IOHIDEvent.cpp` a partir do 0058 e aplica o 0151;
+- extrai os quatro construtores reais, antes e depois, e compila em C++ no
+  host com o `IOHIDDigitizerEventData` do próprio 0058;
+- confere que o código antigo reproduz o defeito e que o novo entrega cada
+  campo no lugar, nos construtores Tilt, Polar e Quality.
+
+No fork, `6a02361` e run
+[46022394450](https://github.com/rguisantos/s21xnu/actions/runs/46022394450):
+sucesso, 0151 aplicado, nenhum aviso nas linhas mudadas; esse `xnu-kernel`
+é o candidato. [Evidência](references/s21xnu-hid-0151-20261127.json). A análise do defeito
+veio de uma sessão paralela (tabela de z, pressão e inclinação), que
+reproduzi aqui.
+
+Do decodificador ao HID, quando o driver existir:
+- `SWEET_PEN_IN_RANGE` e `SWEET_PEN_REPORT` viram
+  `digitizerEventWithTiltOrientation(..., kIOHIDDigitizerTransducerTypeStylus,
+  inRange = true, ...)`, com toque pela ponta, botão lateral em
+  `buttonState`, pressão normalizada de 0..4095 e inclinação de −63..63;
+- `SWEET_PEN_OUT` vira o mesmo evento com `inRange = false`.
+
+A escala das grandezas (IOFixed) e o que o iOS espera da caneta ficam para
+o teste no aparelho.

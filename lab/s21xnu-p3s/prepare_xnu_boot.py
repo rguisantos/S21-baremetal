@@ -6,7 +6,7 @@
 
 DIR: boot.img e vendor_boot.img do AP HZC2 (conferidos pelos pins, como na
 sonda). CLONE: s21xnu no commit fixado e limpo; a série do fork
-(lab/s21xnu-p3s/fork/0001–0006) é aplicada numa cópia. KERNEL: o
+(lab/s21xnu-p3s/fork/0001–0007) é aplicada numa cópia. KERNEL: o
 kernel.development.sweet do artefato `xnu-kernel` do fork; precisa conter
 as marcas dos patches 0146, 0148, 0149 e 0150 (o 0150 com o BAR2 primeiro).
 
@@ -39,7 +39,7 @@ import mk_sboot_bootimg as mk  # noqa: E402
 import prepare_first_boot as kit  # noqa: E402
 import verify_p3s_profile as vp  # noqa: E402
 
-FORK_SERIES = sorted((HERE / "fork").glob("000[1-6]-*.patch"))
+FORK_SERIES = sorted((HERE / "fork").glob("000[1-7]-*.patch"))
 KERNEL_MARKS = {
     "0146 toque": b"touch_panel_w",
     "0148 escala": b"sweetfb_scale",
@@ -159,7 +159,7 @@ def build_inputs(s21xnu, kernel_path, filefrag, cpus, sweetwifi, tmp):
     vp.pinned_clone(s21xnu)
     tree = tmp / "s21xnu"
     shutil.copytree(pathlib.Path(s21xnu).resolve(), tree, symlinks=True, ignore=shutil.ignore_patterns(".git"))
-    kit.need(len(FORK_SERIES) == 6, "série do fork incompleta: %d arquivos" % len(FORK_SERIES))
+    kit.need(len(FORK_SERIES) == 7, "série do fork incompleta: %d arquivos" % len(FORK_SERIES))
     for p in FORK_SERIES:
         subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
     shim = vp.build_shim(tree, "p3s", vp.cross_env(str(tmp)))

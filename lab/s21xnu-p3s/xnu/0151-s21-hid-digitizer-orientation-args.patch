@@ -1,0 +1,71 @@
+diff --git a/iokit/Kernel/arm/hid/IOHIDEvent.cpp b/iokit/Kernel/arm/hid/IOHIDEvent.cpp
+index 27175f9..a7a90b2 100644
+--- a/iokit/Kernel/arm/hid/IOHIDEvent.cpp
++++ b/iokit/Kernel/arm/hid/IOHIDEvent.cpp
+@@ -945,18 +945,18 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithTiltOrientation(
+                                         UInt32                          buttonState,
+                                         IOFixed                         x,
+                                         IOFixed                         y,
+-                                        IOFixed                         z __unused,
++                                        IOFixed                         z,
+                                         IOFixed                         tipPressure,
+                                         IOFixed                         auxPressure,
+                                         IOFixed                         twist,
+                                         IOFixed                         xTilt,
+-                                        IOFixed                         yTilt __unused,
++                                        IOFixed                         yTilt,
+                                         IOOptionBits                    options)
+ {
+     IOHIDEvent * me                 = NULL;
+     IOHIDDigitizerEventData * event = NULL;
+ 
+-    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, tipPressure, auxPressure, twist, options);
++    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, z, tipPressure, auxPressure, twist, options);
+     require(me, exit);
+ 
+     event = (IOHIDDigitizerEventData *)me->_data;
+@@ -965,7 +965,7 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithTiltOrientation(
+     event->orientationType = kIOHIDDigitizerOrientationTypeTilt;
+ 
+     event->orientation.tilt.x = xTilt;
+-    event->orientation.tilt.y = xTilt;
++    event->orientation.tilt.y = yTilt;
+ 
+ exit:
+     return me;
+@@ -982,7 +982,7 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithPolarOrientation(
+                                         UInt32                          buttonState,
+                                         IOFixed                         x,
+                                         IOFixed                         y,
+-                                        IOFixed                         z __unused,
++                                        IOFixed                         z,
+                                         IOFixed                         tipPressure,
+                                         IOFixed                         auxPressure,
+                                         IOFixed                         twist,
+@@ -993,7 +993,7 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithPolarOrientation(
+     IOHIDEvent * me                 = NULL;
+     IOHIDDigitizerEventData * event = NULL;
+ 
+-    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, tipPressure, auxPressure, twist, options);
++    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, z, tipPressure, auxPressure, twist, options);
+     require(me, exit);
+ 
+     event = (IOHIDDigitizerEventData *)me->_data;
+@@ -1092,7 +1092,7 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithQualityOrientation(
+                                         UInt32                          buttonState,
+                                         IOFixed                         x,
+                                         IOFixed                         y,
+-                                        IOFixed                         z __unused,
++                                        IOFixed                         z,
+                                         IOFixed                         tipPressure,
+                                         IOFixed                         auxPressure,
+                                         IOFixed                         twist,
+@@ -1106,7 +1106,7 @@ IOHIDEvent * IOHIDEvent::digitizerEventWithQualityOrientation(
+     IOHIDEvent * me                 = NULL;
+     IOHIDDigitizerEventData * event = NULL;
+ 
+-    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, tipPressure, auxPressure, twist, options);
++    me = IOHIDEvent::digitizerEvent(timeStamp, transducerID, type, inRange, buttonState, x, y, z, tipPressure, auxPressure, twist, options);
+     require(me, exit);
+ 
+     event = (IOHIDDigitizerEventData *)me->_data;
