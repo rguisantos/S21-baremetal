@@ -4444,6 +4444,7 @@ no aparelho.
 `sim_wifi_0150.py` compila `bars()`/`chip()`/`firmware()` do driver real
 contra um chip simulado (EROM, wrappers, SYSMEM/CR4, BAR2 com páginas
 protegidas além do mapeado; o firmware simulado confere NVRAM, token e
-semente antes de subir). Sete cenários, 52/52; seis mutações detectadas. Defeito achado e corrigido no 0150: BAR2 de 8 MiB depois do
-BAR0 saía da janela PCIe de 16 MiB; agora vai primeiro. Verificador
+semente antes de subir). Sete cenários, 52/52; seis mutações detectadas.
+Defeito achado e corrigido no 0150: BAR2 de 8 MiB depois do BAR0 saía da
+janela PCIe de 16 MiB; agora vai primeiro. Verificador
 estático 25/25. No CI. Fork `fe8e2ed`, run 45913838407: sucesso.
