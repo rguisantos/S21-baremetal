@@ -53,6 +53,10 @@ class KitTests(unittest.TestCase):
             self.assertEqual(tf.extractfile("boot.img").read(), boot)
         tar, md5 = (out / "AP_s21xnu_sonda.tar").read_bytes(), (out / "AP_s21xnu_sonda.tar.md5").read_bytes()
         self.assertTrue(md5.startswith(tar))
+        with tarfile.open(out / "AP_stock_boot.tar") as tf:
+            self.assertEqual(tf.getnames(), ["boot.img"])
+            self.assertEqual(tf.extractfile("boot.img").read(), self.stock)
+        self.assertTrue((out / "AP_stock_boot.tar.md5").read_bytes().endswith(b"  AP_stock_boot.tar\n"))
         self.assertEqual(md5[len(tar):], ("%s  AP_s21xnu_sonda.tar\n" % hashlib.md5(tar).hexdigest()).encode())
         roteiro = (out / "ROTEIRO.md").read_text()
         self.assertIn("end=84BF5E89", roteiro)

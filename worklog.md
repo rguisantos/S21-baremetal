@@ -4505,3 +4505,14 @@ AVB de laboratório válido, roteiro com `2300193` até o 0151. O kernel do
 `6a02361` (run 46022394450, `ba6fba6d…bed4`, 17.505.040 bytes, com 0151)
 entrou em `docs/references/s21xnu-fork-kernels.json`. Boot no aparelho
 pendente.
+
+## 2026-11-27 — passo a passo no aparelho
+
+[Guia](docs/guia-aparelho-p3s.md): preparação do PC, backup, desbloqueio
+OEM, vbmeta desativado, kit e foto da sonda, volta pelo Odin e primeiro
+boot do XNU com o kernel `2300193` (run 46028220411), tudo pelo Odin (TWRP
+opcional, compatibilidade com o HZC2 não conferida). Novos:
+`vbmeta_disabled.py` (liga só os bits 0 e 1 de `flags` do vbmeta do
+próprio firmware, `.img` ou `.lz4`, e gera o tar do Odin; 5 testes com vbmeta
+AVB sintético no CI) e `AP_stock_boot.tar(.md5)` no kit da sonda, para
+voltar sem montar tar à mão.
