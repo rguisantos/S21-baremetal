@@ -16,7 +16,7 @@ index 0b22ce1..c85482b 100644
  	if (wifi_level < 3 || dma_pool() != 0) {
  		wlog("done at level %u", wifi_level);
 diff --git a/bsd/dev/redwood_bcm4375.c b/bsd/dev/redwood_bcm4375.c
-index 32f5e57..f40957f 100644
+index 32f5e57..ac2fede 100644
 --- a/bsd/dev/redwood_bcm4375.c
 +++ b/bsd/dev/redwood_bcm4375.c
 @@ -94,6 +94,19 @@ void redwood_bcm4375_run(const struct redwood_bcm_bus *bus);
@@ -151,7 +151,25 @@ index 32f5e57..f40957f 100644
  		return -1;
  	}
  	chunk = kalloc_data(12 + 1400, Z_WAITOK | Z_ZERO);
-@@ -1685,6 +1768,7 @@ bars(void)
+@@ -1663,7 +1746,16 @@ bars(void)
+ 		return false;
+ 	}
+ 	bar2 = (uint32_t)((bar0 + s0 + s2 - 1) & ~(s2 - 1));
+-	if (bar2 + s2 > (uint64_t)bus->mem_phys + bus->mem_size) {
++	if (bar2 + s2 > (uint64_t)bus->mem_phys + bus->mem_size && (bus->mem_phys & (s2 - 1)) == 0) {
++		/* 0150: a BAR2 too large to follow BAR0 (8 MB after 32 KB passes the 16 MB window): BAR2 first */
++		bar2 = bus->mem_phys;
++		bar0 = (uint32_t)((bar2 + s2 + s0 - 1) & ~(s0 - 1));
++		blog("BAR2 (%llu KB) first at %#x, BAR0 after it at %#x", s2 >> 10, bar2, bar0);
++		if (bar0 + s0 > (uint64_t)bus->mem_phys + bus->mem_size) {
++			blog("W4 FAIL: BAR0 (%llu KB) does not fit after BAR2 in the window", s0 >> 10);
++			return false;
++		}
++	} else if (bar2 + s2 > (uint64_t)bus->mem_phys + bus->mem_size) {
+ 		blog("W4 FAIL: BAR2 (%llu KB) does not fit after BAR0 in the window", s2 >> 10);
+ 		return false;
+ 	}
+@@ -1685,6 +1777,7 @@ bars(void)
  	 * already fill that, and a 4 MB BAR2 on top panicked (kmem_alloc ... failed with 3 @vm_kern.c:178).
  	 */
  	regs = (volatile uint8_t *)ml_io_map_unmappable(bar0, s0 < BAR0_MAP ? (vm_size_t)s0 : BAR0_MAP, VM_WIMG_IO);
@@ -159,7 +177,7 @@ index 32f5e57..f40957f 100644
  	tcm_size = (uint32_t)(s2 > 0x400000 ? 0x400000 : s2);
  	tcm = (volatile uint8_t *)ml_io_map_unmappable(bar2, tcm_size, VM_WIMG_IO);
  	if (regs == NULL || tcm == NULL) {
-@@ -1701,9 +1785,14 @@ chip(void)
+@@ -1701,9 +1794,14 @@ chip(void)
  	char line[220];
  	size_t at = 0;
  
@@ -177,7 +195,7 @@ index 32f5e57..f40957f 100644
  		return false;
  	}
  	erom_scan();
-@@ -1713,9 +1802,10 @@ chip(void)
+@@ -1713,9 +1811,10 @@ chip(void)
  	blog("cores (%u):%s", ncores, line);
  	cc = core_find(CORE_CC, 0);
  	pcie2 = core_find(CORE_PCIE2, 0);
@@ -191,7 +209,7 @@ index 32f5e57..f40957f 100644
  		return false;
  	}
  	/* brcmf_pcie_buscore_reset() [pcie]1904: the mailbox registers by the PCIe2 core's revision */
-@@ -1724,18 +1814,34 @@ chip(void)
+@@ -1724,18 +1823,34 @@ chip(void)
  	} else {
  		mb_int = 0x48, mb_mask = 0x4c, h2d_mb0 = 0x140, h2d_mb1 = 0x144;
  	}
@@ -231,7 +249,7 @@ index 32f5e57..f40957f 100644
  	return true;
  }
  
-@@ -1751,17 +1857,22 @@ firmware(void)
+@@ -1751,17 +1866,22 @@ firmware(void)
  	uint64_t deadline;
  	bool fw_ours = false, nv_ours = false;
  
@@ -258,7 +276,7 @@ index 32f5e57..f40957f 100644
  	    fw_ours ? "read from /fw" : "in the RAM disk");
  	nvram = nvram_make(nvtext, nv_size, &nvram_len);
  	fw_release(nvtext, nv_size, nv_ours);
-@@ -1773,6 +1884,14 @@ firmware(void)
+@@ -1773,6 +1893,14 @@ firmware(void)
  			ramsize = own;
  		}
  	}
@@ -273,7 +291,7 @@ index 32f5e57..f40957f 100644
  	if (nvram == NULL || fw_size + 8 + SEED_BYTES + nvram_len > ramsize) {
  		blog("W4 FAIL: firmware %llu + NVRAM %u bytes do not fit RAM %#x", fw_size, nvram_len, ramsize);
  		fw_release(fw, fw_size, fw_ours);
-@@ -1783,28 +1902,32 @@ firmware(void)
+@@ -1783,28 +1911,32 @@ firmware(void)
  	}
  	resetintr = le32(fw);
  
@@ -311,7 +329,7 @@ index 32f5e57..f40957f 100644
  
  		read_random(seed, sizeof(seed));
  		tcm_w32(top - 8, SEED_BYTES);
-@@ -1814,15 +1937,21 @@ firmware(void)
+@@ -1814,15 +1946,21 @@ firmware(void)
  		}
  	}
  	kfree_data(nvram, nv_size + 64);
@@ -337,7 +355,7 @@ index 32f5e57..f40957f 100644
  	} while (now == written && mach_absolute_time() < deadline);
  	if (now == written || !in_ram(now, SH_HOST_CAP + 4)) {
  		blog("W4 FAIL: the firmware did not start: last word %#x (was %#x)", now, written);
-@@ -2901,7 +3030,8 @@ redwood_bcm4375_run(const struct redwood_bcm_bus *b)
+@@ -2901,7 +3039,8 @@ redwood_bcm4375_run(const struct redwood_bcm_bus *b)
  	cfg = b->cfg;
  	pool = (uint8_t *)b->pool_virt;
  	pool_used = 0;

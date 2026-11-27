@@ -4437,3 +4437,13 @@ SYSMEM); verificador 24/24. O `bcmdhd_101_18` compila com
 `PCIE_SHARED_VERSION` = 7 e aceita firmware de versão 5–7, a mesma faixa
 do driver do 4375. Fork `b5b1377`, run 45903906003: sucesso. Nada executado
 no aparelho.
+
+## 2026-11-26 — s21xnu: simulação no host da carga do firmware (0150)
+
+[Análise](docs/s21xnu-wifi-bcm4389-hzc2.md#simulação-no-host-do-caminho-de-carga).
+`sim_wifi_0150.py` compila `bars()`/`chip()`/`firmware()` do driver real
+contra um chip simulado (EROM, wrappers, SYSMEM/CR4, BAR2 com páginas
+protegidas além do mapeado). Sete cenários, 48/48; três mutações
+detectadas. Defeito achado e corrigido no 0150: BAR2 de 8 MiB depois do
+BAR0 saía da janela PCIe de 16 MiB; agora vai primeiro. Verificador
+estático 25/25. No CI. Fork `fe8e2ed`, run 45913838407: sucesso.
