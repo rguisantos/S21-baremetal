@@ -4473,3 +4473,14 @@ ao r17. `spen/sweet_wacom.h` decodifica os pacotes; `test_spen_decode.py`
 (CI, busca o `wacom_i2c.c` fixado) compara com as funções Samsung extraídas:
 roteiro de 19 pacotes, cantos e 20 000 aleatórios iguais; quatro mutações
 detectadas. Driver XNU, HID de caneta e aparelho pendentes.
+
+## 2026-11-27 — HID: eventos de digitalizador com z e inclinação y (patch XNU 0151)
+
+[Análise](docs/s21xnu-spen-p3s.md#evento-de-caneta-no-xnu-patch-0151). No
+`IOHIDEvent.cpp` do 0058, os construtores Tilt, Polar e Quality chamam
+`digitizerEvent()` sem `z` (argumentos deslocados; pressão de ponta zero com
+auxiliar zero), e o Tilt grava `xTilt` nos dois eixos. O 0151 corrige os
+dois. `verify_hid_0151.py` (CI) compila os construtores reais antes e
+depois: o antigo reproduz o defeito, o novo entrega cada campo. Série do
+fork com `0007`; `prepare_xnu_boot.py` usa 0001–0007. Fork `6a02361`, run
+46022394450: sucesso.
