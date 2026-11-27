@@ -67,6 +67,7 @@ def main(argv=None):
     ap.add_argument("--s21xnu", required=True)
     ap.add_argument("--z3sios", required=True)
     ap.add_argument("--json")
+    ap.add_argument("--save-driver", help="grava o redwood_bcm4375.c com 0150 (para sim_wifi_0150.py)")
     a = ap.parse_args(argv)
     report = {"schema": "s21xnu-p3s-wifi-0150/1", "checks": []}
     ok = True
@@ -110,6 +111,8 @@ def main(argv=None):
         git("apply", str(P0150), cwd=tree)
         sw = (dev / "sweet_wifi.c").read_text()
         d = (dev / "redwood_bcm4375.c").read_text()
+        if a.save_driver:
+            pathlib.Path(a.save_driver).write_text(d)
 
         thread = extract(sw, "static void\nwifi_thread(")
         blk = thread[thread.index("radio == SWEET_WIFI_BCM4389"):thread.index("dma_pool()")]
@@ -135,6 +138,10 @@ def main(argv=None):
               "rambase + ramsize <= bus->bar2_size" in chip)
         check("chip(): no CA7, RAM além do BAR2 fica para o tamanho declarado pela imagem",
               "(!ca7 && rambase + ramsize > tcm_size)" in chip and "left to the image's own RAM size" in chip)
+        bars = extract(d, "static bool\nbars(void)")
+        check("bars(): BAR2 grande demais para vir depois do BAR0 vai primeiro (só se alinhado)",
+              "(bus->mem_phys & (s2 - 1)) == 0" in bars and "bar2 = bus->mem_phys;" in bars
+              and bars.index("bar2 = (uint32_t)((bar0 + s0 + s2 - 1) & ~(s2 - 1));") < bars.index("bar2 = bus->mem_phys;"))
         pas = extract(d, "static void\nca7_passive(void)")
         check("ca7_passive: janela BAR1 = 0, CA7 parado, SYSMEM reset (download_state enter)",
               pas.index("w32(cfg, 0x84, 0)") < pas.index("core_reset(cr4, ARMCR4_CPUHALT, ARMCR4_CPUHALT, ARMCR4_CPUHALT)")

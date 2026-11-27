@@ -160,7 +160,7 @@ CI, busca o z3sios no commit do 0142, confere o SHA-256 do driver contra a
 lista do script, aplica 0149 e 0150 e confere a ordem da carga, a recusa do
 vetor protegido, a remapeação condicionada ao tamanho do BAR2, que o 4375
 mantém CR4/murata, e (no host) a decodificação dos bancos do SYSMEM nas
-duas revisões. 24 de 24 checagens.
+duas revisões. 25 de 25 checagens.
 [Evidência](references/s21xnu-p3s-wifi-0150-20261126.json).
 
 No fork, `02528b7` e run
@@ -170,6 +170,51 @@ upstream, nenhum nas linhas novas. Com o encaixe da RAM depois do `SMAR`:
 `b5b1377`, run
 [45903906003](https://github.com/rguisantos/s21xnu/actions/runs/45903906003),
 sucesso, mesmos avisos do upstream. Esse `xnu-kernel` é o candidato.
+
+## Simulação no host do caminho de carga
+
+[`sim_wifi_0150.py`](../lab/s21xnu-p3s/xnu/sim_wifi_0150.py) compila no
+host o código real do driver (o `redwood_bcm4375.c` com 0150, gravado por
+`verify_wifi_0150.py --save-driver`):
+- extrai `bars()`, `chip()`, `firmware()` e o que elas chamam, sem mudar a
+  lógica, e desvia só os acessos a registradores para um modelo em C;
+- o modelo tem o espaço de configuração (janelas 0x80 e 0x84), um
+  backplane com ChipCommon, EROM gerado, wrappers IOCTL/RESET_CTL, SYSMEM
+  e CR4 com bancos, e um "firmware" que, quando o ARM sai de reset, confere
+  o que recebeu (token de comprimento com o complemento, as strings da
+  NVRAM normalizadas, o preenchimento com NUL, `{128, 0xfeedc0de}` da
+  semente) e só então publica a área compartilhada;
+- o BAR2 é memória do host com as páginas além do mapeado protegidas: uma
+  escrita fora do que o driver mapeou derruba o teste, como derrubaria o
+  kernel.
+
+| Cenário | Esperado |
+|---|---|
+| p3s, RAM 2 MiB, BAR2 4 MiB, `SMAR` 0x1c0000 | sobe; arquivos `bcm4389-*`; ordem janela 0x84 → CA7 parado → SYSMEM reset → semente → vetor → CA7 solto |
+| p3s, RAM 2,5 MiB, BAR2 4 MiB, `SMAR` 0x1c0000 | sobe com a RAM da imagem |
+| p3s, RAM 2,5 MiB, BAR2 4 MiB, sem `SMAR` | recusa antes de parar o CA7 |
+| p3s, RAM 2,5 MiB, BAR2 8 MiB | sobe com o BAR2 remapeado para 0x480000 |
+| p3s, endereço 0 lê 0xffffffff | recusa sem escrever o vetor; CA7 fica parado |
+| S21/S21+, BCM4375 com CR4 | sobe como antes, arquivos `bcm4375-*`, BARs no mesmo lugar |
+| chip desconhecido | recusa sem tocar no ARM |
+
+**Defeito achado:** com BAR2 de 8 MiB, o `bars()` do driver punha o BAR0
+no começo da janela PCIe (16 MiB menos 64 KiB em 0x20000000) e o BAR2
+alinhado depois dele, em 0x20800000. O BAR2 terminava fora da janela e a
+carga falhava antes de começar. O 0150 agora põe o BAR2 primeiro nesse caso
+(se o começo da janela estiver alinhado ao tamanho dele) e o BAR0 logo
+depois. O layout do BCM4375 não muda. O tamanho real do BAR2 do 4389 só o
+log `W2 PASS` do aparelho vai dizer. No fork: `fe8e2ed`, run
+[45913838407](https://github.com/rguisantos/s21xnu/actions/runs/45913838407),
+sucesso; esse `xnu-kernel` é o candidato.
+
+52 de 52 checagens. Seis mutações conferem que o teste pega erros: sem o
+reset do SYSMEM (falha a ordem), sem a recusa do vetor protegido (falha o
+cenário protegido), o 0150 anterior a esta correção (falham as checagens do
+cenário de 8 MiB), um bit trocado na cópia da NVRAM, o token sem o
+complemento e a semente sem o 0xfeedc0de (nos três últimos o firmware
+simulado não sobe). No CI.
+[Evidência](references/s21xnu-p3s-wifi-0150-sim-20261126.json).
 
 ## Preparar os arquivos do Wi-Fi
 

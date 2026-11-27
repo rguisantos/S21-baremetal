@@ -1,0 +1,431 @@
+{
+  "schema": "s21xnu-p3s-wifi-0150-sim/1",
+  "checks": [
+    {
+      "check": "o código do driver compila no host com o modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-fits: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "p3s-fits: resultado up",
+      "ok": true,
+      "detail": "up"
+    },
+    {
+      "check": "p3s-fits: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-fits: arquivos bcm4389-sta.bin, bcm4389-nvram-semco.txt",
+      "ok": true,
+      "detail": "['bcm4389-sta.bin', 'bcm4389-nvram-semco.txt']"
+    },
+    {
+      "check": "p3s-fits: RAM usada 0x1c0000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-fits: ordem cfg84 0 → arm-halted 847 → reset 849 1 → reset 849 0 → seed-magic → vector-write → reset 847 1 → reset 847 0 → arm-running 847 vector 0xea00002e",
+      "ok": true,
+      "detail": "['reset 849 0', 'cfg84 0', 'reset 847 0', 'arm-halted 847', 'reset 849 1', 'reset 849 0', 'seed-magic 0x3bffc4', 'vector-write 0xea00002e', 'reset 847 1', 'reset 847 0', 'arm-running 847 vector 0xea00002e']"
+    },
+    {
+      "check": "p3s-fits: firmware na RAM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-fits: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
+    },
+    {
+      "check": "p3s-past-bar2-smar: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "p3s-past-bar2-smar: resultado up",
+      "ok": true,
+      "detail": "up"
+    },
+    {
+      "check": "p3s-past-bar2-smar: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-smar: RAM usada 0x1c0000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-smar: log 'left to the image's own RAM size'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-smar: firmware na RAM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-smar: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: resultado fail",
+      "ok": true,
+      "detail": "fail"
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: log 'W4 FAIL: RAM 0x200000 + 0x280000 is not within BAR'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: sem 'arm-halted'",
+      "ok": true,
+      "detail": "['reset 849 0']"
+    },
+    {
+      "check": "p3s-past-bar2-nosmar: sem 'vector-write'",
+      "ok": true,
+      "detail": "['reset 849 0']"
+    },
+    {
+      "check": "p3s-remap: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "p3s-remap: resultado up",
+      "ok": true,
+      "detail": "up"
+    },
+    {
+      "check": "p3s-remap: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: RAM usada 0x280000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: BAR2 mapeado 0x480000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: BARs bar0=0x20800000 bar2=0x20000000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: log 'BAR2 mapped again: 0x480000 bytes'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: firmware na RAM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-remap: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
+    },
+    {
+      "check": "p3s-secured: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "p3s-secured: resultado fail",
+      "ok": true,
+      "detail": "fail"
+    },
+    {
+      "check": "p3s-secured: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-secured: log 'W4 FAIL: address 0 reads 0xffffffff'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "p3s-secured: sem 'arm-running'",
+      "ok": true,
+      "detail": "['reset 849 0', 'cfg84 0', 'reset 847 0', 'arm-halted 847', 'reset 849 1', 'reset 849 0', 'seed-magic 0x3bffc4']"
+    },
+    {
+      "check": "p3s-secured: sem 'vector-write'",
+      "ok": true,
+      "detail": "['reset 849 0', 'cfg84 0', 'reset 847 0', 'arm-halted 847', 'reset 849 1', 'reset 849 0', 'seed-magic 0x3bffc4']"
+    },
+    {
+      "check": "s21-4375: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "s21-4375: resultado up",
+      "ok": true,
+      "detail": "up"
+    },
+    {
+      "check": "s21-4375: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "s21-4375: arquivos bcm4375-sta.bin, bcm4375-nvram-semco.txt",
+      "ok": true,
+      "detail": "['bcm4375-sta.bin', 'bcm4375-nvram-semco.txt']"
+    },
+    {
+      "check": "s21-4375: RAM usada 0x160000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "s21-4375: BARs bar0=0x20000000 bar2=0x20400000",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "s21-4375: ordem arm-halted 83e → seed-magic → vector-write → arm-running 83e",
+      "ok": true,
+      "detail": "['reset 83e 0', 'arm-halted 83e', 'seed-magic 0x2cffc4', 'vector-write 0xea00002e', 'reset 83e 1', 'reset 83e 0', 'arm-running 83e vector 0xea00002e']"
+    },
+    {
+      "check": "s21-4375: sem 'cfg84'",
+      "ok": true,
+      "detail": "['reset 83e 0', 'arm-halted 83e', 'seed-magic 0x2cffc4', 'vector-write 0xea00002e', 'reset 83e 1', 'reset 83e 0', 'arm-running 83e vector 0xea00002e']"
+    },
+    {
+      "check": "s21-4375: firmware na RAM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "s21-4375: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
+    },
+    {
+      "check": "unknown-chip: termina sem falha de memória",
+      "ok": true,
+      "detail": "rc 0"
+    },
+    {
+      "check": "unknown-chip: resultado fail",
+      "ok": true,
+      "detail": "fail"
+    },
+    {
+      "check": "unknown-chip: nenhum acesso fora do modelo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "unknown-chip: log 'W4 FAIL: not the BCM4375 or BCM4389'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "unknown-chip: sem 'arm-halted'",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "scenarios": {
+    "p3s-fits": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134389: BCM4389 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (5): 800/70@18000000 83c/72@18001000 812/80@18002000 847/7@18003000 849/20@18004000",
+      "EV 0 reset 849 0",
+      "wifi: SYSMEM rev 20 coreinfo 0x3100000: 3 ROM banks, 16 RAM banks, RAM 0x200000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CA7 rev 7 at 0x18003000 (wrapper 0x18103000): RAM 0x200000 + 0x200000",
+      "wifi: fw/bcm4389-sta.bin 65536 bytes, fw/bcm4389-nvram-semco.txt 61 bytes (read from /fw)",
+      "wifi: the image says RAM 0x1c0000 (the cores 0x200000)",
+      "EV 1 cfg84 0",
+      "EV 2 reset 847 0",
+      "EV 3 arm-halted 847",
+      "EV 4 reset 849 1",
+      "EV 5 reset 849 0",
+      "EV 6 seed-magic 0x3bffc4",
+      "wifi: firmware 65536 bytes at 0x200000 (reset vector 0xea00002e), bcm4389-nvram-semco.txt 56 bytes at the top; first word reads back 0xea00002e",
+      "EV 7 vector-write 0xea00002e",
+      "wifi: reset vector: address 0 read 0, now 0xea00002e",
+      "EV 8 reset 847 1",
+      "EV 9 reset 847 0",
+      "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
+      "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
+      "ASKED bcm4389-sta.bin",
+      "ASKED bcm4389-nvram-semco.txt",
+      "STATE rambase=0x200000 ramsize=0x1c0000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RAM fw_match=1",
+      "RESULT up"
+    ],
+    "p3s-past-bar2-smar": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134389: BCM4389 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (5): 800/70@18000000 83c/72@18001000 812/80@18002000 847/7@18003000 849/20@18004000",
+      "EV 0 reset 849 0",
+      "wifi: SYSMEM rev 20 coreinfo 0x3140000: 3 ROM banks, 20 RAM banks, RAM 0x280000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CA7 rev 7 at 0x18003000 (wrapper 0x18103000): RAM 0x200000 + 0x280000",
+      "wifi: RAM 0x200000 + 0x280000 passes BAR2's 0x400000: left to the image's own RAM size",
+      "wifi: fw/bcm4389-sta.bin 65536 bytes, fw/bcm4389-nvram-semco.txt 61 bytes (read from /fw)",
+      "wifi: the image says RAM 0x1c0000 (the cores 0x280000)",
+      "EV 1 cfg84 0",
+      "EV 2 reset 847 0",
+      "EV 3 arm-halted 847",
+      "EV 4 reset 849 1",
+      "EV 5 reset 849 0",
+      "EV 6 seed-magic 0x3bffc4",
+      "wifi: firmware 65536 bytes at 0x200000 (reset vector 0xea00002e), bcm4389-nvram-semco.txt 56 bytes at the top; first word reads back 0xea00002e",
+      "EV 7 vector-write 0xea00002e",
+      "wifi: reset vector: address 0 read 0, now 0xea00002e",
+      "EV 8 reset 847 1",
+      "EV 9 reset 847 0",
+      "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
+      "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
+      "ASKED bcm4389-sta.bin",
+      "ASKED bcm4389-nvram-semco.txt",
+      "STATE rambase=0x200000 ramsize=0x1c0000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RAM fw_match=1",
+      "RESULT up"
+    ],
+    "p3s-past-bar2-nosmar": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134389: BCM4389 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (5): 800/70@18000000 83c/72@18001000 812/80@18002000 847/7@18003000 849/20@18004000",
+      "EV 0 reset 849 0",
+      "wifi: SYSMEM rev 20 coreinfo 0x3140000: 3 ROM banks, 20 RAM banks, RAM 0x280000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CA7 rev 7 at 0x18003000 (wrapper 0x18103000): RAM 0x200000 + 0x280000",
+      "wifi: RAM 0x200000 + 0x280000 passes BAR2's 0x400000: left to the image's own RAM size",
+      "wifi: fw/bcm4389-sta.bin 65536 bytes, fw/bcm4389-nvram-semco.txt 61 bytes (read from /fw)",
+      "wifi: W4 FAIL: RAM 0x200000 + 0x280000 is not within BAR2's 0x400000",
+      "ASKED bcm4389-sta.bin",
+      "ASKED bcm4389-nvram-semco.txt",
+      "STATE rambase=0x200000 ramsize=0x280000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RESULT fail"
+    ],
+    "p3s-remap": [
+      "wifi: BAR2 (8192 KB) first at 0x20000000, BAR0 after it at 0x20800000",
+      "wifi: BARs: BAR0 0x20800000 (32 KB), BAR2 0x20000000 (8192 KB); endpoint command 0x6, BAR0 reads 0x20800000, BAR2 0x20000000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134389: BCM4389 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (5): 800/70@18000000 83c/72@18001000 812/80@18002000 847/7@18003000 849/20@18004000",
+      "EV 0 reset 849 0",
+      "wifi: SYSMEM rev 20 coreinfo 0x3140000: 3 ROM banks, 20 RAM banks, RAM 0x280000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CA7 rev 7 at 0x18003000 (wrapper 0x18103000): RAM 0x200000 + 0x280000",
+      "SIM BAR2 mapped 0x480000",
+      "wifi: BAR2 mapped again: 0x480000 bytes for RAM 0x200000 + 0x280000: done",
+      "wifi: fw/bcm4389-sta.bin 65536 bytes, fw/bcm4389-nvram-semco.txt 61 bytes (read from /fw)",
+      "EV 1 cfg84 0",
+      "EV 2 reset 847 0",
+      "EV 3 arm-halted 847",
+      "EV 4 reset 849 1",
+      "EV 5 reset 849 0",
+      "EV 6 seed-magic 0x47ffc4",
+      "wifi: firmware 65536 bytes at 0x200000 (reset vector 0xea00002e), bcm4389-nvram-semco.txt 56 bytes at the top; first word reads back 0xea00002e",
+      "EV 7 vector-write 0xea00002e",
+      "wifi: reset vector: address 0 read 0, now 0xea00002e",
+      "EV 8 reset 847 1",
+      "EV 9 reset 847 0",
+      "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
+      "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
+      "ASKED bcm4389-sta.bin",
+      "ASKED bcm4389-nvram-semco.txt",
+      "STATE rambase=0x200000 ramsize=0x280000 tcm_size=0x480000 ca7=1 mapped=0x480000 bar0=0x20800000 bar2=0x20000000",
+      "RAM fw_match=1",
+      "RESULT up"
+    ],
+    "p3s-secured": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134389: BCM4389 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (5): 800/70@18000000 83c/72@18001000 812/80@18002000 847/7@18003000 849/20@18004000",
+      "EV 0 reset 849 0",
+      "wifi: SYSMEM rev 20 coreinfo 0x3100000: 3 ROM banks, 16 RAM banks, RAM 0x200000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CA7 rev 7 at 0x18003000 (wrapper 0x18103000): RAM 0x200000 + 0x200000",
+      "wifi: fw/bcm4389-sta.bin 65536 bytes, fw/bcm4389-nvram-semco.txt 61 bytes (read from /fw)",
+      "wifi: the image says RAM 0x1c0000 (the cores 0x200000)",
+      "EV 1 cfg84 0",
+      "EV 2 reset 847 0",
+      "EV 3 arm-halted 847",
+      "EV 4 reset 849 1",
+      "EV 5 reset 849 0",
+      "EV 6 seed-magic 0x3bffc4",
+      "wifi: firmware 65536 bytes at 0x200000 (reset vector 0xea00002e), bcm4389-nvram-semco.txt 56 bytes at the top; first word reads back 0xea00002e",
+      "wifi: W4 FAIL: address 0 reads 0xffffffff: the reset vector is secured (a signature would be needed)",
+      "ASKED bcm4389-sta.bin",
+      "ASKED bcm4389-nvram-semco.txt",
+      "STATE rambase=0x200000 ramsize=0x1c0000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RESULT fail"
+    ],
+    "s21-4375": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x124375: BCM4375 rev 2, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: cores (4): 800/70@18000000 83c/72@18001000 812/80@18002000 83e/13@18003000",
+      "wifi: PCIe2 core rev 72 at 0x18001000 (wrapper 0x18101000), ARM CR4 rev 13 at 0x18003000 (wrapper 0x18103000): RAM 0x170000 + 0x160000",
+      "wifi: fw/bcm4375-sta.bin 65536 bytes, fw/bcm4375-nvram-semco.txt 61 bytes (read from /fw)",
+      "EV 0 reset 83e 0",
+      "EV 1 arm-halted 83e",
+      "EV 2 seed-magic 0x2cffc4",
+      "wifi: firmware 65536 bytes at 0x170000 (reset vector 0xea00002e), bcm4375-nvram-semco.txt 56 bytes at the top; first word reads back 0xea00002e",
+      "EV 3 vector-write 0xea00002e",
+      "EV 4 reset 83e 1",
+      "EV 5 reset 83e 0",
+      "EV 6 arm-running 83e vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
+      "wifi: W4 PASS: the firmware is up, shared area at 0x171000",
+      "ASKED bcm4375-sta.bin",
+      "ASKED bcm4375-nvram-semco.txt",
+      "STATE rambase=0x170000 ramsize=0x160000 tcm_size=0x400000 ca7=0 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RAM fw_match=1",
+      "RESULT up"
+    ],
+    "unknown-chip": [
+      "wifi: BARs: BAR0 0x20000000 (32 KB), BAR2 0x20400000 (4096 KB); endpoint command 0x6, BAR0 reads 0x20000000, BAR2 0x20400000; bridge window 0x20f02000",
+      "SIM BAR2 mapped 0x400000",
+      "wifi: chip id 0x134377: BCM4377 rev 3, package 1 (want 4375, or 4389 on the p3s)",
+      "wifi: W4 FAIL: not the BCM4375 or BCM4389 (0x134377)",
+      "STATE rambase=0x170000 ramsize=0 tcm_size=0x400000 ca7=0 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
+      "RESULT fail"
+    ]
+  },
+  "result": "PASS"
+}

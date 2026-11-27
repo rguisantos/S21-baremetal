@@ -72,6 +72,11 @@
       "detail": ""
     },
     {
+      "check": "bars(): BAR2 grande demais para vir depois do BAR0 vai primeiro (só se alinhado)",
+      "ok": true,
+      "detail": ""
+    },
+    {
       "check": "ca7_passive: janela BAR1 = 0, CA7 parado, SYSMEM reset (download_state enter)",
       "ok": true,
       "detail": ""
@@ -132,46 +137,70 @@
     "bcmdhd": "FlopKernel dc17ad0 drivers/net/wireless/broadcom/bcmdhd_101_18 (dhd_pcie.c dhdpcie_dongle_attach, dhdpcie_bus_download_state, dhdpcie_wrt_rnd; siutils.c si_sysmem_size; include/hndsoc.h, sbsysmem.h, sbchipc.h, bcmrand.h, pcicfg.h; Makefile CONFIG_BCM4389 block, no FW_SIGNATURE)",
     "driver": "N1709/z3sios 1323aa51d4c1 kernel/xnu/files/bsd/dev/redwood_bcm4375.c sha256 f34eb5a7bdfd6c2efa211e3f9d1369c8d33cc1efcdddcd5512712fab653c55ed"
   },
-  "fork_build_previous": {
-    "repo": "rguisantos/s21xnu",
-    "commit": "02528b7",
-    "run_id": 45901428006,
-    "conclusion": "success",
-    "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; redwood_bcm4375.c warnings only on upstream lines",
-    "artifacts": [
-      {
-        "name": "xnu-kernel",
-        "id": 15156711442,
-        "bytes": 61313387,
-        "digest": "sha256:c9824a204169c9d912b1be6637c89b53a7b97c9e90c6649c1cf04a16f1e6f5fc"
-      },
-      {
-        "name": "xnu-buildtree",
-        "id": 15155719128,
-        "bytes": 23205715,
-        "digest": "sha256:525b7ace557a88de63cf89f867377b8931b9a2da26c3772b54dc663de1cae29c"
-      }
-    ],
-    "hardware_run": false
-  },
+  "fork_build_previous": [
+    {
+      "repo": "rguisantos/s21xnu",
+      "commit": "02528b7",
+      "run_id": 45901428006,
+      "conclusion": "success",
+      "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; redwood_bcm4375.c warnings only on upstream lines",
+      "artifacts": [
+        {
+          "name": "xnu-kernel",
+          "id": 15156711442,
+          "bytes": 61313387,
+          "digest": "sha256:c9824a204169c9d912b1be6637c89b53a7b97c9e90c6649c1cf04a16f1e6f5fc"
+        },
+        {
+          "name": "xnu-buildtree",
+          "id": 15155719128,
+          "bytes": 23205715,
+          "digest": "sha256:525b7ace557a88de63cf89f867377b8931b9a2da26c3772b54dc663de1cae29c"
+        }
+      ],
+      "hardware_run": false
+    },
+    {
+      "repo": "rguisantos/s21xnu",
+      "commit": "b5b1377",
+      "run_id": 45903906003,
+      "conclusion": "success",
+      "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; redwood_bcm4375.c warnings only on upstream lines",
+      "artifacts": [
+        {
+          "name": "xnu-kernel",
+          "id": 15157182599,
+          "bytes": 61327401,
+          "digest": "sha256:5e17904f123bf786ae4884c9e8a42789ec846a9421d72ef3f52830e21d1f44ff"
+        },
+        {
+          "name": "xnu-buildtree",
+          "id": 15156957746,
+          "bytes": 23203923,
+          "digest": "sha256:78855be329c8617e843e29d8b6c66e39274a380341ec15fea61f94a5036c5b82"
+        }
+      ],
+      "hardware_run": false
+    }
+  ],
   "fork_build": {
     "repo": "rguisantos/s21xnu",
-    "commit": "b5b1377",
-    "run_id": 45903906003,
+    "commit": "fe8e2ed",
+    "run_id": 45913838407,
     "conclusion": "success",
-    "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; redwood_bcm4375.c warnings only on upstream lines",
+    "log": "Applying patch .../0150-s21-p3s-wifi-bcm4389-firmware.patch; no warnings on the bars() lines",
     "artifacts": [
       {
         "name": "xnu-kernel",
-        "id": 15157182599,
-        "bytes": 61327401,
-        "digest": "sha256:5e17904f123bf786ae4884c9e8a42789ec846a9421d72ef3f52830e21d1f44ff"
+        "id": 15161587559,
+        "bytes": 61326880,
+        "digest": "sha256:3a0413b2131b7f977e698b88305e010829f2a0ddce2106d3af17dce36bb3ae7a"
       },
       {
         "name": "xnu-buildtree",
-        "id": 15156957746,
-        "bytes": 23203923,
-        "digest": "sha256:78855be329c8617e843e29d8b6c66e39274a380341ec15fea61f94a5036c5b82"
+        "id": 15161971068,
+        "bytes": 23203229,
+        "digest": "sha256:186257b09c388c4882dd066901463c1f70bb9999b375d4662d9dccf109e2d83a"
       }
     ],
     "hardware_run": false
