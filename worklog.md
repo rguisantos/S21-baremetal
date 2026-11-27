@@ -4496,3 +4496,12 @@ o SHA-256 do kernel; antes o `shasum kernel.*` parava no diretório
 17.505.040 bytes, 0146–0151. `prepare_xnu_boot.py` consulta
 `docs/references/s21xnu-fork-kernels.json` e registra o build no roteiro;
 6 testes.
+
+## 2026-11-27 — tabela de kernels: build 6a02361
+
+Sessão paralela baixou os artefatos e rodou o kit do segundo boot com o
+kernel real do run 46028220411 e as imagens stock HZC2: boot.img de 64 MiB,
+AVB de laboratório válido, roteiro com `2300193` até o 0151. O kernel do
+`6a02361` (run 46022394450, `ba6fba6d…bed4`, 17.505.040 bytes, com 0151)
+entrou em `docs/references/s21xnu-fork-kernels.json`. Boot no aparelho
+pendente.

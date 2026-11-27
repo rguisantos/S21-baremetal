@@ -146,7 +146,16 @@ gerou o `kernel.development.sweet` de 17.505.040 bytes com SHA-256
 [`s21xnu-fork-kernels.json`](references/s21xnu-fork-kernels.json) guarda a
 tabela, e o `prepare_xnu_boot.py` diz no roteiro e no relatório se o
 kernel recebido está nela; fora dela, avisa que a correção do HID não é
-identificável. [Evidência](references/s21xnu-hid-0151-20261127.json). A análise do defeito
+identificável.
+
+Ensaio com os binários reais (sessão paralela, 27/11, no PC): o artefato
+do run 46028220411 baixado, SHA-256 do ZIP e do kernel conferidos, e o
+`prepare_xnu_boot.py` rodado com as imagens stock HZC2 (1 CPU, sem
+`iosroot.img`, Wi-Fi desligado). Saíram a boot.img de 64 MiB com AVB de
+laboratório válido e o roteiro com `2300193`, até o 0151. O kernel do
+`6a02361` (run 46022394450) também tem 17.505.040 bytes, com hash
+`ba6fba6d…bed4`. Ele contém o 0151 e entrou na tabela pelo hash tirado do
+artefato; antes disso o kit o marcava como fora da tabela, como previsto. [Evidência](references/s21xnu-hid-0151-20261127.json). A análise do defeito
 veio de uma sessão paralela (tabela de z, pressão e inclinação), que
 reproduzi aqui.
 
