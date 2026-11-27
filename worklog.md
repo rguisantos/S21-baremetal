@@ -4448,3 +4448,14 @@ semente antes de subir). Sete cenários, 52/52; seis mutações detectadas.
 Defeito achado e corrigido no 0150: BAR2 de 8 MiB depois do BAR0 saía da
 janela PCIe de 16 MiB; agora vai primeiro. Verificador
 estático 25/25. No CI. Fork `fe8e2ed`, run 45913838407: sucesso.
+
+## 2026-11-27 — s21xnu: kit do segundo boot (XNU pelo S-Boot)
+
+[Análise](docs/xnu-s21xnu-p3s.md#kit-do-segundo-boot-o-xnu-pelo-s-boot-2711).
+`prepare_xnu_boot.py`: série do fork 0001–0006 sobre o clone fixado, shim
+p3s, ADT `--board=p3s --highmem` (mapa UFS opcional), payload com o kernel
+do fork (marcas de 0146/0148/0149/0150 conferidas), boot.img com AVB de
+laboratório, tar do Odin, roteiro. Raiz com `ufsov=1` (escritas só na RAM);
+sem `ufshs`/`ufsrw`. `odin_tar` ganhou o nome do tar no trailer MD5.
+`test_prepare_xnu_boot.py`: 5 testes, 2 de ponta a ponta no CI. Kernel real
+de 17,5 MB pelo log do run 45913838407; não carregado aqui.

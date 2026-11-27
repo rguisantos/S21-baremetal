@@ -47,6 +47,7 @@ jobs:
           git -C /tmp/s21xnu fetch -q --depth 1 https://github.com/jimmycarles9991-glitch/s21xnu a128f07b04987e60f5e13e2ce67b19ae009672cd
           git -C /tmp/s21xnu checkout -q FETCH_HEAD
           python3 lab/s21xnu-p3s/verify_p3s_profile.py /tmp/s21xnu
+          S21XNU=/tmp/s21xnu python3 lab/s21xnu-p3s/test_prepare_xnu_boot.py
           python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/probe_screenshot.py /tmp/s21xnu --png /tmp/sonda.png
           python3 lab/s21xnu-p3s/fork/check_fork_series.py /tmp/s21xnu
