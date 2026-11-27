@@ -4461,3 +4461,15 @@ sem `ufshs`/`ufsrw`. `odin_tar` ganhou o nome do tar no trailer MD5.
 de 17,5 MB pelo log do run 45913838407; não carregado aqui. Revisão do
 PR #117: o roteiro volta ao stock antes do `install`, e o `s21xnu-switch.sh`
 recusa trocar a imagem do shim com a anterior na BOOT (18 testes).
+
+## 2026-11-27 — S Pen: Wacom W9020 e decodificador
+
+[Análise](docs/s21xnu-spen-p3s.md). No FlopKernel `dc17ad0`, a S Pen
+(`wacom@56`, W9020) fica desativada em r17/r18 (`hsi2c_35`) e ativa em
+`hsi2c_9` (gpp4-2/gpp4-3, mesmo banco do toque) de r19 a r22; o r22 cobre
+`dtbo-hw_rev` 0x16–0x20 (varejo). Interrupção gpa2-4, alimentação LDO20 do
+S2MPS24 com `regulator-boot-on`. Contrato de placas refeito no r22: igual
+ao r17. `spen/sweet_wacom.h` decodifica os pacotes; `test_spen_decode.py`
+(CI, busca o `wacom_i2c.c` fixado) compara com as funções Samsung extraídas:
+roteiro de 19 pacotes, cantos e 20 000 aleatórios iguais; quatro mutações
+detectadas. Driver XNU, HID de caneta e aparelho pendentes.

@@ -106,6 +106,8 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Roadmap e estado atual](roadmap.md): evidências, prioridades e critérios separados para diagnóstico físico e R10 em uma CPU.
 - [Baseline obrigatório e CI](baseline-validation.md): comando único, ELF novo, host/QEMU, logs, timeout e recusa de skips.
 - [s21xnu no p3s](xnu-s21xnu-p3s.md): contrato de hardware S21 Ultra × S21+ (21 iguais, 5 diferentes), perfil de painel para shim/ADT e opções de carga.
+- [Wi-Fi BCM4389 no HZC2](s21xnu-wifi-bcm4389-hzc2.md): arquivos do vendor, patches XNU 0149/0150 e simulação da carga do firmware.
+- [S Pen no p3s](s21xnu-spen-p3s.md): Wacom W9020 por revisão de placa, decodificador conferido contra o driver Samsung.
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
 - [Adaptador FDT → recursos Apple](xnu-fdt-adapter.md): 29 testes, projeção HZC2 com proveniência e política de memória sem alocação.

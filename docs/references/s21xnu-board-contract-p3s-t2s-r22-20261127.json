@@ -1,0 +1,381 @@
+{
+  "schema": "s21xnu-board-contract/1",
+  "target": "p3s",
+  "reference": "t2s",
+  "dtb_sha256": {
+    "p3s": "fb641b4ab223756a5b06c60a986183f0eeb798c0c9a1a1c99f88a4190dcd42e7",
+    "t2s": "97110da11577377a64e161b3e7ea80ca3f5175148ff20c9c3e451d59e2ef1f83"
+  },
+  "sources_sha256": {
+    "exynos2100.dts": "aea3cbea87418fe9b05615b25f7ef87dc02e5c769abcf8052e55ed936c5c05e9",
+    "samsung/p3s/p3s_eur_openx_w01_r22.dts": "fdf152cc0be7f14512c8ffa7dec3c985033e0b2b55ca4d5c3f09717e0f646c63",
+    "samsung/t2s/t2s_eur_openx_w01_r22.dts": "61404ba0c0501e5ca949444adce0f88e1f04a13222d11c8b472a3e326c53dbf2"
+  },
+  "rev": "r22",
+  "xnu_window": [
+    "0x8c0000000",
+    "0x940000000"
+  ],
+  "items": [
+    {
+      "item": "cpu.mpidr",
+      "status": "igual",
+      "p3s": [
+        "0x0",
+        "0x100",
+        "0x200",
+        "0x300",
+        "0x400",
+        "0x500",
+        "0x600",
+        "0x700"
+      ],
+      "t2s": [
+        "0x0",
+        "0x100",
+        "0x200",
+        "0x300",
+        "0x400",
+        "0x500",
+        "0x600",
+        "0x700"
+      ],
+      "s21xnu": ""
+    },
+    {
+      "item": "gic.reg",
+      "status": "igual",
+      "p3s": [
+        [
+          "0x10200000",
+          "0x10000"
+        ],
+        [
+          "0x10240000",
+          "0x200000"
+        ]
+      ],
+      "t2s": [
+        [
+          "0x10200000",
+          "0x10000"
+        ],
+        [
+          "0x10240000",
+          "0x200000"
+        ]
+      ],
+      "s21xnu": "shim/mkadt fixam GICD/GICR"
+    },
+    {
+      "item": "keys.codes",
+      "status": "igual",
+      "p3s": [
+        114,
+        115
+      ],
+      "t2s": [
+        114,
+        115
+      ],
+      "s21xnu": ""
+    },
+    {
+      "item": "keys.pins",
+      "status": "igual",
+      "p3s": [
+        "gpa0-3",
+        "gpa0-4"
+      ],
+      "t2s": [
+        "gpa0-3",
+        "gpa0-4"
+      ],
+      "s21xnu": "0125 lê volume em gpa0"
+    },
+    {
+      "item": "mali.reg",
+      "status": "igual",
+      "p3s": [
+        [
+          "0x18500000",
+          "0x5000"
+        ]
+      ],
+      "t2s": [
+        [
+          "0x18500000",
+          "0x5000"
+        ]
+      ],
+      "s21xnu": "0111/0112 usam MALI_PHYS 0x18500000"
+    },
+    {
+      "item": "max77705.addr",
+      "status": "igual",
+      "p3s": "0x66",
+      "t2s": "0x66",
+      "s21xnu": "0123 fala com o MAX77705"
+    },
+    {
+      "item": "max77705.bus",
+      "status": "igual",
+      "p3s": "/hsi2c@10570000",
+      "t2s": "/hsi2c@10570000",
+      "s21xnu": ""
+    },
+    {
+      "item": "max77705.bus_pins",
+      "status": "igual",
+      "p3s": [
+        "gpp1-0",
+        "gpp1-1"
+      ],
+      "t2s": [
+        "gpp1-0",
+        "gpp1-1"
+      ],
+      "s21xnu": "0123 usa o banco gpp1 (0x10430020)"
+    },
+    {
+      "item": "memory.fixed_reserved_in_xnu_window",
+      "status": "igual",
+      "p3s": [],
+      "t2s": [],
+      "s21xnu": "mkadt.py --highmem entrega 0x8c0000000-0x940000000"
+    },
+    {
+      "item": "panel.max_mode",
+      "status": "difere",
+      "p3s": "1440x3200",
+      "t2s": "1080x2400",
+      "s21xnu": "shim/console.h, mkadt.py, 0010/0061/0094 fixam 1080x2400"
+    },
+    {
+      "item": "panel.modes",
+      "status": "difere",
+      "p3s": [
+        "720x1600",
+        "1080x2400",
+        "1440x3200"
+      ],
+      "t2s": [
+        "1080x2400"
+      ],
+      "s21xnu": ""
+    },
+    {
+      "item": "s2dos05.addr",
+      "status": "igual",
+      "p3s": "0x60",
+      "t2s": "0x60",
+      "s21xnu": "0094 usa S2DOS05_ADDR 0x60"
+    },
+    {
+      "item": "s2dos05.bus",
+      "status": "igual",
+      "p3s": "/hsi2c@10560000",
+      "t2s": "/hsi2c@10560000",
+      "s21xnu": ""
+    },
+    {
+      "item": "s2dos05.bus_pins",
+      "status": "igual",
+      "p3s": [
+        "gpp0-2",
+        "gpp0-3"
+      ],
+      "t2s": [
+        "gpp0-2",
+        "gpp0-3"
+      ],
+      "s21xnu": "0094 faz bit-bang em gpp0-2/3"
+    },
+    {
+      "item": "touch.addr",
+      "status": "igual",
+      "p3s": "0x48",
+      "t2s": "0x48",
+      "s21xnu": "0094 usa SEC_TS_ADDR 0x48"
+    },
+    {
+      "item": "touch.attn_pins",
+      "status": "igual",
+      "p3s": [
+        "gpa1-0"
+      ],
+      "t2s": [
+        "gpa1-0"
+      ],
+      "s21xnu": "0094 lê ATTN em gpa1-0"
+    },
+    {
+      "item": "touch.avdd_supply",
+      "status": "igual",
+      "p3s": {
+        "name": "tsp_avdd",
+        "node": "/hsi2c@10560000/s2dos05_pmic@60/regulators/s2dos05-ldo3",
+        "uV": 3000000
+      },
+      "t2s": {
+        "name": "tsp_avdd",
+        "node": "/hsi2c@10560000/s2dos05_pmic@60/regulators/s2dos05-ldo3",
+        "uV": 3000000
+      },
+      "s21xnu": "0094/0107 ligam S2DOS05 LDO3 (tsp_avdd)"
+    },
+    {
+      "item": "touch.bus",
+      "status": "igual",
+      "p3s": "/hsi2c@105D0000",
+      "t2s": "/hsi2c@105D0000",
+      "s21xnu": ""
+    },
+    {
+      "item": "touch.bus_pins",
+      "status": "igual",
+      "p3s": [
+        "gpp4-0",
+        "gpp4-1"
+      ],
+      "t2s": [
+        "gpp4-0",
+        "gpp4-1"
+      ],
+      "s21xnu": "0094 faz bit-bang em gpp4-0/1"
+    },
+    {
+      "item": "touch.firmware",
+      "status": "difere",
+      "p3s": "y792_p3.bin",
+      "t2s": "y792_t2.bin",
+      "s21xnu": ""
+    },
+    {
+      "item": "touch.io_supply",
+      "status": "igual",
+      "p3s": {
+        "name": "tsp_io",
+        "node": "/hsi2c@10560000/s2dos05_pmic@60/regulators/s2dos05-ldo2",
+        "uV": 1800000
+      },
+      "t2s": {
+        "name": "tsp_io",
+        "node": "/hsi2c@10560000/s2dos05_pmic@60/regulators/s2dos05-ldo2",
+        "uV": 1800000
+      },
+      "s21xnu": "0094/0107 ligam S2DOS05 LDO2 (tsp_io)"
+    },
+    {
+      "item": "touch.max_coords",
+      "status": "igual",
+      "p3s": [
+        4096,
+        4096
+      ],
+      "t2s": [
+        4096,
+        4096
+      ],
+      "s21xnu": "0094 converte 0..4095 para pixels do painel"
+    },
+    {
+      "item": "ufs.reg",
+      "status": "igual",
+      "p3s": [
+        [
+          "0x13100000",
+          "0x200"
+        ],
+        [
+          "0x13101100",
+          "0x200"
+        ],
+        [
+          "0x13180000",
+          "0x8000"
+        ],
+        [
+          "0x132a0000",
+          "0x100"
+        ],
+        [
+          "0x13104000",
+          "0x4000"
+        ],
+        [
+          "0x13108000",
+          "0x804"
+        ]
+      ],
+      "t2s": [
+        [
+          "0x13100000",
+          "0x200"
+        ],
+        [
+          "0x13101100",
+          "0x200"
+        ],
+        [
+          "0x13180000",
+          "0x8000"
+        ],
+        [
+          "0x132a0000",
+          "0x100"
+        ],
+        [
+          "0x13104000",
+          "0x4000"
+        ],
+        [
+          "0x13108000",
+          "0x804"
+        ]
+      ],
+      "s21xnu": "0028 usa o host UFS 0x13100000"
+    },
+    {
+      "item": "wifi.pcie_ep_ver",
+      "status": "difere",
+      "p3s": "0x4389",
+      "t2s": "0x4375",
+      "s21xnu": "0109/0111/0142 carregam firmware BCM4375"
+    },
+    {
+      "item": "wifi.pcie_max_link_speed",
+      "status": "difere",
+      "p3s": 2,
+      "t2s": 1,
+      "s21xnu": "0109 treina o link PCIe ch0"
+    },
+    {
+      "item": "wifi.pcie_pins",
+      "status": "igual",
+      "p3s": [
+        "gpf0-0",
+        "gpf0-1",
+        "gpp12-2",
+        "gpa0-7"
+      ],
+      "t2s": [
+        "gpf0-0",
+        "gpf0-1",
+        "gpp12-2",
+        "gpa0-7"
+      ],
+      "s21xnu": ""
+    }
+  ],
+  "summary": {
+    "igual": 21,
+    "difere": 5,
+    "ausente": 0
+  },
+  "compared_with_r17": {
+    "items_differing": 0,
+    "xnu_window_equal": true,
+    "note": "p3s r22 (dtbo-hw_rev 0x16..0x20, retail) and r17 (0x11) give the same contract against t2s"
+  }
+}

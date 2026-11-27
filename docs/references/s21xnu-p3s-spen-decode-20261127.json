@@ -1,0 +1,89 @@
+{
+  "schema": "s21xnu-p3s-spen-decode/1",
+  "checks": [
+    {
+      "check": "wacom_i2c.c do FlopKernel dc17ad0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Samsung + sweet_wacom.h compilam juntos",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "roteiro: 19 pacotes, eventos e estado iguais aos do driver Samsung",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "roteiro: nada / entra / 5 movimentos / 4 contatos / lateral / solta / solta botão / 2 descartes / borracha / sai / nada",
+      "ok": true,
+      "detail": "[0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 2, 3, 0]"
+    },
+    {
+      "check": "roteiro: o pacote de aproximação não publica nada",
+      "ok": true,
+      "detail": "| prox=1 pressed=0 side=0"
+    },
+    {
+      "check": "roteiro: saída solta ponta, botão e ferramenta",
+      "ok": true,
+      "detail": "A18=0 K14b=0 K14a=0 S A19=0 K141=0 K140=0 S | prox=0 pressed=0 side=0"
+    },
+    {
+      "check": "cantos: 15 pacotes, eventos e estado iguais aos do driver Samsung",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "cantos: x do painel = y bruto, y do painel = máx − x bruto, inclinação (ty, −tx)",
+      "ok": true,
+      "detail": "[(0, 15776, 7, -5), (0, 0, 63, 63), (7099, 15776, -63, -63), (7099, 0, 1, 1), (3549, 7888, -34, -12)]"
+    },
+    {
+      "check": "aleatório: 20000 pacotes, eventos e estado iguais aos do driver Samsung",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "pixels: 0 → 0, 7099 → 1439, meio de 15776 → 1600",
+      "ok": true,
+      "detail": "['0', '1439', '1600']"
+    }
+  ],
+  "script_kinds": [
+    0,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    2,
+    3,
+    0
+  ],
+  "roteiro": {
+    "packets": 19,
+    "mismatches": 0
+  },
+  "cantos": {
+    "packets": 15,
+    "mismatches": 0
+  },
+  "aleatório": {
+    "packets": 20000,
+    "mismatches": 0
+  },
+  "result": "PASS"
+}
