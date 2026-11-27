@@ -1,0 +1,13 @@
+{
+  "schema": "s21xnu-fork-kernels/1",
+  "note": "kernel.development.sweet do artefato xnu-kernel do fork rguisantos/s21xnu, pelo SHA-256 que o workflow imprime no log desde a série 0008. Builds anteriores não imprimiam o hash e não estão aqui.",
+  "kernels": {
+    "e0c75c109c90288504606cb8062da5c2397ec61024bd91620fe60475a57320d4": {
+      "fork_commit": "2300193",
+      "run_id": 46028220411,
+      "patches_up_to": "0151",
+      "artifact_id": 15213548510,
+      "artifact_digest": "sha256:1f5567f3bbd2254b919703c424002f804975f9c634d0cebcb2d5e873ec2b0118"
+    }
+  }
+}

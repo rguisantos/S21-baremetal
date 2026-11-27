@@ -44,7 +44,7 @@ typedef uint32_t IOOptionBits;
 typedef uint32_t IOHIDEventType;
 typedef uint32_t IOHIDDigitizerTransducerType;
 enum { kIOHIDEventTypeDigitizer = 11 };
-enum { kIOHIDEventOptionIsAbsolute = 1u << 2 };
+enum { kIOHIDEventOptionIsAbsolute = 1u << 0 };   /* 0058, IOHIDEventTypes */
 enum { kIOHIDDigitizerTransducerTypeStylus = 0, kIOHIDDigitizerTransducerTypeFinger = 2 };
 enum { kIOHIDDigitizerOrientationTypeTilt = 0, kIOHIDDigitizerOrientationTypePolar = 1,
        kIOHIDDigitizerOrientationTypeQuality = 2 };
@@ -54,7 +54,8 @@ enum { kIOHIDDigitizerOrientationTypeTilt = 0, kIOHIDDigitizerOrientationTypePol
 class IOHIDEvent {
 public:
 	void *_data;
-	bool initWithTypeTimeStamp(uint32_t, uint64_t, uint32_t) { _data = calloc(1, sizeof(IOHIDDigitizerEventData)); return _data; }
+	uint32_t _options;
+	bool initWithTypeTimeStamp(uint32_t, uint64_t, uint32_t o) { _options = o; _data = calloc(1, sizeof(IOHIDDigitizerEventData)); return _data; }
 	void release() {}
 	static IOHIDEvent *digitizerEvent(UInt64, UInt32, IOHIDDigitizerTransducerType, bool, UInt32, IOFixed, IOFixed,
 	    IOFixed z = 0, IOFixed tipPressure = 0, IOFixed auxPressure = 0, IOFixed twist = 0, IOOptionBits options = 0);
@@ -73,9 +74,9 @@ public:
 static void show(const char *n, IOHIDEvent *e)
 {
 	IOHIDDigitizerEventData *d = (IOHIDDigitizerEventData *)e->_data;
-	printf("%s x=%d y=%d z=%d tip=%d aux=%d twist=%d otype=%u a=%d b=%d\n", n, d->position.x, d->position.y,
-	    d->position.z, d->pressure, d->auxPressure, d->twist, d->orientationType, d->orientation.tilt.x,
-	    d->orientation.tilt.y);
+	printf("%s x=%d y=%d z=%d tip=%d aux=%d twist=%d otype=%u a=%d b=%d opts=%#x\n", n, d->position.x,
+	    d->position.y, d->position.z, d->pressure, d->auxPressure, d->twist, d->orientationType,
+	    d->orientation.tilt.x, d->orientation.tilt.y, e->_options);
 }
 int main()
 {
@@ -88,19 +89,32 @@ int main()
 	    0, 1, 2, 11, 22, 33, 44, 55, 66, 0));
 	show("quality", IOHIDEvent::digitizerEventWithQualityOrientation(0, 1, kIOHIDDigitizerTransducerTypeFinger,
 	    true, 0, 1, 2, 11, 22, 33, 44, 77, 88, 99, 5, 6, 0));
+	/* options pedidas pelo chamador: com o defeito, caem em twist e se perdem */
+	show("tilt-opt", IOHIDEvent::digitizerEventWithTiltOrientation(0, 1, kIOHIDDigitizerTransducerTypeStylus, true,
+	    0, 1, 2, 11, 22, 33, 44, 12, -34, 0x40));
+	show("polar-opt", IOHIDEvent::digitizerEventWithPolarOrientation(0, 1, kIOHIDDigitizerTransducerTypeStylus,
+	    true, 0, 1, 2, 11, 22, 33, 44, 55, 66, 0x40));
+	show("quality-opt", IOHIDEvent::digitizerEventWithQualityOrientation(0, 1, kIOHIDDigitizerTransducerTypeFinger,
+	    true, 0, 1, 2, 11, 22, 33, 44, 77, 88, 99, 5, 6, 0x40));
 	return 0;
 }
 '''
 
 WANT_NEW = {
-    "tilt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34",
-    "tilt-aux0": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34",
-    "polar": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66",
-    "quality": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88",
+    "tilt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x1",
+    "tilt-aux0": "x=1 y=2 z=11 tip=22 aux=0 twist=0 otype=0 a=12 b=-34 opts=0x1",
+    "polar": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x1",
+    "quality": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x1",
+    "tilt-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=0 a=12 b=-34 opts=0x41",
+    "polar-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=1 a=55 b=66 opts=0x41",
+    "quality-opt": "x=1 y=2 z=11 tip=22 aux=33 twist=44 otype=2 a=77 b=88 opts=0x41",
 }
-WANT_OLD = {   # o defeito, reproduzido: argumentos deslocados e xTilt nos dois eixos
-    "tilt": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12",
-    "tilt-aux0": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12",
+WANT_OLD = {   # o defeito, reproduzido: argumentos deslocados, xTilt nos dois eixos, options perdidas
+    "tilt": "x=1 y=2 z=22 tip=33 aux=44 twist=0 otype=0 a=12 b=12 opts=0x1",
+    "tilt-aux0": "x=1 y=2 z=22 tip=0 aux=0 twist=0 otype=0 a=12 b=12 opts=0x1",
+    "tilt-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=0 a=12 b=12 opts=0x1",
+    "polar-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=1 a=55 b=66 opts=0x1",
+    "quality-opt": "x=1 y=2 z=22 tip=33 aux=44 twist=64 otype=2 a=77 b=88 opts=0x1",
 }
 
 

@@ -73,6 +73,16 @@ class Rules(unittest.TestCase):
         with self.assertRaisesRegex(xb.kit.KitError, "--sweetwifi"):
             xb.cmdline(1, 5, True)
 
+    def test_identify_kernel(self):
+        k = fake_kernel()
+        with tempfile.TemporaryDirectory() as t:
+            table = pathlib.Path(t, "k.json")
+            table.write_text('{"kernels": {"%s": {"fork_commit": "abc1234", "run_id": 1, "patches_up_to": "0151"}}}'
+                             % xb.kit.sha(k))
+            self.assertEqual(xb.identify_kernel(k, table)["patches_up_to"], "0151")
+            self.assertFalse(xb.identify_kernel(k + b"x", table)["known"])
+        self.assertIn("0151", xb.identify_kernel(k)["note"])          # tabela real: sintético não está nela
+
     def test_series_is_complete(self):
         self.assertEqual([p.name[:4] for p in xb.FORK_SERIES], ["0001", "0002", "0003", "0004", "0005", "0006", "0007"])
 
@@ -115,6 +125,7 @@ class EndToEnd(unittest.TestCase):
         self.assertIn(rep["bootimg"]["sha256"], r)
         self.assertIn("2 extents", r)
         self.assertIn("W4 PASS", r)
+        self.assertIn("fora da tabela", r)
         i = r.index("to-android --no-reboot")
         self.assertLess(i, r.index("install boot.img"))
         self.assertLess(r.index("install boot.img"), r.index("switch.sh to-xnu"))

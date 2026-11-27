@@ -1,0 +1,33 @@
+From c5dccec0926f28645e5d2e18be152e63f43e98eb Mon Sep 17 00:00:00 2001
+From: rguisantos <142853894+rguisantos@users.noreply.github.com>
+Date: Fri, 27 Nov 2026 11:48:53 -0400
+Subject: [PATCH] ci(xnu): hash only kernel files and print SHA256SUMS in the
+ log
+
+shasum over kernel.* stopped at the kernel.development.sweet.link
+directory. Hash regular files only and print the result, so a kernel
+taken from the artifact can be matched to its build from the log.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01BMMeXnUh8SfBzu3GsrA53v
+---
+ .github/workflows/xnu.yml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/xnu.yml b/.github/workflows/xnu.yml
+index 5ea0c58..3f67ddb 100644
+--- a/.github/workflows/xnu.yml
++++ b/.github/workflows/xnu.yml
+@@ -144,7 +144,8 @@ jobs:
+           mkdir -p out
+           cp -R dxb/fakeroot/System/Library/Kernels/. out/ 2>/dev/null || true
+           ls -la out
+-          (cd out && shasum -a 256 kernel.* > SHA256SUMS) || true
++          (cd out && find . -maxdepth 1 -type f -name 'kernel.*' -exec shasum -a 256 {} + > SHA256SUMS) || true
++          cat out/SHA256SUMS || true   # kernel hash in the log: S21-baremetal's second-boot kit identifies the build by it
+ 
+       - uses: actions/upload-artifact@v4
+         if: always()
+-- 
+2.43.0
+

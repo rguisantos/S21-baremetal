@@ -127,12 +127,26 @@ passa `z` nas três chamadas e usa `yTilt`.
 - extrai os quatro construtores reais, antes e depois, e compila em C++ no
   host com o `IOHIDDigitizerEventData` do próprio 0058;
 - confere que o código antigo reproduz o defeito e que o novo entrega cada
-  campo no lugar, nos construtores Tilt, Polar e Quality.
+  campo no lugar, nos construtores Tilt, Polar e Quality;
+- com `options = 0x40` pedido pelo chamador, o código antigo perde o bit
+  (o valor cai em `twist`, que vira 64, e o evento fica só com 0x01, posição
+  absoluta); com o 0151 os três entregam 0x41 (ensaio da sessão paralela,
+  agora no CI). 20 checagens.
 
 No fork, `6a02361` e run
 [46022394450](https://github.com/rguisantos/s21xnu/actions/runs/46022394450):
-sucesso, 0151 aplicado, nenhum aviso nas linhas mudadas; esse `xnu-kernel`
-é o candidato. [Evidência](references/s21xnu-hid-0151-20261127.json). A análise do defeito
+sucesso, 0151 aplicado, nenhum aviso nas linhas mudadas.
+
+O 0151 não deixa texto no binário, então as marcas do kit do segundo boot
+param no 0150. O workflow do fork agora imprime o SHA-256 do kernel no log
+(série `0008`, `2300193`): o run
+[46028220411](https://github.com/rguisantos/s21xnu/actions/runs/46028220411)
+gerou o `kernel.development.sweet` de 17.505.040 bytes com SHA-256
+`e0c75c10…20d4`, com 0146–0151. Esse é o candidato.
+[`s21xnu-fork-kernels.json`](references/s21xnu-fork-kernels.json) guarda a
+tabela, e o `prepare_xnu_boot.py` diz no roteiro e no relatório se o
+kernel recebido está nela; fora dela, avisa que a correção do HID não é
+identificável. [Evidência](references/s21xnu-hid-0151-20261127.json). A análise do defeito
 veio de uma sessão paralela (tabela de z, pressão e inclinação), que
 reproduzi aqui.
 
