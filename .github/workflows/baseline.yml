@@ -44,6 +44,8 @@ jobs:
           git -C /tmp/flop fetch -q --depth 1 --filter=blob:none origin dc17ad08a8b4f7fcabd3f949d9c83ff11c5f80ee
           git -C /tmp/flop show FETCH_HEAD:drivers/input/sec_input/wacom/wacom_i2c.c > /tmp/wacom_i2c.c
           python3 lab/s21xnu-p3s/spen/test_spen_decode.py --wacom-src /tmp/wacom_i2c.c
+      - name: Check vbmeta flag disabling (synthetic AVB vbmeta)
+        run: python3 lab/s21xnu-p3s/test_vbmeta_disabled.py
       - name: Check Wi-Fi file preparation for the p3s BCM4389 (synthetic files)
         run: python3 lab/s21xnu-p3s/wifi/test_prepare_wifi_files.py
       - name: Check BOOT switch script for Android/TWRP (dash and bash)

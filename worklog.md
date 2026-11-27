@@ -4505,3 +4505,27 @@ AVB de laboratório válido, roteiro com `2300193` até o 0151. O kernel do
 `6a02361` (run 46022394450, `ba6fba6d…bed4`, 17.505.040 bytes, com 0151)
 entrou em `docs/references/s21xnu-fork-kernels.json`. Boot no aparelho
 pendente.
+
+## 2026-11-27 — passo a passo no aparelho
+
+[Guia](docs/guia-aparelho-p3s.md): preparação do PC, backup, desbloqueio
+OEM, vbmeta desativado, kit e foto da sonda, volta pelo Odin e primeiro
+boot do XNU com o kernel `2300193` (run 46028220411), tudo pelo Odin (TWRP
+opcional, compatibilidade com o HZC2 não conferida). Novos:
+`vbmeta_disabled.py` confere o vbmeta do BL HZC2 pelos pins do parent
+(`.img` ou `.lz4`; outro vbmeta é recusado, achado da revisão do PR #122),
+liga só os bits 0 e 1 de `flags` e gera o tar do Odin (5 testes com vbmeta
+AVB sintético no CI); o kit da sonda grava também `AP_stock_boot.tar(.md5)`
+para voltar sem montar tar à mão.
+Guia refeito para o PC do usuário: Linux Mint com Heimdall (que já leu a
+PIT do aparelho em 30/10; `BOOT`, `RECOVERY`, `VBMETA`), recovery Fox R13
+(OrangeFox R12.0, testada pelo autor no bootloader HZC2) gravada junto com o
+vbmeta, backup das partições stock pela Fox, sonda e XNU pela Fox com
+`s21xnu-switch.sh` (caminho B: Heimdall), e a ROM MonsterROM só depois dos
+testes (troca o vendor_boot). Revisão do PR #122 feita aqui, a pedido do
+usuário (limite do Codex esgotado).
+Achado da revisão própria: na Fox a `/cache` pode não estar montada; o
+`install` gravaria o backup stock no ramdisk e o `to-android` depois do
+reinício falharia. `s21xnu-switch.sh` agora recusa o diretório padrão sem
+`/cache` em `/proc/mounts` (teste novo, 20 testes com dash e bash) e o guia
+manda `mount /cache` antes de cada uso.

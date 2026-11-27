@@ -132,7 +132,8 @@ tabela em docs/xnu-s21xnu-p3s.md.
 
 A sonda reinicia nela mesma. No reinício, segure Volume+ e Power para o
 TWRP e rode `sh /cache/s21xnu/s21xnu-switch.sh to-android`. Sem TWRP: modo
-download e Odin com o boot.img stock.
+download e Odin com AP = `AP_stock_boot.tar.md5` (o boot.img stock HZC2
+conferido pelos pins).
 """.format(sha=rep["sha256"], end=end)
 
 
@@ -147,8 +148,10 @@ def prepare(stock_boot, stock_vendor, shim, lab_key_pem, out):
     rep.update(avb="lab", body_sha256=body_sha, sha256=sha(img), boot_img_size=len(img))
     vsize = mk.parse_vendor_v3(stock_vendor)["vendor_ramdisk_size"]
     tar, tar_md5 = odin_tar(img)
+    stock_tar, stock_md5 = odin_tar(stock_boot, "AP_stock_boot.tar")     # volta pelo Odin
     out.mkdir(parents=True)
     files = {"boot.img": img, "AP_s21xnu_sonda.tar": tar, "AP_s21xnu_sonda.tar.md5": tar_md5,
+             "AP_stock_boot.tar": stock_tar, "AP_stock_boot.tar.md5": stock_md5,
              "s21xnu-switch.sh": SWITCH.read_bytes(), "ROTEIRO.md": roteiro(rep, vsize).encode()}
     for name, data in files.items():
         (out / name).write_bytes(data)

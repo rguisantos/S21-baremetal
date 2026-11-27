@@ -115,7 +115,7 @@ def roteiro(rep):
         "Opção B, Odin: AP = `AP_s21xnu_xnu.tar.md5`.",
         "",
         "Volta: Volume+ e Power para o TWRP e `sh /cache/s21xnu/s21xnu-switch.sh",
-        "to-android`, ou o boot.img stock pelo Odin.",
+        "to-android`, ou pelo Odin com AP = `AP_stock_boot.tar.md5` do kit da sonda.",
         "",
         "## O que deve aparecer",
         "",
