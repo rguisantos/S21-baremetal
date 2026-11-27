@@ -37,6 +37,13 @@ jobs:
         run: python3 lab/s21xnu-p3s/test_avb_lab.py
       - name: Check first-boot kit builder (synthetic firmware, real RSA)
         run: python3 lab/s21xnu-p3s/test_prepare_first_boot.py
+      - name: Check the p3s S Pen decoder against Samsung's pinned Wacom driver
+        run: |
+          git init -q /tmp/flop
+          git -C /tmp/flop remote add origin https://github.com/FlopKernel-Series/flop_exynos2100_kernel
+          git -C /tmp/flop fetch -q --depth 1 --filter=blob:none origin dc17ad08a8b4f7fcabd3f949d9c83ff11c5f80ee
+          git -C /tmp/flop show FETCH_HEAD:drivers/input/sec_input/wacom/wacom_i2c.c > /tmp/wacom_i2c.c
+          python3 lab/s21xnu-p3s/spen/test_spen_decode.py --wacom-src /tmp/wacom_i2c.c
       - name: Check Wi-Fi file preparation for the p3s BCM4389 (synthetic files)
         run: python3 lab/s21xnu-p3s/wifi/test_prepare_wifi_files.py
       - name: Check BOOT switch script for Android/TWRP (dash and bash)
