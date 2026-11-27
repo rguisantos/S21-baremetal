@@ -95,6 +95,9 @@ install)
 	mkdir -p "$DIR" || die "não consegui criar $DIR"
 	if [ -f "$SUMS" ] && [ -f "$STOCK" ]; then
 		[ "$(sha "$STOCK")" = "$(want stock-boot.img)" ] || die "backup stock existente não confere; não sobrescrevo"
+		# trocar a imagem do shim com a anterior na BOOT deixaria to-xnu sem reconhecer a BOOT
+		[ "$(current "$DEV" "$SIZE")" != xnu ] || [ "$(sha "$src")" = "$(want xnu-boot.img)" ] ||
+			die "a BOOT tem a imagem anterior do shim: rode 'to-android --no-reboot' antes de instalar outra"
 		say "backup stock já existe; mantido"
 	else
 		now=$(sha_dev "$DEV" "$SIZE")

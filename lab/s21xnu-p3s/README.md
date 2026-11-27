@@ -3,6 +3,9 @@
 **Atalho:** `python3 lab/s21xnu-p3s/prepare_first_boot.py --stock-dir AP_HZC2/
 --s21xnu s21xnu/ --out kit-sonda/` gera o kit completo da sonda (boot.img
 com AVB de laboratório, tar do Odin, script de alternância e roteiro).
+Depois da foto: `prepare_xnu_boot.py --stock-dir AP_HZC2/ --s21xnu s21xnu/
+--kernel kernel.development.sweet --out kit-xnu/ [--filefrag ff.txt]
+[--sweetwifi N] --lab-key kit-sonda/lab-key.pem` gera o boot.img do XNU.
 
 Patch sobre [s21xnu](https://github.com/jimmycarles9991-glitch/s21xnu) em
 `a128f07b04987e60f5e13e2ce67b19ae009672cd`: `BOARD=t2s|p3s|p3s-window` no

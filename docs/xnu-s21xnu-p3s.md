@@ -447,6 +447,55 @@ bytes. Este é o kernel candidato.
 
 Nada rodou no aparelho. Este kernel é o candidato depois da foto da sonda.
 
+## Kit do segundo boot: o XNU pelo S-Boot (27/11)
+
+O upstream sobe o XNU por `kexec` a partir de um Linux no aparelho
+(`boot0105.sh`), com a raiz num `iosroot.img` em `/data`, achado pelo mapa
+de extents de `filefrag -v` (`tools/mkufsmap.py`, até 8192 extents). Aqui
+o caminho é o S-Boot: o shim no lugar do kernel e o payload SWEETXNU no
+ramdisk de boot, como na sonda. O kernel do fork tem 17,5 MB
+(`kernel.development.sweet` no log do run 45913838407; o artefato
+`xnu-kernel` de 61 MB traz também as bibliotecas do KDK), e cabe na BOOT
+de 64 MiB.
+
+[`prepare_xnu_boot.py`](../lab/s21xnu-p3s/prepare_xnu_boot.py) monta o
+kit:
+- aplica a série do fork (0001–0006) numa cópia do clone fixado e compila
+  o shim `BOARD=p3s`, com as linhas da sonda;
+- recusa um kernel que não seja Mach-O ou não tenha as marcas de 0146,
+  0148, 0149 e 0150 (inclusive a do BAR2 primeiro);
+- gera o ADT (`mkadt.py --board=p3s --highmem`, com o mapa UFS se houver
+  `--filefrag`) e o payload (`mkpayload.py`);
+- monta o boot.img com o rodapé AVB de laboratório (a mesma chave da sonda
+  com `--lab-key`) e confere o payload contra o hand-off do LK;
+- grava `boot.img`, `AP_s21xnu_xnu.tar(.md5)`, `s21xnu-switch.sh`,
+  `ROTEIRO-XNU.md`, `relatorio.json` e `SHA256SUMS`.
+
+Pelo TWRP, a BOOT ainda tem a sonda quando o segundo kit chega. Se o
+`install` trocasse a imagem do shim guardada, o `to-xnu` não reconheceria
+mais a BOOT. O roteiro agora volta ao stock antes (`to-android
+--no-reboot`), e o `s21xnu-switch.sh` recusa instalar outra imagem do shim
+enquanto a anterior estiver na BOOT (achado da revisão do PR #117; teste
+novo no `test_s21xnu_switch.py`, 18 casos em dash e bash).
+
+Linha de comando: `-v debug=0xc serial=3 keepsyms=1 sweetfb_scale=1
+touch_panel_w=1440 touch_panel_h=3200 cpus=N` (padrão 1 CPU). Com
+`--filefrag`: `rd=ufsroot0 ufsroot=userdata ufsov=1 ufsovmb=1024
+rootrw=1`. Pelo driver, `ufsov=1` manda toda escrita para a RAM e nada
+chega ao UFS. Deixei de fora `ufshs` (troca de modo do link UFS, só
+testada no S21+) e nunca uso `ufsrw`. `--sweetwifi=4` exige a raiz,
+porque o firmware vem de `/usr/local/etc/wifi`. Os patches antigos
+0109–0112 (`sweetpcie`, firmware no payload) não aplicam no build do fork;
+o driver ativo é o 0142 (`sweetwifi`).
+
+Testes ([`test_prepare_xnu_boot.py`](../lab/s21xnu-p3s/test_prepare_xnu_boot.py),
+no CI): regras da linha de comando e das marcas do kernel; de ponta a ponta
+com o clone fixado, um kernel Mach-O sintético com as marcas, `filefrag`
+sintético (2 extents) e boot stock sintético: shim p3s real, ADT e payload
+reais, boot.img com AVB válido, tar do Odin e roteiro. Sem o aparelho, o
+kernel real não foi carregado aqui (o download do artefato é bloqueado
+neste ambiente).
+
 ## lk2nd: o que aproveitar (26/11)
 
 [lk2nd](https://github.com/msm8916-mainline/lk2nd) (`bef7135`) é um

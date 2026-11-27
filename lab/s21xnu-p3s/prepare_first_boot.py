@@ -76,7 +76,7 @@ def load_stock(stock_dir, name, pins):
     return data
 
 
-def odin_tar(boot):
+def odin_tar(boot, name="AP_s21xnu_sonda.tar"):
     buf = io.BytesIO()
     with tarfile.open(fileobj=buf, mode="w", format=tarfile.USTAR_FORMAT) as tf:
         info = tarfile.TarInfo("boot.img")
@@ -86,7 +86,7 @@ def odin_tar(boot):
         tf.addfile(info, io.BytesIO(boot))
     tar = buf.getvalue()
     md5 = hashlib.md5(tar).hexdigest()
-    return tar, tar + ("%s  AP_s21xnu_sonda.tar\n" % md5).encode()
+    return tar, tar + ("%s  %s\n" % (md5, name)).encode()
 
 
 def roteiro(rep, vsize):
