@@ -4517,3 +4517,10 @@ opcional, compatibilidade com o HZC2 não conferida). Novos:
 liga só os bits 0 e 1 de `flags` e gera o tar do Odin (5 testes com vbmeta
 AVB sintético no CI); o kit da sonda grava também `AP_stock_boot.tar(.md5)`
 para voltar sem montar tar à mão.
+Guia refeito para o PC do usuário: Linux Mint com Heimdall (que já leu a
+PIT do aparelho em 30/10; `BOOT`, `RECOVERY`, `VBMETA`), recovery Fox R13
+(OrangeFox R12.0, testada pelo autor no bootloader HZC2) gravada junto com o
+vbmeta, backup das partições stock pela Fox, sonda e XNU pela Fox com
+`s21xnu-switch.sh` (caminho B: Heimdall), e a ROM MonsterROM só depois dos
+testes (troca o vendor_boot). Revisão do PR #122 feita aqui, a pedido do
+usuário (limite do Codex esgotado).

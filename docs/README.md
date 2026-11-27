@@ -107,7 +107,7 @@ A entrada do projeto é o [README principal](../README.md). Este índice separa 
 - [Baseline obrigatório e CI](baseline-validation.md): comando único, ELF novo, host/QEMU, logs, timeout e recusa de skips.
 - [s21xnu no p3s](xnu-s21xnu-p3s.md): contrato de hardware S21 Ultra × S21+ (21 iguais, 5 diferentes), perfil de painel para shim/ADT e opções de carga.
 - [Wi-Fi BCM4389 no HZC2](s21xnu-wifi-bcm4389-hzc2.md): arquivos do vendor, patches XNU 0149/0150 e simulação da carga do firmware.
-- [Passo a passo no aparelho](guia-aparelho-p3s.md): desbloqueio, vbmeta, sonda, volta e primeiro boot do XNU pelo Odin.
+- [Passo a passo no aparelho](guia-aparelho-p3s.md): desbloqueio, vbmeta, Fox R13, backup, sonda, volta e primeiro boot do XNU, com Heimdall no Linux Mint.
 - [S Pen no p3s](s21xnu-spen-p3s.md): Wacom W9020 por revisão de placa, decodificador conferido contra o driver Samsung.
 - [XNU no QEMU](xnu-qemu-lab.md): kernel/loader prebuilt, init próprio, execução positiva e controle negativo; [objetivo Android/XNU](dual-boot-strategy.md).
 - [Contrato binário XNU](xnu-boot-contract.md): 28 testes de host, layout C independente, captura de boot_args/árvore Apple e recusa da base HZC2 incompleta.
