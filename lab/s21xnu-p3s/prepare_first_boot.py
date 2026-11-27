@@ -19,7 +19,8 @@ limpo. O script:
 Com --cega, aplica também o patch 0003 (sonda cega): o shim grava marcas
 nos registradores INFORM do PMU e pede reset para a recovery, e o resultado
 se lê no log do S-Boot (/proc/last_kmsg na recovery), sem depender da tela.
-"entrada" reinicia na primeira instrução; "etapas" marca cada etapa.
+"entrada" reinicia na primeira instrução; "etapas" marca cada etapa;
+"relogio" espera 30 s pelo contador e reinicia por PSCI.
 
 Nada é gravado no aparelho. Exige desbloqueio OEM para ser usado.
 """
@@ -47,7 +48,7 @@ from capture_a0_formats import layout  # noqa: E402
 PINS = REPO / "docs" / "references" / "capture-a0-pins-hzc2.json"
 PATCH2 = HERE / "0002-probe-lk-handoff-facts.patch"
 PATCH3 = HERE / "0003-probe-blind-pmu-marks.patch"
-BLIND = {"entrada": "1", "etapas": "2"}
+BLIND = {"entrada": "1", "etapas": "2", "relogio": "3"}
 BLIND_STAGES = [
     ("5101", "entrou no shim (primeira instrução)"),
     ("5102", "shim_main"), ("5103", "framebuffer pintado de vermelho"),
@@ -57,6 +58,19 @@ BLIND_STAGES = [
     ("5109", "PSCI respondeu"), ("510A", "teste do GIC concluído"), ("510F", "reset pedido no fim"),
     ("5S8X", "exceção: S = última etapa, X = slot do vetor (0 a F; 4 = sync em EL1 com SPx)"),
 ]
+CLOCK_STAGES = [
+    ("5101", "entrou no shim"), ("5102", "shim_main"),
+    ("5110", "na espera de 30 s, CNTFRQ_EL0 = 0"), ("5111", "na espera de 30 s, CNTFRQ_EL0 não zero"),
+    ("5112", "PSCI SYSTEM_RESET chamado: se voltou sozinho à recovery, o reset por PSCI funciona"),
+    ("5113", "PSCI SYSTEM_RESET voltou sem reiniciar; reset feito pelo PMU"),
+]
+
+
+def blind_rows(blind):
+    if blind == "entrada":
+        return BLIND_STAGES[:1]
+    return CLOCK_STAGES if blind == "relogio" else BLIND_STAGES
+
 SWITCH = HERE / "dualboot" / "s21xnu-switch.sh"
 FIXED_TAR_TIME = 1764115200          # 2025-11-26 00:00 UTC, para tar reprodutível
 
@@ -155,8 +169,7 @@ conferido pelos pins).
 
 
 def roteiro_cego(rep, blind):
-    rows = "\n".join("| `0x%s` | %s |" % (c, d) for c, d in BLIND_STAGES
-                      if blind == "etapas" or c == "5101")
+    rows = "\n".join("| `0x%s` | %s |" % (c, d) for c, d in blind_rows(blind))
     return """# Sonda cega do shim s21xnu no S21 Ultra ({blind})
 
 Gerado por `lab/s21xnu-p3s/prepare_first_boot.py --cega {blind}`. boot.img
@@ -180,7 +193,11 @@ Power até apagar; se não entrar sozinho na recovery, Volume+ e Power.
 
 ## Ler o resultado (na recovery)
 
-    grep -m1 show_reset_reason_rawdata /proc/last_kmsg
+    grep -a -E "show_reset_reason_rawdata|sbl_check_reboot_mode" /proc/sec_log
+
+O log do boot que entrou na recovery é o último par de linhas (observado em
+27/11: `PINFORM = 12345604` e o `inform2` da sonda). O `/proc/last_kmsg`
+mostra o boot anterior.
 
 | inform2 | significado |
 |---|---|
@@ -189,7 +206,8 @@ Power até apagar; se não entrar sozinho na recovery, Volume+ e Power.
 
 Depois: `sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot`.
 """.format(blind=blind, sha=rep["sha256"], rows=rows,
-           wait="logo depois do logo" if blind == "entrada" else "uns 10 s")
+           wait={"entrada": "logo depois do logo", "etapas": "uns 30 s",
+                 "relogio": "uns 60 s se o contador for 26 MHz"}[blind])
 
 
 def prepare(stock_boot, stock_vendor, shim, lab_key_pem, out, blind=None):

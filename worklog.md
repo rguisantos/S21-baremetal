@@ -4561,3 +4561,15 @@ teclas e o passo 5b.
 Pendente no aparelho: rodar os kits cegos (entrada, depois etapas) e mandar
 a linha `show_reset_reason_rawdata`. Revisão feita aqui, a pedido do usuário
 (limite do Codex esgotado).
+Resultado no aparelho, mesmo dia (log em `/proc/sec_log` da Fox; o
+`last_kmsg` mostra só o boot anterior):
+- sonda cega entrada: `PINFORM = 12345604`, `inform2: 0x5101`;
+- sonda cega etapas: `inform2: 0x510F`, todas as etapas, ~29 s de ciclo.
+
+O S-Boot desbloqueado executa o boot.img nosso, e o shim passa por
+framebuffer, loader, FDT, contador, MMU, PSCI_VERSION e GIC. Também
+observado: a Fox recompacta a BOOT a cada entrada (`9d405a0c…`); o reinício
+é feito por `sysrq`. Nova variante `--cega relogio` (`SHIM_BLIND=3`): espera
+de 30 s e reset por PSCI, com 16 checagens no QEMU. Falta saber se o reset
+por PSCI funciona e qual é a taxa real do contador, as duas diferenças em
+relação à sonda com tela, que não reiniciou.

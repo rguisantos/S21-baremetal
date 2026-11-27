@@ -68,6 +68,34 @@ Leitura esperada: com a variante entrada, voltar sozinho à Fox com
 à Fox também mostra que o reset pelo PMU e o pedido de recovery funcionam
 desse ponto.
 
+- `--cega relogio` (`SHIM_BLIND=3`): depois da entrada, espera 30 s pelo
+  contador (supondo 26 MHz) e chama PSCI `SYSTEM_RESET`. Marca `0x5110` ou
+  `0x5111` (CNTFRQ_EL0 zero ou não), `0x5112` antes do PSCI e `0x5113` se ele
+  voltar; nesse caso reinicia pelo PMU. A duração se mede de fora, pelos
+  tempos de `USB disconnect` e reconexão no `dmesg` do PC.
+
+## Resultado no aparelho (27/11)
+
+O log se lê em `/proc/sec_log` na Fox: ele tem o S-Boot do boot anterior e
+do atual. O `/proc/last_kmsg` tem só o anterior.
+
+| Kit | Linha do S-Boot no boot seguinte | Leitura |
+|---|---|---|
+| entrada (`ed8342f4…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x5101` | o S-Boot executou o boot.img e o shim rodou desde a primeira instrução |
+| etapas (`ed5787aa…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x510F` | todas as etapas, sem exceção; reset pelo PMU |
+
+Ao carregar a sonda, o S-Boot registrou `Verify_Signature_Ecdsa … failed`
+para a BOOT e `set_ddi_kernel_type: BOOT, 0x2` e seguiu até `Starting
+kernel...`. O ciclo da variante etapas levou ~29 s do `USB disconnect` à
+reconexão da Fox. O `inform3` aparece zerado na linha `show_reset_reason`
+porque o S-Boot já o consumiu na linha `PINFORM`. Se a tela mudou durante a
+variante etapas, o usuário não percebeu.
+
+Com isso a hipótese 1 está descartada. A sonda com tela roda o mesmo código e
+difere em duas coisas: espera 25 s em vez de 2 e reinicia por PSCI (`hvc`)
+depois de 40 s. Por isso a variante relogio testa a taxa do contador e o reset
+por PSCI.
+
 ## Validação
 
 [`qemu/blind_marks.py`](../lab/s21xnu-p3s/qemu/blind_marks.py) compila as
@@ -78,15 +106,17 @@ do QEMU ([resultado](references/s21xnu-sonda-cega-qemu-20261127.json)):
 - `SHIM_BLIND=0` não escreve nada;
 - `SHIM_BLIND=1` para em `0x5101`;
 - `SHIM_BLIND=2` passa por todas as etapas até `0x510F`;
-- as duas variantes cegas escrevem só os quatro registradores, com
-  `0x12345604`, `0xff` e `2`.
+- as variantes entrada e etapas escrevem só os quatro registradores, com
+  `0x12345604`, `0xff` e `2`;
+- `SHIM_BLIND=3` marca `0x5111` durante a espera e o PSCI `SYSTEM_RESET`
+  encerra o QEMU (`-no-reboot`).
 
 Roda também no CI. Os testes de `prepare_first_boot.py` cobrem o roteiro
 das variantes cegas.
 
-O QEMU não é o Exynos. Continua sem verificação no aparelho:
-- se o S-Boot preserva INFORM2 num reset por software ou num reset manual;
-- se o S-Boot obedece ao pedido de recovery;
-- se a escrita no PMU a partir de EL1 passa pelo hipervisor (uH) nesse boot.
+O QEMU não é o Exynos. No aparelho, as variantes entrada e etapas já mostraram
+que o INFORM2 sobrevive ao reset por software, que o S-Boot obedece ao pedido
+de recovery e que a escrita no PMU a partir de EL1 funciona. Continua sem
+verificação se o INFORM2 sobrevive a um reset manual.
 
 O caminho de exceção da variante etapas não foi exercitado no QEMU.

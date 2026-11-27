@@ -15,7 +15,8 @@ sonda escreve:
   SWRESET +0x3c00 2: reset por software (exynos-reboot.c)
 
 SHIM_BLIND=1 tem de parar em 01 e pedir o reset logo; SHIM_BLIND=2 tem de
-passar por todas as etapas até 0f. Também confere que SHIM_BLIND=0 não toca
+passar por todas as etapas até 0f; SHIM_BLIND=3 marca 11 (CNTFRQ não zero)
+durante a espera de 30 s e depois reinicia por PSCI, o que encerra o QEMU. Também confere que SHIM_BLIND=0 não toca
 nesses endereços. O QEMU não é o Exynos: cobre a lógica das marcas, não se o
 S-Boot as preserva ou as imprime.
 """
@@ -47,8 +48,10 @@ EXPECT = {
     "0": None,
     "1": {"inform2": 0x5101, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 2},
     "2": {"inform2": 0x510F, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 2},
+    # no meio da espera de 30 s: CNTFRQ do QEMU é não zero; nada de reset ainda
+    "3": {"inform2": 0x5111, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 0},
 }
-WAIT = {"0": 6, "1": 4, "2": 14}
+WAIT = {"0": 6, "1": 4, "2": 14, "3": 4}
 
 
 def run(tmp, env, tree, blind):
@@ -93,6 +96,13 @@ def run(tmp, env, tree, blind):
             if dump.exists() and dump.stat().st_size == 0x4000:
                 break
             time.sleep(0.1)
+        exited = None
+        if blind == "3":           # PSCI SYSTEM_RESET com -no-reboot encerra o QEMU
+            try:
+                proc.wait(timeout=60)
+                exited = True
+            except subprocess.TimeoutExpired:
+                exited = False
     finally:
         proc.kill()
         proc.wait()
@@ -100,7 +110,8 @@ def run(tmp, env, tree, blind):
     rd = lambda o: struct.unpack_from("<I", raw, o)[0]  # noqa: E731
     return hashlib.sha256(shim).hexdigest(), {"inform2": rd(0x808), "inform3": rd(0x80c),
                                               "sysip0": rd(0x810), "swreset": rd(0x3c00),
-                                              "nonzero_words": sum(1 for o in range(0, 0x4000, 4) if rd(o))}
+                                              "nonzero_words": sum(1 for o in range(0, 0x4000, 4) if rd(o)),
+                                              "psci_reset_exited_qemu": exited}
 
 
 def main(argv=None):
@@ -128,17 +139,20 @@ def main(argv=None):
         shutil.copytree(src, tree, symlinks=True, ignore=shutil.ignore_patterns(".git"))
         for p in PATCHES:
             subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
-        for blind in ("0", "1", "2"):
+        for blind in ("0", "1", "2", "3"):
             shim_sha, regs = run(tmp, env, tree, blind)
-            report["runs"][blind] = {"shim_sha256": shim_sha, **{k: hex(v) for k, v in regs.items()}}
+            report["runs"][blind] = {"shim_sha256": shim_sha, **{k: (hex(v) if isinstance(v, int) and not isinstance(v, bool) else v) for k, v in regs.items()}}
             want = EXPECT[blind]
             if want is None:
                 check("SHIM_BLIND=0 não escreve no PMU", regs["nonzero_words"] == 0, regs)
                 continue
             for k, v in want.items():
                 check("SHIM_BLIND=%s %s" % (blind, k), regs[k] == v, "%#x" % regs[k])
-            check("SHIM_BLIND=%s só os quatro registradores" % blind, regs["nonzero_words"] == 4,
+            n = 3 if blind == "3" else 4
+            check("SHIM_BLIND=%s só %d registradores" % (blind, n), regs["nonzero_words"] == n,
                   regs["nonzero_words"])
+            if blind == "3":
+                check("SHIM_BLIND=3 reset por PSCI encerra o QEMU", regs["psci_reset_exited_qemu"] is True)
     report["result"] = "PASS" if ok else "FAIL"
     print("RESULTADO", report["result"])
     if a.json:

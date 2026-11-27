@@ -5,7 +5,7 @@
   "patches_sha256": {
     "0001-board-p3s-framebuffer.patch": "a5af2b0f4d51232de49628fa7bc2f33256396472c4f9c2a4aa6d0b15484d63a0",
     "0002-probe-lk-handoff-facts.patch": "3b8cc8cd7cba9a1414788fbb7d8c53d4df59308f54a2c321c5f16b17f7ff7dd1",
-    "0003-probe-blind-pmu-marks.patch": "d65fc0ac5efd1e254d223300b81b0b65d906f44e9816efe99d4f422c1a674690"
+    "0003-probe-blind-pmu-marks.patch": "3c0e7ef5026abc45931f1b52eaf27d80bd8b957c371dc0c4f10641a9fb16348c"
   },
   "runs": {
     "0": {
@@ -14,7 +14,8 @@
       "inform3": "0x0",
       "sysip0": "0x0",
       "swreset": "0x0",
-      "nonzero_words": "0x0"
+      "nonzero_words": "0x0",
+      "psci_reset_exited_qemu": null
     },
     "1": {
       "shim_sha256": "32896d7e677b2c0ee122271df2a8c5da18f9cd40118b43ff36df74c7644d44eb",
@@ -22,7 +23,8 @@
       "inform3": "0x12345604",
       "sysip0": "0xff",
       "swreset": "0x2",
-      "nonzero_words": "0x4"
+      "nonzero_words": "0x4",
+      "psci_reset_exited_qemu": null
     },
     "2": {
       "shim_sha256": "8ec66deed46fc6870e870ad088f5be5f838134da655ec98431eebe6686ba9404",
@@ -30,14 +32,24 @@
       "inform3": "0x12345604",
       "sysip0": "0xff",
       "swreset": "0x2",
-      "nonzero_words": "0x4"
+      "nonzero_words": "0x4",
+      "psci_reset_exited_qemu": null
+    },
+    "3": {
+      "shim_sha256": "c87eafba5c25328c5ccf5a19845fc536cb4d7e18dfc71eb8a7949a40b86a69ca",
+      "inform2": "0x5111",
+      "inform3": "0x12345604",
+      "sysip0": "0xff",
+      "swreset": "0x0",
+      "nonzero_words": "0x3",
+      "psci_reset_exited_qemu": true
     }
   },
   "checks": [
     {
       "check": "SHIM_BLIND=0 não escreve no PMU",
       "ok": true,
-      "detail": "{'inform2': 0, 'inform3': 0, 'sysip0': 0, 'swreset': 0, 'nonzero_words': 0}"
+      "detail": "{'inform2': 0, 'inform3': 0, 'sysip0': 0, 'swreset': 0, 'nonzero_words': 0, 'psci_reset_exited_qemu': None}"
     },
     {
       "check": "SHIM_BLIND=1 inform2",
@@ -60,7 +72,7 @@
       "detail": "0x2"
     },
     {
-      "check": "SHIM_BLIND=1 só os quatro registradores",
+      "check": "SHIM_BLIND=1 só 4 registradores",
       "ok": true,
       "detail": "4"
     },
@@ -85,9 +97,39 @@
       "detail": "0x2"
     },
     {
-      "check": "SHIM_BLIND=2 só os quatro registradores",
+      "check": "SHIM_BLIND=2 só 4 registradores",
       "ok": true,
       "detail": "4"
+    },
+    {
+      "check": "SHIM_BLIND=3 inform2",
+      "ok": true,
+      "detail": "0x5111"
+    },
+    {
+      "check": "SHIM_BLIND=3 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=3 sysip0",
+      "ok": true,
+      "detail": "0xff"
+    },
+    {
+      "check": "SHIM_BLIND=3 swreset",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=3 só 3 registradores",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "SHIM_BLIND=3 reset por PSCI encerra o QEMU",
+      "ok": true,
+      "detail": ""
     }
   ],
   "result": "PASS"

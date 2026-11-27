@@ -67,17 +67,19 @@ class KitTests(unittest.TestCase):
         self.assertTrue((out / "s21xnu-switch.sh").stat().st_mode & 0o100)
 
     def test_blind_kit_roteiro(self):
-        for blind in ("entrada", "etapas"):
+        for blind in ("entrada", "etapas", "relogio"):
             out = self.root / blind
             rep = kit.prepare(self.stock, self.vendor, self.shim, self.pem, out, blind)
             self.assertEqual(rep["cega"], blind)
             r = (out / "ROTEIRO.md").read_text()
             self.assertIn("show_reset_reason_rawdata", r)
+            self.assertIn("/proc/sec_log", r)
+            self.assertEqual("`0x5112`" in r, blind == "relogio")
             self.assertIn("`0x5101`", r)
             self.assertIn("to-xnu --no-reboot", r)
             self.assertNotIn("INITRD", r)
             self.assertEqual("`0x510F`" in r, blind == "etapas")
-        self.assertEqual(kit.BLIND, {"entrada": "1", "etapas": "2"})
+        self.assertEqual(kit.BLIND, {"entrada": "1", "etapas": "2", "relogio": "3"})
         patch = kit.PATCH3.read_text()
         for needle in ("0x15860000", "0x12345604", "#0x80c", "#0x808", "#0x810", "#0x3c00"):
             self.assertIn(needle, patch)

@@ -199,17 +199,22 @@ Na Fox, com a BOOT em stock (`status`), para cada kit (entrada primeiro):
     adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot
     adb shell sh /cache/s21xnu/s21xnu-switch.sh install /tmp/cega.img
     adb shell sh /cache/s21xnu/s21xnu-switch.sh to-xnu --no-reboot
-    adb reboot
+    adb shell 'sync; echo b > /proc/sysrq-trigger'
 
-Sem tocar no aparelho. Esperado: volta sozinho à Fox em segundos. Se ficar
+O `sysrq` reinicia pelo kernel, sem as rotinas de reinício da Fox. Cada
+entrada na Fox recompacta a BOOT stock (volta a `9d405a0c…`, o `status` mostra
+`desconhecido`); o `to-android --no-reboot` regrava o stock conferido. Sem
+tocar no aparelho. Esperado: volta sozinho à Fox em segundos. Se ficar
 no logo mais de 2 minutos: Volume− e Power até apagar e, se não abrir a Fox
 sozinho, Volume+ e Power. Então:
 
-    adb shell 'grep -m1 show_reset_reason_rawdata /proc/last_kmsg'
-    adb shell cat /proc/last_kmsg > ../backup-stock/sboot-cega-entrada.txt
+    adb shell 'grep -a -E "show_reset_reason_rawdata|sbl_check_reboot_mode" /proc/sec_log'
 
-`inform2: 0x5101` = o shim rodou; a tabela das etapas está no `ROTEIRO.md`
-do kit. Mande a linha e o arquivo.
+O último par de linhas é o boot que entrou na Fox. `inform2: 0x5101` = o
+shim rodou; a tabela está no `ROTEIRO.md` do kit. **Observado em 27/11:**
+entrada deu `0x5101` e etapas `0x510F`, as duas com `PINFORM = 12345604`. O
+próximo kit é `--cega relogio` (mesmo procedimento; anote os tempos de `USB
+disconnect` e da reconexão no terminal).
 
 ## 6. Voltar ao Android
 
