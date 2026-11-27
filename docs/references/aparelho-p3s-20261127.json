@@ -1,0 +1,40 @@
+{
+  "schema": "s21xnu-device-session/1",
+  "date": "2026-11-27",
+  "device": "SM-G998B, bootloader G998BXXSJHZC2 (rp 19), OEM desbloqueado no mesmo dia",
+  "source": "saídas de terminal coladas pelo usuário no chat (Linux Mint, Heimdall 2.0.2, adb 34.0.4)",
+  "firmware": {
+    "zip": "SAMFW.COM_SM-G998B_ZTO_G998BXXSJHZC2_fac.zip (9728579227 bytes, unzip -t sem erros)",
+    "boot.img.lz4_decompressed_sha256": "28818995d6c3060df19602a0104c2c7dac9861f31f2620f9dab8466e6cdf51a1",
+    "vendor_boot.img.lz4_decompressed_sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5",
+    "vbmeta.img.lz4_sha256": "063de3663de033a932f18a78622f2a39f430d45c1dc13786df4a77b102d0e85f"
+  },
+  "fox_recovery": {
+    "file": "S21-Ultra-Fox-Recovery-R13-Stable-p3s-recovery.img",
+    "bytes": 67055632,
+    "sha256": "f7db9c5ea87f089dd9dd878e1a3300c3360c9498250e511ea566d516f1e6afa9",
+    "checked_against": "S21-Ultra-Fox-Recovery-R13-Stable-p3s.sha256 da release r13.0-p3s-stable (sha256sum -c: SUCESSO)",
+    "kernel": "5.4.302-ChicletKernel-UPSTREAM-v2.6-TWRP"
+  },
+  "flash": "heimdall flash --RECOVERY fox --VBMETA kit-vbmeta/vbmeta.img (flags 0x0 -> 0x3): ambos upload successful; Fox abriu",
+  "partition_dump_after_fox_first_start": {
+    "boot.img": {"bytes": 67108864, "sha256": "9d405a0c06e14403bff0a260d51833121877e0812d105eaac99278ebdbc05642",
+                 "note": "difere do stock: kernel idêntico, conteúdo do ramdisk idêntico (diff -rq vazio, magiskboot test 0), só a compressão do ramdisk e o rodapé AVB mudaram (699164 bytes diferentes)"},
+    "vendor_boot.img": {"bytes": 67108864, "sha256": "f5b18d6b18230702cef98d80f4543a0f452cddb5829310b3acdafd6d600a60b5", "note": "igual ao stock"},
+    "dtbo.img": {"bytes": 8388608, "sha256": "f7c96bf0fb7dc67c82c05c7ed02cc74aa40e5f1f8ae68f2b6b47cc38e556dd34"},
+    "vbmeta.img": {"bytes": 65536, "sha256": "4c514bd9b7b4e5515ff11a3c8775ca094c0e93c1d09732950ca1f5fcd1f7b777", "note": "o vbmeta desativado gravado, partição inteira"},
+    "vbmeta_system.img": {"bytes": 65536, "sha256": "5be409f10bace1c3bf68410ae48f9fa3f978750640a44f204d4817c687e7338f"}
+  },
+  "boot_restored": "boot stock do firmware gravado por dd na Fox; sha256 da partição = 28818995…51a1",
+  "fox_settings_seen": {"fox_reboot_advanced_stock_recovery_check": 1, "fox_reboot_forced_debugging_check": 1,
+                         "fox_reboot_dont_disable_stock_recovery": 0, "fox_reboot_dm_verity_check": 0},
+  "switch_script": "install (BOOT stock, /cache = /dev/block/sda31 ext4), to-xnu --no-reboot, status xnu em /dev/block/sda13; to-android --no-reboot volta a stock",
+  "probe_run": {
+    "kit": "kit-sonda, boot.img sha256 3c868320ef05b050de81977bed29720ccf352131f651c59b9daefcb238e7b599",
+    "attempt_1": "Volume- e Power: o S-Boot leu teclas (sbl_check_keypad 0x110, 'Recovery Set! (4: 0x80000)') e abriu a Fox; a sonda não foi carregada",
+    "attempt_2_3": "adb reboot da Fox: logo 'Samsung Galaxy' por 2 min ou mais, sem reinício sozinho e sem tela vermelha",
+    "sboot_log_of_fox_boot": ["avb: vbmeta HASH_MISMATCH, VERIFICATION_DISABLED bit is set -> segue",
+                              "check_signature (VBMETA) invalid", "show_reset_reason_rawdata: rst_stat 0x80010000, inform2 0x0, inform3 0x0"],
+    "conclusion": "observado: a sonda não chegou ao reset de 40 s e a tela não mostrou o framebuffer. Hipóteses abertas: o S-Boot não executou o boot.img; o shim travou antes do reset; o reset por PSCI (hvc) não funciona; DECON em modo comando não mostra as escritas"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schema": "s21xnu-blind-marks-qemu/1",
+  "s21xnu_commit": "a128f07b04987e60f5e13e2ce67b19ae009672cd",
+  "pmu_redirect": "0xbf000000",
+  "patches_sha256": {
+    "0001-board-p3s-framebuffer.patch": "a5af2b0f4d51232de49628fa7bc2f33256396472c4f9c2a4aa6d0b15484d63a0",
+    "0002-probe-lk-handoff-facts.patch": "3b8cc8cd7cba9a1414788fbb7d8c53d4df59308f54a2c321c5f16b17f7ff7dd1",
+    "0003-probe-blind-pmu-marks.patch": "d65fc0ac5efd1e254d223300b81b0b65d906f44e9816efe99d4f422c1a674690"
+  },
+  "runs": {
+    "0": {
+      "shim_sha256": "8db87bb60e8b5fe1258c01781f0371902eddb836c82531c391218a7db274d045",
+      "inform2": "0x0",
+      "inform3": "0x0",
+      "sysip0": "0x0",
+      "swreset": "0x0",
+      "nonzero_words": "0x0"
+    },
+    "1": {
+      "shim_sha256": "32896d7e677b2c0ee122271df2a8c5da18f9cd40118b43ff36df74c7644d44eb",
+      "inform2": "0x5101",
+      "inform3": "0x12345604",
+      "sysip0": "0xff",
+      "swreset": "0x2",
+      "nonzero_words": "0x4"
+    },
+    "2": {
+      "shim_sha256": "8ec66deed46fc6870e870ad088f5be5f838134da655ec98431eebe6686ba9404",
+      "inform2": "0x510f",
+      "inform3": "0x12345604",
+      "sysip0": "0xff",
+      "swreset": "0x2",
+      "nonzero_words": "0x4"
+    }
+  },
+  "checks": [
+    {
+      "check": "SHIM_BLIND=0 não escreve no PMU",
+      "ok": true,
+      "detail": "{'inform2': 0, 'inform3': 0, 'sysip0': 0, 'swreset': 0, 'nonzero_words': 0}"
+    },
+    {
+      "check": "SHIM_BLIND=1 inform2",
+      "ok": true,
+      "detail": "0x5101"
+    },
+    {
+      "check": "SHIM_BLIND=1 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=1 sysip0",
+      "ok": true,
+      "detail": "0xff"
+    },
+    {
+      "check": "SHIM_BLIND=1 swreset",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "SHIM_BLIND=1 só os quatro registradores",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "check": "SHIM_BLIND=2 inform2",
+      "ok": true,
+      "detail": "0x510f"
+    },
+    {
+      "check": "SHIM_BLIND=2 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=2 sysip0",
+      "ok": true,
+      "detail": "0xff"
+    },
+    {
+      "check": "SHIM_BLIND=2 swreset",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "SHIM_BLIND=2 só os quatro registradores",
+      "ok": true,
+      "detail": "4"
+    }
+  ],
+  "result": "PASS"
+}
