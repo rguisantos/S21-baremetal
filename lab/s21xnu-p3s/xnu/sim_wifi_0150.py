@@ -125,6 +125,28 @@ static uint32_t bp_r(uint32_t addr)
 
 static bool is_arm(struct simcore *c) { return c->id == CORE_ARM_CA7 || c->id == CORE_ARM_CR4; }
 
+/*
+ * What the firmware reads at start: the NVRAM's last word is its length in words with the complement above it,
+ * the NVRAM (key=value strings, NUL each, then NUL padding) below it, and {count, 0xfeedc0de} with the seed below
+ * that. The expected strings are the scenario text normalised by hand (comment and blanks dropped).
+ */
+static const char nv_expect[] = "boardrev=0x1103\0macaddr=00:90:4c:c5:12:38\0ccode=XZ\0";
+static bool nvram_check(void)
+{
+	uint32_t top = rambase + ramsize, token = *(uint32_t *)(chipmem + top - 4), words = token & 0xffff;
+	uint32_t len = words * 4, start = top - 4 - len, magic, count;
+	bool ok = (token >> 16) == (~words & 0xffff) && len >= sizeof(nv_expect) - 1 && len < 4096 &&
+	    memcmp(chipmem + start, nv_expect, sizeof(nv_expect) - 1) == 0;
+	for (uint32_t i = sizeof(nv_expect) - 1; ok && i < len; i++) {
+		ok = chipmem[start + i] == 0;
+	}
+	magic = *(uint32_t *)(chipmem + start - 4);
+	count = *(uint32_t *)(chipmem + start - 8);
+	ok = ok && magic == SEED_MAGIC && count == SEED_BYTES;
+	printf("NVRAM token=%#x len=%u seed=%#x/%u nvram_ok=%d\n", token, len, magic, count, ok);
+	return ok;
+}
+
 static void bp_w(uint32_t addr, uint32_t v)
 {
 	bool w; uint32_t off; struct simcore *c = core_at(addr, &w, &off);
@@ -145,8 +167,10 @@ static void bp_w(uint32_t addr, uint32_t v)
 	    arm_halted_once && !arm_running) {
 		arm_running = true;
 		snprintf(line, sizeof(line), "arm-running %03x vector %#x", c->id, *(uint32_t *)chipmem); ev(line);
-		/* the firmware: the shared area's address in the last word of the RAM it was given */
-		*(uint32_t *)(chipmem + rambase + ramsize - 4) = rambase + 0x1000;
+		/* the firmware: checks what it was handed, then puts the shared area's address in the RAM's last word */
+		if (nvram_check()) {
+			*(uint32_t *)(chipmem + rambase + ramsize - 4) = rambase + 0x1000;
+		}
 	}
 }
 
@@ -266,8 +290,7 @@ int main(int argc, char **argv)
 	    tcm_size, ca7, mapped, *(uint32_t *)(cfgspace + 0x10), *(uint32_t *)(cfgspace + 0x18));
 	if (ok) {
 		mprotect(chipmem, chipmem_size, PROT_READ);
-		printf("RAM fw_match=%d token=%#x\n", memcmp(chipmem + rambase, fwbuf, sizeof(fwbuf)) == 0,
-		    *(uint32_t *)(chipmem + rambase + ramsize - 4));
+		printf("RAM fw_match=%d\n", memcmp(chipmem + rambase, fwbuf, sizeof(fwbuf)) == 0);
 	}
 	printf("RESULT %s\n", ok ? "up" : "fail");
 	return 0;
@@ -375,8 +398,9 @@ def main(argv=None):
             for w in want.get("absent", []):
                 check("%s: sem '%s'" % (name, w), not any(e.startswith(w) for e in evs), evs)
             if want["result"] == "up":
-                check("%s: firmware na RAM e token da NVRAM no topo" % name,
-                      "fw_match=1" in out and re.search(r"token=0x[0-9a-f]+", out))
+                check("%s: firmware na RAM" % name, "fw_match=1" in out)
+                check("%s: NVRAM, token e semente como o firmware lê" % name, "nvram_ok=1" in out,
+                      re.findall(r"^NVRAM .*$", out, re.M))
     report["result"] = "PASS" if ok else "FAIL"
     print("RESULTADO", report["result"])
     if a.json:

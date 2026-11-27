@@ -180,8 +180,10 @@ host o código real do driver (o `redwood_bcm4375.c` com 0150, gravado por
   lógica, e desvia só os acessos a registradores para um modelo em C;
 - o modelo tem o espaço de configuração (janelas 0x80 e 0x84), um
   backplane com ChipCommon, EROM gerado, wrappers IOCTL/RESET_CTL, SYSMEM
-  e CR4 com bancos, e um "firmware" que publica a área compartilhada
-  quando o ARM sai de reset;
+  e CR4 com bancos, e um "firmware" que, quando o ARM sai de reset, confere
+  o que recebeu (token de comprimento com o complemento, as strings da
+  NVRAM normalizadas, o preenchimento com NUL, `{128, 0xfeedc0de}` da
+  semente) e só então publica a área compartilhada;
 - o BAR2 é memória do host com as páginas além do mapeado protegidas: uma
   escrita fora do que o driver mapeou derruba o teste, como derrubaria o
   kernel.
@@ -206,10 +208,12 @@ log `W2 PASS` do aparelho vai dizer. No fork: `fe8e2ed`, run
 [45913838407](https://github.com/rguisantos/s21xnu/actions/runs/45913838407),
 sucesso; esse `xnu-kernel` é o candidato.
 
-48 de 48 checagens. Três mutações conferem que o teste pega erros: sem o
+52 de 52 checagens. Seis mutações conferem que o teste pega erros: sem o
 reset do SYSMEM (falha a ordem), sem a recusa do vetor protegido (falha o
-cenário protegido) e o 0150 anterior a esta correção (falham seis
-checagens do cenário de 8 MiB). No CI.
+cenário protegido), o 0150 anterior a esta correção (falham as checagens do
+cenário de 8 MiB), um bit trocado na cópia da NVRAM, o token sem o
+complemento e a semente sem o 0xfeedc0de (nos três últimos o firmware
+simulado não sobe). No CI.
 [Evidência](references/s21xnu-p3s-wifi-0150-sim-20261126.json).
 
 ## Preparar os arquivos do Wi-Fi

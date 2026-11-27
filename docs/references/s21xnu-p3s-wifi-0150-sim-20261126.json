@@ -37,9 +37,14 @@
       "detail": "['reset 849 0', 'cfg84 0', 'reset 847 0', 'arm-halted 847', 'reset 849 1', 'reset 849 0', 'seed-magic 0x3bffc4', 'vector-write 0xea00002e', 'reset 847 1', 'reset 847 0', 'arm-running 847 vector 0xea00002e']"
     },
     {
-      "check": "p3s-fits: firmware na RAM e token da NVRAM no topo",
+      "check": "p3s-fits: firmware na RAM",
       "ok": true,
       "detail": ""
+    },
+    {
+      "check": "p3s-fits: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
     },
     {
       "check": "p3s-past-bar2-smar: termina sem falha de memória",
@@ -67,9 +72,14 @@
       "detail": ""
     },
     {
-      "check": "p3s-past-bar2-smar: firmware na RAM e token da NVRAM no topo",
+      "check": "p3s-past-bar2-smar: firmware na RAM",
       "ok": true,
       "detail": ""
+    },
+    {
+      "check": "p3s-past-bar2-smar: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
     },
     {
       "check": "p3s-past-bar2-nosmar: termina sem falha de memória",
@@ -137,9 +147,14 @@
       "detail": ""
     },
     {
-      "check": "p3s-remap: firmware na RAM e token da NVRAM no topo",
+      "check": "p3s-remap: firmware na RAM",
       "ok": true,
       "detail": ""
+    },
+    {
+      "check": "p3s-remap: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
     },
     {
       "check": "p3s-secured: termina sem falha de memória",
@@ -212,9 +227,14 @@
       "detail": "['reset 83e 0', 'arm-halted 83e', 'seed-magic 0x2cffc4', 'vector-write 0xea00002e', 'reset 83e 1', 'reset 83e 0', 'arm-running 83e vector 0xea00002e']"
     },
     {
-      "check": "s21-4375: firmware na RAM e token da NVRAM no topo",
+      "check": "s21-4375: firmware na RAM",
       "ok": true,
       "detail": ""
+    },
+    {
+      "check": "s21-4375: NVRAM, token e semente como o firmware lê",
+      "ok": true,
+      "detail": "['NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1']"
     },
     {
       "check": "unknown-chip: termina sem falha de memória",
@@ -265,11 +285,12 @@
       "EV 8 reset 847 1",
       "EV 9 reset 847 0",
       "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
       "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
       "ASKED bcm4389-sta.bin",
       "ASKED bcm4389-nvram-semco.txt",
       "STATE rambase=0x200000 ramsize=0x1c0000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
-      "RAM fw_match=1 token=0x201000",
+      "RAM fw_match=1",
       "RESULT up"
     ],
     "p3s-past-bar2-smar": [
@@ -295,11 +316,12 @@
       "EV 8 reset 847 1",
       "EV 9 reset 847 0",
       "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
       "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
       "ASKED bcm4389-sta.bin",
       "ASKED bcm4389-nvram-semco.txt",
       "STATE rambase=0x200000 ramsize=0x1c0000 tcm_size=0x400000 ca7=1 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
-      "RAM fw_match=1 token=0x201000",
+      "RAM fw_match=1",
       "RESULT up"
     ],
     "p3s-past-bar2-nosmar": [
@@ -342,11 +364,12 @@
       "EV 8 reset 847 1",
       "EV 9 reset 847 0",
       "EV 10 arm-running 847 vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
       "wifi: W4 PASS: the firmware is up, shared area at 0x201000",
       "ASKED bcm4389-sta.bin",
       "ASKED bcm4389-nvram-semco.txt",
       "STATE rambase=0x200000 ramsize=0x280000 tcm_size=0x480000 ca7=1 mapped=0x480000 bar0=0x20800000 bar2=0x20000000",
-      "RAM fw_match=1 token=0x201000",
+      "RAM fw_match=1",
       "RESULT up"
     ],
     "p3s-secured": [
@@ -387,11 +410,12 @@
       "EV 4 reset 83e 1",
       "EV 5 reset 83e 0",
       "EV 6 arm-running 83e vector 0xea00002e",
+      "NVRAM token=0xfff2000d len=52 seed=0xfeedc0de/128 nvram_ok=1",
       "wifi: W4 PASS: the firmware is up, shared area at 0x171000",
       "ASKED bcm4375-sta.bin",
       "ASKED bcm4375-nvram-semco.txt",
       "STATE rambase=0x170000 ramsize=0x160000 tcm_size=0x400000 ca7=0 mapped=0x400000 bar0=0x20000000 bar2=0x20400000",
-      "RAM fw_match=1 token=0x171000",
+      "RAM fw_match=1",
       "RESULT up"
     ],
     "unknown-chip": [
