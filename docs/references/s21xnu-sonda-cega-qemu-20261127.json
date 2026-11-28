@@ -5,7 +5,8 @@
   "patches_sha256": {
     "0001-board-p3s-framebuffer.patch": "a5af2b0f4d51232de49628fa7bc2f33256396472c4f9c2a4aa6d0b15484d63a0",
     "0002-probe-lk-handoff-facts.patch": "3b8cc8cd7cba9a1414788fbb7d8c53d4df59308f54a2c321c5f16b17f7ff7dd1",
-    "0003-probe-blind-pmu-marks.patch": "b25f5f5456c9463c102375813228566c3df3b85f2d1cdcefaf93835f386c6e27"
+    "0003-probe-blind-pmu-marks.patch": "b25f5f5456c9463c102375813228566c3df3b85f2d1cdcefaf93835f386c6e27",
+    "0004-p3s-decon-trigger-and-pmu-reset.patch": "3464d46e80699f73eb882447856cd6a762210db31ea798f0ef42da20cb1c9ce7"
   },
   "runs": {
     "0": {
@@ -67,6 +68,16 @@
       "decon_shd": "0x80000000",
       "nonzero_words": "0x2",
       "psci_reset_exited_qemu": null
+    },
+    "p3s-0004": {
+      "shim_sha256": "6f429e8129cf895331d81c73745cb27dbbad5336cadd96292789c28524fae8de",
+      "early_trig": "0x1",
+      "early_shd": "0x80000000",
+      "early_swreset": "0x0",
+      "late_inform3": "0x12345604",
+      "late_swreset": "0x2",
+      "late_inform2": "0x0",
+      "nonzero_words": "0x2"
     }
   },
   "checks": [
@@ -207,6 +218,36 @@
     },
     {
       "check": "SHIM_BLIND=4 só 2 registradores",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "0004: trigger desmascarado na entrada (TRIG_CON 0x11 -> 0x01)",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "0004: SHD_REG_UP_REQ bit 31 na entrada",
+      "ok": true,
+      "detail": "0x80000000"
+    },
+    {
+      "check": "0004: sem reset antes do fim",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0004: reset pelo PMU no fim",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "0004: pedido de recovery no fim",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "0004: INFORM2 intacto e só dois registradores",
       "ok": true,
       "detail": "2"
     }

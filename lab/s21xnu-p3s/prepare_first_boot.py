@@ -9,7 +9,9 @@ tar); os dois são conferidos contra docs/references/capture-a0-pins-hzc2.json
 e qualquer outro firmware é recusado. CLONE é o s21xnu no commit fixado e
 limpo. O script:
 
-  1. compila o shim BOARD=p3s com os patches 0001 e 0002;
+  1. compila o shim BOARD=p3s com os patches 0001, 0002 e 0004 (o 0004
+     desmascara o trigger do DECON0 para a tela mostrar o framebuffer e
+     reinicia pelo PMU com pedido de recovery, observados no aparelho);
   2. monta a sonda com mk_sboot_bootimg.py e o rodapé AVB de laboratório
      (avb_lab.py; gera uma chave RSA4096 nova se --lab-key faltar);
   3. grava em NOVO_DIR: boot.img (64 MiB), AP_s21xnu_sonda.tar e .tar.md5
@@ -50,6 +52,7 @@ from capture_a0_formats import layout  # noqa: E402
 PINS = REPO / "docs" / "references" / "capture-a0-pins-hzc2.json"
 PATCH2 = HERE / "0002-probe-lk-handoff-facts.patch"
 PATCH3 = HERE / "0003-probe-blind-pmu-marks.patch"
+PATCH4 = HERE / "0004-p3s-decon-trigger-and-pmu-reset.patch"
 BLIND = {"entrada": "1", "etapas": "2", "relogio": "3", "tela": "4"}
 BLIND_STAGES = [
     ("5101", "entrou no shim (primeira instrução)"),
@@ -166,14 +169,17 @@ o boot.img stock à mão para voltar.
 | `INITRD` | `start=84080000 end={end:08X}` |
 | `FB` | `w=000005A0 stride=00001680` |
 
-Depois vêm o diagnóstico (MMU, PSCI, GIC) e PSCI SYSTEM_RESET após 40 s.
-Tela preta, outra cor ou valores diferentes: fotografe e compare com a
-tabela em docs/xnu-s21xnu-p3s.md.
+Depois vêm o diagnóstico (MMU, PSCI, GIC) e, 40 s depois, o reset pelo PMU
+com pedido de recovery: o aparelho volta sozinho à recovery. O patch 0004
+desmascara o trigger do DECON0 (sem isso o painel continua no logo, como
+observado em 27/11). Tela preta, outra cor ou valores diferentes: fotografe
+e compare com a tabela em docs/xnu-s21xnu-p3s.md.
 
 ## Voltar ao Android
 
-A sonda reinicia nela mesma. No reinício, segure Volume+ e Power para o
-TWRP e rode `sh /cache/s21xnu/s21xnu-switch.sh to-android`. Sem TWRP: modo
+A sonda volta sozinha à recovery. Lá, rode
+`sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot` e saia por
+Reboot → System. Sem TWRP: modo
 download e Odin com AP = `AP_stock_boot.tar.md5` (o boot.img stock HZC2
 conferido pelos pins).
 """.format(sha=rep["sha256"], end=end)
@@ -272,7 +278,7 @@ def main(argv=None):
             tree = tmp / "s21xnu"
             shutil.copytree(pathlib.Path(a.s21xnu).resolve(), tree, symlinks=True,
                             ignore=shutil.ignore_patterns(".git"))
-            for p in (vp.PATCH, PATCH2) + ((PATCH3,) if a.cega else ()):
+            for p in (vp.PATCH, PATCH2) + ((PATCH3,) if a.cega else (PATCH4,)):
                 subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
             env = vp.cross_env(t)
             if a.cega:

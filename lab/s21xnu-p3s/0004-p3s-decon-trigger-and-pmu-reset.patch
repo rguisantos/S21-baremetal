@@ -1,0 +1,85 @@
+diff --git a/shim/build-s21.sh b/shim/build-s21.sh
+index 9a38cde..75bc48e 100755
+--- a/shim/build-s21.sh
++++ b/shim/build-s21.sh
+@@ -12,7 +12,7 @@ case "$BOARD" in
+   p3s-window) BOARD_CFLAGS=-DSWEET_BOARD_P3S_WINDOW ;;
+   *) echo "error: unknown BOARD=$BOARD (t2s|p3s|p3s-window)" >&2; exit 1 ;;
+ esac
+-CFLAGS="$BOARD_CFLAGS -O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align -fno-stack-protector -Wall -Wextra"
++CFLAGS="$BOARD_CFLAGS ${P3S_MMIO_CFLAGS:-} -O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align -fno-stack-protector -Wall -Wextra"
+ mkdir -p out
+ for f in start.S shim.c console.c mmu.c fdt.c loader.c ufs.c; do $CC $CFLAGS -c $f -o out/${f%.*}.o; done
+ abs=$(aarch64-linux-gnu-readelf -r out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o | grep -c ABS64 || true)
+diff --git a/shim/shim.c b/shim/shim.c
+index 8d55f1d..e3655dd 100644
+--- a/shim/shim.c
++++ b/shim/shim.c
+@@ -101,15 +101,57 @@ static void delay_ms(unsigned ms)
+ 		;
+ }
+ 
++#if defined(SWEET_BOARD_P3S) || defined(SWEET_BOARD_P3S_WINDOW)
++/*
++ * S21 Ultra (p3s), observed on the device on 27/11 with the blind probe:
++ * - S-Boot leaves DECON0 (0x19f00000, FDT decon_0) in command mode with the
++ *   hardware (TE) trigger enabled but masked: TRIG_CON = 0x31, GLOBAL_CON =
++ *   0x1f. Framebuffer writes never reach the panel until HW_TRIG_MASK_DECON
++ *   (bit 4) is cleared; then the panel refreshes from 0xfa000000 on every TE.
++ *   Bits from cal_2100/regs-decon.h (TRIG_CON 0x30, SHD_REG_UP_REQ 0x50).
++ * - PSCI SYSTEM_RESET (hvc) returns without resetting; the Samsung kernel
++ *   resets through the PMU (exynos-reboot.c: 0x15860000 + 0x3c00 = 2). The
++ *   recovery request (INFORM3 = 0x12345604) brings the phone back to the
++ *   recovery, where s21xnu-switch.sh restores the Android boot.
++ */
++#ifndef P3S_DECON0
++#define P3S_DECON0		0x19f00000UL
++#endif
++#ifndef P3S_PMU
++#define P3S_PMU			0x15860000UL
++#endif
++
++static void p3s_display_on(void)
++{
++	wr32(P3S_DECON0 + 0x30, (rd32(P3S_DECON0 + 0x30) | 1) & ~(1u << 4));
++	wr32(P3S_DECON0 + 0x50, rd32(P3S_DECON0 + 0x50) | (1u << 31));
++	__asm__ volatile("dsb sy" ::: "memory");
++}
++
++static void __attribute__((noreturn)) p3s_pmu_reset(void)
++{
++	wr32(P3S_PMU + 0x80c, 0x12345604);	/* SEC_RESET_REASON_RECOVERY */
++	__asm__ volatile("dsb sy" ::: "memory");
++	wr32(P3S_PMU + 0x3c00, 2);
++	__asm__ volatile("dsb sy" ::: "memory");
++	for (;;)
++		__asm__ volatile("wfe");
++}
++#endif
++
+ static void __attribute__((noreturn)) reset(unsigned after_s)
+ {
+ 	con_skip();
+ 	con_str("RESET", after_s > 20 ? "in 40s" : "in 20s");
+ 	delay_ms(after_s * 1000);
+ 	__asm__ volatile("dsb sy" ::: "memory");
++#if defined(SWEET_BOARD_P3S) || defined(SWEET_BOARD_P3S_WINDOW)
++	p3s_pmu_reset();
++#else
+ 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
+ 	for (;;)
+ 		__asm__ volatile("wfe");
++#endif
+ }
+ 
+ /* ---- exceptions ---- */
+@@ -372,6 +414,9 @@ void shim_main(uint64_t dtb)
+ {
+ 	struct mmu_info mi;
+ 
++#if defined(SWEET_BOARD_P3S) || defined(SWEET_BOARD_P3S_WINDOW)
++	p3s_display_on();	/* before the loader: an xnu payload keeps it */
++#endif
+ 	/* An xnu payload in the ramdisk means: boot it (MMU stays off). */
+ 	stage = "loader";
+ 	con_clear(RED);

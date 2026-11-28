@@ -98,6 +98,7 @@ do atual. O `/proc/last_kmsg` tem só o anterior.
 | entrada (`ed8342f4…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x5101` | o S-Boot executou o boot.img e o shim rodou desde a primeira instrução |
 | etapas (`ed5787aa…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x510F` | todas as etapas, sem exceção; reset pelo PMU |
 | relogio | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x5113` | o PSCI `SYSTEM_RESET` (hvc) **voltou sem reiniciar**; o reset veio do PMU |
+| tela (`09f266e7…`) | `inform2: 0x6C5F`; o usuário **viu vermelho e depois verde** | `TRIG_CON` = 0x31 (trigger ligado, mascarado para DECON e SLAVE0), `GLOBAL_CON` = 0x1F (modo comando, rodando, em repouso); desmascarar o DECON liga a tela |
 
 Ao carregar a sonda, o S-Boot registrou `Verify_Signature_Ecdsa … failed`
 para a BOOT e `set_ddi_kernel_type: BOOT, 0x2` e seguiu até `Starting
@@ -121,6 +122,27 @@ Conclusão: a sonda com tela deve ter rodado o diagnóstico inteiro, num
 framebuffer que o painel não mostra (hipótese 4), e travado no reset
 (hipótese 3). A variante tela ataca a hipótese 4. O reset do shim e do XNU no
 p3s precisa ir pelo PMU (0x15863c00 = 2).
+
+## A tela do p3s: patch 0004
+
+Com o resultado da variante tela, o
+[`0004-p3s-decon-trigger-and-pmu-reset.patch`](../lab/s21xnu-p3s/0004-p3s-decon-trigger-and-pmu-reset.patch)
+põe as duas correções no shim do p3s (`BOARD=p3s` e `p3s-window`):
+- `p3s_display_on()` roda antes do loader: liga `HW_TRIG_EN`, limpa
+  `HW_TRIG_MASK_DECON` e pede `SHD_REG_UP_REQ` global. Com o trigger
+  desmascarado, o painel continua atualizando a cada TE depois que o shim
+  salta para o XNU.
+- `reset()` vai pelo PMU (`0x15863c00` = 2), com o pedido de recovery
+  (INFORM3 = `0x12345604`). A sonda e o painel de exceção voltam sozinhos à
+  recovery.
+
+O 0004 entra na sonda padrão de `prepare_first_boot.py` (as variantes cegas
+continuam só com o 0003) e no shim de `prepare_xnu_boot.py`, depois da série
+do fork. Validação: `blind_marks.py` confere no QEMU, com DECON0 e PMU falsos
+via `P3S_MMIO_CFLAGS`, o trigger desmascarado na entrada e o reset pelo PMU
+no fim (6 checagens). `probe_screenshot.py` (7 linhas) e `run_handoff.py`
+(handoff do XNU falso) passam com o 0004 aplicado. No aparelho, o 0004 ainda
+não rodou; o próximo teste é a sonda padrão, com as linhas legíveis na tela.
 
 ## Efeitos colaterais observados (27/11)
 

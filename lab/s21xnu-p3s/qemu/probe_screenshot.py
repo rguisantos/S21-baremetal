@@ -38,6 +38,7 @@ import verify_p3s_profile as vp  # noqa: E402
 from capture_a0_formats import layout  # noqa: E402
 
 PATCH2 = LAB / "0002-probe-lk-handoff-facts.patch"
+PATCH4 = LAB / "0004-p3s-decon-trigger-and-pmu-reset.patch"   # como no kit; no QEMU o DECON é um buraco
 FB, W, H, STRIDE = 0xFA000000, 1440, 3200, 5760
 KASLR = 0x8000
 
@@ -76,7 +77,7 @@ def main(argv=None):
     src = pathlib.Path(a.clone).resolve()
     head = vp.pinned_clone(src)          # commit fixado e árvore limpa, como os demais verificadores
     report = {"schema": "s21xnu-probe-screenshot/1", "s21xnu_commit": head,
-              "patches_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (vp.PATCH, PATCH2)},
+              "patches_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (vp.PATCH, PATCH2, PATCH4)},
               "checks": []}
     ok = True
 
@@ -91,7 +92,7 @@ def main(argv=None):
         env = vp.cross_env(t)
         tree = tmp / "s21xnu"
         shutil.copytree(src, tree, symlinks=True, ignore=shutil.ignore_patterns(".git"))
-        for p in (vp.PATCH, PATCH2):
+        for p in (vp.PATCH, PATCH2, PATCH4):
             subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
         shim = vp.build_shim(tree, "p3s", env)
         vrd = rh.vendor_ramdisk(rh.HZC2_VENDOR_RD)

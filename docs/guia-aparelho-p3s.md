@@ -220,9 +220,11 @@ O último par de linhas é o boot que entrou na Fox. `inform2: 0x5101` = o
 shim rodou; a tabela está no `ROTEIRO.md` do kit. **Observado em 27/11:**
 entrada deu `0x5101` e etapas `0x510F`, as duas com `PINFORM = 12345604`. O
 variante `--cega relogio` deu `0x5113` em 57 s: o PSCI não reinicia e o
-contador é de 26 MHz. A próxima é `--cega tela` (mesmo procedimento; **olhe a
-tela**: vermelho e depois verde quer dizer que o painel passou a mostrar o
-framebuffer).
+contador é de 26 MHz. Com `--cega tela` o usuário viu vermelho e depois verde
+(`inform2: 0x6C5F`): o painel mostra o framebuffer depois de desmascarar o
+trigger do DECON0. O patch 0004 leva isso à sonda padrão e ao XNU. Refaça o
+kit do passo 5 (`git pull`) e grave: agora a tela vermelha tem de mostrar as
+linhas, e a sonda volta sozinha à Fox depois de ~70 s.
 
 Para sair da Fox para o Android, use **Reboot → System** no menu. Com root no
 Android (Magisk), os testes podem rodar pelo Android com `su`, sem a Fox.

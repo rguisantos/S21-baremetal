@@ -4586,3 +4586,12 @@ Mais tarde, no mesmo dia:
   do DECON0 (0x19F00000), desmascara o trigger por hardware, pede
   atualização das shadow e pinta vermelho e depois verde. O pedido de
   recovery agora usa só o INFORM3 (SYSIP_DAT0 removido). QEMU: 28 checagens.
+- **Tela do p3s resolvida no aparelho.** A variante `--cega tela` deu
+  `inform2: 0x6C5F` e o usuário viu vermelho e depois verde: o S-Boot deixa o
+  DECON0 em modo comando com o trigger por hardware mascarado (TRIG_CON 0x31,
+  GLOBAL_CON 0x1F). O patch 0004 (`p3s_display_on` antes do loader e reset
+  pelo PMU com pedido de recovery) entra na sonda padrão e no shim do kit do
+  XNU. No QEMU: 6 checagens novas; probe_screenshot e run_handoff passam com
+  o 0004.
+- **Magisk 31.1 no stock** (boot `6f71d7c8…`; 9 bytes de remendo no kernel).
+  O `su` funciona, mas sem capacidades (CapEff 0): os testes continuam pela Fox.

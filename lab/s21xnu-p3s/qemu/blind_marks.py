@@ -17,6 +17,11 @@ e, na variante 4, o DECON0 falso (BLIND_DECON=0xBF008000, semeado com
 TRIG_CON=0x11 e GLOBAL_CON=0x113 como num modo comando com trigger
 mascarado): TRIG_CON tem de virar 0x01 e SHD_REG_UP_REQ ganhar o bit 31.
 
+Também confere o patch 0004 (sonda com tela no p3s, sem 0003): logo na
+entrada o TRIG_CON do DECON0 falso vira 0x01 e o SHD_REG_UP_REQ ganha o bit
+31; no fim (25 s de pausa + diagnóstico + 40 s), o reset vai pelo PMU com o
+pedido de recovery, sem PSCI.
+
 SHIM_BLIND=1 tem de parar em 01 e pedir o reset logo; SHIM_BLIND=2 tem de
 passar por todas as etapas até 0f; SHIM_BLIND=3 marca 11 (CNTFRQ não zero)
 durante a espera de 30 s e depois reinicia por PSCI, o que encerra o QEMU. Também confere que SHIM_BLIND=0 não toca
@@ -45,6 +50,7 @@ import probe_screenshot as ps  # noqa: E402
 from capture_a0_formats import layout  # noqa: E402
 
 PATCHES = [vp.PATCH, LAB / "0002-probe-lk-handoff-facts.patch", LAB / "0003-probe-blind-pmu-marks.patch"]
+PATCH4 = LAB / "0004-p3s-decon-trigger-and-pmu-reset.patch"
 PMU = 0xBF000000
 DECON = PMU + 0x8000
 SEED_TRIG, SEED_GLOB = 0x11, 0x113
@@ -60,7 +66,7 @@ EXPECT = {
           "swreset": 0, "decon_trig": 0x01, "decon_shd": 1 << 31, "decon_glob": SEED_GLOB},
 }
 WORDS = {"1": 3, "2": 3, "3": 2, "4": 2}
-WAIT = {"0": 6, "1": 4, "2": 14, "3": 4, "4": 5}
+WAIT = {"0": 6, "1": 4, "2": 14, "3": 4, "4": 5, "p3s": 4}
 
 
 def fake_mmio():
@@ -71,8 +77,11 @@ def fake_mmio():
     return bytes(b)
 
 
-def run(tmp, env, tree, blind):
-    e = dict(env, SHIM_BLIND=blind, BLIND_PMU=hex(PMU), BLIND_DECON=hex(DECON))
+def run(tmp, env, tree, blind, late=None):
+    if blind == "p3s":
+        e = dict(env, P3S_MMIO_CFLAGS="-DP3S_PMU=%#xUL -DP3S_DECON0=%#xUL" % (PMU, DECON))
+    else:
+        e = dict(env, SHIM_BLIND=blind, BLIND_PMU=hex(PMU), BLIND_DECON=hex(DECON))
     shim = vp.build_shim(tree, "p3s", e)
     vrd = rh.vendor_ramdisk(rh.HZC2_VENDOR_RD)
     boot, vboot = rh.stock_headers(vrd)
@@ -109,6 +118,15 @@ def run(tmp, env, tree, blind):
             time.sleep(0.1)
         time.sleep(WAIT[blind])
         ps.monitor(mon, "pmemsave %#x %d \"%s\"" % (PMU, 0x10000, dump))
+        if late:                   # segunda leitura, depois do reset pedido no fim
+            for _ in range(100):
+                if dump.exists() and dump.stat().st_size == 0x10000:
+                    break
+                time.sleep(0.1)
+            early = dump.read_bytes()
+            dump.unlink()
+            time.sleep(late)
+            ps.monitor(mon, "pmemsave %#x %d \"%s\"" % (PMU, 0x10000, dump))
         for _ in range(100):
             if dump.exists() and dump.stat().st_size == 0x10000:
                 break
@@ -125,6 +143,12 @@ def run(tmp, env, tree, blind):
         proc.wait()
     raw = dump.read_bytes()
     rd = lambda o: struct.unpack_from("<I", raw, o)[0]  # noqa: E731
+    if late:
+        rde = lambda o: struct.unpack_from("<I", early, o)[0]  # noqa: E731
+        return hashlib.sha256(shim).hexdigest(), {
+            "early_trig": rde(0x8030), "early_shd": rde(0x8050), "early_swreset": rde(0x3c00),
+            "late_inform3": rd(0x80c), "late_swreset": rd(0x3c00), "late_inform2": rd(0x808),
+            "nonzero_words": sum(1 for o in range(0, 0x4000, 4) if rd(o))}
     return hashlib.sha256(shim).hexdigest(), {"inform2": rd(0x808), "inform3": rd(0x80c),
                                               "sysip0": rd(0x810), "swreset": rd(0x3c00),
                                               "decon_glob": rd(0x8020), "decon_trig": rd(0x8030),
@@ -176,6 +200,21 @@ def main(argv=None):
                   regs["nonzero_words"])
             if blind == "3":
                 check("SHIM_BLIND=3 reset por PSCI encerra o QEMU", regs["psci_reset_exited_qemu"] is True)
+        tree4 = tmp / "s21xnu-p3s"
+        shutil.copytree(src, tree4, symlinks=True, ignore=shutil.ignore_patterns(".git"))
+        for p in PATCHES[:2] + [PATCH4]:
+            subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree4, check=True)
+        shim_sha, regs = run(tmp, env, tree4, "p3s", late=75)
+        report["runs"]["p3s-0004"] = {"shim_sha256": shim_sha, **{k: hex(v) for k, v in regs.items()}}
+        check("0004: trigger desmascarado na entrada (TRIG_CON 0x11 -> 0x01)", regs["early_trig"] == 0x01,
+              "%#x" % regs["early_trig"])
+        check("0004: SHD_REG_UP_REQ bit 31 na entrada", regs["early_shd"] == 1 << 31, "%#x" % regs["early_shd"])
+        check("0004: sem reset antes do fim", regs["early_swreset"] == 0)
+        check("0004: reset pelo PMU no fim", regs["late_swreset"] == 2, "%#x" % regs["late_swreset"])
+        check("0004: pedido de recovery no fim", regs["late_inform3"] == 0x12345604, "%#x" % regs["late_inform3"])
+        check("0004: INFORM2 intacto e só dois registradores", regs["late_inform2"] == 0 and regs["nonzero_words"] == 2,
+              regs["nonzero_words"])
+    report["patches_sha256"][PATCH4.name] = hashlib.sha256(PATCH4.read_bytes()).hexdigest()
     report["result"] = "PASS" if ok else "FAIL"
     print("RESULTADO", report["result"])
     if a.json:

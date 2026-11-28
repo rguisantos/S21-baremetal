@@ -96,6 +96,19 @@
       ],
       "host_usb": "disconnect 98914.91 s, Fox reconectou 98971.88 s (57.0 s; etapas com espera de 2 s: 29 s)",
       "reading": "PSCI SYSTEM_RESET voltou sem reiniciar; contador consistente com 26 MHz"
+    },
+    "tela": {
+      "boot_sha256": "09f266e700ce5ead755f3d99ae3fd5ff65123730774ff19524856293469ab917",
+      "screen": "o usuário viu a tela vermelha e depois a verde",
+      "next_boot": [
+        "PINFORM = 12345604 ... REBOOT_MODE to 4",
+        "show_reset_reason_rawdata: rst_stat: 0x40000000, inform2: 0x6C5F, inform3: 0x0"
+      ],
+      "decoded": {
+        "TRIG_CON_bits_5_0": "0x31 (HW_TRIG_EN, HW_TRIG_MASK_DECON, HW_TRIG_MASK_SLAVE0)",
+        "GLOBAL_CON": "modo comando, RUN, DECON_EN, DECON_EN_F, IDLE"
+      },
+      "conclusion": "observado: o S-Boot deixa o DECON0 em modo comando com o trigger por hardware mascarado; limpar HW_TRIG_MASK_DECON e pedir SHD_REG_UP_REQ global faz o painel mostrar o framebuffer 0xfa000000"
     }
   },
   "android_loop_after_vbmeta": {
@@ -107,5 +120,13 @@
       "restart_handler_list -> psci_sys_reset call +/- (volta), exynos_restart_handler: Exynos SoC reset right now"
     ],
     "fix": "Format Data na Fox (feito pelo usuário)"
+  },
+  "magisk": {
+    "apk": "Magisk-v31.1.apk (release oficial topjohnwu)",
+    "patched_boot_sha256": "6f71d7c855d0399b56e2d6d7df0a0c86837cf9b1416dc7861582a85200ced50d",
+    "check": "magiskboot test=1; kernel com 9 bytes diferentes, mesmo tamanho e versão 5.4.242-30958140-abG998BXXSJHZC2",
+    "flash": "heimdall flash --BOOT (BOOT upload successful)",
+    "su": "uid=0 contexto u:r:magisk:s0, mas CapEff 0 e CapBnd 0x8000c0: /cache e /data/adb negados no Android",
+    "note": "a Fox não recompactou o boot com Magisk nesta entrada (6f71d7c8 na BOOT); /cache/s21xnu antiga sumiu entre o Format Data e esta entrada"
   }
 }
