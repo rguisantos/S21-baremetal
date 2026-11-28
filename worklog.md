@@ -4573,3 +4573,16 @@ observado: a Fox recompacta a BOOT a cada entrada (`9d405a0c…`); o reinício
 de 30 s e reset por PSCI, com 16 checagens no QEMU. Falta saber se o reset
 por PSCI funciona e qual é a taxa real do contador, as duas diferenças em
 relação à sonda com tela, que não reiniciou.
+Mais tarde, no mesmo dia:
+- **Variante relogio:** `0x5113` e ciclo de 57 s. O PSCI `SYSTEM_RESET` volta
+  sem reiniciar (o kernel Samsung também reinicia pelo PMU) e o contador é
+  de 26 MHz. A sonda com tela deve ter rodado inteira e parado no `wfe`
+  depois do PSCI, num framebuffer que o painel não mostra.
+- **Loop do Android para a recovery:** causado pelo vbmeta desativado
+  (`decryptWithKeystoreKey fail`, `fs_mgr` pede wipe). Resolvido com Format
+  Data. A ROM MonsterROM não tem zip público (GitHub e XDA); o usuário fica
+  no stock e vai pôr Magisk.
+- **Nova variante `--cega tela` (`SHIM_BLIND=4`):** lê TRIG_CON e GLOBAL_CON
+  do DECON0 (0x19F00000), desmascara o trigger por hardware, pede
+  atualização das shadow e pinta vermelho e depois verde. O pedido de
+  recovery agora usa só o INFORM3 (SYSIP_DAT0 removido). QEMU: 28 checagens.

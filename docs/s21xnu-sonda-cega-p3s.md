@@ -31,7 +31,6 @@ Samsung usa a partir de EL1:
 |---|---|---|---|
 | INFORM2 (magic-inform) | 0x15860808 | `0x51nn`, bits 31..16 em zero | bits 23..16 com 0x4E no reboot normal |
 | INFORM3 (panic-inform) | 0x1586080c | `0x12345604` | `SEC_RESET_REASON_RECOVERY` (`reboot recovery`) |
-| SYSIP_DAT0 | 0x15860810 | `0xff` | `REBOOT_MODE_RECOVERY` |
 | reboot-offset | 0x15863c00 | `2` | reset por software (`exynos-reboot.c`) |
 
 Os bits 31..16 de INFORM2 ficam em zero, como no log depois de um reset
@@ -74,6 +73,21 @@ desse ponto.
   voltar; nesse caso reinicia pelo PMU. A duração se mede de fora, pelos
   tempos de `USB disconnect` e reconexão no `dmesg` do PC.
 
+- `--cega tela` (`SHIM_BLIND=4`): lê `TRIG_CON` (0x19F00030) e
+  `GLOBAL_CON` (0x19F00020) do DECON0 como o S-Boot deixou e grava um
+  resumo em INFORM2 (`0x6TTG`). Depois tira a máscara do trigger por
+  hardware (`HW_TRIG_EN`, limpa `HW_TRIG_MASK_DECON`), pede atualização das
+  shadow (`SHD_REG_UP_REQ` bit 31) e pinta vermelho com texto por 15 s e
+  verde por 15 s. A base vem do nó `decon_0@0x19F00000` do FDT p3s; os
+  registradores vêm de `cal_2100/regs-decon.h` e de
+  `decon_reg_set_trigger()` no FlopKernel `dc17ad0`. O driver Samsung
+  mascara o trigger entre os frames no modo comando com trigger por hardware.
+  A hipótese é que o S-Boot deixa o trigger mascarado depois do logo.
+
+O pedido de recovery usa só o INFORM3. A primeira versão escrevia também
+`SYSIP_DAT0` (0x15860810) = 0xff, que não era necessário: o S-Boot já
+obedece ao INFORM3. Agora não escreve mais.
+
 ## Resultado no aparelho (27/11)
 
 O log se lê em `/proc/sec_log` na Fox: ele tem o S-Boot do boot anterior e
@@ -83,6 +97,7 @@ do atual. O `/proc/last_kmsg` tem só o anterior.
 |---|---|---|
 | entrada (`ed8342f4…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x5101` | o S-Boot executou o boot.img e o shim rodou desde a primeira instrução |
 | etapas (`ed5787aa…`) | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x510F` | todas as etapas, sem exceção; reset pelo PMU |
+| relogio | `PINFORM = 12345604 … REBOOT_MODE to 4`, `inform2: 0x5113` | o PSCI `SYSTEM_RESET` (hvc) **voltou sem reiniciar**; o reset veio do PMU |
 
 Ao carregar a sonda, o S-Boot registrou `Verify_Signature_Ecdsa … failed`
 para a BOOT e `set_ddi_kernel_type: BOOT, 0x2` e seguiu até `Starting
@@ -93,8 +108,35 @@ variante etapas, o usuário não percebeu.
 
 Com isso a hipótese 1 está descartada. A sonda com tela roda o mesmo código e
 difere em duas coisas: espera 25 s em vez de 2 e reinicia por PSCI (`hvc`)
-depois de 40 s. Por isso a variante relogio testa a taxa do contador e o reset
-por PSCI.
+depois de 40 s. A variante relogio respondeu as duas:
+- **O PSCI `SYSTEM_RESET` volta sem reiniciar** (`0x5113`). O kernel Samsung
+  faz o mesmo: no log do Android, `psci_sys_reset` é chamado e volta, e quem
+  reinicia é o `exynos_restart_handler` pelo PMU. Isso explica a sonda com
+  tela, que depois do PSCI fica parada num `wfe`.
+- **O contador anda a 26 MHz.** O ciclo levou 57,0 s (USB 98914,9 → 98971,9)
+  contra 29 s na variante etapas: os 28 s a mais batem com a diferença de
+  espera.
+
+Conclusão: a sonda com tela deve ter rodado o diagnóstico inteiro, num
+framebuffer que o painel não mostra (hipótese 4), e travado no reset
+(hipótese 3). A variante tela ataca a hipótese 4. O reset do shim e do XNU no
+p3s precisa ir pelo PMU (0x15863c00 = 2).
+
+## Efeitos colaterais observados (27/11)
+
+- **Android em loop para a recovery depois do vbmeta desativado.** O `init`
+  pede `reboot recovery` aos 10,5 s:
+  `KeyStorage: decryptWithKeystoreKey fail` (`fbe.fail_cause M02R`), depois
+  `fs_mgr_mount_all suggested recovery, so wiping data`. A chave do `/data`
+  está presa ao estado de verificação. Resolve com Format Data na Fox. Não
+  tem relação com a sonda: o Android não ligou desde a gravação do vbmeta.
+- **A Fox recompacta a BOOT a cada entrada** (sempre `9d405a0c…` a partir do
+  stock). O autor da ROM descreve no XDA um "script herdado que reempacotava
+  o boot stock", que ele tirou da recovery que usava. O `to-android
+  --no-reboot` regrava o stock conferido; o reinício para os testes é feito
+  por `sysrq` (`echo b > /proc/sysrq-trigger`).
+- O log de cada boot se lê em `/proc/sec_log` (S-Boot do boot anterior e do
+  atual).
 
 ## Validação
 
@@ -106,10 +148,13 @@ do QEMU ([resultado](references/s21xnu-sonda-cega-qemu-20261127.json)):
 - `SHIM_BLIND=0` não escreve nada;
 - `SHIM_BLIND=1` para em `0x5101`;
 - `SHIM_BLIND=2` passa por todas as etapas até `0x510F`;
-- as variantes entrada e etapas escrevem só os quatro registradores, com
-  `0x12345604`, `0xff` e `2`;
+- as variantes entrada e etapas escrevem só três registradores (INFORM2,
+  INFORM3 = `0x12345604` e reboot-offset = `2`) e não tocam no DECON;
 - `SHIM_BLIND=3` marca `0x5111` durante a espera e o PSCI `SYSTEM_RESET`
-  encerra o QEMU (`-no-reboot`).
+  encerra o QEMU (`-no-reboot`);
+- `SHIM_BLIND=4`, com um DECON0 falso em RAM semeado com `TRIG_CON=0x11` e
+  `GLOBAL_CON=0x113`, grava `0x644F`, deixa `TRIG_CON=0x01` e liga o bit 31
+  de `SHD_REG_UP_REQ`.
 
 Roda também no CI. Os testes de `prepare_first_boot.py` cobrem o roteiro
 das variantes cegas.

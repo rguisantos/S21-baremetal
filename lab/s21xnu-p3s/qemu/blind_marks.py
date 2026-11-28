@@ -11,8 +11,11 @@ sonda escreve:
 
   INFORM2 +0x808  0x51nn: última etapa (01 entrada ... 0f reset; 8s exceção)
   INFORM3 +0x80c  0x12345604: pedido de recovery (SEC_RESET_REASON_RECOVERY)
-  SYSIP0  +0x810  0xff: REBOOT_MODE_RECOVERY
   SWRESET +0x3c00 2: reset por software (exynos-reboot.c)
+
+e, na variante 4, o DECON0 falso (BLIND_DECON=0xBF008000, semeado com
+TRIG_CON=0x11 e GLOBAL_CON=0x113 como num modo comando com trigger
+mascarado): TRIG_CON tem de virar 0x01 e SHD_REG_UP_REQ ganhar o bit 31.
 
 SHIM_BLIND=1 tem de parar em 01 e pedir o reset logo; SHIM_BLIND=2 tem de
 passar por todas as etapas até 0f; SHIM_BLIND=3 marca 11 (CNTFRQ não zero)
@@ -43,19 +46,33 @@ from capture_a0_formats import layout  # noqa: E402
 
 PATCHES = [vp.PATCH, LAB / "0002-probe-lk-handoff-facts.patch", LAB / "0003-probe-blind-pmu-marks.patch"]
 PMU = 0xBF000000
+DECON = PMU + 0x8000
+SEED_TRIG, SEED_GLOB = 0x11, 0x113
 KASLR = 0x8000
 EXPECT = {
     "0": None,
-    "1": {"inform2": 0x5101, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 2},
-    "2": {"inform2": 0x510F, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 2},
+    "1": {"inform2": 0x5101, "inform3": 0x12345604, "sysip0": 0, "swreset": 2},
+    "2": {"inform2": 0x510F, "inform3": 0x12345604, "sysip0": 0, "swreset": 2},
     # no meio da espera de 30 s: CNTFRQ do QEMU é não zero; nada de reset ainda
-    "3": {"inform2": 0x5111, "inform3": 0x12345604, "sysip0": 0xFF, "swreset": 0},
+    "3": {"inform2": 0x5111, "inform3": 0x12345604, "sysip0": 0, "swreset": 0},
+    # durante o vermelho: código 0x6TTG de TRIG_CON 0x11 e GLOBAL_CON 0x113
+    "4": {"inform2": 0x6000 | (SEED_TRIG & 0x3f) << 6 | 0xF, "inform3": 0x12345604, "sysip0": 0,
+          "swreset": 0, "decon_trig": 0x01, "decon_shd": 1 << 31, "decon_glob": SEED_GLOB},
 }
-WAIT = {"0": 6, "1": 4, "2": 14, "3": 4}
+WORDS = {"1": 3, "2": 3, "3": 2, "4": 2}
+WAIT = {"0": 6, "1": 4, "2": 14, "3": 4, "4": 5}
+
+
+def fake_mmio():
+    """PMU (0x0000-0x3fff) zerado e DECON0 falso em +0x8000 com TRIG_CON/GLOBAL_CON semeados."""
+    b = bytearray(0x10000)
+    struct.pack_into("<I", b, 0x8020, SEED_GLOB)
+    struct.pack_into("<I", b, 0x8030, SEED_TRIG)
+    return bytes(b)
 
 
 def run(tmp, env, tree, blind):
-    e = dict(env, SHIM_BLIND=blind, BLIND_PMU=hex(PMU))
+    e = dict(env, SHIM_BLIND=blind, BLIND_PMU=hex(PMU), BLIND_DECON=hex(DECON))
     shim = vp.build_shim(tree, "p3s", e)
     vrd = rh.vendor_ramdisk(rh.HZC2_VENDOR_RD)
     boot, vboot = rh.stock_headers(vrd)
@@ -70,7 +87,7 @@ def run(tmp, env, tree, blind):
     struct.pack_into("<QQ", stub, 8, image_pa, mk.FDT_X0)
     # PMU falso zerado: um bloco de 16 KiB de zeros carregado em RAM
     files = {"stub.bin": (bytes(stub), rh.STUB_PA), "Image": (kernel, image_pa),
-             "initrd.bin": (initrd, mk.INITRD_BASE), "pmu.bin": (bytes(0x4000), PMU),
+             "initrd.bin": (initrd, mk.INITRD_BASE), "pmu.bin": (fake_mmio(), PMU),
              "fdt.dtb": (rh.fdt_chosen(mk.INITRD_BASE, mk.INITRD_BASE + len(initrd)), mk.FDT_X0)}
     argv_q, qenv = rh.qemu_cmd()
     mon = d / "mon.sock"
@@ -91,9 +108,9 @@ def run(tmp, env, tree, blind):
                 break
             time.sleep(0.1)
         time.sleep(WAIT[blind])
-        ps.monitor(mon, "pmemsave %#x %d \"%s\"" % (PMU, 0x4000, dump))
+        ps.monitor(mon, "pmemsave %#x %d \"%s\"" % (PMU, 0x10000, dump))
         for _ in range(100):
-            if dump.exists() and dump.stat().st_size == 0x4000:
+            if dump.exists() and dump.stat().st_size == 0x10000:
                 break
             time.sleep(0.1)
         exited = None
@@ -110,6 +127,8 @@ def run(tmp, env, tree, blind):
     rd = lambda o: struct.unpack_from("<I", raw, o)[0]  # noqa: E731
     return hashlib.sha256(shim).hexdigest(), {"inform2": rd(0x808), "inform3": rd(0x80c),
                                               "sysip0": rd(0x810), "swreset": rd(0x3c00),
+                                              "decon_glob": rd(0x8020), "decon_trig": rd(0x8030),
+                                              "decon_shd": rd(0x8050),
                                               "nonzero_words": sum(1 for o in range(0, 0x4000, 4) if rd(o)),
                                               "psci_reset_exited_qemu": exited}
 
@@ -139,16 +158,20 @@ def main(argv=None):
         shutil.copytree(src, tree, symlinks=True, ignore=shutil.ignore_patterns(".git"))
         for p in PATCHES:
             subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
-        for blind in ("0", "1", "2", "3"):
+        for blind in ("0", "1", "2", "3", "4"):
             shim_sha, regs = run(tmp, env, tree, blind)
             report["runs"][blind] = {"shim_sha256": shim_sha, **{k: (hex(v) if isinstance(v, int) and not isinstance(v, bool) else v) for k, v in regs.items()}}
             want = EXPECT[blind]
             if want is None:
-                check("SHIM_BLIND=0 não escreve no PMU", regs["nonzero_words"] == 0, regs)
+                check("SHIM_BLIND=0 não escreve no PMU nem no DECON", regs["nonzero_words"] == 0
+                      and regs["decon_trig"] == SEED_TRIG and regs["decon_shd"] == 0, regs)
                 continue
+            if blind in ("1", "2", "3"):
+                check("SHIM_BLIND=%s não toca no DECON" % blind,
+                      regs["decon_trig"] == SEED_TRIG and regs["decon_shd"] == 0)
             for k, v in want.items():
                 check("SHIM_BLIND=%s %s" % (blind, k), regs[k] == v, "%#x" % regs[k])
-            n = 3 if blind == "3" else 4
+            n = WORDS[blind]
             check("SHIM_BLIND=%s só %d registradores" % (blind, n), regs["nonzero_words"] == n,
                   regs["nonzero_words"])
             if blind == "3":

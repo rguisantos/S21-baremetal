@@ -107,6 +107,12 @@ regrave. Siga também o que o autor da Fox pede no primeiro boot dela. Se o
 Android pedir "Falha na verificação, redefinir", aceite (os dados já foram
 apagados).
 
+**Observado em 27/11:** depois do vbmeta desativado, o Android stock entra em
+loop para a recovery (`decryptWithKeystoreKey fail`; o `init` pede
+`reboot recovery`). Na Fox: Wipe → **Format Data** (`yes`) e depois Reboot →
+System. Isso apaga os dados do usuário. Sempre que o vbmeta mudar, formate de
+novo.
+
 ## 4. Backup das partições stock pela Fox
 
 Na Fox, com o cabo no PC (se o `adb devices` não listar, alterne o MTP na
@@ -213,8 +219,13 @@ sozinho, Volume+ e Power. Então:
 O último par de linhas é o boot que entrou na Fox. `inform2: 0x5101` = o
 shim rodou; a tabela está no `ROTEIRO.md` do kit. **Observado em 27/11:**
 entrada deu `0x5101` e etapas `0x510F`, as duas com `PINFORM = 12345604`. O
-próximo kit é `--cega relogio` (mesmo procedimento; anote os tempos de `USB
-disconnect` e da reconexão no terminal).
+variante `--cega relogio` deu `0x5113` em 57 s: o PSCI não reinicia e o
+contador é de 26 MHz. A próxima é `--cega tela` (mesmo procedimento; **olhe a
+tela**: vermelho e depois verde quer dizer que o painel passou a mostrar o
+framebuffer).
+
+Para sair da Fox para o Android, use **Reboot → System** no menu. Com root no
+Android (Magisk), os testes podem rodar pelo Android com `su`, sem a Fox.
 
 ## 6. Voltar ao Android
 

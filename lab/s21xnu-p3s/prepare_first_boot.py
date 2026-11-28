@@ -20,7 +20,9 @@ Com --cega, aplica também o patch 0003 (sonda cega): o shim grava marcas
 nos registradores INFORM do PMU e pede reset para a recovery, e o resultado
 se lê no log do S-Boot (/proc/last_kmsg na recovery), sem depender da tela.
 "entrada" reinicia na primeira instrução; "etapas" marca cada etapa;
-"relogio" espera 30 s pelo contador e reinicia por PSCI.
+"relogio" espera 30 s pelo contador e reinicia por PSCI; "tela" lê o
+TRIG_CON e o GLOBAL_CON do DECON0, desmascara o trigger por hardware e
+pinta a tela de vermelho e depois de verde.
 
 Nada é gravado no aparelho. Exige desbloqueio OEM para ser usado.
 """
@@ -48,7 +50,7 @@ from capture_a0_formats import layout  # noqa: E402
 PINS = REPO / "docs" / "references" / "capture-a0-pins-hzc2.json"
 PATCH2 = HERE / "0002-probe-lk-handoff-facts.patch"
 PATCH3 = HERE / "0003-probe-blind-pmu-marks.patch"
-BLIND = {"entrada": "1", "etapas": "2", "relogio": "3"}
+BLIND = {"entrada": "1", "etapas": "2", "relogio": "3", "tela": "4"}
 BLIND_STAGES = [
     ("5101", "entrou no shim (primeira instrução)"),
     ("5102", "shim_main"), ("5103", "framebuffer pintado de vermelho"),
@@ -66,7 +68,16 @@ CLOCK_STAGES = [
 ]
 
 
+SCREEN_STAGES = [
+    ("5101", "entrou no shim; não chegou ao DECON"),
+    ("6TTG", "DECON lido: TT = TRIG_CON bits 5..0 (bit0 HW_TRIG_EN, bit4 HW_TRIG_MASK_DECON) em 11..6; "
+             "G = GLOBAL_CON (bit0 modo comando, bit1 RUN, bit2 DECON_EN, bit3 DECON_EN_F, bit4 IDLE)"),
+]
+
+
 def blind_rows(blind):
+    if blind == "tela":
+        return SCREEN_STAGES
     if blind == "entrada":
         return BLIND_STAGES[:1]
     return CLOCK_STAGES if blind == "relogio" else BLIND_STAGES
@@ -207,7 +218,8 @@ mostra o boot anterior.
 Depois: `sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot`.
 """.format(blind=blind, sha=rep["sha256"], rows=rows,
            wait={"entrada": "logo depois do logo", "etapas": "uns 30 s",
-                 "relogio": "uns 60 s se o contador for 26 MHz"}[blind])
+                 "relogio": "uns 60 s se o contador for 26 MHz",
+                 "tela": "uns 40 s; olhe a tela: vermelho com texto por 15 s e depois verde por 15 s"}[blind])
 
 
 def prepare(stock_boot, stock_vendor, shim, lab_key_pem, out, blind=None):
