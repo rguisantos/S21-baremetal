@@ -230,7 +230,8 @@ def main(argv=None):
         env = vp.cross_env(t)
         tree = tmp / "s21xnu"
         shutil.copytree(src, tree, symlinks=True, ignore=shutil.ignore_patterns(".git"))
-        subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(vp.PATCH)], cwd=tree, check=True)
+        for p in (vp.PATCH, LAB / "0004-p3s-decon-trigger-and-pmu-reset.patch"):   # 0004 como no kit do XNU
+            subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
         shim = vp.build_shim(tree, "p3s", env)
         STUB = cc(env, tmp, "lk_stub", [HERE / "lk_stub.S"], None)
         fake = cc(env, tmp, "fake_xnu", [HERE / "fake_xnu.S", HERE / "fake_xnu.c"], HERE / "fake_xnu.ld")

@@ -4529,3 +4529,69 @@ Achado da revisão própria: na Fox a `/cache` pode não estar montada; o
 reinício falharia. `s21xnu-switch.sh` agora recusa o diretório padrão sem
 `/cache` em `/proc/mounts` (teste novo, 20 testes com dash e bash) e o guia
 manda `mount /cache` antes de cada uso.
+
+## 2026-11-27 — primeiro teste no aparelho e sonda cega
+
+No aparelho, pelo Linux Mint, com as saídas coladas pelo usuário
+([sessão](docs/references/aparelho-p3s-20261127.json)):
+- O firmware ZTO HZC2 e os três pins (boot, vendor_boot e vbmeta) conferem.
+  A Fox R13 confere com o `.sha256` da release (`f7db9c5e…`).
+- O desbloqueio OEM foi feito. O Heimdall gravou RECOVERY e VBMETA
+  (`flags 0x0 -> 0x3`) e a Fox abriu.
+- Backup das partições: o vendor_boot é stock, mas o boot veio
+  **recompactado pela Fox** no primeiro start (kernel e arquivos do ramdisk
+  iguais; mudam só a compressão e o rodapé AVB). O boot stock foi regravado
+  por dd e conferido (`28818995…`).
+- O `s21xnu-switch.sh` funcionou na recovery real: install, to-xnu,
+  to-android e status, com /cache em sda31 e BOOT em sda13.
+- Sonda com tela: com Volume− e Power, o S-Boot leu as teclas e abriu a Fox.
+  Com `adb reboot`, o logo ficou na tela por mais de 2 min, sem tela vermelha
+  e sem reinício.
+- O log do S-Boot no boot da Fox mostra vbmeta `HASH_MISMATCH` seguido por
+  `VERIFICATION_DISABLED bit is set`, e `inform2/inform3` zerados.
+
+Sonda cega ([doc](docs/s21xnu-sonda-cega-p3s.md)): o patch 0003 grava
+INFORM2 = 0x51nn e o pedido de recovery (INFORM3 0x12345604, SYSIP_DAT0
+0xff) e reinicia pelo PMU (0x3c00 = 2). Os offsets vêm do FDT p3s e do
+kernel Samsung. `prepare_first_boot.py --cega entrada|etapas`;
+`qemu/blind_marks.py` passa com 11 checagens e roda também no CI. O guia
+ganhou: conferir e regravar o boot recompactado, `adb reboot` em vez das
+teclas e o passo 5b.
+
+Pendente no aparelho: rodar os kits cegos (entrada, depois etapas) e mandar
+a linha `show_reset_reason_rawdata`. Revisão feita aqui, a pedido do usuário
+(limite do Codex esgotado).
+Resultado no aparelho, mesmo dia (log em `/proc/sec_log` da Fox; o
+`last_kmsg` mostra só o boot anterior):
+- sonda cega entrada: `PINFORM = 12345604`, `inform2: 0x5101`;
+- sonda cega etapas: `inform2: 0x510F`, todas as etapas, ~29 s de ciclo.
+
+O S-Boot desbloqueado executa o boot.img nosso, e o shim passa por
+framebuffer, loader, FDT, contador, MMU, PSCI_VERSION e GIC. Também
+observado: a Fox recompacta a BOOT a cada entrada (`9d405a0c…`); o reinício
+é feito por `sysrq`. Nova variante `--cega relogio` (`SHIM_BLIND=3`): espera
+de 30 s e reset por PSCI, com 16 checagens no QEMU. Falta saber se o reset
+por PSCI funciona e qual é a taxa real do contador, as duas diferenças em
+relação à sonda com tela, que não reiniciou.
+Mais tarde, no mesmo dia:
+- **Variante relogio:** `0x5113` e ciclo de 57 s. O PSCI `SYSTEM_RESET` volta
+  sem reiniciar (o kernel Samsung também reinicia pelo PMU) e o contador é
+  de 26 MHz. A sonda com tela deve ter rodado inteira e parado no `wfe`
+  depois do PSCI, num framebuffer que o painel não mostra.
+- **Loop do Android para a recovery:** causado pelo vbmeta desativado
+  (`decryptWithKeystoreKey fail`, `fs_mgr` pede wipe). Resolvido com Format
+  Data. A ROM MonsterROM não tem zip público (GitHub e XDA); o usuário fica
+  no stock e vai pôr Magisk.
+- **Nova variante `--cega tela` (`SHIM_BLIND=4`):** lê TRIG_CON e GLOBAL_CON
+  do DECON0 (0x19F00000), desmascara o trigger por hardware, pede
+  atualização das shadow e pinta vermelho e depois verde. O pedido de
+  recovery agora usa só o INFORM3 (SYSIP_DAT0 removido). QEMU: 28 checagens.
+- **Tela do p3s resolvida no aparelho.** A variante `--cega tela` deu
+  `inform2: 0x6C5F` e o usuário viu vermelho e depois verde: o S-Boot deixa o
+  DECON0 em modo comando com o trigger por hardware mascarado (TRIG_CON 0x31,
+  GLOBAL_CON 0x1F). O patch 0004 (`p3s_display_on` antes do loader e reset
+  pelo PMU com pedido de recovery) entra na sonda padrão e no shim do kit do
+  XNU. No QEMU: 6 checagens novas; probe_screenshot e run_handoff passam com
+  o 0004.
+- **Magisk 31.1 no stock** (boot `6f71d7c8…`; 9 bytes de remendo no kernel).
+  O `su` funciona, mas sem capacidades (CapEff 0): os testes continuam pela Fox.

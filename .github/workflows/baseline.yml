@@ -59,6 +59,7 @@ jobs:
           S21XNU=/tmp/s21xnu python3 lab/s21xnu-p3s/test_prepare_xnu_boot.py
           python3 lab/s21xnu-p3s/qemu/run_handoff.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/qemu/probe_screenshot.py /tmp/s21xnu --png /tmp/sonda.png
+          python3 lab/s21xnu-p3s/qemu/blind_marks.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/fork/check_fork_series.py /tmp/s21xnu
           python3 lab/s21xnu-p3s/xnu/verify_wifi_0149.py --s21xnu /tmp/s21xnu
           python3 lab/s21xnu-p3s/xnu/verify_hid_0151.py --s21xnu /tmp/s21xnu

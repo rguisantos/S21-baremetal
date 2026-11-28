@@ -1,0 +1,256 @@
+{
+  "schema": "s21xnu-blind-marks-qemu/1",
+  "s21xnu_commit": "a128f07b04987e60f5e13e2ce67b19ae009672cd",
+  "pmu_redirect": "0xbf000000",
+  "patches_sha256": {
+    "0001-board-p3s-framebuffer.patch": "a5af2b0f4d51232de49628fa7bc2f33256396472c4f9c2a4aa6d0b15484d63a0",
+    "0002-probe-lk-handoff-facts.patch": "3b8cc8cd7cba9a1414788fbb7d8c53d4df59308f54a2c321c5f16b17f7ff7dd1",
+    "0003-probe-blind-pmu-marks.patch": "b25f5f5456c9463c102375813228566c3df3b85f2d1cdcefaf93835f386c6e27",
+    "0004-p3s-decon-trigger-and-pmu-reset.patch": "3464d46e80699f73eb882447856cd6a762210db31ea798f0ef42da20cb1c9ce7"
+  },
+  "runs": {
+    "0": {
+      "shim_sha256": "8db87bb60e8b5fe1258c01781f0371902eddb836c82531c391218a7db274d045",
+      "inform2": "0x0",
+      "inform3": "0x0",
+      "sysip0": "0x0",
+      "swreset": "0x0",
+      "decon_glob": "0x113",
+      "decon_trig": "0x11",
+      "decon_shd": "0x0",
+      "nonzero_words": "0x0",
+      "psci_reset_exited_qemu": null
+    },
+    "1": {
+      "shim_sha256": "7275417ee4e653ff30eaf367ecdd463f24c42662c7a7717b1a507c7196075003",
+      "inform2": "0x5101",
+      "inform3": "0x12345604",
+      "sysip0": "0x0",
+      "swreset": "0x2",
+      "decon_glob": "0x113",
+      "decon_trig": "0x11",
+      "decon_shd": "0x0",
+      "nonzero_words": "0x3",
+      "psci_reset_exited_qemu": null
+    },
+    "2": {
+      "shim_sha256": "507d3c3e5c95b9eafd7412627fa81bd0d98dd3cae08a638f5f5b32946508dbd6",
+      "inform2": "0x510f",
+      "inform3": "0x12345604",
+      "sysip0": "0x0",
+      "swreset": "0x2",
+      "decon_glob": "0x113",
+      "decon_trig": "0x11",
+      "decon_shd": "0x0",
+      "nonzero_words": "0x3",
+      "psci_reset_exited_qemu": null
+    },
+    "3": {
+      "shim_sha256": "9c010b8ec09a0aaf54cd9e5942cba238c3cc339db4ee9a494c718b7a3ea9e225",
+      "inform2": "0x5111",
+      "inform3": "0x12345604",
+      "sysip0": "0x0",
+      "swreset": "0x0",
+      "decon_glob": "0x113",
+      "decon_trig": "0x11",
+      "decon_shd": "0x0",
+      "nonzero_words": "0x2",
+      "psci_reset_exited_qemu": true
+    },
+    "4": {
+      "shim_sha256": "bf34e1a91db54baaef3f4437a648a21af4be75cceaaa9162406f621e8adbe07f",
+      "inform2": "0x644f",
+      "inform3": "0x12345604",
+      "sysip0": "0x0",
+      "swreset": "0x0",
+      "decon_glob": "0x113",
+      "decon_trig": "0x1",
+      "decon_shd": "0x80000000",
+      "nonzero_words": "0x2",
+      "psci_reset_exited_qemu": null
+    },
+    "p3s-0004": {
+      "shim_sha256": "6f429e8129cf895331d81c73745cb27dbbad5336cadd96292789c28524fae8de",
+      "early_trig": "0x1",
+      "early_shd": "0x80000000",
+      "early_swreset": "0x0",
+      "late_inform3": "0x12345604",
+      "late_swreset": "0x2",
+      "late_inform2": "0x0",
+      "nonzero_words": "0x2"
+    }
+  },
+  "checks": [
+    {
+      "check": "SHIM_BLIND=0 não escreve no PMU nem no DECON",
+      "ok": true,
+      "detail": "{'inform2': 0, 'inform3': 0, 'sysip0': 0, 'swreset': 0, 'decon_glob': 275, 'decon_trig': 17, 'decon_shd': 0, 'nonzero_words': 0, 'psci_reset_exited_qemu': None}"
+    },
+    {
+      "check": "SHIM_BLIND=1 não toca no DECON",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "SHIM_BLIND=1 inform2",
+      "ok": true,
+      "detail": "0x5101"
+    },
+    {
+      "check": "SHIM_BLIND=1 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=1 sysip0",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=1 swreset",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "SHIM_BLIND=1 só 3 registradores",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "SHIM_BLIND=2 não toca no DECON",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "SHIM_BLIND=2 inform2",
+      "ok": true,
+      "detail": "0x510f"
+    },
+    {
+      "check": "SHIM_BLIND=2 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=2 sysip0",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=2 swreset",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "SHIM_BLIND=2 só 3 registradores",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "SHIM_BLIND=3 não toca no DECON",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "SHIM_BLIND=3 inform2",
+      "ok": true,
+      "detail": "0x5111"
+    },
+    {
+      "check": "SHIM_BLIND=3 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=3 sysip0",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=3 swreset",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=3 só 2 registradores",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "SHIM_BLIND=3 reset por PSCI encerra o QEMU",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "SHIM_BLIND=4 inform2",
+      "ok": true,
+      "detail": "0x644f"
+    },
+    {
+      "check": "SHIM_BLIND=4 inform3",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "SHIM_BLIND=4 sysip0",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=4 swreset",
+      "ok": true,
+      "detail": "0x0"
+    },
+    {
+      "check": "SHIM_BLIND=4 decon_trig",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "SHIM_BLIND=4 decon_shd",
+      "ok": true,
+      "detail": "0x80000000"
+    },
+    {
+      "check": "SHIM_BLIND=4 decon_glob",
+      "ok": true,
+      "detail": "0x113"
+    },
+    {
+      "check": "SHIM_BLIND=4 só 2 registradores",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "0004: trigger desmascarado na entrada (TRIG_CON 0x11 -> 0x01)",
+      "ok": true,
+      "detail": "0x1"
+    },
+    {
+      "check": "0004: SHD_REG_UP_REQ bit 31 na entrada",
+      "ok": true,
+      "detail": "0x80000000"
+    },
+    {
+      "check": "0004: sem reset antes do fim",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "0004: reset pelo PMU no fim",
+      "ok": true,
+      "detail": "0x2"
+    },
+    {
+      "check": "0004: pedido de recovery no fim",
+      "ok": true,
+      "detail": "0x12345604"
+    },
+    {
+      "check": "0004: INFORM2 intacto e só dois registradores",
+      "ok": true,
+      "detail": "2"
+    }
+  ],
+  "result": "PASS"
+}

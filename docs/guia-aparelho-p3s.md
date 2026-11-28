@@ -107,6 +107,12 @@ regrave. Siga também o que o autor da Fox pede no primeiro boot dela. Se o
 Android pedir "Falha na verificação, redefinir", aceite (os dados já foram
 apagados).
 
+**Observado em 27/11:** depois do vbmeta desativado, o Android stock entra em
+loop para a recovery (`decryptWithKeystoreKey fail`; o `init` pede
+`reboot recovery`). Na Fox: Wipe → **Format Data** (`yes`) e depois Reboot →
+System. Isso apaga os dados do usuário. Sempre que o vbmeta mudar, formate de
+novo.
+
 ## 4. Backup das partições stock pela Fox
 
 Na Fox, com o cabo no PC (se o `adb devices` não listar, alterne o MTP na
@@ -120,6 +126,14 @@ Fox, como diz a release):
 O `boot.img` e o `vendor_boot.img` devem dar os hashes dos pins
 (`28818995…` e `f5b18d6b…`). O `vbmeta.img` vai diferir do pin: é a cópia já
 desativada do passo 3, com a partição inteira. **Mande os hashes.**
+
+**Observado em 27/11:** no primeiro start a Fox recompactou o ramdisk do
+boot (kernel e arquivos iguais, hash `9d405a0c…`). Se o `boot.img` não der
+`28818995…`, regrave o boot do firmware antes do passo 5:
+
+    lz4 -dc ../AP_HZC2/boot.img.lz4 > /tmp/boot-hzc2.img
+    adb push /tmp/boot-hzc2.img /tmp/stock-boot.img
+    adb shell 'dd if=/tmp/stock-boot.img of=/dev/block/by-name/boot bs=4096 conv=fsync && sync; sha256sum /dev/block/by-name/boot'
 
 ## 5. Kit da sonda e o teste
 
@@ -139,12 +153,15 @@ Tem de aparecer uma linha. Se não, monte a Cache no menu Mount da Fox.
 
     adb push ../kit-sonda/boot.img ../kit-sonda/s21xnu-switch.sh /tmp/
     adb shell sh /tmp/s21xnu-switch.sh install /tmp/boot.img
-    adb shell sh /tmp/s21xnu-switch.sh to-xnu
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh to-xnu --no-reboot
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh status
+    adb reboot
 
 O `install` guarda a BOOT stock em `/cache/s21xnu` e confere o hash; o
-`to-xnu` grava a sonda, relê, confere e reinicia. **O script nunca rodou
-numa recovery de verdade**: se recusar ou der erro, copie a mensagem e use o
-caminho B.
+`to-xnu` grava a sonda, relê e confere. Reinicie com `adb reboot` e **não
+toque nos botões**: com Volume− e Power o S-Boot lê as teclas e abre a Fox
+(`sbl_check_keypad`, observado em 27/11). O botão Reboot da tela da Fox
+também é evitado, porque ela tem rotinas que mexem no boot ao reiniciar.
 
 Caminho B, modo download: `sudo heimdall flash --BOOT ../kit-sonda/boot.img`.
 
@@ -163,13 +180,63 @@ volta à sonda. **Fotografe a tela vermelha** (nítida; vale filmar):
 Tela preta, outra cor ou números diferentes também são resultado: fotografe
 do mesmo jeito.
 
+**Observado em 27/11:** o logo "Samsung Galaxy" ficou na tela por mais de 2
+minutos, sem tela vermelha e sem reinício. Nesse caso use a sonda cega
+(5b).
+
+## 5b. Sonda cega (sem tela)
+
+A sonda cega grava marcas nos registradores INFORM do PMU e pede reset para
+a recovery; o resultado aparece no log do S-Boot, que se lê na Fox. Detalhes
+em [s21xnu-sonda-cega-p3s.md](s21xnu-sonda-cega-p3s.md).
+
+    cd ~/S21-baremetal && git pull
+    python3 lab/s21xnu-p3s/prepare_first_boot.py --cega entrada \
+        --stock-dir ../AP_HZC2 --s21xnu ../s21xnu \
+        --lab-key ../kit-sonda/lab-key.pem --out ../kit-cega-entrada
+    python3 lab/s21xnu-p3s/prepare_first_boot.py --cega etapas \
+        --stock-dir ../AP_HZC2 --s21xnu ../s21xnu \
+        --lab-key ../kit-sonda/lab-key.pem --out ../kit-cega-etapas
+
+Na Fox, com a BOOT em stock (`status`), para cada kit (entrada primeiro):
+
+    adb shell mount /cache
+    adb push ../kit-cega-entrada/boot.img /tmp/cega.img
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh install /tmp/cega.img
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh to-xnu --no-reboot
+    adb shell 'sync; echo b > /proc/sysrq-trigger'
+
+O `sysrq` reinicia pelo kernel, sem as rotinas de reinício da Fox. Cada
+entrada na Fox recompacta a BOOT stock (volta a `9d405a0c…`, o `status` mostra
+`desconhecido`); o `to-android --no-reboot` regrava o stock conferido. Sem
+tocar no aparelho. Esperado: volta sozinho à Fox em segundos. Se ficar
+no logo mais de 2 minutos: Volume− e Power até apagar e, se não abrir a Fox
+sozinho, Volume+ e Power. Então:
+
+    adb shell 'grep -a -E "show_reset_reason_rawdata|sbl_check_reboot_mode" /proc/sec_log'
+
+O último par de linhas é o boot que entrou na Fox. `inform2: 0x5101` = o
+shim rodou; a tabela está no `ROTEIRO.md` do kit. **Observado em 27/11:**
+entrada deu `0x5101` e etapas `0x510F`, as duas com `PINFORM = 12345604`. O
+variante `--cega relogio` deu `0x5113` em 57 s: o PSCI não reinicia e o
+contador é de 26 MHz. Com `--cega tela` o usuário viu vermelho e depois verde
+(`inform2: 0x6C5F`): o painel mostra o framebuffer depois de desmascarar o
+trigger do DECON0. O patch 0004 leva isso à sonda padrão e ao XNU. Refaça o
+kit do passo 5 (`git pull`) e grave: agora a tela vermelha tem de mostrar as
+linhas, e a sonda volta sozinha à Fox depois de ~70 s.
+
+Para sair da Fox para o Android, use **Reboot → System** no menu. Com root no
+Android (Magisk), os testes podem rodar pelo Android com `su`, sem a Fox.
+
 ## 6. Voltar ao Android
 
 Segure **Volume− e Power** até apagar e, logo em seguida, **Volume+ e Power
 com o cabo no PC** (Fox). Então:
 
     adb shell mount /cache
-    adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android
+    adb shell sh /cache/s21xnu/s21xnu-switch.sh to-android --no-reboot
+    adb reboot
 
 Sem a Fox: modo download e
 `sudo heimdall flash --BOOT ../backup-stock/boot.img` (ou Odin com

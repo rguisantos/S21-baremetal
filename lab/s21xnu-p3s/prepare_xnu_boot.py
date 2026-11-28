@@ -10,7 +10,8 @@ sonda). CLONE: s21xnu no commit fixado e limpo; a série do fork
 kernel.development.sweet do artefato `xnu-kernel` do fork; precisa conter
 as marcas dos patches 0146, 0148, 0149 e 0150 (o 0150 com o BAR2 primeiro).
 
-O script compila o shim BOARD=p3s (com as linhas da sonda), gera o ADT
+O script compila o shim BOARD=p3s (com as linhas da sonda e o patch 0004,
+que desmascara o trigger do DECON0 antes de saltar para o XNU), gera o ADT
 (`mkadt.py --board=p3s --highmem`, com o mapa UFS se houver --filefrag),
 o payload SWEETXNU (`mkpayload.py`) e o boot.img com o rodapé AVB de
 laboratório; confere o payload contra o hand-off do LK
@@ -178,6 +179,9 @@ def build_inputs(s21xnu, kernel_path, filefrag, cpus, sweetwifi, tmp):
     kit.need(len(FORK_SERIES) == 7, "série do fork incompleta: %d arquivos" % len(FORK_SERIES))
     for p in FORK_SERIES:
         subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(p)], cwd=tree, check=True)
+    # 0004: trigger do DECON0 desmascarado antes do loader (a tela do XNU
+    # depende disso) e reset do shim pelo PMU; observados no aparelho em 27/11
+    subprocess.run(["patch", "-p1", "--batch", "-s", "-i", str(kit.PATCH4)], cwd=tree, check=True)
     shim = vp.build_shim(tree, "p3s", vp.cross_env(str(tmp)))
     kernel = pathlib.Path(kernel_path).read_bytes()
     check_kernel(kernel)
